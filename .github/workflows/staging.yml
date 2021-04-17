@@ -21,11 +21,11 @@ jobs:
       #  run: composer install --prefer-dist --no-progress
       
       # Deploy to ftp server
-      - name: FTP Deploy to WP Engine (Staging)
+      - name: sFTP Deploy (Staging)
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           ftp-server: sftp://home226889911.1and1-data.host:22/
           ftp-username: u47381383-dev
           ftp-password: ${{ secrets.STAGING_FTP_PASSWORD }}
           local-dir: ./src/
-          security: loose
+          known-hosts: "home226889911.1and1-data.host,2001:8d8:1001:12f2:525:2756:a999:c001 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFjDE2sDVlaHhXudMMsLEuJvY+nBuTbwLGpQkLaJ5oxIR9vXinw/2dSzqnDAlrmJ1ZgWKQnvPh7Mz770Hp/sobU="
