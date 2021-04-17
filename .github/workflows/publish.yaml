@@ -21,7 +21,7 @@ jobs:
       #  run: composer install --prefer-dist --no-progress
       
       # Deploy to ftp server
-      - name: sFTP Deploy (Staging)
+      - name: sFTP Deploy (Publish)
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           ftp-server: ${{ secrets.PUBLISH_FTP_SERVER }}
