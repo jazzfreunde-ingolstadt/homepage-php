@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+    apache-server:
+        container_name: jazzfreunde-php-apache
+
+        build:
+            context: .
+        environment:
+            XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000 remote_enable=1
+            APACHE_DOCUMENT_ROOT: /usr/project/src
+        ports:
+            - "8080:80"
+        volumes:
+            - ../:/usr/project/
+    database-server:
+        container_name: jazzfreunde-mysql-database
+        image: mysql:latest
+
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: dbu1536917
+            MYSQL_PASSWORD: fOd]Z/4ofxKW
+            MYSQL_DATABASE: jazzfreunde-api
+        ports:
+            - 3306:3306
+        volumes:
+            - mysql-data-kommune:/var/lib/mysql
+    database-admin:
+        container_name: jazzfreunde-mysql-admin
+        image: phpmyadmin/phpmyadmin:latest
+        depends_on:
+            - database-server
+
+        environment:
+            PMA_HOST: jazzfreunde-mysql-database
+            PMA_USER: dbu1536917
+            PMA_PASSWORD: fOd]Z/4ofxKW
+        ports:
+          - "8081:80"
+volumes:
+    mysql-data-kommune:

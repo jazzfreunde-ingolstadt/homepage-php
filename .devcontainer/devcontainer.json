@@ -1,0 +1,13 @@
+{
+    "name": "homepage-php",
+    "dockerComposeFile": "./docker-compose.yml",
+    "service": "apache-server",
+    "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"extensions": [
+		"felixfbecker.php-debug",
+		"bmewburn.vscode-intelephense-client"
+	],
+  "workspaceFolder": "/usr/project"
+  }
