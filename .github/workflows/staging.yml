@@ -28,4 +28,5 @@ jobs:
           ftp-username: u47381383-dev
           ftp-password: ${{ secrets.STAGING_FTP_PASSWORD }}
           local-dir: ./src/
+          server-dir: ./
           git-ftp-args: --insecure
