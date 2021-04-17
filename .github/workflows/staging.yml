@@ -27,6 +27,5 @@ jobs:
           ftp-server: sftp://home226889911.1and1-data.host:22/
           ftp-username: u47381383-dev
           ftp-password: ${{ secrets.STAGING_FTP_PASSWORD }}
-          local-dir: ./src/*
-          server-dir: ./
+          local-dir: src/
           git-ftp-args: --insecure
