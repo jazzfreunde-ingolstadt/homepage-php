@@ -28,4 +28,4 @@ jobs:
           ftp-username: u47381383-dev
           ftp-password: ${{ secrets.STAGING_FTP_PASSWORD }}
           local-dir: ./src/
-          knownhosts: "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFjDE2sDVlaHhXudMMsLEuJvY+nBuTbwLGpQkLaJ5oxIR9vXinw/2dSzqnDAlrmJ1ZgWKQnvPh7Mz770Hp/sobU="
+          git-ftp-args: --insecure
