@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{DOCUMENT_ROOT}/$1 !-f
+
+    #RewriteRule ^.*legacy ./www/legacy [L]
+    #RewriteRule ^$ ./www/pages [L]
+</IfModule>
