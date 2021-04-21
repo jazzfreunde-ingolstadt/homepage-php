@@ -22,9 +22,9 @@
   
   function img($type)
   { global $c;
-    return "legacy/gfx/start_" . $c . "/start_" . $type . "_ul.png";
+    return "gfx/start_" . $c . "/start_" . $type . "_ul.png";
   }
-  
+
 ?>
 
 <table id="introtableau" border="0" cellspacing="0" cellpadding="0" align="center" valign="middle">
@@ -50,7 +50,7 @@
       <td><a id="txt_2c" href="termine.php" title="Veranstaltungen" onmouseover="swap('2c', true)" onmouseout="swap('2c', false)">Veranstaltungen</a></td>
     </tr>
     <tr id="intro_logotext">
-      <td colspan="3" align="center"><a href="ueberuns.php"><img src="legacy/gfx/jazzlogotext.png" style="margin:0.5em;" alt="JazzFreunde Ingolstadt e.V." width="190" height="50" border="0" /></a></td>
+      <td colspan="3" align="center"><a href="ueberuns.php"><img src="gfx/jazzlogotext.png" style="margin:0.5em;" alt="JazzFreunde Ingolstadt e.V." width="190" height="50" border="0" /></a></td>
     </tr>
   </tbody>
 </table>
@@ -64,7 +64,7 @@ function swap(nr, state)
   img = document.getElementById('img_' + nr);
   txta = document.getElementById('txt_' + nr);
   if (!img || !img.src || !txta) return;
-  img.src = 'legacy/gfx/start_<?php echo $c ?>/start_' + nr + '_' + (state ? 'hl' : 'ul') + '.png';
+  img.src = 'gfx/start_<?php echo $c ?>/start_' + nr + '_' + (state ? 'hl' : 'ul') + '.png';
   txta.style.color = (state ? '#242c7f' : '#ee8811');
   txta.style.background = (state ? '#e8c400' : '#242c7f');
 }

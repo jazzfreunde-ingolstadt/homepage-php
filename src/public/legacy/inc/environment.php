@@ -39,11 +39,11 @@ function head()
     <meta name="robots" content="<?php echo ROBOTS ?>" />
     <meta name="generator" content="kwrite" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" type="text/css" media="all" href="legacy/env/default.css" title="Jazzfreunde blau-orange" />
+    <link rel="stylesheet" type="text/css" media="all" href="env/default.css" title="Jazzfreunde blau-orange" />
 <?php if (defined("VIDEO")) { ?>
-    <script type="text/javascript" src="legacy/env/swfobject.js"></script>
+    <script type="text/javascript" src="env/swfobject.js"></script>
 <?php } ?>
-    <script type="text/javascript" src="legacy/env/default.js"></script>
+    <script type="text/javascript" src="env/default.js"></script>
   </head>
 
 <?php
@@ -58,7 +58,7 @@ function before($onload = null)
       <tr>
         <td rowspan="2" id="left" align="center" valign="top" width="220">
           <div id="logo">
-            <img src="legacy/gfx/logo_lomt.png" alt="Jazzfreunde Ingolstadt e. V." width="200" height="200" />
+            <img src="gfx/logo_lomt.png" alt="Jazzfreunde Ingolstadt e. V." width="200" height="200" />
           </div>
 <?php menu() ?>
         </td>
