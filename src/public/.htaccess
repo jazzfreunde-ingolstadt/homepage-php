@@ -1,7 +1,7 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    #RewriteBase "/"
+    RewriteBase "/"
 
     # RewriteCond %{HTTPS} off [OR]
     # RewriteCond %{HTTP_HOST} ^www\. [NC]
@@ -9,5 +9,5 @@
     
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^pages(.*)$ legacy/$1 [L]
+    RewriteRule ^pages/(.*)$ legacy/$1 [L]
 </IfModule>
