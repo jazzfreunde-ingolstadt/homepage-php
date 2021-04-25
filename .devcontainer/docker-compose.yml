@@ -13,6 +13,8 @@ services:
             - "8080:80"
         volumes:
             - ../:/usr/project/
+        secrets:
+            - user_ssh_key
     database-server:
         container_name: jazzfreunde-mysql-database
         image: mysql:latest
@@ -41,3 +43,7 @@ services:
           - "8081:80"
 volumes:
     mysql-data-kommune:
+
+secrets:
+    user_ssh_key:
+        file: ~/.ssh/id_ed25519

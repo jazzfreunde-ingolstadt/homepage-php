@@ -6,6 +6,7 @@ RUN apt-get update && \
 RUN apt-get install -y git
 RUN apt-get install -y nodejs
 
+# apache
 RUN pecl install -f xdebug \
 && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini;
 RUN docker-php-ext-install -j$(nproc) mysqli
@@ -20,3 +21,16 @@ RUN a2enmod expires
 RUN apachectl restart
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# user/ssh
+RUN apt-get install -y openssh-client
+RUN apt-get install -y sudo
+
+RUN adduser --disabled-password -gecos '' docker
+RUN adduser docker sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN mkdir -p /home/docker/.ssh && ln -s /run/secrets/user_ssh_key /home/docker/.ssh/id_ed25519
+RUN chown -R docker:docker /home/docker/.ssh
+RUN echo "    IdentityFile ~/.ssh/id_ed25519" >> /etc/ssh/ssh_config
+
+USER docker
