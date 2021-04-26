@@ -55,7 +55,7 @@ before();
   <div class="kasten_h1">Schatzmeister</div>
   <div class="kasten_h2">Helmut Bachmaier</div>
   <div class="kasten_p">
-    <div class="right"><a class="kontakt" href="kontakt.php?to=bachmaier" title="Zum Kontaktformular">Kontakt</a></div>
+    <div class="left"><a class="kontakt" href="kontakt.php?to=bachmaier" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
 </div>
 <!--
@@ -99,7 +99,7 @@ Wiedereinstieg in den Jazz 1995 in Ingolstadt zu den Jazztagen, seit 1999 Mitarb
 <div class="kasten_p">Daniel Höpp ist seit 2010 Testingenieur in einem Unternehmen in der Automobilbranche, zuvor hat er Elektro- und Informationstechnik an der Fachhochschule Ingolstadt studiert. Er betreut, gestaltet und programmiert bereits seit mehreren Jahren erfolgreich die Homepages von verschiedenen Organisationen, neben den Jazzfreunden unter anderem auch die Seiten der Landesarbeitsgemeinschaft Schulchor in Bayern.
 <div class="right"><a class="kontakt" href="kontakt.php?to=hoepp" title="Zum Kontaktformular">Kontakt</a></div></div>
 </div>-->
-<div class="kasten person odd"><img src="gfx/mayer_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person even"><img src="gfx/mayer_pre.jpg" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Webmaster</div>
   <div class="kasten_h2">Michael Mayer</div>
   <div class="kasten_p">Michael Mayer ist Entwickler in der Softwarebranche. Er selbst spielt Kontrabass.

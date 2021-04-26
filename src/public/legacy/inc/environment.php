@@ -109,7 +109,7 @@ function before($onload = null)
                 </td>
               </tr>
               <tr>
-                <td colspan="2" id="footer" height="30" align="center" valign="middle">Jazzfreunde Ingolstadt, Schaum&uuml;hle 1, 85049 Ingolstadt</td>
+                <td colspan="2" id="footer" height="30" align="center" valign="middle">Jazzfreunde Ingolstadt, Lindbergstr. 3a, 85051 Ingolstadt</td>
               </tr>
             </table>
           </body>
