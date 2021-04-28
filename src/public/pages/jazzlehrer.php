@@ -23,22 +23,22 @@ function write_lehrer($name, $instrument, $musikschule, $telefon, $email = null,
 
 	<tr>
 		<th>
-			<?php echo $name ?>
+			<?=$name ?>
 		</th>
 		<td>
-			<?php echo $instrument ?>
+			<?=$instrument ?>
 		</td>
 		<td>
-			<?php echo ($musikschule ? $musikschule : "–") ?>
+			<?=($musikschule ? $musikschule : "–") ?>
 		</td>
 		<td>
-			<?php echo ($telefon ? $telefon : "–") ?>
+			<?=($telefon ? $telefon : "–") ?>
 		</td>
 		<td class="email">
-			<?php echo ($email ? killmail($email) : "–") ?>
+			<?=($email ? killmail($email) : "–") ?>
 		</td>
 		<td>
-			<?php echo ($homepage ? "<a href=\"" . $homepage . "\" title=\"" . $homepage . "\"><img src=\"gfx/icons/default.png\" alt=\"\" height=\"16\" width=\"16\" /></a>" : "&nbsp;") ?>
+			<?=($homepage ? "<a href=\"" . $homepage . "\" title=\"" . $homepage . "\"><img src=\"gfx/icons/default.png\" alt=\"\" height=\"16\" width=\"16\" /></a>" : "&nbsp;") ?>
 		</td>
 	</tr>
 

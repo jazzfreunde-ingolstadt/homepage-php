@@ -61,7 +61,7 @@ function writeVAhead()
 		return $link_head . $name . (!empty($name2) ? "<br /><small>" . $name2 . "</small>" : "") . (!empty($name3) ? "<br /><small>" . $name3 . "</small>" : "") . $link_tail;
 	}
 
-	function title_series($event, $name, $link = "", $info = "", $name2 = "", $name3 = "", $options = "")
+	function title_series($event, $name = "", $link = "", $info = "", $name2 = "", $name3 = "", $options = "")
 	{
 		switch (strtoupper($event)) {
 			case "JAZZTAGE":
@@ -99,24 +99,24 @@ function writeVAhead()
 
 		$titletext = ($infotip == "" ? "" : " title=\"" . $infotip . "\"");
 ?>
-	<tr <?php echo $tdstyle ?>>
-		<td <?php echo $titletext ?>>
-			<?php echo $wannd ?>
+	<tr <?=$tdstyle ?>>
+		<td <?=$titletext ?>>
+			<?=$wannd ?>
 		</td>
-		<td <?php echo $titletext ?>>
-			<?php echo $wannt ?>
+		<td <?=$titletext ?>>
+			<?=$wannt ?>
 		</td>
-		<th <?php echo $titletext ?>>
-			<?php echo $was ?>
+		<th <?=$titletext ?>>
+			<?=$was ?>
 		</th>
-		<td <?php echo $titletext ?>>
-			<?php echo $wo ?>
+		<td <?=$titletext ?>>
+			<?=$wo ?>
 		</td>
 		<td>
-			<?php echo ($imgid == null || $imgid == "0" || $imgid < 0 || $imgid == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"bilder.php?bilder=" . $imgid . "&amp;via=" . PAGE . "\" title=\"Zu den Bildern\"><img src=\"gfx/dia.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Bilder\" /></a>") ?>
+			<?=($imgid == null || $imgid == "0" || $imgid < 0 || $imgid == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"bilder.php?bilder=" . $imgid . "&amp;via=" . PAGE . "\" title=\"Zu den Bildern\"><img src=\"gfx/dia.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Bilder\" /></a>") ?>
 		</td>
 		<td>
-			<?php echo ($videolink == null || $videolink == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"" . $videolink . "\" title=\"Wer ist das?\" target=\"_blank\"><img src=\"gfx/cam.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Wer ist das?\" /></a>") ?>
+			<?=($videolink == null || $videolink == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"" . $videolink . "\" title=\"Wer ist das?\" target=\"_blank\"><img src=\"gfx/cam.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Wer ist das?\" /></a>") ?>
 		</td>
 	</tr>
 <?php

@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("PAGE"))
 {
   header("location:../termine.php");
@@ -28,7 +28,7 @@ define("_BRIGK_", "<a href=\"https://www.brigk.digital/\" title=\"Zur Homepage\"
 define("_AUDI_PIAZZETTA_", "<a href=\"https://www.audi.com/foren/de/audi-forum-ingolstadt/veranstaltungen/jazz-im-audi-forum-ingolstadt.html/\" title=\"Jazz im Audi Forum Ingolstadt\" target=\"_blank\" style=\"text-decoration: none; color: inherit;\">Audi Piazzetta Ingolstadt</a>");
 define("_SCHUTTER_", "<a href=\"https://de-de.facebook.com/Schutter8/\" title=\"Schutter auf Facebook\" target=\"_blank\" style=\"text-decoration: none; color: inherit;\">Schutter</a>");
 define("_KLENZEPARK_", "Klenze Park");
-define("_REDUIT_TILLY", "Reduit Tilly");
+define("_REDUIT_TILLY_", "Reduit Tilly");
 define("_HARDERBASTEI_", "<a href=\"https://ingolstadt.de/Kultur/Kunst-Kultur/Galerie-Harderbastei\" title=\"Zur Seite der Stadt Ingolstadt\" target=\"_blank\" style=\"text-decoration: none; color: inherit;\">Harderbastei</a>");
 
 

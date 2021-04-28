@@ -413,7 +413,7 @@ if (false) {
 
       <p><img src="gfx/newsletter/querbeet_kraibergjazzband.png" alt="" /></p>
 
-      <p>Uns haben die Aufnahmen riesigen Spaß bereitet und wir hoffen, dass man das beim Zuhören spürt. Falls Interesse besteht, können Sie/ könnt Ihr die CD zum Preis von 10 Euro (plus Versand) über die e-mail <span class="email"><?php echo killmail("kjb@neusob.de"); ?></span> bestellen; alternativ natürlich auch über den direkten Kontakt zu einem der Bandmitglieder:</p>
+      <p>Uns haben die Aufnahmen riesigen Spaß bereitet und wir hoffen, dass man das beim Zuhören spürt. Falls Interesse besteht, können Sie/ könnt Ihr die CD zum Preis von 10 Euro (plus Versand) über die e-mail <span class="email"><?=killmail("kjb@neusob.de"); ?></span> bestellen; alternativ natürlich auch über den direkten Kontakt zu einem der Bandmitglieder:</p>
 
       <p>- Sabine Graf<br />
         - Helmut Leben<br />
@@ -429,7 +429,7 @@ if (false) {
       <p>Kraiberg Jazz Band</p>
 
       <p>Homepage: <a href="http://www.kraiberg-jazz-band.de">www.kraiberg-jazz-band.de</a> (hier gibt es auch Hörproben aus beiden CD's)<br />
-        e-mail : <span class="email"><?php echo killmail("kjb@neusob.de"); ?></span>”</p>
+        e-mail : <span class="email"><?=killmail("kjb@neusob.de"); ?></span>”</p>
     </blockquote>
 
     <p>Die regionale Szene schläft also nicht! Aktiv werden kann sowieso jeder Jazzmusiker, indem er mitmacht bei der ...</p>
@@ -528,7 +528,7 @@ if (false) {
         10719 Berlin<br />
         Tel. 030 – 254 89 213<br />
         Fax 030 – 254 89 132<br />
-        <span class="email"><?php echo killmail("jugendwettbewerbe@berlinerfestspiele.de") ?></span><br />
+        <span class="email"><?=killmail("jugendwettbewerbe@berlinerfestspiele.de") ?></span><br />
         www.berlinerfestspiele.de
       </p>
 
@@ -545,7 +545,7 @@ if (false) {
       <p>PS: Übrigens: Der Organisationskern des Jazzvereins trifft sich diesen Dienstag (8.6.) um 8.30 Uhr im Hotel Rappensberger zur Besprechung. Wer also nicht nur lesen will, was im Jazz in der Region so alles los ist, sondern aktiv dabei sein will, kann gerne dazu stoßen.</p>
     </div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach(); ?>
 
@@ -941,7 +941,7 @@ if (false) {
 
       <p><img src="gfx/newsletter/querbeet_kraibergjazzband.png" alt="" /></p>
 
-      <p>Uns haben die Aufnahmen riesigen Spaß bereitet und wir hoffen, dass man das beim Zuhören spürt. Falls Interesse besteht, können Sie/ könnt Ihr die CD zum Preis von 10 Euro (plus Versand) über die e-mail <span class="email"><?php echo killmail("kjb@neusob.de"); ?></span> bestellen; alternativ natürlich auch über den direkten Kontakt zu einem der Bandmitglieder:</p>
+      <p>Uns haben die Aufnahmen riesigen Spaß bereitet und wir hoffen, dass man das beim Zuhören spürt. Falls Interesse besteht, können Sie/ könnt Ihr die CD zum Preis von 10 Euro (plus Versand) über die e-mail <span class="email"><?=killmail("kjb@neusob.de"); ?></span> bestellen; alternativ natürlich auch über den direkten Kontakt zu einem der Bandmitglieder:</p>
 
       <p>- Sabine Graf<br />
         - Helmut Leben<br />
@@ -957,7 +957,7 @@ if (false) {
       <p>Kraiberg Jazz Band</p>
 
       <p>Homepage: <a href="http://www.kraiberg-jazz-band.de">www.kraiberg-jazz-band.de</a> (hier gibt es auch Hörproben aus beiden CD's)<br />
-        e-mail : <span class="email"><?php echo killmail("kjb@neusob.de"); ?></span>”</p>
+        e-mail : <span class="email"><?=killmail("kjb@neusob.de"); ?></span>”</p>
     </blockquote>
 
     <p>Die regionale Szene schläft also nicht! Aktiv werden kann sowieso jeder Jazzmusiker, indem er mitmacht bei der ...</p>
@@ -1056,7 +1056,7 @@ if (false) {
         10719 Berlin<br />
         Tel. 030 – 254 89 213<br />
         Fax 030 – 254 89 132<br />
-        <span class="email"><?php echo killmail("jugendwettbewerbe@berlinerfestspiele.de") ?></span><br />
+        <span class="email"><?=killmail("jugendwettbewerbe@berlinerfestspiele.de") ?></span><br />
         www.berlinerfestspiele.de
       </p>
 
@@ -1073,7 +1073,7 @@ if (false) {
       <p>PS: Übrigens: Der Organisationskern des Jazzvereins trifft sich diesen Dienstag (8.6.) um 8.30 Uhr im Hotel Rappensberger zur Besprechung. Wer also nicht nur lesen will, was im Jazz in der Region so alles los ist, sondern aktiv dabei sein will, kann gerne dazu stoßen.</p>
     </div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach(); ?>
 
@@ -1296,7 +1296,7 @@ if (false) {
       <p>PS: Übrigens: Der Organisationskern des Jazzvereins trifft sich diesen Dienstag um 8.30 Uhr im Hotel Rappensberger zur Besprechung. Wer also nicht nur lesen will, was im Jazz in der Region so alles los ist, sondern aktiv dabei sein will, kann gerne dazu stoßen.</p>
     </div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach(); ?>
 
@@ -1556,7 +1556,7 @@ if (false) {
       </blockquote>
     </div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach(); ?>
 
@@ -1803,7 +1803,7 @@ if (false) {
     <div class="signum">Robert Aichner</div>
 
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach(); ?>
 
@@ -2122,7 +2122,7 @@ if (false) {
     <p>
       IM RESTAURANT NOCHMALS HÖREN KÖNNEN ZUSAMMEN MIT DEN LATE NIGHT MUSIKERN. UND DAS BESTE: ES HERRSCHT <span class="red">OPEN STAGE</span>, ALSO WER SICH FIT FÜHLT IM <span class="red">JAMMEN</span> KANN <span class="red">MITMACHEN</span>!!! DIE IDEALE GELEGENHEIT FÜR UNSERE <span class="red">JAZZFÖRDERPREISTRÄGER UND <span class="red">FITTEN NACHWUCHSJAZZERN DER YOUNG JAZZ PLAYERS!!!!</span></p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2388,7 +2388,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -2650,7 +2650,7 @@ if (false) {
 
     <p class="small">PS: Und quasi als Nachschlag: Herzlich Willkommen Julia Knelange, deren Eintritt in den Verein ich gerade noch mitgeteilt bekommen habe!</p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2774,7 +2774,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -2974,7 +2974,7 @@ if (false) {
 
     <p class="small">PS: Wann wird’s mal wieder richtig Sommer? Du-du- du- du- du- du ...</p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -3200,7 +3200,7 @@ if (false) {
 
     <p class="small">PS: Ich persönlich begebe mich demnächst auch auf die Suche: Ein Haus (Einfamilienhaus, Doppelhaushälfte, Reiheneckhaus) in Ingolstadt für meine 4-köpfige Familie solls sein, nicht zu weit vom Zentrum weg, für Musiker geeignet und gerne mit eigenem Studio / Anbau zwecks Büro oder Musikraum, Garten kein Hindernis. Wer suchet der findet. Wer wünschet, dem wird gegeben. Familiendienliche Hinweise bitte direkt an mich ;-)</p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -3462,7 +3462,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -3697,7 +3697,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -3935,7 +3935,7 @@ if (false) {
 
     <p>PPS: Den Newsletter des Birdland Jazzclubs Neuburg gibst gleich als Nachschlag hinterher</p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -4187,7 +4187,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
 
   <?php
@@ -4382,7 +4382,7 @@ if (false) {
 
     <p>Hier gibt’s den ein oder anderen Juwel zu entdecken! Woidl von der Neuen Welt zaubert jedes Jahr aufs Neue aus der Welt Newcomer und internationale Stars!</p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
 
   <?php
@@ -4569,7 +4569,7 @@ if (false) {
 
     <p class="small">PS: Wir haben wieder neue Mitglieder! Die stelle ich dann in Ruhe im nächsten Jazzletter vor, denn es kommen doch sicher noch einige durch die Jazztage mit dazu, oder??</p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
 
   <?php
@@ -4837,7 +4837,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -5120,7 +5120,7 @@ if (false) {
 
     <p>PS: als Dessert gibst noch den Newsletter des Jazzclubs Birdland aus Neuburg hinterher!!</p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -5309,7 +5309,7 @@ if (false) {
 
     <p>PS: Als zusätzliche Sommerlektüre habe ich grad eben den Newsletter des Birdland Jazzclubs Neuburg versandt.</p>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -5458,7 +5458,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <?php attach() ?>
 
@@ -5722,7 +5722,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -5922,7 +5922,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
     <p>PS: Manfred See, aktives Vereinsmitglied, wollte um folgende Hilfe bitten:</p>
 
@@ -6079,7 +6079,7 @@ if (false) {
 
     <?php attach(); ?>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -6245,7 +6245,7 @@ if (false) {
 
     <?php attach(); ?>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -6374,7 +6374,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -6524,7 +6524,7 @@ if (false) {
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -6654,7 +6654,7 @@ if (false) {
 
     <?php attach(); ?>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -6808,7 +6808,7 @@ Eintritt: 15.- EUR
 
     <?php attach() ?>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -6861,7 +6861,7 @@ Eintritt: 15.- EUR
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -6941,7 +6941,7 @@ Eintritt: 15.- EUR
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -6982,7 +6982,7 @@ Eintritt: 15.- EUR
     <p>PS: Näheres zu den nächsten Events und Planungen im nächsten Mail Anfang Januar!</p>
 
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -7083,7 +7083,7 @@ Eintritt: 15.- EUR
 
     <?php attach() ?>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -7112,7 +7112,7 @@ Eintritt: 15.- EUR
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -7144,7 +7144,7 @@ Eintritt: 15.- EUR
 
     <?php attach() ?>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -7256,7 +7256,7 @@ Tränktorstraße 15
 <a href="http://www.music-in.de">www.music-in.de</a></pre>
     </blockquote>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -7286,7 +7286,7 @@ Tränktorstraße 15
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -7321,7 +7321,7 @@ Tränktorstraße 15
 
     <div class="signum">Robert</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -7411,7 +7411,7 @@ Tränktorstraße 15
 
     <div class="signum">Robert Aichner</div>
 
-    <div class="backlink"><a href="<?php echo (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
   <?php
   }
@@ -7423,7 +7423,7 @@ Tränktorstraße 15
   ?>
     <h1>Newsletter der Jazzfreunde Ingolstadt</h1>
     <p>Immer über das Neuste informiert sein über Jazz in und um Ingolstadt? Kein Problem! Der Newsletter der Jazzfreunde Ingolstadt informiert mindestens einmal im Monat über Aktuelles im Verein, über Aktionen und Projekte, über Jazzkonzerte und sonstige Vorkommnisse in der Jazzwelt der Region. Einfach in das Formular unten die eigene Mail-Adresse eintragen; auch und gerade für Nicht-Mitglieder ist dies eine hervorragende Möglichkeit, in die Welt der Jazzfreunde hineinzuschnuppern! Der Newsletter ist natürlich jederzeit ohne Angabe von Gründen kündbar. Dazu einfach eine Mail an den Newsletter-Absender zurückschreiben.</p>
-    <form action="<?php echo (PAGE . PAGE_ENDING) ?>" method="post">
+    <form action="<?=(PAGE . PAGE_ENDING) ?>" method="post">
       <div id="newsletterform">
         <p class="center"><label for="mehl">Ihre Mail-Adresse: </label><input type="text" name="newsletter_mehlabo" id="mehl" value="" /></p>
         <p class="center"><label for="name">Ihr Name (optional): </label><input type="text" name="newsletter_nameabo" id="name" value="" /></p>

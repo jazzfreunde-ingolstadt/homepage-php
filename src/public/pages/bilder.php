@@ -21,7 +21,7 @@ function toc()
 function tocline($id, $title)
 { # CALLBACK FUNCTION
 ?>
-  <li><a href="<?php echo (PAGE . PAGE_ENDING) ?>?<?php echo PAGE ?>=<?php echo $id ?><?php echo ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>"><?php echo $title ?></a></li>
+  <li><a href="<?=(PAGE . PAGE_ENDING) ?>?<?=PAGE ?>=<?=$id ?><?=($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>"><?=$title ?></a></li>
 <?php
 }
 
@@ -87,9 +87,9 @@ function writeNaviThumb($pid, $count, $page, $imgcnt)
 
   <table class="navitable" border="0" cellspacing="0" cellpadding="4" width="100%">
     <tr>
-      <td class="back" width="30%" align="left"><?php echo $backlink ?></td>
-      <td class="page" width="40%" align="center"><?php echo $pagename ?></td>
-      <td class="next" width="30%" align="right"><?php echo $nextlink ?></td>
+      <td class="back" width="30%" align="left"><?=$backlink ?></td>
+      <td class="page" width="40%" align="center"><?=$pagename ?></td>
+      <td class="next" width="30%" align="right"><?=$nextlink ?></td>
     </tr>
   </table>
 
@@ -116,9 +116,9 @@ function writeNaviPic($pid, $imgcnt, $img, $basepage, $toplink = false)
 
   <table class="navitable" border="0" cellspacing="0" cellpadding="4" width="100%">
     <tr>
-      <td class="back" width="30%" align="left"><?php echo $backlink ?></td>
-      <td class="page" width="40%" align="center"><?php echo $pagename ?></td>
-      <td class="next" width="30%" align="right"><?php echo $nextlink ?></td>
+      <td class="back" width="30%" align="left"><?=$backlink ?></td>
+      <td class="page" width="40%" align="center"><?=$pagename ?></td>
+      <td class="next" width="30%" align="right"><?=$nextlink ?></td>
     </tr>
   </table>
 
@@ -163,8 +163,8 @@ function picview($folder)
           for ($nr = $startnr + $line * IMG_PICSPERLINE; $nr < $startnr + ($line + 1) * IMG_PICSPERLINE; $nr++) {
             if ($nr < $picsum) {
           ?>
-              <td class="thumbnail" align="center" valign="center" height="<?php echo IMG_THUMBSIZE + 4 ?>" width="<?php echo IMG_THUMBSIZE + 4 ?>"><a href="<?php echo $_SERVER["PHP_SELF"] . "?" . PAGE . "=" . $folder . "&amp;image=" . ($nr + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>" title="Bild ansehen"><img src="<?php echo IMG_ROOT . $folder . "/" . IMG_THUMBDIR . $PIX[$nr] ?>" alt="" />
-                  <!--<?php echo $PIX[$nr] ?>-->
+              <td class="thumbnail" align="center" valign="center" height="<?=IMG_THUMBSIZE + 4 ?>" width="<?=IMG_THUMBSIZE + 4 ?>"><a href="<?=$_SERVER["PHP_SELF"] . "?" . PAGE . "=" . $folder . "&amp;image=" . ($nr + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>" title="Bild ansehen"><img src="<?=IMG_ROOT . $folder . "/" . IMG_THUMBDIR . $PIX[$nr] ?>" alt="" />
+                  <!--<?=$PIX[$nr] ?>-->
                 </a></td>
             <?php
             } else {
@@ -191,7 +191,7 @@ function picview($folder)
   ?>
     <table class="imagetable" border="0" cellspacing="0" cellpadding="4" align="center">
       <tr>
-        <td class="image"><img src="<?php echo IMG_ROOT . $folder . "/" . IMG_FULLDIR . $PIX[$image] ?>" alt="<?php echo $PIX[$image] ?>" /></td>
+        <td class="image"><img src="<?=IMG_ROOT . $folder . "/" . IMG_FULLDIR . $PIX[$image] ?>" alt="<?=$PIX[$image] ?>" /></td>
       </tr>
     </table>
 <?php

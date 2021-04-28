@@ -41,7 +41,7 @@ function nobox()
   }
   $GLOBALS["boxcount"]++;
     ?>
-    <td style="width:<?php echo $GLOBALS["boxwidth"] ?>%;">&nbsp;</td>
+    <td style="width:<?=$GLOBALS["boxwidth"] ?>%;">&nbsp;</td>
     <?php
     if ($GLOBALS["boxcount"] % BOXPERLINE == 0) {
     ?>
@@ -59,12 +59,12 @@ function nobox()
     }
     $GLOBALS["boxcount"]++;
     ?>
-    <td class="kasten link" style="width:<?php echo $GLOBALS["boxwidth"] ?>%;">
-      <div class="link_line"><?php if ($url != null) { ?><a href="http://<?php echo $url ?>" target="_blank"><img src="gfx/icons/<?php echo ($icon == null || $icon == "" ? "default" : $icon) ?>.png" alt="" height="16" width="16" /></a><?php } else { ?><img src="gfx/empty.png" alt="" height="16" width="16" /><?php } ?>
-        <div class="kasten_h1"><?php if ($url != null) { ?><a href="http://<?php echo $url ?>" target="_blank"><?php echo $name ?></a><?php } else { ?><?php echo $name ?><?php } ?></div>
+    <td class="kasten link" style="width:<?=$GLOBALS["boxwidth"] ?>%;">
+      <div class="link_line"><?php if ($url != null) { ?><a href="http://<?=$url ?>" target="_blank"><img src="gfx/icons/<?=($icon == null || $icon == "" ? "default" : $icon) ?>.png" alt="" height="16" width="16" /></a><?php } else { ?><img src="gfx/empty.png" alt="" height="16" width="16" /><?php } ?>
+        <div class="kasten_h1"><?php if ($url != null) { ?><a href="http://<?=$url ?>" target="_blank"><?=$name ?></a><?php } else { ?><?=$name ?><?php } ?></div>
       </div>
-      <div class="kasten_h2 small"><?php echo $url ?></div>
-      <div class="kasten_p"><?php if ($banner != null && $banner != "") { ?><div style="text-align:center"><?php if ($url != null) { ?><a href="http://<?php echo $url ?>" target="_blank"><img src="<?php echo $banner ?>" alt="" /></a><?php } else { ?><img src="<?php echo $banner ?>" alt="" /><?php } ?></div><?php } ?><?php echo ($htmltext == null || $htmltext == "" ? "" : $htmltext) ?></div>
+      <div class="kasten_h2 small"><?=$url ?></div>
+      <div class="kasten_p"><?php if ($banner != null && $banner != "") { ?><div style="text-align:center"><?php if ($url != null) { ?><a href="http://<?=$url ?>" target="_blank"><img src="<?=$banner ?>" alt="" /></a><?php } else { ?><img src="<?=$banner ?>" alt="" /><?php } ?></div><?php } ?><?=($htmltext == null || $htmltext == "" ? "" : $htmltext) ?></div>
     </td>
     <?php
     if ($GLOBALS["boxcount"] % BOXPERLINE == 0) {

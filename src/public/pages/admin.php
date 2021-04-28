@@ -332,11 +332,11 @@ require_once('../legacy.php');
   <h2>Freischaltung / Sperrung</h2>
   <div align="left" style="margin-left:4em;">
     Aktueller Freischalt-Zeitpunkt:<br />
-    <strong><?php echo (UNLOCKTIME < 0 ? "Noch nicht definiert!" : ULSTR)?></strong><br />
+    <strong><?=(UNLOCKTIME < 0 ? "Noch nicht definiert!" : ULSTR)?></strong><br />
     <label for="settime">Neuer Freischalt-Zeitpunkt:</label><br />
-    <input id="settime" name="settime" type="text" value="<?php echo ULSTR?>" /><br />
+    <input id="settime" name="settime" type="text" value="<?=ULSTR?>" /><br />
     <em class="small">Um die Seite sofort freizuschalten, einfach 0 eintragen.</em><br />
-    <input type="hidden" name="XWD" value="<?php echo $_POST["XWD"]?>" />
+    <input type="hidden" name="XWD" value="<?=$_POST["XWD"]?>" />
     <input type="submit" name="sendadmindata[-1]" value="Übernehmen" />
   </div>
 
@@ -359,7 +359,7 @@ require_once('../legacy.php');
     function flag($id, $flagarray, $flagtype)
     {
 ?>
-    <input type="checkbox" id="tickerflag_<?php echo $id?>_<?php echo $flagtype?>" name="tickerflag[<?php echo $id?>][<?php echo $flagtype?>]" value="1"<?php echo ($flagarray[$flagtype] ? " checked=\"checked\"" : "")?> /><label for="tickerflag_<?php echo $id?>_<?php echo $flagtype?>"><?php echo $GLOBALS["flagsdescription"][$flagtype]?></label><br />
+    <input type="checkbox" id="tickerflag_<?=$id?>_<?=$flagtype?>" name="tickerflag[<?=$id?>][<?=$flagtype?>]" value="1"<?=($flagarray[$flagtype] ? " checked=\"checked\"" : "")?> /><label for="tickerflag_<?=$id?>_<?=$flagtype?>"><?=$GLOBALS["flagsdescription"][$flagtype]?></label><br />
 <?php
     }
     
@@ -380,7 +380,7 @@ require_once('../legacy.php');
 ?>
     <div align="left" style="margin-left:4em;">
       <label for="tickerlimit">Ticker-Limit (höchstens angezeigte Einträge):</label><br />
-      <input id="tickerlimit" name="tickerlimit" type="text" value="<?php echo $TL?>" /><br />
+      <input id="tickerlimit" name="tickerlimit" type="text" value="<?=$TL?>" /><br />
       <span class="small">(Zum Anzeigen aller Einträge leer lassen, zum deaktivieren des Tickers auf 0 setzen)</span>
     </div>
     
@@ -401,14 +401,14 @@ require_once('../legacy.php');
       {
 ?>
       <div class="admintickerentry">
-        <div class="admintickerdate"><?php echo $line["timeW"]?></div>
-        <div class="admintickertext"><?php echo simpleformat($line["text"])?></div>
-        <div class="admintickereditor"><textarea name="tickertext[<?php echo $line["time"]?>]"><?php echo $line["text"]?></textarea></div>
+        <div class="admintickerdate"><?=$line["timeW"]?></div>
+        <div class="admintickertext"><?=simpleformat($line["text"])?></div>
+        <div class="admintickereditor"><textarea name="tickertext[<?=$line["time"]?>]"><?=$line["text"]?></textarea></div>
         <div class="admintickerflags">
           <?php flags($line["time"], $line["flags"]) ?>
         </div>
-        <div class="admintickerupdate"><input type="checkbox" id="tickerupdate_<?php echo $line["time"]?>" name="tickerupdate[<?php echo $line["time"]?>]" value="1" /><label for="tickerupdate_<?php echo $line["time"]?>">Eintrag aktualisieren</label></div>
-        <div class="adminsubmit"><input type="submit" name="sendadmindata[<?php echo $line["time"]?>]" value="Übernehmen" /></div>
+        <div class="admintickerupdate"><input type="checkbox" id="tickerupdate_<?=$line["time"]?>" name="tickerupdate[<?=$line["time"]?>]" value="1" /><label for="tickerupdate_<?=$line["time"]?>">Eintrag aktualisieren</label></div>
+        <div class="adminsubmit"><input type="submit" name="sendadmindata[<?=$line["time"]?>]" value="Übernehmen" /></div>
       </div>
 <?php
       }

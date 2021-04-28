@@ -7,7 +7,7 @@ if (!defined("PAGE")) {
 function fotograf($text)
 {
 ?>
-  <p style="text-align:center; font-size:90%; color:#606060;">Fotos: <?php echo htmlspecialchars($text) ?></p>
+  <p style="text-align:center; font-size:90%; color:#606060;">Fotos: <?=htmlspecialchars($text) ?></p>
   <?php
 }
 
@@ -32,7 +32,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -47,7 +47,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -62,7 +62,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -77,7 +77,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -92,7 +92,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -107,7 +107,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -122,7 +122,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -137,7 +137,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -152,7 +152,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -167,7 +167,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -182,7 +182,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -197,7 +197,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -212,7 +212,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -227,7 +227,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -242,7 +242,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Tom Diewock") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -257,7 +257,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -272,7 +272,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -287,7 +287,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -302,7 +302,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -317,7 +317,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -332,7 +332,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -347,7 +347,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -362,7 +362,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -377,7 +377,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -392,7 +392,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -407,7 +407,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -422,7 +422,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -437,7 +437,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -452,7 +452,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -467,7 +467,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -482,7 +482,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Tom Diewock") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -497,7 +497,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -512,7 +512,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Tom Diewock") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -527,7 +527,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -542,7 +542,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -557,7 +557,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -572,7 +572,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber, Sebastian Gruber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -587,7 +587,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -602,7 +602,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -617,7 +617,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Tom Diewock") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -632,7 +632,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -647,7 +647,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -662,7 +662,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -677,7 +677,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -692,7 +692,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -707,7 +707,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -722,7 +722,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -737,7 +737,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -753,10 +753,10 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Gerhard Löser, Horst Weber, Christian Wurm") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      Oliver Wasilesku Trio (<?php echo ilink(IMG_FOLDER, 1, 33) ?>)<br />
-      Jason Seizer New Quartet plays Cinema Paradiso (<?php echo ilink(IMG_FOLDER, 34, 70) ?>)<br />
+      Oliver Wasilesku Trio (<?=ilink(IMG_FOLDER, 1, 33) ?>)<br />
+      Jason Seizer New Quartet plays Cinema Paradiso (<?=ilink(IMG_FOLDER, 34, 70) ?>)<br />
     </p>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -771,7 +771,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -786,7 +786,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -801,7 +801,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -816,7 +816,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -831,7 +831,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -846,7 +846,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -861,7 +861,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -876,7 +876,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -891,7 +891,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -907,16 +907,16 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Horst Weber, Jackie Herr") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      Grußworte (<?php echo ilink(IMG_FOLDER, 1, 6) ?>)<br />
-      Apian-Gymnasium (<?php echo ilink(IMG_FOLDER, 7, 32) ?>)<br />
-      Christoph-Scheiner-Gymnasium (<?php echo ilink(IMG_FOLDER, 33, 46) ?>)<br />
-      Gnadenthal-Gymnasium (<?php echo ilink(IMG_FOLDER, 47, 74) ?>)<br />
-      Katharinen-Gymnasium (<?php echo ilink(IMG_FOLDER, 75, 103) ?>)<br />
-      Reuchlin-Gymnasium (<?php echo ilink(IMG_FOLDER, 104, 165) ?>)<br />
-      Piu Piu Latin Orqesta (<?php echo ilink(IMG_FOLDER, 166, 268) ?>)<br />
-      Finale „Oye como va“ (<?php echo ilink(IMG_FOLDER, 269, 284) ?>)
+      Grußworte (<?=ilink(IMG_FOLDER, 1, 6) ?>)<br />
+      Apian-Gymnasium (<?=ilink(IMG_FOLDER, 7, 32) ?>)<br />
+      Christoph-Scheiner-Gymnasium (<?=ilink(IMG_FOLDER, 33, 46) ?>)<br />
+      Gnadenthal-Gymnasium (<?=ilink(IMG_FOLDER, 47, 74) ?>)<br />
+      Katharinen-Gymnasium (<?=ilink(IMG_FOLDER, 75, 103) ?>)<br />
+      Reuchlin-Gymnasium (<?=ilink(IMG_FOLDER, 104, 165) ?>)<br />
+      Piu Piu Latin Orqesta (<?=ilink(IMG_FOLDER, 166, 268) ?>)<br />
+      Finale „Oye como va“ (<?=ilink(IMG_FOLDER, 269, 284) ?>)
     </p>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -931,7 +931,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -946,7 +946,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -961,7 +961,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -976,7 +976,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -991,7 +991,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1006,7 +1006,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1021,7 +1021,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1036,7 +1036,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1051,7 +1051,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1066,7 +1066,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1081,7 +1081,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1096,7 +1096,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1111,7 +1111,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1126,7 +1126,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1141,7 +1141,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1156,7 +1156,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1171,7 +1171,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1186,7 +1186,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1201,7 +1201,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1216,7 +1216,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1231,7 +1231,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1246,7 +1246,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1261,7 +1261,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1277,11 +1277,11 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      Marcus Miller (<?php echo ilink(IMG_FOLDER, 1, 11) ?>)<br />
-      Maceo Parker (<?php echo ilink(IMG_FOLDER, 12, 22) ?>)<br />
-      Äl Jawala (<?php echo ilink(IMG_FOLDER, 23, 31) ?>)<br />
+      Marcus Miller (<?=ilink(IMG_FOLDER, 1, 11) ?>)<br />
+      Maceo Parker (<?=ilink(IMG_FOLDER, 12, 22) ?>)<br />
+      Äl Jawala (<?=ilink(IMG_FOLDER, 23, 31) ?>)<br />
     </p>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1297,10 +1297,10 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Anton Knoblach") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      Hiromi (<?php echo ilink(IMG_FOLDER, 1, 29) ?>)<br />
-      Tower of Power (<?php echo ilink(IMG_FOLDER, 30, 52) ?>)<br />
+      Hiromi (<?=ilink(IMG_FOLDER, 1, 29) ?>)<br />
+      Tower of Power (<?=ilink(IMG_FOLDER, 30, 52) ?>)<br />
     </p>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1315,7 +1315,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1330,7 +1330,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1345,7 +1345,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1360,7 +1360,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1375,7 +1375,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1390,7 +1390,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1405,7 +1405,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1420,7 +1420,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1435,7 +1435,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1450,7 +1450,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher, Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1465,7 +1465,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1480,7 +1480,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1495,7 +1495,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1510,7 +1510,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Anton Knoblach") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1525,7 +1525,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher, Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1540,7 +1540,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher, Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1555,7 +1555,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <?php fotograf("Christian Pacher, Horst Weber") ?>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1571,7 +1571,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1587,7 +1587,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1603,7 +1603,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1619,7 +1619,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1635,7 +1635,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1651,7 +1651,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1667,7 +1667,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1683,7 +1683,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1699,7 +1699,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1715,7 +1715,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1731,7 +1731,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1747,7 +1747,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1765,7 +1765,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     <p style="text-align:center;"><b>Videos:</b><br />
       <a href="http://www.youtube.com/watch?v=KvU7symtikk" target="_blank">In &quot;F&quot; Active bei der 24. Jam Session</a><br />
     </p>
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1781,7 +1781,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Horst Weber") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1801,7 +1801,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <a href="http://www.youtube.com/watch?v=zv_QzosuiZ8" target="_blank">Impressionen vom Bürgerfest-Sonntag</a> (von Karl Wewer)<br />
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1820,7 +1820,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <a href="http://www.youtube.com/watch?v=zv_QzosuiZ8" target="_blank">Impressionen vom Bürgerfest-Sonntag</a> (von Karl Wewer)<br />
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1836,7 +1836,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1856,7 +1856,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <a href="http://www.youtube.com/watch?v=948QsbPbChQ" target="_blank">Close2Jazz, Teil 2</a> (von Manfred See)<br />
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1872,12 +1872,12 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Horst Weber") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      Jazz GmbH (Reuchlin-Gymnasium) (<?php echo ilink(IMG_FOLDER, 1, 37) ?>)<br />
-      Fünfklang (Reuchlin-Gymnasium) (<?php echo ilink(IMG_FOLDER, 38, 43) ?>)<br />
-      Jazz Club (Gnadenthal-Gymnasium) (<?php echo ilink(IMG_FOLDER, 44, 73) ?>)<br />
+      Jazz GmbH (Reuchlin-Gymnasium) (<?=ilink(IMG_FOLDER, 1, 37) ?>)<br />
+      Fünfklang (Reuchlin-Gymnasium) (<?=ilink(IMG_FOLDER, 38, 43) ?>)<br />
+      Jazz Club (Gnadenthal-Gymnasium) (<?=ilink(IMG_FOLDER, 44, 73) ?>)<br />
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1893,7 +1893,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1909,7 +1909,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Horst Weber") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1925,7 +1925,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Horst Weber") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1941,7 +1941,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Horst Weber") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1957,7 +1957,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Horst Weber") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1973,16 +1973,16 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher, Anton Knoblach, Max Grell") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      Workshop: Jazz meets HipHop (<?php echo ilink(IMG_FOLDER, 1, 57) ?>)<br />
-      Hinter den Kulissen und Moderation (<?php echo ilink(IMG_FOLDER, 58, 70) ?>)<br />
-      Bigband des Gnadenthal-Gymnasiums (<?php echo ilink(IMG_FOLDER, 71, 110) ?>)<br />
-      Auftritt der Workshop-Teilnehmer (<?php echo ilink(IMG_FOLDER, 111, 140) ?>)<br />
-      Bigband des Reuchlin-Gymnasiums (<?php echo ilink(IMG_FOLDER, 141, 182) ?>)<br />
-      Bigband des Christoph-Scheiner-Gymnasiums (<?php echo ilink(IMG_FOLDER, 183, 206) ?>)<br />
-      Landesjugendjazzorchester Bayern (<?php echo ilink(IMG_FOLDER, 207, 297) ?>)
+      Workshop: Jazz meets HipHop (<?=ilink(IMG_FOLDER, 1, 57) ?>)<br />
+      Hinter den Kulissen und Moderation (<?=ilink(IMG_FOLDER, 58, 70) ?>)<br />
+      Bigband des Gnadenthal-Gymnasiums (<?=ilink(IMG_FOLDER, 71, 110) ?>)<br />
+      Auftritt der Workshop-Teilnehmer (<?=ilink(IMG_FOLDER, 111, 140) ?>)<br />
+      Bigband des Reuchlin-Gymnasiums (<?=ilink(IMG_FOLDER, 141, 182) ?>)<br />
+      Bigband des Christoph-Scheiner-Gymnasiums (<?=ilink(IMG_FOLDER, 183, 206) ?>)<br />
+      Landesjugendjazzorchester Bayern (<?=ilink(IMG_FOLDER, 207, 297) ?>)
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -1998,7 +1998,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 10), Anton Knoblach (11 – 30)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2014,7 +2014,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2030,7 +2030,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2046,7 +2046,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 50), Anton Knoblach (51 – 94)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2062,7 +2062,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 17), Anton Knoblach (18 – 46)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2078,7 +2078,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 37), Anton Knoblach (38 – 83)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2094,7 +2094,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2110,7 +2110,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 13), Anton Knoblach (14 – 35)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2126,7 +2126,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 8), Anton Knoblach (9 – 27)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2142,7 +2142,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 29), Anton Knoblach (30 – 58)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2158,7 +2158,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2174,14 +2174,14 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach (1 – 27), Christian Pacher (28 – 88)") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      Workshop Bigband (<?php echo ilink(IMG_FOLDER, 1, 27) ?>)<br />
-      Hinter den Kulissen (<?php echo ilink(IMG_FOLDER, 28, 31) ?>)<br />
-      Bigband des Gnadenthal Gymnasium (<?php echo ilink(IMG_FOLDER, 32, 36) ?>)<br />
-      Bigband des Christoph Scheiner Gymnasium (<?php echo ilink(IMG_FOLDER, 37, 58) ?>)<br />
-      Bigband der städt. Simon Mayr Musikschule (<?php echo ilink(IMG_FOLDER, 59, 88) ?>)
+      Workshop Bigband (<?=ilink(IMG_FOLDER, 1, 27) ?>)<br />
+      Hinter den Kulissen (<?=ilink(IMG_FOLDER, 28, 31) ?>)<br />
+      Bigband des Gnadenthal Gymnasium (<?=ilink(IMG_FOLDER, 32, 36) ?>)<br />
+      Bigband des Christoph Scheiner Gymnasium (<?=ilink(IMG_FOLDER, 37, 58) ?>)<br />
+      Bigband der städt. Simon Mayr Musikschule (<?=ilink(IMG_FOLDER, 59, 88) ?>)
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2197,7 +2197,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2213,7 +2213,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2229,7 +2229,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2245,7 +2245,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Robert Aichner") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2261,7 +2261,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 28), Anton Knoblach (29 – 44)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2277,7 +2277,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2294,7 +2294,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2311,13 +2311,13 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Christian Pacher (1 – 40), Anton Knoblach (41 – 55)") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      The Hang All Stars (<?php echo ilink(IMG_FOLDER, 1, 16) ?>)<br />
-      The Larry Carlton Trio (<?php echo ilink(IMG_FOLDER, 17, 26) ?>)<br />
-      Tower of Power (<?php echo ilink(IMG_FOLDER, 27, 46) ?>)<br />
-      Late Night Band (<?php echo ilink(IMG_FOLDER, 47, 55) ?>)
+      The Hang All Stars (<?=ilink(IMG_FOLDER, 1, 16) ?>)<br />
+      The Larry Carlton Trio (<?=ilink(IMG_FOLDER, 17, 26) ?>)<br />
+      Tower of Power (<?=ilink(IMG_FOLDER, 27, 46) ?>)<br />
+      Late Night Band (<?=ilink(IMG_FOLDER, 47, 55) ?>)
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2334,11 +2334,11 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Christian Pacher") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      Nils Petter Molvaer (<?php echo ilink(IMG_FOLDER, 1, 15) ?>)<br />
-      P-S-P (<?php echo ilink(IMG_FOLDER, 16, 30) ?>)
+      Nils Petter Molvaer (<?=ilink(IMG_FOLDER, 1, 15) ?>)<br />
+      P-S-P (<?=ilink(IMG_FOLDER, 16, 30) ?>)
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2355,7 +2355,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Christian Pacher (1 – 18), Anton Knoblach (19 – 25)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2372,12 +2372,12 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Christian Pacher (1 – 10, 19 – 41), Anton Knoblach (11 – 18)") ?>
     <p style="text-align:center; font-size:90%; color:#606060;">
-      The Bahama Soul Club, Diagonal (<?php echo ilink(IMG_FOLDER, 1, 18) ?>)<br />
-      Steve Gibbons Band, Neue Welt (<?php echo ilink(IMG_FOLDER, 19, 29) ?>)<br />
-      Karolina Glazer, Kult-Hotel (<?php echo ilink(IMG_FOLDER, 30, 41) ?>)
+      The Bahama Soul Club, Diagonal (<?=ilink(IMG_FOLDER, 1, 18) ?>)<br />
+      Steve Gibbons Band, Neue Welt (<?=ilink(IMG_FOLDER, 19, 29) ?>)<br />
+      Karolina Glazer, Kult-Hotel (<?=ilink(IMG_FOLDER, 30, 41) ?>)
     </p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2394,7 +2394,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2411,7 +2411,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Christian Pacher (1 – 38), Anton Knoblach (39 – 46)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2428,7 +2428,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Anton Knoblach") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2445,7 +2445,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Christian Pacher (1 – 48), Anton Knoblach (49 – 103)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2466,7 +2466,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       Bild 3 – 12: Verleihung des Jazzförderpreises an Bernhard Hollinger und Laudation<br />
       Bild 13 – 44: Preisträgerkonzert</p>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2482,7 +2482,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 33), Anton Knoblach (34 – 57)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2497,19 +2497,19 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
       <?php picview(IMG_FOLDER) ?>
     </div>
     <p style="text-align:center; font-size:90%; color:#606060;">Fotos:<br />
-      Passa Tempo (<?php echo ilink(IMG_FOLDER, 1, 28) ?>): Anton Knoblach<br />
-      Birdland Jazz Band (<?php echo ilink(IMG_FOLDER, 29, 62) ?>): Christian Pacher<br />
-      Jazz GmbH (RG) (<?php echo ilink(IMG_FOLDER, 63, 106) ?>): Anton Knoblach<br />
-      Jazz Club (GG) (<?php echo ilink(IMG_FOLDER, 107, 129) ?>): Anton Knoblach<br />
-      Jazz Players (KG) (<?php echo ilink(IMG_FOLDER, 130, 147) ?>): Anton Knoblach<br />
-      Scheiner Jazzband (CSG) (<?php echo ilink(IMG_FOLDER, 148, 161) ?>): Christian Pacher<br />
-      Club Légère (<?php echo ilink(IMG_FOLDER, 162, 221) ?>): Christian Pacher<br />
-      Pit Müller’s Hot Stuff (<?php echo ilink(IMG_FOLDER, 222, 262) ?>): Christian Pacher
+      Passa Tempo (<?=ilink(IMG_FOLDER, 1, 28) ?>): Anton Knoblach<br />
+      Birdland Jazz Band (<?=ilink(IMG_FOLDER, 29, 62) ?>): Christian Pacher<br />
+      Jazz GmbH (RG) (<?=ilink(IMG_FOLDER, 63, 106) ?>): Anton Knoblach<br />
+      Jazz Club (GG) (<?=ilink(IMG_FOLDER, 107, 129) ?>): Anton Knoblach<br />
+      Jazz Players (KG) (<?=ilink(IMG_FOLDER, 130, 147) ?>): Anton Knoblach<br />
+      Scheiner Jazzband (CSG) (<?=ilink(IMG_FOLDER, 148, 161) ?>): Christian Pacher<br />
+      Club Légère (<?=ilink(IMG_FOLDER, 162, 221) ?>): Christian Pacher<br />
+      Pit Müller’s Hot Stuff (<?=ilink(IMG_FOLDER, 222, 262) ?>): Christian Pacher
     </p>
     <?php #fotograf("") 
     ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2525,7 +2525,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Anton Knoblach (1 – 17), Christian Pacher (18 – 42)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2541,7 +2541,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 80), Anton Knoblach (81 – 116)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2557,7 +2557,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2574,7 +2574,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
 
     <?php fotograf("Anton Knoblach (1 – 35), Beate Diao (36 – 40)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2590,7 +2590,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2606,7 +2606,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 20), Anton Knoblach (21 – 42)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2622,7 +2622,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher (1 – 46), Anton Knoblach (47 – 96)") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2638,7 +2638,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2654,7 +2654,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2670,7 +2670,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2686,7 +2686,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Robert Aichner") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2702,7 +2702,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2718,7 +2718,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Robert Aichner") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2734,7 +2734,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Robert Aichner") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2750,7 +2750,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2766,7 +2766,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2782,7 +2782,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2798,7 +2798,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2814,7 +2814,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }
@@ -2830,7 +2830,7 @@ else if (($_GET[PAGE] == ($folder = "JS_20170409")) || ($_GET[PAGE] == addpoint(
     </div>
     <?php fotograf("Christian Pacher") ?>
 
-    <div class="backlink"><a href="<?php echo (BACKLINK) ?>">Zurück</a></div>
+    <div class="backlink"><a href="<?=(BACKLINK) ?>">Zurück</a></div>
 
   <?php
   }

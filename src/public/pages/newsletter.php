@@ -56,8 +56,8 @@ function write_tickerlines()
         $count++;
       ?>
         <tr>
-          <td class="ticktime">(<?php echo $line["time"] ?>):</td>
-          <td class="tickline<?php echo $line["style"] ?>"><?php echo $line["text"] ?></td>
+          <td class="ticktime">(<?=$line["time"] ?>):</td>
+          <td class="tickline<?=$line["style"] ?>"><?=$line["text"] ?></td>
         <?php
       }
         ?>
@@ -90,7 +90,7 @@ function toc()
 function tocline($id, $title)
 { # CALLBACK FUNCTION
 ?>
-  <li><a href="<?php echo (PAGE . PAGE_ENDING) ?>?<?php echo PAGE ?>=<?php echo $id ?>"><?php echo $title ?></a></li>
+  <li><a href="<?=(PAGE . PAGE_ENDING) ?>?<?=PAGE ?>=<?=$id ?>"><?=$title ?></a></li>
 <?php
 }
 

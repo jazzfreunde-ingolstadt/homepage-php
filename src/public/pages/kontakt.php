@@ -120,7 +120,7 @@ require_once('../legacy.php');
   if (defined("NOSHOW"))
   {
     ?>
-<div class="backlink"><a href="<?php echo  (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+<div class="backlink"><a href="<?= (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 <?php
     after();
     die();
@@ -128,44 +128,44 @@ require_once('../legacy.php');
 ?>
 <h1>Kontaktformular</h1>
 
-<h2><?php echo  NAME ?></h2>
-<form id="kontaktform" name="kontakt" action="kontakt.php?to=<?php echo  $_GET["to"] ?>" method="post">
+<h2><?= NAME ?></h2>
+<form id="kontaktform" name="kontakt" action="kontakt.php?to=<?= $_GET["to"] ?>" method="post">
   <table id="mailtable" border="0" cellpadding="4" cellspacing="0" align="center">
     <tr>
-      <td>An:<br /><?php echo  MAILHTML ?></th>
+      <td>An:<br /><?= MAILHTML ?></th>
     </tr>
     <tr>
-      <td><label for="myname">Von (Name):</label><br /><input id="myname" name="myname" type="text" value="<?php echo  @$_POST["myname"] ?>" /></td>
+      <td><label for="myname">Von (Name):</label><br /><input id="myname" name="myname" type="text" value="<?= @$_POST["myname"] ?>" /></td>
     </tr>
     <tr>
-      <td><label for="mymail">Von (Mail-Adresse):</label><br /><input id="mymail" name="mymail" type="text" value="<?php echo  @$_POST["mymail"] ?>" /></td>
+      <td><label for="mymail">Von (Mail-Adresse):</label><br /><input id="mymail" name="mymail" type="text" value="<?= @$_POST["mymail"] ?>" /></td>
     </tr>
     <tr>
-      <th><label for="mailsubject">Betreff:</label><br /><input id="mailsubject" name="mailsubject" type="text" value="<?php echo  (@$_POST["mailsubject"] ? $_POST["mailsubject"] : (@$_GET["s"] ? $_GET["s"] : "")) ?>" /></th>
+      <th><label for="mailsubject">Betreff:</label><br /><input id="mailsubject" name="mailsubject" type="text" value="<?= (@$_POST["mailsubject"] ? $_POST["mailsubject"] : (@$_GET["s"] ? $_GET["s"] : "")) ?>" /></th>
     </tr>
     <tr>
       <td><input type="hidden" name="homepage" value="" />
-        <label for="mailcontent">Inhalt:</label><br /><textarea id="mailcontent" name="mailcontent" cols="40" rows="15"><?php echo  (@$_POST["mailcontent"] ? $_POST["mailcontent"] : (@$_GET["c"] ? $_GET["c"] : "")) ?></textarea>
+        <label for="mailcontent">Inhalt:</label><br /><textarea id="mailcontent" name="mailcontent" cols="40" rows="15"><?= (@$_POST["mailcontent"] ? $_POST["mailcontent"] : (@$_GET["c"] ? $_GET["c"] : "")) ?></textarea>
       </td>
     </tr>
     <tr>
-      <td><input id="bcc" name="bcc" type="checkbox" <?php echo  (@$_POST["bcc"] ? " checked=\"checked\"" : "") ?> value="x" /><label for="bcc">Eine Kopie der Mail an meine Adresse senden</label></td>
+      <td><input id="bcc" name="bcc" type="checkbox" <?= (@$_POST["bcc"] ? " checked=\"checked\"" : "") ?> value="x" /><label for="bcc">Eine Kopie der Mail an meine Adresse senden</label></td>
     </tr>
     <tr>
-      <td><input id="under18" name="under18" type="checkbox" <?php echo  (@$_POST["under18"] ? " checked=\"checked\"" : "") ?> value="x" /><label for="under18">Ich versichere, keine Werbung oder sonstige unerwünschte Nachrichten an diese Mailadresse zu senden.</label></td>
+      <td><input id="under18" name="under18" type="checkbox" <?= (@$_POST["under18"] ? " checked=\"checked\"" : "") ?> value="x" /><label for="under18">Ich versichere, keine Werbung oder sonstige unerwünschte Nachrichten an diese Mailadresse zu senden.</label></td>
     </tr>
     <tr>
       <td><input id="AGB" name="AGB" type="checkbox" checked="checked" value="x" /><label for="AGB" style="color:red">Diese Nachricht ist Spam und darf gelöscht werden</label></td>
     </tr>
     <tr>
       <td><input id="sendmail" name="sendmail" type="submit" value="Mail abschicken" />
-        <input type="hidden" name="address" value="<?php echo  getip() ?>" />
+        <input type="hidden" name="address" value="<?= getip() ?>" />
       </td>
     </tr>
   </table>
 </form>
 
-<div class="backlink"><a href="<?php echo  (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+<div class="backlink"><a href="<?= (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
 <?php 
   after();
