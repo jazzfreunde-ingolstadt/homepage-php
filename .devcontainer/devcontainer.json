@@ -3,7 +3,8 @@
     "dockerComposeFile": "./docker-compose.yml",
     "service": "apache-server",
     "settings": {
-      "terminal.integrated.shell.linux": "/bin/bash"
+      "terminal.integrated.shell.linux": "/bin/bash",
+      "git.path": "/usr/bin/git"
 	},
 	"extensions": [
 		"felixfbecker.php-debug",
