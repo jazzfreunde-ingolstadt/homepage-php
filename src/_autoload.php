@@ -5,6 +5,7 @@ $ns_mapping = function () {
     yield 'jazzfreunde/database' => 'data/database';
     yield 'jazzfreunde/storage' => 'data/storage';
     yield 'jazzfreunde/environment' => 'environment';
+    yield 'jazzfreunde/structures' => 'structures';
 };
 
 spl_autoload_register(
@@ -23,7 +24,9 @@ spl_autoload_register(
 
         $full_path = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, "{$full_path}{$class}.php");
 
-        if (file_exists($full_path))
+        if (!file_exists($full_path))
+            throw new AutoloaderException("Unable to locate include path for requestet class '{$namespace_class}'");
+
             include_once($full_path);
     }
 );
