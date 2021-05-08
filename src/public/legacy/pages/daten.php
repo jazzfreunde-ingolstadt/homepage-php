@@ -1,14 +1,11 @@
 <?php
-require_once('../legacy.php');
-
   if (defined("PAGE")) die("Wrong reference.");
   define("PAGE", "ueberuns");
   define("TITLE", "Kontaktformular");
   define("ROBOTS", "noindex, nofollow");
   
-  include_once(legacy("inc/environment.php"));
-  
-  include_once(legacy("inc/post.php"));
+  include_once(__DIR__ . "/../inc/environment.php");
+  include_once(__DIR__ . "/../inc/post.php");
   
   //ACCEPT_POST(); // Nein! Zu viel Verquickung von dynamischem Inhalt und POST-Daten!
   

@@ -1,4 +1,3 @@
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase "/"
@@ -6,13 +5,16 @@
     # RewriteCond %{HTTPS} off [OR]
     # RewriteCond %{HTTP_HOST} ^www\. [NC]
     # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-    
-    RewriteRule ^$ /pages/ [L,R=302]
-    RewriteRule (^[^/]*$) pages/$1 [L,R=302]
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^pages/(.*)$ legacy/$1 [L]
+    RewriteRule ^legacy/pages/(.*)$ legacy/$1 [L]
+
+    RewriteRule (^[^/]*$) pages/$1 [L,R=302]
+    
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^pages/(.*)$ legacy/pages$1 [L]
+
 </IfModule>
 
 ErrorDocument 404 /pages/404.php

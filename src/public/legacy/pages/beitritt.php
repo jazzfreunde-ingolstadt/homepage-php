@@ -1,13 +1,10 @@
 <?php
-require_once('../legacy.php');
-
 if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "beitritt");
 define("TITLE", "Mitglied werden");
 
-include_once(legacy("inc/environment.php"));
-
-include_once(legacy("inc/post.php"));
+include_once(__DIR__ . "/../inc/environment.php");
+include_once(__DIR__ . "/../inc/post.php");
 
 ACCEPT_POST();
 

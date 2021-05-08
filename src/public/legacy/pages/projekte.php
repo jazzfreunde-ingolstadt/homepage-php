@@ -1,11 +1,9 @@
 <?php
-require_once('../legacy.php');
-
 if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "projekte");
 define("TITLE", "Projekte");
 
-include_once(legacy("inc/environment.php"));
+include_once(__DIR__ . "/../inc/environment.php");
 
 head();
 before();

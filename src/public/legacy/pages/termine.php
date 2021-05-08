@@ -1,11 +1,11 @@
 <?php
-require_once('../legacy.php');
+$app = include_once('../app.php');
 
 if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "termine");
 define("TITLE", "Veranstaltungen");
 
-include_once(legacy("inc/environment.php"));
+include_once(__DIR__ . "/../inc/environment.php");
 
 define("ARCTIME", 120 * DAY);
 
@@ -99,24 +99,24 @@ function writeVAhead()
 
 		$titletext = ($infotip == "" ? "" : " title=\"" . $infotip . "\"");
 ?>
-	<tr <?=$tdstyle ?>>
-		<td <?=$titletext ?>>
-			<?=$wannd ?>
+	<tr <?= $tdstyle ?>>
+		<td <?= $titletext ?>>
+			<?= $wannd ?>
 		</td>
-		<td <?=$titletext ?>>
-			<?=$wannt ?>
+		<td <?= $titletext ?>>
+			<?= $wannt ?>
 		</td>
-		<th <?=$titletext ?>>
-			<?=$was ?>
+		<th <?= $titletext ?>>
+			<?= $was ?>
 		</th>
-		<td <?=$titletext ?>>
-			<?=$wo ?>
+		<td <?= $titletext ?>>
+			<?= $wo ?>
 		</td>
 		<td>
-			<?=($imgid == null || $imgid == "0" || $imgid < 0 || $imgid == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"bilder.php?bilder=" . $imgid . "&amp;via=" . PAGE . "\" title=\"Zu den Bildern\"><img src=\"gfx/dia.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Bilder\" /></a>") ?>
+			<?= ($imgid == null || $imgid == "0" || $imgid < 0 || $imgid == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"bilder.php?bilder=" . $imgid . "&amp;via=" . PAGE . "\" title=\"Zu den Bildern\"><img src=\"gfx/dia.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Bilder\" /></a>") ?>
 		</td>
 		<td>
-			<?=($videolink == null || $videolink == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"" . $videolink . "\" title=\"Wer ist das?\" target=\"_blank\"><img src=\"gfx/cam.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Wer ist das?\" /></a>") ?>
+			<?= ($videolink == null || $videolink == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"" . $videolink . "\" title=\"Wer ist das?\" target=\"_blank\"><img src=\"gfx/cam.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Wer ist das?\" /></a>") ?>
 		</td>
 	</tr>
 <?php
@@ -175,6 +175,8 @@ function writeVAhead()
 	function writeVAs()
 	{
 		global $VADATA;
+
+		if (!is_array($VADATA)) $VADATA = array();
 
 		$VAFUT = array(); // Kommende
 		$VAPER = array(); // Vergangene
@@ -240,15 +242,22 @@ function writeVAhead()
 	}
 
 
+	function setVAFromDatabase(): void
+	{
+		$termine = new \Jazzfreunde\App\Models\Termine();
+	}
+
 	head();
 	before();
 ?>
 
 <h1>Veranstaltungskalender</h1>
 
-<?php include("data/termine.php"); ?>
-
-<?php writeVAs() ?>
+<?php
+include(__DIR__ . "/../data/termine.php");
+setVAFromDatabase();
+writeVAs();
+?>
 
 <!-- <h1>Besonderes</h1>
 <ul>

@@ -1,14 +1,11 @@
 <?php
-require_once('../legacy.php');
-
 if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "newsletter");
 define("TITLE", "Newsletter");
 define("ROBOTS", "noindex, follow");
 
-include_once(legacy("inc/environment.php"));
-
-include_once(legacy("inc/post.php"));
+include_once(__DIR__ . "/../inc/environment.php");
+include_once(__DIR__ . "/../inc/post.php");
 
 /* NEWSTICKER */
 
@@ -22,7 +19,7 @@ define("FLAG_BREAKING", 16); // Meldung kurzfristig
 
 define("TICKER", "Newsticker");
 
-@include(legacy("inc/ticker.php"));
+@include(__DIR__ . "/../inc/ticker.php");
 
 function tickerline($text, $time, $flags)
 {
@@ -95,7 +92,7 @@ function tocline($id, $title)
 }
 
 
-include_once(legacy("data/newsletter.php"));
+include_once(__DIR__ . "/../data/newsletter.php");
 
 ACCEPT_POST();
 
