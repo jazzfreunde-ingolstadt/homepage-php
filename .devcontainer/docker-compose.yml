@@ -9,10 +9,10 @@ services:
         environment:
             XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000 remote_enable=1
             APACHE_DOCUMENT_ROOT: /usr/project/src/public
-            DATABASE_HOST: root
-            DATABASE_USER: dbu1536917
-            DATABASE_PASSWORD: fOd]Z/4ofxKW
+            DATABASE_HOST: jazzfreunde-mysql-database
             DATABASE_DATABASE: jazzfreunde-api
+            DATABASE_USER: dbu_localdev
+            DATABASE_PASSWORD: 6hdth6e#
         ports:
             - "8080:80"
         volumes:
@@ -26,13 +26,13 @@ services:
         command: --default-authentication-plugin=mysql_native_password
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: dbu1536917
-            MYSQL_PASSWORD: fOd]Z/4ofxKW
             MYSQL_DATABASE: jazzfreunde-api
+            MYSQL_USER: dbu_localdev
+            MYSQL_PASSWORD: 6hdth6e#
         ports:
             - 3306:3306
         volumes:
-            - mysql-data-kommune:/var/lib/mysql
+            - mysql-data-jazzfreunde:/var/lib/mysql
     database-admin:
         container_name: jazzfreunde-mysql-admin
         image: phpmyadmin/phpmyadmin:latest
@@ -41,12 +41,12 @@ services:
 
         environment:
             PMA_HOST: jazzfreunde-mysql-database
-            PMA_USER: dbu1536917
-            PMA_PASSWORD: fOd]Z/4ofxKW
+            PMA_USER: dbu_localdev
+            PMA_PASSWORD: 6hdth6e#
         ports:
           - "8081:80"
 volumes:
-    mysql-data-kommune:
+    mysql-data-jazzfreunde:
 
 secrets:
     user_ssh_key:
