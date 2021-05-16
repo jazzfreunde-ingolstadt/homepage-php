@@ -242,10 +242,14 @@ function writeVAhead()
 	}
 
 
-	function setVAFromDatabase(): void
+	$setVAFromDatabase = function () use ($app): void
 	{
-		$termine = new \Jazzfreunde\App\Models\Termine();
-	}
+		$termine = new \Jazzfreunde\App\Models\TermineModel($app->DatabaseContext());
+		$termine->new(new \Jazzfreunde\App\Models\Termin(
+			'1',
+			'Mein erster Termin zum Testen.'
+		));
+	};
 
 	head();
 	before();
@@ -255,7 +259,7 @@ function writeVAhead()
 
 <?php
 include(__DIR__ . "/../data/termine.php");
-setVAFromDatabase();
+$setVAFromDatabase();
 writeVAs();
 ?>
 
