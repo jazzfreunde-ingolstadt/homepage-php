@@ -12,10 +12,10 @@ final class App
     {
     }
 
-    public  function UseDatabaseContext(Connection $database): void {
+    public function UseDatabaseContext(Connection $database): void {
         $this->database_connection = $database;
     }
-
+    
     public function DatabaseContext(): Connection {
         return $this->database_connection;
     }

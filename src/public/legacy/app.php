@@ -2,6 +2,7 @@
 
 use Jazzfreunde\App\Bootstrap\App;
 use Jazzfreunde\Database;
+use Jazzfreunde\App\Models;
 
 $ns_mapping = function () {
     yield 'jazzfreunde/database' => 'data/database';
@@ -26,5 +27,11 @@ $app->UseDatabaseContext(
         )
     )
 );
+
+$registered_models = function (): \Generator {
+    yield from Models\TermineModel::TasksToRun();
+};
+$database_migration = new Database\Migration($registered_models());
+$database_migration->Update($app->DatabaseContext());
 
 return $app;
