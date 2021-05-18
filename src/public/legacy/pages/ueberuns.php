@@ -100,7 +100,11 @@ Wiedereinstieg in den Jazz 1995 in Ingolstadt zu den Jazztagen, seit 1999 Mitarb
 <div class="kasten person even"><img src="gfx/mayer_pre.jpg" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Webmaster</div>
   <div class="kasten_h2">Michael Mayer</div>
-  <div class="kasten_p">Michael Mayer ist Entwickler in der Softwarebranche. Er selbst spielt Kontrabass.
+  <div class="kasten_p">Mit dem Eintritt ins Gymnasium begann Michael Mayer klassische Gitarre zu lernen.
+    Weil aber im Schulensemble "Not am Bass" war, machte er seine ersten Erfahrungen am E-Bass, ohne überhaupt die zugehörigen Bassnoten lesen zu können.
+    Später kaufte er sich kurzer Hand einen gebrauchten Kontrabass und fing an, darauf umzusetzen, was er sich am E-Bass beigebracht hatte.
+    Zu seinen musikalischen Idolen zählen Chic Korea, Frank Zappa, Allan Holdsworth, Jacob Collier, Robert Glasper, Derek Trucks, Joni Mitchell, um nur ein paar wenige zu nennen.
+    Privat ist der gelernte Softwareentwickler gerne auf dem Rennrad unterwegs. Dann aber notgedrungen ohne Kontrabass.
     <div class="right"><a class="kontakt" href="kontakt.php?to=mayer" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
 </div>
@@ -173,5 +177,5 @@ Telefon: 0841 / 9511539<br />
 <p>Wenn Sie interessiert, was wir mit Ihren Daten anfangen und wie wir sie schützen, lesen Sie unsere Informationen zu <a href="daten.php">Datenerhebung und Datenschutz</a>.</p>
 
 <?
-  after();
+after();
 ?>
