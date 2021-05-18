@@ -27,7 +27,6 @@ final class Migration
             // Wenn erfolgreich setzte Versionsnummer hoch
         } catch (Exception $e) {
             // log
-            var_dump($e->getMessage());
         }
     }
 }
