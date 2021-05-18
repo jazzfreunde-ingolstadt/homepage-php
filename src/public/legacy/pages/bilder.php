@@ -41,8 +41,6 @@ define("IMG_THUMBSIZE", 80);
 
 define("BACKLINK", (isset($_GET["via"]) ? $_GET["via"] . PAGE_ENDING : PAGE . PAGE_ENDING));
 
-var_dump(IMG_ROOT);
-
 function getpix($folder)
 { // Gibt die Bildnamen im Verzeichnis aus.
   // Es werden nur die aufgelistet, die im FULLDIR und im THUMBDIR vorhanden sind!
@@ -172,7 +170,7 @@ function picview($folder)
           for ($nr = $startnr + $line * IMG_PICSPERLINE; $nr < $startnr + ($line + 1) * IMG_PICSPERLINE; $nr++) {
             if ($nr < $picsum) {
           ?>
-              <td class="thumbnail" align="center" valign="center" height="<?= IMG_THUMBSIZE + 4 ?>" width="<?= IMG_THUMBSIZE + 4 ?>"><a href="<?= $_SERVER["PHP_SELF"] . "?" . PAGE . "=" . $folder . "&amp;image=" . ($nr + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>" title="Bild ansehen"><img src="<?= IMG_ROOT . $folder . "/" . IMG_THUMBDIR . $PIX[$nr] ?>" alt="" />
+              <td class="thumbnail" align="center" valign="center" height="<?= IMG_THUMBSIZE + 4 ?>" width="<?= IMG_THUMBSIZE + 4 ?>"><a href="<?= $_SERVER["PHP_SELF"] . "?" . PAGE . "=" . $folder . "&amp;image=" . ($nr + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>" title="Bild ansehen"><img src="https://blob.jazzfreunde-ingolstadt.de/<?= $folder . "/" . IMG_THUMBDIR . $PIX[$nr] ?>" alt="" />
                   <!--<?= $PIX[$nr] ?>-->
                 </a></td>
             <?php
@@ -200,7 +198,7 @@ function picview($folder)
   ?>
     <table class="imagetable" border="0" cellspacing="0" cellpadding="4" align="center">
       <tr>
-        <td class="image"><img src="<?= IMG_ROOT . $folder . "/" . IMG_FULLDIR . $PIX[$image] ?>" alt="<?= $PIX[$image] ?>" /></td>
+        <td class="image"><img src="https://blob.jazzfreunde-ingolstadt.de/<?= $folder . "/" . IMG_FULLDIR . $PIX[$image] ?>" alt="<?= $PIX[$image] ?>" /></td>
       </tr>
     </table>
 <?php
