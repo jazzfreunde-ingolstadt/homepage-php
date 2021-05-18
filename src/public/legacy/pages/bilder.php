@@ -36,7 +36,7 @@ define("IMG_PICSPERLINE", 6);
 define("IMG_LINESPERPAGE", 6);
 define("IMG_FULLDIR", "full/"); // Muss mit '/' enden, soll nicht mit '/' beginnen
 define("IMG_THUMBDIR", "pre/"); // Muss mit '/' enden, soll nicht mit '/' beginnen
-define("IMG_ROOT", "/imx/"); // Muss mit '/' enden
+define("IMG_ROOT", $_SERVER["DOCUMENT_ROOT"] . "/imx/"); // Muss mit '/' enden
 define("IMG_THUMBSIZE", 80);
 
 define("BACKLINK", (isset($_GET["via"]) ? $_GET["via"] . PAGE_ENDING : PAGE . PAGE_ENDING));
