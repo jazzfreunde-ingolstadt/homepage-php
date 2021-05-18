@@ -14,7 +14,14 @@ final class Termin extends Database\DTO
 {
     function __construct(
         public int $id,
-        public string $name
+        public int $series_id,
+        public string $titel,
+        public string $subtitel,
+        public \DateTime $start,
+        public \DateTime $end,
+        public string $ort,
+        public string $link,
+        public string $thumbnail
     ) {
     }
 }
@@ -66,7 +73,7 @@ final class TermineModel extends Database\Model
             $db->execute("
                 CREATE TABLE IF NOT EXISTS ${table} (
                     id INT NOT NULL AUTO_INCREMENT,
-                    name VARCHAR(255) NOT NULL,
+                    titel VARCHAR(255) NOT NULL,
                     PRIMARY KEY(id)
                 );
             ");

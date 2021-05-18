@@ -368,8 +368,8 @@ setVA("08.11.2012", "20:30", "Ensemble Draj<br /><small>Jazz in den Kneipen</sma
 setVA("08.11.2012", "20:30", "Tim Allhoff Trio<br /><small>Jazz in den Kneipen</small>", "Theaterbar", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "22:00", "Quadro Nuevo<br /><small>Jazz im Altstadttheater</small>", "Altstadttheater", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "22:15", "Welcome Party: Butterscotch", "NH Ambassador Ingolstadt", "jazztage12/butterscotch", null, "jazztage"); // Jazztage 2012
-setVA("09.11.2012", "20:00", "Jazz Party I<br /><small>mit Tower of Power, Hiromi – The Trio Project feat. Anthony Jackson &amp; Simon Phillips, Jacob Karlzon 3, Viktoria Tolstoy; Open End mit der Late Night Band", "NH Ambassador Ingolstadt", "jazztage12/jazzparty1", null, "jazztage"); // Jazztage 2012
-setVA("10.11.2012", "20:00", "Jazz Party II<br /><small>mit Joo Kraus &amp; Tales in Tone Trio, Karo Glazer, Marcus Miller, Maceo Parker, Äl Jawala; Open End mit der Late Night Band", "NH Ambassador Ingolstadt", "jazztage12/jazzparty2", null, "jazztage"); // Jazztage 2012
+setVA("09.11.2012", "20:00", "Jazz Party I<br /><small>mit Tower of Power, Hiromi – The Trio Project feat. Anthony Jackson &amp; Simon Phillips, Jacob Karlzon 3, Viktoria Tolstoy; Open End mit der Late Night Band</small>", "NH Ambassador Ingolstadt", "jazztage12/jazzparty1", null, "jazztage"); // Jazztage 2012
+setVA("10.11.2012", "20:00", "Jazz Party II<br /><small>mit Joo Kraus &amp; Tales in Tone Trio, Karo Glazer, Marcus Miller, Maceo Parker, Äl Jawala; Open End mit der Late Night Band</small>", "NH Ambassador Ingolstadt", "jazztage12/jazzparty2", null, "jazztage"); // Jazztage 2012
 setVA("11.11.2012", "11:00", "Jazzgottesdienst mit „Batter My Soul“", "Kirche St. Matthäus", "jazztage12/battermysoul", null, "jazztage"); // Jazztage 2012
 setVA("13.11.2012", "20:00", "Christian Scott", "Diagonal");
 setVA("15.11.2012", "20:00", "Pasadena Roof Orchestra", "Audi Forum");
@@ -594,7 +594,7 @@ setVA("11.03.2015", "20:00", "Beady Belle", "Diagonal");
 setVA("14.03.2015", "21:00", "Fat Toni: Play That Funky Music", "Firenze Café Bistro, Wettstetten");
 setVA("15.03.2015", "20:00", "Schallpoet", "Diagonal");
 setVA("16.03.2015", "20:30", "Karl Ivar Refseth Trio I: Release-Tour „Praying“", "Tagtraum Ingolstadt");
-setVA("19.03.2015", "20:00", "International Hot Jazz Quartet<br/><small>meets Japanese Friends</small>", "Audi Forum");
+setVA("19.03.2015", "20:00", "International Hot Jazz Quartet<br /><small>meets Japanese Friends</small>", "Audi Forum");
 setVA("25.03.2015", "20:00", "Jacob Karlzon 3", "Diagonal");
 setVA("28.03.2015", "20:00", "SchutterNeun Jazzorchester", "neun Kulturzentrum");
 
@@ -842,7 +842,7 @@ setVA("19.11.2017", "20:00", "89. Jam Session", "Diagonal", null, null, "session
 setVA("22.11.2017", "20:00", "Mulo Francel &amp; Friends", "Diagonal");
 setVA("29.11.2017", "20:00", "Jimi Hendrix Project<br /><small>mit Christy Doran, Erika Stucky, Fredy Studer und Thomy Jordi</small>", "Diagonal");
 
-setVA("03.12.2017", "19:30", "Wer dablost’s?<br/><small>Blechbläser Kabarett mit A. Hofmeir, K. Wecker, F. Simbeck, T. Franz und dem SchutterNEUN Jazzorchester</small>", "neun Kulturzentrum");
+setVA("03.12.2017", "19:30", "Wer dablost’s?<br /><small>Blechbläser Kabarett mit A. Hofmeir, K. Wecker, F. Simbeck, T. Franz und dem SchutterNEUN Jazzorchester</small>", "neun Kulturzentrum");
 setVA("07.12.2017", "20:00", "Django Reinhardt Night<br /><small>Hono Winderstein Trio &bull; Timbo Mehrstein Quartet</small>", "museum mobile");
 setVA("09.12.2017", "20:30", "Mallets &amp; Friends", "Birdland Jazzclub Neuburg");
 setVA("17.12.2017", "18:00", "SwingIN Bigband: „amazing gospels“", "neun Kulturzentrum");

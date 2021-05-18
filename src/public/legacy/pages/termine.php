@@ -210,7 +210,7 @@ function writeVAhead()
 		<?php writeVAfoot() ?>
 	<?php } ?>
 
-	<p>Auch interessant: Das Programm unserer Partner vom <a href="http://www.birdland.de/start_programm.html" target="_blank">Birdland Jazz Club Neuburg</a>!</p>
+	<p>Auch interessant: Das Programm unserer Partner vom <a href="http://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!</p>
 
 	<h2>Vergangene Veranstaltungen</h2>
 	<?php if (count($VAPER) == 0) print "<p>Es sind keine vergangenen Veranstaltungen eingetragen.</p>";
@@ -245,10 +245,7 @@ function writeVAhead()
 	$setVAFromDatabase = function () use ($app): void
 	{
 		$termine = new \Jazzfreunde\App\Models\TermineModel($app->DatabaseContext());
-		$termine->new(new \Jazzfreunde\App\Models\Termin(
-			'1',
-			'Mein erster Termin zum Testen.'
-		));
+
 	};
 
 	head();
