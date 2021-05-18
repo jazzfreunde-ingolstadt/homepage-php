@@ -41,6 +41,8 @@ define("IMG_THUMBSIZE", 80);
 
 define("BACKLINK", (isset($_GET["via"]) ? $_GET["via"] . PAGE_ENDING : PAGE . PAGE_ENDING));
 
+var_dump(IMG_ROOT);
+
 function getpix($folder)
 { // Gibt die Bildnamen im Verzeichnis aus.
   // Es werden nur die aufgelistet, die im FULLDIR und im THUMBDIR vorhanden sind!
