@@ -20,7 +20,7 @@ before();
 <p>
   Ganz so schnell wie damals angedacht ging es dann aber doch nicht, denn erst am 17.&nbsp;Februar 2005 war es soweit: Nach erfolgter Presseeinladung trafen sich im <i>Neuburger Kasten</i> (Ingolstadt) 19 Jazzfans und legten somit den Grundstein des Vereins. Die mitanwesenden Dr. Lehmann und Herr Engert brachten die Satzung auf den Weg und gaben unserem „Jazzbaby“ den ersten kräftigen Anschub.</p>
 
-<p>So entstand der anfangs noch manchmal belächelte Verein, dessen Mitgliederzahl sich inzwischen auf ca. 170 entwickelt hat. „Und wenn sie nicht …“</p>
+<p>So entstand der anfangs noch manchmal belächelte Verein, dessen Mitgliederzahl sich inzwischen auf ca. 150 entwickelt hat. „Und wenn sie nicht …“</p>
 
 <h2>Zur Person</h2>
 <div class="kasten person even"><img src="gfx/wewer_pre.png" alt="Bild" height="90" width="70" />
