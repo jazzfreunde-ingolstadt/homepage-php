@@ -28,4 +28,4 @@ jobs:
           ftp-username: ${{ secrets.STAGING_FTP_USER }}
           ftp-password: ${{ secrets.STAGING_FTP_PASSWORD }}
           local-dir: src/
-          git-ftp-args: --insecure
+          git-ftp-args: --insecure --delete
