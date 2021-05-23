@@ -33,15 +33,15 @@ define("_HARDERBASTEI_", "<a href=\"https://ingolstadt.de/Kultur/Kunst-Kultur/Ga
 
 
 
-setVA("Februar 2005", "&nbsp;", "Gründung des Vereins durch Initiative von Herrn Oberbürgermeister Dr. Alfred Lehmann und Kulturreferenten Herrn Gabriel Engert", "&nbsp;");
-setVA("März 2005", "&nbsp;", "Bildung des Musikbeirates zum Vorschlag des jährlichen Jazz-Förderpreisträgers der Stadt Ingolstadt", "&nbsp;");
-setVA("Januar 2006", "18:00", "1. Session der Young Jazz Players", "Diagonal", null, null, "jazztage");
+setVA("17.02.2005", "&nbsp;", "Gründung des Vereins durch Initiative von Herrn Oberbürgermeister Dr. Alfred Lehmann und Kulturreferenten Herrn Gabriel Engert", "&nbsp;");
+setVA("01.03.2005", "&nbsp;", "Bildung des Musikbeirates zum Vorschlag des jährlichen Jazz-Förderpreisträgers der Stadt Ingolstadt", "&nbsp;");
+setVA("16.01.2006", "18:00", "1. Session der Young Jazz Players", "Diagonal", null, null, "jazztage");
 setVA("24.06.2006", "ganztags", "1. Summer Jazz Open Air", "Hotel Rappensberger", "YJP_240606", null, "jazztage");
 setVA("12.11.2006", "18:00", "2. Session der Young Jazz Players", "Diagonal", "YJP_121106", null, "jazztage");
 setVA("11.02.2007", "14:00", "Jazz-Workshops / 3. Session der Young Jazz Players", "Diagonal", "YJP_110207", null, "jazztage");
 setVA("15.04.2007", "18:00", "4. Session der Young Jazz Players", "Café an der Hohen Schule", "YJP_150407", null, "jazztage");
 setVA("16.06.2007", "ganztags", "Mitproduktion des Musikprogramms des Dixie- und Swing-Festivals", "Ingolstädter Innenstadt", "YJP_160607");
-setVA("13.07.2007 / 14.07.2007", "ganztags", "2. Summer Jazz Open Air<br />(im Rahmen des Bürgerfests)<br />mit 5. Session der Young Jazz Players", "Hotel Rappensberger", null, null, "jazztage");
+setVA("13.07.2007 - 14.07.2007", "ganztags", "2. Summer Jazz Open Air<br />(im Rahmen des Bürgerfests)<br />mit 5. Session der Young Jazz Players", "Hotel Rappensberger", null, null, "jazztage");
 setVA("08.09.2007", "nachmittags", "6. Session der Young Jazz Players", "Open Flair");
 setVA("05.11.2007", "19:30", "7. Session der Young Jazz Players<br />(im Rahmen der 24. Ingolstädter Jazztage)", "Diagonal", "YJP_051107", null, "jazztage");
 
@@ -49,7 +49,7 @@ setVA("27.01.2008", "19:00", "1. Jam Session", "Swept Away", null, null, "sessio
 setVA("30.03.2008", "19:00", "2. Jam Session", "Diagonal", "JS_300308", null, "session");
 setVA("22.04.2008", "20:00", "Wolfgang Haffner Trio (Bonuskonzert)", "Diagonal");
 setVA("27.04.2008", "19:00", "3. Jam Session", "Swept Away", null, null, "session");
-setVA("25.05.2008", "14:00 – 18:00", "Jazzworkshops für Schüler + Studenten", "Diagonal" , "Workshop08");
+setVA("25.05.2008", "14:00 - 18:00", "Jazzworkshops für Schüler + Studenten", "Diagonal" , "Workshop08");
 setVA("25.05.2008", "19:00", "8. Session der Young Jazz Players", "Diagonal", null, null, "jazztage");
 setVA("25.05.2008", "22:00", "Steps of Spirit", "Donauzelt / Theatertage");
 setVA("26.05.2008", "22:00", "Mallet &amp; Friends", "Donauzelt / Theatertage");
@@ -57,7 +57,7 @@ setVA("30.05.2008", "20:30", "Charly Böck Latin Projekt", "Birdland Neuburg");
 setVA("01.06.2008", "21:00", "Da boarische (Jazz);Plan", "Donauzelt / Theatertage");
 setVA("02.06.2008", "21:00", "Mallet &amp; Friends", "Donauzelt / Theatertage");
 setVA("08.06.2008", "17:00", "Nu Glass", "Donauzelt / Theatertage");
-setVA("28.06.2008", "11:00 – 23:00", "Dixie- und Swing-Festival", "Ingolstädter Innenstadt", "DixieSwing2008");
+setVA("28.06.2008", "11:00 - 23:00", "Dixie- und Swing-Festival", "Ingolstädter Innenstadt", "DixieSwing2008");
 setVA("10.07.2008", "18:30", "David Sanchez Group /<br />Ron Carter Quintet", "Neuburger Residenzschloss");
 setVA("11.07.2008", "18:30", "Curtis Stigers &amp; Band /<br />Till Brönner", "Neuburger Residenzschloss");
 setVA("12.07.2008", "18:30", "Häns&apos;che Weiss Ensemble /<br />Paul Kuhn &amp; All Stars", "Neuburger Residenzschloss");
@@ -66,14 +66,14 @@ setVA("20.07.2008", "20:00", "Open Air mit The Voice Connection", "Burg Nassenfe
 setVA("25.07.2008", "18:30", "3. Summer Jazz Open Air", "Hotel Rappensberger", "Summerjazz08Fr");
 setVA("26.07.2008", "14:00", "3. Summer Jazz Open Air", "Hotel Rappensberger", "Summerjazz08Sa");
 setVA("02.08.2008", "15:00", "Grillfest des Jazzfreunde-Vereins", "Roter Gries: Niks Garten");
-setVA("10.09.2008 – 14.09.2008", "ganztags", "Blechbläser-Workshop mit Burba und Stötter", "Eichstätt");
+setVA("10.09.2008 - 14.09.2008", "ganztags", "Blechbläser-Workshop mit Burba und Stötter", "Eichstätt");
 setVA("28.09.2008", "19:00", "4. Jam Session", "Swept Away", "Jamsession4_2008", null, "session");
 setVA("03.10.2008", "20:30", "Close to Jazz", "Ohrakel");
 setVA("08.10.2008", "20:00", "Emil &amp; Eduard", "Diagonal");
 setVA("11.10.2008", "20:00", "The Voice Connection", "Pfarrsaal Kösching");
 setVA("14.10.2008", "20:00", "Malene Mortensen Group", "Diagonal");
 setVA("19.10.2008", "18:00", "Preisträgerkonzert: Christina Jung mit “Jungblut”", "Diagonal", null, null, "jazztage"); // Jazztage 2008
-setVA("26.10.2008", "20:00", "Gospel &amp; Soul Night – Thilo Wolf &amp; Joan Faulkner", "St. Augustin", null, null, "jazztage"); // Jazztage 2008
+setVA("26.10.2008", "20:00", "Gospel &amp; Soul Night - Thilo Wolf &amp; Joan Faulkner", "St. Augustin", null, null, "jazztage"); // Jazztage 2008
 setVA("30.10.2008", "20:00", "Kolsimcha", "Festsaal Ingolstadt", null, null, "jazztage"); // Jazztage 2008
 setVA("30.10.2008", "&nbsp;", "Jazz für Schulen: Workshops", "Gnadenthal- und Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2008
 setVA("31.10.2008", "&nbsp;", "Jazz für Schulen: Workshops", "Gnadenthal- und Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2008
@@ -89,15 +89,15 @@ setVA("07.11.2008", "19:30", "Chick Corea &amp; John McLaughlin", "Festsaal Ingo
 setVA("07.11.2008", "22:00", "Jazz Party I: Brand New Heavies", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2008
 setVA("08.11.2008", "20:00", "Jazz Party II: Herbie Hancock Quintet", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2008
 setVA("09.11.2008", "11:00", "Jazzgottesdienst", "Kirche St. Matthäus, Schrannenstr. 7", null, null, "jazztage"); // Jazztage 2008
-setVA("<span class=\"red stroke\">09.11.2008</span>", "<span class=\"red stroke\">19:30</span>", "<span class=\"red stroke\">Gala-Night: Randy Newman</span> <span class=\"red\">entfällt!</span>", "<span class=\"red stroke\">Festsaal Ingolstadt</span>", null, null, "jazztage"); // Jazztage 2008
+setVA("09.11.2008", "19:30", "<span class=\"red stroke\">Gala-Night: Randy Newman</span> <span class=\"red\">entfällt!</span>", "<span class=\"red stroke\">Festsaal Ingolstadt</span>", null, null, "jazztage"); // Jazztage 2008
 setVA("18.11.2008", "20:00", "Electric Outlet", "Diagonal");
-setVA("<span class=\"red stroke\">26.11.2008</span>", "<span class=\"red stroke\">20:00</span>", "<span class=\"red stroke\">Jasper van’t Hof &amp; Bob Malach</span> <span class=\"red\">entfällt!</span>", "<span class=\"red stroke\">Diagonal</span>");
+setVA("26.11.2008", "20:00", "<span class=\"red stroke\">Jasper van’t Hof &amp; Bob Malach</span> <span class=\"red\">entfällt!</span>", "<span class=\"red stroke\">Diagonal</span>");
 setVA("28.11.2008", "20:00", "Souled Out und 5vor8", "Diagonal");
 setVA("10.12.2008", "20:00", "Erika Stucky “Bubbles &amp; Bangs”", "Diagonal");
 setVA("14.12.2008", "19:00", "5. Jam Session", "Diagonal", "Xmas08", null, "session");
 setVA("23.12.2008", "20:30", "Albert C. Humphrey &amp; Band “Blue Christmas”", "Neue Welt");
 
-setVA("14.01.2009", "20:00", "Joo Kraus „Sueno“ – <b>Bonuskonzert</b>", "Diagonal", "JooKrausProject");
+setVA("14.01.2009", "20:00", "Joo Kraus „Sueno“ - <b>Bonuskonzert</b>", "Diagonal", "JooKrausProject");
 setVA("25.01.2009", "20:00", "Hans Stückle Blues Band", "Diagonal");
 setVA("01.02.2009", "20:00", "Charly Leimer „Steps of Spirit“", "Diagonal");
 setVA("08.02.2009", "19:00", "6. Jam Session", "Swept Away", "JS_20090208", null, "session");
@@ -115,19 +115,19 @@ setVA("25.03.2009", "20:00", "Luis di Matteo", "Diagonal");
 setVA("31.03.2009", "20:00", "Scott Henderson Trio", "Diagonal");
 setVA("26.04.2009", "20:00", "Etna", "Diagonal");
 setVA("26.04.2009", "19:00", "10. Young Jazz Players Session", "Birdland Neuburg", "Birdland_20090426", null, "jazztage");
-setVA("<span class=\"red stroke\">13.05.2009</span>", "<span class=\"red stroke\">20:00</span>", "<span class=\"red stroke\">Bill Evans Group</span> <span class=\"red\">entfällt!</span>", "<span class=\"red stroke\">Diagonal</span>");
+setVA("13.05.2009", "20:00", "<span class=\"red stroke\">Bill Evans Group</span> <span class=\"red\">entfällt!</span>", "<span class=\"red stroke\">Diagonal</span>");
 setVA("20.05.2009", "20:00", "Abbamobil", "Diagonal");
 setVA("24.05.2009", "19:00", "7. Jam Session", "Diagonal", "JS_20090524", null, "session");
 setVA("26.06.2009", "19:30", "Rudi Trögl Trio", "Atelier des Künstlers Viktor Kraus / Kinding");
-setVA("10.07.2009 – 12.07.2009", "&nbsp;", "Bürgerfest mit 4. Summer Jazz Open Air", "Hotel Rappensberger", "Sommerjazz2009");
-setVA("<span class=\"red stroke\">10.07.2009 – 12.07.2009</span>", "&nbsp;", "<span class=\"red stroke\">Open-Air-Jazzfestival des Jazzclubs “Birdland”</span><br /><small class=\"red\">entfällt!</small>", "<span class=\"red stroke\">Schlosshof Neuburg</span>");
+setVA("10.07.2009 - 12.07.2009", "&nbsp;", "Bürgerfest mit 4. Summer Jazz Open Air", "Hotel Rappensberger", "Sommerjazz2009");
+setVA("10.07.2009 - 12.07.2009", "&nbsp;", "<span class=\"red stroke\">Open-Air-Jazzfestival des Jazzclubs “Birdland”</span><br /><small class=\"red\">entfällt!</small>", "<span class=\"red stroke\">Schlosshof Neuburg</span>");
 setVA("01.09.2009", "20:30", "Da Boarische Jazzplan", "Musikszene: Neue Welt");
 setVA("03.09.2009", "19:00", "Pit Müllers’ Hot Stuff", "Hotel Rappensberger");
 setVA("05.09.2009", "15:00", "So What", "Ingolstadt Open Flair / Klangraumzelt");
 setVA("05.09.2009", "20:00", "3 of a kind beim Poetry Slam", "Ingolstadt Open Flair / Literaturzelt");
 setVA("05.09.2009", "21:00", "Ras Dashan meets Jazz", "Ingolstadt Open Flair / Klangraumzelt");
 setVA("06.09.2009", "11:00", "4 of a kind Jazzfrühschoppen", "Ingolstadt Open Flair");
-setVA("06.09.2009", "18:00", "Rudi Trögl – Rainer Hasenkopf Duo", "Ingolstadt Open Flair / Klangraumzelt");
+setVA("06.09.2009", "18:00", "Rudi Trögl - Rainer Hasenkopf Duo", "Ingolstadt Open Flair / Klangraumzelt");
 setVA("07.09.2009", "20:30", "Klangpatrouille", "Musikszene: Neue Welt");
 setVA("08.09.2009", "20:30", "Trialogo und Emil &amp; Eduard", "Musikszene: Neue Welt");
 setVA("14.09.2009", "20:30", "Claudius &amp; Band feat. Nick Flade", "Musikszene: Neue Welt");
@@ -137,7 +137,7 @@ setVA("27.09.2009", "19:00", "8. Jam Session", "Swept Away", "JS_20090927", null
 setVA("28.09.2009", "20:30", "C.B.Green &amp; Band feat. Martin Kälberer: CD-Präsentation „Third“", "Neue Welt");
 setVA("30.09.2009", "20:00", "Erika Stucky &amp; Sina", "Diagonal");
 setVA("08.10.2009", "20:30", "Joscho Stephan Trio (D): „Django Forever“", "Neue Welt");
-setVA("<span class=\"red\">10.10.2009</span>", "20:00", "Rudi Trögl Trio", "Gutmann / Eichstätt");
+setVA("10.10.2009", "20:00", "Rudi Trögl Trio", "Gutmann / Eichstätt");
 setVA("13.10.2009", "20:30", "Ulita Knaus &amp; Band", "Diagonal");
 setVA("18.10.2009", "18:00", "Jazzförderpreisträger 2009 Bernhard Hollinger &amp; Band", "Diagonal", "Hollinger_20091018", null, "jazztage"); // Jazztage 2009
 setVA("25.10.2009", "11:00", "Jazz Brunch mit C’est si bon", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2009
@@ -158,8 +158,8 @@ setVA("08.11.2009", "20:00", "Highlight: Zap Mama", "Diagonal", "jazztage09/zap_
 setVA("21.11.2009", "20:00", "The Voice Connection", "Backhaus Gaimersheim");
 setVA("22.11.2009", "20:00", "The Voice Connection", "Gutmann / Eichstätt");
 setVA("26.11.2009", "20:00", "Ignacio Berroa Quartet feat. David Sánchez", "Diagonal");
-setVA("06.12.2009", "–&nbsp;?&nbsp;–", "4 of a kind “A jazzy Christmas”", "Kunstscheune Marienheim bei Neuburg");
-setVA("14.12.2009", "20:30", "Häns’che Weiss &amp; Vali Meyer – Der König des „Zigeunerjazz“", "Neue Welt");
+setVA("06.12.2009", "-&nbsp;?&nbsp;-", "4 of a kind “A jazzy Christmas”", "Kunstscheune Marienheim bei Neuburg");
+setVA("14.12.2009", "20:30", "Häns’che Weiss &amp; Vali Meyer - Der König des „Zigeunerjazz“", "Neue Welt");
 setVA("16.12.2009", "20:00", "Charly Böck Latin Project", "Diagonal");
 setVA("20.12.2009", "19:30", "9. Jam Session (Weihnachtssession)", "Diagonal", "Xmas09", null, "session");
 
@@ -171,7 +171,7 @@ setVA("05.02.2010", "21:00", "ETNA", "Kleines Haus am Brückenkopf");
 setVA("11.02.2010", "20:00", "The Pee Wee Ellis Assembly", "Audi Forum Ingolstadt");
 setVA("28.02.2010", "19:00", "11. Jam Session", "Diagonal", "JS_20100228", null, "session");
 setVA("07.03.2010", "20:00", "Christian Krischkowsky Quintett", "Diagonal", "", "http://www.youtube.com/watch?v=JB-VCId3-Fs");
-setVA("18.03.2010", "20:00", "Moscow Art Trio – <b>Bonuskonzert</b>", "Diagonal", "", "http://www.youtube.com/watch?v=e4qjCpidJsM");
+setVA("18.03.2010", "20:00", "Moscow Art Trio - <b>Bonuskonzert</b>", "Diagonal", "", "http://www.youtube.com/watch?v=e4qjCpidJsM");
 setVA("14.04.2010", "20:00", "Bill Evans Soulgrass", "Diagonal", "", "http://www.youtube.com/watch?v=BU-x0cXQcyU");
 setVA("25.04.2010", "19:00", "12. Young Jazz Players Session", "Birdland Neuburg", "YJP_250410", null, "jazztage");
 setVA("11.05.2010", "20:00", "George Duke Band", "Diagonal", "", "http://www.youtube.com/watch?v=e1H3wIqpYGU");
@@ -179,18 +179,18 @@ setVA("08.06.2010", "20:00", "Hazmat Modine", "Diagonal", "", "http://www.youtub
 setVA("12.06.2010", "20:00", "Club Légère CD-Release Konzert mit anschließender Discoparty", "Diagonal");
 setVA("19.06.2010", "20:00", "Rudi Trögl Trio", "Kulturwerkhalle in Rohrbach");
 setVA("20.06.2010", "19:00", "12. Jam Session", "Diagonal", null, null, "session");
-setVA("02.07.2010 – 04.07.2010", "&nbsp;", "Big Band Workshop mit Harald Rüschenbaum", "Reuchlin-Gymnasium", "summerjazz2010/workshop");
+setVA("02.07.2010 - 04.07.2010", "&nbsp;", "Big Band Workshop mit Harald Rüschenbaum", "Reuchlin-Gymnasium", "summerjazz2010/workshop");
 setVA("03.07.2010", "18:30", "Bernhard Hollinger Group beim 5. Summer Jazz Open Air", "Innenhof Hotel Rappensberger", "summerjazz2010/hollinger");
 setVA("03.07.2010", "20:30", "Abba Mobil beim 5. Summer Jazz Open Air", "Innenhof Hotel Rappensberger", "summerjazz2010/abbamobil");
 setVA("04.07.2010", "10:30", "5. Summer Jazz Open Air mit Big Band Matinee", "Innenhof Hotel Rappensberger", "summerjazz2010/bigbands");
-setVA("08.07.2010", "19:00", "Rudi Trögl – Rainer Hasenkopf Duo: Eröffnung der 1. Ingolstädter Kunstmesse", "Exerzierhalle");
+setVA("08.07.2010", "19:00", "Rudi Trögl - Rainer Hasenkopf Duo: Eröffnung der 1. Ingolstädter Kunstmesse", "Exerzierhalle");
 setVA("25.07.2010", "19:00", "13. Jam Session", "Diagonal", null, null, "session");
 setVA("06.09.2010", "20:30", "Close to Jazz", "Neue Welt, Musikszene");
 setVA("07.09.2010", "20:30", "Noah Gold &amp; Band", "Neue Welt, Musikszene");
 setVA("09.09.2010", "20:30", "Klangpatrouille", "Neue Welt, Musikszene");
-setVA("<span class=\"red\">12.09.2010</span>", "19:00", "14. Jam Session", "Diagonal", null, null, "session");
+setVA("12.09.2010", "19:00", "14. Jam Session", "Diagonal", null, null, "session");
 setVA("24.09.2010", "20:30", "The Jazz Five &amp; Just Friends", "Ohrakel, Musikszene");
-setVA("<span class=\"red\">26.09.2010</span>", "<span class=\"red\">20:00</span>", "<span class=\"red\">morgenRoth</span>", "<span class=\"red\">Diagonal</span>");
+setVA("26.09.2010", "20:00", "<span class=\"red\">morgenRoth</span>", "<span class=\"red\">Diagonal</span>");
 setVA("13.10.2010", "20:00", "Grace Kelly Quintet", "Diagonal"); // Jazztage 2010
 setVA("17.10.2010", "18:00", "Tim Allhoff: Eröffnung der 27. Ingolstädter Jazztage", "Diagonal", "jazztage10/tim_allhoff", null, "jazztage"); // Jazztage 2010
 setVA("20.10.2010", "20:00", "Michael Landau Group", "Diagonal", null, null, "jazztage"); // Jazztage 2010
@@ -198,12 +198,12 @@ setVA("24.10.2010", "16:00", "Jazz for Kids: Martin Johnson &amp; Band feat. Rut
 setVA("25.10.2010", "19:30", "13. Session der Young Jazz Players", "Diagonal", "jazztage10/YJP", null, "jazztage"); // Jazztage 2010
 setVA("28.10.2010", "08:00", "Jazz für Schulen: Workshops mit „String Thing“", "Gnadenthal-Gymnasium", null, null, "jazztage"); // Jazztage 2010
 setVA("29.10.2010", "08:00", "Jazz für Schulen: Workshops mit „String Thing“", "Gnadenthal-Gymnasium", null, null, "jazztage"); // Jazztage 2010
-setVA("30.10.2010", "<span class=\"red\">20:00</span>", "1. Highlight-Konzert: Paolo Conte", "Audi-Forum Kundencenter", "jazztage10/paolo_conte", null, "jazztage"); // Jazztage 2010
-setVA("31.10.2010", "<span class=\"red\">20:00</span>", "Highlight in der Kirche: New York Voices", "St. Augustin", "jazztage10/new_york_voices", null, "jazztage"); // Jazztage 2010
+setVA("30.10.2010", "20:00", "1. Highlight-Konzert: Paolo Conte", "Audi-Forum Kundencenter", "jazztage10/paolo_conte", null, "jazztage"); // Jazztage 2010
+setVA("31.10.2010", "20:00", "Highlight in der Kirche: New York Voices", "St. Augustin", "jazztage10/new_york_voices", null, "jazztage"); // Jazztage 2010
 setVA("02.11.2010", "20:30", "Ingolstädter Szene: San2 &amp; his Soul Patrol", "Neue Welt", null, null, "jazztage"); // Jazztage 2010
 setVA("03.11.2010", "20:30", "Ingolstädter Szene: Bernhard Hollinger Group", "Diagonal", "jazztage10/hollinger", null, "jazztage"); // Jazztage 2010
-setVA("04.11.2010", "<span class=\"red\">20:30</span>", "Jazz in den Kneipen<br /><small>u.&nbsp;a. mit Victor Bailey &amp; David Gilmore</small>", "&nbsp;", "jazztage10/kneipen", null, "jazztage"); // Jazztage 2010
-setVA("<span class=\"red stroke\">04.11.2010</span>", "<span class=\"red stroke\">22:00</span>", "<span class=\"red stroke\">Jazz im Theater: Clueso &amp; Bernewitz Trio feat. Paul Brody</span><br /><small class=\"red\"><b>Verschoben</b> auf 19.05.2011!</small>", "<span class=\"red stroke\">Altstadttheater</span>", null, null, "jazztage"); // Jazztage 2010
+setVA("04.11.2010", "20:30", "Jazz in den Kneipen<br /><small>u.&nbsp;a. mit Victor Bailey &amp; David Gilmore</small>", "&nbsp;", "jazztage10/kneipen", null, "jazztage"); // Jazztage 2010
+setVA("04.11.2010", "22:00", "<span class=\"red stroke\">Jazz im Theater: Clueso &amp; Bernewitz Trio feat. Paul Brody</span><br /><small class=\"red\"><b>Verschoben</b> auf 19.05.2011!</small>", "<span class=\"red stroke\">Altstadttheater</span>", null, null, "jazztage"); // Jazztage 2010
 setVA("04.11.2010", "22:15", "Welcome Party", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2010
 setVA("05.11.2010", "19:30", "2. Highlight-Konzert: Jamie Cullum", "Festsaal Ingolstadt", "jazztage10/jamie_cullum", null, "jazztage"); // Jazztage 2010
 setVA("05.11.2010", "22:00", "Jazz Party I<br /><small>u. a. mit Ulf Wakenius, Incognito</small>", "NH Ambassador Ingolstadt", "jazztage10/jazzparty1", null, "jazztage"); // Jazztage 2010
@@ -213,7 +213,7 @@ setVA("07.11.2010", "11:00", "Jazzgottesdienst mit Tom Diewock und Gerhard Schmi
 setVA("07.11.2010", "19:30", "3. Highlight-Konzert: Paco de Lucia &amp; Band", "Festsaal Ingolstadt", "jazztage10/paco_de_lucia", null, "jazztage"); // Jazztage 2010
 setVA("21.11.2010", "19:00", "15. Jam Session", "Diagonal", null, null, "session");
 setVA("24.11.2010", "20:00", "Trialogo / Emil &amp; Eduard", "Diagonal");
-setVA("27.11.2010", "–&nbsp;?&nbsp;–", "Moop Mama (Marcus Kesselbauer) in Concert", "Ohrakel");
+setVA("27.11.2010", "-&nbsp;?&nbsp;-", "Moop Mama (Marcus Kesselbauer) in Concert", "Ohrakel");
 setVA("28.11.2010", "20:00", "Prisma feat. Sylwia Bialas", "Diagonal");
 
 setVA("02.12.2010", "18:30", "After Work Party mit Rudi Trögl und Rainer Hasenkopf", "Audi Forum");
@@ -237,7 +237,7 @@ setVA("17.04.2011", "19:00", "20. Jam Session<br /><small>mit Fünfklang</small>
 
 setVA("08.05.2011", "20:00", "Victor Wooten &amp; JD Blair", "Diagonal");
 setVA("15.05.2011", "ganztags", "Europäische Jazzakademie: Scott Robinson (sax), Bill Cunliffe (p), Joe LaBarbera (dr), Martin Wind (b)", "Birdland Neuburg");
-setVA("15.05.2011", "20:00", "Danilo Perez Trio – <b>Bonuskonzert</b>", "Diagonal");
+setVA("15.05.2011", "20:00", "Danilo Perez Trio - <b>Bonuskonzert</b>", "Diagonal");
 setVA("19.05.2011", "20:30", "Jazz im Theater: Clueso &amp; Bernewitz Trio feat. Paul Brody<br /><small class=\"red\">Nachschlag der Jazztage 2010</small>", "Altstadttheater", null, null, "jazztage");
 setVA("22.05.2011", "19:00", "21. Jam Session", "Diagonal", "JS_20110522", null, "session");
 
@@ -249,7 +249,7 @@ setVA("08.07.2011", "21:00", "Captain’s Bog", "Bürgerfest: Jazzbühne am Carr
 setVA("09.07.2011", "14:30", "Young Jazz Players in Concert", "Bürgerfest: Jazzbühne am Carraraplatz", "Jazzbuehne2011/2_Sa/2x_YJP", null, "jazztage");
 setVA("09.07.2011", "18:30", "Close2Jazz", "Bürgerfest: Jazzbühne am Carraraplatz", "Jazzbuehne2011/2_Sa/24_Close2Jazz");
 setVA("09.07.2011", "20:30", "Swingbreak", "Bürgerfest: Jazzbühne am Carraraplatz", "Jazzbuehne2011/2_Sa/25_Swingbreak");
-setVA("09.07.2011", "22:30", "M’Tub – Live from Amsterdam", "Bürgerfest: Jazzbühne am Carraraplatz");
+setVA("09.07.2011", "22:30", "M’Tub - Live from Amsterdam", "Bürgerfest: Jazzbühne am Carraraplatz");
 setVA("10.07.2011", "10:00", "Kraiberg Jazz Band", "Bürgerfest: Jazzbühne am Carraraplatz", "Jazzbuehne2011/3_So/31_Kraiberg");
 setVA("10.07.2011", "12:00", "Pit Müllers Hot Stuff", "Bürgerfest: Jazzbühne am Carraraplatz", "Jazzbuehne2011/3_So/32_PitMueller");
 setVA("17.07.2011", "19:00", "23. Jam Session", "Diagonal", "JS_20110717", null, "session");
@@ -266,7 +266,7 @@ setVA("12.10.2011", "20:00", "Simone", "Diagonal");
 setVA("16.10.2011", "18:00", "Josef Finger: Eröffnung der 28. Ingolstädter Jazztage", "Diagonal", "jazztage11/joey_finger", null, "jazztage"); // Jazztage 2011
 //setVA("19.10.2011", "20:00", "Sophie Hunger", "Diagonal"); // Der Oktober ist eine Frau, nicht Jazztage!
 setVA("23.10.2011", "19:00", "25. Jam Session", "Diagonal", null, null, "session");
-setVA("26.10.2011", "08:00 – 17:00", "Jazzprojekttag", "Johann-Michael-Sailer-Schule", null, null, "jazztage"); // Jazztage 2011
+setVA("26.10.2011", "08:00 - 17:00", "Jazzprojekttag", "Johann-Michael-Sailer-Schule", null, null, "jazztage"); // Jazztage 2011
 setVA("27.10.2011", "ganztags", "Jazz für Schulen: „Rhythm-a-ning“", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2011
 setVA("28.10.2011", "ganztags", "Jazz für Schulen: „Rhythm-a-ning“", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2011
 setVA("29.10.2011", "16:00", "Jazz for Kids: Jolli, Juri, und die Jungs… und das große Fernweh", "Volkshochschule", null, null, "jazztage"); // Jazztage 2011
@@ -275,7 +275,7 @@ setVA("31.10.2011", "19:30", "14. Session der Young Jazz Players", "Diagonal", "
 
 setVA("01.11.2011", "20:30", "Denise Liepold &amp; Rudi Trögl Trio<br /><small>Ingolstädter Szene</small>", "Neue Welt", null, null, "jazztage"); // Jazztage 2011
 setVA("02.11.2011", "20:30", "A Tribute to Paul Simon feat. Lisa Wahlandt / Charly Böck<br /><small>Ingolstädter Szene</small>", "Diagonal", null, null, "jazztage"); // Jazztage 2011
-setVA("03.11.2011", "<span class=\"red\">20:00</span>", "Johnny A. &amp; Jeff Aug<br /><small>Jazz in den Kneipen</small>", "Diagonal", "jazztage11/kneipen/diagonal", null, "jazztage"); // Jazztage 2011
+setVA("03.11.2011", "20:00", "Johnny A. &amp; Jeff Aug<br /><small>Jazz in den Kneipen</small>", "Diagonal", "jazztage11/kneipen/diagonal", null, "jazztage"); // Jazztage 2011
 setVA("03.11.2011", "20:30", "Lubos Bena &amp; Matej Ptaszek<br /><small>Jazz in den Kneipen</small>", "Café Hohe Schule", null, null, "jazztage"); // Jazztage 2011
 setVA("03.11.2011", "20:30", "Jon Regen &amp; Band<br /><small>Jazz in den Kneipen</small>", "Neue Welt", "jazztage11/kneipen/neuewelt", null, "jazztage"); // Jazztage 2011
 setVA("03.11.2011", "20:30", "Miranda Sykes &amp; Rex Preston<br /><small>Jazz in den Kneipen</small>", "Ölbaum", null, null, "jazztage"); // Jazztage 2011
@@ -293,7 +293,7 @@ setVA("06.11.2011", "11:00", "Jazzgottesdienst mit „Batter My Soul“", "Kirch
 setVA("06.11.2011", "19:30", "Highlight: Earth, Wind &amp; Fire Experience<br /><small>feat. The Al McKay Allstars</small>", "Festsaal Ingolstadt", "jazztage11/ewf_experience", null, "jazztage"); // Jazztage 2011
 
 setVA("20.11.2011", "19:00", "26. Jam Session<br /><small>mit Fünfklang</small>", "Diagonal", "JS_20111120", null, "session");
-setVA("21.11.2011 / 22.11.2011", "&nbsp;", "Eric Bibb &amp; Staffan Astner", "Neue Welt");
+setVA("21.11.2011 - 22.11.2011", "&nbsp;", "Eric Bibb &amp; Staffan Astner", "Neue Welt");
 setVA("23.11.2011", "20:00", "Trialogo / Emil &amp; Eduard", "Diagonal");
 
 setVA("18.12.2011", "19:00", "27. Jam Session", "Diagonal", "JS_20111218", null, "session");
@@ -301,7 +301,7 @@ setVA("18.12.2011", "19:00", "27. Jam Session", "Diagonal", "JS_20111218", null,
 
 setVA("15.01.2012", "19:00", "28. Jam Session<br /><small>mit der Kraiberg Jazz Band</small>", "Diagonal", "JS_20120115", null, "session");
 setVA("20.01.2012", "19:00", "<small>10 Jahre Jazz GmbH:</small><br />15. Session der Young Jazz Players", "Fronte 79", null, null, "jazztage");
-setVA("21.01.2012", "09:00 – 15:00", "<small>10 Jahre Jazz GmbH:</small><br />Jazzworkshops", "Fronte 79");
+setVA("21.01.2012", "09:00 - 15:00", "<small>10 Jahre Jazz GmbH:</small><br />Jazzworkshops", "Fronte 79");
 setVA("21.01.2012", "19:00", "<small>10 Jahre Jazz GmbH:</small><br />Jubiläumskonzert<br /><small>Top Act: Captain’s Bog</small>", "Fronte 79", "jazzgmbh10jahre");
 setVA("22.01.2012", "11:00", "Jazz &amp; Literatur: „Baron von Hüpfenstich“ (Clemens Brentano)<br /><small>Lesung, musikalisch untermalt von Kasia Lewandowska und Charly Böck</small>", "Theaterfoyer");
 setVA("25.01.2012", "20:00", "Pili-Pili", "Diagonal");
@@ -309,34 +309,34 @@ setVA("26.01.2012", "20:00", "The Big Chris Barber Band", "Audi Forum");
 
 setVA("08.02.2012", "20:00", "Ida Sand", "Diagonal");
 setVA("11.02.2012", "20:00", "Soundcheck N° 1<br />mit „Ludwig Two“, „Wir und die Anderen“ und „Fünfklang“", "Werkstatt/Junges Theater");
-setVA("16.02.2012", "20:00", "Hardbop Icons – The Cookers", "Audi Forum");
-setVA("<span class=\"red\">26.02.2012</span>", "19:00", "29. Jam Session<br /><small>mit Close2Jazz; </small><small class=\"red\">Eine Woche später als üblich!</small>", "Diagonal", "JS_20120226", null, "session");
+setVA("16.02.2012", "20:00", "Hardbop Icons - The Cookers", "Audi Forum");
+setVA("26.02.2012", "19:00", "29. Jam Session<br /><small>mit Close2Jazz; </small><small class=\"red\">Eine Woche später als üblich!</small>", "Diagonal", "JS_20120226", null, "session");
 
 setVA("04.03.2012", "11:00", "Jazz &amp; Literatur: „Baron Münchhausen“<br /><small>Lesung mit Peter Greif, musikalisch untermalt von Christof Zoelch, Tom Sendtner &amp; Tom Diewock</small>", "Theaterfoyer");
-setVA("<span class=\"red stroke\">07.03.2012</span>", "<span class=\"red stroke\">20:00</span>", "<span class=\"red stroke\">Truman Doktrin feat. Simon Seidl</span><br /><small class=\"red\">Abgesagt!</small>", "<span class=\"red stroke\">Diagonal</span>");
+setVA("07.03.2012", "20:00", "<span class=\"red stroke\">Truman Doktrin feat. Simon Seidl</span><br /><small class=\"red\">Abgesagt!</small>", "<span class=\"red stroke\">Diagonal</span>");
 setVA("08.03.2012", "20:00", "Johnny Varros Swing 7", "Audi Forum");
 setVA("18.03.2012", "19:00", "30. Jam Session<br /><small>mit JazzArt</small>", "Diagonal", null, null, "session");
 setVA("21.03.2012", "20:00", "Solveig Slettahjell", "Diagonal");
 
 setVA("15.04.2012", "19:00", "31. Jam Session<br /><small>mit Olli Krügel &amp; Band</small>", "Diagonal", null, null, "session");
-setVA("18.04.2012", "20:00", "Malia – <b class=\"red\">Bonuskonzert</b><br /><small class=\"red\">Ersatz für Soul Rebels Brass Band</small>", "Diagonal");
+setVA("18.04.2012", "20:00", "Malia - <b class=\"red\">Bonuskonzert</b><br /><small class=\"red\">Ersatz für Soul Rebels Brass Band</small>", "Diagonal");
 setVA("19.04.2012", "20:00", "Roberto Santamaria Latin Band", "Audi Forum");
 
 setVA("06.05.2012", "11:00", "Jazz &amp; Literatur: „Oi wei!“ (Woody Allen)<br /><small>Lesung von Tobias Hoffmann, musikalisch untermalt von Ulrich Wangenheim, Dieter Hoelsch, Ludwig Leininger und Tobias Hofmann</small>", "Theaterfoyer");
 setVA("06.05.2012", "20:00", "Oz Noy Trio", "Diagonal");
-setVA("<span class=\"red stroke\">13.05.2012</span>", "<span class=\"red stroke\">20:00</span>", "<span class=\"red stroke\">Soul Rebels Brass Band – <b>Bonuskonzert</b></span><br /><small class=\"red\">Entfällt! Tournee abgesagt!</small>", "<span class=\"red stroke\">Diagonal</span>");
+setVA("13.05.2012", "20:00", "<span class=\"red stroke\">Soul Rebels Brass Band - <b>Bonuskonzert</b></span><br /><small class=\"red\">Entfällt! Tournee abgesagt!</small>", "<span class=\"red stroke\">Diagonal</span>");
 setVA("20.05.2012", "19:00", "32. Jam Session<br /><small>mit Mallet &amp; Friends</small>", "Diagonal", "JS_20120520", null, "session");
 
 setVA("24.05.2012", "20:00", "Charly Antolinis „In Memory To Jazz At The Philharmonic“", "Audi Forum");
 
 setVA("10.06.2012", "11:00", "Jazz &amp; Literatur", "Theaterfoyer");
 setVA("16.06.2012", "20:00", "Close2Jazz", "Kotterhof, Böhmfeld");
-setVA("<span class=\"red stroke\">17.06.2012</span>", "<span class=\"red stroke\">19:00</span>", "<span class=\"red stroke\">33. Jam Session<br /><small>mit Jamazzing</small></span><small class=\"red\"> – <b>Abgesagt wegen EM-Übertragung!</b></small>", "<span class=\"red stroke\">Diagonal</span>", null, null, "session");
+setVA("17.06.2012", "19:00", "<span class=\"red stroke\">33. Jam Session<br /><small>mit Jamazzing</small></span><small class=\"red\"> - <b>Abgesagt wegen EM-Übertragung!</b></small>", "<span class=\"red stroke\">Diagonal</span>", null, null, "session");
 
 setVA("15.07.2012", "19:00", "34. Jam Session<br /><small>mit Swingbreak</small>", "Diagonal", "JS_20120715", null, "session");
-setVA("28.07.2012", "<span class=\"red\">16:30</span>", "6. Summer Jazz Open Air: Young Jazz Players in Concert<br />Gnadenthal- und Reuchlin-Gymnasium", "Mo Biergarten", "summerjazz2012/sa_yjp", null, "jazztage");
-setVA("28.07.2012", "<span class=\"red\">20:30</span>", "6. Summer Jazz Open Air: Lisa Wahlandt Quintett", "Mo Biergarten", "summerjazz2012/sa_wahlandt");
-setVA("29.07.2012", "<span class=\"red\">11:30</span>", "6. Summer Jazz Open Air: Jazzfrühschoppen mit JazzArt", "Mo Biergarten", "summerjazz2012/so_jazzart");
+setVA("28.07.2012", "16:30", "6. Summer Jazz Open Air: Young Jazz Players in Concert<br />Gnadenthal- und Reuchlin-Gymnasium", "Mo Biergarten", "summerjazz2012/sa_yjp", null, "jazztage");
+setVA("28.07.2012", "20:30", "6. Summer Jazz Open Air: Lisa Wahlandt Quintett", "Mo Biergarten", "summerjazz2012/sa_wahlandt");
+setVA("29.07.2012", "11:30", "6. Summer Jazz Open Air: Jazzfrühschoppen mit JazzArt", "Mo Biergarten", "summerjazz2012/so_jazzart");
 
 setVA("13.09.2012", "20:00", "Munich Swing Orchestra feat. Lynelle Jonsson", "Audi Forum");
 setVA("16.09.2012", "19:00", "35. Jam Session<br /><small>mit JazzArt</small>", "Diagonal", "JS_20120916", null, "session");
@@ -345,7 +345,7 @@ setVA("26.09.2012", "20:00", "Passatempo", "Diagonal");
 setVA("30.09.2012", "20:15", "Bernhard Hollinger Group", "Diagonal");
 
 setVA("07.10.2012", "20:00", "Silje Nergaard", "Diagonal");
-setVA("<span class=\"red\">14.10.2012</span>", "19:00", "36. Jam Session<br /><small><span class=\"red\">1 Woche früher wegen Preisträgerkonzert!</span></small>", "Diagonal", "JS_20121014", null, "session");
+setVA("14.10.2012", "19:00", "36. Jam Session<br /><small><span class=\"red\">1 Woche früher wegen Preisträgerkonzert!</span></small>", "Diagonal", "JS_20121014", null, "session");
 setVA("18.10.2012", "20:00", "Orchestre National du Jazz: „Piazzolla“", "Audi Forum");
 setVA("21.10.2012", "18:00", "Veronika Schnattinger: Eröffnung der 29. Ingolstädter Jazztage", "Diagonal", null, null, "jazztage"); // Jazztage 2012
 setVA("25.10.2012", "ganztags", "Jazz für Schulen: „Blues- und Boogiepiano-Spielen ohne Noten“ und „Voices in Jazz“<br /><small>mit Christian Christl (piano) und Lisa Doby (vocals)</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2012
@@ -356,19 +356,19 @@ setVA("28.10.2012", "16:00", "Jazz for Kids: Sternschnuppe", "Fronte 79", null, 
 setVA("02.11.2012", "19:30", "Boomtown presents: Joey Finger Group &amp; Guests<br /><small>Ingolstädter Szene</small>", "Kleines Haus am Turm Baur", null, null, "jazztage"); // Jazztage 2012
 setVA("04.11.2012", "11:00", "Jazz Brunch: Blue Moon", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2012
 setVA("04.11.2012", "19:00", "Highlight: Take 6", "Kirche St. Augustin", null, null, "jazztage"); // Jazztage 2012
-setVA("05.11.2012", "<span class=\"red\">19:00</span>", "16. Session der Young Jazz Players", "Diagonal", "YJP_051112", null, "jazztage"); // Jazztage 2012
+setVA("05.11.2012", "19:00", "16. Session der Young Jazz Players", "Diagonal", "YJP_051112", null, "jazztage"); // Jazztage 2012
 setVA("06.11.2012", "20:30", "Bibalicious<br /><small>Ingolstädter Szene</small>", "Neue Welt", null, null, "jazztage"); // Jazztage 2012
 setVA("07.11.2012", "20:30", "Evasphere feat. Joey Finger<br /><small>Ingolstädter Szene</small>", "Diagonal", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "20:30", "Michael Wollny’s [em]<br /><small>Jazz in den Kneipen</small>", "Diagonal", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "20:30", "Stephanie Nilles Band<br /><small>Jazz in den Kneipen</small>", "Neue Welt", null, null, "jazztage"); // Jazztage 2012
-setVA("08.11.2012", "20:30", "Tok Tok Tok – Goodbye Tour<br /><small>Jazz in den Kneipen</small>", "Das Mo", null, null, "jazztage"); // Jazztage 2012
+setVA("08.11.2012", "20:30", "Tok Tok Tok - Goodbye Tour<br /><small>Jazz in den Kneipen</small>", "Das Mo", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "20:30", "Grand Mother’s Funck<br /><small>Jazz in den Kneipen</small>", "Swept Away", "jazztage12/grandmothersfunck", null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "20:30", "Iain Matthews &amp; Egbert Derix<br /><small>Jazz in den Kneipen</small>", "Café Hohe Schule", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "20:30", "Ensemble Draj<br /><small>Jazz in den Kneipen</small>", "Ölbaum", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "20:30", "Tim Allhoff Trio<br /><small>Jazz in den Kneipen</small>", "Theaterbar", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "22:00", "Quadro Nuevo<br /><small>Jazz im Altstadttheater</small>", "Altstadttheater", null, null, "jazztage"); // Jazztage 2012
 setVA("08.11.2012", "22:15", "Welcome Party: Butterscotch", "NH Ambassador Ingolstadt", "jazztage12/butterscotch", null, "jazztage"); // Jazztage 2012
-setVA("09.11.2012", "20:00", "Jazz Party I<br /><small>mit Tower of Power, Hiromi – The Trio Project feat. Anthony Jackson &amp; Simon Phillips, Jacob Karlzon 3, Viktoria Tolstoy; Open End mit der Late Night Band</small>", "NH Ambassador Ingolstadt", "jazztage12/jazzparty1", null, "jazztage"); // Jazztage 2012
+setVA("09.11.2012", "20:00", "Jazz Party I<br /><small>mit Tower of Power, Hiromi - The Trio Project feat. Anthony Jackson &amp; Simon Phillips, Jacob Karlzon 3, Viktoria Tolstoy; Open End mit der Late Night Band</small>", "NH Ambassador Ingolstadt", "jazztage12/jazzparty1", null, "jazztage"); // Jazztage 2012
 setVA("10.11.2012", "20:00", "Jazz Party II<br /><small>mit Joo Kraus &amp; Tales in Tone Trio, Karo Glazer, Marcus Miller, Maceo Parker, Äl Jawala; Open End mit der Late Night Band</small>", "NH Ambassador Ingolstadt", "jazztage12/jazzparty2", null, "jazztage"); // Jazztage 2012
 setVA("11.11.2012", "11:00", "Jazzgottesdienst mit „Batter My Soul“", "Kirche St. Matthäus", "jazztage12/battermysoul", null, "jazztage"); // Jazztage 2012
 setVA("13.11.2012", "20:00", "Christian Scott", "Diagonal");
@@ -381,34 +381,34 @@ setVA("25.11.2012", "20:00", "Emil and Eduard feat. Trialogo", "Diagonal");
 setVA("06.12.2012", "20:00", "Big Funky Party<br /><small>mit Fat Toni</small>", "Eventhalle (Westpark)");
 setVA("06.12.2012", "20:00", "Django Reinhardt Night", "Audi Forum");
 setVA("16.12.2012", "19:00", "38. Jam Session<br /><small>mit der Kraiberg Jazz Band</small>", "Diagonal", "JS_20121216", null, "session");
-setVA("19.12.2012", "20:00", "Uni-Bigband Eichstätt – Swinging Christmas", "Uni Eichstätt / Aula");
+setVA("19.12.2012", "20:00", "Uni-Bigband Eichstätt - Swinging Christmas", "Uni Eichstätt / Aula");
 setVA("23.12.2012", "16:00", "Kerstin Schulz &amp; 4 Of A Kind", "Schrannenplatz Neuburg");
 
 
-setVA("20.01.2013", "<span class=\"red\">20:00</span>", "39. Jam Session", "Diagonal", "JS_20130120", null, "session");
+setVA("20.01.2013", "20:00", "39. Jam Session", "Diagonal", "JS_20130120", null, "session");
 setVA("23.01.2013", "20:00", "Jessica Gall", "Diagonal");
-setVA("24.01.2013", "<span class=\"red\">20:00</span>", "The Big Chris Barber Band", "Audi Forum");
+setVA("24.01.2013", "20:00", "The Big Chris Barber Band", "Audi Forum");
 
 setVA("03.02.2013", "20:00", "Claudius Konrad Band", "Diagonal");
 setVA("17.02.2013", "11:00", "Jazz &amp; Literatur: Der törichte Karpfen<br /><small>musikalisch untermalt von Christoph Hörmann und Christian Diener</small>", "Theaterfoyer");
 setVA("17.02.2013", "20:00", "40. Jam Session<br /><small>mit Swingbreak</small>", "Diagonal", "JS_20130217", null, "session");
 setVA("21.02.2013", "20:00", "Pete Yorks Hoochi Coochie Night feat. Albie Donelly", "Audi Forum");
 
-setVA("02.03.2013", "20:00", "Kraiberg Jazz Band: Still groovin’ – swingin’ – jazzin’", "Kastaniengarten Oberhaunstadt");
+setVA("02.03.2013", "20:00", "Kraiberg Jazz Band: Still groovin’ - swingin’ - jazzin’", "Kastaniengarten Oberhaunstadt");
 setVA("04.03.2013", "20:00", "Jahreshauptversammlung der Jazzfreunde Ingolstadt e.V.", "Hotel im GVZ");
 setVA("13.03.2013", "20:00", "Beady Belle", "Diagonal");
 setVA("17.03.2013", "11:00", "Jazz &amp; Literatur<br /><small>musikalisch untermalt von Lipa Majstrovic und Charly Leimer</small>", "Theaterfoyer");
-setVA("<span class=\"red\">16.03.2013</span>", "20:00", "<span class=\"red\">41. Jam Session</span><br /><small>mit Mallet &amp; Friends<br /><span class=\"red\" style=\"font-weight:bold\">ACHTUNG! Vorverlegt auf Samstag!</span></small>", "Diagonal", "JS_20130316", null, "session");
-setVA("21.03.2013", "20:00", "Swing Oldies – Max Greger &amp; Hugo Strasser", "Audi Forum");
+setVA("16.03.2013", "20:00", "<span class=\"red\">41. Jam Session</span><br /><small>mit Mallet &amp; Friends<br /><span class=\"red\" style=\"font-weight:bold\">ACHTUNG! Vorverlegt auf Samstag!</span></small>", "Diagonal", "JS_20130316", null, "session");
+setVA("21.03.2013", "20:00", "Swing Oldies - Max Greger &amp; Hugo Strasser", "Audi Forum");
 
 setVA("11.04.2013", "18:30", "Latin Jazz Trio<br /><small>mit Andrea Jamenau, Manolo Diaz &amp; Charly Böck</small>", "Bar &amp; Lounge, Audi Forum");
-setVA("14.04.2013", "20:00", "GrandMothers of Invention – <b>Bonuskonzert</b>", "Diagonal");
+setVA("14.04.2013", "20:00", "GrandMothers of Invention - <b>Bonuskonzert</b>", "Diagonal");
 setVA("18.04.2013", "20:00", "Swing, Swing, Swing<br /><small>mit Three Tenors of Swing, Three Wise Men und Shaunette Hildabrand Trio</small>", "Audi Forum");
-setVA("21.04.2013", "20:00", "42. Jam Session<br /><small>mit dem Trio Wasilesku – Schiekofer – Diewock</small>", "Diagonal", "JS_20130421", null, "session");
+setVA("21.04.2013", "20:00", "42. Jam Session<br /><small>mit dem Trio Wasilesku - Schiekofer - Diewock</small>", "Diagonal", "JS_20130421", null, "session");
 
 setVA("01.05.2013", "20:00", "Tuck and Patti", "Diagonal");
 setVA("05.05.2013", "20:00", "JamaZZing", "Diagonal", "Jamazzing_20130505");
-setVA("<span class=\"red\">12.05.2013</span>", "20:00", "43. Jam Session<br /><small><span class=\"red\">1 Woche früher wegen Pfingsten!</span> • mit Fistfull of Jazz</small>", "Diagonal", "JS_20130512", null, "session");
+setVA("12.05.2013", "20:00", "43. Jam Session<br /><small><span class=\"red\">1 Woche früher wegen Pfingsten!</span> • mit Fistfull of Jazz</small>", "Diagonal", "JS_20130512", null, "session");
 setVA("15.05.2013", "20:00", "Mike Stern / Bill Evans Band<br /><small>featuring Dave Weckl and Tom Kennedy</small>", "Diagonal");
 setVA("18.05.2013", "20:00", "New Gary Burton Quartet", "Audi Forum");
 
@@ -430,7 +430,7 @@ setVA("28.07.2013", "10:00", "Brunch der Jazzfreunde<br /><small>Öffentliche Ve
 
 setVA("05.09.2013", "18:30", "C’est Si Bon", "Bar &amp; Lounge, Audi Forum");
 setVA("07.09.2013", "15:00", "Konzert der Schülerband jes!", "<a href=\"http://www.openflair.net/index.php?option=com_content&view=category&layout=blog&id=9&Itemid=44\" target=\"_blank\" title=\"Lageplan\">Open Flair</a>: Klangraumzelt / Klenzepark", "Jes_20130907_1");
-setVA("<span class=\"red\">07.09.2013</span>", "<span class=\"red\">22:15</small>", "46. Jam Session<br /><small>mit jes!</small>", "<span class=\"red\"><a href=\"http://www.openflair.net/index.php?option=com_content&view=category&layout=blog&id=9&Itemid=44\" target=\"_blank\" title=\"Lageplan\">Open Flair</a>: „Wort im Wald“ am Turm Triva</span>", "Jes_20130907_2", null, "session");
+setVA("07.09.2013", "22:15", "46. Jam Session<br /><small>mit jes!</small>", "<span class=\"red\"><a href=\"http://www.openflair.net/index.php?option=com_content&view=category&layout=blog&id=9&Itemid=44\" target=\"_blank\" title=\"Lageplan\">Open Flair</a>: „Wort im Wald“ am Turm Triva</span>", "Jes_20130907_2", null, "session");
 setVA("09.09.2013", "20:00", "Denise Liepold &amp; Rudi Trögl Duo<br />Rudi Trögl Trio", "Neue Welt");
 setVA("10.09.2013", "20:00", "Charly Böck Latin Project", "Neue Welt");
 setVA("12.09.2013", "18:30", "Breuer: Breuer", "Bar &amp; Lounge, Audi Forum");
@@ -439,17 +439,17 @@ setVA("26.09.2013", "18:30", "Köhnlein: Engel", "Bar &amp; Lounge, Audi Forum")
 
 setVA("04.10.2013", "20:30", "<small>Ungarische Kulturtage:</small><br />Creative Art Trio", "Diagonal");
 setVA("10.10.2013", "18:30", "Michael Arlt &amp; Wolfgang Kriener", "Bar &amp; Lounge, Audi Forum");
-setVA("<span class=\"red\">13.10.2013</span>", "20:00", "47. Jam Session<br /><small><span class=\"red\">1 Woche früher wegen Jazzförderpreisverleihung!</span></small>", "Diagonal", "JS_20131013", null, "session");
+setVA("13.10.2013", "20:00", "47. Jam Session<br /><small><span class=\"red\">1 Woche früher wegen Jazzförderpreisverleihung!</span></small>", "Diagonal", "JS_20131013", null, "session");
 setVA("16.10.2013", "18:15", "Soiree mit JAmaZZing", "Klinikum Ingolstadt");
 setVA("17.10.2013", "20:00", "Jeremy Pelt Quintet", "Audi Forum");
 setVA("20.10.2013", "18:00", "Oliver Kügel: Eröffnung der 29. Ingolstädter Jazztage", "Fronte 79", null, null, "jazztage");
 setVA("20.10.2013", "20:00", "Austria 4+", "Diagonal");
 setVA("23.10.2013", "20:00", "Krytle Warren and The Faculty<br /><small>im Rahmen von „Der Oktober ist eine Frau“</small>", "Diagonal");
-setVA("24.10.2013", "ganztags", "<small>Jazz für Schulen:</small><br />„Fühlen – Hören – Spielen“ – 2 Bigbands im Training<br /><small>mit Harald Rüschenbaum (drums) und Daniel Klingl (sax)</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2012
+setVA("24.10.2013", "ganztags", "<small>Jazz für Schulen:</small><br />„Fühlen - Hören - Spielen“ - 2 Bigbands im Training<br /><small>mit Harald Rüschenbaum (drums) und Daniel Klingl (sax)</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2012
 setVA("24.10.2013", "18:30", "Necessarily Two<br /><small>Annedore Wienert &amp; Peter Wegele</small>", "Bar &amp; Lounge, Audi Forum");
-setVA("25.10.2013", "ganztags", "<small>Jazz für Schulen:</small><br />„Fühlen – Hören – Spielen“ – 2 Bigbands im Training<br /><small>mit Harald Rüschenbaum (drums) und Daniel Klingl (sax)</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2012
+setVA("25.10.2013", "ganztags", "<small>Jazz für Schulen:</small><br />„Fühlen - Hören - Spielen“ - 2 Bigbands im Training<br /><small>mit Harald Rüschenbaum (drums) und Daniel Klingl (sax)</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2012
 setVA("27.10.2013", "15:00", "<small>Jazz for Kids:</small><br />Jolli, Juri und die Jungs…", "Fronte 79", null, null, "jazztage");
-setVA("28.10.2013", "19:30", "<small>Die Jazzfreunde Ingolstadt präsentieren:</small><br />Frederik Köster – Die Verwandlung und Maxime Bender 4tet feat. Simon Seidl", "Theaterfoyer", null, null, "jazztage");
+setVA("28.10.2013", "19:30", "<small>Die Jazzfreunde Ingolstadt präsentieren:</small><br />Frederik Köster - Die Verwandlung und Maxime Bender 4tet feat. Simon Seidl", "Theaterfoyer", null, null, "jazztage");
 setVA("29.10.2013", "20:00", "<small>Warm Up Konzert:</small><br />Terry Bozzio", "Diagonal", null, null, "jazztage");
 
 setVA("02.11.2013", "20:00", "<small>Highlight:</small><br />Katie Melua", "Festsaal Ingolstadt", null, null, "jazztage");
@@ -471,15 +471,15 @@ setVA("08.11.2013", "19:30", "<small>Highlight:</small><br />Xavier Naidoo &amp;
 setVA("08.11.2013", "22:00", "Jazz Party I<br /><small>mit Candy Dulfer, Stanley Jordan feat. Ayisha und Maya Azucena</small>", "NH Ambassador Ingolstadt", null, null, "jazztage");
 setVA("09.11.2013", "20:00", "Jazz Party II<br /><small>mit The Brand New Heavies, The Soul Rebels, Bob James &amp; David Sanborn feat. Steve Gadd &amp; Scott Colley, Niogi und Butterscotch &amp; Band</small>", "NH Ambassador Ingolstadt", null, null, "jazztage");
 setVA("10.11.2013", "11:00", "Jazz &amp; Literatur", "Theaterfoyer");
-setVA("10.11.2013", "11:00", "<small>Jazz in der Kirche:</small><br />Jazzgottesdienst – Batter my soul", "Kirche St. Matthäus", null, null, "jazztage");
+setVA("10.11.2013", "11:00", "<small>Jazz in der Kirche:</small><br />Jazzgottesdienst - Batter my soul", "Kirche St. Matthäus", null, null, "jazztage");
 setVA("10.11.2013", "19:30", "<small>Highlight:</small><br />Randy Crawford &amp; Joe Sample Trio", "Festsaal Ingolstadt", null, null, "jazztage");
 setVA("17.11.2013", "20:00", "48. Jam Session<br /><small>mit Mallet &amp; Friends</small>", "Diagonal", "JS_20131117", null, "session");
 setVA("20.11.2013", "20:00", "Erika Stucky: Ping Pong", "Diagonal", null, null, "jazztage");
-setVA("21.11.2013", "18:30", "<small>After Work Jazz Lounge</small><br />Hörmann – Flügel", "Audi Forum");
+setVA("21.11.2013", "18:30", "<small>After Work Jazz Lounge</small><br />Hörmann - Flügel", "Audi Forum");
 setVA("24.11.2013", "20:00", "Emil &amp; Eduard feat. Trialogo", "Diagonal");
-setVA("28.11.2013", "18:30", "<small>After Work Jazz Lounge</small><br />Kagerer – Dombert", "Audi Forum");
+setVA("28.11.2013", "18:30", "<small>After Work Jazz Lounge</small><br />Kagerer - Dombert", "Audi Forum");
 
-setVA("05.12.2013", "18:30", "<small>After Work Jazz Lounge</small><br />Drums No Way / Trio Arlt – Engel – Pichl", "Audi Forum");
+setVA("05.12.2013", "18:30", "<small>After Work Jazz Lounge</small><br />Drums No Way / Trio Arlt - Engel - Pichl", "Audi Forum");
 setVA("06.12.2013", "20:30", "Mallets &amp; Friends<br /><small><span class=\"red\">50% Ermäßigung für Vereinsmitglieder!</span></small>", "Birdland Neuburg");
 setVA("12.12.2013", "20:00", "Django Reinhardt Night<br /><small>Häns’sche Weiss Ensemble, Wawau Adler Group feat. Marcel Loeffler</small>", "Audi Forum");
 setVA("14.12.2013", "20:30", "Kerstin Schulz &amp; Band", "Birdland Neuburg");
@@ -499,14 +499,14 @@ setVA("16.02.2014", "20:00", "51. Jam Session<br /><small>mit Simons &amp; Frien
 setVA("23.02.2014", "20:00", "TRAM des Balkans", "Diagonal");
 
 setVA("13.03.2014", "20:00", "Butch Miles Jubilee All Stars", "Audi Forum");
-setVA("15.03.2014", "10:30 – 15:30", "Jazz-Workshops für Jedermann<br /><small class=\"red\"><a href=\"bigbandnacht14.php\">Mehr Infos und Anmeldung…</a></small>", "Fronte 79", "BBN2014_Workshops");
+setVA("15.03.2014", "10:30 - 15:30", "Jazz-Workshops für Jedermann<br /><small class=\"red\"><a href=\"bigbandnacht14.php\">Mehr Infos und Anmeldung…</a></small>", "Fronte 79", "BBN2014_Workshops");
 setVA("15.03.2014", "19:00", "3. Big Band Nacht der Ingolstädter Schulen<br /><small class=\"red\"><a href=\"bigbandnacht14.php\">Mehr Infos…</a></small>", "Fronte 79", "BBN2014");
 setVA("16.03.2014", "11:00", "Jazz &amp; Literatur: „Revolution im Pflanzenreich“", "Theaterfoyer");
 setVA("16.03.2014", "20:00", "52. Jam Session<br /><small>mit Alex Fuchs &amp; Band</small>", "Diagonal", "JS_20140316", null, "session");
 setVA("21.03.2014", "20:00", "American Songbirds", "Diagonal");
-setVA("23.03.2014", "20:00", "Yojo Christen – piano", "Diagonal");
+setVA("23.03.2014", "20:00", "Yojo Christen - piano", "Diagonal");
 
-setVA("<span class=\"red\">06.04.2014</span>", "20:00", "53. Jam Session<br /><small>mit dem King Crimson Project • <span class=\"red\">1 Woche früher wegen den Osterferien!</span></small>", "Diagonal", "JS_20140406", null, "session");
+setVA("06.04.2014", "20:00", "53. Jam Session<br /><small>mit dem King Crimson Project • <span class=\"red\">1 Woche früher wegen den Osterferien!</span></small>", "Diagonal", "JS_20140406", null, "session");
 setVA("10.04.2014", "20:00", "Bolero Berlin", "Audi Forum");
 setVA("16.04.2014", "20:00", "The Box<br /><small>feat. Christian Diener, Nick Flade, Christoph Holzhauser, Axel Kühn</small>", "Diagonal");
 setVA("27.04.2014", "20:00", "Alain Caron Band", "Diagonal");
@@ -514,11 +514,11 @@ setVA("27.04.2014", "20:00", "Alain Caron Band", "Diagonal");
 setVA("13.05.2014", "20:00", "Billy Cobham Band", "Diagonal");
 setVA("15.05.2014", "20:00", "The Brasilian Jazz Unit feat. Viviane de Farias", "Audi Forum");
 setVA("18.05.2014", "20:00", "Marlene Mortensen", "Diagonal");
-setVA("<span class=\"red\">25.05.2014</span>", "20:00", "54. Jam Session<br /><small>mit der Kraiberg Jazz Band • <span class=\"red\">1 Woche später wegen Konzerttermin im Diagonal!</span></small>", "Diagonal", "JS_20140525", null, "session");
+setVA("25.05.2014", "20:00", "54. Jam Session<br /><small>mit der Kraiberg Jazz Band • <span class=\"red\">1 Woche später wegen Konzerttermin im Diagonal!</span></small>", "Diagonal", "JS_20140525", null, "session");
 setVA("28.05.2014", "20:00", "Third Rail", "Diagonal");
 setVA("31.05.2014", "19:00", "Jambalaya", "Restaurant Oase / Interpark");
 
-setVA("<span class=\"red\">29.06.2014</span>", "20:00", "55. Jam Session<br /><small>mit Alex Fuchs &amp; Tom Diewock • <span class=\"red\">1 Woche früher wegen den Pfingsferien!</span></small>", "Diagonal", "JS_20140629", null, "session");
+setVA("29.06.2014", "20:00", "55. Jam Session<br /><small>mit Alex Fuchs &amp; Tom Diewock • <span class=\"red\">1 Woche früher wegen den Pfingsferien!</span></small>", "Diagonal", "JS_20140629", null, "session");
 
 setVA("20.07.2014", "20:00", "56. Jam Session<br /><small>mit jes!</small>", "Diagonal", "JS_20140720", null, "session");
 
@@ -537,11 +537,11 @@ setVA("23.10.2014", "ganztags", "Jazz für Schulen<br /><small>mit Harald Haugaa
 setVA("24.10.2014", "ganztags", "Jazz für Schulen<br /><small>mit Harald Haugaard und Sune Rahbeck</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2014
 setVA("24.10.2014", "19:30", "Highlight: Jan Garbarek &amp; the Hilliard Ensemble", "Liebfrauenmünster", "jazztage14/JanGarbarek", null, "jazztage"); // Jazztage 2014
 setVA("24.10.2014", "20:00", "Denise Liepold &amp; Rudi Trögl Duo", "Kotterhof, Böhmfeld");
-setVA("26.10.2014", "15:00", "<small>Jazz For Kids</small><br />The Angles – Mit Charlie um die Welt", "„neun“ Kulturzentrum", null, null, "jazztage"); // Jazztage 2014
-setVA("27.10.2014", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Oliver Wasilesku Trio, Jason Seizer New Quartet plays Cinema Paradiso – <b class=\"red\">Bonuskonzert!</b><br /><small>Voranmeldung für Mitglieder bis 22.10.2014 per <a href=\"kontakt.php?to=wewer&s=Bonuskonzert\">Mail an Karl Wewer</a></small>", "Theaterfoyer", "jazztage14/GJN", null, "jazztage"); // Jazztage 2014
+setVA("26.10.2014", "15:00", "<small>Jazz For Kids</small><br />The Angles - Mit Charlie um die Welt", "„neun“ Kulturzentrum", null, null, "jazztage"); // Jazztage 2014
+setVA("27.10.2014", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Oliver Wasilesku Trio, Jason Seizer New Quartet plays Cinema Paradiso - <b class=\"red\">Bonuskonzert!</b><br /><small>Voranmeldung für Mitglieder bis 22.10.2014 per <a href=\"kontakt.php?to=wewer&s=Bonuskonzert\">Mail an Karl Wewer</a></small>", "Theaterfoyer", "jazztage14/GJN", null, "jazztage"); // Jazztage 2014
 setVA("29.10.2014", "20:00", "Malia &amp; Band", "Diagonal");
 
-setVA("<span class=\"red\">02.11.2014</span>", "11:00", "Rudi Trögl (Solojazzgitarre)<br /><small>im Rahmen einer Vernissage von Werner Kapfer</small>", "Harderbastei");
+setVA("02.11.2014", "11:00", "Rudi Trögl (Solojazzgitarre)<br /><small>im Rahmen einer Vernissage von Werner Kapfer</small>", "Harderbastei");
 setVA("02.11.2014", "11:00", "<small>Jazz Brunch</small><br />Blue Moon", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2014
 setVA("02.11.2014", "19:30", "Highlight: Tim Bendzko +4", "Festsaal Ingolstadt", "jazztage14/TimBendzko", null, "jazztage"); // Jazztage 2014
 setVA("03.11.2014", "19:00", "18. Session der Young Jazz Players<br /><small>Nachwuchssession der Ingolstädter Schüler &amp; Studenten</small>", "Diagonal", "YJP_031114", null, "jazztage"); // Jazztage 2014
@@ -558,13 +558,13 @@ setVA("06.11.2014", "20:00", "<small>Jazz in den Kneipen</small><br />The Ruffca
 setVA("06.11.2014", "20:15", "Welcome Party<br /><small>mit Three Fall, Maceo Parker, Jonas Hellborg Solo, Neutral Ground Brass Band, Late Night Musicians</small>", "NH Ambassador Ingolstadt", "jazztage14/WelcomeParty", null, "jazztage"); // Jazztage 2014
 setVA("07.11.2014", "20:00", "Jazzparty I<br /><small>mit Dr. John &amp; The Nite Trippers, Marialy Pacheco Trio, The Terence Blanchard E-Collective, Stanley Clarke Band, Neutral Ground Brass Band, Late Night Musicians</small>", "NH Ambassador Ingolstadt", "jazztage14/Jazzparty1", null, "jazztage"); // Jazztage 2014
 setVA("08.11.2014", "20:00", "Jazzparty II<br /><small>mit Tower Of Power, Youn San Nah &amp; Ulf Wakenius, Wolfgang Haffner Trio, Spyro Gyra, Neutral Ground Brass Band, Late Night Musicians</small>", "NH Ambassador Ingolstadt", "jazztage14/Jazzparty2", null, "jazztage"); // Jazztage 2014
-setVA("<span class=\"red\">09.11.2014</span>", "11:00", "Jazz &amp; Literatur: „Neues vom Teufel!“<br /><small>mit Peter Greif und Bernhard Reitberger</small>", "Theaterfoyer");
+setVA("09.11.2014", "11:00", "Jazz &amp; Literatur: „Neues vom Teufel!“<br /><small>mit Peter Greif und Bernhard Reitberger</small>", "Theaterfoyer");
 setVA("09.11.2014", "11:00", "Jazzgottesdienst: Batter My Soul", "Kirche St. Matthäus", "jazztage14/BatterMySoul", null, "jazztage"); // Jazztage 2014
 setVA("09.11.2014", "19:30", "Highlight: Gregory Porter", "Festsaal Ingolstadt", "jazztage14/GregoryPorter", null, "jazztage"); // Jazztage 2014
 setVA("13.11.2014", "20:00", "Jeff Hamilton-John Clayton Jazz Orchestra<br /><small>im Rahmen des 4. Birdland Radio Jazz-Festivals</small>", "Audi Forum");
 setVA("14.11.2014", "20:00", "Medeski, Scofield, Martin &amp; Wood<br /><small>im Rahmen des 4. Birdland Radio Jazz-Festivals</small>", "Audi Forum");
 setVA("16.11.2014", "20:00", "58. Jam Session<br /><small>mit Sebastian Kutscher, Alex Fuchs und Benjamin Viale</small>", "Diagonal", null, null, "session");
-setVA("19.11.2014", "20:00", "Bernhard Hollinger Group – Vinyl-Release-Tour 2014", "Diagonal");
+setVA("19.11.2014", "20:00", "Bernhard Hollinger Group - Vinyl-Release-Tour 2014", "Diagonal");
 
 setVA("04.12.2014", "19:00", "UNICEF Benefizkonzert<br /><small>u.&nbsp;a. mit Rudi Trögl (Solojazzgitarre)</small>", "Kolpingsaal Ingolstadt");
 setVA("11.12.2014", "20:00", "Django Reinhardt Night: Fapy Lafertin Trio und Vano Bamberger &amp; Band", "Audi Forum");
@@ -588,8 +588,8 @@ setVA("12.02.2015", "20:00", "The Jazz Big Band Association", "Audi Forum");
 setVA("15.02.2015", "20:00", "JAmaZZing", "Diagonal");
 setVA("22.02.2015", "20:00", "Charly Böck Percussion Trio", "Diagonal");
 
-setVA("<span class=\"red\">08.03.2015</span>", "11:00", "Jazz &amp; Literatur: Woody Allen<br /><small>mit Christoph Hörmann, Helmut Kagerer und Paul Brändle</small><br /><small class=\"red\">Vorverlegt!</small>", "Theaterfoyer");
-setVA("<span class=\"red\">08.03.2015</span>", "20:00", "62. Jam Session<br /><small>mit Alex Fuchs und Band</small><br /><small class=\"red\">Vorverlegt!</small>", "Diagonal", "JS_20150308", null, "session");
+setVA("08.03.2015", "11:00", "Jazz &amp; Literatur: Woody Allen<br /><small>mit Christoph Hörmann, Helmut Kagerer und Paul Brändle</small><br /><small class=\"red\">Vorverlegt!</small>", "Theaterfoyer");
+setVA("08.03.2015", "20:00", "62. Jam Session<br /><small>mit Alex Fuchs und Band</small><br /><small class=\"red\">Vorverlegt!</small>", "Diagonal", "JS_20150308", null, "session");
 setVA("11.03.2015", "20:00", "Beady Belle", "Diagonal");
 setVA("14.03.2015", "21:00", "Fat Toni: Play That Funky Music", "Firenze Café Bistro, Wettstetten");
 setVA("15.03.2015", "20:00", "Schallpoet", "Diagonal");
@@ -600,7 +600,7 @@ setVA("28.03.2015", "20:00", "SchutterNeun Jazzorchester", "neun Kulturzentrum")
 
 setVA("12.04.2015", "20:00", "63. Jam Session<br /><small>mit Bernhard Reitberger &amp; Friends</small>", "Diagonal", null, null, "session");
 setVA("16.04.2015", "20:00", "Carolyn Breuer’s Four Seasons of Life", "Audi Forum");
-setVA("16.04.2015 – 18.04.2015", "19:30", "Weltenklang Festival", "neun Kulturzentrum");
+setVA("16.04.2015 - 18.04.2015", "19:30", "Weltenklang Festival", "neun Kulturzentrum");
 setVA("19.04.2015", "11:00", "Jazz &amp; Literatur: Goethes Weimar<br /><small>mit dem Oliver Wasilesku Trio</small>", "Theaterfoyer");
 setVA("19.04.2015", "20:00", "Charles Leimer: Steps of Spirit", "Diagonal");
 setVA("28.04.2015", "20:00", "Silje Nergaard", "Diagonal");
@@ -614,11 +614,11 @@ setVA("21.05.2015", "20:00", "Allotria Jazz Band", "Audi Forum");
 setVA("10.06.2015", "20:00", "Tram des Balkans", "Diagonal");
 setVA("21.06.2015", "20:00", "65. Jam Session<br /><small>mit Almost Blue</small>", "Diagonal", "JS_20150621", null, "session");
 setVA("23.06.2015", "18:15", "Soiree mit JAmaZZing", "Klinikum Ingolstadt", "Jamazzing_20150623");
-setVA("24.06.2015", "20:00", "Kasia Lewandowska &amp; Charly Böck – The Art of Duo", "Diagonal");
+setVA("24.06.2015", "20:00", "Kasia Lewandowska &amp; Charly Böck - The Art of Duo", "Diagonal");
 setVA("25.06.2015", "20:00", "<small>Audi Summer Jazz:</small><br />Roberto Santamaria &amp; his Latin Jazz Stars", "Audi Piazetta");
 
-setVA("05.07.2015", "10:00 – 17:00", "Workshop Street Marching Band", "Harderbastei");
-setVA("11.07.2015", "10:00 – 13:00", "Workshop Street Marching Band<br /><small>mit anschließendem Konzert auf dem Bürgerfest</small>", "Harderbastei");
+setVA("05.07.2015", "10:00 - 17:00", "Workshop Street Marching Band", "Harderbastei");
+setVA("11.07.2015", "10:00 - 13:00", "Workshop Street Marching Band<br /><small>mit anschließendem Konzert auf dem Bürgerfest</small>", "Harderbastei");
 setVA("12.07.2015", "11:00", "Schul-Jazzbands Ingolstadt<br /><small>im Rahmen des Tumult Festival / Bürgerfest</small>", "Bühne am Museum für Konkrete Kunst", "Tumult_20150712");
 setVA("13.07.2015", "20:30", "Wes Mackey &amp; The Blues Train", "Neue Welt");
 setVA("19.07.2015", "20:00", "66. Jam Session<br /><small>mit jes!</small>", "Diagonal", "JS_20150717", null, "session");
@@ -635,7 +635,7 @@ setVA("21.10.2015", "20:00", "Julia Biel<br /><small>im Rahmen der Veranstaltung
 setVA("25.10.2015", "11:00", "Jazzbrunch<br /><small>mit Blue Moon</small>", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2015
 setVA("25.10.2015", "16:00", "<small>Jazz for Kids:</small><br />Jazz mit Kick", "neun Kulturzentrum", null, null, "jazztage"); // Jazztage 2015
 setVA("25.10.2015", "19:30", "Highlight in der Kirche: Gasandji", "Kirche St. Augustin", "jazztage15/Gasandji", null, "jazztage"); // Jazztage 2015
-setVA("26.10.2015", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Hendrika Entzian Quartett feat. Sandra Hempel &amp; Jim Mullen Group feat. Zoe Francis – <b class=\"red\">Bonuskonzert!</b><br /><small>Voranmeldung für Mitglieder bis 26.09.2015 per <a href=\"kontakt.php?to=wewer&s=Bonuskonzert+2015\">Mail an Karl Wewer</a></small>", "Theaterfoyer", null, null, "jazztage"); // Jazztage 2015
+setVA("26.10.2015", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Hendrika Entzian Quartett feat. Sandra Hempel &amp; Jim Mullen Group feat. Zoe Francis - <b class=\"red\">Bonuskonzert!</b><br /><small>Voranmeldung für Mitglieder bis 26.09.2015 per <a href=\"kontakt.php?to=wewer&s=Bonuskonzert+2015\">Mail an Karl Wewer</a></small>", "Theaterfoyer", null, null, "jazztage"); // Jazztage 2015
 setVA("28.10.2015", "20:00", "Olivia Trummer<br /><small>im Rahmen der Veranstaltungsreihe „Der Oktober ist eine Frau“</small>", "Diagonal");
 setVA("29.10.2015", "ganztags", "Jazz für Schulen: Boogie &amp; Blues Combo Workshop<br /><small>mit Stephanie Nilles &amp; Ludwig Seuss</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2015
 setVA("30.10.2015", "ganztags", "Jazz für Schulen: Boogie &amp; Blues Combo Workshop<br /><small>mit Stephanie Nilles &amp; Ludwig Seuss</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2015
@@ -665,8 +665,8 @@ setVA("18.11.2015", "20:00", "Marcin Wasilewski Trio feat. Joakim Milder", "Diag
 setVA("22.11.2015", "18:00", "<small>Ausklang der Jazztage:</small><br />Sacred Concert<br /><small>SwingIN Big Band &amp; Jugendkammerchor Ingolstadt</small>", "neun Kulturzentrum", null, null, "jazztage"); // Jazztage 2015
 setVA("22.11.2015", "20:00", "69. Jam Session<br /><small>mit Sarah Mettenleiter, Alex Fuchs und Benjamin Viale</small>", "Diagonal", null, null, "session");
 setVA("26.11.2015", "18:00", "After Work Party<br /><small>mit Rudi Trögl (Gitarre) und Uli Schiekofer (Kontrabass)</small>", "Audi Forum");
-setVA("28.11.2015", "14:00 – 18:00", "Street Marching Workshop<br /><small>Teil 1 • für alle bis 25 Jahre</small>", "Harderbastei");
-setVA("29.11.2015", "14:00 – 18:00", "Street Marching Workshop<br /><small>Teil 2 • für alle bis 25 Jahre</small>", "Harderbastei");
+setVA("28.11.2015", "14:00 - 18:00", "Street Marching Workshop<br /><small>Teil 1 • für alle bis 25 Jahre</small>", "Harderbastei");
+setVA("29.11.2015", "14:00 - 18:00", "Street Marching Workshop<br /><small>Teil 2 • für alle bis 25 Jahre</small>", "Harderbastei");
 setVA("29.11.2015", "16:00", "Death Ray Boogie Trio", "Kulturzelt im Schlosshof", "DeathRay_20151129");
 
 setVA("05.12.2015", "20:00", "4 Of A Kind", "Backhaus Gaimersheim");
@@ -703,10 +703,10 @@ setVA("08.05.2016", "20:00", "75. Jam Session<br /><small>mit Bernhard Reitberge
 setVA("11.05.2016", "20:00", "Lakecia Benjamin Band", "Diagonal");
 
 setVA("02.06.2016", "20:00", "Snow Owl", "Audi Forum");
-setVA("<span class=\"red\">10.06.2016</span>", "20:00", "Schutter neun Jazzorchester<br /><small>feat. Kim Barth &ndash; Vorband: Bigband des Reuchlin-Gymnasiums</small>", "neun Kulturzentrum");
+setVA("10.06.2016", "20:00", "Schutter neun Jazzorchester<br /><small>feat. Kim Barth &ndash; Vorband: Bigband des Reuchlin-Gymnasiums</small>", "neun Kulturzentrum");
 setVA("17.06.2016", "20:00", "Hazmat Modine", "Diagonal");
 setVA("19.06.2016", "20:00", "76. Jam Session<br /><small>mit der Spring Street Jazz Band</small>", "Diagonal", "JS_20160619", null, "session");
-setVA("<span class=\"red\">23.06.2016</span>", "20:00", "Snow Owl", "Audi Forum");
+setVA("23.06.2016", "20:00", "Snow Owl", "Audi Forum");
 
 setVA("08.07.2016", "20:00", "Stromsparplan", "Diagonal");
 setVA("13.07.2016", "20:00", "Isabel Casas y Cuba Vista", "Diagonal");
@@ -717,14 +717,14 @@ setVA("27.07.2016", "20:00", "Literatur meets Jazz<br /><small>mit dem Joe Finge
 
 
 setVA("10.09.2016", "20:00", "SchutterNeun mit Monika Roscher<br /><small>im Rahmen der Nacht der Museen</small>", "Lechner-Museum");
-setVA("<span class=\"red\"><s>18.09.2016</s></span>", "<span class=\"red\"><s>20:00</s></span>", "<span class=\"red\"><s>78. Jam Session<br /><small>mit dem Benjamin Viale Trio</small></s><br />Abgesagt wegen Krankheit!</span>", "Diagonal", null, null, "session");
+setVA("18.09.2016", "20:00", "<span class=\"red\"><s>78. Jam Session<br /><small>mit dem Benjamin Viale Trio</small></s><br />Abgesagt wegen Krankheit!</span>", "Diagonal", null, null, "session");
 setVA("25.09.2016", "15:00", "Dr. Eisele und die Besen", "Bauerngerätemuseum", "Eisele_20160925");
 
 setVA("12.10.2016", "20:00", "Beady Belle", "Diagonal");
 setVA("13.10.2016", "20:00", "Roberta Gamarini &amp; Band", "museum mobile");
 setVA("15.10.2016", "20:00", "<small>Eröffnung der Jazztage:</small><br />Verleihung des Jazzförderpreises<br /><small>an Simon Mack</small>", "neun Kulturzentrum", null, null, "jazztage"); // Jazztage 2016
 setVA("15.10.2016", "20:00", "Jubiläumskonzert 25 Jahre Kraiberg Jazz-Band", "Beckerwirt Böhmfeld");
-setVA("16.10.2016", "<span class=\"red\">19:00</span>", "79. Jam Session<br /><small>mit den Ingolstädter Schulbands</small>", "Diagonal", "JS_20161016", null, "session"); // Jazztage 2016
+setVA("16.10.2016", "19:00", "79. Jam Session<br /><small>mit den Ingolstädter Schulbands</small>", "Diagonal", "JS_20161016", null, "session"); // Jazztage 2016
 setVA("23.10.2016", "16:00", "<small>Jazz for Kids:</small><br />Klang Tarassa Bumm", "neun Kulturzentrum", null, null, "jazztage"); // Jazztage 2016
 setVA("24.10.2016", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Mallets &amp; Friends &bull; Hard Days Night Bigband<br /><b class=\"red\">Bonuskonzert!</b>", "Theaterfoyer", "jazztage16/Bonuskonzert", null, "jazztage"); // Jazztage 2016
 setVA("26.10.2016", "20:00", "<small>Warm-up-Konzert zu den 33. Ingolstädter Jazztagen:</small><br />Michael Landau Group", "Diagonal", null, null, "jazztage"); // Jazztage 2016
@@ -746,7 +746,7 @@ setVA("04.11.2016", "20:00", "Jazzparty I<br /><small>AL DI MEOLA &bull; Marcus 
 setVA("04.11.2016", "23:59", "Late Night Musicians", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2016
 setVA("05.11.2016", "20:00", "Jazzparty II<br /><small>Standley Clarke Band &bull; Richard Bona Group &bull; Renaud Garcia-Fons Trio &bull; Dieter Ilg Trio</small>", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2016
 setVA("05.11.2016", "23:59", "Late Night Musicians", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2016
-setVA("06.11.2016", "11:00", "Jazzgottesdienst: Batter my Soul – Spirit Project", "Kirche St. Matthäus", "jazztage16/Jazzgottesdienst", null, "jazztage"); // Jazztage 2016
+setVA("06.11.2016", "11:00", "Jazzgottesdienst: Batter my Soul - Spirit Project", "Kirche St. Matthäus", "jazztage16/Jazzgottesdienst", null, "jazztage"); // Jazztage 2016
 setVA("06.11.2016", "19:30", "Gregory Porter", "Festsaal Ingolstadt", null, null, "jazztage"); // Jazztage 2016
 setVA("10.11.2016", "20:00", "Lucky Chops (NY)", "neun Kulturzentrum", null, null, "jazztage"); // Jazztage 2016
 setVA("10.11.2016", "20:00", "Brussels Jazz Orchestra", "museum mobile");
@@ -757,10 +757,10 @@ setVA("27.11.2016", "18:00", "Jazz please!", "Museum für konkrete Kunst");
 setVA("08.12.2016", "20:00", "Django Reinhardt Night<br /><small>mit dem Sandro Roy Quartett und dem Diknu Schneeberger Trio</small>", "museum mobile");
 setVA("09.12.2016", "19:00", "Swinging Christmas<br /><small>mit Stefan Bernhardt und Caro Lindner</small>", "Kötterhof Böhmfeld");
 setVA("17.12.2016", "19:30", "Stromlos Jugend Bigband", "Kunst &amp; Kultur Bastei");
-setVA("18.12.2016", "18:00", "swingIN Bigband &amp; Funny Valentines – Christmas Konzert", "neun Kulturzentrum");
+setVA("18.12.2016", "18:00", "swingIN Bigband &amp; Funny Valentines - Christmas Konzert", "neun Kulturzentrum");
 setVA("18.12.2016", "20:00", "81. Jam Session<br /><small>mit Dr. Eisele &amp; die Besen</small>", "Diagonal", "JS_20161218", null, "session");
 setVA("21.12.2016", "18:30", "Mallets &amp; Friends", "Kamerariat");
-setVA("27.12.2016", "20:00", "Fat Tony – After X-Mas Show", "Diagonal");
+setVA("27.12.2016", "20:00", "Fat Tony - After X-Mas Show", "Diagonal");
 
 
 setVA("13.01.2017", "20:00", "Lesung Michael Kleinhernes<br /><small>mit Musik von Rudi Trögl</small>", "Vronis Ratschhaus");
@@ -775,33 +775,33 @@ setVA("22.02.2017", "20:00", "Sarah Ferri", "Diagonal");
 
 setVA("19.03.2017", "20:00", "84. Jam Session", "Diagonal", "JS_20170319", null, "session");
 setVA("23.03.2017", "20:00", "Tram des Balkans", "Diagonal");
-setVA("23.03.2017", "20:00", "International Hot Jazz Quartet +2<br /><small>100 Years Original Dixieland Jazz Band – 100 Years of Recorded Jazz</small>", "museum mobile");
+setVA("23.03.2017", "20:00", "International Hot Jazz Quartet +2<br /><small>100 Years Original Dixieland Jazz Band - 100 Years of Recorded Jazz</small>", "museum mobile");
 setVA("25.03.2017", "19:30", "Close2Jazz: Live and in living colour", "Backhaus Gaimersheim");
 setVA("29.03.2017", "20:00", "Oz Noy Trio feat. Jimmy Haslip &amp; Keith Carlock", "Diagonal");
 
 setVA("06.04.2017", "20:00", "Funkalosophy", "Diagonal");
 setVA("07.04.2017", "20:00", "Jeni Williams and Black Bohemians", "Rosengasse");
-setVA("<span class=\"red\">09.04.2017</span>", "20:00", "85. Jam Session<br /><small><span class=\"red\">Achtung, Terminverschiebung!</span></small>", "Diagonal", "JS_20170409", null, "session");
+setVA("09.04.2017", "20:00", "85. Jam Session<br /><small><span class=\"red\">Achtung, Terminverschiebung!</span></small>", "Diagonal", "JS_20170409", null, "session");
 setVA("23.04.2017", "20:00", "Balász Elemér Group", "Diagonal");
 setVA("27.04.2017", "20:00", "Don Menza Bigband", "museum mobile");
 
 setVA("03.05.2017", "20:00", "Iyeoka", "Diagonal");
 setVA("11.05.2017", "20:00", "Jeff Jensen Band<br /><small>Blues &amp; Rock from Memphis/USA</small>", "Diagonal");
 setVA("14.05.2017", "20:00", "JAmaZZing", "Diagonal");
-setVA("20.05.2017", "20:00", "Fat Tony – Brand new family affairs", "Eventhalle (Westpark)");
+setVA("20.05.2017", "20:00", "Fat Tony - Brand new family affairs", "Eventhalle (Westpark)");
 setVA("21.05.2017", "20:00", "Marilyn Mazur Trio", "Diagonal");
-setVA("26.05.2017", "21:00", "Lariza – Native Tribes Tour", "baby &amp; bombe (Poppenstraße 1, Stadtmitte)");
+setVA("26.05.2017", "21:00", "Lariza - Native Tribes Tour", "baby &amp; bombe (Poppenstraße 1, Stadtmitte)");
 setVA("28.05.2017", "20:00", "86. Jam Session", "Diagonal", null, null, "session");
 
-setVA("24. – 25.06.2017", "09:30 – 19:00", "JazzUp Wochenende<br /><small>Bandworkshops für Kinder und Jugendliche bis 25 Jahre – <a href=\"http://www.kunstundkulturbastei.de/stromlos\" title=\"Mehr Informationen &amp; Anmeldung bei der Kunst und Kultur Bastei\">mehr Infos</a></small>", "Harderbastei");
+setVA("24. - 25.06.2017", "09:30 - 19:00", "JazzUp Wochenende<br /><small>Bandworkshops für Kinder und Jugendliche bis 25 Jahre - <a href=\"http://www.kunstundkulturbastei.de/stromlos\" title=\"Mehr Informationen &amp; Anmeldung bei der Kunst und Kultur Bastei\">mehr Infos</a></small>", "Harderbastei");
 setVA("25.06.2017", "18:30", "JazzUp Workshopkonzert", "Harderbastei");
 setVA("25.06.2017", "20:00", "87. Jam Session", "Diagonal", null, null, "session");
 
 setVA("01.07.2017", "18:00", "Dr.&nbsp;Eisele und die Besen", "Altstadtfest Eichstätt<br /><small>Pater-Philipp-Jeningen-Platz</small>");
-setVA("03.07.2017", "10:00 – 17:00", "PopUp Art Piano", "Audi Forum");
-setVA("06.07.2017", "17:00 – 21:30", "Ausstellung &amp; Jazzsession „100 Jahre Jazz &amp; Kunst“", "Reuchlin-Gymnasium &amp; Harderbastei");
+setVA("03.07.2017", "10:00 - 17:00", "PopUp Art Piano", "Audi Forum");
+setVA("06.07.2017", "17:00 - 21:30", "Ausstellung &amp; Jazzsession „100 Jahre Jazz &amp; Kunst“", "Reuchlin-Gymnasium &amp; Harderbastei");
 setVA("06.07.2017", "22:00", "<small>Jugend Kunst &amp; Musik Festival</small><br />Colectivo Estimulo", "Harderbastei");
-setVA("<span class=\"red stroke\">16.07.2017</span>", "<span class=\"red stroke\">20:00</span>", "<span class=\"red stroke\">88. Jam Session</span> <b class=\"red\">Abgesagt!</b>", "Diagonal", null, null, "session");
+setVA("16.07.2017", "20:00", "<span class=\"red stroke\">88. Jam Session</span> <b class=\"red\">Abgesagt!</b>", "Diagonal", null, null, "session");
 setVA("18.07.2017", "20:00", "Lindy Hop mit „Jazz of cource“", "Diagonal");
 
 setVA("10.09.2017", "11:00", "Dr.&nbsp;Eisele und die Besen", "Bauerngerätemuseum");
@@ -811,11 +811,11 @@ setVA("14.09.2017", "20:00", "Munich Swing Orchestra &amp; The Funny Valentines"
 setVA("11.10.2017", "20:00", "Ida Sand Trio", "Diagonal");
 setVA("12.10.2017", "20:00", "Bolero Berlin", "museum mobile");
 setVA("21.10.2017", "20:00", "<small>Eröffnung der Jazztage: Verleihung des Ingolstädter Jazzförderpreises</small><br />Benedikt Streicher", "neun Kulturzentrum", null, null, "jazztage"); // Jazztage 2017
-setVA("22.10.2017", "15:00 + 16:30", "<small>Jazz For Kids</small><br />Saxshop / Drachenjazz", "Werkstattbühne", null, null, "jazztage"); // Jazztage 2017
+setVA("22.10.2017", "15:00 - 16:30", "<small>Jazz For Kids</small><br />Saxshop / Drachenjazz", "Werkstattbühne", null, null, "jazztage"); // Jazztage 2017
 setVA("22.10.2017", "19:00", "20. Session der Young Jazz Players", "Diagonal", null, null, "jazztage"); // Jazztage 2017
 setVA("23.10.2017", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Viviane de Farais feat. Morello &amp; Barth &bull; Close2Jazz<br /><b class=\"red\" title=\"Freier Eintritt an der Abendkasse für Vereinsmitglieder\">Bonuskonzert!</b>", "Theaterfoyer", null, null, "jazztage"); // Jazztage 2017
 setVA("24.10.2017", "20:00", "Randi Tytingv&aring;g Trio", "Diagonal");
-setVA("26. – 27.10.2017", "ganztags", "Jazz für Schulen: Brass Band Workshop<br /><small>mit Moop Mama (Peter Palmer, Marcus Kesselbauer, Christoph Holzhauser)</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2017
+setVA("26. - 27.10.2017", "ganztags", "Jazz für Schulen: Brass Band Workshop<br /><small>mit Moop Mama (Peter Palmer, Marcus Kesselbauer, Christoph Holzhauser)</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2017
 setVA("29.10.2017", "11:00", "Jazz Brunch<br /><small>mit Blue Moon</small>", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2017
 setVA("29.10.2017", "19:30", "Quadro Nuevo", "Kirche St. Augustin", null, null, "jazztage"); // Jazztage 2017
 setVA("31.10.2017", "20:30", "<small>Ingolstädter Szene:</small><br />Söhne &amp; Töchter Ingolstadts", "Neue Welt", null, null, "jazztage"); // Jazztage 2017
@@ -848,14 +848,14 @@ setVA("09.12.2017", "20:30", "Mallets &amp; Friends", "Birdland Jazzclub Neuburg
 setVA("17.12.2017", "18:00", "SwingIN Bigband: „amazing gospels“", "neun Kulturzentrum");
 setVA("17.12.2017", "20:00", "90. Jam Session", "Diagonal", null, null, "session");
 setVA("21.12.2017", "19:30", "Söhne und Töchter Ingolstadts<br /><small>Benefizkonzert</small>", "Harderbastei");
-setVA("26.12.2017", "19:00", "Senza Nome – Songs, die unser Leben bewegt haben", "Diagonal");
+setVA("26.12.2017", "19:00", "Senza Nome - Songs, die unser Leben bewegt haben", "Diagonal");
 setVA("27.12.2017", "20:00", "Fat Toni’s Last Chance to Dance", "Diagonal");
-setVA("28.12.2017", "20:00", "Flaming Fenix – Jahresabschlusskonzert", "Diagonal");
+setVA("28.12.2017", "20:00", "Flaming Fenix - Jahresabschlusskonzert", "Diagonal");
 setVA("29.12.2017", "19:00", "Rockin in the free world<br /><small>Just4Fun Cover-Rock</small>", "Diagonal");
-setVA("30.12.2017", "20:00", "RasDashaN Live!!! – PreSilvesterKonzert", "Diagonal");
+setVA("30.12.2017", "20:00", "RasDashaN Live!!! - PreSilvesterKonzert", "Diagonal");
 
 
-setVA("14.01.2018", "11:00", "Jazz &amp; Literatur Nr. 20: Luna – Der Mond<br /><small>mit dem Benedikt Streicher Trio</small>", "Theaterfoyer");
+setVA("14.01.2018", "11:00", "Jazz &amp; Literatur Nr. 20: Luna - Der Mond<br /><small>mit dem Benedikt Streicher Trio</small>", "Theaterfoyer");
 setVA("18.01.2018", "20:00", "Dutch Swing College Band", "Audi Forum");
 setVA("21.01.2018", "20:00", "91. Jam Session", "Diagonal", null, null, "session");
 

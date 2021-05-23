@@ -4,6 +4,7 @@ namespace Jazzfreunde\App\Models;
 
 use Jazzfreunde\Database;
 use Jazzfreunde\Database\ConnectionException;
+use Jazzfreunde\Structures\DateTimeSQL;
 
 final class TermineFilter extends Database\Filter
 {
@@ -13,15 +14,15 @@ final class TermineFilter extends Database\Filter
 final class Termin extends Database\DTO
 {
     function __construct(
-        public int $id,
-        public int $series_id,
+        public ?int $id,
+        // public ?int $series_id,
         public string $titel,
-        public string $subtitel,
-        public \DateTime $start,
-        public \DateTime $end,
+        public ?string $subtitel,
+        public DateTimeSQL $start,
+        public DateTimeSQL $end,
         public string $ort,
-        public string $link,
-        public string $thumbnail
+        public ?string $link,
+        // public ?string $thumbnail
     ) {
     }
 }
@@ -61,6 +62,7 @@ final class TermineModel extends Database\Model
                 $termin->Values()
             );
         } catch (ConnectionException $e) {
+            var_dump($e);
             // log
         }
     }
@@ -69,11 +71,15 @@ final class TermineModel extends Database\Model
     {
         yield '0.0.1' => function (Database\Connection $db): bool {
             $table = TermineModel::table_name;
-
             $db->execute("
                 CREATE TABLE IF NOT EXISTS ${table} (
                     id INT NOT NULL AUTO_INCREMENT,
                     titel VARCHAR(255) NOT NULL,
+                    subtitel VARCHAR(255),
+                    start DATETIME NOT NULL,
+                    end DATETIME NOT NULL,
+                    ort VARCHAR(255),
+                    link VARCHAR(255),
                     PRIMARY KEY(id)
                 );
             ");
