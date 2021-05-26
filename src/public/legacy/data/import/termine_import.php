@@ -226,7 +226,6 @@ function setVA($wannd, $wannt, $was, $wo, $imgid = null, $videolink = null, $sty
 
     $DateTimeSQL_start = GetStartDateTimeSQL($str_start_date, $str_start_time);
     $DateTimeSQL_end = GetEndDateTimeSQL($str_end_date, $str_end_time, $DateTimeSQL_start);
-    var_dump('----------------------------------');
 
     $termin_model->new(
         new Termin(
