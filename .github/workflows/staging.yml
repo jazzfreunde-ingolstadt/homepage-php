@@ -2,6 +2,10 @@ name: Staging Deploy
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - 'README.md'
+      - '**.code-workspace'
+      - '.devcontainer/**'
     
 jobs:
   build:
