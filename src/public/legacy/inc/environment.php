@@ -29,14 +29,14 @@ function head()
 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Jazzfreunde Ingolstadt e. V.<?=(defined("TITLE") ? " – " . TITLE : "") ?></title>
+    <title>Jazzfreunde Ingolstadt e. V.<?= (defined("TITLE") ? " – " . TITLE : "") ?></title>
     <meta name="author" content="Daniel J. H&ouml;pp" />
     <meta name="keywords" content="jazz, jazzfreunde, jazzmusik, ingolstadt, b&uuml;rgerhaus, alte post, summerjazz, kultur, jazztage, konzerte, diagonal, neue welt, jazzf&ouml;rderpreis, schule" />
     <?php if (defined("CONTENT")) { ?>
-      <meta name="content" content="<?=CONTENT ?>" />
+      <meta name="content" content="<?= CONTENT ?>" />
     <?php } ?>
     <meta name="html-author" content="H&ouml;ppyMedien" />
-    <meta name="robots" content="<?=ROBOTS ?>" />
+    <meta name="robots" content="<?= ROBOTS ?>" />
     <meta name="generator" content="kwrite" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" type="text/css" media="all" href="env/default.css" title="Jazzfreunde blau-orange" />
@@ -53,13 +53,15 @@ function before($onload = null)
 {
 ?>
 
-  <body <?=($onload ? " onload=\"$onload\"" : "") ?>>
+  <body <?= ($onload ? " onload=\"$onload\"" : "") ?>>
     <table id="alltable" border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
       <tr>
         <td rowspan="2" id="left" align="center" valign="top" width="220">
-          <div id="logo">
-            <img src="gfx/logo_lomt.png" alt="Jazzfreunde Ingolstadt e. V." width="200" height="200" />
-          </div>
+          <a href="index.php">
+            <div id="logo">
+              <img src="gfx/logo_lomt.png" alt="Jazzfreunde Ingolstadt e. V." width="200" height="200" />
+            </div>
+          </a>
           <?php menu() ?>
         </td>
         <th id="headline" align="center" valign="middle" height="50">Jazzfreunde Ingolstadt <small>e. V.</small></th>
@@ -122,12 +124,12 @@ function before($onload = null)
               {
                 if (defined("ERROR")) {
   ?>
-    <div class="error"><?=ERROR ?></div>
+    <div class="error"><?= ERROR ?></div>
   <?php
                 }
                 if (defined("MESSAGE")) {
   ?>
-    <div class="message"><?=MESSAGE ?></div>
+    <div class="message"><?= MESSAGE ?></div>
   <?php
                 }
               }
@@ -160,7 +162,7 @@ function before($onload = null)
               {
 ?>
   <tr>
-    <td><?=menulink($pagename, $title) ?></td>
+    <td><?= menulink($pagename, $title) ?></td>
   </tr>
 <?php
               }
