@@ -49,10 +49,11 @@ before();
     <div class="right"><a class="kontakt" href="kontakt.php?to=diewock" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
 </div>
-<div class="kasten person odd"><img src="gfx/gutsche_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="gfx/bachmaier.jpeg" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Schatzmeister</div>
   <div class="kasten_h2">Helmut Bachmaier</div>
   <div class="kasten_p">
+    Helmut Bachmaier lebt in Ingolstadt und arbeitet in München bei einer internationalen Bank. Er ist seit 2007 Mitglied bei den Jazzfreunden und seit 2020 Schatzmeister. Theater, Kabarett und Livemusik sind in der Freizeit fester Bestandteil.
     <div class="left"><a class="kontakt" href="kontakt.php?to=bachmaier" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
 </div>
