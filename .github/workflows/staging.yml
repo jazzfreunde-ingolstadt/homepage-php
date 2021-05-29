@@ -6,6 +6,8 @@ on:
       - 'README.md'
       - '**.code-workspace'
       - '.devcontainer/**'
+      - '.env'
+      - '.gitignore'
     
 jobs:
   build:
