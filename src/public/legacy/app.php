@@ -24,7 +24,7 @@ $app = new App();
 $app->UseDatabaseContext(
     new Database\Connection(
         Database\Credentials::LoadFromEnv(
-            'DATBASE_HOST',
+            'DATABASE_HOST',
             'DATABASE_DATABASE',
             'DATABASE_USER',
             'DATABASE_PASSWORD'
