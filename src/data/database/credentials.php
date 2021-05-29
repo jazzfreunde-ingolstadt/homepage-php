@@ -10,4 +10,19 @@ class Credentials
         public string $user,
         public string $password
     ) {}
+
+    public static function LoadFromEnv(
+        string $host_env,
+        string $database_env,
+        string $user_env,
+        string $password_env
+        ): Credentials {
+
+        return new Credentials(
+            @$_ENV[$host_env] ?? '',
+            @$_ENV[$database_env] ?? '',
+            @$_ENV[$user_env] ?? '',
+            @$_ENV[$password_env] ?? ''
+        );
+    }
 }

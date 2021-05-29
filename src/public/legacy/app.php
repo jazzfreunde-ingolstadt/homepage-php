@@ -14,16 +14,20 @@ $ns_mapping = function () {
 
 set_include_path(realpath(__DIR__ . '/../../'));
 
+require(get_include_path() . '/vendor/autoload.php');
 require(get_include_path() . '/app/bootstrap/autoload.php');
+
+$dotenv = new Symfony\Component\Dotenv\Dotenv();
+$dotenv->load(get_include_path() . '/../.env');
 
 $app = new App();
 $app->UseDatabaseContext(
     new Database\Connection(
-        new Database\Credentials(
-            getenv('DATABASE_HOST'),
-            getenv('DATABASE_DATABASE'),
-            getenv('DATABASE_USER'),
-            getenv('DATABASE_PASSWORD')
+        Database\Credentials::LoadFromEnv(
+            'DATBASE_HOST',
+            'DATABASE_DATABASE',
+            'DATABASE_USER',
+            'DATABASE_PASSWORD'
         )
     )
 );

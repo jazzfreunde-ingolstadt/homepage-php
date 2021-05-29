@@ -9,10 +9,6 @@ services:
         environment:
             XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000 remote_enable=1
             APACHE_DOCUMENT_ROOT: /usr/project/src/public
-            DATABASE_HOST: jazzfreunde-mysql-database
-            DATABASE_DATABASE: jazzfreunde-api
-            DATABASE_USER: dbu_localdev
-            DATABASE_PASSWORD: 6hdth6e#
         ports:
             - "8080:80"
         volumes:
