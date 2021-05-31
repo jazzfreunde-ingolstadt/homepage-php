@@ -9,9 +9,67 @@
   
   //ACCEPT_POST(); // Nein! Zu viel Verquickung von dynamischem Inhalt und POST-Daten!
   
-  $NAMES = array("mayer" => "Michael Mayer", "hoepp" => "Daniel Johannes Hoepp", "domke" => "Reimund Domke", "pacher" => "Dr. Christian Pacher", "spranger" => "Ulrich Spranger", "reitberger" => "Bernhard Reitberger", "aichner" => "Robert Aichner", "wild" => "Stefan Wild", "wewer" => "Karl Wewer", "diewock" => "Tom Diewock", "bleckmann" => "Sven Bleckmann", "mayer" => "Michael Mayer", "mittnacht" => "Ella Mittnacht", "righetti" => "Raphael Righetti", "spranger-righetti" => "Eva Spranger-Righetti", "newsletter" => "Jazzfreunde Ingolstadt Newsletter", "schatzmeister" => "Schatzmeister der Jazzfreunde Ingolstadt", "1.vorsitzender" => "1. Vorsitzender der Jazzfreunde Ingolstadt", "schriftfuehrer" => "Schriftfuehrer der Jazzfreunde Ingolstadt", "jugendarbeit" => "Jugend- und Nachwuchskoordinator", "vorstand" => "Vorstand der Jazzfreunde Ingolstadt", "mitglieder" => "Jazzfreunde Ingolstadt (Mitgliedschaftsangelegenheiten)", "webmaster" => "Webmaster", "sessions" => "Sessionkoordinator", "bilder" => "Fototeam der Jazzfreunde Ingolstadt", "verein" => "Verein der Jazzfreunde Ingolstadt", "gutsche" => "Matthias Gutsche", "bachmaier" => "Helmut Bachmaier");
+  $NAMES = array(
+    "mayer" => "Michael Mayer",
+    "hoepp" => "Daniel Johannes Hoepp",
+    "domke" => "Reimund Domke",
+    "pacher" => "Dr. Christian Pacher",
+    "spranger" => "Ulrich Spranger",
+    "reitberger" => "Bernhard Reitberger",
+    "aichner" => "Robert Aichner",
+    "wild" => "Stefan Wild",
+    "wewer" => "Karl Wewer",
+    "diewock" => "Tom Diewock",
+    "bleckmann" => "Sven Bleckmann",
+    "mayer" => "Michael Mayer",
+    "mittnacht" => "Ella Mittnacht",
+    "righetti" => "Raphael Righetti",
+    "spranger-righetti" => "Eva Spranger-Righetti",
+    "newsletter" => "Jazzfreunde Ingolstadt Newsletter",
+    "schatzmeister" => "Schatzmeister der Jazzfreunde Ingolstadt",
+    "1.vorsitzender" => "1. Vorsitzender der Jazzfreunde Ingolstadt",
+    "schriftfuehrer" => "Schriftfuehrer der Jazzfreunde Ingolstadt",
+    "jugendarbeit" => "Jugend- und Nachwuchskoordinator",
+    "vorstand" => "Vorstand der Jazzfreunde Ingolstadt",
+    "mitglieder" => "Jazzfreunde Ingolstadt (Mitgliedschaftsangelegenheiten)",
+    "webmaster" => "Webmaster",
+    "sessions" => "Sessionkoordinator",
+    "bilder" => "Fototeam der Jazzfreunde Ingolstadt",
+    "verein" => "Verein der Jazzfreunde Ingolstadt",
+    "gutsche" => "Matthias Gutsche",
+    "bachmaier" => "Helmut Bachmaier"
+  );
   
-  $MAILS = array("mayer" => "miche.mayer@outlook.de", "hoepp" => "jazzfreunde-ingolstadt@hoeppymedien.de", "domke" => "domke@jazzfreunde-ingolstadt.de", "pacher" => "pacher@jazzfreunde-ingolstadt.de", "spranger" => "spranger@jazzfreunde-ingolstadt.de", "reitberger" => "reitberger@jazzfreunde-ingolstadt.de", "aichner" => "aichner@jazzfreunde-ingolstadt.de", "wild" => "wild@jazzfreunde-ingolstadt.de", "wewer"=> "wewer@jazzfreunde-ingolstadt.de", "diewock" => "diewock@jazzfreunde-ingolstadt.de", "bleckmann" => "bleckmann@jazzfreunde-ingolstadt.de", "mayer" => "mayer@jazzfreunde-ingolstadt.de", "mittnacht" => "mittnacht@jazzfreunde-ingolstadt.de", "righetti" => "righetti@jazzfreunde-ingolstadt.de", "spranger-righetti" => "spranger-righetti@jazzfreunde-ingolstadt.de", "newsletter" => "newsletter@jazzfreunde-ingolstadt.de", "schatzmeister" => "schatzmeister@jazzfreunde-ingolstadt.de", "1.vorsitzender" => "1.vorsitzender@jazzfreunde-ingolstadt.de", "schriftfuehrer" => "schriftfuehrer@jazzfreunde-ingolstadt.de", "jugendarbeit" => "Jugend- und Nachwuchsarbeit", "vorstand" => "vorstand@jazzfreunde-ingolstadt.de", "mitglieder" => "mitglieder@jazzfreunde-ingolstadt.de", "webmaster" => "homepage@jazzfreunde-ingolstadt.de", "sessions" => "sessions@jazzfreunde-ingolstadt.de", "bilder" => "bilder@jazzfreunde-ingolstadt.de", "verein" => "verein@jazzfreunde-ingolstadt.de", "gutsche" => "gutsche@jazzfreunde-ingolstadt.de", "bachmaier" => "helmut.bachmaier@t-online.de");
+  $MAILS = array(
+    "mayer" => "miche.mayer@outlook.de",
+    "hoepp" => "jazzfreunde-ingolstadt@hoeppymedien.de",
+    "domke" => "domke@jazzfreunde-ingolstadt.de",
+    "pacher" => "pacher@jazzfreunde-ingolstadt.de",
+    "spranger" => "spranger@jazzfreunde-ingolstadt.de",
+    "reitberger" => "reitberger@jazzfreunde-ingolstadt.de",
+    "aichner" => "aichner@jazzfreunde-ingolstadt.de",
+    "wild" => "wild@jazzfreunde-ingolstadt.de",
+    "wewer"=> "wewer@jazzfreunde-ingolstadt.de",
+    "diewock" => "diewock@jazzfreunde-ingolstadt.de",
+    "bleckmann" => "bleckmann@jazzfreunde-ingolstadt.de",
+    "mayer" => "mayer@jazzfreunde-ingolstadt.de",
+    "mittnacht" => "mittnacht@jazzfreunde-ingolstadt.de",
+    "righetti" => "righetti@jazzfreunde-ingolstadt.de",
+    "spranger-righetti" => "spranger-righetti@jazzfreunde-ingolstadt.de",
+    "newsletter" => "newsletter@jazzfreunde-ingolstadt.de",
+    "schatzmeister" => "schatzmeister@jazzfreunde-ingolstadt.de",
+    "1.vorsitzender" => "1.vorsitzender@jazzfreunde-ingolstadt.de",
+    "schriftfuehrer" => "schriftfuehrer@jazzfreunde-ingolstadt.de",
+    "jugendarbeit" => "Jugend- und Nachwuchsarbeit",
+    "vorstand" => "vorstand@jazzfreunde-ingolstadt.de",
+    "mitglieder" => "mitglieder@jazzfreunde-ingolstadt.de",
+    "webmaster" => "homepage@jazzfreunde-ingolstadt.de",
+    "sessions" => "sessions@jazzfreunde-ingolstadt.de",
+    "bilder" => "bilder@jazzfreunde-ingolstadt.de",
+    "verein" => "verein@jazzfreunde-ingolstadt.de",
+    "gutsche" => "gutsche@jazzfreunde-ingolstadt.de",
+    "bachmaier" => "helmut.bachmaier@t-online.de"
+  );
   
   $name = @$NAMES[$_GET["to"]];
   if (!$name || $name == "")
