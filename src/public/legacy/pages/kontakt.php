@@ -60,7 +60,7 @@
     "schatzmeister" => "schatzmeister@jazzfreunde-ingolstadt.de",
     "1.vorsitzender" => "1.vorsitzender@jazzfreunde-ingolstadt.de",
     "schriftfuehrer" => "schriftfuehrer@jazzfreunde-ingolstadt.de",
-    "jugendarbeit" => "Jugend- und Nachwuchsarbeit",
+    "jugendarbeit" => "jugendarbeit@jazzfreunde-ingolstadt.de",
     "vorstand" => "vorstand@jazzfreunde-ingolstadt.de",
     "mitglieder" => "mitglieder@jazzfreunde-ingolstadt.de",
     "webmaster" => "homepage@jazzfreunde-ingolstadt.de",
@@ -68,7 +68,7 @@
     "bilder" => "bilder@jazzfreunde-ingolstadt.de",
     "verein" => "verein@jazzfreunde-ingolstadt.de",
     "gutsche" => "gutsche@jazzfreunde-ingolstadt.de",
-    "bachmaier" => "helmut.bachmaier@t-online.de"
+    "bachmaier" => "bachmaier@jazzfreunde-ingolstadt.de"
   );
   
   $name = @$NAMES[$_GET["to"]];
