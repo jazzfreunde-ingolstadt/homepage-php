@@ -6,6 +6,8 @@ on:
       - 'README.md'
       - '**.code-workspace'
       - '.devcontainer/**'
+      - '.env'
+      - '.gitignore'
     
 jobs:
   build:
@@ -21,8 +23,8 @@ jobs:
           fetch-depth: 2
       
       # Install Composer
-      #- name: Install Composer Dependencies
-      #  run: composer install --prefer-dist --no-progress
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-progress
       
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
