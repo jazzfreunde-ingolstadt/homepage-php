@@ -6,18 +6,18 @@
     # RewriteCond %{HTTP_HOST} ^www\. [NC]
     # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^legacy/pages/(.*)$ legacy/$1 [L]
+    # Funnel page requests to index and try to serve content:
+    RewriteCond %{DOCUMENT_ROOT}/pages/%{REQUEST_URI}.php -f
+    RewriteRule ^([^/].+)$ index.php/$1 [QSA,L]
 
-    RewriteRule (^[^/]*$) pages/$1 [L,R=302]
+    # Rewrite requested resources from legacy pages:
+    RewriteCond %{DOCUMENT_ROOT}/legacy/pages/%{REQUEST_URI} -f
+    RewriteRule ^(.*)$ legacy/pages/$1 [L]
     
+    # Try serving any file not found from legacy directory:
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ legacy/$1 [QSA,L]
-
-    #RewriteCond %{REQUEST_FILENAME} !-l
-    #RewriteRule ^(.+)$ index.php/$1 [QSA,L]
-
+    RewriteCond %{DOCUMENT_ROOT}/legacy/%{REQUEST_URI} -f
+    RewriteRule ^([^/].+)$ legacy/$1 [QSA,L]
 </IfModule>
 
-ErrorDocument 404 /pages/404.php
+ErrorDocument 404 /index.php/404
