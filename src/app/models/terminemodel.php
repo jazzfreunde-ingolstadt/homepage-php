@@ -4,27 +4,11 @@ namespace Jazzfreunde\App\Models;
 
 use Jazzfreunde\Database;
 use Jazzfreunde\Database\ConnectionException;
-use Jazzfreunde\Structures\DateTimeSQL;
+use Jazzfreunde\App\DTOs\Termin;
 
 final class TermineFilter extends Database\Filter
 {
     use Database\Pagination;
-}
-
-final class Termin extends Database\DTO
-{
-    function __construct(
-        public ?int $id,
-        // public ?int $series_id,
-        public string $titel,
-        public ?string $subtitel,
-        public DateTimeSQL $start,
-        public DateTimeSQL $end,
-        public string $ort,
-        public ?string $link,
-        // public ?string $thumbnail
-    ) {
-    }
 }
 
 final class TermineModel extends Database\Model
@@ -37,7 +21,7 @@ final class TermineModel extends Database\Model
 
         try {
             $termine = $this->database->fetch(
-                'Termin',
+                'Jazzfreunde\App\DTOs\Termin',
                 "SELECT * FROM {$table}",
                 null
             );
