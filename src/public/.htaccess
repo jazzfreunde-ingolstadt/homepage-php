@@ -13,7 +13,10 @@
     RewriteRule (^[^/]*$) pages/$1 [L,R=302]
     
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^pages/(.*)$ legacy/pages$1 [L]
+    RewriteRule ^(.*)$ legacy/$1 [QSA,L]
+
+    #RewriteCond %{REQUEST_FILENAME} !-l
+    #RewriteRule ^(.+)$ index.php/$1 [QSA,L]
 
 </IfModule>
 
