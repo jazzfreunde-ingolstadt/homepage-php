@@ -12,7 +12,7 @@ $ns_mapping = function () {
     yield 'jazzfreunde/app' => 'app';
 };
 
-set_include_path(realpath(__DIR__ . '/../../'));
+set_include_path(realpath(__DIR__ . '/../'));
 
 require(get_include_path() . '/vendor/autoload.php');
 require(get_include_path() . '/app/bootstrap/autoload.php');

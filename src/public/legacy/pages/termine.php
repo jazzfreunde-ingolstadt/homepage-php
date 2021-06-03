@@ -1,6 +1,4 @@
 <?php
-$app = include_once('../app.php');
-
 if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "termine");
 define("TITLE", "Veranstaltungen");
@@ -241,26 +239,6 @@ function writeVAhead()
 <?php
 	}
 
-use \Jazzfreunde\App\Models;
-use Jazzfreunde\Structures\DateTimeSQL;
-
-$getVAsFromDatabase = function () use ($app): void
-	{
-		$termine = new Models\TermineModel($app->DatabaseContext());
-		$VAs = $termine->fetch(
-			new Models\TermineFilter()
-		);
-
-		$newVA = function(\Jazzfreunde\App\DTOs\Termin $termin) {
-				$start = new DateTime($termin->start);
-			setVA($start->format('d.m.Y'), $start->format('H:i'), $termin->titel, $termin->ort);
-		};
-
-		// var_dump($VAs);
-
-		array_walk($VAs, $newVA);
-	};
-
 	head();
 	before();
 ?>
@@ -268,8 +246,8 @@ $getVAsFromDatabase = function () use ($app): void
 <h1>Veranstaltungskalender</h1>
 
 <?php
-// include(__DIR__ . "/../data/termine.php");
-$getVAsFromDatabase();
+include(__DIR__ . "/../data/termine.php");
+
 writeVAs();
 ?>
 
