@@ -441,7 +441,7 @@
       pwdinput();
     }
   }
-  else
+  elseif (false) // disabled deprecate
   {
     // timer
     if ($_POST["settime"] != "")
