@@ -1,6 +1,6 @@
 <?php
 
-use Jazzfreunde\App\Models\Termin;
+use Jazzfreunde\App\DTOs\Termin;
 use Jazzfreunde\App\Models\TermineModel;
 use Jazzfreunde\Structures\DateTimeSQL;
 
@@ -229,13 +229,14 @@ function setVA($wannd, $wannt, $was, $wo, $imgid = null, $videolink = null, $sty
 
     $termin_model->new(
         new Termin(
-            null,
-            $was['titel'],
-            $was['subtitel'],
-            $DateTimeSQL_start,
-            $DateTimeSQL_end,
-            $wo,
-            $was['link']
+            [
+                'titel' => $was['titel'],
+                'subtitel' => $was['subtitel'],
+                'start' => $DateTimeSQL_start,
+                'end' => $DateTimeSQL_end,
+                'ort' => $wo,
+                'link' => $was['link']
+            ]
         )
     );
 }

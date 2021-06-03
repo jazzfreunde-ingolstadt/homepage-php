@@ -6,7 +6,7 @@ define("TITLE", "Herzlich Willkommen");
 @include(__DIR__ . "/../inc/lock.php");
 
 if (!@$_GET["preview"] && (!defined("UNLOCKTIME") || UNLOCKTIME > time())) {
-  include(legacy("pages/index-locked.html"));
+  include(__DIR__ . "/pages/index-locked.html");
   die("<!-- lock until " . date("d.m.Y H:i:s", UNLOCKTIME) . " -->");
 }
 
@@ -52,7 +52,6 @@ function img($type)
     </tr>
   </tbody>
 </table>
-
 
 <script type="text/javascript">
   //<!--

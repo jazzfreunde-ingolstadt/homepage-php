@@ -16,7 +16,7 @@ before();
   <li>Förderung und Unterstützung künstlerischer und kultureller Aktivitäten im Jazzbereich allgemein und bei den Ingolstädter Jazztagen.</li>
 
   <li>Wir geben dem Jazz ein breiteres Standbein und größere Gewichtung im Kulturleben der Stadt, der Region und darüber hinaus.</li>
-
+  
   <li>Wir unterstützen laufende Projekte und Konzertreihen wie:
     <ul>
       <li>Young Jazz Players in Concert</li>

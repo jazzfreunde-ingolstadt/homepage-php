@@ -241,12 +241,25 @@ function writeVAhead()
 <?php
 	}
 
+use \Jazzfreunde\App\Models;
+use Jazzfreunde\Structures\DateTimeSQL;
 
-	// $setVAFromDatabase = function () use ($app): void
-	// {
-	// 	$termine = new \Jazzfreunde\App\Models\TermineModel($app->DatabaseContext());
+$getVAsFromDatabase = function () use ($app): void
+	{
+		$termine = new Models\TermineModel($app->DatabaseContext());
+		$VAs = $termine->fetch(
+			new Models\TermineFilter()
+		);
 
-	// };
+		$newVA = function(\Jazzfreunde\App\DTOs\Termin $termin) {
+				$start = new DateTime($termin->start);
+			setVA($start->format('d.m.Y'), $start->format('H:i'), $termin->titel, $termin->ort);
+		};
+
+		// var_dump($VAs);
+
+		array_walk($VAs, $newVA);
+	};
 
 	head();
 	before();
@@ -255,7 +268,8 @@ function writeVAhead()
 <h1>Veranstaltungskalender</h1>
 
 <?php
-include(__DIR__ . "/../data/termine.php");
+// include(__DIR__ . "/../data/termine.php");
+$getVAsFromDatabase();
 writeVAs();
 ?>
 
