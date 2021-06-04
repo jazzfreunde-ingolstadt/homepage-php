@@ -7,16 +7,16 @@
     # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Funnel page requests to index and try to serve content:
-    RewriteCond %{CONTEXT_DOCUMENT_ROOT}/pages/%{REQUEST_URI}.php -f
+    RewriteCond pages/%{REQUEST_URI}.php -F
     RewriteRule ^([^/].+)$ index.php/$1 [QSA,L]
 
     # Rewrite requested resources from legacy pages:
-    RewriteCond %{CONTEXT_DOCUMENT_ROOT}/legacy/pages/%{REQUEST_URI} -f
+    RewriteCond %{DOCUMENT_ROOT}/legacy/pages/%{REQUEST_URI} -f
     RewriteRule ^(.*)$ legacy/pages/$1 [L]
     
     # Try serving any file not found from legacy directory:
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{CONTEXT_DOCUMENT_ROOT}/legacy/%{REQUEST_URI} -f
+    RewriteCond %{DOCUMENT_ROOT}/legacy/%{REQUEST_URI} -f
     RewriteRule ^([^/].+)$ legacy/$1 [QSA,L]
 </IfModule>
 
