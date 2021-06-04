@@ -8,16 +8,17 @@
 
     # Funnel page requests to index and try to serve content:
     RewriteCond pages/%{REQUEST_URI}.php -F
-    RewriteRule ^([^/].+)$ index.php/$1 [QSA,L]
+    RewriteRule ^([^/].+)$ index.php/$1 [QSA,END]
 
     # Rewrite requested resources from legacy pages:
+    RewriteCond pages/%{REQUEST_URI}.php !-F
     RewriteCond legacy/pages/%{REQUEST_URI} -F
-    RewriteRule ^(.+)$ legacy/pages/$1 [L]
+    RewriteRule ^(.+)$ legacy/pages/$1 [NS,L]
     
     # Try serving any file not found from legacy directory:
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond legacy/%{REQUEST_URI} -F
-    RewriteRule ^([^/].+)$ legacy/$1 [QSA,L]
+    RewriteRule ^([^/].+)$ legacy/$1 [PT,L]
 </IfModule>
 
 # ErrorDocument 404 /index.php/404
