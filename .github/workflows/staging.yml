@@ -16,6 +16,7 @@ jobs:
       run:
         shell: bash
         working-directory: ./src
+        
     steps:
       # Check out branch
       - uses: actions/checkout@v2
@@ -26,11 +27,26 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install --prefer-dist --no-progress
         
+      # Store vendor packages
       - uses: actions/upload-artifact@main
         with:
           name: composer artifacts
-          path: vendor/  
-      
+          path: vendor
+  push:
+    runs-on: ubtuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./src
+    needs: build
+    
+    steps:
+      # Get built composer packages
+      - uses: actions/download-artifact@main
+        with:
+          name: composer artifacts
+          path: vendor
+    
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
