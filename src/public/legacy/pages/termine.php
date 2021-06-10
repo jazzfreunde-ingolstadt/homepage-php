@@ -111,10 +111,10 @@ function writeVAhead()
 			<?= $wo ?>
 		</td>
 		<td>
-			<?= ($imgid == null || $imgid == "0" || $imgid < 0 || $imgid == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"bilder.php?bilder=" . $imgid . "&amp;via=" . PAGE . "\" title=\"Zu den Bildern\"><img src=\"gfx/dia.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Bilder\" /></a>") ?>
+			<?= ($imgid == null || $imgid == "0" || $imgid < 0 || $imgid == "" ? "<img src=\"/gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"bilder.php?bilder=" . $imgid . "&amp;via=" . PAGE . "\" title=\"Zu den Bildern\"><img src=\"/gfx/dia.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Bilder\" /></a>") ?>
 		</td>
 		<td>
-			<?= ($videolink == null || $videolink == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"" . $videolink . "\" title=\"Wer ist das?\" target=\"_blank\"><img src=\"gfx/cam.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Wer ist das?\" /></a>") ?>
+			<?= ($videolink == null || $videolink == "" ? "<img src=\"/gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"" . $videolink . "\" title=\"Wer ist das?\" target=\"_blank\"><img src=\"/gfx/cam.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Wer ist das?\" /></a>") ?>
 		</td>
 	</tr>
 <?php

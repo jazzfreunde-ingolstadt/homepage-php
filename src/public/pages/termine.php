@@ -1,6 +1,4 @@
 <?php
-$app = include_once(__DIR__ . '/../../app/startup.php');
-
 if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "termine");
 define("TITLE", "Veranstaltungen");
@@ -113,10 +111,10 @@ function writeVAhead()
 			<?= $wo ?>
 		</td>
 		<td>
-			<?= ($imgid == null || $imgid == "0" || $imgid < 0 || $imgid == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"bilder.php?bilder=" . $imgid . "&amp;via=" . PAGE . "\" title=\"Zu den Bildern\"><img src=\"gfx/dia.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Bilder\" /></a>") ?>
+			<?= ($imgid == null || $imgid == "0" || $imgid < 0 || $imgid == "" ? "<img src=\"/gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"bilder.php?bilder=" . $imgid . "&amp;via=" . PAGE . "\" title=\"Zu den Bildern\"><img src=\"/gfx/dia.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Bilder\" /></a>") ?>
 		</td>
 		<td>
-			<?= ($videolink == null || $videolink == "" ? "<img src=\"gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"" . $videolink . "\" title=\"Wer ist das?\" target=\"_blank\"><img src=\"gfx/cam.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Wer ist das?\" /></a>") ?>
+			<?= ($videolink == null || $videolink == "" ? "<img src=\"/gfx/empty.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"\" />" : "<a href=\"" . $videolink . "\" title=\"Wer ist das?\" target=\"_blank\"><img src=\"/gfx/cam.png\" height=\"32\" width=\"32\" border=\"0\" alt=\"Wer ist das?\" /></a>") ?>
 		</td>
 	</tr>
 <?php
@@ -262,7 +260,7 @@ $getVAsFromDatabase = function () use ($app): void
 	before();
 ?>
 
-<h1>Veranstaltungskalender</h1>
+<h1>Veranstaltungskalenderer</h1>
 
 <?php
 // include(__DIR__ . "/../data/termine.php");

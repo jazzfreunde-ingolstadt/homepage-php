@@ -33,7 +33,7 @@ function autoload_jazzlehrer()
           var mailimage = document.createElement("img");
           mailimage.alt = mail;
           mailimage.title = mail;
-          mailimage.src = "gfx/icons/mail.png";
+          mailimage.src = "/gfx/icons/mail.png";
           maillink.appendChild(mailimage);
           maillines[i].appendChild(maillink);
         }

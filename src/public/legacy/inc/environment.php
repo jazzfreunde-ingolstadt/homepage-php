@@ -39,11 +39,11 @@ function head()
     <meta name="robots" content="<?= ROBOTS ?>" />
     <meta name="generator" content="kwrite" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" type="text/css" media="all" href="env/default.css" title="Jazzfreunde blau-orange" />
+    <link rel="stylesheet" type="text/css" media="all" href="/env/default.css" title="Jazzfreunde blau-orange" />
     <?php if (defined("VIDEO")) { ?>
-      <script type="text/javascript" src="env/swfobject.js"></script>
+      <script type="text/javascript" src="/env/swfobject.js"></script>
     <?php } ?>
-    <script type="text/javascript" src="env/default.js"></script>
+    <script type="text/javascript" src="/env/default.js"></script>
   </head>
 
 <?php
@@ -57,9 +57,9 @@ function before($onload = null)
     <table id="alltable" border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
       <tr>
         <td rowspan="2" id="left" align="center" valign="top" width="220">
-          <a href="index.php">
+          <a href="/">
             <div id="logo">
-              <img src="gfx/logo_lomt.png" alt="Jazzfreunde Ingolstadt e. V." width="200" height="200" />
+              <img src="/gfx/logo_lomt.png" alt="Jazzfreunde Ingolstadt e. V." width="200" height="200" />
             </div>
           </a>
           <?php menu() ?>
@@ -84,10 +84,10 @@ function before($onload = null)
 
             <div id="viewchanger" style="position:absolute; left:0px; top:30%; width:11ex; background-color:#e8c400; color:#bf1300; display:none;">
               <ul style="list-style-type:none; margin:0px; padding-left:2px; text-align:center; font-weight:bold;">
-                <li><a href="index1.php" style="color:#bf1300; text-decoration:none;">1.&nbsp;Version</a></li>
-                <li><a href="index.php?c=or" style="color:#bf1300; text-decoration:none;">Orange</a></li>
-                <li><a href="index.php?c=gr" style="color:#bf1300; text-decoration:none;">Grau</a></li>
-                <li><a href="index.php?c=se" style="color:#bf1300; text-decoration:none;">Sepia</a></li>
+                <li><a href="/index1.php" style="color:#bf1300; text-decoration:none;">1.&nbsp;Version</a></li>
+                <li><a href="/index.php?c=or" style="color:#bf1300; text-decoration:none;">Orange</a></li>
+                <li><a href="/index.php?c=gr" style="color:#bf1300; text-decoration:none;">Grau</a></li>
+                <li><a href="/index.php?c=se" style="color:#bf1300; text-decoration:none;">Sepia</a></li>
                 <li style="font-size:80%;"><a href="#" onclick="document.getElementById('viewchanger').style.display='none';" style="color:#bf1300; text-decoration:none;">ausblenden</a></li>
               </ul>
             </div>
@@ -140,19 +140,19 @@ function before($onload = null)
   <table id="menu" width="100%">
     <?php
                 //menuline("index", "Willkommen");
-                menuline("ueberuns", "Über uns");
-                menuline("ziele", "Ziele");
+                menuline("/ueberuns", "Über uns");
+                menuline("/ziele", "Ziele");
                 //menuline("tipps", "CD-Tipps");
-                menuline("termine", "Veranstaltungen");
+                menuline("/termine", "Veranstaltungen");
                 //menuline("event", "<b>Big Band Nacht &amp;<br />Latin Jazz Kurse</b>");
-                menuline("projekte", "Projekte");
-                menuline("jazzlehrer", "Jazzlehrer");
-                menuline("bilder", "Bilder");
+                menuline("/projekte", "Projekte");
+                menuline("/jazzlehrer", "Jazzlehrer");
+                menuline("/bilder", "Bilder");
                 //menuline("presse", "Pressestimmen");
-                menuline("beitritt", "Mitglied werden");
-                menuline("newsletter", "Newsletter &amp; Aktuelles");
-                menuline("satzung", "Satzung");
-                menuline("links", "Links");
+                menuline("/beitritt", "Mitglied werden");
+                menuline("/newsletter", "Newsletter &amp; Aktuelles");
+                menuline("/satzung", "Satzung");
+                menuline("/links", "Links");
     ?>
   </table>
 <?php
@@ -169,7 +169,7 @@ function before($onload = null)
 
               function menulink($pagename, $title)
               {
-                return "<a" . ($pagename == PAGE ? " class=\"selected\"" : "") . " href=\"" . $pagename . PAGE_ENDING . "\">" . $title . "</a>";
+                return "<a" . ($pagename == PAGE ? " class=\"selected\"" : "") . " href=\"" . $pagename . "\">" . $title . "</a>";
               }
 
               /*-- WRAPPER-FUNKTIONEN --*/

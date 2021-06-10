@@ -2,7 +2,7 @@
 
 namespace Jazzfreunde\Database;
 
-class Credentials
+final class Credentials
 {
     public function __construct(
         public string $host,

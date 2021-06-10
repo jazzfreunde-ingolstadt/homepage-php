@@ -176,7 +176,7 @@ function picview($folder)
             <?php
             } else {
             ?>
-              <td class="empty_thumbnail" align="center" valign="center"><img src="gfx/blank.png" alt="" /></td>
+              <td class="empty_thumbnail" align="center" valign="center"><img src="/gfx/blank.png" alt="" /></td>
           <?php
             }
           }

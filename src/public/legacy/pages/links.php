@@ -58,7 +58,7 @@ function nobox()
     $GLOBALS["boxcount"]++;
     ?>
     <td class="kasten link" style="width:<?=$GLOBALS["boxwidth"] ?>%;">
-      <div class="link_line"><?php if ($url != null) { ?><a href="http://<?=$url ?>" target="_blank"><img src="gfx/icons/<?=($icon == null || $icon == "" ? "default" : $icon) ?>.png" alt="" height="16" width="16" /></a><?php } else { ?><img src="gfx/empty.png" alt="" height="16" width="16" /><?php } ?>
+      <div class="link_line"><?php if ($url != null) { ?><a href="http://<?=$url ?>" target="_blank"><img src="/gfx/icons/<?=($icon == null || $icon == "" ? "default" : $icon) ?>.png" alt="" height="16" width="16" /></a><?php } else { ?><img src="/gfx/empty.png" alt="" height="16" width="16" /><?php } ?>
         <div class="kasten_h1"><?php if ($url != null) { ?><a href="http://<?=$url ?>" target="_blank"><?=$name ?></a><?php } else { ?><?=$name ?><?php } ?></div>
       </div>
       <div class="kasten_h2 small"><?=$url ?></div>
@@ -84,7 +84,7 @@ function nobox()
 
 <?php linkbox("Fachschaft Musik des Reuchlin-Gymnasiums", "www.bingo-ev.de/~sb448/rg/cms/website.php?id=/de/musik.htm", "rgi", null, null) ?>
 
-<?php // linkbox("Hotel Rappensberger", "www.rappensberger.de", null, "gfx/banner/rappensberger.png", null) // Ersetzen durch den Schlosskeller? 
+<?php // linkbox("Hotel Rappensberger", "www.rappensberger.de", null, "/gfx/banner/rappensberger.png", null) // Ersetzen durch den Schlosskeller? 
 ?>
 
 <?php linkbox("Jazzclub Birdland in Neuburg", "www.birdland.de", "birdland", null, null) ?>
@@ -97,9 +97,9 @@ function nobox()
 
 <?php linkbox("Lehrer Big Band Bayern", "www.lbb-bay.de", null, null, null) ?>
 
-<?php linkbox("monophonic", "www.monophonic.de", null, "gfx/banner/monophonic.png", null) ?>
+<?php linkbox("monophonic", "www.monophonic.de", null, "/gfx/banner/monophonic.png", null) ?>
 
-<?php linkbox("Musikzentrum music in", "www.music-in.de", "music-in", "gfx/banner/music-in.png", null) ?>
+<?php linkbox("Musikzentrum music in", "www.music-in.de", "music-in", "/gfx/banner/music-in.png", null) ?>
 
 <?php linkbox("Szenelokal Diagonal", "www.diagonal-bar.de", "diagonal", null, null) ?>
 

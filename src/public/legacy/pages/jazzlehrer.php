@@ -36,7 +36,7 @@ function write_lehrer($name, $instrument, $musikschule, $telefon, $email = null,
 			<?=($email ? killmail($email) : "–") ?>
 		</td>
 		<td>
-			<?=($homepage ? "<a href=\"" . $homepage . "\" title=\"" . $homepage . "\"><img src=\"gfx/icons/default.png\" alt=\"\" height=\"16\" width=\"16\" /></a>" : "&nbsp;") ?>
+			<?=($homepage ? "<a href=\"" . $homepage . "\" title=\"" . $homepage . "\"><img src=\"/gfx/icons/default.png\" alt=\"\" height=\"16\" width=\"16\" /></a>" : "&nbsp;") ?>
 		</td>
 	</tr>
 

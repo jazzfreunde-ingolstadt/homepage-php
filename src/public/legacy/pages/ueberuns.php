@@ -23,7 +23,7 @@ before();
 <p>So entstand der anfangs noch manchmal belächelte Verein, dessen Mitgliederzahl sich inzwischen auf ca. 150 entwickelt hat. „Und wenn sie nicht …“</p>
 
 <h2>Zur Person</h2>
-<div class="kasten person even"><img src="gfx/wewer_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person even"><img src="/gfx/wewer_pre.png" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Erster Vorsitzender, Schriftführer, Newsletter</div>
   <div class="kasten_h2">Karl Wewer</div>
   <div class="kasten_p">Karl Wewer ist aufgewachsen in Datteln (Ruhrgebiet); Studium konstruktiver Ingenieurbau in Bochum, seit 1979 in Ingolstadt – Manager in der IT in einem Automobilunternehmen, jetzt im Ruhestand<br />
@@ -32,7 +32,7 @@ before();
     <div class="right"><a class="kontakt" href="kontakt.php?to=wewer" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
 </div>
-<div class="kasten person odd"><img src="gfx/reitberger_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="/gfx/reitberger_pre.png" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Stellvertretender Vorsitzender, Jugend- und Nachwuchsarbeit</div>
   <div class="kasten_h2">Bernhard Reitberger</div>
   <div class="kasten_p">Bernhard Reitberger hat Schlagzeug in Würzburg studiert und ist Musiklehrer am <a href="http://www.gnadenthal-gymnasium.de/">Gnadenthal-Gymnasium</a>.
@@ -41,7 +41,7 @@ before();
     <div class="right"><a class="kontakt" href="kontakt.php?to=reitberger" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
 </div>
-<div class="kasten person even"><img src="gfx/diewock_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person even"><img src="/gfx/diewock_pre.png" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Stellvertretender Vorsitzender, Sessionkoordinator</div>
   <div class="kasten_h2">Tom Diewock</div>
   <div class="kasten_p">
@@ -49,7 +49,7 @@ before();
     <div class="right"><a class="kontakt" href="kontakt.php?to=diewock" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
 </div>
-<div class="kasten person odd"><img src="gfx/bachmaier.jpeg" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="/gfx/bachmaier.jpeg" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Schatzmeister</div>
   <div class="kasten_h2">Helmut Bachmaier</div>
   <div class="kasten_p">
@@ -58,7 +58,7 @@ before();
   </div>
 </div>
 <!--
-<div class="kasten person odd"><img src="gfx/gutsche_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="/gfx/gutsche_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Schatzmeister</div>
 <div class="kasten_h2">Matthias Gutsche</div>
 <div class="kasten_p">
@@ -66,7 +66,7 @@ before();
 </div>
 -->
 <!--
-<div class="kasten person odd"><img src="gfx/spranger_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="/gfx/spranger_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Schatzmeister</div>
 <div class="kasten_h2">Ulrich Spranger</div>
 <div class="kasten_p">Jahrgang 1960 und als echter Schanzer in Ingolstadt geboren und aufgewachsen. Nach dem Studium in Bayreuth, ist er  selbständig als Steuerberater und Wirtschaftsprüfer in Ingolstadt tätig. Selbst begeisterter Jazzzuhörer, bei dem es leider zum Selberspielen nicht mehr gereicht hat. Lieblingsinstrumente sind Sax, Gitarre, Klavier und Akkustikbass. Hört alles gern was jazzig, bluesig und funkig klingt.
@@ -74,14 +74,14 @@ before();
 </div>
 -->
 <!--
-<div class="kasten person even"><img src="gfx/bleckmann_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person even"><img src="/gfx/bleckmann_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Beirat</div>
 <div class="kasten_h2">Sven Wittig</div>
 <div class="kasten_p">Sven wuchs in Chemnitz und Dresden auf und erlernte im Elternhaus das Klavierspielen. Später kam das Saxophon auf autodidaktischem Wege hinzu. Erste Eindrücke aus der Dresdner Dixieland-Szene wurden bald durch die Anziehungskraft des Leipziger, Berliner und auch Chemnitzer Modern- und Avantgarde-Jazz-Umfelds übertönt. Die Begeisterung für die unglaubliche Vielfalt und Kreativität der unterschiedlichen Strömungen des Jazz wuchs stetig.<br />
 Sven arbeitet als Informatiker bei der AUDI AG. In seiner Freizeit wirkt er gern in verschiedenen Bands und vor allem den Sessions der „Jazzfreunde“ mit.
 <div class="right"><a class="kontakt" href="kontakt.php?to=bleckmann" title="Zum Kontaktformular">Kontakt</a></div></div>
 </div>
-<div class="kasten person odd"><img src="gfx/domke_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="/gfx/domke_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Beirat</div>
 <div class="kasten_h2">Reimund Domke</div>
 <div class="kasten_p">Geboren 1956, aufgewachsen in Kronach, Studium Touristik BWL, 10 Jahre Frankfurt<br />
@@ -92,13 +92,13 @@ Wiedereinstieg in den Jazz 1995 in Ingolstadt zu den Jazztagen, seit 1999 Mitarb
 </div>
 -->
 <!--
-<div class="kasten person even"><img src="gfx/hoepp_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person even"><img src="/gfx/hoepp_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Webmaster</div>
 <div class="kasten_h2">Daniel J. Höpp</div>
 <div class="kasten_p">Daniel Höpp ist seit 2010 Testingenieur in einem Unternehmen in der Automobilbranche, zuvor hat er Elektro- und Informationstechnik an der Fachhochschule Ingolstadt studiert. Er betreut, gestaltet und programmiert bereits seit mehreren Jahren erfolgreich die Homepages von verschiedenen Organisationen, neben den Jazzfreunden unter anderem auch die Seiten der Landesarbeitsgemeinschaft Schulchor in Bayern.
 <div class="right"><a class="kontakt" href="kontakt.php?to=hoepp" title="Zum Kontaktformular">Kontakt</a></div></div>
 </div>-->
-<div class="kasten person even"><img src="gfx/mayer_pre.jpg" alt="Bild" height="90" width="70" />
+<div class="kasten person even"><img src="/gfx/mayer_pre.jpg" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Webmaster</div>
   <div class="kasten_h2">Michael Mayer</div>
   <div class="kasten_p">Mit dem Eintritt ins Gymnasium begann Michael Mayer klassische Gitarre zu lernen.
@@ -110,31 +110,31 @@ Wiedereinstieg in den Jazz 1995 in Ingolstadt zu den Jazztagen, seit 1999 Mitarb
   </div>
 </div>
 <!--
-<div class="kasten person odd"><img src="gfx/mayer_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="/gfx/mayer_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Beirat</div>
 <div class="kasten_h2">Michael Mayer</div>
 <div class="kasten_p">&nbsp;
 <div class="right"><a class="kontakt" href="kontakt.php?to=mayer" title="Zum Kontaktformular">Kontakt</a></div></div>
 </div>
-<div class="kasten person even"><img src="gfx/mittnacht_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person even"><img src="/gfx/mittnacht_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Beirätin</div>
 <div class="kasten_h2">Ella Mittnacht</div>
 <div class="kasten_p">&nbsp;
 <div class="right"><a class="kontakt" href="kontakt.php?to=mittnacht" title="Zum Kontaktformular">Kontakt</a></div></div>
 </div>
-<div class="kasten person odd"><img src="gfx/pacher_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="/gfx/pacher_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Beirat</div>
 <div class="kasten_h2">Dr.&nbsp;Christian Pacher</div>
 <div class="kasten_p">Selbstständiger Apotheker in Ingolstadt. Kam durch Konzertbesuche von Miles Davis während des Studiums in München zum Jazz. Dr.&nbsp;Christian Pacher kriecht seit 1983 vor allen Konzertbühnen in und um Ingolstadt mit der Kamera herum und fotografiert speziell Blues- und Jazzkonzerte. Die Ergebnisse waren in zahlreichen Ausstellungen sichtbar. Mit der Gruppe Forum Fotografie veröffentlichte er zu den 20.&nbsp;Ingolstädter Jazztagen den Fotobildband <i>jazz in time</i>.
 <div class="right"><a class="kontakt" href="kontakt.php?to=pacher" title="Zum Kontaktformular">Kontakt</a></div></div>
 </div>
-<div class="kasten person even"><img src="gfx/righetti_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person even"><img src="/gfx/righetti_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Beirat</div>
 <div class="kasten_h2">Raphael Righetti</div>
 <div class="kasten_p">&nbsp;
 <div class="right"><a class="kontakt" href="kontakt.php?to=righetti" title="Zum Kontaktformular">Kontakt</a></div></div>
 </div>
-<div class="kasten person odd"><img src="gfx/spranger-righetti_pre.png" alt="Bild" height="90" width="70" />
+<div class="kasten person odd"><img src="/gfx/spranger-righetti_pre.png" alt="Bild" height="90" width="70" />
 <div class="kasten_h1">Beirätin</div>
 <div class="kasten_h2">Eva Spranger-Righetti</div>
 <div class="kasten_p">Schanzerin und Alt-Gnadenthalerin, daher schon früh mit Geige und Klavier etc. konfrontiert, heute Klavier und Orgel u. a., soweit die Zeit reicht. Begeisterte Jazz-Hörerin, tätig in einer PR-Agentur.

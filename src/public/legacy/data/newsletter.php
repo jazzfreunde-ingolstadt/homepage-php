@@ -411,7 +411,7 @@ if (false) {
         9 Tokyo Blues<br />(Horace Silver)<br />
         10 Stormy Weather Blues<br />(Barbara Dennerlein)</p>
 
-      <p><img src="gfx/newsletter/querbeet_kraibergjazzband.png" alt="" /></p>
+      <p><img src="/gfx/newsletter/querbeet_kraibergjazzband.png" alt="" /></p>
 
       <p>Uns haben die Aufnahmen riesigen Spaß bereitet und wir hoffen, dass man das beim Zuhören spürt. Falls Interesse besteht, können Sie/ könnt Ihr die CD zum Preis von 10 Euro (plus Versand) über die e-mail <span class="email"><?=killmail("kjb@neusob.de"); ?></span> bestellen; alternativ natürlich auch über den direkten Kontakt zu einem der Bandmitglieder:</p>
 
@@ -939,7 +939,7 @@ if (false) {
         9 Tokyo Blues<br />(Horace Silver)<br />
         10 Stormy Weather Blues<br />(Barbara Dennerlein)</p>
 
-      <p><img src="gfx/newsletter/querbeet_kraibergjazzband.png" alt="" /></p>
+      <p><img src="/gfx/newsletter/querbeet_kraibergjazzband.png" alt="" /></p>
 
       <p>Uns haben die Aufnahmen riesigen Spaß bereitet und wir hoffen, dass man das beim Zuhören spürt. Falls Interesse besteht, können Sie/ könnt Ihr die CD zum Preis von 10 Euro (plus Versand) über die e-mail <span class="email"><?=killmail("kjb@neusob.de"); ?></span> bestellen; alternativ natürlich auch über den direkten Kontakt zu einem der Bandmitglieder:</p>
 
@@ -2614,7 +2614,7 @@ if (false) {
       <a href="http://www.donaukurier.de/nachrichten/kultur/Jazzfoerderpreis-geht-an-Bernhard-Hollinger;art598,2137538">http://www.donaukurier.de/nachrichten/kultur/Jazzfoerderpreis-geht-an-Bernhard-Hollinger;art598,2137538</a>
     </p>
 
-    <div><img src="gfx/bernhardhollinger.jpg" alt="" /></div>
+    <div><img src="/gfx/bernhardhollinger.jpg" alt="" /></div>
 
     <p>Und noch was gibt es zu feiern ...</p>
 
