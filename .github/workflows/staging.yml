@@ -31,9 +31,9 @@ jobs:
       - uses: actions/upload-artifact@main
         with:
           name: composer artifacts
-          path: vendor
+          path: ./vendor
   push:
-    runs-on: ubtuntu-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
@@ -45,7 +45,7 @@ jobs:
       - uses: actions/download-artifact@main
         with:
           name: composer artifacts
-          path: vendor
+          path: ./vendor
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
