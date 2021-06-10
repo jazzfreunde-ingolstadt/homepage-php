@@ -51,10 +51,10 @@ jobs:
         with:
           name: composer artifacts
           path: src/vendor
-          working-directory: src
           
       - name: Display structure of downloaded files
-        run: ls -R    
+        run: ls -R
+        working-directory: src
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
