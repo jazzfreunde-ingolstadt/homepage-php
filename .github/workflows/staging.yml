@@ -41,6 +41,11 @@ jobs:
     needs: build
     
     steps:
+      # Check out branch
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+          
       # Get built composer packages
       - uses: actions/download-artifact@main
         with:
