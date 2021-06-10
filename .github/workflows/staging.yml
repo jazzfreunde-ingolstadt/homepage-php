@@ -22,9 +22,14 @@ jobs:
         with:
           fetch-depth: 2
       
-      # Install Composer
+      # Install Composer packages
       - name: Install Composer Dependencies
         run: composer install --prefer-dist --no-progress
+        
+      - uses: actions/upload-artifact@main
+        with:
+          name: composer artifacts
+          path: vendor/  
       
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
