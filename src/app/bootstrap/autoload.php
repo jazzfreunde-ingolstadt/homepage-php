@@ -17,7 +17,7 @@ spl_autoload_register(
                 }
             }
         }
-        $full_path = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, "{$full_path}/{$class}.php");
+        $full_path = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, "{$full_path}/{$class}.class.php");
 
         if (!file_exists($full_path))
             throw new AutoloaderException("Unable to locate include path for requestet class \\{$namespace_class}. Expected in {$full_path}");
