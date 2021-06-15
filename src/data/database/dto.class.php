@@ -4,7 +4,7 @@ namespace Jazzfreunde\Database;
 
 abstract class DTO
 {
-    function __construct(array|null $named_list_values = null)
+    public function __construct(array|null $named_list_values = null)
     {
         if ($named_list_values)
             array_walk($named_list_values, function (mixed $value, string $key, DTO $self_reference) {

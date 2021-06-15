@@ -12,7 +12,7 @@ interface UpdateTaskCollection
 
 final class Migration
 {
-    function __construct(private Generator $registered_models)
+    public function __construct(private Generator $registered_models)
     {
     }
 
