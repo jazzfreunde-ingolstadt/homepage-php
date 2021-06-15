@@ -22,7 +22,7 @@ final class Connection
             $credentials->password
         );
         $this->conn->exec("set names utf8");
-        $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
+        $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
