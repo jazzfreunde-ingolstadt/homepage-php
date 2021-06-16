@@ -22,7 +22,7 @@ spl_autoload_register(
         if (!file_exists($full_path))
             throw new AutoloaderException("Unable to locate include path for requestet class \\{$namespace_class}. Expected in {$full_path}");
 
-        include_once($full_path);
+        include_once $full_path;
     }
 );
 

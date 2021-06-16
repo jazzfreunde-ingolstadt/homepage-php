@@ -3,7 +3,7 @@ if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "bilder");
 define("TITLE", "Bilder");
 
-include_once(__DIR__ . "/../inc/environment.php");
+include_once __DIR__ . "/../inc/environment.php";
 
 function toc()
 {
@@ -208,7 +208,7 @@ function picview($folder)
 }
 
 
-include_once(__DIR__ . "/../data/bilder.php");
+include_once __DIR__ . "/../data/bilder.php";
 
 head();
 before();

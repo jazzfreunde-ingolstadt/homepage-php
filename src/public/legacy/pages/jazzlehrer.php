@@ -3,7 +3,7 @@ if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "jazzlehrer");
 define("TITLE", "Verzeichnis der Jazzlehrer");
 
-include_once(__DIR__ . "/../inc/environment.php");
+include_once __DIR__ . "/../inc/environment.php";
 
 head();
 before("autoload_jazzlehrer()");

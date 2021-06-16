@@ -3,7 +3,7 @@
   define("PAGE", "ueberuns");
   define("TITLE", "Datenerhebung und Datenschutz");
   
-  include_once(__DIR__ . "/../inc/environment.php");
+  include_once __DIR__ . "/../inc/environment.php";
   
   head();
   before();

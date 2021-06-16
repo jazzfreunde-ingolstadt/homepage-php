@@ -3,8 +3,8 @@ if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "beitritt");
 define("TITLE", "Mitglied werden");
 
-include_once(__DIR__ . "/../inc/environment.php");
-include_once(__DIR__ . "/../inc/post.php");
+include_once __DIR__ . "/../inc/environment.php";
+include_once __DIR__ . "/../inc/post.php";
 
 ACCEPT_POST();
 

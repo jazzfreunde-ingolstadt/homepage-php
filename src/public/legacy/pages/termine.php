@@ -3,7 +3,7 @@ if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "termine");
 define("TITLE", "Veranstaltungen");
 
-include_once(__DIR__ . "/../inc/environment.php");
+include_once __DIR__ . "/../inc/environment.php";
 
 define("ARCTIME", 120 * DAY);
 
@@ -246,7 +246,7 @@ function writeVAhead()
 <h1>Veranstaltungskalender</h1>
 
 <?php
-include(__DIR__ . "/../data/termine.php");
+include __DIR__ . "/../data/termine.php";
 
 writeVAs();
 ?>

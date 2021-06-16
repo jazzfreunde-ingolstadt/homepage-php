@@ -3,7 +3,7 @@
   define("PAGE", "admin");
   define("TITLE", "Administration");
   
-  include_once(__DIR__ . "/../inc/environment.php");
+  include_once __DIR__ . "/../inc/environment.php";
   
   define("XWD", "jfi-timestamp");
   
@@ -352,7 +352,7 @@
   
     define("TICKER", tickerline);
     
-    @ include(__DIR__ . "/../inc/ticker.php");
+    @ include __DIR__ . "/../inc/ticker.php";
     
     function flag($id, $flagarray, $flagtype)
     {
@@ -460,7 +460,7 @@
     
     if (($_POST["settime"] != "" || $_POST["sendadmindata"]) && !defined("ERROR")) define("MESSAGE", "Der Zeitstempel und die Tickerdaten wurden gesetzt.");
     
-    @include(__DIR__ . "/../inc/lock.php");
+    @include __DIR__ . "/../inc/lock.php";
   
     if (!defined("UNLOCKTIME")) define("UNLOCKTIME", -1);
   

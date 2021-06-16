@@ -14,8 +14,8 @@ $ns_mapping = function () {
 
 set_include_path(realpath(__DIR__ . '/../'));
 
-require(get_include_path() . '/vendor/autoload.php');
-require(get_include_path() . '/app/bootstrap/autoload.php');
+require get_include_path() . '/vendor/autoload.php';
+require get_include_path() . '/app/bootstrap/autoload.php';
 
 $dotenv = new Symfony\Component\Dotenv\Dotenv();
 $dotenv->load(get_include_path() . '/../.env');
