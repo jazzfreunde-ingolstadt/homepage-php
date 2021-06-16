@@ -22,6 +22,11 @@ AddDefaultCharset utf-8
     RewriteCond pages/%1.php -F
     RewriteRule ^(.*)$ index.php [QSA,END]
 
+    # Funnel api requests to index and try to serve content:
+    RewriteCond %{REQUEST_URI} /(.+)/$
+    #RewriteCond api/%1.php -F
+    RewriteRule ^(.*)$ api/index.php [QSA,END]
+
     # Rewrite requested resources from legacy pages:
     RewriteCond %{REQUEST_URI} /(.+?)/$
     RewriteCond legacy/pages/%1.php -F

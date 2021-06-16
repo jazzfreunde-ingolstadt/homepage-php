@@ -4,8 +4,6 @@ use Jazzfreunde\App\DTOs\Termin;
 use Jazzfreunde\App\Models\TermineModel;
 use Jazzfreunde\Structures\DateTimeSQL;
 
-$app = include_once('../../app.php');
-
 function sessionCount()
 {
     static $count;
@@ -230,8 +228,8 @@ function setVA($wannd, $wannt, $was, $wo, $imgid = null, $videolink = null, $sty
     $termin_model->new(
         new Termin(
             [
-                'titel' => $was['titel'],
-                'subtitel' => $was['subtitel'],
+                'titel' => utf8_encode($was['titel']),
+                'subtitel' => utf8_encode($was['subtitel']),
                 'start' => $DateTimeSQL_start,
                 'end' => $DateTimeSQL_end,
                 'ort' => $wo,
@@ -251,7 +249,7 @@ try {
 ?>
     <ol>
         <?php
-        require('../termine.php');
+        require get_include_path() . '/public/legacy/data/termine.php';
         ?>
     </ol>
 <?php

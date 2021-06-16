@@ -4,7 +4,7 @@ use \Jazzfreunde\App\Models;
 use \Jazzfreunde\App\DTOs\Termin;
 
 $event_item = function (Termin $event) {
-    
+
     $start = new DateTime($event->start)
 ?>
     <tr>
