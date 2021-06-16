@@ -31,6 +31,7 @@ $app->UseDatabaseContext(
         )
     )
 );
+$app->ComponentRoot(get_include_path() . '/app/components');
 
 $registered_models = function (): \Generator {
     yield from Models\TermineModel::TasksToRun();
