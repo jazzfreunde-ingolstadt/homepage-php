@@ -35,7 +35,7 @@ final class App
         $this->component_loader->SetComponentRoot($directory);
     }
 
-    public function include string $filepath: \Closure|array
+    public function Include(string $filepath): \Closure|array
     {
         $components = $this->component_loader->Load($filepath);
         return $this->component_loader->AddContext($components, $this);
