@@ -3,12 +3,12 @@
     "dockerComposeFile": "./docker-compose.yml",
     "service": "apache-server",
     "settings": {
-      "terminal.integrated.shell.linux": "/bin/bash",
       "git.path": "/usr/bin/git"
 	},
 	"extensions": [
 		"felixfbecker.php-debug",
-		"bmewburn.vscode-intelephense-client"
+		"bmewburn.vscode-intelephense-client",
+		"valeryanm.vscode-phpsab"
 	],
   "workspaceFolder": "/usr/project"
   }

@@ -4,7 +4,12 @@ EXPOSE 80
 RUN apt-get update && \
     apt-get upgrade -y
 RUN apt-get install -y git
-RUN apt-get install -y nodejs
+
+# Install nvm with node and npm
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.38.0/install.sh | bash
+SHELL ["/bin/bash", "--login", "-c"]
+
+RUN nvm install 14
 
 # apache
 RUN pecl install -f xdebug \
