@@ -25,7 +25,7 @@ jobs:
       
       # Install Composer packages
       - name: Install Composer Dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress --no-dev
         
       # Store vendor packages
       - uses: actions/upload-artifact@main
