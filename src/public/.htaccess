@@ -4,6 +4,8 @@ AddDefaultCharset utf-8
     RewriteEngine On
     RewriteBase "/"
 
+    #ErrorDocument 404 /404 # No trailing slash to redirect
+
     # RewriteCond %{HTTPS} off [OR]
     # RewriteCond %{HTTP_HOST} ^www\. [NC]
     # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=302]
@@ -17,24 +19,24 @@ AddDefaultCharset utf-8
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(([^/]+/)*([^/.]+))\.php[\ ?]
 	RewriteRule \.php$ /%1/ [R=302,QSA,NC,L]
 
-    # Funnel page requests to index and try to serve content:
-    RewriteCond %{REQUEST_URI} /(.+?)/$
-    RewriteCond pages/%1.php -F
-    RewriteRule ^(.*)$ index.php [QSA,END]
-
     # Funnel api requests to index and try to serve content:
-    RewriteCond %{REQUEST_URI} /(.+)/$
-    #RewriteCond api/%1.php -F
-    RewriteRule ^(.*)$ api/index.php [QSA,END]
+    RewriteCond %{REQUEST_URI} /api/(.*)/$
+    RewriteCond %{DOCUMENT_ROOT}/api/%1.php -f
+    RewriteRule . api/index.php [QSA,END]
+
+    # Funnel page requests to index and try to serve content:
+    RewriteCond %{REQUEST_URI} ^/(.*)/$
+    RewriteCond pages/%1.php -F
+    RewriteRule . index.php [QSA,END]
 
     # Rewrite requested resources from legacy pages:
-    RewriteCond %{REQUEST_URI} /(.+?)/$
-    RewriteCond legacy/pages/%1.php -F
+    RewriteCond %{REQUEST_URI} ^/(.*)/$
+    RewriteCond %{DOCUMENT_ROOT}/legacy/pages/%1.php -f
     RewriteRule . legacy/pages/%1.php [QSA,NS,L]
     
     # Try serving any file not found from legacy directory:
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond legacy/%{REQUEST_URI} -F
+    RewriteCond %{DOCUMENT_ROOT}/legacy/%{REQUEST_URI} -f
     RewriteRule . legacy/%{REQUEST_URI} [PT]
 </IfModule>
 
@@ -42,5 +44,3 @@ AddDefaultCharset utf-8
 	Order allow,deny
 	Deny from all
 </Files>
-
-# ErrorDocument 404 /index.php/404

@@ -1,3 +1,3 @@
 <?php
 
-die('404');
+die('Custom error 404');
