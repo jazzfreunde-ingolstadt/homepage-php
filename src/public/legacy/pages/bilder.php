@@ -19,14 +19,14 @@ function toc()
 function tocline($id, $title)
 { # CALLBACK FUNCTION
 ?>
-  <li><a href="<?= (PAGE . PAGE_ENDING) ?>?<?= PAGE ?>=<?= $id ?><?= ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>"><?= $title ?></a></li>
+  <li><a href="<?= ('/'.PAGE) ?>?<?= PAGE ?>=<?= $id ?><?= ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>"><?= $title ?></a></li>
 <?php
 }
 
 function ilink($folder, $nrfrom, $nrto = null)
 {
-  $link = "<a href=\"bilder.php?" . PAGE . "=" . $folder . "&amp;image=" . ($nrfrom) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">" . $nrfrom . "</a>";
-  if ($nrto != null) $link .= " – <a href=\"bilder.php?" . PAGE . "=" . $folder . "&amp;image=" . ($nrto) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">" . $nrto . "</a>";
+  $link = "<a href=\"/bilder?" . PAGE . "=" . $folder . "&amp;image=" . ($nrfrom) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">" . $nrfrom . "</a>";
+  if ($nrto != null) $link .= " – <a href=\"/bilder?" . PAGE . "=" . $folder . "&amp;image=" . ($nrto) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">" . $nrto . "</a>";
   return $link;
 }
 
@@ -39,7 +39,7 @@ define("IMG_THUMBDIR", "pre/"); // Muss mit '/' enden, soll nicht mit '/' beginn
 define("IMG_ROOT", $_SERVER["DOCUMENT_ROOT"] . "/../../imx/"); // Muss mit '/' enden
 define("IMG_THUMBSIZE", 80);
 
-define("BACKLINK", (isset($_GET["via"]) ? $_GET["via"] . PAGE_ENDING : PAGE . PAGE_ENDING));
+define("BACKLINK", (isset($_GET["via"]) ? '/'.$_GET["via"] : '/'.PAGE ));
 
 function getpix($folder)
 { // Gibt die Bildnamen im Verzeichnis aus.
@@ -72,13 +72,13 @@ function writeNaviThumb($pid, $count, $page, $imgcnt)
   if ($page == 1) {
     $backlink = "&nbsp;";
   } else {
-    $backlink = "<a href=\"bilder.php?" . PAGE . "=" . $pid . "&amp;page=" . ($page - 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Seite " . ($page - 1) . "</a>";
+    $backlink = "<a href=\"/bilder?" . PAGE . "=" . $pid . "&amp;page=" . ($page - 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Seite " . ($page - 1) . "</a>";
   }
 
   if ($page == $count) {
     $nextlink = "&nbsp;";
   } else {
-    $nextlink = "<a href=\"bilder.php?" . PAGE . "=" . $pid . "&amp;page=" . ($page + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Seite " . ($page + 1) . "</a>";
+    $nextlink = "<a href=\"/bilder?" . PAGE . "=" . $pid . "&amp;page=" . ($page + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Seite " . ($page + 1) . "</a>";
   }
 
   $pagename = $imgcnt . " Bild" . ($imgcnt == 1 ? "" : "er");
@@ -102,18 +102,18 @@ function writeNaviPic($pid, $imgcnt, $img, $basepage, $toplink = false)
 {
   $img++;
   if ($img == 1) {
-    $backlink = "<a href=\"bilder.php?" . PAGE . "=" . $pid . "&amp;image=" . ($imgcnt) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Zum letzten Bild</a>";
+    $backlink = "<a href=\"/bilder?" . PAGE . "=" . $pid . "&amp;image=" . ($imgcnt) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Zum letzten Bild</a>";
   } else {
-    $backlink = "<a href=\"bilder.php?" . PAGE . "=" . $pid . "&amp;image=" . ($img - 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Vorheriges Bild</a>";
+    $backlink = "<a href=\"/bilder?" . PAGE . "=" . $pid . "&amp;image=" . ($img - 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Vorheriges Bild</a>";
   }
 
   if ($img == $imgcnt) {
-    $nextlink = "<a href=\"bilder.php?" . PAGE . "=" . $pid . "&amp;image=" . (1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Zum ersten Bild</a>";
+    $nextlink = "<a href=\"/bilder?" . PAGE . "=" . $pid . "&amp;image=" . (1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Zum ersten Bild</a>";
   } else {
-    $nextlink = "<a href=\"bilder.php?" . PAGE . "=" . $pid . "&amp;image=" . ($img + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Nächstes Bild</a>";
+    $nextlink = "<a href=\"/bilder?" . PAGE . "=" . $pid . "&amp;image=" . ($img + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Nächstes Bild</a>";
   }
 
-  $pagename = ($toplink ? "<a href=\"bilder.php?" . PAGE . "=" . $pid . "&amp;page=" . $basepage . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Zur Übersicht</a>" : "Bild " . $img . " von " . $imgcnt);
+  $pagename = ($toplink ? "<a href=\"/bilder?" . PAGE . "=" . $pid . "&amp;page=" . $basepage . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") . "\">Zur Übersicht</a>" : "Bild " . $img . " von " . $imgcnt);
 ?>
 
   <table class="navitable" border="0" cellspacing="0" cellpadding="4" width="100%">

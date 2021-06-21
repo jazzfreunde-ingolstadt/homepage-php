@@ -88,7 +88,7 @@ function write_lehrer($name, $instrument, $musikschule, $telefon, $email = null,
 	</tfoot>
 </table>
 
-<!--p>Auch Jazzlehrer in der Region, aber nicht in der Liste? Einfach eine Mail mit den Daten an <a href="kontakt.php?to=aichner">Robert Aichner</a> senden. Bitte auch die Adresse mitgeben, diese wird jedoch nicht auf der Homepage veröffentlicht und dient zur direkten Kontaktaufnahme durch den Verein.</p-->
+<!--p>Auch Jazzlehrer in der Region, aber nicht in der Liste? Einfach eine Mail mit den Daten an <a href="/kontakt?to=aichner">Robert Aichner</a> senden. Bitte auch die Adresse mitgeben, diese wird jedoch nicht auf der Homepage veröffentlicht und dient zur direkten Kontaktaufnahme durch den Verein.</p-->
 
 
 <?php

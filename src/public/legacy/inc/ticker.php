@@ -114,7 +114,7 @@ Reimund Domke
   tickerline("Die [[dox/homepage2011jhv.pdf|Präsentation]] zur Homepage der Jahreshauptversammlung 2011 gibt es auch [[dox/homepage2011jhv.pdf|online]].", 1298731055, 2);
   tickerline("Neu – Das [[jazzlehrer.php|Jazzlehrerverzeichnis]] der Region ist online!
 
-Weitere Jazzlehrer für das Verzeichnis sind natürlich gesucht. Wer mit in die Liste aufgenommen werden möchte, kann sich an [[kontakt.php?to=aichner|Robert Aichner]] wenden.", 1292813794, 2);
+Weitere Jazzlehrer für das Verzeichnis sind natürlich gesucht. Wer mit in die Liste aufgenommen werden möchte, kann sich an [[/kontakt?to=aichner|Robert Aichner]] wenden.", 1292813794, 2);
   tickerline("Liebe Jazzfreundinnen und Jazzfreunde,
 
 Die Jazztage 2010 sind Vergangenheit, dennoch gilt auch hier der Spruch – nach den Jazztagen ist vor den Jazztagen –

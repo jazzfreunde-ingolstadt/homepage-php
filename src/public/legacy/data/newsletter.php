@@ -33,8 +33,8 @@ if (false) {
     <hr />
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde:</p>
-    <p class="emboss red">Bigband Matinee: <a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1</a></p>
-    <p class="emboss red">Bigband Matinee: <a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1</a></p>
+    <p class="emboss red">Bigband Matinee: <a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1</a></p>
+    <p class="emboss red">Bigband Matinee: <a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1</a></p>
 
     <hr />
 
@@ -562,7 +562,7 @@ if (false) {
     <hr />
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde:</p>
-    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1</a></p>
+    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1</a></p>
 
     <hr />
 
@@ -1091,7 +1091,7 @@ if (false) {
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde:</p>
     <p class="red">Jam Session vom 28. Februar 2010</p>
-    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=JS_20100228&amp;page=1">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=JS_20100228&amp;page=1</a></p>
+    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=JS_20100228&amp;page=1">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=JS_20100228&amp;page=1</a></p>
 
     <hr />
 
@@ -1314,7 +1314,7 @@ if (false) {
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde:</p>
     <p class="red">Christmas Session vom 20.12.2010!</p>
-    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php">http://www.jazzfreunde-ingolstadt.de/bilder.php</a></p>
+    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de/bilder">http://www.jazzfreunde-ingolstadt.de/bilder</a></p>
 
     <hr />
 
@@ -1573,7 +1573,7 @@ if (false) {
     <hr />
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde (Jede Menge von den Jazztagen!):</p>
-    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php">http://www.jazzfreunde-ingolstadt.de/bilder.php</a></p>
+    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de/bilder">http://www.jazzfreunde-ingolstadt.de/bilder</a></p>
 
     <hr />
 
@@ -1825,7 +1825,7 @@ if (false) {
       <li>Jazztage Eröffnung mit Jazzförderpreisträger Hollinger</li>
       <li>Jazz for kids: “Hoppel Hoppel Rhythm Club” in der Fronte</li>
     </ul>
-    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php">http://www.jazzfreunde-ingolstadt.de/bilder.php</a></p>
+    <p class="emboss red"><a href="http://www.jazzfreunde-ingolstadt.de/bilder">http://www.jazzfreunde-ingolstadt.de/bilder</a></p>
 
     <hr />
 
@@ -2406,7 +2406,7 @@ if (false) {
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde: 4. Summer Jazz Open Air</p>
 
-    <p><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=Sommerjazz2009">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1</a></p>
+    <p><a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=Sommerjazz2009">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1</a></p>
 
     <p class="emboss" style="color:#008000">IN-TV-Bericht dazu unter</p>
 
@@ -2666,7 +2666,7 @@ if (false) {
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde: 7. Jam Session am 24. Mai 09</p>
 
-    <p><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=JS_20090524">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1</a></p>
+    <p><a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=JS_20090524">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1</a></p>
 
     <hr />
 
@@ -2792,7 +2792,7 @@ if (false) {
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde: 7. Jam Session am 24. Mai 09</p>
 
-    <p><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=JS_20090524">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1</a></p>
+    <p><a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=JS_20090524">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1</a></p>
 
     <hr />
 
@@ -2992,7 +2992,7 @@ if (false) {
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde (= Young Jazz Player im Birdland):</p>
 
-    <p><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=Birdland_20090426&amp;via=termine">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=Birdland_20090426&amp;via=termine</a></p>
+    <p><a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=Birdland_20090426&amp;via=termine">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=Birdland_20090426&amp;via=termine</a></p>
 
     <hr />
 
@@ -3218,7 +3218,7 @@ if (false) {
 
     <p class="emboss red">Aktuelle Fotos vom Verein der Jazzfreunde (= Big Band Nacht):</p>
 
-    <p><a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=BBN1_Auftritte&amp;image=1">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=BBN1_Auftritte&amp;image=1</a></p>
+    <p><a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=BBN1_Auftritte&amp;image=1">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=BBN1_Auftritte&amp;image=1</a></p>
 
     <hr />
 
@@ -3340,7 +3340,7 @@ if (false) {
       </li>
       <li><span class="hl">4. An die 200 Fotos (perfekt wie immer erstellt von Christian Pacher und Anton Knoblach!)</span>
         <ul>
-          <li>auf der Homepage der Jazzfreunde: <a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=BBN1_Auftritte&amp;image=1">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=BBN1_Auftritte&amp;image=1</a></li>
+          <li>auf der Homepage der Jazzfreunde: <a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=BBN1_Auftritte&amp;image=1">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=BBN1_Auftritte&amp;image=1</a></li>
           <li>Bilder des DK unter <a href="http://www.donaukurier.de/bivi/bilder/bilduebersicht/cme131690,0.html?SORT=PRIO">http://www.donaukurier.de/bivi/bilder/bilduebersicht/cme131690,0.html?SORT=PRIO</a></li>
         </ul>
       </li>
@@ -4161,7 +4161,7 @@ if (false) {
       <li>Jan Rottau und seinem Team für unglaubliche Jazztage im Jubiläumsjahr! Der liebste Festivalleiter!</li>
       <li>Stefan Wild für die vielen “wilden” Ideen und die unglaublich motivierende Art. Immer voller Energie in unserem Stammhaus, dem Rappensberger!</li>
       <li>Uli Spranger für die zuverlässige Kontrolle unserer Finanzen und die Übernahme des Briefverkehrs</li>
-      <li>Christian Pacher für manche Meisterwerke der Fotographie (aktuell zu besichtigen unter <a href="http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1">http://www.jazzfreunde-ingolstadt.de/bilder.php?bilder=1</a>)</li>
+      <li>Christian Pacher für manche Meisterwerke der Fotographie (aktuell zu besichtigen unter <a href="http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1">http://www.jazzfreunde-ingolstadt.de//bilder?bilder=1</a>)</li>
       <li>Nikolaj Rimsky-Korsakow, unser bester Mann im Musikgeschäft, stets dabei mit Technik und Equipment und mit dem schönsten Garten zum Grillen :)</li>
       <li>Oliver Angermüller von monophonics, immer on the road im Namen der Tontechnik (Wann schläft der Mann eigentlich??)</li>
       <li>Franz Werthmann für den stets reibungslosen Ablauf der Konzerte im Diagonal. Worauf man sich verlassen kann!</li>

@@ -184,7 +184,7 @@
 <h1>Kontaktformular</h1>
 
 <h2><?= NAME ?></h2>
-<form id="kontaktform" name="kontakt" action="kontakt.php?to=<?= $_GET["to"] ?>" method="post">
+<form id="kontaktform" name="kontakt" action="/kontakt?to=<?= $_GET["to"] ?>" method="post">
   <table id="mailtable" border="0" cellpadding="4" cellspacing="0" align="center">
     <tr>
       <td>An:<br /><?= MAILHTML ?></th>

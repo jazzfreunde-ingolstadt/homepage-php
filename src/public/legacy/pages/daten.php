@@ -34,13 +34,13 @@
 <p>Bei uns werden im Moment keine IP-Adressen gespeichert. Dennoch behalten wir uns vor, die vollständigen IP-Adressen von (befugten und unbefugten) Zugriffen und Zugriffsversuchen auf zugriffsbeschränkte Bereiche (z.&nbsp;B. Administration) sowie von fehlgeschlagenen Versuchen, Nachrichten zu übermitteln<!-- oder sich interaktiv an der Homepage zu beteiligen-->, zusammen mit dem Zeitstempel und ggf. dem übermittelten Inhalt in einer Datenbank zu speichern, um besser Gegenmaßnahmen einleiten zu können. Sollte eine solche Datenbank eingerichtet werden, werden Sie hier genauer darüber informiert, bis jetzt ist jedoch noch nichts konkretes in Planung und auch noch kein Bedarf dafür vorhanden.</p>
 
 <h2>Daten außerhalb der Internetpräsenz</h2>
-<p>Um Auskunft über den Umgang mit Ihren Daten im Verein außerhalb der Internetpräsenz zu erhalten, können Sie sich gerne per E-Mail an den <a href="kontakt.php?to=wewer" title="Kontaktformular">ersten Vorsitzenden</a> des Vereins wenden. Dort bekommen Sie im Detail Auskunft über die Speicherung und Verwendung der Daten. Allgemein werden die Daten nach geltendem deutschen Recht, der Vereinssatzung und der guten Sitte behandelt. (Somit ist beispielsweise ein Verkauf Ihrer persönlichen Daten definitiv ausgeschlossen, da dies mit den Zielen des Vereins nicht vereinbar wäre.)</p>
+<p>Um Auskunft über den Umgang mit Ihren Daten im Verein außerhalb der Internetpräsenz zu erhalten, können Sie sich gerne per E-Mail an den <a href="/kontakt?to=wewer" title="Kontaktformular">ersten Vorsitzenden</a> des Vereins wenden. Dort bekommen Sie im Detail Auskunft über die Speicherung und Verwendung der Daten. Allgemein werden die Daten nach geltendem deutschen Recht, der Vereinssatzung und der guten Sitte behandelt. (Somit ist beispielsweise ein Verkauf Ihrer persönlichen Daten definitiv ausgeschlossen, da dies mit den Zielen des Vereins nicht vereinbar wäre.)</p>
 
 <h2>Weitergabe von Daten</h2>
 <p>Gesetzlich sind wir dazu verpflichtet, unter bestimmten Bedingungen in laufenden Strafverfahren auf Anfrage Daten an die Ermittlungsbehörden zu übermitteln. Dies betrifft allerdings nur einzelne Daten, die mit der Straftat zu tun haben. Ansonsten werden von uns keinerlei Daten an Dritte weitergegeben.</p>
 
 <h2>Informationen im Detail</h2>
-<p>Sollten diese Informationen zur Datenerhebung und zum Datenschutz noch Fragen offen lassen, wird Ihnen der <a href="kontakt.php?to=mayer" title="Kontaktformular">Webmaster</a> des Internetauftrittes auf Nachfrage gerne weitere Informationen geben.</p>
+<p>Sollten diese Informationen zur Datenerhebung und zum Datenschutz noch Fragen offen lassen, wird Ihnen der <a href="/kontakt?to=mayer" title="Kontaktformular">Webmaster</a> des Internetauftrittes auf Nachfrage gerne weitere Informationen geben.</p>
 
 <div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
