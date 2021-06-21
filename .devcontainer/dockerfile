@@ -5,11 +5,11 @@ RUN apt-get update && \
     apt-get upgrade -y
 RUN apt-get install -y git
 
-# Install nvm with node and npm
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.38.0/install.sh | bash
+# Install Node and npm
 SHELL ["/bin/bash", "--login", "-c"]
-
-RUN nvm install 14
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
+RUN nvm install v14
+RUN nvm alias default v14
 
 # apache
 RUN pecl install -f xdebug \
