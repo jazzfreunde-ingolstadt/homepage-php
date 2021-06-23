@@ -5,17 +5,7 @@
 		}
 	],
 	"settings": {
-		"phpsab.composerJsonPath": "src/vendor/composer.json",
-		"phpsab.executablePathCBF": "src/vendor/bin/phpcbf",
-		"phpsab.executablePathCS": "src/vendor/bin/phpcs",
-		"phpsab.debug": true,
-		"phpsab.standard": "src/vendor/escapestudios/symfony2-coding-standard/Symfony,src/vendor/pheromone/phpcs-security-audit/Security"
-	},
-	"extensions": {
-		"recommendations": [
-			"felixfbecker.php-debug",
-			"bmewburn.vscode-intelephense-client",
-			"valeryanm.vscode-phpsab"
-		]
+		"phpsab.snifferMode": "onType",
+		"phpsab.snifferTypeDelay": 250,
 	}
 }

@@ -1,0 +1,12 @@
+{
+    "phpsab.composerJsonPath": "src/vendor/composer.json",
+    "phpsab.executablePathCBF": "src/vendor/bin/phpcbf",
+    "phpsab.executablePathCS": "src/vendor/bin/phpcs",
+    "phpsab.standard": "src/vendor/escapestudios/symfony2-coding-standard/Symfony,src/vendor/pheromone/phpcs-security-audit/Security",
+    "phpsab.snifferArguments": [
+        "--ignore=src/legacy/*"
+    ],
+    "phpsab.fixerArguments": [
+        "--ignore=src/legacy/*"
+    ]
+}
