@@ -2,8 +2,8 @@
 define("PAGE", "termine");
 define("TITLE", "Veranstaltungen");
 
-include_once __DIR__ . "/../legacy/inc/environment.php";
-$termine_list = $app->Include('termine_list');
+include_once __DIR__."/../legacy/inc/environment.php";
+$termineList = $app->Include('termine_list');
 
 head();
 before();
@@ -12,7 +12,6 @@ before();
 <h1>Veranstaltungskalenderer</h1>
 <?php
 
-$termine_list();
+$termineList();
 
 after();
-?>
