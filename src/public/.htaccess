@@ -4,7 +4,8 @@ AddDefaultCharset utf-8
     RewriteEngine On
     RewriteBase "/"
 
-    #ErrorDocument 404 /404 # No trailing slash to redirect
+    # No trailing slash to redirect
+    ErrorDocument 404 /404
 
     # RewriteCond %{HTTPS} off [OR]
     # RewriteCond %{HTTP_HOST} ^www\. [NC]
