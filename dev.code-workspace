@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../../etc/apache2/sites-available"
+		},
+		{
+			"path": "../../var/log"
 		}
 	],
 	"settings": {

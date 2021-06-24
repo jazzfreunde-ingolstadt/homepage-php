@@ -34,8 +34,3 @@ AddDefaultCharset utf-8
     RewriteCond legacy/%{REQUEST_URI} -F
     RewriteRule . legacy/%{REQUEST_URI} [PT]
 </IfModule>
-
-<Files .htaccess>
-	Order allow,deny
-	Deny from all
-</Files>
