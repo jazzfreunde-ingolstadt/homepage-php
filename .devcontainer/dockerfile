@@ -4,6 +4,8 @@ EXPOSE 80
 RUN apt-get update && \
     apt-get upgrade -y
 RUN apt-get install -y git
+RUN apt-get install -y openssh-client
+RUN apt-get install -y sudo
 
 # Install Node and npm
 SHELL ["/bin/bash", "--login", "-c"]
@@ -21,6 +23,10 @@ RUN docker-php-ext-install -j$(nproc) mysqli
 RUN docker-php-ext-install -j$(nproc) pdo
 RUN docker-php-ext-install -j$(nproc) pdo_mysql
 RUN docker-php-ext-install -j$(nproc) zip
+RUN apt-get install libldap2-dev -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+    && docker-php-ext-install -j$(nproc) ldap
 
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
@@ -31,10 +37,6 @@ RUN a2enmod expires
 RUN apachectl restart
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# user/ssh
-RUN apt-get install -y openssh-client
-RUN apt-get install -y sudo
 
 RUN adduser --disabled-password -gecos '' docker
 RUN adduser docker sudo
