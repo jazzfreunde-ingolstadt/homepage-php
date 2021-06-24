@@ -6,9 +6,10 @@
       "git.path": "/usr/bin/git"
 	},
 	"extensions": [
-		"felixfbecker.php-debug",
-		"bmewburn.vscode-intelephense-client",
-		"valeryanm.vscode-phpsab"
+    "felixfbecker.php-debug",
+    "bmewburn.vscode-intelephense-client",
+    "ikappas.phpcs",
+    "valeryanm.vscode-phpsab"
 	],
   "workspaceFolder": "/usr/project"
   }
