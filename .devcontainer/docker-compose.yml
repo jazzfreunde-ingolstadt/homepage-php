@@ -10,7 +10,8 @@ services:
             XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000 remote_enable=1
             APACHE_DOCUMENT_ROOT: /usr/project/src/public
         ports:
-            - "8080:80"
+            - "80:80"
+            - "443:443"
         volumes:
             - ../:/usr/project/
         secrets:
