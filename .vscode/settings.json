@@ -1,7 +1,7 @@
 {
     "phpcs.composerJsonPath": "src/vendor/composer.json",
     "phpcs.ignorePatterns": [
-        "src/legacy/*"
+        "src/public/legacy/*"
     ],
     "phpcs.executablePath": "src/vendor/bin/phpcs",
     "phpcs.showSources": true,
@@ -14,7 +14,7 @@
     "phpsab.executablePathCBF": "src/vendor/bin/phpcbf",
     "phpsab.standard": "src/vendor/escapestudios/symfony2-coding-standard/Symfony,src/vendor/pheromone/phpcs-security-audit/Security",
     "phpsab.fixerArguments": [
-        "--ignore=src/legacy/*"
+        "--ignore=src/public/legacy/*"
     ],
     "[php]": {
         "editor.defaultFormatter": "valeryanm.vscode-phpsab"
