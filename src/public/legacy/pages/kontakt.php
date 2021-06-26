@@ -41,7 +41,7 @@
   );
   
   $MAILS = array(
-    "mayer" => "miche.mayer@outlook.de",
+    "mayer" => "mayer@jazzfreunde-ingolstadt.de",
     "hoepp" => "jazzfreunde-ingolstadt@hoeppymedien.de",
     "domke" => "domke@jazzfreunde-ingolstadt.de",
     "pacher" => "pacher@jazzfreunde-ingolstadt.de",
@@ -49,10 +49,9 @@
     "reitberger" => "reitberger@jazzfreunde-ingolstadt.de",
     "aichner" => "aichner@jazzfreunde-ingolstadt.de",
     "wild" => "wild@jazzfreunde-ingolstadt.de",
-    "wewer"=> "wewer@jazzfreunde-ingolstadt.de",
+    "wewer" => "wewer@jazzfreunde-ingolstadt.de",
     "diewock" => "diewock@jazzfreunde-ingolstadt.de",
     "bleckmann" => "bleckmann@jazzfreunde-ingolstadt.de",
-    "mayer" => "mayer@jazzfreunde-ingolstadt.de",
     "mittnacht" => "mittnacht@jazzfreunde-ingolstadt.de",
     "righetti" => "righetti@jazzfreunde-ingolstadt.de",
     "spranger-righetti" => "spranger-righetti@jazzfreunde-ingolstadt.de",
