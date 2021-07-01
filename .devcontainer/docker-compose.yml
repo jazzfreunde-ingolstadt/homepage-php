@@ -7,14 +7,6 @@ services:
         build:
             context: .
         environment:
-            - PHP_DISPLAY_ERRORS=1
-            - PHP_MEMORY_LIMIT=2048M
-            - PHP_MAX_EXECUTION_TIME=-1
-            - XDEBUG_MODE=develop,debug
-            - XDEBUG_START_WITH_REQUEST=yes
-            - XDEBUG_CLIENT_PORT=9003
-            - XDEBUG_CLIENT_HOST=host.docker.internal
-            - XDEBUG_MAX_NESTING_LEVEL=1000
             - APACHE_DOCUMENT_ROOT=/usr/project/src/public
         ports:
             - "80:80"

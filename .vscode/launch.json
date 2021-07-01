@@ -8,7 +8,17 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
+            "hostname": "localhost",
             "port": 9003,
+            "log": true,
+            "ignore": [
+                "**/vendor/**/*.php"
+            ],
+            "xdebugSettings": {
+                "max_children": 10000,
+                "max_data": 10000,
+                "show_hidden": 1
+            }
         },
         {
             "name": "Launch currently open script",
@@ -17,9 +27,13 @@
             "program": "${file}",
             "cwd": "${fileDirname}",
             "port": 0,
+            "runtimeExecutable":"/usr/local/bin/php",
             "runtimeArgs": [
                 "-dxdebug.start_with_request=yes"
             ],
+            "pathMappings": {
+                "/usr/project/src/public/legacy/pages": "${workspaceFolder}/src/public/index.php"
+            },
             "env": {
                 "XDEBUG_MODE": "debug,develop",
                 "XDEBUG_CONFIG": "client_port=${port}"
