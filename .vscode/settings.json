@@ -4,8 +4,8 @@
         "src/public/legacy/*"
     ],
     "phpcs.executablePath": "src/vendor/bin/phpcs",
-    "phpcs.showSources": true,
     "phpcs.standard": "src/vendor/escapestudios/symfony2-coding-standard/Symfony,src/vendor/pheromone/phpcs-security-audit/Security",
+    "phpcs.showWarnings": true,
     "phpcbf.enable": true,
     "phpcbf.executablePath": "src/vendor/bin/phpcbf",
     "phpcbf.standard": "src/vendor/escapestudios/symfony2-coding-standard/Symfony",
@@ -18,5 +18,5 @@
     ],
     "[php]": {
         "editor.defaultFormatter": "valeryanm.vscode-phpsab"
-      }
+    }
 }
