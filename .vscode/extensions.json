@@ -3,6 +3,10 @@
         "felixfbecker.php-debug",
         "bmewburn.vscode-intelephense-client",
         "ikappas.phpcs",
-        "valeryanm.vscode-phpsab"
+        "valeryanm.vscode-phpsab",
+        "mtxr.sqltools",
+        "clarkyu.vscode-sql-beautify",
+        "mtxr.sqltools-driver-mysql",
+        "neilbrayfield.php-docblocker"
     ]
 }

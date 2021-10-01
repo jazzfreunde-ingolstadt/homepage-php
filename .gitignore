@@ -1,8 +1,6 @@
-.env
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 !.vscode/launch.json
-logs/*
 *.code-workspace
 !default.code-workspace

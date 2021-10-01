@@ -2,11 +2,12 @@
 
 use \Jazzfreunde\App\Models;
 use \Jazzfreunde\App\DTOs\Termin;
+use Jazzfreunde\Database;
 
 $event_item = function (Termin $event) {
 
     $start = new DateTime($event->start)
-?>
+    ?>
     <tr>
         <td>
             <small class="wochentag"><?= $start->Format('l') ?></small><br />
@@ -25,8 +26,13 @@ $event_item = function (Termin $event) {
             <?= $event->ort ?>
         </td>
     </tr>
-<?php
+    <?php
 };
+
+final class TermineFilter extends Database\Filter
+{
+    use Database\Pagination;
+}
 
 $event_calender = function () use ($event_item) {
     try {
@@ -38,7 +44,7 @@ $event_calender = function () use ($event_item) {
         $events = [];
     }
 
-?>
+    ?>
     <h2>Kommende Veranstaltungen</h2>
     <table class="termine" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
         <thead>
@@ -57,7 +63,7 @@ $event_calender = function () use ($event_item) {
             ?>
         </tbody>
     </table>
-<?php
+    <?php
 };
 
 return $event_calender;

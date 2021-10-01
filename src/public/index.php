@@ -1,11 +1,9 @@
 <?php
 
-$app = require __DIR__.'/../app/startup.php';
+use Jazzfreunde\App\Kernel;
 
-if (!preg_match('/^\/(.+?)(?:\/)?$/', $_SERVER['REQUEST_URI'], $route)) {
-    include __DIR__."/legacy/pages/index.php";
-} elseif (file_exists(__DIR__."/pages/{$route[1]}.php")) {
-    include __DIR__."/pages/{$route[1]}.php";
-} else {
-    include 'pages/404.php';
-}
+require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
+
+return function (array $context) {
+    return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
+};

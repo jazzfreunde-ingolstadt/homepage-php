@@ -5,11 +5,6 @@ namespace Jazzfreunde\Database;
 use Exception;
 use Generator;
 
-interface UpdateTaskCollection
-{
-    static function TasksToRun(): Generator;
-}
-
 final class Migration
 {
     public function __construct(private Generator $registered_models)

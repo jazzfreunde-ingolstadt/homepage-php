@@ -1,0 +1,6 @@
+index:
+   path: /
+   controller: Jazzfreunde\App\Controller\LegacyContentController::indexAction
+termine:
+   path: termine/
+   controller: Jazzfreunde\App\Controller\TermineController::indexAction

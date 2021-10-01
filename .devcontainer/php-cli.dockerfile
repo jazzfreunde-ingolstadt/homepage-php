@@ -1,6 +1,4 @@
-FROM php:8.0-apache
-EXPOSE 80
-EXPOSE 443
+FROM php:8.0-cli
 
 RUN apt-get update && \
     apt-get upgrade -y
@@ -8,12 +6,6 @@ RUN apt-get install -y git
 RUN apt-get install -y openssh-client
 RUN apt-get install -y sudo
 RUN apt-get install -y vim
-
-# Install Node and npm
-SHELL ["/bin/bash", "--login", "-c"]
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
-RUN nvm install v14
-RUN nvm alias default v14
 
 # php extensions
 RUN pecl install xdebug && docker-php-ext-enable xdebug
@@ -30,20 +22,11 @@ RUN apt-get install libldap2-dev -y \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-install -j$(nproc) ldap
 
-# apache
-COPY ./apache/localhost.conf /etc/apache2/sites-available/localhost.conf
-COPY ./apache/localhost.crt /etc/apache2/conf-enabled/localhost.crt
-COPY ./apache/localhost.key /etc/apache2/conf-enabled/localhost.key
-COPY ./xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
-RUN a2dissite 000-default.conf
-RUN a2ensite localhost
-
-RUN a2enmod rewrite
-RUN a2enmod expires
-RUN a2enmod ssl
-
-RUN apachectl restart
+# Install Node and npm
+SHELL ["/bin/bash", "--login", "-c"]
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
+RUN nvm install v14
+RUN nvm alias default v14
 
 # composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

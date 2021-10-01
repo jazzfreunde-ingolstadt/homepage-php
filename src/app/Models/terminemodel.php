@@ -6,16 +6,11 @@ use Jazzfreunde\Database;
 use Jazzfreunde\Database\ConnectionException;
 use Jazzfreunde\App\DTOs\Termin;
 
-final class TermineFilter extends Database\Filter
-{
-    use Database\Pagination;
-}
-
 final class TermineModel extends Database\Model
 {
     const table_name = 'termine';
 
-    public function fetch(TermineFilter $filter): array
+    public function fetch(Database\Filter $filter): array
     {
         $table = self::table_name;
 

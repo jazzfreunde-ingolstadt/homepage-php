@@ -1,21 +1,30 @@
 {
-    "name": "mga-api/libs",
+    "name": "jazzfreunde-ingolstadt/php-homepage",
     "authors": [
         {
             "name": "Michael Mayer",
-            "email": "michael.mayer@adkomm.de",
-            "role": "Anwendungsentwickler"
+            "email": "miche.mayer@outlook.de",
+            "role": "Webmaster"
         }
     ],
     "require": {
+        "php": ">=7.4",
         "symfony/dotenv": "5.2.*",
         "symfony/ldap": "5.2.*",
         "symfony/orm-pack": "2.1.*",
         "symfony/deprecation-contracts": "2.2.*",
         "symfony/error-handler": "5.2.*",
         "symfony/filesystem": "5.2.*",
-        "symfony/routing": "5.2.*",
-        "symfony/browser-kit": "5.2.*"
+        "symfony/browser-kit": "5.2.*",
+        "symfony/console": "5.3.*",
+        "symfony/runtime": "5.3.*",
+        "doctrine/annotations": "^1.0",
+        "doctrine/doctrine-bundle": "^2.4",
+        "doctrine/doctrine-migrations-bundle": "^3.1",
+        "doctrine/orm": "^2.9",
+        "symfony/yaml": "5.3.*",
+        "symfony/framework-bundle": "5.3.*",
+        "michemayer/php-components": "1.0.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*",
@@ -23,9 +32,36 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
         "escapestudios/symfony2-coding-standard": "3.x-dev"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../packages/php/components"
+        }
+    ],
     "scripts": {
         "post-install-cmd": [
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard,vendor/pheromone/phpcs-security-audit"
+            "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard,vendor/pheromone/phpcs-security-audit",
+            "bin/console"
         ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "5.3.*"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Jazzfreunde\\App\\": "app/",
+            "Jazzfreunde\\Config\\": "config/",
+            "Jazzfreunde\\Database\\": "data/database/"
+        }
     }
 }
