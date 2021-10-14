@@ -7,7 +7,9 @@ services:
             context: .
             dockerfile: php-cli.dockerfile
         volumes:
-            - ../:/usr/project:rw,cached
+            - type: bind
+              source: ..
+              target: /usr/project
         secrets:
             - user_ssh_key
         extra_hosts:
@@ -28,7 +30,9 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - ../:/usr/project:rw,cached
+            - type: bind
+              source: ..
+              target: /usr/project
 
     database-server:
         container_name: jazzfreunde-mysql-database
@@ -43,7 +47,9 @@ services:
         ports:
             - 3306:3306
         volumes:
-            - mysql-data-jazzfreunde:/var/lib/mysql
+            - type: volume
+              source: mysql-data-jazzfreunde
+              target: /var/lib/mysql
 
     database-admin:
         container_name: jazzfreunde-mysql-admin
