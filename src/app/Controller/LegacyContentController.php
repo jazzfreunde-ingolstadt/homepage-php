@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Controller;
 
@@ -11,6 +11,7 @@ class LegacyContentController extends AbstractController
     public function indexAction(Kernel $kernel)
     {
         include $kernel->getProjectDir().'/public/legacy/pages/index.php';
+
         return new Response();
     }
 }

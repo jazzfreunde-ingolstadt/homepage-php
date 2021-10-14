@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Entity;
 
@@ -11,19 +11,38 @@ final class Event
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id;
-    // public ?int $series_id,
+    // private ?int $series_id,
     #[ORM\Column(type: 'string')]
-    public string $titel;
+    private string $titel;
     #[ORM\Column(type: 'string')]
-    public ?string $subtitel;
+    private ?string $subtitel;
 
     #[ORM\Column(type: 'datetime')]
-    public string $start;
+    private string $start;
     #[ORM\Column(type: 'datetime')]
-    public string $end;
+    private string $end;
     #[ORM\Column(type: 'string')]
-    public string $ort;
+    private string $ort;
     #[ORM\Column(type: 'string')]
-    public ?string $link;
-    // public ?string $thumbnail
+    private ?string $link;
+    // private ?string $thumbnail
+
+    public function __construct(
+        ?string $id,
+        string $titel,
+        string $subtitel,
+        string $start,
+        string $end,
+        string $ort,
+        string $link
+    )
+    {
+        $this->id = $id;
+        $this->titel = $titel;
+        $this->subtitel = $subtitel;
+        $this->start = $start;
+        $this->end = $end;
+        $this->ort = $ort;
+        $this->link = $link;
+    }
 }

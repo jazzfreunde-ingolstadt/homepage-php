@@ -36,10 +36,12 @@ final class TermineFilter extends Database\Filter
 
 $event_calender = function () use ($event_item) {
     try {
-        $termine = new Models\TermineModel($this->DatabaseContext());
-        $events = $termine->fetch(
-            new Models\TermineFilter()
-        );
+        // $termine = new Models\TermineModel($this->DatabaseContext());
+        // $events = $termine->fetch(
+        //     new Models\TermineFilter()
+        // );
+        $events = [];
+
     } catch (Exception $e) {
         $events = [];
     }
