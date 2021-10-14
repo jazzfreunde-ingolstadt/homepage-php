@@ -7,8 +7,9 @@
             "role": "Webmaster"
         }
     ],
+    "minimum-stability": "stable",
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "symfony/dotenv": "5.2.*",
         "symfony/ldap": "5.2.*",
         "symfony/orm-pack": "2.1.*",
