@@ -12,7 +12,9 @@
 		"valeryanm.vscode-phpsab",
 		"clarkyu.vscode-sql-beautify",
 		"mtxr.sqltools",
-		"mtxr.sqltools-driver-mysql"
+		"mtxr.sqltools-driver-mysql",
+		"neilbrayfield.php-docblocker",
+		"spmeesseman.vscode-taskexplorer"
 	],
   "workspaceFolder": "/usr/project"
   }
