@@ -28,7 +28,7 @@ final class Event
     // private ?string $thumbnail
 
     public function __construct(
-        ?string $id,
+        ?string $id = null,
         string $titel,
         string $subtitel,
         string $start,

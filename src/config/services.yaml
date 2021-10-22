@@ -11,6 +11,5 @@ services:
             - '../app/DependencyInjection/'
             - '../app/Entity/'
             - '../app/Kernel.php'
-            - '../app/bootstrap/'
             - '../app/Components/'
             - '../app/Tests/'

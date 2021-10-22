@@ -63,7 +63,6 @@
         "psr-4": {
             "Jazzfreunde\\App\\": "app/",
             "Jazzfreunde\\Config\\": "config/",
-            "Jazzfreunde\\Database\\": "data/database/"
-        }
+            "Jazzfreunde\\Database\\": "data/database/"        }
     }
 }
