@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Runtime\Bootstrap\Components\Traits;
+namespace Components\Traits;
 
 use Components\Component;
 use Components\Props\PropsWithChildren as Props;
