@@ -2,9 +2,12 @@
 
 namespace Jazzfreunde\App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Jazzfreunde\App\Structures\DateTimeSQL;
 
 // #[ORM\Entity(repositoryClass: EventRepository::class)]
+#[ORM\Entity()]
 final class Event
 {
     #[ORM\Id]
@@ -16,25 +19,24 @@ final class Event
     private string $titel;
     #[ORM\Column(type: 'string')]
     private ?string $subtitel;
-
     #[ORM\Column(type: 'datetime')]
-    private string $start;
+    private DateTimeSQL $start;
     #[ORM\Column(type: 'datetime')]
-    private string $end;
+    private DateTimeSQL $end;
     #[ORM\Column(type: 'string')]
     private string $ort;
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $link;
     // private ?string $thumbnail
 
     public function __construct(
-        ?string $id,
+        ?string $id = null,
         string $titel,
         string $subtitel,
-        string $start,
-        string $end,
+        DateTimeSQL $start,
+        DateTimeSQL $end,
         string $ort,
-        string $link
+        ?string $link
     )
     {
         $this->id = $id;
@@ -44,5 +46,16 @@ final class Event
         $this->end = $end;
         $this->ort = $ort;
         $this->link = $link;
+    }
+
+    /**
+     * Solange readonly mit 8.1 noch nicht draußen ist...
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function __get($name): mixed
+    {
+        return $this->$name;
     }
 }

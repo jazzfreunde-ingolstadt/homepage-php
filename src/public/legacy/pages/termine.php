@@ -3,7 +3,7 @@ if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "termine");
 define("TITLE", "Veranstaltungen");
 
-include_once __DIR__ . "/../inc/environment.php";
+include_once dirname(__DIR__)."/inc/environment.php";
 
 define("ARCTIME", 120 * DAY);
 
