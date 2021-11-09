@@ -21,9 +21,13 @@ RUN apt-get install libldap2-dev -y \
     && docker-php-ext-install -j$(nproc) ldap
 
 # apache
+RUN openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
+  -keyout /etc/apache2/conf-enabled/localhost.key \
+  -out /etc/apache2/conf-enabled/localhost.crt \
+  -subj "/C=DE/ST=BY/L=Ingolstadt/O=Jazzfreunde Ingolstadt e.V./CN=localhost" \
+  -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
+
 COPY ./apache/localhost.conf /etc/apache2/sites-available/localhost.conf
-COPY ./apache/localhost.crt /etc/apache2/conf-enabled/localhost.crt
-COPY ./apache/localhost.key /etc/apache2/conf-enabled/localhost.key
 COPY ./apache/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN a2dissite 000-default.conf
