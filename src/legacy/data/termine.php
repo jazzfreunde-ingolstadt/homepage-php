@@ -533,7 +533,7 @@ setVA("24.10.2014", "ganztags", "Jazz für Schulen<br /><small>mit Harald Haugaa
 setVA("24.10.2014", "19:30", "Highlight: Jan Garbarek &amp; the Hilliard Ensemble", "Liebfrauenmünster", "jazztage14/JanGarbarek", null, "jazztage"); // Jazztage 2014
 setVA("24.10.2014", "20:00", "Denise Liepold &amp; Rudi Trögl Duo", "Kotterhof, Böhmfeld");
 setVA("26.10.2014", "15:00", "<small>Jazz For Kids</small><br />The Angles - Mit Charlie um die Welt", "\"neun\" Kulturzentrum", null, null, "jazztage"); // Jazztage 2014
-setVA("27.10.2014", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Oliver Wasilesku Trio, Jason Seizer New Quartet plays Cinema Paradiso - <b class=\"red\">Bonuskonzert!</b><br /><small>Voranmeldung für Mitglieder bis 22.10.2014 per <a href=\"/kontakt?to=wewer&s=Bonuskonzert\">Mail an Karl Wewer</a></small>", "Theaterfoyer", "jazztage14/GJN", null, "jazztage"); // Jazztage 2014
+setVA("27.10.2014", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Oliver Wasilesku Trio, Jason Seizer New Quartet plays Cinema Paradiso - <b class=\"red\">Bonuskonzert!</b><br /><small>Voranmeldung für Mitglieder bis 22.10.2014 per <a href=\"/kontakt/?to=wewer&s=Bonuskonzert\">Mail an Karl Wewer</a></small>", "Theaterfoyer", "jazztage14/GJN", null, "jazztage"); // Jazztage 2014
 setVA("29.10.2014", "20:00", "Malia &amp; Band", "Diagonal");
 
 setVA("02.11.2014", "11:00", "Rudi Trögl (Solojazzgitarre)<br /><small>im Rahmen einer Vernissage von Werner Kapfer</small>", "Harderbastei");
@@ -630,7 +630,7 @@ setVA("21.10.2015", "20:00", "Julia Biel<br /><small>im Rahmen der Veranstaltung
 setVA("25.10.2015", "11:00", "Jazzbrunch<br /><small>mit Blue Moon</small>", "NH Ambassador Ingolstadt", null, null, "jazztage"); // Jazztage 2015
 setVA("25.10.2015", "16:00", "<small>Jazz for Kids:</small><br />Jazz mit Kick", "neun Kulturzentrum", null, null, "jazztage"); // Jazztage 2015
 setVA("25.10.2015", "19:30", "Highlight in der Kirche: Gasandji", "Kirche St. Augustin", "jazztage15/Gasandji", null, "jazztage"); // Jazztage 2015
-setVA("26.10.2015", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Hendrika Entzian Quartett feat. Sandra Hempel &amp; Jim Mullen Group feat. Zoe Francis - <b class=\"red\">Bonuskonzert!</b><br /><small>Voranmeldung für Mitglieder bis 26.09.2015 per <a href=\"/kontakt?to=wewer&s=Bonuskonzert+2015\">Mail an Karl Wewer</a></small>", "Theaterfoyer", null, null, "jazztage"); // Jazztage 2015
+setVA("26.10.2015", "19:30", "<small>Jazzfreunde Ingolstadt e. V. presents:</small><br />Hendrika Entzian Quartett feat. Sandra Hempel &amp; Jim Mullen Group feat. Zoe Francis - <b class=\"red\">Bonuskonzert!</b><br /><small>Voranmeldung für Mitglieder bis 26.09.2015 per <a href=\"/kontakt/?to=wewer&s=Bonuskonzert+2015\">Mail an Karl Wewer</a></small>", "Theaterfoyer", null, null, "jazztage"); // Jazztage 2015
 setVA("28.10.2015", "20:00", "Olivia Trummer<br /><small>im Rahmen der Veranstaltungsreihe \"Der Oktober ist eine Frau\"</small>", "Diagonal");
 setVA("29.10.2015", "ganztags", "Jazz für Schulen: Boogie &amp; Blues Combo Workshop<br /><small>mit Stephanie Nilles &amp; Ludwig Seuss</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2015
 setVA("30.10.2015", "ganztags", "Jazz für Schulen: Boogie &amp; Blues Combo Workshop<br /><small>mit Stephanie Nilles &amp; Ludwig Seuss</small>", "Gnadenthal- &amp; Reuchlin-Gymnasium", null, null, "jazztage"); // Jazztage 2015
