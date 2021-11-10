@@ -25,7 +25,7 @@ class AppRoutingController extends AbstractController
     #[Route('/links/', name: 'links')]
     #[Route('/kontakt/', name: 'kontakt')]
     #[Route('/daten/', name: 'daten')]
-    public function index(Kernel $kernel, Request $request): Response
+    public function legacyPages(Kernel $kernel, Request $request): Response
     {
         $routeName = $request->attributes->get('_route');
         $pageDir = $kernel->getProjectDir().'/legacy/pages';
