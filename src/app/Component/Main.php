@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Components;
+namespace Jazzfreunde\App\Component;
 
 use Components\Component;
 use Components\Traits\PropsWithChildren;
 
+/**
+ * Grundlegendes Layout der Applikation
+ */
 final class Main extends Component
 {
     use PropsWithChildren;
@@ -17,7 +20,7 @@ final class Main extends Component
         define("TITLE", "Veranstaltungen");
 
         include_once dirname(__DIR__, 2)."/legacy/inc/environment.php";
-        
+
         ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de" dir="ltr">

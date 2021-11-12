@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Components;
+namespace Jazzfreunde\App\Component;
 
 use DateTime;
 use Components\Component;

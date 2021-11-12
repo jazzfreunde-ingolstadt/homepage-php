@@ -1,15 +1,14 @@
-parameters:
-
 services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    Jazzfreunde\App\:
-        resource: '../app/'
-        exclude:
-            - '../app/DependencyInjection/'
-            - '../app/Entity/'
-            - '../app/Kernel.php'
-            - '../app/Components/'
-            - '../app/Tests/'
+    Jazzfreunde\App\Service\:
+        resource: '../app/Service/'
+
+    Jazzfreunde\App\Controller\:
+        resource: '../app/Controller/'
+
+    Jazzfreunde\App\Service\LegacyStub:
+        arguments:
+            - '%kernel.project_dir%/legacy'

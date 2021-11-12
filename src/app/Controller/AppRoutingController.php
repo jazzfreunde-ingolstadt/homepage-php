@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Controller;
 
@@ -6,13 +8,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Jazzfreunde\App\Kernel;
-use Jazzfreunde\App\Components\Main;
-use Jazzfreunde\App\Components\EventList;
+use Jazzfreunde\App\Component\Main;
+use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
+use Jazzfreunde\App\Service\LegacyStub;
 use Symfony\Component\HttpFoundation\Request;
+use Exception;
 
+/**
+ * Routing Controller für die Website
+ */
 class AppRoutingController extends AbstractController
 {
+    /**
+     * Routing für Legacy Content
+     *
+     * @param LegacyStub $legacyContent
+     * @param Request    $request
+     *
+     * @return Response
+     */
     #[Route('/', name: 'index')]
     #[Route('/ueberuns/', name: 'ueberuns')]
     #[Route('/ziele/', name: 'ziele')]
@@ -25,22 +40,26 @@ class AppRoutingController extends AbstractController
     #[Route('/links/', name: 'links')]
     #[Route('/kontakt/', name: 'kontakt')]
     #[Route('/daten/', name: 'daten')]
-    public function legacyPages(Kernel $kernel, Request $request): Response
+    public function legacyPages(LegacyStub $legacyContent, Request $request): Response
     {
-        $routeName = $request->attributes->get('_route');
-        $pageDir = $kernel->getProjectDir().'/legacy/pages';
-
-        if (!file_exists("{$pageDir}/{$routeName}.php")) {
+        try {
+            $legacyContent->include('pages/'.$request->attributes->get('_route').'.php');
+        } catch (Exception $e) {
             return new Response(status: 404);
         }
-
-        include "{$pageDir}/{$routeName}.php";
 
         return new Response();
     }
 
+    /**
+     * Routing für die Termine
+     *
+     * @param Kernel $kernel
+     *
+     * @return Response
+     */
     #[Route('/termine/', name: 'termine')]
-    public function events(Kernel $kernel)
+    public function events(Kernel $kernel): Response
     {
         return new Response(
             (string) new Main(
