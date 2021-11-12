@@ -25,7 +25,7 @@ jobs:
       
       # Install Composer packages
       - name: Install Composer Dependencies
-        run: composer install --prefer-dist --no-dev --optimize-autoloader
+        run: chmod +x bin/console && composer install --prefer-dist --no-dev --optimize-autoloader
         
       # Store vendor packages
       - uses: actions/upload-artifact@main
