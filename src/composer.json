@@ -43,7 +43,7 @@
     ],
     "scripts": {
         "post-install-cmd": [
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard,vendor/pheromone/phpcs-security-audit",
+            "[ $COMPOSER_DEV_MODE -eq 1 ] || vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard,vendor/pheromone/phpcs-security-audit",
             "bin/console"
         ]
     },
