@@ -1,5 +1,7 @@
 AddDefaultCharset utf-8
 
+ErrorDocument 404 "Oops! Da stimmt was nicht!"
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase "/"
