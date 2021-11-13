@@ -16,6 +16,7 @@ use Jazzfreunde\App\Service\LegacyStub;
 use Symfony\Component\HttpFoundation\Request;
 use Exception;
 use Jazzfreunde\App\Entity\Event;
+use Jazzfreunde\App\Model\EventRepository;
 
 /**
  * Routing Controller für die Website
@@ -59,20 +60,26 @@ class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/termine/{edit}/', name: 'termine', requirements: ['edit' => '^edit$'])]
-    public function events(string $edit = ''): Response
+    #[Route('/termine/{edit}', name: 'termine', requirements: ['edit' => '^(?:edit/?$)?'])]
+    public function events(string|null $edit = null): Response
     {
-        $events = $this->getDoctrine()
-            ->getRepository(Event::class)
-            ->findAll();
+        $eventRepository = fn(): EventRepository => $this->getDoctrine()
+            ->getRepository(Event::class);
 
-        $eventProps = new class($events, $edit ? true : false) extends Props
+        $eventProps = new class(
+            futureEvents: $eventRepository()->findFutureEvents(20),
+            pastEvents: $eventRepository()->findPastEvents(20),
+            archivedEvents: $eventRepository()->findArchivedEvents(20),
+            edit: $edit ? true : false
+            ) extends Props
         {
             /**
-             * @param array $events
+             * @param array $futureEvents
+             * @param array $pastEvents
+             * @param array $archivedEvents
              * @param bool  $edit
              */
-            public function __construct(public array $events, public bool $edit)
+            public function __construct(public array $futureEvents, public array $pastEvents, public array $archivedEvents, public bool $edit)
             {
             }
         };
