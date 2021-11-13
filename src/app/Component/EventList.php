@@ -4,28 +4,58 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Component;
 
-use DateTime;
 use Components\Component;
-use Components\Traits\PropsWithChildren;
+use Components\Traits\Props;
 use Jazzfreunde\App\Entity\Event;
 
+/**
+ * Eventliste
+ */
 final class EventList extends Component
 {
-    use PropsWithChildren;
+    use Props;
 
-    public function Render(): void
+    /**
+     * {@inheritdoc}
+     */
+    public function render(): void
     {
-        $event_item = function (Event $event) {
+        ?>
+        <h2>Kommende Veranstaltungen</h2>
+        <table class="termine" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
+            <thead>
+                <tr>
+                    <th width="20%">Datum</th>
+                    <th width="15%">Zeit</th>
+                    <th width="40%">Veranstaltung</th>
+                    <th width="25%">Ort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $this->generateEventList($this->props->events); ?>
+            </tbody>
+        </table>
+        <?php
+    }
 
-            $start = new DateTime($event->start)
+    /**
+     * Generiert die Liste der Veranstaltungen
+     *
+     * @param array $events
+     *
+     * @return void
+     */
+    private function generateEventList(array $events): void
+    {
+        $eventItem = function (Event $event): void {
             ?>
             <tr>
                 <td>
-                    <small class="wochentag"><?= $start->Format('l') ?></small><br />
-                    <?= $start->Format('d.m.Y') ?>
+                    <small class="wochentag"><?= $event->start->Format('l') ?></small><br />
+                    <?= $event->start->Format('d.m.Y') ?>
                 </td>
                 <td>
-                    <?= $start->Format('H:i') ?>
+                    <?= $event->start->Format('H:i') ?>
                 </td>
                 <th>
                     <?= $event->titel ?>
@@ -40,23 +70,6 @@ final class EventList extends Component
             <?php
         };
 
-        ?>
-        <h2>Kommende Veranstaltungen</h2>
-        <table class="termine" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
-            <thead>
-                <tr>
-                    <th width="20%">Datum</th>
-                    <th width="15%">Zeit</th>
-                    <th width="40%">Veranstaltung</th>
-                    <th width="25%">Ort</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-
-                ?>
-            </tbody>
-        </table>
-        <?php
+        array_walk($events, $eventItem);
     }
 }

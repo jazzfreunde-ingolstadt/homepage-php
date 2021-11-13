@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Controller;
 
+use Components\Props\Props;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ use Components\Props\PropsWithChildren;
 use Jazzfreunde\App\Service\LegacyStub;
 use Symfony\Component\HttpFoundation\Request;
 use Exception;
+use Jazzfreunde\App\Entity\Event;
 
 /**
  * Routing Controller für die Website
@@ -61,10 +63,23 @@ class AppRoutingController extends AbstractController
     #[Route('/termine/', name: 'termine')]
     public function events(Kernel $kernel): Response
     {
+        $events = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->findAll();
+
+        $eventProps = new class($events) extends Props
+        {
+            public function __construct(public array $events)
+            {
+            }
+        };
+
         return new Response(
             (string) new Main(
                 new PropsWithChildren(
-                    children: new EventList()
+                    children: new EventList(
+                        props: $eventProps
+                    )
                 )
             )
         );
