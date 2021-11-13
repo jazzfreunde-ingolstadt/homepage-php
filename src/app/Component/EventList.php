@@ -47,6 +47,9 @@ final class EventList extends Component
      */
     private function generateEventList(array $events): void
     {
+        if ($this->props->edit) {
+            echo 'Im in editing mode!';
+        }
         $eventItem = function (Event $event): void {
             ?>
             <tr>

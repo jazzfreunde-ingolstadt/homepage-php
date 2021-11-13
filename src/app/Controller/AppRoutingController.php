@@ -47,7 +47,7 @@ class AppRoutingController extends AbstractController
         try {
             $legacyContent->include('pages/'.$request->attributes->get('_route').'.php');
         } catch (Exception $e) {
-            return new Response(status: 404);
+            // return new Response(status: 404);
         }
 
         return new Response();
@@ -55,21 +55,24 @@ class AppRoutingController extends AbstractController
 
     /**
      * Routing für die Termine
-     *
-     * @param Kernel $kernel
+     * @param bool $edit
      *
      * @return Response
      */
-    #[Route('/termine/', name: 'termine')]
-    public function events(Kernel $kernel): Response
+    #[Route('/termine/{edit}/', name: 'termine', requirements: ['edit' => '^edit$'])]
+    public function events(string $edit = ''): Response
     {
         $events = $this->getDoctrine()
             ->getRepository(Event::class)
             ->findAll();
 
-        $eventProps = new class($events) extends Props
+        $eventProps = new class($events, $edit ? true : false) extends Props
         {
-            public function __construct(public array $events)
+            /**
+             * @param array $events
+             * @param bool  $edit
+             */
+            public function __construct(public array $events, public bool $edit)
             {
             }
         };

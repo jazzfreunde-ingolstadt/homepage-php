@@ -38,8 +38,7 @@ final class Event
         DateTime $end,
         string $ort,
         ?string $link
-    )
-    {
+    ) {
         $this->id = $id;
         $this->titel = $titel;
         $this->subtitel = $subtitel;
@@ -53,6 +52,7 @@ final class Event
      * Solange readonly mit 8.1 noch nicht draußen ist...
      *
      * @param string $name
+     *
      * @return mixed
      */
     public function __get($name): mixed
