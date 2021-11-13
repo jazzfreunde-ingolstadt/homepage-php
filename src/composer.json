@@ -42,8 +42,11 @@
         }
     ],
     "scripts": {
+        "install-codestandards": [
+            "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+        ],
         "post-install-cmd": [
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard,vendor/pheromone/phpcs-security-audit",
+            "@install-codestandards",
             "bin/console"
         ]
     },
