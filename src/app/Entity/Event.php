@@ -8,6 +8,7 @@ use Jazzfreunde\App\Structures\DateTimeSQL;
 
 // #[ORM\Entity(repositoryClass: EventRepository::class)]
 #[ORM\Entity()]
+#[ORM\Table(name: 'events')]
 final class Event
 {
     #[ORM\Id]
@@ -20,9 +21,9 @@ final class Event
     #[ORM\Column(type: 'string')]
     private ?string $subtitel;
     #[ORM\Column(type: 'datetime')]
-    private DateTimeSQL $start;
+    private DateTime $start;
     #[ORM\Column(type: 'datetime')]
-    private DateTimeSQL $end;
+    private DateTime $end;
     #[ORM\Column(type: 'string')]
     private string $ort;
     #[ORM\Column(type: 'string', nullable: true)]
@@ -33,8 +34,8 @@ final class Event
         ?string $id = null,
         string $titel,
         string $subtitel,
-        DateTimeSQL $start,
-        DateTimeSQL $end,
+        DateTime $start,
+        DateTime $end,
         string $ort,
         ?string $link
     )

@@ -30,15 +30,15 @@ final class Version20211014210300 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE IF NOT EXISTS termine (id INT AUTO_INCREMENT NOT NULL, titel VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_0900_ai_ci`, subtitel VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, `start` DATETIME NOT NULL, `end` DATETIME NOT NULL, ort VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, link VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
+        $this->addSql('CREATE TABLE IF NOT EXISTS events (id INT AUTO_INCREMENT NOT NULL, titel VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_0900_ai_ci`, subtitel VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, `start` DATETIME NOT NULL, `end` DATETIME NOT NULL, ort VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, link VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
 
         $GLOBALS['migrations'] = $this;
 
         try {
             define('PAGE', 'import');
 
-            require dirname(__DIR__).'/legacyStub/setVA.php';
-            require dirname(__DIR__).'/public/legacy/data/termine.php';
+            require dirname(__DIR__).'/legacy/data/importVA.php';
+            require dirname(__DIR__).'/legacy/data/termine.php';
         } catch (Exception $e) {
             $this->abortIf(true, sprintf('Failed importing Events in "%s"'.PHP_EOL.$e->getMessage(), static::class));
         }
@@ -48,13 +48,13 @@ final class Version20211014210300 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE termine');
+        $this->addSql('DROP TABLE events');
     }
 
     public function addInsert(Event $event): void
     {
         $this->addSql(
-            'INSERT INTO termine (titel, subtitel, start, end, ort, link) VALUES (?, ?, ?, ?, ?, ?)',
+            'INSERT INTO events (titel, subtitel, start, end, ort, link) VALUES (?, ?, ?, ?, ?, ?)',
             [
                 $event->titel,
                 $event->subtitel,
