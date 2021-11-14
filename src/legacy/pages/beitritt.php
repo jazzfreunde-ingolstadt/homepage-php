@@ -3,8 +3,8 @@ if (defined("PAGE")) die("Wrong reference.");
 define("PAGE", "beitritt");
 define("TITLE", "Mitglied werden");
 
-include_once __DIR__ . "/../inc/environment.php";
-include_once __DIR__ . "/../inc/post.php";
+include_once dirname(__DIR__)."/inc/environment.php";
+include_once dirname(__DIR__)."/inc/post.php";
 
 ACCEPT_POST();
 
@@ -53,11 +53,10 @@ before();
 </table>
 
 <h2>Mitgliedsantrag</h2>
-<p>Um Mitglied zu werden, drucken Sie doch einfach den <a href="dox/mitgliedsantrag.pdf">Mitgliedsantrag</a> aus, füllen ihn aus und senden ihn an uns oder geben Sie ihn einfach bei unserer nächsten Veranstaltung bei uns ab. Der erste Jahresbeitrag wird dann von Ihrem Konto abgebucht.</p>
+<p>Um Mitglied zu werden, drucken Sie doch einfach den <a href="/dox/mitgliedsantrag.pdf">Mitgliedsantrag</a> aus, füllen ihn aus und senden ihn an uns oder geben Sie ihn einfach bei unserer nächsten Veranstaltung bei uns ab. Der erste Jahresbeitrag wird dann von Ihrem Konto abgebucht.</p>
 <!--<p>Noch bequemer ist es, die Beitrittserklärung <a href="beitritt-online.php">online auszufüllen</a>. Überweisen Sie anschließend den ersten Jahresbeitrag auf unser Konto.</p>-->
 <p>Sobald Sie als Mitglied aufgenommen wurden, wird Ihnen Ihr Mitgliedsausweis elektronisch zugesandt. Die folgenden Jahresbeiträge werden jeweils zum 15. Januar jedes Jahres von Ihrem Konto per SEPA-Lastschrift eingezogen.</p>
 
 <?php
-  
   after();
 ?>
