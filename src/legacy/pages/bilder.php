@@ -170,7 +170,7 @@ function picview($folder)
           for ($nr = $startnr + $line * IMG_PICSPERLINE; $nr < $startnr + ($line + 1) * IMG_PICSPERLINE; $nr++) {
             if ($nr < $picsum) {
           ?>
-              <td class="thumbnail" align="center" valign="center" height="<?= IMG_THUMBSIZE + 4 ?>" width="<?= IMG_THUMBSIZE + 4 ?>"><a href="bilder.php<?= "?" . PAGE . "=" . $folder . "&amp;image=" . ($nr + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>" title="Bild ansehen"><img src="https://blob.jazzfreunde-ingolstadt.de/<?= $folder . "/" . IMG_THUMBDIR . $PIX[$nr] ?>" alt="" />
+              <td class="thumbnail" align="center" valign="center" height="<?= IMG_THUMBSIZE + 4 ?>" width="<?= IMG_THUMBSIZE + 4 ?>"><a href="/bilder/<?= "?" . PAGE . "=" . $folder . "&amp;image=" . ($nr + 1) . ($_GET["via"] ? "&amp;via=" . $_GET["via"] : "") ?>" title="Bild ansehen"><img src="https://blob.jazzfreunde-ingolstadt.de/<?= $folder . "/" . IMG_THUMBDIR . $PIX[$nr] ?>" alt="" />
                   <!--<?= $PIX[$nr] ?>-->
                 </a></td>
             <?php
