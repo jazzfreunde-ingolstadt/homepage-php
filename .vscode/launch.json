@@ -21,22 +21,21 @@
             }
         },
         {
-            "name": "Launch currently open script",
+            "name": "Launch migration in debug mode",
             "type": "php",
             "request": "launch",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
-            "port": 0,
-            "runtimeExecutable":"/usr/local/bin/php",
-            "runtimeArgs": [
-                "-dxdebug.start_with_request=yes"
+            "program": "${workspaceFolder}/src/bin/console",
+            "args": [
+                "doctrine:migrations:migrate",
+                "--no-interaction"
             ],
-            "pathMappings": {
-                "/usr/project/src/public/legacy/pages": "${workspaceFolder}/src/public/index.php"
-            },
+            "port": 9003,
+            "runtimeExecutable": "/usr/local/bin/php",
             "env": {
-                "XDEBUG_MODE": "debug,develop",
-                "XDEBUG_CONFIG": "client_port=${port}"
+                "XDEBUG_MODE": "debug",
+                "XDEBUG_CONFIG": "client_host=127.0.0.1 client_port=9003",
+                "DEBUG_MODE": "true",
+                "XDEBUG_SESSION": "true"
             }
         }
     ]
