@@ -27,7 +27,7 @@ final class Event
         #[ORM\Id]
         #[ORM\GeneratedValue]
         #[ORM\Column(type: 'integer')]
-        private ?int $id,
+        private ?int $id = null,
         // private ?int $series_id,
         #[ORM\Column(type: 'string')]
         private string $titel,

@@ -4,21 +4,17 @@ declare(strict_types=1);
 
 use Jazzfreunde\App\Entity\Event;
 
-function setVA(mixed $wannd, mixed $wannt, mixed $was, mixed $wo, mixed $imgid = null, mixed $videolink = null, mixed $style = null): void
+function setVA(string $wannd, string $wannt, string|array $was, string $wo, ?string $imgid = null, ?string $videolink = null, ?string $style = null): void
 {
     if (is_string($was)) { // Wenn noch ganz alte Schreibweise, in Bestandteile zerlegen.
-        $was = $GLOBALS['migrations']->SplitupOldTitel($was);
+        $was = $GLOBALS['migrations']->splitupOldTitel($was);
     }
 
-    list($str_start_date, $str_end_date) = $GLOBALS['migrations']->GetStartEndDateAsString($wannd);
-    list($str_start_time, $str_end_time) = $GLOBALS['migrations']->GetStartEndTimeAsString($wannt);
+    list($str_start_date, $str_end_date) = $GLOBALS['migrations']->getStartEndDateAsString($wannd);
+    list($str_start_time, $str_end_time) = $GLOBALS['migrations']->getStartEndTimeAsString($wannt);
 
-    $DateTimeStart = $GLOBALS['migrations']->GetStartDateTimeSQL($str_start_date, $str_start_time);
-    $DateTimeEnd   = $GLOBALS['migrations']->GetEndDateTimeSQL($str_end_date, $str_end_time, $DateTimeStart);
-
-    if (!$DateTimeStart) {
-        throw new \Exception("ballermann");
-    }
+    $DateTimeStart = $GLOBALS['migrations']->getStartDateTime($str_start_date, $str_start_time);
+    $DateTimeEnd   = $GLOBALS['migrations']->getEndDateTime($str_end_date, $str_end_time, $DateTimeStart);
 
     $GLOBALS['migrations']->addInsert(
         new Event(
@@ -32,23 +28,46 @@ function setVA(mixed $wannd, mixed $wannt, mixed $was, mixed $wo, mixed $imgid =
     );
 }
 
+/**
+ * Session-Zähler
+ *
+ * @return int
+ */
 function sessionCount()
 {
     static $sessionCount = 0;
     return ++$sessionCount;
 }
 
-function title($name, $link = "", $info = "", $name2 = "", $name3 = "")
+/**
+ * @param string $name
+ * @param string $link
+ * @param string $info
+ * @param string $name2
+ * @param string $name3
+ * @return void
+ */
+function title(string $name, string $link = "", string $info = "", string $name2 = "", string $name3 = ""): array
 {
-    $link_head = $link_tail = "";
-    if (!empty($link)) {
-        $link_head = "<a href=\"" . $link . "\" title=\"" . (!empty($info) ? $info : "zur Seite") . "\" target=\"_blank\" style=\"text-decoration: none; color: inherit;\">";
-        $link_tail = "</a>";
-    }
-    return $link_head . $name . (!empty($name2) ? "<br /><small>" . $name2 . "</small>" : "") . (!empty($name3) ? "<br /><small>" . $name3 . "</small>" : "") . $link_tail;
+    return [
+        'titel' => $name,
+        'subtitel' => $name2.empty($name3) ? '' : '|'.$name3,
+        'link' => $link
+    ];
 }
 
-function title_series($event, $name = "", $link = "", $info = "", $name2 = "", $name3 = "", $options = "")
+/**
+ * @param string $event
+ * @param string $name
+ * @param string $link
+ * @param string $info
+ * @param string $name2
+ * @param string $name3
+ * @param string $options
+ *
+ * @return string
+ */
+function title_series(string $event, string $name = "", string $link = "", string $info = "", string $name2 = "", string $name3 = "", string $options = "")
 {
     switch (strtoupper($event)) {
         case "JAZZTAGE":

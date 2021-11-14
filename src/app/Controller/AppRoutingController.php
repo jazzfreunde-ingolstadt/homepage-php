@@ -67,9 +67,9 @@ class AppRoutingController extends AbstractController
             ->getRepository(Event::class);
 
         $eventProps = new class(
-            futureEvents: $eventRepository()->findFutureEvents(20),
-            pastEvents: $eventRepository()->findPastEvents(20),
-            archivedEvents: $eventRepository()->findArchivedEvents(20),
+            futureEvents: $eventRepository()->findFutureEvents(),
+            pastEvents: $eventRepository()->findPastEvents(),
+            archivedEvents: $eventRepository()->findArchivedEvents(100),
             edit: $edit ? true : false
             ) extends Props
         {
