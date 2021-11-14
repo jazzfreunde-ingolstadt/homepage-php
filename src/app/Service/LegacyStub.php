@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\App\Service;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Loader\PHPfileLoader;
+use Jazzfreunde\Config\Loader\PHPfileLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\Loader\LoaderResolver;

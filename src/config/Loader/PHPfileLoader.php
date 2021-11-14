@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Loader;
+namespace Jazzfreunde\Config\Loader;
 
 use Symfony\Component\Config\Loader\FileLoader;
 
