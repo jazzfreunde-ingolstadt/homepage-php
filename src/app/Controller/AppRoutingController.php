@@ -56,13 +56,18 @@ class AppRoutingController extends AbstractController
 
     /**
      * Routing für die Termine
-     * @param bool $edit
+     * @param bool    $edit
+     * @param Request $request
      *
      * @return Response
      */
     #[Route('/termine/{edit}', name: 'termine', requirements: ['edit' => '^(?:edit/?$)?'])]
-    public function events(string|null $edit = null): Response
+    public function events(string|null $edit = null, Request $request): Response
     {
+        if ($request->isMethod('POST')) {
+            echo $request->getContent();
+        }
+
         $eventRepository = fn(): EventRepository => $this->getDoctrine()
             ->getRepository(Event::class);
 

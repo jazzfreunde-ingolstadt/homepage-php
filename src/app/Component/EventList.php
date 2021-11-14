@@ -43,6 +43,10 @@ final class EventList extends Component
             <?php
         };
 
+        if ($this->props->edit) {
+            $this->renderEditModul();
+        }
+
         ?>
         <h2>Kommende Veranstaltungen</h2>
         <?php $eventList($this->props->futureEvents, 'Im Moment stehen keine Veranstaltungen an.'); ?>
@@ -70,9 +74,6 @@ final class EventList extends Component
      */
     private function generateEventListItems(array $events): void
     {
-        if ($this->props->edit) {
-            echo 'Im in editing mode!';
-        }
         $eventItem = function (Event $event): void {
             ?>
             <tr>
@@ -97,5 +98,47 @@ final class EventList extends Component
         };
 
         array_walk($events, $eventItem);
+    }
+
+    private function renderEditModul(): void
+    {
+        ?>
+        <form action="<?= "/termine/edit/" ?>" method="post">
+            <table class="termine" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
+            <thead>
+                <tr>
+                    <th width="20%">Datum</th>
+                    <th width="15%">Zeit</th>
+                    <th width="40%">Veranstaltung</th>
+                    <th width="25%">Ort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="start">Beginn:</label><br>
+                        <input type="datetime-local" id="start" name="start"><br>
+                        <label for="ende">Ende:</label><br>
+                        <input type="datetime-local" id="ende" name="ende"><br>
+                    </td>
+                    <td></td>
+                    <td>
+                        <label for="titel">Titel:</label><br>
+                        <input type="text" id="titel" name="titel"><br>
+                        <label for="subtitel">Subtitel:</label><br>
+                        <input type="text" id="subtitel" name="subtitel"><br>
+                        <label for="link">Link:</label><br>
+                        <input type="url" id="link" name="link"><br>
+                    </td>
+                    <td>
+                        <label for="ort">Ort:</label><br>
+                        <input type="text" id="ort" name="ort"><br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="Veranstaltung hinzufügen">
+        </form>
+        <?php
     }
 }
