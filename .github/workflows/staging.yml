@@ -59,6 +59,10 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
         working-directory: src
+        
+      # Decrypt secrets
+      - name: Generate environment
+        run: APP_RUNTIME_ENV=test SYMFONY_DECRYPTION_SECRET=${{ secrets.SYMFONY_TEST_DECRYPT_PRIVATE }} php bin/console secrets:decrypt-to-local --force
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
