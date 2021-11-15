@@ -55,16 +55,15 @@ jobs:
         with:
           name: composer artifacts
           path: src/vendor
-          
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: src
         
       # Decrypt secrets
       - name: Generate deployable .env
         run: php bin/console secrets:decrypt-to-local --force --env=test
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_TEST_DECRYPT_PRIVATE }}
+          
+      - name: Display structure of downloaded files
+        run: ls -Ra
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
