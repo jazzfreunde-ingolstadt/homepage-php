@@ -56,8 +56,8 @@ jobs:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_TEST_DECRYPT_PRIVATE }}
     
       # Rsync deploy
+      - uses: burnett01/rsync-deployments@5.1
       - name: rsync deployments
-        uses: burnett01/rsync-deployments@5.1
         with:
           switches: -avzr --delete
           path: src/
