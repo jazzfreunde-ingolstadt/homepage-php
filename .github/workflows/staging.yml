@@ -27,10 +27,6 @@ jobs:
       - name: Install Composer Dependencies
         run: chmod +x bin/console && composer install --prefer-dist --no-dev --optimize-autoloader
         
-      # Configure and warm up cache
-      - name: Configure app
-        run: APP_RUNTIME_ENV=test bin/console cache:clear
-        
       # Store vendor packages
       - uses: actions/upload-artifact@main
         with:
@@ -62,11 +58,12 @@ jobs:
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_TEST_DECRYPT_PRIVATE }}
           
-      # Store vendor packages
-      - uses: actions/upload-artifact@main
-        with:
-          name: testing decr
-          path: src/.env.test.local
+      - name: Prepare environment config
+        run: mv .env.test.local .env.local
+        
+      # Configure and warm up cache
+      - name: Configure app
+        run: bin/console cache:clear --env=test
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
