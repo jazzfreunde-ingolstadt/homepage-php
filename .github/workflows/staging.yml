@@ -22,8 +22,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
-          
-      - uses: php-actions/composer@v5
       
       # Install Composer packages
       - name: Install Composer Dependencies
