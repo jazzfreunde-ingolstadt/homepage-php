@@ -4,3 +4,4 @@
 !.vscode/launch.json
 *.code-workspace
 !default.code-workspace
+*.local
