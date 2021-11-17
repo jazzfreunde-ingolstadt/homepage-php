@@ -8,6 +8,7 @@ on:
       - '.devcontainer/**'
       - '.env'
       - '.gitignore'
+  workflow_dispatch:
     
 jobs:
   build:
