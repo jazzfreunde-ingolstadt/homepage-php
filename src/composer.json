@@ -43,16 +43,16 @@
     ],
     "scripts": {
         "auto-scripts": {
-            "cache:clear": "symfony-cmd"
+            "cache:clear": "bin/console cache:clear"
         },
         "install-codestandards": [
             "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
         ],
         "post-install-cmd": [
+            "@install-codestandards",
             "@auto-scripts"
         ],
         "post-update-cmd": [
-            "@install-codestandards",
             "@auto-scripts"
         ]
     },
