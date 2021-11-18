@@ -64,11 +64,7 @@ jobs:
         
       # Configure and warm up cache
       - name: Configure app
-        run: bin/console cache:clear --env=test
-        
-      - name: Display structure of downloaded files
-        run: ls -Ra
-        working-directory: src
+        run: chmod +x bin/console && bin/console cache:clear --env=test && git checkout bin/console
         
       - name: list uncommited files
         run: git diff
