@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 #[ORM\Entity(repositoryClass: \Jazzfreunde\App\Model\EventRepository::class)]
 #[ORM\Table(name: 'events')]
-final class Event
+class Event
 {
     /**
      * Immutable Object
