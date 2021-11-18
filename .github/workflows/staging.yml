@@ -55,7 +55,7 @@ jobs:
         
       # Decrypt secrets
       - name: Generate deployable .env
-        run: chmod +x bin/console && php bin/console secrets:decrypt-to-local --force --env=test
+        run: php bin/console secrets:decrypt-to-local --force --env=test
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_TEST_DECRYPT_PRIVATE }}
 
