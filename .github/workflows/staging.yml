@@ -7,7 +7,7 @@ on:
       - '**.code-workspace'
       - '.devcontainer/**'
       - '.env'
-      - '.gitignore'
+      - '**.gitignore'
   workflow_dispatch:
     
 jobs:
@@ -45,7 +45,7 @@ jobs:
       # Check out branch
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 2
+          fetch-depth: 100
           
       # Get built composer packages
       - uses: actions/download-artifact@main
@@ -58,7 +58,7 @@ jobs:
         run: chmod +x bin/console && php bin/console secrets:decrypt-to-local --force --env=test
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_TEST_DECRYPT_PRIVATE }}
-          
+
       - name: Prepare environment config
         run: mv .env.test.local .env.local
         
