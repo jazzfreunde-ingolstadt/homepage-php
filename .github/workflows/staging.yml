@@ -67,8 +67,11 @@ jobs:
         run: bin/console cache:clear --env=test
         
       - name: Display structure of downloaded files
-        run: ls -R
+        run: ls -Ra
         working-directory: src
+        
+      - name: list uncommited files
+        run: git diff
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
