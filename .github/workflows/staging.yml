@@ -45,7 +45,7 @@ jobs:
       # Check out branch
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 100
+          fetch-depth: 2
           
       # Get built composer packages
       - uses: actions/download-artifact@main
@@ -68,9 +68,6 @@ jobs:
         
       - name: list uncommited files
         run: git diff
-        
-      - name: list files
-        run: ls -Ra
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
