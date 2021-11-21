@@ -65,12 +65,6 @@ jobs:
       # Configure and warm up cache
       - name: Configure app
         run: chmod +x bin/console && bin/console cache:clear --env=test && git checkout bin/console
-        
-      - name: list uncommited files
-        run: git diff
-        
-      - name: debug
-        run: ls -Ra
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
