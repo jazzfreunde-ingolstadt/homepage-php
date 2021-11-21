@@ -1,3 +1,3 @@
 !src/.env.local
-src/vendor/:src/composer.lock
+src/vendor/:src/composer.json
 !src/var/
