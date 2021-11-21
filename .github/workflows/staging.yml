@@ -68,6 +68,9 @@ jobs:
         
       - name: list uncommited files
         run: git diff
+        
+      - name: debug
+        run: ls -Ra
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
