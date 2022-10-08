@@ -207,7 +207,7 @@ final class Version20211014210300 extends AbstractMigration
      *
      * @param string      $date
      * @param string|null $time
-     * @param string      $start
+     * @param DateTime    $start
      *
      * @return DateTimeSQL
      */

@@ -9,6 +9,10 @@ use Doctrine\DBAL\Driver\Exception;
 
 /**
  * EventRepository
+ *
+ * @template T of object
+ * @template-implements Selectable<int,T>
+ * @template-implements ObjectRepository<T>
  */
 final class EventRepository extends EntityRepository
 {

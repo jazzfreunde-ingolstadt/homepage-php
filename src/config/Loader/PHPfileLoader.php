@@ -14,25 +14,27 @@ final class PHPfileLoader extends FileLoader
     /**
      * Include einer php-Datei aus einem der Quellverzeichnisse
      *
-     * @param string      $resource
+     * @param mixed       $resource
      * @param string|null $type
      *
-     * @return void
+     * @return mixed
      */
-    public function load($resource, ?string $type = null)
+    public function load(mixed $resource, ?string $type = null)
     {
         require_once $this->locator->locate($resource);
+
+        return null;
     }
 
     /**
      * Wird die Resource vom Loader unterstützt
      *
-     * @param string      $resource
+     * @param mixed       $resource
      * @param string|null $type
      *
-     * @return void
+     * @return bool
      */
-    public function supports($resource, ?string $type = null)
+    public function supports(mixed $resource, ?string $type = null)
     {
         return is_string($resource) && 'php' === pathinfo(
             $resource,
