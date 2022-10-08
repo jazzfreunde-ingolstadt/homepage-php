@@ -8,10 +8,10 @@ use Components\Props\Props;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Jazzfreunde\App\Kernel;
 use Jazzfreunde\App\Component\Main;
 use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
+use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Service\LegacyStub;
 use Symfony\Component\HttpFoundation\Request;
 use Exception;
@@ -23,6 +23,13 @@ use Jazzfreunde\App\Model\EventRepository;
  */
 class AppRoutingController extends AbstractController
 {
+    /**
+     * @param ManagerRegistry $doctrine
+     */
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+    }
+
     /**
      * Routing für Legacy Content
      *
@@ -68,7 +75,7 @@ class AppRoutingController extends AbstractController
             echo $request->getContent();
         }
 
-        $eventRepository = fn(): EventRepository => $this->getDoctrine()
+        $eventRepository = fn(): EventRepository => $this->doctrine
             ->getRepository(Event::class);
 
         $eventProps = new class(
