@@ -1,0 +1,105 @@
+version: '3.9'
+
+# source code bindings
+x-bind-source: &source
+    type: bind
+    source: ..
+    target: /usr/project
+
+# cached dependencies
+x-volume-shared-vendor: &vendor
+    type: volume
+    source: jazzfreunde-vendor
+    target: /usr/project/src/vendor
+
+# docker build.args
+x-dev-buildargs: &dev-buildargs
+    project_dir: /usr/project
+    phpini_path: .docker/php/php.ini-development
+
+services:
+    jazzfreunde-php-dev-cli:
+        container_name: jazzfreunde-vscode-dev
+        build:
+            context: ..
+            dockerfile: .docker/php-cli.dockerfile
+            args: *dev-buildargs
+
+        volumes:
+            - *source
+            - *vendor
+        environment:
+            - APP_ENV=dev # Default Environment
+        secrets:
+            - user_ssh_key
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        command: /bin/sh -c "while sleep 1000; do :; done"
+
+    jazzfreunde-apache-server:
+        container_name: jazzfreunde-php-apache
+        build:
+            context: ..
+            dockerfile: .docker/apache.dockerfile
+            args:
+                virtualhost_conf_dir: .docker/apache
+                phpini_path: .docker/php/php.ini-development
+                xdebuginit_path: .docker/php/xdebug.ini
+                xdebug_logdir: /usr/project/src/var/log
+                cache_dirs: /usr/project/src/var/cache
+        deploy:
+            restart_policy:
+                condition: on-failure
+                max_attempts: 3
+        depends_on:
+            - jazzfreunde-database-server
+        environment:
+            - APACHE_DOCUMENT_ROOT=/usr/project/src/public
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - *source
+            - *vendor
+            - /usr/project/src/var/cache
+
+    jazzfreunde-database-server:
+        container_name: jazzfreunde-mysql-database
+        image: mysql:latest
+
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: jazzfreunde-api
+            MYSQL_USER: dbu_localdev
+            MYSQL_PASSWORD: 6hdth6e#
+        ports:
+            - 3306:3306
+        volumes:
+            - type: volume
+              source: jazzfreunde-mysql-data
+              target: /var/lib/mysql
+        deploy:
+            restart_policy:
+                condition: on-failure
+                max_attempts: 3
+
+    jazzfreunde-database-admin:
+        container_name: jazzfreunde-mysql-admin
+        image: phpmyadmin/phpmyadmin:latest
+        depends_on:
+            - jazzfreunde-database-server
+
+        environment:
+            PMA_HOST: jazzfreunde-mysql-database
+            PMA_USER: dbu_localdev
+            PMA_PASSWORD: 6hdth6e#
+        ports:
+            - "81:80"
+volumes:
+    jazzfreunde-mysql-data:
+    jazzfreunde-vendor:
+
+secrets:
+    user_ssh_key:
+        file: ~/.ssh/id_ed25519

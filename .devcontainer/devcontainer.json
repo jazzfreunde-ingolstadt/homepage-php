@@ -1,20 +1,19 @@
 {
-    "name": "homepage-php",
-    "dockerComposeFile": "./docker-compose.yml",
-    "service": "php-dev-cli",
-    "settings": {
-      "git.path": "/usr/bin/git"
+	"name": "jazzfreunde-homepage-php",
+	"dockerComposeFile": "../.docker/docker-compose.yml",
+	"service": "jazzfreunde-php-dev-cli",
+	"settings": {
+		"git.path": "/usr/bin/git"
 	},
 	"extensions": [
-		"felixfbecker.php-debug",
 		"bmewburn.vscode-intelephense-client",
 		"ikappas.phpcs",
 		"valeryanm.vscode-phpsab",
-		"clarkyu.vscode-sql-beautify",
-		"mtxr.sqltools",
-		"mtxr.sqltools-driver-mysql",
 		"neilbrayfield.php-docblocker",
-		"spmeesseman.vscode-taskexplorer"
+		"spmeesseman.vscode-taskexplorer",
+		"esbenp.prettier-vscode",
+		"xdebug.php-debug",
+		"jakebathman.mysql-syntax"
 	],
-  "workspaceFolder": "/usr/project"
-  }
+	"workspaceFolder": "/usr/project"
+}

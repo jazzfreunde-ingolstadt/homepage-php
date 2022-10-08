@@ -5,25 +5,13 @@
 		}
 	],
 	"settings": {
-		"phpcs.showSources": true,
-		"phpcs.standard": "src/vendor/escapestudios/symfony2-coding-standard/Symfony,src/vendor/pheromone/phpcs-security-audit/Security",
-		"sqltools.connectionExplorer.groupConnected": true,
-		"sqltools.connections": [
-			{
-				"mysqlOptions": {
-					"authProtocol": "default"
-				},
-				"previewLimit": 50,
-				"server": "jazzfreunde-mysql-database",
-				"port": 3306,
-				"driver": "MySQL",
-				"name": "jazzfreunde-database",
-				"group": "mobile_kommune",
-				"database": "jazzfreunde-api",
-				"username": "dbu_localdev",
-				"password": "6hdth6e#"
-			}
-		],
-		"sqltools.autoConnectTo": "jazzfreunde-database"
+		"files.exclude": {
+			"**/vendor/michemayer/php-components": true
+		}
 	},
+	"extensions": {
+		"recommendations": [
+			"eamodio.gitlens"
+		]
+	}
 }
