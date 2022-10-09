@@ -9,7 +9,7 @@ use Jazzfreunde\App\Component\DeferredLoading\FileComponent;
 use Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageComponent;
 use Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageInterface;
 use Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageTrait;
-use Jazzfreunde\App\Service\LegacyStub;
+use Jazzfreunde\App\Service\Content\LegacyStub;
 
 /**
  * Seitenkomponente als Brücke zur alten Frontendlogik des Service Portals

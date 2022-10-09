@@ -1,7 +1,7 @@
 services:
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        autowire: true
+        autoconfigure: true
 
     Jazzfreunde\App\Service\:
         resource: '../app/Service/'
@@ -9,16 +9,12 @@ services:
     Jazzfreunde\App\Controller\:
         resource: '../app/Controller/'
 
-    Jazzfreunde\App\Service\LegacyStubDeprecated:
-        arguments:
-            - '%kernel.project_dir%/legacy'
-
     Jazzfreunde\App\Component\:
         resource: '%kernel.project_dir%/app/Component'
 
     Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageComponent:
         factory: ['Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageComponent', 'getSharedStorage']
 
-    Jazzfreunde\App\Service\LegacyStub:
+    Jazzfreunde\App\Service\Content\LegacyStub:
         arguments:
         - '%kernel.project_dir%/legacy/pages'

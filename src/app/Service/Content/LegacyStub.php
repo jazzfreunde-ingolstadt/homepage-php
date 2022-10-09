@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service;
+namespace Jazzfreunde\App\Service\Content;
 
 use Jazzfreunde\App\Loader\PHPfileLoader;
 use Symfony\Component\Config\FileLocator;

@@ -12,9 +12,7 @@ use Jazzfreunde\App\Component\Main;
 use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Service\LegacyStubDeprecated;
 use Symfony\Component\HttpFoundation\Request;
-use Exception;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Model\EventRepository;
 
@@ -28,37 +26,6 @@ class AppRoutingController extends AbstractController
      */
     public function __construct(private ManagerRegistry $doctrine)
     {
-    }
-
-    /**
-     * Routing für Legacy Content
-     *
-     * @param LegacyStubDeprecated $legacyContent
-     * @param Request    $request
-     *
-     * @return Response
-     */
-    #[Route('/', name: 'index')]
-    #[Route('/ueberuns/', name: 'ueberuns')]
-    #[Route('/ziele/', name: 'ziele')]
-    #[Route('/projekte/', name: 'projekte')]
-    #[Route('/jazzlehrer/', name: 'jazzlehrer')]
-    #[Route('/bilder/', name: 'bilder')]
-    #[Route('/beitritt/', name: 'beitritt')]
-    #[Route('/newsletter/', name: 'newsletter')]
-    #[Route('/satzung/', name: 'satzung')]
-    #[Route('/links/', name: 'links')]
-    #[Route('/kontakt/', name: 'kontakt')]
-    #[Route('/daten/', name: 'daten')]
-    public function legacyPages(LegacyStubDeprecated $legacyContent, Request $request): Response
-    {
-        try {
-            $legacyContent->include('pages/'.$request->attributes->get('_route').'.php');
-        } catch (Exception $e) {
-            // return new Response(status: 404);
-        }
-
-        return new Response();
     }
 
     /**

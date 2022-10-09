@@ -8,7 +8,7 @@ use Jazzfreunde\App\Component\ComponentInterface;
 use Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageComponent;
 use Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageInterface;
 use Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageTrait;
-use Jazzfreunde\App\Service\LegacyStub;
+use Jazzfreunde\App\Service\Content\LegacyStub;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Contracts\Service\Attribute\Required;
 
