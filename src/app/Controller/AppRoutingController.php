@@ -8,7 +8,7 @@ use Components\Props\Props;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Jazzfreunde\App\Component\Main;
+use Jazzfreunde\App\Component\MainDeprecated;
 use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
 use Doctrine\Persistence\ManagerRegistry;
@@ -64,7 +64,7 @@ class AppRoutingController extends AbstractController
         };
 
         return new Response(
-            (string) new Main(
+            (string) new MainDeprecated(
                 new PropsWithChildren(
                     children: new EventList(
                         props: $eventProps

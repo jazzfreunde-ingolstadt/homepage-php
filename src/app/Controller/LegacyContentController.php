@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Jazzfreunde\App\Component\Page\LegacyPage;
-use KSP\ServicePortal\Http\Response\BufferedResponse;
+use Jazzfreunde\App\Service\Http\Response\BufferedResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -21,7 +21,7 @@ class LegacyContentController extends AbstractController
      *
      * @param LegacyPage $page
      * @param Request    $request
-     * @return BufferedResponse
+     * @return Response
      */
     #[Route('/', name: 'index')]
     #[Route('/ueberuns/', name: 'ueberuns')]

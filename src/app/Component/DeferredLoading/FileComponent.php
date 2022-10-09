@@ -22,7 +22,7 @@ class FileComponent implements ComponentInterface, SharedStorageInterface
     private string|null $html = null;
 
     /**
-     * @param \Jazzfreunde\Service\LegacyStub $legacyStub
+     * @param LegacyStub $legacyStub
      * @param string $filePath Pfad der Komponentendatei
      */
     public function __construct(private LegacyStub $legacyStub, private string $filePath = '')

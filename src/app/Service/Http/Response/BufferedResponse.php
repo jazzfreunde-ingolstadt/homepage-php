@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KSP\ServicePortal\Http\Response;
+namespace Jazzfreunde\App\Service\Http\Response;
 
 use Jazzfreunde\App\Component\ComponentInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +15,9 @@ final class BufferedResponse extends Response
     /**
      * Verschlüsselte Antwort
      *
-     * @param \Jazzfreunde\App\Component\ComponentInterface Html-Seite, die in Response gerendert wird.
+     * @param ComponentInterface Html-Seite, die in Response gerendert wird.
      * @param integer $status
      * @param array $headers
-     * @param bool $json If the data is already a JSON string
      *
      * @throws \InvalidArgumentException When the HTTP status code is not valid
      */

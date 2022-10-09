@@ -42,7 +42,7 @@ abstract class Component
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         ob_start();
         $this(null);
