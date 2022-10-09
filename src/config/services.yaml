@@ -9,6 +9,16 @@ services:
     Jazzfreunde\App\Controller\:
         resource: '../app/Controller/'
 
-    Jazzfreunde\App\Service\LegacyStub:
+    Jazzfreunde\App\Service\LegacyStubDeprecated:
         arguments:
             - '%kernel.project_dir%/legacy'
+
+    Jazzfreunde\App\Component\:
+        resource: '%kernel.project_dir%/app/Component'
+
+    Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageComponent:
+        factory: ['Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageComponent', 'getSharedStorage']
+
+    Jazzfreunde\App\Service\LegacyStub:
+        arguments:
+        - '%kernel.project_dir%/legacy/pages'

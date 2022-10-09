@@ -12,7 +12,7 @@ use Jazzfreunde\App\Component\Main;
 use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Service\LegacyStub;
+use Jazzfreunde\App\Service\LegacyStubDeprecated;
 use Symfony\Component\HttpFoundation\Request;
 use Exception;
 use Jazzfreunde\App\Entity\Event;
@@ -33,7 +33,7 @@ class AppRoutingController extends AbstractController
     /**
      * Routing für Legacy Content
      *
-     * @param LegacyStub $legacyContent
+     * @param LegacyStubDeprecated $legacyContent
      * @param Request    $request
      *
      * @return Response
@@ -50,7 +50,7 @@ class AppRoutingController extends AbstractController
     #[Route('/links/', name: 'links')]
     #[Route('/kontakt/', name: 'kontakt')]
     #[Route('/daten/', name: 'daten')]
-    public function legacyPages(LegacyStub $legacyContent, Request $request): Response
+    public function legacyPages(LegacyStubDeprecated $legacyContent, Request $request): Response
     {
         try {
             $legacyContent->include('pages/'.$request->attributes->get('_route').'.php');
