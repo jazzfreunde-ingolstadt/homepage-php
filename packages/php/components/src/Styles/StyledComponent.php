@@ -19,11 +19,11 @@ final class StyledComponent extends Component
 
     public function Render(): void
     {
-?>
+        ?>
         <<?= $this->nodeName ?> style="<?= $this->Style() ?>">
             <?= $this->children ?>
         </<?= $this->nodeName ?>>
-<?php
+        <?php
     }
 
     public static function __callStatic(string $name, array $style_attributes)
@@ -51,7 +51,7 @@ final class StyledComponent extends Component
         return array_reduce(
             $this->style_attributes,
             function (string $attributesStyleList, string $attribute) {
-                return $attributesStyleList . "{$attribute};";
+                return $attributesStyleList."{$attribute};";
             },
             ""
         );

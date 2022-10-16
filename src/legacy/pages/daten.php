@@ -42,7 +42,7 @@
 <h2>Informationen im Detail</h2>
 <p>Sollten diese Informationen zur Datenerhebung und zum Datenschutz noch Fragen offen lassen, wird Ihnen der <a href="/kontakt/?to=mayer" title="Kontaktformular">Webmaster</a> des Internetauftrittes auf Nachfrage gerne weitere Informationen geben.</p>
 
-<div class="backlink"><a href="<?=(PAGE . PAGE_ENDING) ?>">Zurück</a></div>
+<div class="backlink"><a href="#" onclick="history.back()">Zurück</a></div>
 
 <?
   after();

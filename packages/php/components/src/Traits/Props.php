@@ -6,6 +6,9 @@ namespace Components\Traits;
 
 use Components\Props\Props as DefaultProps;
 
+/**
+ * Verwendet Props in Komponente
+ */
 trait Props
 {
     /**

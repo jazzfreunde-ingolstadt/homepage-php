@@ -10,7 +10,7 @@ use Components\Traits\PropsWithChildren;
 /**
  * Grundlegendes Layout der Applikation
  */
-final class Main extends Component
+final class MainDeprecated extends Component
 {
     use PropsWithChildren;
 

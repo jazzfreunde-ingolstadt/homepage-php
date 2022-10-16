@@ -12,9 +12,12 @@ use Jazzfreunde\App\Component\MainDeprecated;
 use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
 use Doctrine\Persistence\ManagerRegistry;
+use Jazzfreunde\App\Component\Content\About;
+use Jazzfreunde\App\Component\Page\DefaultPage;
 use Symfony\Component\HttpFoundation\Request;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Model\EventRepository;
+use Jazzfreunde\App\Service\Http\Response\BufferedResponse;
 
 /**
  * Routing Controller für die Website
@@ -26,6 +29,20 @@ class AppRoutingController extends AbstractController
      */
     public function __construct(private ManagerRegistry $doctrine)
     {
+    }
+
+    /**
+     * About
+     *
+     * @param DefaultPage $page
+     * @return BufferedResponse
+     */
+    #[Route('/about/', name: 'about')]
+    public function about(DefaultPage $page): BufferedResponse
+    {
+        return new BufferedResponse(
+            $page->component(new About())
+        );
     }
 
     /**

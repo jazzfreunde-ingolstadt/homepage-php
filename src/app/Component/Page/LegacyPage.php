@@ -12,7 +12,7 @@ use Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageTrait;
 use Jazzfreunde\App\Service\Content\LegacyStub;
 
 /**
- * Seitenkomponente als Brücke zur alten Frontendlogik des Service Portals
+ * Seitenkomponente als Brücke zur alten Seiteninhalten.
  */
 class LegacyPage implements ComponentInterface, SharedStorageInterface
 {
