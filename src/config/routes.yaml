@@ -1,3 +1,7 @@
 controllers:
     resource: ../app/Controller/
     type: annotation
+
+api_doc:
+    path: /docs/
+    controller: api_platform.swagger_ui.action

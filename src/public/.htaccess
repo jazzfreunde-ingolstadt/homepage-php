@@ -25,7 +25,7 @@ ErrorDocument 404 "Oops! Da stimmt was nicht!"
 
     # Rewrite images
     # RewriteRule ^/(gfx|dox|env)/ - [NC,L]
-    RewriteCond %{REQUEST_URI} !^/(gfx|dox|env|assets)/ [NC]
+    RewriteCond %{REQUEST_URI} !^/(gfx|dox|env|assets|bundles)/ [NC]
 
     # Funnel page requests to index and try to serve content:
     RewriteRule . index.php [QSA]

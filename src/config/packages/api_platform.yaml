@@ -1,0 +1,7 @@
+api_platform:
+  defaults:
+    route_prefix: 'api/'
+  enable_re_doc: false
+  mapping:
+    paths:
+      - '%kernel.project_dir%/app/Entity'
