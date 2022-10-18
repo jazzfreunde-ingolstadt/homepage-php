@@ -5,7 +5,7 @@ define("TITLE", "Herzlich Willkommen");
 
 @include __DIR__ . "/../inc/lock.php";
 
-if (!@$_GET["preview"] && (!defined("UNLOCKTIME") || UNLOCKTIME > time())) {
+if (!isset($_GET["preview"]) && (!defined("UNLOCKTIME") || UNLOCKTIME > time())) {
   include __DIR__ . "/pages/index-locked.html";
   die("<!-- lock until " . date("d.m.Y H:i:s", UNLOCKTIME) . " -->");
 }
@@ -15,7 +15,7 @@ include_once __DIR__ . "/../inc/environment.php";
 head();
 before_nomenu();
 
-$c = (@$_GET["c"] ? $_GET["c"] : "se");
+$c = $_GET["c"] ?? "se";
 
 $img = function($type) use ($c): string
 {
