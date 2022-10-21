@@ -2,6 +2,7 @@ controllers:
     resource: ../app/Controller/
     type: annotation
 
-api_doc:
-    path: /docs/
-    controller: api_platform.swagger_ui.action
+api_platform:
+    resource: .
+    type: api_platform
+    prefix: /api
