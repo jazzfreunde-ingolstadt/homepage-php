@@ -4,10 +4,10 @@ services:
         autoconfigure: true
 
     Jazzfreunde\App\Service\:
-        resource: '../app/Service/'
+        resource: '%kernel.project_dir%/app/Service/'
 
     Jazzfreunde\App\Controller\:
-        resource: '../app/Controller/'
+        resource: '%kernel.project_dir%/app/Controller/'
 
     Jazzfreunde\App\Component\:
         resource: '%kernel.project_dir%/app/Component'
