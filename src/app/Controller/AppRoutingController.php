@@ -15,9 +15,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Component\Content\About;
 use Jazzfreunde\App\Component\Page\DefaultPage;
 use Symfony\Component\HttpFoundation\Request;
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Model\EventRepository;
 use Jazzfreunde\App\Service\Http\Response\BufferedResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Routing Controller für die Website
@@ -53,29 +52,18 @@ class AppRoutingController extends AbstractController
      * @return Response
      */
     #[Route('/termine/{edit}', name: 'termine', requirements: ['edit' => '^(?:edit/?$)?'])]
-    public function events(string|null $edit = null, Request $request): Response
+    public function events(string|null $edit = null, SerializerInterface $serializer): Response
     {
-        if ($request->isMethod('POST')) {
-            echo $request->getContent();
-        }
-
-        $eventRepository = fn(): EventRepository => $this->doctrine
-            ->getRepository(Event::class);
-
         $eventProps = new class(
-            futureEvents: $eventRepository()->findFutureEvents(),
-            pastEvents: $eventRepository()->findPastEvents(),
-            archivedEvents: $eventRepository()->findArchivedEvents(100),
-            edit: $edit ? true : false
+            edit: $edit ? true : false,
+            debug: 'dev' === $this->getParameter('kernel.environment')
             ) extends Props
         {
             /**
-             * @param array $futureEvents
-             * @param array $pastEvents
-             * @param array $archivedEvents
-             * @param bool  $edit
+             * @param bool $edit
+             * @param bool $debug
              */
-            public function __construct(public array $futureEvents, public array $pastEvents, public array $archivedEvents, public bool $edit)
+            public function __construct(public bool $edit, public bool $debug = false)
             {
             }
         };
@@ -84,7 +72,8 @@ class AppRoutingController extends AbstractController
             (string) new MainDeprecated(
                 new PropsWithChildren(
                     children: new EventList(
-                        props: $eventProps
+                        props: $eventProps,
+                        serializer: $serializer
                     )
                 )
             )

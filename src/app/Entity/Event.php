@@ -2,14 +2,16 @@
 
 namespace Jazzfreunde\App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Terminierte Veranstaltung
  */
-#[ORM\Entity(repositoryClass: \Jazzfreunde\App\Model\EventRepository::class)]
+#[ORM\Entity]
 #[ORM\Table(name: 'events')]
+#[ApiResource]
 class Event
 {
     /**
@@ -27,32 +29,20 @@ class Event
         #[ORM\Id]
         #[ORM\GeneratedValue]
         #[ORM\Column(type: 'integer')]
-        private ?int $id = null,
-        // private ?int $series_id,
+        public ?int $id = null,
+        // public ?int $series_id,
         #[ORM\Column(type: 'string')]
-        private string $titel,
-        #[ORM\Column(type: 'string')]
-        private ?string $subtitel,
-        #[ORM\Column(type: 'datetime')]
-        private DateTime $start,
-        #[ORM\Column(type: 'datetime')]
-        private DateTime $end,
-        #[ORM\Column(type: 'string')]
-        private string $ort,
+        public string $titel,
         #[ORM\Column(type: 'string', nullable: true)]
-        private ?string $link
+        public ?string $subtitel = null,
+        #[ORM\Column(type: 'datetime')]
+        public DateTime $start,
+        #[ORM\Column(type: 'datetime')]
+        public DateTime $end,
+        #[ORM\Column(type: 'string')]
+        public string $ort,
+        #[ORM\Column(type: 'string', nullable: true)]
+        public ?string $link = null
     ) {
-    }
-
-    /**
-     * Solange readonly mit 8.1 noch nicht draußen ist...
-     *
-     * @param string $name
-     *
-     * @return mixed
-     */
-    public function __get($name): mixed
-    {
-        return $this->$name;
     }
 }
