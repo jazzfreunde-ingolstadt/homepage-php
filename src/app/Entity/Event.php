@@ -24,7 +24,7 @@ class Event
      *
      * @param string|null $id
      * @param string      $titel
-     * @param string      $subtitel
+     * @param string|null $subtitel
      * @param DateTime    $start
      * @param DateTime    $end
      * @param string      $ort

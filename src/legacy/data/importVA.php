@@ -18,6 +18,7 @@ function setVA(string $wannd, string $wannt, string|array $was, string $wo, ?str
 
     $GLOBALS['migrations']->addInsert(
         new Event(
+            id: null,
             titel:    $was['titel'],
             subtitel: $was['subtitel'],
             start:    $DateTimeStart,
@@ -35,7 +36,7 @@ function setVA(string $wannd, string $wannt, string|array $was, string $wo, ?str
  */
 function sessionCount()
 {
-    static $sessionCount = 0;
+    static $sessionCount = 105;
     return ++$sessionCount;
 }
 
