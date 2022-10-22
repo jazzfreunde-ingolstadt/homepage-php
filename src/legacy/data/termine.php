@@ -986,7 +986,7 @@ setVA("30.10.2019", "20:30", title_series("jazztage", "Jazztage LBT Jazztage Mee
 setVA("31.10.2019", "20:00", title_series("jazztage", "\"Jazzfreunde presents\": Bekmulin / Findling Duo", "(Gewinner des Förderpreises des Bayrischen Jazzverbands 2019)", "", "", "", "2019"), _NEUE_WELT_);
 
 setVA("03.11.2019", "20:00", title_series("jazztage", "Highlight - Nigle Kennedy plays Gerschwin", "", "", "", "","2019"), _FESTSAAL_);
-setVA("04.11.2019", "19:00", title_series("jazztage", "Young Jazz Players Session)", "", "", "", "","2019"), _DIAGONAL_, null, null, "jazztage");
+setVA("04.11.2019", "19:00", title_series("session", "Young Jazz Players Session)", "", "", "", "","2019"), _DIAGONAL_, null, null, "jazztage");
 setVA("05.11.2019", "20:00", title_series("jazztage", "Oli Kügel, Christian Diener, Martin Kasper, Lukas Lindner - Ingolstädter Szene", "", "", "", "","2019"), _NEUE_WELT_);
 setVA("07.11.2019", "20:00", title_series("jazztage", "Jazz in den Kneipen: Tuck & Patti", "", "", "", "","2019"), _DIAGONAL_);
 setVA("07.11.2019", "20:00", title_series("jazztage", "Jazz in den Kneipen: Groove Galaxy", "", "", "", "","2019"), "Diskothek Amadeus");
@@ -1010,8 +1010,8 @@ setVA("27.11.2019", "20:00", title("triosence - \"Scoripio Rising\"", "https://t
 setVA("04.12.2019", "20:00", title("Hotel Bossa Nova", "http://hotelbossanova.com/", "Zur Homepage"), _DIAGONAL_);
 setVA("05.12.2019", "20:00", title("Django Reinhardt Night", "", "", "Grappelli Tribute Trio Giovanni Weiss: Django Deluxe feat. Jamaine Landsberger"), _AUDI_FORUM_);
 setVA("11.12.2019", "20:00", title("Home for Christmas - Lisa Wahlmandt & Band"), _DIAGONAL_);
-setVA("12.12.2019", "20:00", title_series("session"), _DIAGONAL_, null, null, "session");
 setVA("15.12.2019", "19:30", title("Wer Dablost's?", "", "", "Kleinkunst Mixshow mit Andreas M. Hofmeir"), _HALLE_NEUN_);
+setVA("15.12.2019", "20:00", title_series("session"), _DIAGONAL_, null, null, "session");
 setVA("26.12.2019", "20:00", title("RAD GUMBO live im diagonal"), _DIAGONAL_);
 setVA("27.12.2019", "20:00", title("Fat Toni"), _DIAGONAL_);
 setVA("28.12.2019", "20:00", title("Kapuze - Zwischen den Jahren"), _DIAGONAL_);
@@ -1045,15 +1045,153 @@ setVA("30.04.2020", "20:00", title("Albie Donnelly's Supercharge"), _AUDI_FORUM_
 setVA("06.05.2020", "20:00", title("Tini Thomsen's MaxSax", "http://www.tinithomsen.de/", "Zur Homepage"), _DIAGONAL_);
 setVA("10.05.2020", "11:00", title("Jazz & Literatur", "", "", "online!"), _FOYER_STADTTHEATER_);
 setVA("13.05.2020", "20:00", title("Alexandrina Simeon Quintett meets BEnny Brown", "www.alexandrina-simeon.de", "Zur Homepage"), _DIAGONAL_, null, null, "session");
-setVA("17.05.2020", "20:00", title_series("session", "", "", "", "mit Bernhard Reitberger & Friends"), _DIAGONAL_);
+// setVA("17.05.2020", "20:00", title_series("session", "", "", "", "mit Bernhard Reitberger & Friends"), _DIAGONAL_);
 setVA("28.05.2020", "20:00", title("Mayito Rivera & Sons of Cuba"), _AUDI_FORUM_);
 setVA("31.05.2020", "11:00", title("Jazzfrühschoppen", "", "", "", "mit der Bourbon Street Jazzband"), "Landesgartenschau Ingolstadt");
 
-setVA("21.06.2020", "20:00", title_series("session", "", "", "", "mit Quirin Birzer"), _DIAGONAL_, null, null, "session");
+// setVA("21.06.2020", "20:00", title_series("session", "", "", "", "mit Quirin Birzer"), _DIAGONAL_, null, null, "session");
 setVA("28.06.2020", "11:00", title("Jazzfrühschoppen", "", "", "", "mit Teuschel/ Schiekofer/ Diewok"), "Landesgartenschau Ingolstadt");
 
+setVA("05.09.2020", "11:30 - 18:00", title("Lo-Fi Playground Session - Healing in Stereo", "https://www.eventim-light.com/de/a/5a3baa6679755504c333e11c/e/5f22bac44901fb3717cdb293", "Zur Homepage", "mit Bernhard Hollinger"), "KAP94");
+setVA("11.09.2020", "21:00", title("Kraiberg Jazz-Band", "https://www.kraiberg-jazz-band.de/", "Zur Homepage"), "Rosengasse 2 Ingolstadt");
+setVA("16.09.2020", "20:00", title("Anthony Strong - Solo", "www.kraiberg-jazz-band.de", "Zur Homepage"), _DIAGONAL_);
 setVA("17.09.2020", "20:00", title("SwingIN Bigband", "http://www.swingin-bigband.de/", "Zur Homepage"), _AUDI_FORUM_);
+setVA("20.09.2020", "18:00", title("KAP94 Spaziergängerkonzert mit Claudius Konrad"), "KAP94");
+setVA("25.09.2020", "18:00 - 22:00", title("\"Spähtschicht\" Konzert & Lesungen mit Dr. Eisele und den Besen", "http://die-besen.de/", "Zur Homepage"), "Stadtbücherei Ingolstadt");
+setVA("27.09.2020", "13:30 - 16:30", title("Dr. Eisele und den Besen", "http://die-besen.de/", "Zur Homepage"), "Öko-Baumarkt Hundszell");
+setVA("30.09.2020", "20:00", title("Ein Abend in New York", "www.jaro.de", "Zur Homepage", "Ulrich Balß-Lesung und Thoams Jüttner-Guitar"), _DIAGONAL_);
 
+setVA("07.10.2020", "20:00", title("Dam'nco", "www.damnco.fr", "Zur Homepage"), _DIAGONAL_);
+setVA("08.10.2020", "18:00", title("Geri and the Wagtails"), _AUDI_FORUM_);
+setVA("15.10.2020", "20:00", title("South West Oldtime All Stars feat. Trevor Richards"), _AUDI_FORUM_);
+setVA("17.10.2020", "20:30", title("Albie Donelly's Supercharge", "https://www.superchargeonline.de/home.html", "Zur Homepage"), _AUDI_FORUM_);
+setVA("21.10.2020", "20:00", title("Viktoria Tolstoy", "www.viktoriatolstoy.se", "Zur Homepage"), _DIAGONAL_);
+setVA("22.10.2020", "18:00", title("Jasmin Bayer Trio"), _DIAGONAL_);
+setVA("23.10.2020", "17:30 - 22:00", title("Dr. Eisele und die Besen", "http://die-besen.de/", "Zur Homepage", "in der Reihe \"Spähtschicht\" mit Lesungen und Ausleihe"), "Stadtbücherei Ingolstadt");
+setVA("25.10.2020", "14:00 - 16:00", title("Jazz for Kids"), _HALLE_NEUN_);
+setVA("29.10.2020", "19:00", title("Rudi Trögl solo"), _AUDI_FORUM_);
+setVA("30.10.2020", "19:00", title("Workshop-Konzert von Jazz an den Schulen"), _HALLE_NEUN_);
+setVA("31.10.2020", "20:00", title("Eröffnung der Jazztage", "", "", "mit Förderpreisverleihung und Konzert"), _HALLE_NEUN_);
 
+setVA("05.11.2020", "20:00", title("Rebekka Bakken & Wolfgang Muthspiel Duo", "https://www.rebekkabakken.com/", "Zur Homepage"), _HALLE_NEUN_);
+setVA("06.11.2020", "20:00", title("Wolfgang Haffner & Band", "https://wolfganghaffner.de/", "Zur Homepage"), _HALLE_NEUN_);
+setVA("07.11.2020", "20:00", title("Younee", "https://younee.com/", "Zur Homepage"), _HALLE_NEUN_);
+setVA("10.11.2020", "20:00", title("Lisa Wahlandt Band", "https://www.lisa-wahlandt.com/lisa-wahlandt-band", "Zur Homepage"), _HALLE_NEUN_);
+setVA("11.11.2020", "20:00", title("Lukas Lindner Group", "https://www.lukaslindnermusic.com/bio", "Zur Homepage"), _HALLE_NEUN_);
 
+setVA("05.06.2021", "11:00", title("Konzert", "", "", "", "mit der Bourbon Street Jazzband"), "Landesgartenschau Ingolstadt");
+
+setVA("27.06.2021", "10:00", title("Jazzfrühschoppen", "", "", "", "mit \"den Besen\""), "Landesgartenschau Ingolstadt");
+setVA("27.06.2021", "11:00", title("Jazzfrühschoppen", "", "", "", "mit Teuschel/ Schiekofer/ Diewok"), "Landesgartenschau Ingolstadt");
+
+setVA("09.07.2021", "19:00", title("Claudius Conrad Band"), "Landesgartenschau Ingolstadt");
+setVA("11.07.2021", "11:00", title("Jazzfrühschoppen", "", "", "", "mit \"den Besen\""), "Landesgartenschau Ingolstadt");
+setVA("25.07.2021", "11:00", title("Jazzfrühschoppen", "", "", "", "mit Close2Jazz"), "Landesgartenschau Ingolstadt");
+
+setVA("03.08.2021", "18:00", title("Abschlusskonzert der Jazz-Dozenten der Neuburger Sommerakademie 2021", "", "", "", "mit Kraiberg Jazzband"), "Stadttheater Neuburg");
+setVA("03.08.2021", "20:30", title("Abschlusskonzert der Jazz-Dozenten der Neuburger Sommerakademie 2021", "", "", "", "mit Kraiberg Jazzband"), "Stadttheater Neuburg");
+setVA("07.08.2021", "19:00", title("Keller Steff Big Band"), "Landesgartenschau Ingolstadt");
+setVA("12.08.2021", "18:00", title("Dr. Eisele und die Besen"), "Landesgartenschau Ingolstadt");
+setVA("13.08.2021", "16:00", title("Max Mutzke"), "Landesgartenschau Ingolstadt");
+setVA("13.08.2021", "20:00", title("Max Mutzke"), "Landesgartenschau Ingolstadt");
+setVA("20.08.2021", "19:30", title("Kerstin Schulz und Band"), "Jakob Balde Platz Neuburg");
+setVA("21.08.2021", "19:30", title("Rad Gumbo"), "Jakob Balde Platz Neuburg");
+setVA("29.08.2021", "11:00", title("Jazzfrühschoppen", "", "", "", "mit Kraiberg Jazzband"), "Landesgartenschau Ingolstadt");
+setVA("29.08.2021", "19:30", title("Salonorchester Cassablanka"), "Jakob Balde Platz Neuburg");
+
+setVA("05.09.2021", "11:00", title("Castle Home Jazz Band"), "Landesgartenschau Ingolstadt");
+setVA("16.09.2021", "20:00", title("Hugo Strasser Hot Five"), _AUDI_FORUM_);
+setVA("26.09.2021", "11:00", title("Jazzfrühschoppen", "", "", "", "mit Mallets & Friends"), "Landesgartenschau Ingolstadt");
+setVA("26.09.2021", "17:00", title("Partnerschaft Opole: Jazzgruppe \"Take Style\""), "Landesgartenschau Ingolstadt");
+
+setVA("02.10.2021", "19:00", title("Rad Gumbo"), "Landesgartenschau Ingolstadt");
+setVA("20.10.2021", "20:00", title("Dam'nco"), _DIAGONAL_);
+setVA("30.10.2021", "20:00", title("Eröffnung der Jazztage und Preisträgerkonzert"), _HALLE_NEUN_);
+
+setVA("07.11.2021", "20:00", title("Melody Gardot"), _FESTSAAL_);
+setVA("08.11.2021", "20:00", title("Jazzfreunde presents: Kilian Sladek Quartett"), _NEUE_WELT_);
+setVA("12.11.2021", "20:00", title("Jamie Cullum"), _FESTSAAL_);
+setVA("24.11.2021", "20:00", title("Ozma"), _NEUE_WELT_);
+
+setVA("01.12.2021", "20:00", title("Christina Jung"), _DIAGONAL_);
+
+setVA("03.02.2022", "19:00", title("Daniel Schmidt Quartett"), _HARDERBASTEI_);
+setVA("05.02.2022", "20:30", title("The Funny Valentines"), "Altstadttheater");
+setVA("17.02.2022", "20:00", title("Armstrongs's Ambassadors"), _AUDI_FORUM_);
+
+setVA("03.03.2022", "18:00", title("After Work Jazz", "", "", "", "Brändle - Dombert"), _AUDI_FORUM_);
+setVA("05.03.2022", "20:00", title("Martin Kälber - Insight Out", "", "", "", "(Special Guest: Alessandro Presti - Trompete & Flügelhorn)"), _NEUE_WELT_);
+setVA("06.03.2020", "11:00", title("Jazz & Literatur Nr. 30"), _FOYER_STADTTHEATER_);
+setVA("10.03.2022", "20:00", title("Jeremy Pelt New Quintet", "http://jeremypelt.net/", "Zur Homepage"), _AUDI_FORUM_);
+setVA("16.03.2022", "20:00", title("Tram des Balkans", "https://lesentetes.com/tram/?lang=de", "Zur Homepage"), _DIAGONAL_);
+setVA("17.03.2022", "18:00", title("After Work Jazz: C'est Si Bon"), _AUDI_FORUM_);
+setVA("17.03.2022", "19:00", title("Rudi Trögl Trio", "https://rudi-troegl.de/index.php/de/", "Zur Homepage"), _HARDERBASTEI_);
+setVA("20.03.2022", "20:00", title_series("session"), _DIAGONAL_, null, null, "session");
+setVA("24.03.2022", "18:00", title("After Work Jazz: MArcia Bittencourt - Michael Arlt"), _AUDI_FORUM_);
+setVA("31.03.2022", "18:00", title("After Work Jazz: Ochsenbauer - Jung"), _AUDI_FORUM_);
+
+setVA("06.04.2022", "19:00", title("Sisters in Jazz", "https://www.actmusic.com/Kuenstler/Caecilie-Norby/Sisters-in-Jazz/Sisters-in-Jazz", "Info"), _DIAGONAL_);
+setVA("07.04.2022", "19:00", title("Passatempo", "", "", "(Tizian Jost / Klavier, Klaus Henrichs / Saxophon, Gary Todd / Bass)"), _DIAGONAL_);
+setVA("10.04.2020", "11:00", title("Jazz & Literatur Nr. 31"), _FOYER_STADTTHEATER_);
+setVA("24.04.2020", "20:00", title("Joscho Stephan Trio", "https://www.joscho-stephan.de/", "Zur Homepage"), _NEUE_WELT_);
+setVA("28.04.2020", "20:00", title("Viviane de Farias Group", "http://www.vivianedefarias.com/", "Zur Homepage"), _AUDI_FORUM_);
+
+setVA("04.05.2022", "20:00", title("Ida Nielsen"), _DIAGONAL_);
+setVA("05.05.2022", "18:00", title("Jasmin Bayer Trio"), _AUDI_FORUM_);
+setVA("12.05.2022", "18:00", title("Reinhold Bauer - Dietmar Liehr"), _AUDI_FORUM_);
+setVA("15.05.2022", "19:00", title_series("session", "https://trialogmusic.wixsite.com/trialog", "Zur Homepage", "Session Band: \"Trialog, München\""), _DIAGONAL_, null, null, "session");
+setVA("18.05.2022", "20:00", title("Monika Herzig's SHEroes", "http://www.music.monikaherzig.com/", "Zur Homepage"), _AUDI_FORUM_);
+setVA("19.05.2022", "20:00", title("Durch Swing Collage Band", "https://dsc.nl/", "Zur Homepage"), _AUDI_FORUM_);
+
+setVA("02.06.2022", "16:00 - 22:00", title("#DeineStimmeDafür Konzert"), _FOYER_STADTTHEATER_);
+setVA("19.06.2022", "19:00", title_series("session"), _DIAGONAL_, null, null, "session");
+setVA("22.06.2022", "20:00", title("Hazmat Modine", "https://www.audi.de/de/audi-artexperience/sommerkonzerte-2022/programm/jazzwunder.html", "Info"), "Audi Gebäude H6, Betriebsrestaurant");
+
+setVA("08.07.2022", "20:00", title("Jazzwunder Beka Gochiashvili Trio", "http://www.hazmatmodine.com/", "Zur Homepage"), _DIAGONAL_);
+setVA("09.07.2022", "11:30", title("Stadtfest Ingolstadt: \"Die Seemänner\""), "Bühne Schloßhof");
+setVA("09.07.2022", "18:15", title("Stadtfest Ingolstadt: \"Stromslos Bigband\""), "Theatervorplatz");
+setVA("10.07.2022", "13:30", title("Stadtfest Ingolstadt: \"Jazz Of Course\""), "Bühne Schleimühle");
+setVA("31.07.2022", "18:30", title("Kilian Sladek FRAGMENTS"), "Schiffshalle des Kelten- & Römermuseums");
+
+setVA("08.09.2022", "18:00", title("After Work Lounge: C'est Si Bon"), _AUDI_FORUM_);
+setVA("15.09.2022", "20:00", title("SwingIn Bigband", "www.swingIN-Bigband.de", "Zur Homepage"), _AUDI_FORUM_);
+setVA("22.09.2022", "18:00", title("After Work Lounge: Wolfgang Lackerschmid - Thomas Stabenow"), _AUDI_FORUM_);
+setVA("29.09.2022", "18:00", title("After Work Lounge: Trio Brasserie"), _AUDI_FORUM_);
+
+setVA("22.10.2022", "20:00", title_series("Verleihung des Ingolstädter Förderpreises", "", "", "", "", "", "2022"), _HALLE_NEUN_);
+setVA("23.10.2022", "14:00", title("Jazz for Kids"), _HALLE_NEUN_);
+setVA("23.10.2022", "16:00", title("Jazz for Kids"), _HALLE_NEUN_);
+setVA("26.10.2022", "20:00", title("Ida Nielson & the Funkbots", "http://www.idanielsenbass.com/", "Zur Homepage"), _DIAGONAL_);
+setVA("28.10.2022", "20:00", title("Abschlusskonzert der Workshops Jazz in den Schulen"), _HALLE_NEUN_);
+setVA("30.10.2022", "20:00", title("Abschlusskonzert Bandworkshop LTG: Julian Hesse"), _NEUE_WELT_);
+
+setVA("02.11.2022", "20:00", title("Birgit Zinner & Soulfire"), "Eventhalle Westpark");
+setVA("03.11.2022", "20:00", title_series("jazztage", "Melody Gardot", "", "", "", "","2022"), "Stadttheater Ingolstadt");
+setVA("04.11.2022", "20:00", title_series("jazztage", "Jazzparty I: Tower Of Power", "", "", "", "","2022"), _NH_HOTEL_);
+setVA("04.11.2022", "20:00", title_series("jazztage", "Jazzparty I: Spyro Gyra", "", "", "", "","2022"), _NH_HOTEL_);
+setVA("04.11.2022", "20:00", title_series("jazztage", "Jazzparty I: Harold Lopez-Nussa Trio", "", "", "", "","2022"), _NH_HOTEL_);
+setVA("04.11.2022", "20:00", title_series("jazztage", "Jazzparty I: The New Orleans Jazz Collective", "", "", "", "","2022"), _NH_HOTEL_);
+setVA("05.11.2022", "20:00", title_series("jazztage", "Jazzparty II: Lee Ritenour", "", "", "", "","2022"), _NH_HOTEL_);
+setVA("05.11.2022", "20:00", title_series("jazztage", "Jazzparty II: Jazz/Takes Supergroup Feat. Bill Evans, Niels Lan Doky, Darryl Jones & Harvey Mason", "", "", "", "","2022"), _NH_HOTEL_);
+setVA("05.11.2022", "20:00", title_series("jazztage", "Jazzparty II: Olivia Trummer Trio", "", "", "", "","2022"), _NH_HOTEL_);
+setVA("05.11.2022", "20:00", title_series("jazztage", "Jazzparty II: The New Orleans Jazz Collective", "", "", "", "","2022"), _NH_HOTEL_);
+setVA("06.11.2022", "11:00", title_series("jazztage", "Batter My Soul", "", "", "", "","2022"), "St. Matthäus Kirche");
+setVA("07.11.2022", "20:00", title_series("jazztage", "Jamie Cullum", "", "", "", "","2022"), "Stadttheater Ingolstadt");
+setVA("08.11.2022", "20:00", title_series("jazztage", "Söhne und Töchter Ingolstadts", "", "", "", "","2022"), "Stadttheater Ingolstadt");
+setVA("09.11.2022", "20:00", title_series("jazztage", "Jazzfreunde present: \"Nico Theo Quintett\"", "", "", "Bonuskonzert für Vereinsmitglieder", "","2022"), _NEUE_WELT_);
+setVA("10.11.2022", "20:00", title_series("jazztage", "Jazzparty in den Kneipen: Simon Oslender Trio", "", "", "", "","2022"), _DIAGONAL_);
+setVA("10.11.2022", "20:00", title_series("jazztage", "Jazzparty in den Kneipen: Ganna", "", "", "", "","2022"), "Das Mo");
+setVA("10.11.2022", "20:00", title_series("jazztage", "Jazzparty in den Kneipen: Bibul Dariouche", "", "", "", "","2022"), _NEUE_WELT_);
+setVA("10.11.2022", "20:30", title_series("jazztage", "Jazzparty in den Kneipen: Destruktiv", "", "", "", "","2022"), "Amadeus");
+setVA("10.11.2022", "21:00", title_series("jazztage", "Jazzparty in den Kneipen: Hot Club Du NaxTrio", "", "", "", "","2022"), "Weinraumbar");
+setVA("10.11.2022", "21:00", title_series("jazztage", "Jazzparty in den Kneipen: Diego Romero & Carly Quiroz Duo", "", "", "", "","2022"), "Granada");
+setVA("10.11.2022", "21:00", title_series("jazztage", "Jazzparty in den Kneipen: Geri and The Wagtails", "", "", "", "","2022"), "Rosengasse");
+setVA("10.11.2022", "21:00", title_series("jazztage", "Jazzparty in den Kneipen: Cats & Breakkies", "", "", "", "","2022"), "Tagtraum");
+setVA("10.11.2022", "21:00", title_series("jazztage", "Jazzparty in den Kneipen: Cathy Cyfka & Band feat. Fred Red", "", "", "", "","2022"), "The Golden");
+setVA("10.11.2022", "21:00", title_series("jazztage", "Jazzparty in den Kneipen: DJ Bauge", "", "", "", "","2022"), "Antalya");
+setVA("12.11.2022", "11:00", title_series("jazztage", "Marialy Pacheco & Max Mutzke", "", "", "", "","2022"), "St. Pius Kirche");
+
+setVA("16.11.2022", "20:00", title("Ozma", "https://ozmajazz.bandcamp.com/", "Zur Homepage"), _DIAGONAL_);
+
+setVA("14.12.2022", "20:00", title("Anika Nilles", "https://www.anikanilles.com/", "Zur Homepage"), _DIAGONAL_);
 ?>
