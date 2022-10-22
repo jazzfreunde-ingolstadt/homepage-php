@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Component\Layout;
+namespace Jazzfreunde\App\Component\Content;
 
 use Jazzfreunde\App\Component\ComponentInterface;
 
