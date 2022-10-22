@@ -60,6 +60,13 @@ final class EventList extends Component
                 template.find(".event_titel").append(event.titel);
                 template.find(".event_subtitel").append(event.subtitel ?? "");
                 template.find(".event_location").append(event.ort);
+                let link = template.find(".event_link");
+                if (event.link.length) {
+                    link.attr("href", event.link);
+                    link.text(event.link);
+                } else {
+                    link.remove();
+                }
 
                 return template;
             }
@@ -168,7 +175,7 @@ final class EventList extends Component
                                 ], 'json') ?>
                             }
                         <?php } ?>
-                        
+
                         archivedEventsDataCache = archivedEventsData;
 
                         fillEventList("archived_events", archivedEventsData);
@@ -229,6 +236,7 @@ final class EventList extends Component
                     <th>
                         <span class="event_titel"></span>
                         </br><small><span class="event_subtitel"></span></small>
+                        <a class="event_link" target="_blank"></a> 
                     </th>
                     <td>
                         <span class="event_location"></span>
