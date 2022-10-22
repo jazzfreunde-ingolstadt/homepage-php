@@ -61,7 +61,7 @@ jobs:
       - name: Generate deployable .env
         run: php bin/console secrets:decrypt-to-local --force --env=test
         env:
-          SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_TEST_DECRYPT_PRIVATE }}
+          SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_STAGE_DECRYPT_PRIVATE }}
           
       # Symfony tasks
       - name: Prepare environment config
