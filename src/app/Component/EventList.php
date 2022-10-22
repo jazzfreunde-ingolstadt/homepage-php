@@ -9,6 +9,7 @@ use DateInterval;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\Type\DateTimeSQL;
 use Components\Props\Props;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -22,7 +23,7 @@ final class EventList extends Component
      * @param Props $props
      * @param SerializerInterface $serializer
      */
-    public function __construct(protected ?Props $props = null, private SerializerInterface $serializer)
+    public function __construct(protected ?Props $props = null, private SerializerInterface $serializer, private UrlGeneratorInterface $router)
     {
     }
 
@@ -42,13 +43,20 @@ final class EventList extends Component
             }
         </style>
         <script>
-            var wochentag = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag' ];
+            const wochentag = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag' ];
+            const today = new Date();
+            const archiveDaysAfter = 90;
 
-            let fillTemplate = function (template, event) {
+            let archiveDate = new Date();
+            archiveDate.setDate(today.getDate() - archiveDaysAfter);
+
+            let documentReady = $.Deferred();
+
+            const fillTemplate = function (template, event) {
                 let start = new Date(event.start);
                 template.find(".event_weekday").append(wochentag[start.getDay()]);
                 template.find(".event_date").append(start.toLocaleDateString("de-DE"));
-                template.find(".event_time").append(start.toLocaleTimeString());
+                template.find(".event_time").append(start.toLocaleTimeString("de-DE", { hour: '2-digit', minute: '2-digit' }));
                 template.find(".event_titel").append(event.titel);
                 template.find(".event_subtitel").append(event.subtitel ?? "");
                 template.find(".event_location").append(event.ort);
@@ -56,7 +64,7 @@ final class EventList extends Component
                 return template;
             }
 
-            let fillEventList = function(listId, eventData) {
+            const fillEventList = function(listId, eventData) {
                 let table = $(`#${listId}`);
                 let list = table.find(".eventlist_body");
                 
@@ -77,20 +85,103 @@ final class EventList extends Component
 
             }
 
-            <?php if ($this->props->debug ?? false) { ?>
-                var sampleData = <?= $this->serializer->serialize([
-                    new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->sub(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
-                    new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->sub(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
-                ], 'json') ?>
-            <?php } ?>
+            let upcomingEvents = $.ajax({
+                url: "<?= $this->router->generate('_api_/events.{_format}_get_collection') ?>",
+                type: "get",
+                dataType: "json",
+                data: {
+                    "start[after]": new Date().toISOString(),
+                    "order[start]": "asc"
+                }
+            });
 
-            $(document).ready(function () {
-                fillEventList("upcoming_events", []);
-                fillEventList("past_events", sampleData);
-                fillEventList("archived_events", sampleData);
+            let pastEvents = $.ajax({
+                url: "<?= $this->router->generate('_api_/events.{_format}_get_collection') ?>",
+                type: "get",
+                dataType: "json",
+                data: {
+                    "start[before]": new Date().toISOString(),
+                    "start[after]": archiveDate.toISOString(),
+                    "order[start]": "desc"
+                }
+            });
+
+            $.when(upcomingEvents, documentReady).done(function (data) {
+                let upcomingEventsData = data.shift() ?? []
+
+                <?php if ($this->props->debug ?? false) { ?>
+                    // Falls keine Testdaten vorhanden sind, stehen hier Dummydaten zur Verfügung.
+                    if (!upcomingEventsData.length) {   
+                        upcomingEventsData = <?= $this->serializer->serialize([
+                            new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->add(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                            new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->add(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                        ], 'json') ?>
+                    }
+                <?php } ?>
+
+                fillEventList("upcoming_events", upcomingEventsData);
+            });
+
+            $.when(pastEvents, documentReady).done(function (data) {
+                let pastEventsData = data.shift() ?? []
+
+                <?php if ($this->props->debug ?? false) { ?>
+                    // Falls keine Testdaten vorhanden sind, stehen hier Dummydaten zur Verfügung.
+                    if (!pastEventsData.length) {   
+                        pastEventsData = <?= $this->serializer->serialize([
+                            new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->sub(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                            new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->sub(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                        ], 'json') ?>
+                    }
+                <?php } ?>
+
+                fillEventList("past_events", pastEventsData);
+            });
+
+            $(document).ready(function() {
+                documentReady.resolve();
+
+                var archivedEventsDataCache;
+
+                $("#show_archived").click(function() {
+                    $("#archived_events_container").show();
+
+                    if (undefined !== archivedEventsDataCache) {
+                        return;
+                    }
+
+                    $.ajax({
+                        url: "<?= $this->router->generate('_api_/events.{_format}_get_collection') ?>",
+                        type: "get",
+                        dataType: "json",
+                        data: {
+                            "start[before]": archiveDate.toISOString(),
+                            "order[start]": "desc"
+                        }
+                    }).done(function(archivedEventsData) {
+                        <?php if ($this->props->debug ?? false) { ?>
+                            // Falls keine Testdaten vorhanden sind, stehen hier Dummydaten zur Verfügung.
+                            if (!archivedEventsData.length) {   
+                                archivedEventsData = <?= $this->serializer->serialize([
+                                    new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->sub(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                                    new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->sub(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                                ], 'json') ?>
+                            }
+                        <?php } ?>
+                        
+                        archivedEventsDataCache = archivedEventsData;
+
+                        fillEventList("archived_events", archivedEventsData);
+                        
+                    });
+                });
+
+                $("#hide_archived").click(function() {
+                    $("#archived_events_container").hide();
+                });
             });
         </script>
-
+        <h1>Veranstaltungskalender</h1>
         <h2>Kommende Veranstaltungen</h2>
         <?php $this->EventList('upcoming_events', 'Im Moment stehen keine Veranstaltungen an.'); ?>
 
@@ -100,11 +191,11 @@ final class EventList extends Component
         <?php $this->EventList('past_events', 'Es sind keine vergangenen Veranstaltungen eingetragen.'); ?>
 
         <h2>Veranstaltungsarchiv</h2>
-        <div id="vaarcsw" style="display:block; cursor:pointer; font-size:0.95em; text-decoration:underline;" onclick="document.getElementById('vaarc').style.display = 'block'; document.getElementById('vaarcsw').style.display='none';">Archiv anzeigen</div>
-        <div id="vaarc" style="display:none;">
-        <?php $this->EventList('archived_events', 'Es befinden sich keine Veranstaltungen im Archiv.'); ?>
-            <div id="vaarcsw" style="display:block; cursor:pointer; font-size:0.95em; text-decoration:underline;" onclick="document.getElementById('vaarc').style.display = 'none'; document.getElementById('vaarcsw').style.display='block';">Archiv verbergen</div>
-        </div>
+        <div id="show_archived" style="display:block; cursor:pointer; font-size:0.95em; text-decoration:underline;">Archiv anzeigen</div>
+        <div id="archived_events_container" style="display:none;">
+            <?php $this->EventList('archived_events', 'Es befinden sich keine Veranstaltungen im Archiv.'); ?>
+                <div id="hide_archived" style="display:block; cursor:pointer; font-size:0.95em; text-decoration:underline;">Archiv verbergen</div>
+            </div>
         <?php
     }
 
@@ -117,7 +208,7 @@ final class EventList extends Component
     private function EventList(string $id, string $messageOnEmpty): void
     {
         ?>
-        <table id="<?= $id ?>" class="eventlist" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
+        <table id="<?= $id ?>" class="eventlist termine" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
             <thead>
                 <tr>
                     <th width="20%">Datum</th>
@@ -147,7 +238,10 @@ final class EventList extends Component
                     <td colspan="4" style="padding: 1em;"><?= $messageOnEmpty ?></td>
                 </tr>
                 <tr class="placeholder_while_loading">
-                    <td colspan="4" style="text-align: center; padding: 1em;"><img src="/gfx/icons/loading_icon.gif" style="width: 3em"/></td>
+                    <td colspan="4" style="text-align: center; padding: 1em;">
+                        <noscript>Um Veranstaltungen zu sehen, muss die Verwendung von Javascript zugelassen werden.</br></noscript>    
+                        <img src="/gfx/icons/loading_icon.gif" style="width: 3em"/>
+                    </td>
                 </tr>
             </tbody>
         </table>

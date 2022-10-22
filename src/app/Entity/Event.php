@@ -2,6 +2,9 @@
 
 namespace Jazzfreunde\App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 #[ORM\Table(name: 'events')]
 #[ApiResource]
+#[ApiFilter(DateFilter::class, properties: ['start'])]
+#[ApiFilter(OrderFilter::class, properties: ['start'])]
 class Event
 {
     /**

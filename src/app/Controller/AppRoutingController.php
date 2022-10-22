@@ -16,6 +16,7 @@ use Jazzfreunde\App\Component\Content\About;
 use Jazzfreunde\App\Component\Page\DefaultPage;
 use Symfony\Component\HttpFoundation\Request;
 use Jazzfreunde\App\Service\Http\Response\BufferedResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -52,7 +53,7 @@ class AppRoutingController extends AbstractController
      * @return Response
      */
     #[Route('/termine/{edit}', name: 'termine', requirements: ['edit' => '^(?:edit/?$)?'])]
-    public function events(string|null $edit = null, SerializerInterface $serializer): Response
+    public function events(string|null $edit = null, SerializerInterface $serializer, UrlGeneratorInterface $router): Response
     {
         $eventProps = new class(
             edit: $edit ? true : false,
@@ -73,7 +74,8 @@ class AppRoutingController extends AbstractController
                 new PropsWithChildren(
                     children: new EventList(
                         props: $eventProps,
-                        serializer: $serializer
+                        serializer: $serializer,
+                        router: $router
                     )
                 )
             )
