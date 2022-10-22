@@ -53,18 +53,30 @@ jobs:
           name: composer artifacts
           path: src/vendor
         
+      # Prepare Console
+      - name: Grant rights to console
+        run: chmod +x bin/console
+        
       # Decrypt secrets
       - name: Generate deployable .env
         run: php bin/console secrets:decrypt-to-local --force --env=test
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_TEST_DECRYPT_PRIVATE }}
-
+          
+      # Symfony tasks
       - name: Prepare environment config
-        run: mv .env.test.local .env.local
+        run: mv .env.stage.local .env.local
+        
+      # Migrate database
+      - name: Migrate database
+        run: php bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug  --env=test
         
       # Configure and warm up cache
       - name: Configure app
-        run: chmod +x bin/console && bin/console cache:clear --env=test && git checkout bin/console
+        run: php bin/console cache:clear --env=test
+        
+      - name: Finalize symfony rollout
+        run: git checkout bin/console
     
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
