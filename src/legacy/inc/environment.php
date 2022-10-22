@@ -85,10 +85,10 @@ function before($onload = null)
 
             <div id="viewchanger" style="position:absolute; left:0px; top:30%; width:11ex; background-color:#e8c400; color:#bf1300; display:none;">
               <ul style="list-style-type:none; margin:0px; padding-left:2px; text-align:center; font-weight:bold;">
-                <li><a href="/index1.php" style="color:#bf1300; text-decoration:none;">1.&nbsp;Version</a></li>
-                <li><a href="/index.php?c=or" style="color:#bf1300; text-decoration:none;">Orange</a></li>
-                <li><a href="/index.php?c=gr" style="color:#bf1300; text-decoration:none;">Grau</a></li>
-                <li><a href="/index.php?c=se" style="color:#bf1300; text-decoration:none;">Sepia</a></li>
+                <!-- <li><a href="/index1.php" style="color:#bf1300; text-decoration:none;">1.&nbsp;Version</a></li> -->
+                <!-- <li><a href="/index.php?c=or" style="color:#bf1300; text-decoration:none;">Orange</a></li> -->
+                <!-- <li><a href="/index.php?c=gr" style="color:#bf1300; text-decoration:none;">Grau</a></li> -->
+                <!-- <li><a href="/index.php?c=se" style="color:#bf1300; text-decoration:none;">Sepia</a></li> -->
                 <li style="font-size:80%;"><a href="#" onclick="document.getElementById('viewchanger').style.display='none';" style="color:#bf1300; text-decoration:none;">ausblenden</a></li>
               </ul>
             </div>
