@@ -1,0 +1,32 @@
+name: Staging Deploy
+on:
+  workflow_call:
+    inputs:
+      artifact-name:
+        description: 'Rerence name of the artifact produced'
+        required: true
+        type: string
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./src
+        
+    steps:
+      # Check out branch
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      
+      # Install Composer packages
+      - name: Install Composer Dependencies
+        run: chmod +x bin/console && composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
+        
+      # Store vendor packages
+      - uses: actions/upload-artifact@main
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: src/vendor/
