@@ -7,18 +7,17 @@ on:
   workflow_dispatch:
     
 jobs:
-  stage:
+  composer:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
     with:
       artifact-name: stage-vendor-artifact
   
-  push:
+  upload:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
         working-directory: ./src
-    needs: build
     
     steps:       
       # Get built composer packages
