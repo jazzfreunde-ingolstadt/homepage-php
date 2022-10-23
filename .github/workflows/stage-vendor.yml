@@ -20,7 +20,12 @@ jobs:
         shell: bash
         working-directory: ./src
     
-    steps:       
+    steps:
+      # Get repo for sFTP Deploy
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
       # Get built composer packages
       - uses: actions/download-artifact@main
         with:
