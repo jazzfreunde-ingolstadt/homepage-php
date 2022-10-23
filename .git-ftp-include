@@ -1,2 +1,2 @@
+!vendor/
 !src/.env.local
-!src/var/
