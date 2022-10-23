@@ -95,5 +95,6 @@ jobs:
         port: ${{ secrets.CROSS_ENV_SSH_PORT }}
         script: |
           cd ./stage
+          chmod +x bin/console
           bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug
           bin/console cache:clear
