@@ -4,3 +4,4 @@
 src/composer.json
 src/composer.lock
 src/var/
+src/*.xml

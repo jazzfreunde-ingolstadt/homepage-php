@@ -1,0 +1,22 @@
+<phpunit 
+    cacheResultFile="var/phpunit/cache/.phpunit.result.cache"
+>
+    <coverage cacheDirectory="var/phpunit/cache"
+            includeUncoveredFiles="true"
+            processUncoveredFiles="true"
+            pathCoverage="false"
+            ignoreDeprecatedCodeUnits="true">
+        <include>
+            <directory suffix=".php">app</directory>
+        </include>
+        <report>
+            <html outputDirectory="var/phpunit/coverage" lowUpperBound="50" highLowerBound="90"/>
+        </report>
+    </coverage>
+
+    <testsuites>
+        <testsuite name="full">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
