@@ -87,6 +87,8 @@ jobs:
       run:
         shell: bash
         working-directory: ./stage
+    needs: push
+    
     steps:
     - name: Prepare server environment
       uses: appleboy/ssh-action@master
