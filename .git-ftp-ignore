@@ -4,7 +4,9 @@
 src/composer.json
 src/composer.lock
 src/var/
-src/*.xml
 .env.dev
 .git-ftp-ignore
 .git-ftp-include
+phpunit.xml
+psalm.xml
+ruleset.xml
