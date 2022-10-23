@@ -96,5 +96,5 @@ jobs:
         script: |
           cd ./stage
           chmod +x bin/console
-          bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug
-          bin/console cache:clear
+          php bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug
+          php bin/console cache:clear
