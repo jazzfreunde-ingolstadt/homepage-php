@@ -46,7 +46,7 @@ jobs:
       # Check out branch
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 2
+          fetch-depth: 0
           
       # Get built composer packages
       - uses: actions/download-artifact@main
