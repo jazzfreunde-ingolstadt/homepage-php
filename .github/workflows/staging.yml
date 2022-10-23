@@ -83,10 +83,6 @@ jobs:
           
   config:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./stage
     needs: push
     
     steps:
@@ -98,5 +94,6 @@ jobs:
         password: ${{ secrets.CROSS_ENV_SSH_PASSWORD }}
         port: ${{ secrets.CROSS_ENV_SSH_PORT }}
         script: |
+          cd ./stage
           bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug
           bin/console cache:clear
