@@ -8,7 +8,7 @@ on:
     
 jobs:
   stage:
-    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
+    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/stage/compose-vendor.yml@master
     with:
       artifact-name: stage-vendor-artifact
   

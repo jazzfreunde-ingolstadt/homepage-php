@@ -1,4 +1,4 @@
-name: Staging Deploy
+name: Compose vendor
 on:
   workflow_call:
     inputs:
