@@ -33,6 +33,7 @@ jobs:
         with:
           name: composer artifacts
           path: src/vendor/
+          
   push:
     runs-on: ubuntu-latest
     defaults:
@@ -67,14 +68,6 @@ jobs:
       - name: Prepare environment config
         run: mv .env.stage.local .env.local
         
-      # Migrate database
-      - name: Migrate database
-        run: php bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug  --env=stage
-        
-      # Configure and warm up cache
-      - name: Configure app
-        run: php bin/console cache:clear --env=stage
-        
       - name: Finalize symfony rollout
         run: git checkout bin/console
     
@@ -87,3 +80,21 @@ jobs:
           ftp-password: ${{ secrets.STAGING_FTP_PASSWORD }}
           local-dir: src
           git-ftp-args: --insecure
+          
+  config:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./stage
+    steps:
+    - name: Prepare server environment
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.CROSS_ENV_SSH_HOST }}
+        username: ${{ secrets.CROSS_ENV_SSH_USER }}
+        password: ${{ secrets.CROSS_ENV_SSH_PASSWORD }}
+        port: ${{ secrets.CROSS_ENV_SSH_PORT }}
+        script: |
+          bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug
+          bin/console cache:clear
