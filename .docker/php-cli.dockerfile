@@ -54,13 +54,3 @@ COPY ${phpini_path} /usr/local/etc/php/conf.d/custom.ini
 
 # composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# docker user/ssh
-# RUN adduser --disabled-password -gecos '' docker
-# RUN adduser docker sudo
-# RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN mkdir -p /home/docker/.ssh && ln -s /run/secrets/user_ssh_key /home/docker/.ssh/id_ed25519
-# RUN chown -R docker:docker /home/docker/.ssh
-RUN echo "    IdentityFile ~/.ssh/id_ed25519" >> /etc/ssh/ssh_config
-
-# USER docker

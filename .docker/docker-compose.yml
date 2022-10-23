@@ -24,14 +24,11 @@ services:
             context: ..
             dockerfile: .docker/php-cli.dockerfile
             args: *dev-buildargs
-
         volumes:
             - *source
             - *vendor
         environment:
             - APP_ENV=dev # Default Environment
-        secrets:
-            - user_ssh_key
         extra_hosts:
             - "host.docker.internal:host-gateway"
         command: /bin/sh -c "while sleep 1000; do :; done"
@@ -99,7 +96,3 @@ services:
 volumes:
     jazzfreunde-mysql-data:
     jazzfreunde-vendor:
-
-secrets:
-    user_ssh_key:
-        file: ~/.ssh/id_ed25519
