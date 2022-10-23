@@ -59,7 +59,7 @@ jobs:
         
       # Decrypt secrets
       - name: Generate deployable .env
-        run: php bin/console secrets:decrypt-to-local --force --env=test
+        run: php bin/console secrets:decrypt-to-local --force --env=stage
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_STAGE_DECRYPT_PRIVATE }}
           
@@ -69,11 +69,11 @@ jobs:
         
       # Migrate database
       - name: Migrate database
-        run: php bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug  --env=test
+        run: php bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug  --env=stage
         
       # Configure and warm up cache
       - name: Configure app
-        run: php bin/console cache:clear --env=test
+        run: php bin/console cache:clear --env=stage
         
       - name: Finalize symfony rollout
         run: git checkout bin/console
