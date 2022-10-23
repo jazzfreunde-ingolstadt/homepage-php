@@ -6,7 +6,7 @@ on:
       - 'README.md'
       - '**.code-workspace'
       - '.devcontainer/**'
-      - '.env'
+      - '.env*'
       - '**.gitignore'
   workflow_dispatch:
     
