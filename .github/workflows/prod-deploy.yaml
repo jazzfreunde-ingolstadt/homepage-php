@@ -1,0 +1,76 @@
+name: Publish Deploy
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    
+jobs:
+  build-vendor-libraries:
+    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
+    with:
+      artifact-name: prod-vendor-artifact
+
+  build-app:
+    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/build-application.yml@master
+    with:
+      artifact-name: prod-app-artifact
+      environment: prod
+
+  delpoy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./src
+    needs: [build-vendor-libraries, build-app]
+
+    steps:
+      # Check out branch
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      # Get all atrifacts
+      - uses: actions/download-artifact@main
+        with:
+          name: prod-vendor-artifact
+          path: src/vendor
+
+      - uses: actions/download-artifact@main
+        with:
+          name: prod-app-artifact
+          path: src/public
+
+      # Configure symfony environment
+      - name: Generate deployable .env
+        run: |
+          chmod +x bin/console
+          echo "APP_ENV=prod" > .env.prod.local
+          php bin/console secrets:decrypt-to-local --force --env=prod
+        env:
+          SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_PROD_DECRYPT_PRIVATE }}
+
+      - name: Prepare environment config
+        run: mv .env.prod.local .env.local
+
+      # Reset tree for ftp-deploy
+      - name: Finalize symfony rollout
+        run: git checkout bin/console
+
+      # Deploy to ftp server
+      - name: sFTP Deploy (Staging)
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.PROD_FTP_SERVER }}
+          ftp-username: ${{ secrets.PROD_FTP_USER }}
+          ftp-password: ${{ secrets.PROD_FTP_PASSWORD }}
+          local-dir: src
+          git-ftp-args: --insecure
+
+  warm-up:
+    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/warmpup-server.yml@master
+    with:
+      php-cli: php8.1-cli
+      remote-dir: prod
+    secrets: inherit
+    needs: delpoy
