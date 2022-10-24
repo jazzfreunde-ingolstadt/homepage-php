@@ -62,14 +62,14 @@ services:
 
     jazzfreunde-database-server:
         container_name: jazzfreunde-mysql-database
-        image: mysql:latest
+        image: mariadb:10
 
         command: --default-authentication-plugin=mysql_native_password
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: jazzfreunde-api
-            MYSQL_USER: dbu_localdev
-            MYSQL_PASSWORD: 6hdth6e#
+            MARIADB_ROOT_PASSWORD: root
+            MARIADB_DATABASE: jazzfreunde-api
+            MARIADB_USER: dbu_localdev
+            MARIADB_PASSWORD: 6hdth6e#
         ports:
             - 3306:3306
         volumes:
