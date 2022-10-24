@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DoctrineMigrations;
 
 use DateTime;
+use Doctrine\DBAL\Platforms\MySQL80Platform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use DOMDocument;
@@ -41,9 +42,21 @@ final class Version20211014210300 extends AbstractMigration
      */
     public function up(Schema $schema): void
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf($this->connection->getDatabasePlatform() instanceof MySQL80Platform, 'Migration can only be executed safely on \'mysql 8.0\' and higher.');
 
-        $this->addSql('CREATE TABLE IF NOT EXISTS events (id INT AUTO_INCREMENT NOT NULL, titel VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_0900_ai_ci`, subtitel VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, `start` DATETIME NOT NULL, `end` DATETIME NOT NULL, ort VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, link VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
+        $this->addSql(
+            'CREATE TABLE events
+                (
+                    id INT AUTO_INCREMENT NOT NULL,
+                    titel VARCHAR(255) NOT NULL,
+                    subtitel VARCHAR(255) DEFAULT NULL,
+                    start DATETIME NOT NULL,
+                    end DATETIME NOT NULL,
+                    ort VARCHAR(255) NOT NULL,
+                    link VARCHAR(255) DEFAULT NULL,
+                    PRIMARY KEY(id)
+                ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB'
+        );
 
         $GLOBALS['migrations'] = $this;
 
@@ -62,7 +75,7 @@ final class Version20211014210300 extends AbstractMigration
      */
     public function down(Schema $schema): void
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf($this->connection->getDatabasePlatform() instanceof MySQL80Platform, 'Migration can only be executed safely on \'mysql 8.0\' and higher.');
 
         $this->addSql('DROP TABLE events');
     }
