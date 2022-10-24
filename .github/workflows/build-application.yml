@@ -32,6 +32,7 @@ jobs:
       # Install Composer packages
       - name: Install Composer Dependencies
         run: |
+          echo "DATABASE_URL=dummy" > .env.local
           chmod +x bin/console
           bin/console assets:install --env=${{ inputs.environment }}
 
