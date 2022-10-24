@@ -54,6 +54,7 @@ jobs:
       - name: Prepare environment config
         run: mv .env.stage.local .env.local
 
+      # Reset tree for ftp-deploy
       - name: Finalize symfony rollout
         run: git checkout bin/console
 

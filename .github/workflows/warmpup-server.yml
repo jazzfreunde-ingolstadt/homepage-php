@@ -10,6 +10,7 @@ on:
         description: "Direcotry in which the application is deployed."
         required: true
         type: string
+  workflow_dispatch:
 
 jobs:
   warm-up:
