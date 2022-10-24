@@ -1,4 +1,0 @@
-doctrine:
-    dbal:
-        # "STAGE_TOKEN" is typically set by ParaTest
-        dbname_suffix: '_stage%env(default::STAGE_TOKEN)%'

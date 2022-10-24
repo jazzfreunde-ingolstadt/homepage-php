@@ -1,10 +1,14 @@
-name: Compose vendor
+name: Build frontend application
 on:
   workflow_call:
     inputs:
       artifact-name:
         description: 'Rerence name of the artifact produced'
         required: true
+        type: string
+      environment:
+        descript: 'The environment in which to build the app'
+        require: true
         type: string
     
 jobs:
@@ -24,9 +28,15 @@ jobs:
       # Install Composer packages
       - name: Install Composer Dependencies
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
-        
-      # Upload vendor artifact
+
+      # Install Composer packages
+      - name: Install Composer Dependencies
+        run: |
+          chmod +x bin/console
+          bin/console assets:install --env=${{ inputs.environment }}
+
+      # Upload app artifact
       - uses: actions/upload-artifact@main
         with:
           name: ${{ inputs.artifact-name }}
-          path: src/vendor/
+          path: src/public/
