@@ -1,4 +1,4 @@
-name: Publish Deploy
+name: Deploy to prod environment
 on:
   release:
     types: [published]
