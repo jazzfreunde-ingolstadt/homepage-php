@@ -58,13 +58,12 @@ jobs:
       - name: Grant rights to console
         run: chmod +x bin/console
         
-      # Decrypt secrets
+      # Configure symfony environment
       - name: Generate deployable .env
-        run: php bin/console secrets:decrypt-to-local --force --env=stage
+        run: echo "APP_ENV=stage" > .env.stage.local && php bin/console secrets:decrypt-to-local --force --env=stage
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_STAGE_DECRYPT_PRIVATE }}
           
-      # Symfony tasks
       - name: Prepare environment config
         run: mv .env.stage.local .env.local
         
