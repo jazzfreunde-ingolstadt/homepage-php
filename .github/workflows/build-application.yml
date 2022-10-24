@@ -8,7 +8,7 @@ on:
         type: string
       environment:
         description: "The environment in which to build the app"
-        require: true
+        required: true
         type: string
 
 jobs:
