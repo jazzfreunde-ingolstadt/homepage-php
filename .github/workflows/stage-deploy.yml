@@ -4,7 +4,7 @@ on:
     tags:
       - v*
   workflow_dispatch:
-    
+
 jobs:
   build-vendor-libraries:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
@@ -16,7 +16,7 @@ jobs:
     with:
       artifact-name: stage-app-artifact
       environment: stage
-          
+
   delpoy:
     runs-on: ubuntu-latest
     defaults:
@@ -24,13 +24,13 @@ jobs:
         shell: bash
         working-directory: ./src
     needs: [build-vendor-libraries, build-app]
-    
+
     steps:
       # Check out branch
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
-          
+
       # Get all atrifacts
       - uses: actions/download-artifact@main
         with:
@@ -41,7 +41,7 @@ jobs:
         with:
           name: stage-app-artifact
           path: src/public
-        
+
       # Configure symfony environment
       - name: Generate deployable .env
         run: |
@@ -50,13 +50,13 @@ jobs:
           php bin/console secrets:decrypt-to-local --force --env=stage
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_STAGE_DECRYPT_PRIVATE }}
-          
+
       - name: Prepare environment config
         run: mv .env.stage.local .env.local
-        
+
       - name: Finalize symfony rollout
         run: git checkout bin/console
-    
+
       # Deploy to ftp server
       - name: sFTP Deploy (Staging)
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
@@ -66,7 +66,7 @@ jobs:
           ftp-password: ${{ secrets.STAGING_FTP_PASSWORD }}
           local-dir: src
           git-ftp-args: --insecure
-          
+
   warm-up:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/warmpup-server.yml@master
     with:
