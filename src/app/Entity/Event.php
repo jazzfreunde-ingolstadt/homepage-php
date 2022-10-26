@@ -24,6 +24,7 @@ use Doctrine\ORM\Mapping as ORM;
 )]
 #[ApiFilter(DateFilter::class, properties: ['start'])]
 #[ApiFilter(OrderFilter::class, properties: ['start'])]
+#[ApiResource(paginationClientItemsPerPage: true)]
 class Event
 {
     /**
