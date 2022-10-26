@@ -14,6 +14,9 @@ final class MainDeprecated extends Component
 {
     use PropsWithChildren;
 
+    /**
+     * @inheritDoc
+     */
     public function Render(): void
     {
         define("PAGE", "termine");
@@ -28,7 +31,7 @@ final class MainDeprecated extends Component
   <body>
     <table id="alltable" border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
       <tr>
-        <td rowspan="2" id="left" align="center" valign="top" width="220">
+        <td rowspan="2" id="left" class="background" align="center" valign="top" width="220">
           <a href="/">
             <div id="logo">
               <img src="/gfx/logo_lomt.png" alt="Jazzfreunde Ingolstadt e. V." width="200" height="200" />
@@ -44,8 +47,9 @@ final class MainDeprecated extends Component
                 <?= $this->props->children ?>
                 </td>
               </tr>
-              <tr>
-                <td colspan="2" id="footer" height="30" align="center" valign="middle">Jazzfreunde Ingolstadt, Lindbergstr. 3a, 85051 Ingolstadt</td>
+              <tr id="footer" valign="middle">
+                <td align="left" style="padding-left: 10px;"><small><?= $this->props->appVersion ?? 'v0.0.0' ?></small></td>
+                <td align="center">Jazzfreunde Ingolstadt, Lindbergstr. 3a, 85051 Ingolstadt</td>
               </tr>
             </table>
           </body>
@@ -54,6 +58,11 @@ final class MainDeprecated extends Component
             <?php
     }
 
+    /**
+     * Rendert den HTML-Head
+     *
+     * @return void
+     */
     private function head(): void
     {
         ?>
@@ -69,7 +78,7 @@ final class MainDeprecated extends Component
         <link rel="stylesheet" type="text/css" media="all" href="/env/default.css" title="Jazzfreunde blau-orange" />
             <?php if (defined("VIDEO")) { ?>
             <script type="text/javascript" src="/env/swfobject.js"></script>
-    <?php } ?>
+            <?php } ?>
             <script type="text/javascript" src="/env/default.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       </head>

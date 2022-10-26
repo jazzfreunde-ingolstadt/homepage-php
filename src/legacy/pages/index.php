@@ -64,5 +64,5 @@ $img = function($type) use ($c): string
 </script>
 
 <?php
-after();
+after($appVersion);
 ?>

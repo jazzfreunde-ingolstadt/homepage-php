@@ -40,7 +40,11 @@ class LegacyContentController extends AbstractController
     {
         try {
             return new BufferedResponse(
-                $page->include($request->attributes->get('_route').'.php')
+                $page
+                    ->setGlobals([
+                        'appVersion' => $this->getParameter('app.version')
+                    ])
+                    ->include($request->attributes->get('_route').'.php')
             );
         } catch (\LogicException) {
             return $this->redirectToRoute('404');

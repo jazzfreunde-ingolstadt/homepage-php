@@ -270,5 +270,5 @@ writeVAs();
 </ul> -->
 
 <?php
-after();
+after($appVersion);
 ?>

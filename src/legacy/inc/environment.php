@@ -21,7 +21,7 @@ date_default_timezone_set("Europe/Berlin");
 
 header("Content-Type: text/html; charset=UTF-8");
 
-function head()
+function head(): void
 {
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -32,9 +32,6 @@ function head()
     <title>Jazzfreunde Ingolstadt e. V.<?= (defined("TITLE") ? " – " . TITLE : "") ?></title>
     <meta name="author" content="Daniel J. H&ouml;pp" />
     <meta name="keywords" content="jazz, jazzfreunde, jazzmusik, ingolstadt, b&uuml;rgerhaus, alte post, summerjazz, kultur, jazztage, konzerte, diagonal, neue welt, jazzf&ouml;rderpreis, schule" />
-    <?php if (defined("CONTENT")) { ?>
-      <meta name="content" content="<?= CONTENT ?>" />
-    <?php } ?>
     <meta name="html-author" content="H&ouml;ppyMedien" />
     <meta name="robots" content="<?= ROBOTS ?>" />
     <meta name="generator" content="kwrite" />
@@ -50,14 +47,14 @@ function head()
 <?php
 }
 
-function before($onload = null)
+function before($onload = null): void
 {
 ?>
 
   <body <?= ($onload ? " onload=\"$onload\"" : "") ?>>
     <table id="alltable" border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
       <tr>
-        <td rowspan="2" id="left" align="center" valign="top" width="220">
+        <td rowspan="2" id="left" class="background" align="center" valign="top" width="220">
           <a href="/">
             <div id="logo">
               <img src="/gfx/logo_lomt.png" alt="Jazzfreunde Ingolstadt e. V." width="200" height="200" />
@@ -104,15 +101,16 @@ function before($onload = null)
               }
 
 
-              function after()
+              function after(string $appVersion = 'v0.0.0'): void
               {
                 ?>
 
                   <!-- CONTENT ENDS HERE -->
                 </td>
               </tr>
-              <tr>
-                <td colspan="2" id="footer" height="30" align="center" valign="middle">Jazzfreunde Ingolstadt, Lindbergstr. 3a, 85051 Ingolstadt</td>
+              <tr id="footer" valign="middle">
+                <td align="left" style="padding-left: 10px;"><small><?= $appVersion ?></small></td>
+                <td align="center">Jazzfreunde Ingolstadt, Lindbergstr. 3a, 85051 Ingolstadt</td>
               </tr>
             </table>
           </body>
@@ -259,16 +257,6 @@ function before($onload = null)
                   $ret .= substr($chars, mt_rand(0, $num - 1), 1);
                 }
                 return $ret;
-              }
-
-              function unquote_input(&$string)
-              { // Nimmt magic_quotes zurück
-                if (get_magic_quotes_gpc()) {
-                  if (is_array($string)) {
-                    $keys = array_keys($string);
-                    foreach ($keys as $key) unquote_input($string[$key]);
-                  } else $string = stripslashes($string);
-                }
               }
 
               function simpleformat($string)

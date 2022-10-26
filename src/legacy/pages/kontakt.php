@@ -176,7 +176,7 @@
     ?>
 <div class="backlink"><a href="<?= (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 <?php
-    after();
+    after($appVersion);
     die();
   }
 ?>
@@ -222,5 +222,5 @@
 <div class="backlink"><a href="<?= (PAGE . PAGE_ENDING) ?>">Zurück</a></div>
 
 <?php 
-  after();
+  after($appVersion);
 ?>

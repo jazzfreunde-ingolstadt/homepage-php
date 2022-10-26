@@ -40,5 +40,5 @@ before();
 </ol>
 
 <?php
-after();
+after($appVersion);
 ?>

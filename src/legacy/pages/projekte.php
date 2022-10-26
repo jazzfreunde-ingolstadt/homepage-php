@@ -63,5 +63,5 @@ before();
 <p>Das Highlight im Jazzkalender Ingolstadts! Organisiert wird dieser Megaevent (<a href="http://www.ingolstadt.de/jazztage" title="Ingolstädter Jazztage">www.ingolstadt.de/jazztage</a>) vom Ehrenmitglied des Vereins der Ingolstädter Jazzfreunde e.&nbsp;V. Jan Rottau und seinem Team. Seit 2013 organisieren die Jazzfreunde in Zusammenarbeit mit dem Kulturamt ein Event im Rahmen der Jazztage: „Jazzfreunde e.&nbsp;V. presents“: Unter dem Motto „Jazz vom Feinsten aus deutschen Landen“ treten in einem Doppelkonzert innovative deutsche Jazzformationen (regional und überregional) auf. Übrigens: Mitglieder des Vereins erhalten kostenlose Eintrittskarten für dieses Konzert (Bonuskonzert)! Weiterhin findet im Rahmen der Jazztage eine „Young Players Session“ im Diagonal statt.</p>
 
 <?php
-after();
+after($appVersion);
 ?>

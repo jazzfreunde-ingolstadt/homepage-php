@@ -95,6 +95,6 @@ before();
 
 <p>Wenn Sie interessiert, was wir mit Ihren Daten anfangen und wie wir sie schützen, lesen Sie unsere Informationen zu <a href="/daten/">Datenerhebung und Datenschutz</a>.</p>
 
-<?
-after();
+<?php
+after($appVersion);
 ?>

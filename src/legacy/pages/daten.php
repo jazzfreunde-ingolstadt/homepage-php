@@ -45,5 +45,5 @@
 <div class="backlink"><a href="#" onclick="history.back()">Zurück</a></div>
 
 <?
-  after();
+  after($appVersion);
 ?>

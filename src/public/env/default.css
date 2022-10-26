@@ -61,6 +61,10 @@ tt { font-weight:bold; }
 .backlink { margin-top:2em; margin-left:2em; margin-bottom:1em; margin-right:2em; width:10em; padding:0em; border:1px #242c7f dotted; background:#e8c400; color:#242c7f; }
 .backlink a { display:block; padding:0.5em; font-weight:bold; text-align:center; color:#bf1300; text-decoration:underline; }
 
+.background {
+  background:#242c7f;
+}
+
 /* SPLASH */
 
 #introtable { height:100%; width:525px; border:none; border-collapse:collapse; }

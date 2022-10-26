@@ -101,5 +101,5 @@ before("autoload_jazzletter()");
 
 content();
 
-after();
+after($appVersion);
 ?>

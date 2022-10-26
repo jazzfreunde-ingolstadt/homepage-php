@@ -154,5 +154,5 @@ before();
 <p class="small">Vorstehende Satzung ist errichtet am 17.02.2005 und geändert am 22.02.2011 und am 12.02.2014</p>
 
 <?php
-after();
+after($appVersion);
 ?>

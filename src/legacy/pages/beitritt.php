@@ -58,5 +58,5 @@ before();
 <p>Sobald Sie als Mitglied aufgenommen wurden, wird Ihnen Ihr Mitgliedsausweis elektronisch zugesandt. Die folgenden Jahresbeiträge werden jeweils zum 15. Januar jedes Jahres von Ihrem Konto per SEPA-Lastschrift eingezogen.</p>
 
 <?php
-  after();
+  after($appVersion);
 ?>

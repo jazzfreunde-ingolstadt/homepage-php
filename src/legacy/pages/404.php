@@ -11,5 +11,5 @@ before();
 <h1>Hoppla, da ist wohl was schiefgelaufen... :(</h1>
 
 <?php
-after();
+after($appVersion);
 ?>

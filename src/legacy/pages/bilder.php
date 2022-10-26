@@ -215,5 +215,5 @@ before();
 
 content();
 
-after();
+after($appVersion);
 ?>

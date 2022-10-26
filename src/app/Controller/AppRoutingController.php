@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Controller;
 
+use Closure;
+use Components\Component;
 use Components\Props\Props;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,6 +64,7 @@ class AppRoutingController extends AbstractController
         {
             /**
              * @param bool $edit
+             * @param string $appVersion
              * @param bool $debug
              */
             public function __construct(public bool $edit, public bool $debug = false)
@@ -69,16 +72,25 @@ class AppRoutingController extends AbstractController
             }
         };
 
-        return new Response(
-            (string) new MainDeprecated(
-                new PropsWithChildren(
-                    children: new EventList(
-                        props: $eventProps,
-                        serializer: $serializer,
-                        router: $router
-                    )
-                )
+        $props = new class(
+            appVersion: $this->getParameter('app.version') ?? 'v0.0.0',
+            children: new EventList(
+                props: $eventProps,
+                serializer: $serializer,
+                router: $router
             )
+        ) extends PropsWithChildren {
+            /**
+             * @param string $appVersion
+             */
+            public function __construct(public string $appVersion, Component|Closure $children)
+            {
+                parent::__construct($children);
+            }
+        };
+
+        return new Response(
+            (string) new MainDeprecated($props)
         );
     }
 }

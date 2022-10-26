@@ -248,5 +248,5 @@ function nobox()
 <?php linkend() ?>
 
 <?php
-after();
+after($appVersion);
 ?>
