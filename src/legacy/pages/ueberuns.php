@@ -32,7 +32,7 @@ before();
     <div class="right"><a class="kontakt" href="/kontakt/?to=wewer" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
 </div>
-<div class="kasten person odd"><img src="/gfx/reitberger_pre.png" alt="Bild" height="90" width="70" />
+<!-- <div class="kasten person odd"><img src="/gfx/reitberger_pre.png" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Stellvertretender Vorsitzender, Jugend- und Nachwuchsarbeit</div>
   <div class="kasten_h2">Bernhard Reitberger</div>
   <div class="kasten_p">Bernhard Reitberger hat Schlagzeug in Würzburg studiert und ist Musiklehrer am <a href="http://www.gnadenthal-gymnasium.de/">Gnadenthal-Gymnasium</a>.
@@ -40,7 +40,7 @@ before();
     Bei folgenden Musikgruppen ist er mit diesen Instrumenten anzutreffen: Bourbon-Street-Jazzband, Almost Blue, Mallets &amp; Friends, Mallet-Connection, Heini &amp; Eym’s und die Lieblich-Combo, Luitilos Weiberg’sang etc.…
     <div class="right"><a class="kontakt" href="/kontakt/?to=reitberger" title="Zum Kontaktformular">Kontakt</a></div>
   </div>
-</div>
+</div> -->
 <div class="kasten person even"><img src="/gfx/diewock_pre.png" alt="Bild" height="90" width="70" />
   <div class="kasten_h1">Stellvertretender Vorsitzender, Sessionkoordinator</div>
   <div class="kasten_h2">Tom Diewock</div>

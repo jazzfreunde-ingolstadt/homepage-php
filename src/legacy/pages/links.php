@@ -80,7 +80,7 @@ function nobox()
 
 <?php linkstart() ?>
 
-<?php linkbox("Bürgertreff Ingolstadt", "www.buergertreff-ingolstadt.de/buergerhaus/index.php", null, null, null) ?>
+<?php linkbox("Bürgerhaus Ingolstadt", "http://www.buergerhaus-ingolstadt.de/", null, null, null) ?>
 
 <?php linkbox("Fachschaft Musik des Reuchlin-Gymnasiums", "www.bingo-ev.de/~sb448/rg/cms/website.php?id=/de/musik.htm", "rgi", null, null) ?>
 
@@ -101,7 +101,7 @@ function nobox()
 
 <?php linkbox("Musikzentrum music in", "www.music-in.de", "music-in", "/gfx/banner/music-in.png", null) ?>
 
-<?php linkbox("Szenelokal Diagonal", "www.diagonal-bar.de", "diagonal", null, null) ?>
+<?php linkbox("Szenelokal Diagonal", "https://de-de.facebook.com/diagonal.IN/", "diagonal", null, null) ?>
 
 <?php linkbox("Vegetarisches Restaurant Swept Away", "www.swept-away.de", "sweptaway", null, null) ?>
 
