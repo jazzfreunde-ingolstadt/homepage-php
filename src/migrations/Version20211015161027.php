@@ -238,8 +238,8 @@ final class Version20211014210300 extends AbstractMigration
         list($hour, $min) = explode(':', trim($time));
 
         $end = new DateTimeSQL();
-        $start->setDate((int) $year, (int) $month, (int) $day);
-        $start->setTime((int) $hour, (int) $min);
+        $end->setDate((int) $year, (int) $month, (int) $day);
+        $end->setTime((int) $hour, (int) $min);
 
         if ($end < $start) { // Ende darf nicht vor Start liegen
             $end = $start;
