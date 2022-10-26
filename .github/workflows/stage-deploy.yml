@@ -43,10 +43,16 @@ jobs:
           path: src/public
 
       # Configure symfony environment
+      - uses: nowsprinting/check-version-format-action@v3
+        id: version
+        with:
+          prefix: 'v'
+
       - name: Generate deployable .env
         run: |
           chmod +x bin/console
           echo "APP_ENV=stage" > .env.stage.local
+          echo "APP_VERSION=${{ steps.version.outputs.full }}" >> .env.stage.local
           php bin/console secrets:decrypt-to-local --force --env=stage
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_STAGE_DECRYPT_PRIVATE }}

@@ -46,6 +46,7 @@ jobs:
         run: |
           chmod +x bin/console
           echo "APP_ENV=prod" > .env.prod.local
+          echo "APP_VERSION=${{ github.event.release.tag_name }}" >> .env.prod.local
           php bin/console secrets:decrypt-to-local --force --env=prod
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_PROD_DECRYPT_PRIVATE }}
@@ -58,7 +59,7 @@ jobs:
         run: git checkout bin/console
 
       # Deploy to ftp server
-      - name: sFTP Deploy (Staging)
+      - name: sFTP Deploy (Production)
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           ftp-server: ${{ secrets.PROD_FTP_SERVER }}
