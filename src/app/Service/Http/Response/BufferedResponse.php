@@ -51,7 +51,7 @@ final class BufferedResponse extends Response
         try {
             ob_start();
             $this->page->render();
-            $html = ob_get_clean();
+            $html = ob_get_contents();
         } finally {
             ob_end_clean();
         }
