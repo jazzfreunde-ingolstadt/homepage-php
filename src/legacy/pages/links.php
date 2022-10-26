@@ -80,7 +80,7 @@ function nobox()
 
 <?php linkstart() ?>
 
-<?php linkbox("Bürgerhaus Ingolstadt", "http://www.buergerhaus-ingolstadt.de/", null, null, null) ?>
+<?php linkbox("Bürgerhaus Ingolstadt", "www.buergerhaus-ingolstadt.de/", null, null, null) ?>
 
 <?php linkbox("Fachschaft Musik des Reuchlin-Gymnasiums", "www.bingo-ev.de/~sb448/rg/cms/website.php?id=/de/musik.htm", "rgi", null, null) ?>
 
