@@ -72,6 +72,6 @@ jobs:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/warmpup-server.yml@master
     with:
       php-cli: php8.1-cli
-      remote-dir: /
+      remote-dir: .
     secrets: inherit
     needs: delpoy
