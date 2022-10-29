@@ -58,6 +58,9 @@ jobs:
       - name: Finalize symfony rollout
         run: git checkout bin/console
 
+      - name: remote path
+        run: echo "remote: ."
+
       # Deploy to ftp server
       - name: sFTP Deploy (Production)
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
