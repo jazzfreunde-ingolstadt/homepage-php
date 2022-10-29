@@ -59,7 +59,8 @@ jobs:
         run: git checkout bin/console
 
       - name: remote path
-        run: echo "remote: ."
+        run: |
+          echo "remote: ."
 
       # Deploy to ftp server
       - name: sFTP Deploy (Production)
