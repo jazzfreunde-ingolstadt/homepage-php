@@ -23,7 +23,7 @@ final class EventList extends Component
      * @param Props $props
      * @param SerializerInterface $serializer
      */
-    public function __construct(protected ?Props $props = null, private SerializerInterface $serializer, private UrlGeneratorInterface $router)
+    public function __construct(protected Props $props, private SerializerInterface $serializer, private UrlGeneratorInterface $router)
     {
     }
 

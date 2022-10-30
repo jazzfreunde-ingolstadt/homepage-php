@@ -39,21 +39,21 @@ class Event
      * @param string|null $link
      */
     public function __construct(
-        #[ORM\Id]
-        #[ORM\GeneratedValue]
-        #[ORM\Column(type: 'integer')]
-        public ?int $id = null,
-        // public ?int $series_id,
         #[ORM\Column(type: 'string')]
         public string $titel,
-        #[ORM\Column(type: 'string', nullable: true)]
-        public ?string $subtitel = null,
         #[ORM\Column(type: 'datetime')]
         public DateTime $start,
         #[ORM\Column(type: 'datetime')]
         public DateTime $end,
         #[ORM\Column(type: 'string')]
         public string $ort,
+        #[ORM\Id]
+        #[ORM\GeneratedValue]
+        #[ORM\Column(type: 'integer')]
+        public ?int $id = null,
+        // public ?int $series_id,
+        #[ORM\Column(type: 'string', nullable: true)]
+        public ?string $subtitel = null,
         #[ORM\Column(type: 'string', nullable: true)]
         public ?string $link = null
     ) {

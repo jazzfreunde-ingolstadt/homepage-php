@@ -36,7 +36,7 @@ class LegacyContentController extends AbstractController
     #[Route('/kontakt/', name: 'kontakt')]
     #[Route('/daten/', name: 'daten')]
     #[Route('/404/', name: '404')]
-    public function ueberuns(LegacyPage $page, Request $request): Response
+    public function legacy(LegacyPage $page, Request $request): Response
     {
         try {
             return new BufferedResponse(
@@ -47,7 +47,9 @@ class LegacyContentController extends AbstractController
                     ->include($request->attributes->get('_route').'.php')
             );
         } catch (\LogicException) {
-            return $this->redirectToRoute('404');
+            if ('404' !== trim($request->getPathInfo(), '/')) {
+                return $this->redirectToRoute('404');
+            }
         }
     }
 }
