@@ -4,4 +4,4 @@
 !.vscode/launch.json
 *.code-workspace
 !default.code-workspace
-node-modules
+node-modules/*
