@@ -42,16 +42,16 @@ jobs:
           path: src/public
 
       # Configure symfony environment
-      - uses: nowsprinting/check-version-format-action@v3
-        id: version
-        with:
-          prefix: 'v'
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
       - name: Generate deployable .env
         run: |
           chmod +x bin/console
           echo "APP_ENV=prod" > .env.prod.local
-          echo "APP_VERSION=${{ steps.version.outputs.full }}" >> .env.prod.local
+          echo "APP_VERSION=${{ github.event.release.tag_name }}" >> .env.prod.local
           php bin/console secrets:decrypt-to-local --force --env=prod
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_PROD_DECRYPT_PRIVATE }}
