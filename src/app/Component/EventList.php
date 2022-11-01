@@ -54,6 +54,7 @@ final class EventList extends Component
 
             const fillTemplate = function (template, event) {
                 let start = new Date(event.start);
+                template.attr("event-id", event.id);
                 template.find(".event_weekday").append(wochentag[start.getDay()]);
                 template.find(".event_date").append(start.toLocaleDateString("de-DE"));
                 template.find(".event_time").append(start.toLocaleTimeString("de-DE", { hour: '2-digit', minute: '2-digit' }));
@@ -83,7 +84,7 @@ final class EventList extends Component
                     return;
                 }
 
-                let template = table.find(".event-item-template").clone();
+                let template = table.find(".event-item-template").clone().removeClass("event-item-template");
                 list.empty();
                 
                 $.each(eventData, function(index, event) {
