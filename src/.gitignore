@@ -9,3 +9,7 @@ vendor/
 /public/bundles/
 /var/
 ###< symfony/framework-bundle ###
+
+###> npm
+node_modules/*
+###<

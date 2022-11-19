@@ -45,9 +45,9 @@ RUN apt-get install -y libldap2-dev \
     && docker-php-ext-install -j$(nproc) ldap
 
 # Install Node and npm
-# RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
-# RUN nvm install v14
-# RUN nvm alias default v14
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+RUN nvm install v18
+RUN nvm alias default v18
 
 # php
 COPY ${phpini_path} /usr/local/etc/php/conf.d/custom.ini
