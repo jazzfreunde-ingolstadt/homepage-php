@@ -26,6 +26,7 @@
         "symfony/error-handler": "^6.1",
         "symfony/expression-language": "^6.1",
         "symfony/filesystem": "^6.1",
+        "symfony/flex": "^2.2",
         "symfony/framework-bundle": "^6.1",
         "symfony/ldap": "^6.1",
         "symfony/maker-bundle": "^1.47",
@@ -53,8 +54,8 @@
     ],
     "scripts": {
         "auto-scripts": {
-            "cache:clear": "bin/console cache:clear",
-            "assets:install": "bin/console assets:install"
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "install-codestandards": [
             "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
@@ -74,14 +75,16 @@
         "symfony": {
             "allow-contrib": false,
             "require": "6.1.*"
-        }
+        },
+        "src-dir": "app/"
     },
     "config": {
         "optimize-autoloader": true,
         "sort-packages": true,
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "symfony/flex": true
         }
     },
     "autoload": {
