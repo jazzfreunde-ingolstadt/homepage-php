@@ -21,6 +21,22 @@
             }
         },
         {
+            "name": "Debug current unit test",
+            "type": "php",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/bin/phpunit",
+            "args": [
+                "${file}",
+            ],
+            "port": 9003,
+            "env": {
+                "XDEBUG_MODE": "debug",
+                "XDEBUG_CONFIG": "client_host=127.0.0.1 client_port=9003",
+                "DEBUG_MODE": "true",
+                "XDEBUG_SESSION": "true"
+            }
+        },
+        {
             "name": "Launch migration in debug mode",
             "type": "php",
             "request": "launch",
