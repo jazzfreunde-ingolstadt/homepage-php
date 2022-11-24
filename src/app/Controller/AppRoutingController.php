@@ -40,11 +40,13 @@ class AppRoutingController extends AbstractController
      * @return BufferedResponse
      */
     #[Route('/about/', name: 'about')]
-    public function about(DefaultPage $page): BufferedResponse
+    public function about(DefaultPage $page): Response
     {
-        return new BufferedResponse(
-            $page->component(new About())
-        );
+        // return new BufferedResponse(
+        //     $page->component(new About())
+        // );
+        return $this->render('base.html.twig', [
+        ]);
     }
 
     /**

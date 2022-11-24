@@ -13,7 +13,9 @@
 		"spmeesseman.vscode-taskexplorer",
 		"esbenp.prettier-vscode",
 		"xdebug.php-debug",
-		"jakebathman.mysql-syntax"
+		"jakebathman.mysql-syntax",
+		"rholdos.twig-language-support",
+		"bradlc.vscode-tailwindcss"
 	],
 	"workspaceFolder": "/usr/project"
 }
