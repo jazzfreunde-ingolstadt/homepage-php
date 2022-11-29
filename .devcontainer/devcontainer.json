@@ -15,7 +15,8 @@
 		"xdebug.php-debug",
 		"jakebathman.mysql-syntax",
 		"rholdos.twig-language-support",
-		"bradlc.vscode-tailwindcss"
+		"bradlc.vscode-tailwindcss",
+		"junstyle.twig-language"
 	],
 	"workspaceFolder": "/usr/project"
 }

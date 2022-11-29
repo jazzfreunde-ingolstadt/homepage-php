@@ -20,5 +20,8 @@
     "[yaml]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[twig]": {
+        "editor.defaultFormatter": "junstyle.twig-language"
+    },
     "files.eol": "\n"
 }

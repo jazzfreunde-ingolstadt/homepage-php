@@ -45,7 +45,7 @@ class AppRoutingController extends AbstractController
         // return new BufferedResponse(
         //     $page->component(new About())
         // );
-        return $this->render('base.html.twig', [
+        return $this->render('pages/about.html.twig', [
         ]);
     }
 

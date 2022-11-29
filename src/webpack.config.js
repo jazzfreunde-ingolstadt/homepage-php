@@ -61,6 +61,12 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .configureWatchOptions(function(watchOptions) {
+        // change the configuration
+        watchOptions.poll = 250; // useful when running inside a Virtual Machine
+        watchOptions.aggregateTimeout = 200; // useful when running inside a Virtual Machine
+    });
 ;
 
 module.exports = Encore.getWebpackConfig();
