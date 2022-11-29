@@ -2,5 +2,6 @@
 !.vscode/extensions.json
 !.vscode/settings.json
 !.vscode/launch.json
+!.vscode/tasks.json
 *.code-workspace
 !default.code-workspace
