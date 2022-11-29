@@ -45,7 +45,7 @@
         "escapestudios/symfony2-coding-standard": "3.x-dev",
         "pheromone/phpcs-security-audit": "2.0.1",
         "psalm/plugin-phpunit": "dev-master",
-        "vimeo/psalm": "^5@beta"
+        "vimeo/psalm": "^5.0.0-beta1"
     },
     "repositories": [
         {
