@@ -13,13 +13,6 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
-
-    /*
-     * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-     */
     .addEntry('app', './assets/app.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
@@ -28,14 +21,6 @@ Encore
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
-
-    /*
-     * FEATURE CONFIG
-     *
-     * Enable & configure other features below. For a full
-     * list of features, see:
-     * https://symfony.com/doc/current/frontend.html#adding-more-features
-     */
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
@@ -66,6 +51,14 @@ Encore
         // change the configuration
         watchOptions.poll = 250; // useful when running inside a Virtual Machine
         watchOptions.aggregateTimeout = 200; // useful when running inside a Virtual Machine
+    })
+    .configureDevServerOptions((options) => {
+        options.liveReload = true;
+        options.hot = true;
+        options.watchFiles = [
+            './templates/**/*',
+            './app/**/*'
+        ]
     });
 ;
 
