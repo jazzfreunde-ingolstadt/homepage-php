@@ -1,0 +1,78 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "Install dependencies",
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "composer install",
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Update autoloader",
+            "detail": "Aktualisiere Autoloader Class Maps",
+            "type": "shell",
+            "problemMatcher": [],
+            "group": "build",
+            "command": "composer dump-autoload",
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Migrate database",
+            "type": "shell",
+            "group": "test",
+            "command": "${workspaceFolder}/src/bin/console",
+            "args": [
+                "doctrine:migrations:migrate",
+                "--no-interaction"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
+        },
+        {
+            "label": "Run Unit Tests",
+            "type": "shell",
+            "group": "test",
+            "command": "${workspaceFolder}/src/bin/phpunit",
+            "args": [
+                "--testsuite=full"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+                "env": {}
+            },
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Analyze code",
+            "type": "shell",
+            "group": "test",
+            "command": "${workspaceFolder}/src/bin/psalm",
+            "args": [
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
+            "presentation": {
+                "clear": true
+            }
+        },
+	]
+}
