@@ -65,12 +65,31 @@
             "type": "shell",
             "group": "test",
             "command": "${workspaceFolder}/src/bin/psalm",
-            "args": [
-            ],
             "options": {
                 "cwd": "${workspaceFolder}/src/",
             },
+            "args": [
+                "-c=psalm.xml",
+            ],
+            "problemMatcher": {
+                "owner": "php",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(ERROR):\\s([^\\s]+)\\s-\\s([^:]+):([0-9]+):([0-9]+)\\s-\\s(.+)$",
+                    "file": 3,
+                    "line": 4,
+                    "column": 5,
+                    "severity": 1,
+                    "message": 6,
+                    "code": 2
+                }
+            },
             "presentation": {
+                "showReuseMessage": false,
                 "clear": true
             }
         },
