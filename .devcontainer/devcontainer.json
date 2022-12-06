@@ -7,7 +7,6 @@
 	},
 	"extensions": [
 		"bmewburn.vscode-intelephense-client",
-		"ikappas.phpcs",
 		"valeryanm.vscode-phpsab",
 		"neilbrayfield.php-docblocker",
 		"spmeesseman.vscode-taskexplorer",

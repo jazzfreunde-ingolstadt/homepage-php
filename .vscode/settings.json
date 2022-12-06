@@ -1,13 +1,4 @@
 {
-    "phpcs.composerJsonPath": "src",
-    "phpcs.ignorePatterns": [
-        "src/legacy/*",
-        "src/vendor/*"
-    ],
-    "phpcs.standard": "src/ruleset.xml,Security",
-    "phpcs.showWarnings": false,
-    "phpcs.showSources": true,
-    "phpsab.snifferEnable": false,
     "phpsab.composerJsonPath": "src",
     "phpsab.standard": "src/ruleset.xml,Security",
     "phpsab.fixerArguments": [
