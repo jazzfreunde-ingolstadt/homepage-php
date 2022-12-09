@@ -5,6 +5,7 @@ namespace Jazzfreunde\App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use Doctrine\ORM\Mapping as ORM;
+use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 
 /**
  * Veranstaltungsorte
@@ -18,6 +19,8 @@ use Doctrine\ORM\Mapping as ORM;
 )]
 class Ort
 {
+    use PropertyInjectionTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

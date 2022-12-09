@@ -9,6 +9,7 @@ use DateInterval;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\Type\DateTimeSQL;
 use Components\Props\Props;
+use Jazzfreunde\App\Entity\Ort;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -60,7 +61,7 @@ final class EventList extends Component
                 template.find(".event_time").append(start.toLocaleTimeString("de-DE", { hour: '2-digit', minute: '2-digit' }));
                 template.find(".event_titel").append(event.titel);
                 template.find(".event_subtitel").append(event.subtitel ?? "");
-                template.find(".event_location").append(event.ort);
+                template.find(".event_location").append(event.ort.name);
                 let link = template.find(".event_link");
                 if (event.link.length) {
                     link.attr("href", event.link);
@@ -121,8 +122,8 @@ final class EventList extends Component
                     // Falls keine Testdaten vorhanden sind, stehen hier Dummydaten zur Verfügung.
                     if (!upcomingEventsData.length) {   
                         upcomingEventsData = <?= $this->serializer->serialize([
-                            new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->add(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
-                            new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->add(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                            new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->add(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                            new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->add(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
                         ], 'json') ?>
                     }
                 <?php } ?>
@@ -137,8 +138,8 @@ final class EventList extends Component
                     // Falls keine Testdaten vorhanden sind, stehen hier Dummydaten zur Verfügung.
                     if (!pastEventsData.length) {   
                         pastEventsData = <?= $this->serializer->serialize([
-                            new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->sub(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
-                            new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->sub(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                            new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->sub(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                            new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->sub(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
                         ], 'json') ?>
                     }
                 <?php } ?>
@@ -171,8 +172,8 @@ final class EventList extends Component
                             // Falls keine Testdaten vorhanden sind, stehen hier Dummydaten zur Verfügung.
                             if (!archivedEventsData.length) {   
                                 archivedEventsData = <?= $this->serializer->serialize([
-                                    new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->sub(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
-                                    new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->sub(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: 'Jazzfreunde Club', link: 'jazzfreunde.de'),
+                                    new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTimeSQL())->sub(new DateInterval('P1D')), end: (new DateTimeSQL())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                                    new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTimeSQL())->sub(new DateInterval('P10D')), end: (new DateTimeSQL())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
                                 ], 'json') ?>
                             }
                         <?php } ?>

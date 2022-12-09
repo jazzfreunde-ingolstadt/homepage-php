@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -31,6 +32,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(paginationClientItemsPerPage: true)]
 class Event
 {
+    use PropertyInjectionTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
