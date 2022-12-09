@@ -5,3 +5,8 @@ api_platform:
       - '%kernel.project_dir%/app/Entity'
   swagger:
     versions: [3]
+  formats:
+    json:
+      mime_types: ['application/json']
+    html:
+      mime_types: ['text/html']
