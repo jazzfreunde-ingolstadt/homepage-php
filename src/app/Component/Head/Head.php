@@ -48,7 +48,7 @@ class Head implements ComponentInterface, SharedStorageInterface
             <meta>
                 <meta charset="utf-8" />
                 <title><?= $this->title ?></title>
-                <link rel="shortcut icon" type="image/x-icon" href="/<?= $this->favicon ?>">
+                <link rel="icon" type="image/x-icon" href="/<?= $this->favicon ?>">
         <?php array_walk($entries, fn(ComponentInterface $element) => $element->render()); ?>
             </meta>
         <?php

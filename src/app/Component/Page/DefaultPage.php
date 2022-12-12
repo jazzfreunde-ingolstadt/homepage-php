@@ -43,6 +43,7 @@ class DefaultPage implements ComponentInterface, SharedStorageInterface
 
         $this->head = $head
             ->setTitle('Jazzfreunde Ingolstadt e. V.')
+            ->setFavicon('/assets/images/jicon.svg')
             ->addMetadata(
                 new Metadata('author', 'Michael Mayer'),
                 new Metadata('keywords', 'jazz, jazzfreunde, jazzmusik, ingolstadt, b&uuml;rgerhaus, alte post, summerjazz, kultur, jazztage, konzerte, diagonal, neue welt, jazzf&ouml;rderpreis, schule, literratur'),

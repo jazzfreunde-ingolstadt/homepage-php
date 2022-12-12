@@ -35,7 +35,7 @@ function head(): void
     <meta name="html-author" content="H&ouml;ppyMedien" />
     <meta name="robots" content="<?= ROBOTS ?>" />
     <meta name="generator" content="kwrite" />
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="/assets/images/jicon.svg" />
     <link rel="stylesheet" type="text/css" media="all" href="/env/default.css" title="Jazzfreunde blau-orange" />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <?php if (defined("VIDEO")) { ?>

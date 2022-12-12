@@ -74,7 +74,7 @@ final class MainDeprecated extends Component
         <meta name="html-author" content="MicheMayer" />
         <meta name="robots" content="<?= ROBOTS ?>" />
         <meta name="generator" content="kwrite" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/assets/images/jicon.svg">
         <link rel="stylesheet" type="text/css" media="all" href="/env/default.css" title="Jazzfreunde blau-orange" />
             <?php if (defined("VIDEO")) { ?>
             <script type="text/javascript" src="/env/swfobject.js"></script>
