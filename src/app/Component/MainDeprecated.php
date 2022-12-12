@@ -80,7 +80,7 @@ final class MainDeprecated extends Component
             <script type="text/javascript" src="/env/swfobject.js"></script>
             <?php } ?>
             <script type="text/javascript" src="/env/default.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="/assets/scripts/jquery/3.6.0/jquery.min.js"></script>
       </head>
         <?php
     }
