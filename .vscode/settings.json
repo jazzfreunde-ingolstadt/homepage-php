@@ -14,5 +14,9 @@
     "[twig]": {
         "editor.defaultFormatter": "junstyle.twig-language"
     },
-    "files.eol": "\n"
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/.git": true,
+        "**/var/cache": true,
+    }
 }
