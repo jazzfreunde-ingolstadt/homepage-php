@@ -14,8 +14,6 @@ use Jazzfreunde\App\Component\MainDeprecated;
 use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Component\Content\About;
-use Jazzfreunde\App\Component\Page\DefaultPage;
 use Symfony\Component\HttpFoundation\Request;
 use Jazzfreunde\App\Service\Http\Response\BufferedResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
