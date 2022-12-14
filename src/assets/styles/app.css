@@ -17,3 +17,15 @@
   width: inherit;
   height: inherit;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e8c400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
