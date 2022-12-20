@@ -91,7 +91,7 @@ class AppRoutingController extends AbstractController
     public function endUserAgreement(): Response
     {
         return $this->render(
-            'pages/end-user-agreement.html.twig'
+            'pages/legal/end-user-agreement.html.twig'
         );
     }
 
@@ -104,7 +104,7 @@ class AppRoutingController extends AbstractController
     public function impressum(): Response
     {
         return $this->render(
-            'pages/impressum.html.twig'
+            'pages/legal/impressum.html.twig'
         );
     }
 
