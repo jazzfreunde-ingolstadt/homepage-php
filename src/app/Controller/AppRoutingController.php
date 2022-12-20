@@ -32,7 +32,7 @@ class AppRoutingController extends AbstractController
     }
 
     /**
-     * About
+     * Informationen zum Verein
      *
      * @return BufferedResponse
      */
@@ -61,7 +61,7 @@ class AppRoutingController extends AbstractController
                 'position' => 'Schatzmeister',
                 'bio' => 'Helmut Bachmaier lebt in Ingolstadt und arbeitet in München bei einer internationalen Bank. Er ist seit 2007 Mitglied bei den Jazzfreunden und seit 2020 Schatzmeister. Theater, Kabarett und Livemusik sind in der Freizeit fester Bestandteil.',
                 'pictureSrc' => '/gfx/bachmaier.jpeg',
-                'mail' => 'bachmaier', 
+                'mail' => 'bachmaier',
             ],
             [
                 'name' => 'Michael Mayer',
@@ -79,6 +79,20 @@ class AppRoutingController extends AbstractController
         return $this->render(
             'pages/about.html.twig',
             ['personen' => $personen]
+        );
+    }
+
+    /**
+     * Datenschutzbestimmung
+     *
+     * @return BufferedResponse
+     */
+    #[Route('/legal/end-user-agreement/', name: 'end-user-agreement')]
+    public function endUserAgreement(): Response
+    {
+
+        return $this->render(
+            'pages/end-user-agreement.html.twig'
         );
     }
 
