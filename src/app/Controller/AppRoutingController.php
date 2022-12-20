@@ -90,9 +90,21 @@ class AppRoutingController extends AbstractController
     #[Route('/legal/end-user-agreement/', name: 'end-user-agreement')]
     public function endUserAgreement(): Response
     {
-
         return $this->render(
             'pages/end-user-agreement.html.twig'
+        );
+    }
+
+    /**
+     * Datenschutzbestimmung
+     *
+     * @return BufferedResponse
+     */
+    #[Route('/legal/impressum/', name: 'impressum')]
+    public function impressum(): Response
+    {
+        return $this->render(
+            'pages/impressum.html.twig'
         );
     }
 
