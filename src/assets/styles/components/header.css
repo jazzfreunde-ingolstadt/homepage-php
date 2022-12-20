@@ -1,0 +1,29 @@
+.header-menu li {
+    display: inline-block;
+}
+
+.header-menu li a {
+    display:inline-block;
+    text-align:center;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.header-menu a:hover {
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.header-menu a::before {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    letter-spacing: .5px;
+}
+
+.header-menu a::after {
+    content: attr(title);
+}

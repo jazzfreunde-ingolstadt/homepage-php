@@ -16,7 +16,7 @@
         <div class="max-w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-screen-xl my-5">
             <div class="md:flex">
                 <div class="md:shrink-0 md:order-{{ loop.index is odd ? 'first' : 'last'}}">
-                    <img class="h-96 w-full object-cover md:h-full md:w-64" src="{{ person.pictureSrc }}" alt="{{ person.name }}">
+                    <img class="h-fit w-full object-cover md:h-full md:w-64" src="{{ person.pictureSrc }}" alt="{{ person.name }}">
                 </div>
                 <div class="hidden">
                     <!-- load classes for dynamic use in template -->
