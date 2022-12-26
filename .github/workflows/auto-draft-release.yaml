@@ -22,4 +22,4 @@ jobs:
         with:
           draft: true
           artifacts: "prod-app-artifact.zip,prod-vendor-artifact.zip"
-          bodyFile: ${{steps.github_release.outputs.changelog}}
+          body: ${{steps.github_release.outputs.changelog}}
