@@ -32,7 +32,7 @@ Encore
 
     .enableIntegrityHashes(Encore.isProduction())
 
-    .autoProvidejQuery()
+    // .autoProvidejQuery()
 
     .configureWatchOptions(function(watchOptions) {
         watchOptions.poll = 250; // useful when running inside a Virtual Machine
