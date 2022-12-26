@@ -21,5 +21,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           draft: true
+          commitMode: true
           artifacts: "prod-app-artifact.zip,prod-vendor-artifact.zip"
           body: ${{steps.github_release.outputs.changelog}}
