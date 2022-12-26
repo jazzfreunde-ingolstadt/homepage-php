@@ -81,8 +81,8 @@ jobs:
           git-ftp-args: --insecure
 
       - name: Turn off maintenance mode
-        use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
         if: always()
+        use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
         with:
           turn-on: false
           remote-dir: prod
