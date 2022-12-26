@@ -46,7 +46,7 @@ jobs:
       - uses: nowsprinting/check-version-format-action@v3
         id: version
         with:
-          prefix: 'v'
+          prefix: "v"
 
       - name: Generate deployable .env
         run: |
@@ -66,11 +66,10 @@ jobs:
 
       # Deploy to ftp server
       - name: Turn on maintenance mode
-        use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
+        uses: jazzfreunde-ingolstadt/homepage-php/.github/actions/toggle-maintenance-mode@master
         with:
           turn-on: true
           remote-dir: stage
-        secrets: inherit
 
       - name: sFTP Deploy (Staging)
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
@@ -83,11 +82,10 @@ jobs:
 
       - name: Turn off maintenance mode
         if: always()
-        use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
+        uses: jazzfreunde-ingolstadt/homepage-php/.github/actions/toggle-maintenance-mode@master
         with:
           turn-on: false
           remote-dir: stage
-        secrets: inherit
 
   warm-up:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/warmpup-server.yml@master

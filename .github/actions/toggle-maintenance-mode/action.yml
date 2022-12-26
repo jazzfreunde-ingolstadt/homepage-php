@@ -1,0 +1,41 @@
+name: 'Maintenance mode'
+description: 'Toggle maintenance mode on remote server'
+inputs:
+  turn-on:
+    description: "Turn on maintenance on true"
+    required: true
+    type: boolean
+  remote-dir:
+    description: "Direcotry in which the application is deployed."
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+  defaults:
+    run:
+      shell: bash
+      working-directory: ./src
+  steps:
+    - name: Upload maintenance trigger
+        if: inputs.turn-on == 'true'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.CROSS_ENV_SSH_HOST }}
+          username: ${{ secrets.CROSS_ENV_SSH_USER }}
+          password: ${{ secrets.CROSS_ENV_SSH_PASSWORD }}
+          port: ${{ secrets.CROSS_ENV_SSH_PORT }}
+          script: |
+            cd ./${{ inputs.remote-dir }}
+            touch ./public/maintenance.htm
+    - name: Remove maintenance trigger
+      if: inputs.turn-on != 'true'
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.CROSS_ENV_SSH_HOST }}
+        username: ${{ secrets.CROSS_ENV_SSH_USER }}
+        password: ${{ secrets.CROSS_ENV_SSH_PASSWORD }}
+        port: ${{ secrets.CROSS_ENV_SSH_PORT }}
+        script: |
+          cd ./${{ inputs.remote-dir }}
+          rm ./public/maintenance.htm
