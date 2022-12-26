@@ -65,6 +65,12 @@ jobs:
         run: git checkout bin/console
 
       # Deploy to ftp server
+      - use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
+        with:
+          turn-on: true
+          remote-dir: stage
+        secrets: inherit
+
       - name: sFTP Deploy (Staging)
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
@@ -73,6 +79,13 @@ jobs:
           ftp-password: ${{ secrets.STAGING_FTP_PASSWORD }}
           local-dir: src
           git-ftp-args: --insecure
+
+      - use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
+        if: always()
+        with:
+          turn-on: false
+          remote-dir: stage
+        secrets: inherit
 
   warm-up:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/warmpup-server.yml@master
