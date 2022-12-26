@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody class="eventlist_body">
-    <tr class="event-item-template d-none" {{ app.debug ? ('data-sample-events="' ~ sample_events|json_encode|escape('html_attr') ~ '"')|raw }}>
+    <tr class="event-item-template d-none" {{ app.debug ? ('data-sample-events="' ~ data_samples|json_encode|escape('html_attr') ~ '"')|raw }}>
       <td>
         <small class="wochentag"><span class="event_weekday"></span></small><br />
         <span class="event_date"></span>
