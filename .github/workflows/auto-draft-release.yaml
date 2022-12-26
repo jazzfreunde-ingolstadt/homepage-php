@@ -13,6 +13,8 @@ jobs:
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v3
+        with:
+          commitMode: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -21,6 +23,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           draft: true
-          commitMode: true
-          artifacts: "prod-app-artifact.zip,prod-vendor-artifact.zip"
+          allowUpdates: true
+          updateOnlyUnreleased: true
           body: ${{steps.github_release.outputs.changelog}}
