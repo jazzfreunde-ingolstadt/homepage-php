@@ -45,7 +45,7 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 
     .configureWatchOptions(function(watchOptions) {
         // change the configuration

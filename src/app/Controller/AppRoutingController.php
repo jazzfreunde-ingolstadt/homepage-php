@@ -13,9 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Jazzfreunde\App\Component\MainDeprecated;
 use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
+use DateInterval;
+use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
+use Jazzfreunde\App\Entity\Event;
+use Jazzfreunde\App\Entity\Ort;
 use Symfony\Component\HttpFoundation\Request;
-use Jazzfreunde\App\Service\Http\Response\BufferedResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -34,7 +37,7 @@ class AppRoutingController extends AbstractController
     /**
      * Informationen zum Verein
      *
-     * @return BufferedResponse
+     * @return Response
      */
     #[Route('/about/', name: 'about')]
     public function about(): Response
@@ -85,7 +88,7 @@ class AppRoutingController extends AbstractController
     /**
      * Datenschutzbestimmung
      *
-     * @return BufferedResponse
+     * @return Response
      */
     #[Route('/legal/end-user-agreement/', name: 'end-user-agreement')]
     public function endUserAgreement(): Response
@@ -98,13 +101,46 @@ class AppRoutingController extends AbstractController
     /**
      * Datenschutzbestimmung
      *
-     * @return BufferedResponse
+     * @return Response
      */
     #[Route('/legal/impressum/', name: 'impressum')]
     public function impressum(): Response
     {
         return $this->render(
             'pages/legal/impressum.html.twig'
+        );
+    }
+
+    /**
+     * Veranstaltungen
+     *
+     * @param string|null $edit
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    #[Route('/events/{edit}', name: 'events', requirements: ['edit' => '^(?:edit/?$)?'])]
+    public function events(string|null $edit = null): Response
+    {
+        $sampledata = [
+            'upcoming_events' => [
+                new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->add(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+            ],
+            'past_events' => [
+                new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->sub(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->sub(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+            ],
+            'archived_events' => [
+                new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->sub(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->sub(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+            ]
+        ];
+
+        return $this->render(
+            'pages/events.html.twig',
+            [
+                'sampledata' => $sampledata
+            ]
         );
     }
 
@@ -116,7 +152,7 @@ class AppRoutingController extends AbstractController
      * @return Response
      */
     #[Route('/termine/{edit}', name: 'termine', requirements: ['edit' => '^(?:edit/?$)?'])]
-    public function events(string|null $edit = null, SerializerInterface $serializer, UrlGeneratorInterface $router): Response
+    public function termine(string|null $edit = null, SerializerInterface $serializer, UrlGeneratorInterface $router): Response
     {
         $eventProps = new class(
             edit: $edit ? true : false,

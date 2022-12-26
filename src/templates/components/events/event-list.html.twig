@@ -1,0 +1,40 @@
+<table id="{{ event_list_id }}" class="eventlist termine" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
+  <thead>
+    <tr>
+      <th width="20%">Datum</th>
+      <th width="15%">Zeit</th>
+      <th width="40%">Veranstaltung</th>
+      <th width="25%">Ort</th>
+    </tr>
+  </thead>
+  <tbody class="eventlist_body">
+    <tr class="event-item-template d-none" {{ app.debug ? ('data-sample-events="' ~ sample_events|json_encode|escape('html_attr') ~ '"')|raw }}>
+      <td>
+        <small class="wochentag"><span class="event_weekday"></span></small><br />
+        <span class="event_date"></span>
+      </td>
+      <td>
+        <span class="event_time"></span>
+      </td>
+      <th>
+        <span class="event_titel"></span><br />
+        <small><span class="event_subtitel"></span></small>
+        <a class="event_link" target="_blank"></a>
+      </th>
+      <td>
+        <span class="event_location"></span>
+      </td>
+    </tr>
+    <tr class="eventlist_empty d-none">
+      <td colspan="4" style="padding: 1em;">{{ messageOnEmpty }}</td>
+    </tr>
+    <tr class="placeholder_while_loading">
+      <td colspan="4" style="text-align: center; padding: 1em;">
+        <noscript>
+          Um Veranstaltungen zu sehen, muss die Verwendung von Javascript zugelassen werden.<br />
+        </noscript>
+        <img src="/gfx/icons/loading_icon.gif" style="width: 3em" />
+      </td>
+    </tr>
+  </tbody>
+</table>
