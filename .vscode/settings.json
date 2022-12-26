@@ -11,6 +11,9 @@
     "[yaml]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[js]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[twig]": {
         "editor.defaultFormatter": "junstyle.twig-language"
     },
