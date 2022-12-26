@@ -18,12 +18,12 @@
     {% endblock %}
   </head>
   <body>
-    <div class="flex w-full min-h-screen flex-col content-center bg-grey-light">
+    <div class="flex w-screen min-h-screen flex-col content-center bg-grey-light">
       <div class="sticky top-0 w-full flex-none">
         {% include 'components/header.html.twig' %}
       </div>
       <main role="main" class="w-full grow flex flex-col">
-        <div class="container mx-auto max-w-screen-xl px-20">
+        <div class="container mx-auto max-w-screen-xl px-5 md:px-20">
           {% block content %}
           {% endblock %}
         </div>
