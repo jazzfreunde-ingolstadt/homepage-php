@@ -38,4 +38,4 @@ runs:
         port: ${{ secrets.CROSS_ENV_SSH_PORT }}
         script: |
           cd ./${{ inputs.remote-dir }}
-          rm ./public/maintenance.htm
+          rm -f ./public/maintenance.htm

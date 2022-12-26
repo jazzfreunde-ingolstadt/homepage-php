@@ -80,13 +80,6 @@ jobs:
           local-dir: src
           git-ftp-args: --insecure
 
-      - name: Turn off maintenance mode
-        if: always()
-        uses: jazzfreunde-ingolstadt/homepage-php/.github/actions/toggle-maintenance-mode@master
-        with:
-          turn-on: false
-          remote-dir: stage
-
   warm-up:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/warmpup-server.yml@master
     with:
@@ -94,3 +87,14 @@ jobs:
       remote-dir: stage
     secrets: inherit
     needs: delpoy
+
+  finalize:
+    if: always()
+    runs-on: ubuntu-latest
+    needs: warm-up
+
+    steps:
+      - uses: jazzfreunde-ingolstadt/homepage-php/.github/actions/toggle-maintenance-mode@master
+        with:
+          turn-on: false
+          remote-dir: stage
