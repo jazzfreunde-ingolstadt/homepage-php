@@ -65,7 +65,8 @@ jobs:
         run: git checkout bin/console
 
       # Deploy to ftp server
-      - use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
+      - name: Turn on maintenance mode
+        use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
         with:
           turn-on: true
           remote-dir: stage
@@ -80,7 +81,8 @@ jobs:
           local-dir: src
           git-ftp-args: --insecure
 
-      - use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
+      - name: Turn off maintenance mode
+        use: jazzfreunde-ingolstadt/homepage-php/.github/workflows/toggle-maintenance-mode.yml@master
         if: always()
         with:
           turn-on: false
