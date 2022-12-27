@@ -36,6 +36,14 @@ jobs:
           chmod +x bin/console
           bin/console assets:install --env=${{ inputs.environment }}
 
+      - name: Build Encore files
+        if: 'prod' != inputs.environment
+        run: encore dev
+
+      - name: Build Encore files
+        if: 'prod' == inputs.environment
+        run: encore production --progress
+
       # Upload app artifact
       - uses: actions/upload-artifact@main
         with:
