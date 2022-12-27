@@ -1,2 +1,6 @@
 framework:
-    secret: '%env(APP_SECRET)%'
+  secret: "%env(APP_SECRET)%"
+
+when@prod:
+  framework:
+    error_controller: Jazzfreunde\App\Controller\LegacyContentController::show

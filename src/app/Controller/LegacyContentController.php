@@ -36,7 +36,7 @@ class LegacyContentController extends AbstractController
     #[Route('/kontakt/', name: 'kontakt')]
     #[Route('/daten/', name: 'daten')]
     #[Route('/404/', name: '404')]
-    public function legacy(LegacyPage $page, Request $request): Response
+    public function show(LegacyPage $page, Request $request): Response
     {
         try {
             return new BufferedResponse(
