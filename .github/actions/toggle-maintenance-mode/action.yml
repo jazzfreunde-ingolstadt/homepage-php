@@ -14,7 +14,7 @@ runs:
   using: "composite"
   steps:
     - name: Upload maintenance trigger
-        if: inputs.turn-on == 'true'
+        if: ${{ inputs.turn-on == 'true' }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.CROSS_ENV_SSH_HOST }}
@@ -25,7 +25,7 @@ runs:
             cd ./${{ inputs.remote-dir }}
             touch ./public/maintenance.htm
     - name: Remove maintenance trigger
-      if: inputs.turn-on != 'true'
+      if: ${{ inputs.turn-on != 'true' }}
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.CROSS_ENV_SSH_HOST }}
