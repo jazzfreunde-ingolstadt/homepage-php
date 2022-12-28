@@ -1,13 +1,13 @@
 <table id="{{ event_list_id }}" class="eventlist termine" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
   <thead>
-    <tr class="border-b border-orange">
+    <tr class="border-b border-orange text-md">
       <th width="20%">Datum</th>
       <th width="15%">Zeit</th>
       <th width="40%">Veranstaltung</th>
       <th width="25%">Ort</th>
     </tr>
   </thead>
-  <tbody class="eventlist_body">
+  <tbody class="eventlist_body text-sm">
     <tr class="event-item-template d-none border-b border-yellow" {{ app.debug ? ('data-sample-events="' ~ (data_samples|json_encode|escape('html_attr')) ~ '"')|raw }}>
       <td>
         <small class="uppercase text-xs first-letter:text-sm"><span class="event_weekday"></span></small><br />
