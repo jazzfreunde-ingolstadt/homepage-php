@@ -1,6 +1,6 @@
 <table id="{{ event_list_id }}" class="eventlist termine" cellspacing="0" cellpadding="3" border="0" width="90%" align="center">
   <thead>
-    <tr>
+    <tr class="border-b border-orange">
       <th width="20%">Datum</th>
       <th width="15%">Zeit</th>
       <th width="40%">Veranstaltung</th>
@@ -8,18 +8,18 @@
     </tr>
   </thead>
   <tbody class="eventlist_body">
-    <tr class="event-item-template d-none" {{ app.debug ? ('data-sample-events="' ~ data_samples|json_encode|escape('html_attr') ~ '"')|raw }}>
+    <tr class="event-item-template d-none border-b border-yellow" {{ app.debug ? ('data-sample-events="' ~ (data_samples|json_encode|escape('html_attr')) ~ '"')|raw }}>
       <td>
-        <small class="wochentag"><span class="event_weekday"></span></small><br />
+        <small class="uppercase text-xs first-letter:text-sm"><span class="event_weekday"></span></small><br />
         <span class="event_date"></span>
       </td>
       <td>
         <span class="event_time"></span>
       </td>
-      <th>
+      <th class="text-md">
         <span class="event_titel"></span><br />
-        <small><span class="event_subtitel"></span></small>
-        <a class="event_link" target="_blank"></a>
+        <small class="text-xs"><span class="event_subtitel"></span></small>
+        <a class="event_link text-xs text-orange" target="_blank"></a>
       </th>
       <td>
         <span class="event_location"></span>
