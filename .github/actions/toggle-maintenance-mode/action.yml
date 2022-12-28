@@ -40,7 +40,7 @@ runs:
         script: |
           cd ./${{ inputs.remote-dir }}
           touch ./public/maintenance.htm
-          echo "${{ GITHUB_WORKFLOW }} >> ${{ GITHUB_ACTION }}" > ./public/maintenance.htm
+          echo "${{ env.GITHUB_WORKFLOW }} >> ${{ env.GITHUB_ACTION }}" > ./public/maintenance.htm
 
     - name: Remove maintenance trigger
       if: inputs.turn-on != 'true'
