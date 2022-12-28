@@ -1,2 +1,4 @@
 !src/vendor/
+!src/public/build/
+!src/public/bundles/
 !src/.env.local
