@@ -1,12 +1,13 @@
-.header-menu li {
+.header-menu div {
   display: inline-block;
+  font-weight: 300;
 }
 
-.header-menu li a {
+.header-menu div a {
   display: inline-block;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.2px;
 }
 
 .header-menu a:hover {
