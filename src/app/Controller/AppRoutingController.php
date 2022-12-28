@@ -138,6 +138,19 @@ class AppRoutingController extends AbstractController
     }
 
     /**
+     * Vereinssatzung
+     *
+     * @return Response
+     */
+    #[Route('/legal/statute/', name: 'statute')]
+    public function statute(): Response
+    {
+        return $this->render(
+            'pages/legal/satzung.html.twig'
+        );
+    }
+
+    /**
      * Veranstaltungen
      *
      * @param string|null $edit
