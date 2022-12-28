@@ -37,12 +37,7 @@ jobs:
           bin/console assets:install --env=${{ inputs.environment }}
 
       - name: Build Encore files
-        if: ${{ inputs.environment != 'prod' }}
-        run: encore dev
-
-      - name: Build Encore files
-        if: ${{ inputs.environment == 'prod' }}
-        run: encore production --progress
+        run: encore ${{ inputs.environment == 'prod' ?? 'production --progress' || 'dev'}}
 
       # Upload app artifact
       - uses: actions/upload-artifact@main
