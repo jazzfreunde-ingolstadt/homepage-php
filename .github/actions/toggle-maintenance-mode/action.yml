@@ -12,10 +12,6 @@ inputs:
 
 runs:
   using: "composite"
-  defaults:
-    run:
-      shell: bash
-      working-directory: ./src
   steps:
     - name: Upload maintenance trigger
         if: inputs.turn-on == 'true'
