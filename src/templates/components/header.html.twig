@@ -1,12 +1,8 @@
 <div class="flex bg-blue text-white">
-  <div class="logo h-16 md:h-24 lg:h-36 w-16 md:w-24 lg:w-36 flex-none flex justify-center items-center">
-    {% include 'components/logo.html.twig' %}
-  </div>
-  <nav class="header-menu p-20 overflow-hidden">
-    <ul class="flex-1 flex flex-col md:flex-row content-start gap-10 text-2xl">
-      <li><a href="{{ url('about') }}" title="VEREIN"></a></li>
-      <li><a href="{{ url('events', { 'edit': false }) }}" title="VERANSTALTUNGEN"></a></li>
-      <li><a title="MITGLIED WERDEN"></a></li>
-    </ul>
-  </nav>
+  <a href="{{ url('home') }}">
+    <div class="logo h-16 md:h-24 lg:h-36 w-16 md:w-24 lg:w-36 flex-none flex justify-center items-center">
+      {% include 'components/logo.html.twig' %}
+    </div>
+  </a>
+  {% include 'components/main_menu.html.twig' %}
 </div>
