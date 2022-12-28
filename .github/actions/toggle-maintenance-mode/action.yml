@@ -6,7 +6,23 @@ inputs:
     required: true
     type: boolean
   remote-dir:
-    description: "Direcotry in which the application is deployed."
+    description: "Direcotry in which the application is deployed"
+    required: true
+    type: string
+  ssh-host:
+    description: "Host of SSH-server"
+    required: true
+    type: string
+  ssh-port:
+    description: "Port of SSH-server"
+    required: true
+    type: string
+  ssh-user:
+    description: "User on SSH-server"
+    required: true
+    type: string
+  ssh-password:
+    description: "Password on SSH-server"
     required: true
     type: string
 
@@ -17,21 +33,22 @@ runs:
       if: inputs.turn-on == 'true'
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.CROSS_ENV_SSH_HOST }}
-        username: ${{ secrets.CROSS_ENV_SSH_USER }}
-        password: ${{ secrets.CROSS_ENV_SSH_PASSWORD }}
-        port: ${{ secrets.CROSS_ENV_SSH_PORT }}
+        host: ${{ inputs.ssh-host }}
+        username: ${{ inputs.ssh-user }}
+        password: ${{ inputs.ssh-password }}
+        port: ${{ inputs.ssh-port }}
         script: |
           cd ./${{ inputs.remote-dir }}
           touch ./public/maintenance.htm
+
     - name: Remove maintenance trigger
       if: inputs.turn-on != 'true'
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.CROSS_ENV_SSH_HOST }}
-        username: ${{ secrets.CROSS_ENV_SSH_USER }}
-        password: ${{ secrets.CROSS_ENV_SSH_PASSWORD }}
-        port: ${{ secrets.CROSS_ENV_SSH_PORT }}
+        host: ${{ inputs.ssh-host }}
+        username: ${{ inputs.ssh-user }}
+        password: ${{ inputs.ssh-password }}
+        port: ${{ inputs.ssh-port }}
         script: |
           cd ./${{ inputs.remote-dir }}
           rm -f ./public/maintenance.htm
