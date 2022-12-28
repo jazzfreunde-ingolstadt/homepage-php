@@ -25,11 +25,14 @@ jobs:
         with:
           fetch-depth: 1
 
-      # Install Composer packages
-      - name: Install Composer Dependencies
+      # Install packages
+      - name: Install Composer dependencies
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
 
-      # Install Composer packages
+      - name: Install npm dependencies
+        run: npm install
+
+      # Generate assets
       - name: Install assets
         run: |
           echo "DATABASE_URL=dummy" > .env.local
@@ -37,7 +40,8 @@ jobs:
           bin/console assets:install --env=${{ inputs.environment }}
 
       - name: Build Encore files
-        run: npm run ${{ inputs.environment == 'prod' && 'build' || 'dev'}}
+        run: |
+          npm run ${{ inputs.environment == 'prod' && 'build' || 'dev'}}
 
       # Upload app artifact
       - uses: actions/upload-artifact@main
