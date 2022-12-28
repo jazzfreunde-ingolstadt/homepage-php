@@ -35,6 +35,19 @@ class AppRoutingController extends AbstractController
     }
 
     /**
+     * Startseite
+     *
+     * @return Response
+     */
+    #[Route('/home/', name: 'home')]
+    public function home(): Response
+    {
+        return $this->render(
+            'pages/home.html.twig',
+        );
+    }
+
+    /**
      * Informationen zum Verein
      *
      * @return Response
@@ -82,6 +95,19 @@ class AppRoutingController extends AbstractController
         return $this->render(
             'pages/about.html.twig',
             ['personen' => $personen]
+        );
+    }
+
+    /**
+     * Mitglied werden
+     *
+     * @return Response
+     */
+    #[Route('/join/', name: 'join')]
+    public function join(): Response
+    {
+        return $this->render(
+            'pages/join.html.twig'
         );
     }
 
