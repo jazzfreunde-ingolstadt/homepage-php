@@ -8,24 +8,30 @@
     </tr>
   </thead>
   <tbody class="eventlist_body text-sm">
-    <tr class="eventlist-item template d-none border-b border-yellow" {{ app.debug ? ('data-sample-events="' ~ (data_samples|json_encode|escape('html_attr')) ~ '"')|raw }}>
+    <tr class="eventlist-item template border-b border-yellow" {{ app.debug ? ('data-sample-events="' ~ (data_samples|json_encode|escape('html_attr')) ~ '"')|raw }}>
       <td>
-        <small class="uppercase text-xs first-letter:text-sm"><span class="event_weekday"></span></small><br />
-        <span class="event_date"></span>
+        <small class="uppercase text-xs first-letter:text-sm"><div class="event_weekday">{% include 'components/api/loading-schimmer.html.twig' with { length: 5 } %}</div></small><br />
+        <div class="event_date">{% include 'components/api/loading-schimmer.html.twig' with { length: 10 } %}</div>
       </td>
       <td>
-        <span class="event_time"></span>
+        <span class="event_time">{% include 'components/api/loading-schimmer.html.twig' with { length: 5 } %}</span>
       </td>
       <th class="text-md">
-        <span class="event_titel"></span><br />
-        <small class="text-xs"><span class="event_subtitel"></span></small>
-        <a class="event_link text-xs text-orange" target="_blank"></a>
+        <div class="event_titel">
+          {% include 'components/api/loading-schimmer.html.twig' with { length: 50 } %}
+        </div><br />
+        <small class="text-xs">
+          <div class="event_subtitel">
+            {% include 'components/api/loading-schimmer.html.twig' with { length: 50 } %}
+          </div>
+        </small>
+        <a class="event_link text-xs text-orange" target="_blank">{% include 'components/api/loading-schimmer.html.twig' with { length: 30 } %}</a>
       </th>
       <td>
-        <span class="event_location"></span>
+        <span class="event_location">{% include 'components/api/loading-schimmer.html.twig' with { length: 20 } %}</span>
       </td>
     </tr>
-    <tr class="eventlist_empty d-none">
+    <tr class="eventlist_empty hidden">
       <td colspan="4" style="padding: 1em;">{{ messageOnEmpty }}</td>
     </tr>
     <tr class="placeholder_while_loading">
@@ -33,7 +39,7 @@
         <noscript>
           Um Veranstaltungen zu sehen, muss die Verwendung von Javascript zugelassen werden.<br />
         </noscript>
-        <img src="/gfx/icons/loading_icon.gif" style="width: 3em" />
+        {# <img class="m-auto" src="/gfx/icons/loading_icon.gif" style="width: 3em" /> #}
       </td>
     </tr>
   </tbody>

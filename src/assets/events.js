@@ -22,7 +22,7 @@ const fillEventList = (listId, eventData) => {
   }
 
   if (!eventData.length) {
-    list.find(".eventlist_empty").removeClass("d-none");
+    list.find(".eventlist_empty").removeClass("hidden");
 
     return;
   }
@@ -30,8 +30,27 @@ const fillEventList = (listId, eventData) => {
   list.empty();
 
   $.each(eventData, function (index, event) {
-    fillTemplate(template.clone(), event).removeClass("d-none").appendTo(list);
+    fillTemplate(template.clone(), event).appendTo(list);
   });
+};
+
+const fillEventListWithBlanks = (listId) => {
+  const table = $(`#${listId}`);
+  const list = table.find(".eventlist_body");
+  const template = table
+    .find(".eventlist-item.template")
+    .clone()
+    .removeClass("template");
+
+  if (!template.length) {
+    return;
+  }
+
+  list.find(".placeholder_while_loading").remove();
+
+  for (var i = 1; i < 2; i++) {
+    template.clone().appendTo(list);
+  }
 };
 
 $.when(events.upcoming(), documentReady).done((data) => {
@@ -44,6 +63,9 @@ $.when(events.past(), documentReady).done((data) => {
 
 $.when(documentReady).done(() => {
   var archivedEventsDataCache;
+
+  fillEventListWithBlanks("upcoming_events");
+  fillEventListWithBlanks("past_events");
 
   $("#show_archived").on('click', () => {
     $("#archived_events_container").show();

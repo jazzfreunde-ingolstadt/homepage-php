@@ -11,8 +11,12 @@ $.when(documentReady).done(() => {
     .clone()
     .removeClass("template");
 
+  if (!template.length) {
+    return;
+  }
+
   for (var i = 1; i < 4; i++) {
-    template.clone().removeClass("d-none").appendTo(widget);
+    template.clone().appendTo(widget);
   }
 });
 
@@ -38,7 +42,6 @@ $.when(events.featured(maxCountEvents), documentReady).done((eventData) => {
 
   $.each(eventData.slice(0, maxCountEvents), (index, event) => {
     fillTemplate(template.clone(), event)
-      .removeClass("d-none")
       .appendTo(widget);
   });
 });
