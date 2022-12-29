@@ -6,5 +6,6 @@
 {% endblock %}
 
 {% block content %}
+  {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
   {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
 {% endblock %}

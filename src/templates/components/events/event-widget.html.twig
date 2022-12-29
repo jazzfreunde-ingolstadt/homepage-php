@@ -1,5 +1,4 @@
 <div class="max-w-full mx-auto md:max-w-screen-xl my-5">
-  {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
   <div id="event-widget" class="w-full grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 justify-items-stretch">
     <div class="event-widget-card template" {{ app.debug ? ('data-sample-events="' ~ (data_samples|json_encode|escape('html_attr')) ~ '"')|raw }}>
       <div class="w-48 lg:w-64 h-full p-5 bg-white flex flex-col">
