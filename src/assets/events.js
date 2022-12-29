@@ -1,8 +1,6 @@
 import events, { fillTemplate } from "./js/events.js";
 import $ from "jquery";
 
-let documentReady = $.Deferred();
-
 const fillEventList = function (listId, eventData) {
   const table = $(`#${listId}`);
   const list = table.find(".eventlist_body");
@@ -36,17 +34,15 @@ const fillEventList = function (listId, eventData) {
   });
 };
 
-$.when(events.upcomingEvents(), documentReady).done((data) => {
+$.when(events.upcoming(), documentReady).done((data) => {
   fillEventList("upcoming_events", data?.shift() ?? []);
 });
 
-$.when(events.pastEvents(), documentReady).done((data) => {
+$.when(events.past(), documentReady).done((data) => {
   fillEventList("past_events", data ?? []);
 });
 
-$(document).ready(() => {
-  documentReady.resolve();
-
+$.when(documentReady).done(() => {
   var archivedEventsDataCache;
 
   $("#show_archived").click(function () {
@@ -56,7 +52,7 @@ $(document).ready(() => {
       return;
     }
 
-    events.archivedEvents().then((data) => {
+    events.archived().then((data) => {
       archivedEventsDataCache = data;
 
       fillEventList("archived_events", data);

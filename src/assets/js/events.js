@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $ from "jquery";
 
 const wochentag = [
   "Sonntag",
@@ -42,42 +42,76 @@ const fillTemplate = function (template, event) {
   return template;
 };
 
-const upcomingEvents = async () => {
-  return await $.ajax({
-    url: "/api/events",
-    type: "get",
-    dataType: "json",
-    data: {
-      "start[after]": new Date().toISOString(),
-      "order[start]": "asc",
-    },
-  });
+const fetchUpcomingEvents = async () => {
+  try {
+    return await $.ajax({
+      url: "/api/events",
+      type: "get",
+      dataType: "json",
+      data: {
+        "start[after]": new Date().toISOString(),
+        "order[start]": "asc",
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-const pastEvents = async () => {
-  return await $.ajax({
-    url: "/api/events",
-    type: "get",
-    dataType: "json",
-    data: {
-      "start[before]": new Date().toISOString(),
-      "start[after]": archiveDate.toISOString(),
-      "order[start]": "desc",
-    },
-  });
+const fetchPastEvents = async () => {
+  try {
+    return await $.ajax({
+      url: "/api/events",
+      type: "get",
+      dataType: "json",
+      data: {
+        "start[before]": new Date().toISOString(),
+        "start[after]": archiveDate.toISOString(),
+        "order[start]": "desc",
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-const archivedEvents = async () => {
-  return await $.ajax({
-    url: "/api/events",
-    type: "get",
-    dataType: "json",
-    data: {
-      "start[before]": archiveDate.toISOString(),
-      "order[start]": "desc",
-    },
-  });
+const fetchArchivedEvents = async () => {
+  try {
+    return await $.ajax({
+      url: "/api/events",
+      type: "get",
+      dataType: "json",
+      data: {
+        "start[before]": archiveDate.toISOString(),
+        "order[start]": "desc",
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export default { upcomingEvents, pastEvents, archivedEvents };
+const fetchFeaturedEvents = async () => {
+  try {
+    return await $.ajax({
+      url: "/api/events",
+      type: "get",
+      dataType: "json",
+      data: {
+        "start[after]": new Date().toISOString(),
+        "order[start]": "asc",
+        itemsPerPage: 4,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export default {
+  upcoming: fetchUpcomingEvents,
+  past: fetchPastEvents,
+  archived: fetchArchivedEvents,
+  featured: fetchFeaturedEvents,
+};
 export { fillTemplate };
