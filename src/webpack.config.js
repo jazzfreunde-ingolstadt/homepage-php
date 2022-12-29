@@ -13,6 +13,7 @@ Encore
     //.setManifestKeyPrefix('build/')
     .addEntry('app', './assets/app.js')
     .addEntry('events', './assets/events.js')
+    .addEntry('home', './assets/home.js')
 
     .splitEntryChunks()
 

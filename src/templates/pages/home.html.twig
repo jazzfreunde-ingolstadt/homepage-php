@@ -1,5 +1,10 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-    {% block content %}
-        {% include "components/events/event-widget.html.twig" %}
-    {% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('home') }}
+{% endblock %}
+
+{% block content %}
+  {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
+{% endblock %}

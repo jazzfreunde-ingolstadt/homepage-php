@@ -42,8 +42,20 @@ class AppRoutingController extends AbstractController
     #[Route('/home/', name: 'home')]
     public function home(): Response
     {
+        $sampledata = [
+            'featured_events' => [
+                new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->add(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 2, titel: 'Jazzfreunde Konzert Highlight', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P12D')), end: (new DateTime())->sub(new DateInterval('P12D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 2, titel: 'Jazzfreunde Lesung', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P20D')), end: (new DateTime())->sub(new DateInterval('P20D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+            ],
+        ];
+
         return $this->render(
             'pages/home.html.twig',
+            [
+                'sampledata' => $sampledata
+            ]
         );
     }
 
