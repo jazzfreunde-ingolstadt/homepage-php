@@ -21,16 +21,16 @@ const fillTemplate = function (template, event) {
     typeof event.start === "string" ? event.start : event.start.date
   );
   template.attr("event-id", event.id);
-  template.find(".event_weekday").append(wochentag[start.getDay()]);
-  template.find(".event_date").append(start.toLocaleDateString("de-DE"));
+  template.find(".event_weekday").html(wochentag[start.getDay()]);
+  template.find(".event_date").html(start.toLocaleDateString("de-DE"));
   template
     .find(".event_time")
-    .append(
+    .html(
       start.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })
     );
-  template.find(".event_titel").append(event.titel);
-  template.find(".event_subtitel").append(event.subtitel ?? "");
-  template.find(".event_location").append(event.ort.name);
+  template.find(".event_titel").html(event.titel);
+  template.find(".event_subtitel").html(event.subtitel ?? "");
+  template.find(".event_location").html(event.ort.name);
   let link = template.find(".event_link");
   if (event.link.length) {
     link.attr("href", event.link);
@@ -91,7 +91,7 @@ const fetchArchivedEvents = async () => {
   }
 };
 
-const fetchFeaturedEvents = async () => {
+const fetchFeaturedEvents = async (maxCount = 4) => {
   try {
     return await $.ajax({
       url: "/api/events",
@@ -100,7 +100,7 @@ const fetchFeaturedEvents = async () => {
       data: {
         "start[after]": new Date().toISOString(),
         "order[start]": "asc",
-        itemsPerPage: 4,
+        itemsPerPage: maxCount,
       },
     });
   } catch (error) {

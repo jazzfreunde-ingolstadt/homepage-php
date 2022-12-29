@@ -2,13 +2,19 @@
   {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
   <div id="event-widget" class="w-full grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 justify-items-stretch">
     <div class="event-widget-card template" {{ app.debug ? ('data-sample-events="' ~ (data_samples|json_encode|escape('html_attr')) ~ '"')|raw }}>
-      <div class="w-48 lg:w-64 h-full p-5 bg-white">
-        <div class="text-lg mb-2"><span class="event_titel"></span></div>
-        <small class="text-xs"><span class="event_subtitel"></span></small>
-        <span class="event_date"></span>
-        <span class="event_time"></span>
-        <span class="event_location"></span>
-        <a class="event_link text-xs text-orange" target="_blank"></a>
+      <div class="w-48 lg:w-64 h-full p-5 bg-white flex flex-col">
+        <div class="text-lg mb-5">
+          <span class="event_titel"><span class="text-grey-light bg-grey-light">**************</span></span></span>
+        </div>
+        <div class="grow my-2">
+          <small class="text-xs"><span class="event_subtitel"><span class="text-grey-light bg-grey-light">**************************</span></span></small>
+          <span class="event_date"><span class="text-grey-light bg-grey-light">**.**.****</span></span>
+          <span class="event_time"><span class="text-grey-light bg-grey-light">**:**</span></span>
+        </div>
+        <div>
+          <span class="event_location"><span class="text-grey-light bg-grey-light">**************</span></span>
+          <a class="event_link text-xs text-orange" target="_blank"><span class="text-grey-light bg-grey-light">**************</span></a>
+        </div>
       </div>
     </div>
   </div>
