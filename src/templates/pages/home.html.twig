@@ -6,6 +6,12 @@
 {% endblock %}
 
 {% block content %}
-  {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
-  {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
+  <div class="max-w-full mx-auto md:max-w-screen-xl my-5">
+    {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
+    {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
+  </div>
+
+  <div class="max-w-full mx-auto md:max-w-screen-xl my-10">
+    {% include 'components/newsletter/subscription-widget.html.twig' %}
+  </div>
 {% endblock %}

@@ -15,9 +15,9 @@ use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
 use DateInterval;
 use DateTime;
-use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Entity\Ort;
+use Jazzfreunde\App\Form\NewsletterSubscriptionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -27,13 +27,6 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class AppRoutingController extends AbstractController
 {
-    /**
-     * @param ManagerRegistry $doctrine
-     */
-    public function __construct(private ManagerRegistry $doctrine)
-    {
-    }
-
     /**
      * Startseite
      *
@@ -51,10 +44,15 @@ class AppRoutingController extends AbstractController
             ],
         ];
 
+        $form = $this->createForm(NewsletterSubscriptionType::class, options: ['action' => $this->generateUrl('form_newsletter_subscribe')]);
+
         return $this->render(
             'pages/home.html.twig',
             [
-                'sampledata' => $sampledata
+                'sampledata' => $sampledata,
+                'forms' => [
+                    'newsletter_subscription' => $form->createView()
+                ]
             ]
         );
     }

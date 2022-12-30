@@ -27,6 +27,7 @@
         "symfony/expression-language": "^6.1",
         "symfony/filesystem": "^6.1",
         "symfony/flex": "^2.2",
+        "symfony/form": "6.1.*",
         "symfony/framework-bundle": "^6.1",
         "symfony/ldap": "^6.1",
         "symfony/maker-bundle": "^1.47",
