@@ -5,7 +5,7 @@
     {% include 'typography/titel.html.twig' with { titel: 'Über den Verein der Jazzfreunde Ingolstadt' } %}
 
     {% include 'typography/section-titel.html.twig' with { titel: '… eine kleine Geschichte zur Geschichte der Geschichte der Jazzfreunde Ingolstadt' } %}
-    <div style="text-align: justify">
+    <div class="p-5 text-justify bg-white">
       <p>„Es war einmal vor gar nicht allzu langer Zeit…“, so könnte die Geschichte der Entstehung des Jazzfreunde-Vereins beginnen, denn die Idee, die zum Verein führte, klingt beinahe wie ein Märchen.</p>
       <p>Ein kurzer Rückblick: Seit Ende der 1990er Jahre besteht ein reger kulturpolitischer Austausch zwischen den Ingolstädter Jazztagen und dem Jazz und Heritage Festival in New Orleans, der Wiege des Jazz. Verschiedene Delegationen der beiden Städte besuchten sich wiederholt und förderten den Künstleraustausch. Anfang Mai 2004 war erneut eine kleine Abordnung aus Ingolstadt zu Besuch in New Orleans, bestehend aus OB Dr. Alfred Lehmann, dem Kulturreferenten Gabriel Engert, Festivalleiter Jan Rottau und einem der Mitarbeiter für den Austausch, Reimund Domke. Anscheinend beseelt von der brodelnden Jazzatmosphäre in New Orleans schlug der Oberbürgermeister während eines Frühstücks vor: „Gründen wir doch einen Jazzförderverein! Herr Rottau schaut sich da mal um und Herr Domke übernimmt den Vorsitz.“ – Soweit das erhaltene Originalzitat. Aus diesem Geistesblitz sollte sich innerhalb von wenigen Jahren ein blühender Verein entwickeln, der sich intensiv um die Jazzszene in Ingolstadt verdient macht und aus dem Kulturleben Ingolstadts nicht mehr wegzudenken ist.</p>
       <p>
@@ -28,11 +28,11 @@
         </div>
         <div class="p-8">
           <h5 class="block mt-1 text-lg leading-tight font-medium">{{ person.position }}</h5>
-          <p class="mt-2 text-slate-500">
+          <p class="mt-2">
             <small class="text-muted">{{ person.name }}</small>
           </p>
-          <p class="mt-2 text-slate-500" style="text-align: justify">{{ person.bio|raw }}</p>
-          <p class="mt-2 text-slate-500">
+          <p class="text-justify mt-2">{{ person.bio|raw }}</p>
+          <p class="mt-2">
             <a href="/kontakt/?to={{ person.mail }}" title="Zum Kontaktformular">Kontakt</a>
           </p>
         </div>
@@ -42,71 +42,73 @@
 
   <div class="container max-w-full mx-auto md:max-w-screen-xl my-5">
     {% include 'typography/section-titel.html.twig' with { titel: 'Projekte des Vereins der Jazzfreunde Ingolstadt' } %}
-    <ul>
-      <li>
-        <a href="#youngjazzplayers">Sessions der Young-Jazz-Players</a>
-      </li>
-      <li>
-        <a href="#jamsessions">Jam Sessions / Offene Bühne</a>
-      </li>
-      <li>
-        <a href="#jazzliteratur">Jazz &amp; Literatur</a>
-      </li>
-      <li>
-        <a href="#workshops">Workshops</a>
-      </li>
-      <li>
-        <a href="#diagonal">Unterstützung der Jazzkonzertreihe im Diagonal</a>
-      </li>
-      <li>
-        <a href="#jazztage">Unterstützung der Ingolstädter Jazztage</a>
-      </li>
-    </ul>
+    <div class="p-5 text-justify bg-white">
+      <ul class="list-disc list-inside">
+        <li>
+          <a href="#youngjazzplayers">Sessions der Young-Jazz-Players</a>
+        </li>
+        <li>
+          <a href="#jamsessions">Jam Sessions / Offene Bühne</a>
+        </li>
+        <li>
+          <a href="#jazzliteratur">Jazz &amp; Literatur</a>
+        </li>
+        <li>
+          <a href="#workshops">Workshops</a>
+        </li>
+        <li>
+          <a href="#diagonal">Unterstützung der Jazzkonzertreihe im Diagonal</a>
+        </li>
+        <li>
+          <a href="#jazztage">Unterstützung der Ingolstädter Jazztage</a>
+        </li>
+      </ul>
 
-    <a name="youngjazzplayers"></a>
-    <h2>Sessions der Young-Jazz-Players</h2>
+      <a name="youngjazzplayers"></a>
+      <h3 class="text-lg leading-loose font-medium">Sessions der Young-Jazz-Players</h3>
 
-    <p>Seit dem Sommer 2006 fördert der Verein der Ingolstädter Jazzfreunde e. V. gezielt den Jazznachwuchs in Ingolstadt. Besonders unterstützt wird diese Arbeit von den Musiklehrern Bernhard Reitberger (Gnadenthal-Gymnasium) und Robert Aichner (Reuchlin-Gymnasium).</p>
+      <p>Seit dem Sommer 2006 fördert der Verein der Ingolstädter Jazzfreunde e. V. gezielt den Jazznachwuchs in Ingolstadt. Besonders unterstützt wird diese Arbeit von den Musiklehrern Bernhard Reitberger (Gnadenthal-Gymnasium) und Robert Aichner (Reuchlin-Gymnasium).</p>
 
-    <p>Mehrere kostenlose Veranstaltungen, so z. B. bei den Ingolstädter Big Band Nächten und im Bürgerhaus / Diagonal, geben den jungen Musikern eine öffentliche Plattform – und das mit hohem Publikumsinteresse und großartigem Erfolg.</p>
+      <p>Mehrere kostenlose Veranstaltungen, so z. B. bei den Ingolstädter Big Band Nächten und im Bürgerhaus / Diagonal, geben den jungen Musikern eine öffentliche Plattform – und das mit hohem Publikumsinteresse und großartigem Erfolg.</p>
 
-    <p>Unterstützt werden die Sessions auch von den Ingolstädter Jazzförderpreisträgern, die in z. T. zuvor stattfindenden Workshops die jungen Musiker an den Jazz heranführen.</p>
+      <p>Unterstützt werden die Sessions auch von den Ingolstädter Jazzförderpreisträgern, die in z. T. zuvor stattfindenden Workshops die jungen Musiker an den Jazz heranführen.</p>
 
-    <a name="jamsessions"></a>
-    <h2>Jam Sessions / Offene Bühne</h2>
+      <a name="jamsessions"></a>
+      <h3 class="text-lg leading-loose font-medium">Jam Sessions / Offene Bühne</h3>
 
-    <p>Startschuss für das neue Baby des Vereins der Ingolstädter Jazzfreunde e. V. war Ende Januar 2008. Die Idee, jeden letzten Sonntag im Monat (mit Ausnahme des August) ambitionierte Jazzmusiker der Region Ingolstadts auf einer Bühne zu vereinigen, entpuppte sich als großer Erfolg.</p>
+      <p>Startschuss für das neue Baby des Vereins der Ingolstädter Jazzfreunde e. V. war Ende Januar 2008. Die Idee, jeden letzten Sonntag im Monat (mit Ausnahme des August) ambitionierte Jazzmusiker der Region Ingolstadts auf einer Bühne zu vereinigen, entpuppte sich als großer Erfolg.</p>
 
-    <p>Eröffnet werden die groovenden Abende von einer Sessionband, die sich meist aus Mitgliedern bekannter regionaler Formationen zusammensetzen. Einsteigen kann jeder! Voraussetzung: Das Instrument muss selbst mitgebracht werden.</p>
+      <p>Eröffnet werden die groovenden Abende von einer Sessionband, die sich meist aus Mitgliedern bekannter regionaler Formationen zusammensetzen. Einsteigen kann jeder! Voraussetzung: Das Instrument muss selbst mitgebracht werden.</p>
 
-    <p>
-      Veranstaltungsort für das kostenlose Event ist das Szenelokal „Diagonal“ (<a href="http://www.diagonal-bar.de" title="Diagonal">www.diagonal-bar.de</a>) im Bürgerhaus (<a href="http://www.buergerhaus-ingolstadt.de" title="Bürgerhaus Ingolstadt">www.buergerhaus-ingolstadt.de</a>).
-    </p>
+      <p>
+        Veranstaltungsort für das kostenlose Event ist das Szenelokal „Diagonal“ (<a href="http://www.diagonal-bar.de" title="Diagonal">www.diagonal-bar.de</a>) im Bürgerhaus (<a href="http://www.buergerhaus-ingolstadt.de" title="Bürgerhaus Ingolstadt">www.buergerhaus-ingolstadt.de</a>).
+      </p>
 
-    <a name="jazzliteratur"></a>
-    <h2>Jazz &amp; Literatur</h2>
+      <a name="jazzliteratur"></a>
+      <h3 class="text-lg leading-loose font-medium">Jazz &amp; Literatur</h3>
 
-    <p>Seit 2012 veranstaltet der Verein in Zusammenarbeit mit dem Stadttheater Ingolstadt die erfolgreiche Reihe „Jazz &amp; Literatur“. Bei ca. vier Veranstaltungen pro Jahr werden an einem Sonntag Vormittag von Schauspielern literarische Kostbarkeiten vorgetragen und mit thematisch passender Live-Jazzmusik angereichert. Übrigens: Mitglieder des Vereins erhalten an der Abendkasse gegen Vorlage ihres Mitgliedsausweises 10% Ermäßigung auf die Eintrittskarten.</p>
+      <p>Seit 2012 veranstaltet der Verein in Zusammenarbeit mit dem Stadttheater Ingolstadt die erfolgreiche Reihe „Jazz &amp; Literatur“. Bei ca. vier Veranstaltungen pro Jahr werden an einem Sonntag Vormittag von Schauspielern literarische Kostbarkeiten vorgetragen und mit thematisch passender Live-Jazzmusik angereichert. Übrigens: Mitglieder des Vereins erhalten an der Abendkasse gegen Vorlage ihres Mitgliedsausweises 10% Ermäßigung auf die Eintrittskarten.</p>
 
-    <a name="workshops"></a>
-    <h2>Workshops</h2>
+      <a name="workshops"></a>
+      <h3 class="text-lg leading-loose font-medium">Workshops</h3>
 
-    <p>Ziel des Vereins der Ingolstädter Jazzfreunde e. V. ist die Förderung der Ingolstädter Jazzszene, v. a. des jazzhungrigen Nachwuchses. Zu diesem Zwecke werden Workshops für Schüler und Studenten angeboten, in denen Stilistik, Spieltechniken, Timing, Groove und Rhythmik des Jazz sowie ein Einstieg in die Improvisation geübt werden. Namhafte Ingolstädter Jazzmusiker, zum Teil Jazzförderpreisträger der Stadt, nehmen sich dabei der Jugendlichen an. Die Ergebnisse werden in den danach stattfindenden Sessions der Young Jazz Players einem breiteren Publikum vorgestellt.</p>
+      <p>Ziel des Vereins der Ingolstädter Jazzfreunde e. V. ist die Förderung der Ingolstädter Jazzszene, v. a. des jazzhungrigen Nachwuchses. Zu diesem Zwecke werden Workshops für Schüler und Studenten angeboten, in denen Stilistik, Spieltechniken, Timing, Groove und Rhythmik des Jazz sowie ein Einstieg in die Improvisation geübt werden. Namhafte Ingolstädter Jazzmusiker, zum Teil Jazzförderpreisträger der Stadt, nehmen sich dabei der Jugendlichen an. Die Ergebnisse werden in den danach stattfindenden Sessions der Young Jazz Players einem breiteren Publikum vorgestellt.</p>
 
-    <p>Anfang 2015 wurde mit dem Street Marching Band Workshop eine neue Möglichkeit für Ingolstädter Kinder und Jugendliche geschaffen, außerhalb der Schulbands gemeinsam Musik zu machen. Die Jazzfreunde Ingolstadt, der Verein „Künstler an die Schulen“ und die „Kunst- und Kulturbastei“ haben mit Unterstützung des Netzwerks bayerischer Städte Stadtkultur dieses längerfristig gedachte Projekt ins Leben gerufen.</p>
+      <p>Anfang 2015 wurde mit dem Street Marching Band Workshop eine neue Möglichkeit für Ingolstädter Kinder und Jugendliche geschaffen, außerhalb der Schulbands gemeinsam Musik zu machen. Die Jazzfreunde Ingolstadt, der Verein „Künstler an die Schulen“ und die „Kunst- und Kulturbastei“ haben mit Unterstützung des Netzwerks bayerischer Städte Stadtkultur dieses längerfristig gedachte Projekt ins Leben gerufen.</p>
 
-    <a name="diagonal"></a>
-    <h2>Unterstützung der Jazzkonzertreihe im Diagonal</h2>
+      <a name="diagonal"></a>
+      <h3 class="text-lg leading-loose font-medium">Unterstützung der Jazzkonzertreihe im Diagonal</h3>
 
-    <p>
-      Die Jazzkneipe Ingolstadts heißt Diagonal (<a href="http://www.diagonal-bar.de" title="Diagonal">www.diagonal-bar.de</a>)! Zahlreiche Konzerte belegen die Ausnahmestellung dieses Szenelokals im Bürgerhaus (<a href="http://www.buergerhaus-ingolstadt.de" title="Bürgerhaus Ingolstadt">www.buergerhaus-ingolstadt.de</a>). Seit 1993 geben sich in der Konzertreihe „Jazz &amp; More“ internationale Spitzenmusiker und Stars des Jazz die Klinke in die Hand, u. a. Billy Cobham, Buddy Miles, Joe Zawinul, Steve Khan, Allan Hol, Mike Stern, Wolfgang Haffner, Bob Mintzer, Tuck &amp; Patti. Der Verein der Ingolstädter Jazzfreunde e. V. unterstützt diese Veranstaltungsreihe durch Werbung in seinem Newsletter und auf seiner Homepage.
-    </p>
+      <p>
+        Die Jazzkneipe Ingolstadts heißt Diagonal (<a href="http://www.diagonal-bar.de" title="Diagonal">www.diagonal-bar.de</a>)! Zahlreiche Konzerte belegen die Ausnahmestellung dieses Szenelokals im Bürgerhaus (<a href="http://www.buergerhaus-ingolstadt.de" title="Bürgerhaus Ingolstadt">www.buergerhaus-ingolstadt.de</a>). Seit 1993 geben sich in der Konzertreihe „Jazz &amp; More“ internationale Spitzenmusiker und Stars des Jazz die Klinke in die Hand, u. a. Billy Cobham, Buddy Miles, Joe Zawinul, Steve Khan, Allan Hol, Mike Stern, Wolfgang Haffner, Bob Mintzer, Tuck &amp; Patti. Der Verein der Ingolstädter Jazzfreunde e. V. unterstützt diese Veranstaltungsreihe durch Werbung in seinem Newsletter und auf seiner Homepage.
+      </p>
 
-    <a name="jazztage"></a>
-    <h2>Unterstützung der Ingolstädter Jazztage</h2>
+      <a name="jazztage"></a>
+      <h3 class="text-lg leading-loose font-medium">Unterstützung der Ingolstädter Jazztage</h3>
 
-    <p>
-      Das Highlight im Jazzkalender Ingolstadts! Organisiert wird dieser Megaevent (<a href="http://www.ingolstadt.de/jazztage" title="Ingolstädter Jazztage">www.ingolstadt.de/jazztage</a>) vom Ehrenmitglied des Vereins der Ingolstädter Jazzfreunde e. V. Jan Rottau und seinem Team. Seit 2013 organisieren die Jazzfreunde in Zusammenarbeit mit dem Kulturamt ein Event im Rahmen der Jazztage: „Jazzfreunde e. V. presents“: Unter dem Motto „Jazz vom Feinsten aus deutschen Landen“ treten in einem Doppelkonzert innovative deutsche Jazzformationen (regional und überregional) auf. Übrigens: Mitglieder des Vereins erhalten kostenlose Eintrittskarten für dieses Konzert (Bonuskonzert)! Weiterhin findet im Rahmen der Jazztage eine „Young Players Session“ im Diagonal statt.
-    </p>
+      <p>
+        Das Highlight im Jazzkalender Ingolstadts! Organisiert wird dieser Megaevent (<a href="http://www.ingolstadt.de/jazztage" title="Ingolstädter Jazztage">www.ingolstadt.de/jazztage</a>) vom Ehrenmitglied des Vereins der Ingolstädter Jazzfreunde e. V. Jan Rottau und seinem Team. Seit 2013 organisieren die Jazzfreunde in Zusammenarbeit mit dem Kulturamt ein Event im Rahmen der Jazztage: „Jazzfreunde e. V. presents“: Unter dem Motto „Jazz vom Feinsten aus deutschen Landen“ treten in einem Doppelkonzert innovative deutsche Jazzformationen (regional und überregional) auf. Übrigens: Mitglieder des Vereins erhalten kostenlose Eintrittskarten für dieses Konzert (Bonuskonzert)! Weiterhin findet im Rahmen der Jazztage eine „Young Players Session“ im Diagonal statt.
+      </p>
+    </div>
   </div>
 {% endblock %}
