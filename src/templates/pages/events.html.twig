@@ -6,24 +6,32 @@
 {% endblock %}
 
 {% block content %}
-  <div class="max-w-full mx-auto md:max-w-screen-xl my-5">
-    {% include 'typography/titel.html.twig' with { titel: 'Veranstaltungskalender' } %}
+  {% embed 'layout/container.html.twig' %}
+    {% block content %}
+      {% include 'typography/titel.html.twig' with { titel: 'Veranstaltungskalender' } %}
 
-    {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
-    {% include 'components/events/event-list.html.twig' with { event_list_id: 'upcoming_events', messageOnEmpty: 'Im Moment stehen keine Veranstaltungen an.', data_samples: sampledata.upcoming_events } %}
-    <p class="my-2">
-      Auch interessant: Das Programm unserer Partner des <a href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
-    </p>
+      <section>
+        {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
+        {% include 'components/events/event-list.html.twig' with { event_list_id: 'upcoming_events', messageOnEmpty: 'Im Moment stehen keine Veranstaltungen an.', data_samples: sampledata.upcoming_events } %}
+        <p class="my-2">
+          Auch interessant: Das Programm unserer Partner des <a href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
+        </p>
+      </section>
 
-    {% include 'typography/section-titel.html.twig' with { titel: 'Vergangene Veranstaltungen' } %}
-    {% include 'components/events/event-list.html.twig' with { event_list_id: 'past_events', messageOnEmpty: 'Es sind keine vergangenen Veranstaltungen eingetragen.', data_samples: sampledata.past_events } %}
+      <section>
+        {% include 'typography/section-titel.html.twig' with { titel: 'Vergangene Veranstaltungen' } %}
+        {% include 'components/events/event-list.html.twig' with { event_list_id: 'past_events', messageOnEmpty: 'Es sind keine vergangenen Veranstaltungen eingetragen.', data_samples: sampledata.past_events } %}
+      </section>
 
-    {% include 'typography/section-titel.html.twig' with { titel: 'Veranstaltungsarchiv' } %}
-    <div id="show_archived" style="display:block; cursor:pointer; font-size:0.95em; text-decoration:underline;">Archiv anzeigen</div>
-    <div id="archived_events_container" style="display:none;">
-      {% include 'components/events/event-list.html.twig' with { event_list_id: 'archived_events', messageOnEmpty: 'Es befinden sich keine Veranstaltungen im Archiv.', data_samples: sampledata.archived_events } %}
+      <section class="pb-10">
+        {% include 'typography/section-titel.html.twig' with { titel: 'Veranstaltungsarchiv' } %}
+        <div id="show_archived" style="display:block; cursor:pointer; font-size:0.95em; text-decoration:underline;">Archiv anzeigen</div>
+        <div id="archived_events_container" style="display:none;">
+          {% include 'components/events/event-list.html.twig' with { event_list_id: 'archived_events', messageOnEmpty: 'Es befinden sich keine Veranstaltungen im Archiv.', data_samples: sampledata.archived_events } %}
 
-      <div id="hide_archived" style="display:block; cursor:pointer; font-size:0.95em; text-decoration:underline;">Archiv verbergen</div>
-    </div>
-  </div>
+          <div id="hide_archived" style="display:block; cursor:pointer; font-size:0.95em; text-decoration:underline;">Archiv verbergen</div>
+        </div>
+      </section>
+    {% endblock %}
+  {% endembed %}
 {% endblock %}

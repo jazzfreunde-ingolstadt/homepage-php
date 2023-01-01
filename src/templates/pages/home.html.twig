@@ -6,12 +6,23 @@
 {% endblock %}
 
 {% block content %}
-  <div class="max-w-full mx-auto md:max-w-screen-xl my-5">
-    {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
-    {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
-  </div>
-
-  <div class="max-w-full mx-auto md:max-w-screen-xl my-10">
-    {% include 'components/newsletter/subscription-widget.html.twig' %}
-  </div>
+  {% embed 'layout/container.html.twig' %}
+    {% block content %}
+      <div class="mb-20">
+        {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
+        {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
+      </div>
+    {% endblock %}
+  {% endembed %}
+  {% embed 'layout/background-image.html.twig' with { class: 'min-h-content' } %}
+    {% block infront %}
+      {% embed 'layout/container.html.twig' %}
+        {% block content %}
+          <div class="bg-white rounded-xl shadow-md my-32 p-8">
+            {% include 'components/newsletter/subscription-widget.html.twig' %}
+          </div>
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
 {% endblock %}

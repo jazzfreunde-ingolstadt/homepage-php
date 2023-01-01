@@ -1,42 +1,44 @@
 <hr class="border-t-2 border-orange" />
 <footer class="w-full bg-blue text-white">
-  <div class="container mx-auto max-w-screen-xl px-5 md:px-20 lg:px-36">
-    <div class="flex px-5 py-5 flex-col sm:flex-row gap-8 sm:gap-20">
-      <div class="basis-1/2">
-        <span class="section-header">Adresse</span>
-        <hr />
-        <p>
-          <span class="whitespace-nowrap">Jazzfreunde Ingolstadt e. V.</span><br />
-          <span class="whitespace-nowrap">Lindbergstraße 3a</span><br />
-          <span class="whitespace-nowrap">85051 Ingolstadt</span>
-        </p>
+  {% embed 'layout/container.html.twig' %}
+    {% block content %}
+      <div class="flex px-5 py-5 flex-col sm:flex-row gap-8 sm:gap-20">
+        <div class="basis-1/2">
+          <span class="section-header">Adresse</span>
+          <hr />
+          <p>
+            <span class="whitespace-nowrap">Jazzfreunde Ingolstadt e. V.</span><br />
+            <span class="whitespace-nowrap">Lindbergstraße 3a</span><br />
+            <span class="whitespace-nowrap">85051 Ingolstadt</span>
+          </p>
+        </div>
+        <div class="basis-1/2">
+          <span class="section-header">Information</span>
+          <hr />
+          <ul>
+            <li>
+              <a href="{{ url('impressum') }}">Impressum</a>
+            </li>
+            <li>
+              <a href="{{ url('end-user-agreement') }}">Datenschutz</a>
+            </li>
+            <li>
+              <a href="{{ url('statute') }}">Satzung</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="basis-1/2">
-        <span class="section-header">Information</span>
-        <hr />
-        <ul>
-          <li>
-            <a href="{{ url('impressum') }}">Impressum</a>
-          </li>
-          <li>
-            <a href="{{ url('end-user-agreement') }}">Datenschutz</a>
-          </li>
-          <li>
-            <a href="{{ url('statute') }}">Satzung</a>
-          </li>
-        </ul>
+      <hr />
+      <div class="flex px-5 py-5 text-center">
+        <small>
+          Es is untersagt, die innerhalb der Internetpräsenz der Jazzfreunde Ingolstadt angegebenen Kontaktdaten für Werbung oder unerwünschte Kontaktierung (i. d. R. nicht den Verein betreffende Angelegenheiten, Umfragen, Statistiken etc.) zu speichern oder zu verwenden!<br />
+          <br />
+          Wenn Sie interessiert, was wir mit Ihren Daten anfangen und wie wir sie schützen, lesen Sie unsere Informationen zu <a href="{{ url('end-user-agreement') }}">Datenerhebung und Datenschutz</a>.
+        </small>
       </div>
-    </div>
-    <hr />
-    <div class="flex px-5 py-5 text-center">
-      <small>
-        Es is untersagt, die innerhalb der Internetpräsenz der Jazzfreunde Ingolstadt angegebenen Kontaktdaten für Werbung oder unerwünschte Kontaktierung (i. d. R. nicht den Verein betreffende Angelegenheiten, Umfragen, Statistiken etc.) zu speichern oder zu verwenden!<br />
-        <br />
-        Wenn Sie interessiert, was wir mit Ihren Daten anfangen und wie wir sie schützen, lesen Sie unsere Informationen zu <a href="{{ url('end-user-agreement') }}">Datenerhebung und Datenschutz</a>.
-      </small>
-    </div>
-  </div>
-  <div class="m-1">
+    {% endblock %}
+  {% endembed %}
+  <div class="inline-block m-1">
     {% include 'components/version.html.twig' %}
   </div>
 </footer>

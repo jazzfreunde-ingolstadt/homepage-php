@@ -1,6 +1,6 @@
 <div id="event-widget" class="w-full grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 justify-items-stretch">
   <div class="event-widget-card template" {{ app.debug ? ('data-sample-events="' ~ (data_samples|json_encode|escape('html_attr')) ~ '"')|raw }}>
-    <div class="w-48 lg:w-60 h-full p-5 bg-white shadow-md overflow-hidden flex flex-col">
+    <div class="w-48 lg:w-56 h-full p-5 rounded-md border border-grey-light bg-white shadow-md overflow-hidden flex flex-col">
       <div class="text-lg font-bold mb-5">
         <span class="event_titel">{% include 'components/api/loading-schimmer.html.twig' with { length: 50 } %}</span></span>
       </div>
