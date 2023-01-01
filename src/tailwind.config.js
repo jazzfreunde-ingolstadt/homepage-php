@@ -6,6 +6,7 @@ module.exports = {
   ],
   theme: {
     colors: {
+      'current': 'currentColor',
       'blue': '#242c7f',
       'yellow': '#e8c400',
       'orange': '#ee8811',

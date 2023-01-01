@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       {% block title %}
         Welcome!
@@ -18,17 +18,43 @@
     {% endblock %}
   </head>
   <body>
-    <div class="flex w-full min-h-screen flex-col content-center bg-grey-light">
-      <div class="sticky top-0 w-full flex-none">
-        {% include 'components/header.html.twig' %}
+    <div class="flex flex-row flex-nowrap w-full">
+      <div class="w-0 grow-0 justify-self-stretch z-20">
+        <a href="{{ url('home') }}">
+          <div class="sticky top-0 left-0" style="margin-top: -8px;">
+            <svg class="absolute top-0 left-0 h-24 md:h-36 lg:h-48 w-24 md:w-36 lg:w-48 object-cover" viewBox="0 0 100 100">
+              <g transform="rotate(30, 15, -40)">
+                <rect class="fill-yellow" x="0" width="105" height="60" rx="30" />
+              </g>
+              <g transform="rotate(30, 10, -35)">
+                <rect class="fill-white" x="0" width="132" height="50" rx="25" />
+              </g>
+              <g transform="rotate(30, 50, -40)">
+                <rect class="fill-yellow" x="0" width="135" height="20" rx="10" />
+              </g>
+              <g transform="rotate(30, 40, -30)">
+                <rect class="fill-blue" x="0" width="115" height="60" rx="30" />
+              </g>
+            </svg>
+            <div class="logo relative m-2 h-16 md:h-24 lg:h-36 w-16 md:w-24 lg:w-36 flex-none flex justify-center items-center">
+              {% include 'components/logo.html.twig' %}
+            </div>
+          </div>
+        </a>
       </div>
-      <main role="main" class="w-full grow flex flex-col">
-        <div class="container mx-auto max-w-screen-xl px-5 md:px-20 text-blue">
-          {% block content %}
-          {% endblock %}
+      <div class="flex w-full min-h-screen flex-col content-center bg-grey-light">
+        <div class="w-full flex-none">
+          {% include 'components/header.html.twig' %}
         </div>
-      </main>
-      {% include 'components/footer.html.twig' %}
+        <main role="main" class="w-full grow flex flex-col">
+          <div class="container mx-auto max-w-screen-xl px-5 md:px-20 lg:px-36 text-blue">
+            {% block content %}
+
+            {% endblock %}
+          </div>
+        </main>
+        {% include 'components/footer.html.twig' %}
+      </div>
     </div>
   </body>
 </html>

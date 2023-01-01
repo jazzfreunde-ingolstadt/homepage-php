@@ -1,11 +1,6 @@
 <header class="w-full bg-blue text-white">
-  <div class="container mx-auto max-w-screen-xl flex items-center">
-    <a href="{{ url('home') }}">
-      <div class="logo h-16 md:h-24 lg:h-36 w-16 md:w-24 lg:w-36 flex-none flex justify-center items-center">
-        {% include 'components/logo.html.twig' %}
-      </div>
-    </a>
-      {% include 'components/main-menu.html.twig' %}
+  <div class="container mx-auto max-w-screen-xl px-5 md:px-20 lg:px-36">
+    {% include 'components/main-menu.html.twig' %}
   </div>
   <hr class="border-b-2 border-orange" />
 </header>
