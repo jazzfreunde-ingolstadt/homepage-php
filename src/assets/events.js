@@ -81,7 +81,7 @@ $.when(documentReady).done(() => {
     });
   });
 
-  $("#hide_archived").on("cick", () => {
+  $("#hide_archived").on("click", () => {
     $("#archived_events_container").hide();
   });
 });
