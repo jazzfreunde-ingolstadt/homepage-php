@@ -1,16 +1,18 @@
 import events, { fillTemplate } from "./js/events.js";
 import $ from "jquery";
 
-const fillEventList = (listId, eventData) => {
-  const table = $(`#${listId}`);
-  const list = table.find(".eventlist_body");
+const getList = (listId) => {
+  return $(`#${listId}`);
+};
 
-  list.find(".placeholder_while_loading").remove();
-
-  const template = table
-    .find(".eventlist-item.template")
+const cacheTemplate = () => {
+  return $(".eventlist-item.template")
+    .first()
     .clone()
     .removeClass("template");
+};
+
+const fillEventList = (list, template, eventData) => {
   const sampleData = template.attr("data-sample-events") ?? "";
 
   if (!eventData.length && sampleData) {
@@ -27,45 +29,29 @@ const fillEventList = (listId, eventData) => {
     return;
   }
 
-  list.empty();
+  list.find(".eventlist-item.template").remove();
 
   $.each(eventData, function (index, event) {
     fillTemplate(template.clone(), event).appendTo(list);
   });
 };
 
-const fillEventListWithBlanks = (listId) => {
-  const table = $(`#${listId}`);
-  const list = table.find(".eventlist_body");
-  const template = table
-    .find(".eventlist-item.template")
-    .clone()
-    .removeClass("template");
+var deferTemplateLoading = $.Deferred();
+var archivedEventsDataCache;
 
-  if (!template.length) {
-    return;
-  }
-
-  list.find(".placeholder_while_loading").remove();
-
-  for (var i = 1; i < 2; i++) {
-    template.clone().appendTo(list);
-  }
-};
-
-$.when(events.upcoming(), documentReady).done((data) => {
-  fillEventList("upcoming_events", data?.shift() ?? []);
+$.when(events.upcoming(), deferTemplateLoading).done((data, template) => {
+  const list = getList("upcoming_events");
+  fillEventList(list, template, data?.shift() ?? []);
 });
 
-$.when(events.past(), documentReady).done((data) => {
-  fillEventList("past_events", data ?? []);
+$.when(events.past(), deferTemplateLoading).done((data, template) => {
+  const list = getList("past_events");
+  fillEventList(list, template, data ?? []);
 });
 
 $.when(documentReady).done(() => {
-  var archivedEventsDataCache;
-
-  fillEventListWithBlanks("upcoming_events");
-  fillEventListWithBlanks("past_events");
+  const template = cacheTemplate();
+  deferTemplateLoading.resolve(template);
 
   $("#show_archived").on('click', () => {
     $("#archived_events_container").show();
@@ -75,9 +61,11 @@ $.when(documentReady).done(() => {
     }
 
     events.archived().then((data) => {
+      const list = getList("archived_events");
+      
       archivedEventsDataCache = data;
 
-      fillEventList("archived_events", data);
+      fillEventList(list, template, data);
     });
   });
 
