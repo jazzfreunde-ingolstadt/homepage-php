@@ -1,9 +1,5 @@
-.header-menu div {
-  display: inline-block;
+.header-menu a {
   font-weight: 300;
-}
-
-.header-menu div a {
   display: inline-block;
   text-align: center;
   text-transform: uppercase;
