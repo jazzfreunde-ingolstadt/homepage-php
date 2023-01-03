@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-  {% embed 'layout/background-parallax.html.twig' with { image_url: '/assets/images/placeholder/1.jpg', class: 'blur-sm brightness-50' } %}
+  {% embed 'layout/background-parallax.html.twig' with { image_url: '/assets/images/placeholder/1.jpg', class: 'blur-sm' } %}
     {% block infront %}
       {% embed 'layout/container.html.twig' %}
         {% block content %}
@@ -14,7 +14,7 @@
     {% endblock %}
   {% endembed %}
 
-  <div class="py-10 md:py-20 text-justify bg-white">
+  <div class="py-10 md:py-20 text-justify">
     {% embed 'layout/container.html.twig' %}
       {% block content %}
         {% include 'typography/section-titel.html.twig' with { titel: '… eine kleine Geschichte zur Geschichte der Geschichte' } %}
@@ -28,7 +28,7 @@
     {% endembed %}
   </div>
 
-  {% embed 'layout/background-parallax.html.twig' with { image_url: '/assets/images/placeholder/2.jpg', class: 'blur-sm brightness-50' } %}
+  {% embed 'layout/background-parallax.html.twig' with { image_url: '/assets/images/placeholder/2.jpg', class: 'blur-sm' } %}
     {% block infront %}
       {% embed 'layout/container.html.twig' %}
         {% block content %}
@@ -63,7 +63,7 @@
     {% endblock %}
   {% endembed %}
 
-  <div class="py-10 md:py-20 text-justify bg-white">
+  <div class="py-10 md:py-20 text-justify">
     {% embed 'layout/container.html.twig' %}
       {% block content %}
         {% include 'typography/section-titel.html.twig' with { titel: 'Projekte des Vereins der Jazzfreunde Ingolstadt' } %}
@@ -137,7 +137,7 @@
     {% endembed %}
   </div>
 
-  {% embed 'layout/background-parallax.html.twig' with { image_url: '/assets/images/placeholder/3.jpg', class: 'blur-sm brightness-50' } %}
+  {% embed 'layout/background-parallax.html.twig' with { image_url: '/assets/images/placeholder/3.jpg', class: 'blur-sm' } %}
     {% block infront %}
       <hr class="invisible py-32" />
     {% endblock %}
