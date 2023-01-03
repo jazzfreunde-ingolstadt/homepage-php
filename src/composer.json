@@ -30,6 +30,7 @@
         "symfony/form": "6.1.*",
         "symfony/framework-bundle": "^6.1",
         "symfony/ldap": "^6.1",
+        "symfony/mailer": "6.1.*",
         "symfony/maker-bundle": "^1.47",
         "symfony/monolog-bundle": "^3.8",
         "symfony/runtime": "^6.1",
@@ -76,7 +77,8 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.1.*"
+            "require": "6.1.*",
+            "docker": false
         },
         "src-dir": "app/"
     },

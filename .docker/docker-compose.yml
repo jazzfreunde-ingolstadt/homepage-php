@@ -98,13 +98,13 @@ services:
         container_name: mail-server
         image: maildev/maildev
         environment:
-        MAILDEV_WEB_PORT: 80
-        MAILDEV_INCOMING_USER: mailuser
-        MAILDEV_INCOMING_PASS: UOgw71yamcyt829cwily
+            MAILDEV_WEB_PORT: 80
+            MAILDEV_SMTP_PORT: 587
+            MAILDEV_INCOMING_USER: mailuser
+            MAILDEV_INCOMING_PASS: UOgw71yamcyt829cwily
         ports:
-        - 587:587
-        - 1025:1025
-        - 82:80
+            - 587:587
+            - 82:80
 volumes:
     jazzfreunde-mysql-data:
     jazzfreunde-vendor:
