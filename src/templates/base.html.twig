@@ -44,10 +44,10 @@
           </a>
         </div>
         <div class="w-full bg-grey-light">
-          <div class="w-full">
+          <div class="relative w-full z-10">
             {% include 'components/header.html.twig' %}
           </div>
-          <main role="main" class="w-full grow flex flex-col text-blue">
+          <main role="main" class="w-full z-0 grow flex flex-col text-blue">
             {% block content %}
 
             {% endblock %}

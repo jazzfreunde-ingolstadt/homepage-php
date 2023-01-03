@@ -8,7 +8,7 @@
 {% block content %}
   {% embed 'layout/container.html.twig' %}
     {% block content %}
-      <div class="mb-20">
+      <div class="pt-10 pb-20">
         {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
         {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
       </div>
@@ -18,7 +18,7 @@
     {% block infront %}
       {% embed 'layout/container.html.twig' %}
         {% block content %}
-          <div class="bg-white rounded-xl shadow-md my-32 p-8">
+          <div class="my-16 lg:my-36 xl:my-64 p-8 rounded-xl shadow-md bg-white">
             {% include 'components/newsletter/subscription-widget.html.twig' %}
           </div>
         {% endblock %}
