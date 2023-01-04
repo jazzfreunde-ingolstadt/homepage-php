@@ -1,9 +1,16 @@
 {% apply inline_css(encore_entry_css_source('email')) %}
 <html>
-  <body>
-    {% block content %}
-      
-    {% endblock %}
+  <body class="font-sans">
+    <div class="p-5 bg-blue text-white">
+      <div class="logo relative p-2 h-16 md:h-24 lg:h-36 w-16 md:w-24 lg:w-36 flex-none flex justify-center items-center">
+        {% include 'components/logo.html.twig' %}
+      </div>
+    </div>
+    <main class="p-10 bg-white text-blue">
+      {% block content %}
+
+      {% endblock %}
+    </main>
   </body>
 </html>
 {% endapply %}

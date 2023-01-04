@@ -32,11 +32,12 @@ class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/test/', name: 'test')]
+    #[Route('/subscription_notice/', name: 'test', condition: "'dev' === '%kernel.environment%'")]
     public function test(): Response
     {
         return $this->render(
-            'email/newsletter-subscription.html.twig'
+            'email/newsletter-subscription-notice.html.twig',
+            [ 'subscription' => [ 'email' => 'test@subscriber.localhost' ] ]
         );
     }
 
