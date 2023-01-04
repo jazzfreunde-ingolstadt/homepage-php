@@ -47,6 +47,7 @@ class FormController extends AbstractController
 
                 return $this->redirectToRoute('home');
             } catch (SubscriptionException $e) {
+                
                 // Email bereits vorhanden. Nutzer benachrichtigen.
             }
         }

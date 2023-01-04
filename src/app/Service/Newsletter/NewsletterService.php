@@ -31,9 +31,10 @@ final class NewsletterService implements LoggerAwareInterface
     }
 
     /**
-     * Undocumented function
+     * Verarbeitet ein neues Abonnement.
      *
      * @return void
+     * @throws SubscriptionException
      */
     public function subscribe(NewsletterSubscription $subscription): void
     {
@@ -42,18 +43,23 @@ final class NewsletterService implements LoggerAwareInterface
             $entityManager->persist($subscription);
             $entityManager->flush();
 
+            $knownMails = $this->doctrine->getRepository(KnownMail::class);
+
             /**
-             * @var KnownMail|null $jazzletter
+             * @var KnownMail|null $from
+             * @var KnownMail|null $to
              */
-            $jazzletter = $this->doctrine->getRepository(KnownMail::class)->findOneBy([ 'handle' => 'jazzletter' ]);
+            $from = $knownMails->findOneBy([ 'handle' => 'no-reply' ]);
+            $to = $knownMails->findOneBy([ 'handle' => 'jazzletter' ]);
             
-            if (is_null($jazzletter)) {
-                
+            if (is_null($from) || is_null($to)) {
+                $this->logger?->error(sprintf('%s: Mail "%s" ist nicht konfiguriert.', KnownMail::class, 'jazzletter'));
+                throw new SubscriptionException();
             }
 
             $email = (new TemplatedEmail())
-                ->from('info@jazzfreunde-ingolstadt.de')
-                ->to($jazzletter?->address)
+                ->from($from?->address ?? '')
+                ->to($to?->address ?? '')
                 ->subject('Neuer Newsletter Abonnent!')
                 ->htmlTemplate('emails/newsletter-subscription.html.twig')
                 ->context([

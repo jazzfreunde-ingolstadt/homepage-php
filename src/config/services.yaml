@@ -21,3 +21,7 @@ services:
     Jazzfreunde\App\Service\Content\LegacyStub:
         arguments:
         - '%kernel.project_dir%/legacy/pages'
+
+    Jazzfreunde\App\Service\Newsletter\NewsletterService:
+        calls:
+            - setLogger: ['@logger']
