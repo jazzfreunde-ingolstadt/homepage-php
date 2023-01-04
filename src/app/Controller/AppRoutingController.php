@@ -28,6 +28,19 @@ use Symfony\Component\Serializer\SerializerInterface;
 class AppRoutingController extends AbstractController
 {
     /**
+     * Undocumented function
+     *
+     * @return Response
+     */
+    #[Route('/test/', name: 'test')]
+    public function test(): Response
+    {
+        return $this->render(
+            'email/newsletter-subscription.html.twig'
+        );
+    }
+
+    /**
      * Startseite
      *
      * @return Response

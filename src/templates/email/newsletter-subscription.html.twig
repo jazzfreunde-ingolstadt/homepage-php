@@ -1,11 +1,9 @@
-{% apply inline_css(source('email/styles/jazzletter.css')) %}
-<html>
-  <body>
-    <main style="font-family: sans-serif">
-      <h1>Jemand möchte den Jazzletter erhalten!</h1>
+{% extends 'email/base.html.twig' %}
 
-      <pre style="font-size: 2em;">{{ subscription.email }}</pre>
-    </main>
-  </body>
-</html>
-{% endapply %}
+{% block content %}
+  <main style="font-family: sans-serif">
+    <h1>Jemand möchte den Jazzletter erhalten!</h1>
+
+    {# <pre style="font-size: 2em;">{{ subscription.email }}</pre> #}
+  </main>
+{% endblock %}

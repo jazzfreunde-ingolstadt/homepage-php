@@ -5,6 +5,8 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            string $publicDir: '%kernel.project_dir%/public'
 
     Jazzfreunde\App\Service\:
         resource: '%kernel.project_dir%/app/Service/'
@@ -25,3 +27,7 @@ services:
     Jazzfreunde\App\Service\Newsletter\NewsletterService:
         calls:
             - setLogger: ['@logger']
+
+    Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface:
+        alias: webpack_encore.entrypoint_lookup[mail]
+        public: true

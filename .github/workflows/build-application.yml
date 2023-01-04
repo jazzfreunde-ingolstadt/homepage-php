@@ -41,7 +41,8 @@ jobs:
 
       - name: Build Encore files
         run: |
-          npm run ${{ inputs.environment == 'prod' && 'build' || 'dev'}}
+          npm run ${{ inputs.environment == 'prod' && 'build-prod-app' || 'build-dev-app'}}
+          npm run ${{ inputs.environment == 'prod' && 'build-prod-mail' || 'build-dev-mail'}}
 
       # Upload app artifact
       - uses: actions/upload-artifact@main

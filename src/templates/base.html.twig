@@ -10,11 +10,11 @@
     </title>
     <link rel="icon" href="/assets/images/jicon.svg" />
     {% block stylesheets %}
-      {{ encore_entry_link_tags('app') }}
+      {{ encore_entry_link_tags('app', null, 'app') }}
     {% endblock %}
 
     {% block javascripts %}
-      {{ encore_entry_script_tags('app') }}
+      {{ encore_entry_script_tags('app', null, 'app') }}
     {% endblock %}
   </head>
   <body>
