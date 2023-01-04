@@ -12,7 +12,6 @@ use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 
 /**
@@ -38,6 +37,7 @@ final class NewsletterService implements LoggerAwareInterface
      */
     public function subscribe(NewsletterSubscription $subscription): void
     {
+        $this->doctrine->getConnection()->beginTransaction();
         try {
             $entityManager = $this->doctrine->getManager();
             $entityManager->persist($subscription);
@@ -52,28 +52,37 @@ final class NewsletterService implements LoggerAwareInterface
             $from = $knownMails->findOneBy([ 'handle' => 'no-reply' ]);
             $to = $knownMails->findOneBy([ 'handle' => 'jazzletter' ]);
             
-            if (is_null($from) || is_null($to)) {
-                $this->logger?->error(sprintf('%s: Mail "%s" ist nicht konfiguriert.', KnownMail::class, 'jazzletter'));
+            $errorMsg = fn(string $handle) => sprintf('%s: Mail mit dem Handle "%s" ist nicht konfiguriert.', KnownMail::class, $handle);
+
+            if (is_null($from)) {
+                $this->logger?->error($errorMsg('jazzletter'));
+                throw new SubscriptionException();
+            }
+            if (is_null($to)) {
+                $this->logger?->error($errorMsg('no-reply'));
                 throw new SubscriptionException();
             }
 
             $email = (new TemplatedEmail())
-                ->from($from?->address ?? '')
-                ->to($to?->address ?? '')
-                ->subject('Neuer Newsletter Abonnent!')
-                ->htmlTemplate('emails/newsletter-subscription.html.twig')
-                ->context([
-                    'subscription' => [
-                        'email' => $subscription->email
-                    ],
-                ]);
+            ->from($from?->address ?? '')
+            ->to($to?->address ?? '')
+            ->subject('Neuer Newsletter Abonnent!')
+            ->htmlTemplate('email/newsletter-subscription.html.twig')
+            ->context([
+                'subscription' => [
+                    'email' => $subscription->email
+                ],
+            ]);
             
             $this->mailer->send($email);
-        } catch (TransportExceptionInterface $e) {
-            $this->logger?->error($e);
-            throw new SubscriptionException();
+
+            $this->doctrine->getConnection()->commit();
         } catch (UniqueConstraintViolationException $e) {
             throw new SubscriptionException(code: SubscriptionException::ALREADY_SUBSCRIBED);
+        } catch (\Exception $e) {
+            $this->logger?->error($e);
+            $this->doctrine->getConnection()->rollback();
+            throw new SubscriptionException();
         }
     }
 }
