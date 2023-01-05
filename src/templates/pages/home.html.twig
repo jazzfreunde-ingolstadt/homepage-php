@@ -6,16 +6,14 @@
 {% endblock %}
 
 {% block content %}
-  <div class="relative z-10">
-    {% embed 'layout/container.html.twig' %}
-      {% block content %}
-        <div class="pt-10 pb-20">
-          {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
-          {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
-        </div>
-      {% endblock %}
-    {% endembed %}
-  </div>
+  {% embed 'layout/container.html.twig' %}
+    {% block content %}
+      <div class="pt-10 pb-20">
+        {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
+        {% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
+      </div>
+    {% endblock %}
+  {% endembed %}
   {% embed 'layout/background-parallax.html.twig' with { image_url: '/assets/images/placeholder/1.jpg' } %}
     {% block infront %}
       {% embed 'layout/container.html.twig' %}
