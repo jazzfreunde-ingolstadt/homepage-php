@@ -1,15 +1,8 @@
-import events, { fillTemplate } from "./js/events.js";
+import events, { cacheTemplate, fillTemplate } from "./js/events.js";
 import $ from "jquery";
 
 const getList = (listId) => {
   return $(`#${listId}`);
-};
-
-const cacheTemplate = () => {
-  return $(".eventlist-item.template")
-    .first()
-    .clone()
-    .removeClass("template");
 };
 
 const fillEventList = (list, template, eventData) => {
@@ -41,7 +34,7 @@ var archivedEventsDataCache;
 
 $.when(events.upcoming(), deferTemplateLoading).done((data, template) => {
   const list = getList("upcoming_events");
-  fillEventList(list, template, data?.shift() ?? []);
+  fillEventList(list, template, data ?? []);
 });
 
 $.when(events.past(), deferTemplateLoading).done((data, template) => {

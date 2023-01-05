@@ -18,6 +18,13 @@ const archiveDaysAfter = 90;
 let archiveDate = new Date();
 archiveDate.setDate(today.getDate() - archiveDaysAfter);
 
+const cacheTemplate = () => {
+  return $(".eventlist-item.template")
+    .first()
+    .clone()
+    .removeClass("template");
+};
+
 const fillTemplate = function (template, event) {
   let start = typeof event.start === "string" ? DateTime.fromISO(event.start) : DateTime.fromSQL(event.start.date);
   start.setLocale("de-DE");
@@ -116,4 +123,4 @@ export default {
   archived: fetchArchivedEvents,
   featured: fetchFeaturedEvents,
 };
-export { fillTemplate };
+export { cacheTemplate, fillTemplate };
