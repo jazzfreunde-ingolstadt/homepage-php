@@ -1,10 +1,10 @@
-<div class="relative w-full min-h-min z-0 overflow-clip">
-  <div class="absolute top-0 w-full h-full overflow-clip z-0">
+<div class="relative w-full min-h-min z-0">
+  <div class="absolute top-0 w-full h-full overflow-clip z-0" style="-webkit-overflow-hidden">
     <div class="h-[2000vh] mt-[-1000vh]">
       <img src="{{ image_url|raw }}" class="sticky top-0 w-full h-screen object-cover {{ class|default('') }}" />
     </div>
   </div>
-  <div class="relative w-full h-full z-10">
+  <div class="relative w-full z-10">
     {% block infront %}
 
     {% endblock %}
