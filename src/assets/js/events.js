@@ -1,6 +1,8 @@
 import $ from "jquery";
+import { DateTime } from "luxon";
 
 const wochentag = [
+  undefined,
   "Sonntag",
   "Montag",
   "Dienstag",
@@ -17,16 +19,16 @@ let archiveDate = new Date();
 archiveDate.setDate(today.getDate() - archiveDaysAfter);
 
 const fillTemplate = function (template, event) {
-  let start = new Date(
-    typeof event.start === "string" ? event.start : event.start.date
-  );
+  let start = typeof event.start === "string" ? DateTime.fromISO(event.start) : DateTime.fromSQL(event.start.date);
+  start.setLocale("de-DE");
+
   template.attr("event-id", event.id);
-  template.find(".event_weekday").html(wochentag[start.getDay()]);
-  template.find(".event_date").html(start.toLocaleDateString("de-DE"));
+  template.find(".event_weekday").html(wochentag[start.toFormat("c")]);
+  template.find(".event_date").html(start.toLocaleString(DateTime.DATE_SHORT));
   template
     .find(".event_time")
     .html(
-      start.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })
+      start.toLocaleString(DateTime.TIME_24_SIMPLE)
     );
   template.find(".event_titel").html(event.titel);
   template.find(".event_subtitel").html(event.subtitel ?? "");
