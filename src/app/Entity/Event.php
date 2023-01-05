@@ -25,11 +25,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new GetCollection()
     ],
     // normalizationContext: ['groups' => ['Event:read']],
-    denormalizationContext: ['groups' => ['Event:write']]
+    denormalizationContext: ['groups' => ['Event:write']],
+    paginationClientItemsPerPage: true
 )]
 #[ApiFilter(DateFilter::class, properties: ['start'])]
 #[ApiFilter(OrderFilter::class, properties: ['start'])]
-#[ApiResource(paginationClientItemsPerPage: true)]
 class Event
 {
     use PropertyInjectionTrait;
