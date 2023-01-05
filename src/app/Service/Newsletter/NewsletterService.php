@@ -67,7 +67,7 @@ final class NewsletterService implements LoggerAwareInterface
             ->from($from?->address ?? '')
             ->to($to?->address ?? '')
             ->subject('Neuer Newsletter Abonnent!')
-            ->htmlTemplate('email/newsletter-subscription.html.twig')
+            ->htmlTemplate('email/newsletter-subscription-notice.html.twig')
             ->context([
                 'subscription' => [
                     'email' => $subscription->email
