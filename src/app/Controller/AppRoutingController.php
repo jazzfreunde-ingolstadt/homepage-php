@@ -17,6 +17,7 @@ use DateInterval;
 use DateTime;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Entity\Ort;
+use Jazzfreunde\App\Entity\Type\EventCategoryEnum;
 use Jazzfreunde\App\Form\NewsletterSubscriptionType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Request;
@@ -189,15 +190,15 @@ class AppRoutingController extends AbstractController
     {
         $sampledata = [
             'upcoming_events' => [
-                new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->add(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->add(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de', category: EventCategoryEnum::session),
                 new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
             ],
             'past_events' => [
-                new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->sub(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->sub(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de', category: EventCategoryEnum::session),
                 new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->sub(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
             ],
             'archived_events' => [
-                new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->sub(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
+                new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->sub(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de', category: EventCategoryEnum::session),
                 new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->sub(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
             ]
         ];

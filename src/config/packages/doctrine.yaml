@@ -3,7 +3,7 @@ doctrine:
         url: '%env(DATABASE_URL)%'
         server_version: 'mariadb-10.6.10'
         types:
-            event_type:  Jazzfreunde\App\Entity\Type\EventCategoryType
+            event_category:  Jazzfreunde\App\Entity\Type\EventCategoryType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware

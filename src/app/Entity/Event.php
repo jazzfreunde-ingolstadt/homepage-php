@@ -62,5 +62,5 @@ class Event
     #[Groups(groups: ['Event:write'])]
     public ?string $link = null;
     #[ORM\Column(type: EventCategoryType::NAME, options: [ 'default' => EventCategoryEnum::DEFAULT ])]
-    public string $category;
+    public EventCategoryEnum $category = EventCategoryEnum::default;
 }
