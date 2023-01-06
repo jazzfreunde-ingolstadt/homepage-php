@@ -12,6 +12,8 @@ use ApiPlatform\Metadata\GetCollection;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\App\Entity\Type\EventCategoryType;
+use Jazzfreunde\App\Entity\Type\EventCategoryEnum;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -53,11 +55,12 @@ class Event
     #[ApiProperty(readableLink: true, writableLink: false)]
     #[Groups(groups: ['Event:write'])]
     public Ort $ort;
-    // public ?int $series_id,
     #[ORM\Column(type: 'string', nullable: true)]
     #[Groups(groups: ['Event:write'])]
     public ?string $subtitel = null;
     #[ORM\Column(type: 'string', nullable: true)]
     #[Groups(groups: ['Event:write'])]
     public ?string $link = null;
+    #[ORM\Column(type: EventCategoryType::NAME, options: [ 'default' => EventCategoryEnum::DEFAULT ])]
+    public string $category;
 }
