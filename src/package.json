@@ -17,6 +17,7 @@
     "private": true,
     "scripts": {
         "server-app": "encore dev-server --config-name app",
+        "watch-app": "encore dev --watch --config-name app",
         "watch-mail": "encore dev --watch --config-name mail",
         "build-dev-app": "encore dev --config-name app",
         "build-dev-mail": "encore dev --config-name mail",
