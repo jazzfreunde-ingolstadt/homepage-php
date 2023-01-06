@@ -12,6 +12,7 @@ use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\Mailer\MailerInterface;
 
 /**

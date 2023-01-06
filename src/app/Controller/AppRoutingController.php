@@ -18,6 +18,7 @@ use DateTime;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Entity\Ort;
 use Jazzfreunde\App\Form\NewsletterSubscriptionType;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -58,15 +59,11 @@ class AppRoutingController extends AbstractController
             ],
         ];
 
-        $form = $this->createForm(NewsletterSubscriptionType::class, options: ['action' => $this->generateUrl('form_newsletter_subscribe')]);
-
         return $this->render(
             'pages/home.html.twig',
             [
                 'sampledata' => $sampledata,
-                'forms' => [
-                    'newsletter_subscription' => $form->createView()
-                ]
+                'forms' => $this->createNewsletterSubscriptionForm()
             ]
         );
     }
@@ -118,7 +115,10 @@ class AppRoutingController extends AbstractController
 
         return $this->render(
             'pages/about.html.twig',
-            ['personen' => $personen]
+            [
+                'personen' => $personen,
+                'forms' => $this->createNewsletterSubscriptionForm()
+            ]
         );
     }
 
@@ -144,7 +144,8 @@ class AppRoutingController extends AbstractController
     public function endUserAgreement(): Response
     {
         return $this->render(
-            'pages/legal/end-user-agreement.html.twig'
+            'pages/legal/end-user-agreement.html.twig',
+            [ 'forms' => $this->createNewsletterSubscriptionForm() ]
         );
     }
 
@@ -157,7 +158,8 @@ class AppRoutingController extends AbstractController
     public function impressum(): Response
     {
         return $this->render(
-            'pages/legal/impressum.html.twig'
+            'pages/legal/impressum.html.twig',
+            [ 'forms' => $this->createNewsletterSubscriptionForm() ]
         );
     }
 
@@ -170,7 +172,8 @@ class AppRoutingController extends AbstractController
     public function statute(): Response
     {
         return $this->render(
-            'pages/legal/satzung.html.twig'
+            'pages/legal/satzung.html.twig',
+            [ 'forms' => $this->createNewsletterSubscriptionForm() ]
         );
     }
 
@@ -202,7 +205,8 @@ class AppRoutingController extends AbstractController
         return $this->render(
             'pages/events.html.twig',
             [
-                'sampledata' => $sampledata
+                'sampledata' => $sampledata,
+                'forms' => $this->createNewsletterSubscriptionForm()
             ]
         );
     }
@@ -252,5 +256,18 @@ class AppRoutingController extends AbstractController
         return new Response(
             (string) new MainDeprecated($props)
         );
+    }
+
+    /**
+     * Form zum Abonnieren des Newsletters.
+     * Abhängigkeit des Footers.
+     *
+     * @return array
+     */
+    private function createNewsletterSubscriptionForm(): array
+    {
+        $form = $this->createForm(NewsletterSubscriptionType::class, options: ['action' => $this->generateUrl('form_newsletter_subscribe')]);
+
+        return [ 'newsletter_subscription' => $form->createView()] ;
     }
 }
