@@ -4,7 +4,7 @@
   </noscript>
   {% for i in 1..3 %}
     <div class="eventlist-item template justify-self-center" {{ app.debug ? ('data-sample-events="' ~ (data_samples|json_encode|escape('html_attr')) ~ '"')|raw }}>
-      <div class="w-48 lg:w-56 h-full p-5 rounded-md border border-grey-light bg-white shadow-md overflow-hidden flex flex-col">
+      <div class="w-full md:48 lg:w-72 h-full p-5 rounded-md border border-grey-light bg-white shadow-md overflow-hidden flex flex-col">
         <div class="text-lg font-bold mb-5">
           <span class="event_titel">{% include 'components/api/loading-schimmer.html.twig' with { length: 50 } %}</span>
         </div>
