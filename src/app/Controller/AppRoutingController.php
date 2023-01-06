@@ -132,7 +132,8 @@ class AppRoutingController extends AbstractController
     public function join(): Response
     {
         return $this->render(
-            'pages/join.html.twig'
+            'pages/join.html.twig',
+            [ 'forms' => $this->createNewsletterSubscriptionForm() ]
         );
     }
 
