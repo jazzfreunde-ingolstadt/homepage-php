@@ -36,7 +36,8 @@ final class Version20230106155607 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform() instanceof MySQL80Platform, 'Migration can only be executed safely on \'mysql 8.0\' and higher.');
 
-        $this->addSql('ALTER TABLE events ADD category ENUM(\'none\', \'session\') DEFAULT \'none\' NOT NULL COMMENT \'(DC2Type:event_category)\'');
+        $this->addSql('ALTER TABLE events ADD category ENUM(\'none\', \'session\', \'jazztage\') DEFAULT \'none\' NOT NULL COMMENT \'(DC2Type:event_category)\'');
+        $this->addSql('UPDATE `events` SET `category` = \'jazztage\' WHERE  titel LIKE \'%jazztage%\' OR titel LIKE \'%jazzparty%\' OR titel LIKE \'%jazz in den kneipen%\';');
         $this->addSql('UPDATE `events` SET `category` = \'session\' WHERE titel LIKE \'%session%\';');
     }
 
