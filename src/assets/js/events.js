@@ -41,7 +41,7 @@ const fillTemplate = function (template, event) {
   template.find(".event_subtitel").html(event.subtitel ?? "");
   template.find(".event_location").html(event.ort.name);
   let link = template.find(".event_link");
-  if (event.link.length) {
+  if (event.link?.length) {
     link.attr("href", event.link);
     link.text(event.link);
   } else {

@@ -63,7 +63,7 @@ final class EventList extends Component
                 template.find(".event_subtitel").append(event.subtitel ?? "");
                 template.find(".event_location").append(event.ort.name);
                 let link = template.find(".event_link");
-                if (event.link.length) {
+                if (event.link?.length) {
                     link.attr("href", event.link);
                     link.text(event.link);
                 } else {
