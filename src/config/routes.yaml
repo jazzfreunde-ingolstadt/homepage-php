@@ -1,3 +1,5 @@
 controllers:
-    resource: ../app/Controller/
+    resource:
+        path: ../app/Controller/
+        namespace: Jazzfreunde\App\Controller
     type: attribute
