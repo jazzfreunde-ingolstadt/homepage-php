@@ -12,6 +12,7 @@
 			"**/node_modules": true,
 			"**/vendor": true
 		},
+		"phpsab.snifferShowSources": true
 	},
 	"extensions": {
 		"recommendations": [
