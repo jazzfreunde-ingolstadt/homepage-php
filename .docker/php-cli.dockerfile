@@ -1,6 +1,6 @@
-FROM php:8.1-cli
+FROM php:8.2-cli
 
-LABEL version="1.0.0" \
+LABEL version="1.1.0" \
     author="Michael Mayer" \
     email="business.miche.mayer@outlook.de"
 
