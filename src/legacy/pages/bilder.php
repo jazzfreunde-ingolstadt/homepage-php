@@ -48,11 +48,11 @@ function getpix($folder)
   $fulldir = IMG_ROOT . $folder . "/" . IMG_FULLDIR;
   $thumbdir = IMG_ROOT . $folder . "/" . IMG_THUMBDIR;
   if ((!is_dir($fulldir)) || (!is_dir($thumbdir)))
-    throw new Exception("Bilder: Der angegebene Pfad '${fulldir}' existiert nicht.");
+    throw new Exception("Bilder: Der angegebene Pfad '{$fulldir}' existiert nicht.");
   $dir = opendir($fulldir);
 
   if ($dir == false)
-    throw new Exception("Bilder: Der angegebene Pfad '${dir}' konnte nicht geöffnet werden.");
+    throw new Exception("Bilder: Der angegebene Pfad '{$dir}' konnte nicht geöffnet werden.");
 
   while (($file = readdir($dir)) !== false) {
     if (strtolower(substr($file, -4, 4)) == ".jpg") { // Ist ein gültiges Bild... gibts das nun auch als Thumbnail?

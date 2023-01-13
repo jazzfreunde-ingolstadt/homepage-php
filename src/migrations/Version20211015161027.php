@@ -109,7 +109,7 @@ final class Version20211014210300 extends AbstractMigration
     {
         $dom = new DOMDocument();
         $dom->encoding = 'utf-8';
-        @$dom->loadHTML(utf8_decode("<div id=\"root\">${was}</div>"));
+        @$dom->loadHTML(utf8_decode("<div id=\"root\">{$was}</div>"));
 
         $titel = [];
         $titel['titel'] = $this->getTitel($dom->getElementByID('root'));
