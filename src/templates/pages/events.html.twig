@@ -10,6 +10,8 @@
     {% block content %}
       {% include 'typography/titel.html.twig' with { titel: 'Veranstaltungskalender' } %}
 
+      Hier finden Sie eine Übersicht über Veranstaltungen in der Region für Jazzfreunde (unabhängig davon, wer der Veranstalter ist):
+
       {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
       <section class="py-5 md:py-10">
         {% include 'components/events/event-list.html.twig' with { event_list_id: 'upcoming_events', messageOnEmpty: 'Im Moment stehen keine Veranstaltungen an.', data_samples: sampledata.upcoming_events } %}

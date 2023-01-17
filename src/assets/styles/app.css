@@ -3,8 +3,12 @@
 @tailwind base;
 @tailwind utilities;
 
-a:hover {
+main a {
   @apply text-yellow;
+}
+
+main a:hover {
+  @apply text-orange;
 }
 
 ::-webkit-scrollbar {

@@ -97,7 +97,7 @@ class AppRoutingController extends AbstractController
             [
                 'name' => 'Helmut Bachmaier',
                 'position' => 'Schatzmeister',
-                'bio' => 'Helmut Bachmaier lebt in Ingolstadt und arbeitet in München bei einer internationalen Bank. Er ist seit 2007 Mitglied bei den Jazzfreunden und seit 2020 Schatzmeister. Theater, Kabarett und Livemusik sind in der Freizeit fester Bestandteil.',
+                'bio' => 'Helmut Bachmaier lebt in Ingolstadt und arbeitete in München bei einer internationalen Bank. Er ist seit 2007 Mitglied bei den Jazzfreunden und seit 2020 Schatzmeister. Theater, Kabarett und Livemusik sind in der Freizeit fester Bestandteil.',
                 'pictureSrc' => '/gfx/bachmaier.jpeg',
                 'mail' => 'bachmaier',
             ],
