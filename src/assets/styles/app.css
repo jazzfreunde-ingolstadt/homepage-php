@@ -1,5 +1,7 @@
 @import "./components/header.css";
 @import "./components/api.css";
+@import "@fortawesome/fontawesome-free";
+@import "@fortawesome/fontawesome-free/css/brands";
 @tailwind base;
 @tailwind utilities;
 
