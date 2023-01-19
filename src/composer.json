@@ -80,7 +80,8 @@
             "require": "6.2.*",
             "docker": false
         },
-        "src-dir": "app/"
+        "src-dir": "app/",
+        "public-dir": "public/"
     },
     "config": {
         "optimize-autoloader": true,
