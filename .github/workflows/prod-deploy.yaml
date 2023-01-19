@@ -31,12 +31,12 @@ jobs:
           fetch-depth: 2
 
       # Get all atrifacts
-      - uses: actions/download-artifact@main
+      - uses: actions/download-artifact@v3
         with:
           name: prod-vendor-artifact
           path: src/vendor
 
-      - uses: actions/download-artifact@main
+      - uses: actions/download-artifact@v3
         with:
           name: prod-app-artifact
           path: src/public

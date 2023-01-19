@@ -50,7 +50,7 @@ jobs:
           npm run ${{ inputs.environment == 'prod' && 'build-prod-mail' || 'build-dev-mail'}}
 
       # Upload app artifact
-      - uses: actions/upload-artifact@main
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.artifact-name }}
           path: src/public/

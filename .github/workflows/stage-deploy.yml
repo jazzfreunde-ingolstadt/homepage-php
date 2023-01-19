@@ -32,12 +32,12 @@ jobs:
           fetch-depth: 2
 
       # Get all atrifacts
-      - uses: actions/download-artifact@main
+      - uses: actions/download-artifact@v3
         with:
           name: stage-vendor-artifact
           path: src/vendor
 
-      - uses: actions/download-artifact@main
+      - uses: actions/download-artifact@v3
         with:
           name: stage-app-artifact
           path: src/public

@@ -31,7 +31,7 @@ jobs:
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
 
       # Upload vendor artifact
-      - uses: actions/upload-artifact@main
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.artifact-name }}
           path: src/vendor/
