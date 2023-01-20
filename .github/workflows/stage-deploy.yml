@@ -92,7 +92,7 @@ jobs:
   warm-up:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/warmpup-server.yml@master
     with:
-      php-cli: php8.2-cli
+      php-cli: php8.1-cli
       remote-dir: stage
     secrets: inherit
     needs: delpoy
