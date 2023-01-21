@@ -11,6 +11,9 @@ x-volume-shared-vendor: &vendor
     type: volume
     source: jazzfreunde-vendor
     target: /usr/project/src/vendor
+x-volume-node_modules: &node_modules
+    type: volume
+    target: /usr/project/src/node_modules
 
 # docker build.args
 x-dev-buildargs: &dev-buildargs
@@ -27,6 +30,7 @@ services:
         volumes:
             - *source
             - *vendor
+            - *node_modules
         environment:
             - APP_ENV=dev # Default Environment
         extra_hosts:
