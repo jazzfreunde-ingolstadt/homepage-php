@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
         {
-            "label": "Install dependencies",
+            "label": "composer install",
             "type": "shell",
             "problemMatcher": [],
             "group": {
@@ -10,6 +10,22 @@
                 "isDefault": true
             },
             "command": "composer install",
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "npm install",
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "command": "npm install",
             "options": {
                 "cwd": "${workspaceFolder}/src/",
             },
