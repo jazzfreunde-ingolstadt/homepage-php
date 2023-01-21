@@ -48,6 +48,7 @@ RUN apt-get install -y libldap2-dev \
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 RUN nvm install v18
 RUN nvm alias default v18
+RUN npm install -g npm@latest
 
 # php
 COPY ${phpini_path} /usr/local/etc/php/conf.d/custom.ini
