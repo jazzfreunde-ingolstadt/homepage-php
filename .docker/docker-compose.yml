@@ -99,7 +99,7 @@ services:
             - "81:80"
 
     ksp105-mail-server:
-        container_name: mail-server
+        container_name: jazzfreunde-mail-server
         image: maildev/maildev
         environment:
             MAILDEV_WEB_PORT: 80
