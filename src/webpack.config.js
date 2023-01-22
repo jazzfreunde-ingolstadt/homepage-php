@@ -6,7 +6,6 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore.setOutputPath("public/build/app")
   .setPublicPath("/build/app")
-  // only needed for CDN's or subdirectory deploy
   .setManifestKeyPrefix("build/app/")
 
   .addEntry("app", "./assets/app/app.js")
@@ -37,13 +36,13 @@ Encore.setOutputPath("public/build/app")
   .enableIntegrityHashes(Encore.isProduction())
 
   .configureWatchOptions(function (watchOptions) {
-    watchOptions.poll = 250;
-    watchOptions.aggregateTimeout = 200;
+    watchOptions.poll = 500;
+    watchOptions.aggregateTimeout = 100;
   })
   .configureDevServerOptions((options) => {
     options.liveReload = true;
     options.hot = true;
-    options.watchFiles = ["./templates/**/*", "./app/**/*"];
+    options.watchFiles = [ "./templates/**/*", "./app/**/*" ];
   });
 const app = Encore.getWebpackConfig();
 app.name = "app";
