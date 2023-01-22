@@ -8,12 +8,15 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
+use Jazzfreunde\App\Form\NewsletterSubscriptionType;
 use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Service zur Verwaltung des Newsletters
@@ -26,7 +29,7 @@ final class NewsletterService implements LoggerAwareInterface
      * @param ManagerRegistry $doctrine
      * @param MailerInterface $mailer
      */
-    public function __construct(private ManagerRegistry $doctrine, private MailerInterface $mailer)
+    public function __construct(private ManagerRegistry $doctrine, private MailerInterface $mailer, private FormFactoryInterface $formFactory, private UrlGeneratorInterface $urlGenerator)
     {
     }
 
@@ -65,15 +68,15 @@ final class NewsletterService implements LoggerAwareInterface
             }
 
             $email = (new TemplatedEmail())
-            ->from($from?->address ?? '')
-            ->to($to?->address ?? '')
-            ->subject('Neuer Newsletter Abonnent!')
-            ->htmlTemplate('email/newsletter-subscription-notice.html.twig')
-            ->context([
-                'subscription' => [
-                    'email' => $subscription->email
-                ],
-            ]);
+                ->from($from?->address ?? '')
+                ->to($to?->address ?? '')
+                ->subject('Neuer Newsletter Abonnent!')
+                ->htmlTemplate('email/newsletter-subscription-notice.html.twig')
+                ->context([
+                    'subscription' => [
+                        'email' => $subscription->email
+                    ],
+                ]);
             
             $this->mailer->send($email);
 
@@ -85,5 +88,15 @@ final class NewsletterService implements LoggerAwareInterface
             $this->doctrine->getConnection()->rollback();
             throw new SubscriptionException();
         }
+    }
+
+    /**
+     * Generiert das Formular.
+     *
+     * @return FormInterface
+     */
+    public function createForm(): FormInterface
+    {
+        return $this->formFactory->create(NewsletterSubscriptionType::class, options: ['action' => $this->urlGenerator->generate('form_newsletter_subscribe')]);
     }
 }

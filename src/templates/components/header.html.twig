@@ -1,8 +1,13 @@
-<header class="w-full bg-blue text-white">
+<header class="w-full relative bg-blue text-white">
   {% embed 'layout/container.html.twig' %}
     {% block content %}
       {% include 'components/main-menu.html.twig' %}
     {% endblock %}
   {% endembed %}
   <hr class="border-b-2 border-orange" />
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="absolute right-0 bottom-0">
+      {{ app.user.email }}
+    </div>
+  {% endif %}
 </header>

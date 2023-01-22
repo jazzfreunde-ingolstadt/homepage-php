@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.1",
         "api-platform/core": "^3.0",
         "doctrine/annotations": "^1.14",
         "doctrine/doctrine-bundle": "^2.8",
@@ -29,14 +29,16 @@
         "symfony/flex": "^2.2",
         "symfony/form": "^6.2",
         "symfony/framework-bundle": "^6.2",
+        "symfony/http-foundation": "6.2.*",
         "symfony/ldap": "^6.2",
         "symfony/mailer": "^6.2",
         "symfony/maker-bundle": "^1.48",
         "symfony/monolog-bundle": "^3.8",
         "symfony/runtime": "^6.2",
-        "symfony/security-bundle": "^6.2",
+        "symfony/security-bundle": "6.2.*",
         "symfony/service-contracts": "*",
         "symfony/twig-bundle": "^6.2",
+        "symfony/uid": "6.2.*",
         "symfony/webpack-encore-bundle": "^1.16",
         "symfony/yaml": "^6.2",
         "thecodingmachine/safe": "^2.4",
@@ -96,6 +98,9 @@
         "psr-4": {
             "Jazzfreunde\\App\\": "app/",
             "Jazzfreunde\\Type\\": "Type/"
-        }
+        },
+        "files": [
+            "Function/Assertion.php"
+        ]
     }
 }

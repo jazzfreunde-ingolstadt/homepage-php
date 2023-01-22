@@ -49,6 +49,8 @@
     {% endblock %}
   {% endembed %}
   <div class="inline-block m-1">
-    {% include 'components/version.html.twig' %}
+    <a href="{{ path('security_login') }}">
+      {% include 'components/version.html.twig' %}
+    </a>
   </div>
 </footer>

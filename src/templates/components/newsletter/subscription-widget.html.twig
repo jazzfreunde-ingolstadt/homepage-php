@@ -5,7 +5,7 @@
   {{ form_start(forms.newsletter_subscription) }}
   <div class="w-full flex flex-col md:flex-row gap-5 lg:gap-10">
     <div class="relative w-full md:flex-shrink md:flex-grow">
-      {{ form_label(forms.newsletter_subscription.email, null, { label_attr: { class: 'absolute text-sm text-grey duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1' } }) }}
+      {{ form_label(forms.newsletter_subscription.email, null, { label_attr: { class: 'absolute text-sm text-grey duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] rounded bg-white px-2 peer-focus:px-2 peer-focus:text-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1' } }) }}
       {{ form_widget(forms.newsletter_subscription.email, { attr: { class: 'block px-2.5 pb-2.5 pt-4 w-full text-sm text-grey bg-transparent rounded-lg border border-grey appearance-none focus:outline-none focus:ring-0 focus:border-blue peer' } }) }}</div>
     <div class="relative flex-none">{{ form_widget(forms.newsletter_subscription.subscribe, { attr: { class: 'bg-orange hover:bg-yellow text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' } }) }}</div>
   </div>

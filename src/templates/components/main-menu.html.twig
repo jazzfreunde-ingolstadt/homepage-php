@@ -2,6 +2,9 @@
   <a href="{{ url('about') }}" title="VEREIN"></a>
   <a href="{{ url('events', { edit: false }) }}" title="VERANSTALTUNGEN"></a>
   <a href="{{ url('join') }}" title="MITGLIED WERDEN"></a>
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ url('security_logout') }}" title="logout"></a>
+  {% endif %}
   <div class="grow text-right">
     <a href="https://de-de.facebook.com/Wewerkarl/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
   </div>
