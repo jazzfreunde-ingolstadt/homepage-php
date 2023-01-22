@@ -74,7 +74,7 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
     public function enter(Request $request): Response
     {
         if ($this->security->isGranted(AuthenticatedVoter::IS_AUTHENTICATED_FULLY)) {
-            return $this->redirectToOrigin($request);
+            return $this->redirectToRoute('home');
         }
 
         if (!$request->isMethod(Request::METHOD_GET)) {
@@ -180,14 +180,12 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
      */
     private function redirectToOrigin(Request $request): Response
     {
-        if ($this->security->isGranted(AuthenticatedVoter::IS_AUTHENTICATED_FULLY)) {
-            $referer = $request->headers->get('referer');
+        $referer = $request->headers->get('referer');
 
-            if (is_null($referer)) {
-                return $this->redirectToRoute('home');
-            }
-
-            return $this->redirect($referer);
+        if (is_null($referer)) {
+            return $this->redirectToRoute('home');
         }
+
+        return $this->redirect($referer);
     }
 }

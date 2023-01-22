@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-  {% embed 'layout/background-parallax.html.twig' with { image_url: '/assets/images/placeholder/1.jpg' } %}
+  {% embed 'layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg') } %}
     {% block infront %}
       {% embed 'layout/container.html.twig' %}
         {% block content %}

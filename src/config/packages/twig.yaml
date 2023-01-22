@@ -1,8 +1,11 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    paths:
+        '%kernel.project_dir%/assets/mail': mail
+        '%kernel.project_dir%/public/build/app': app
     globals:
         app_version: '%env(APP_VERSION)%'
-        show_sample_data: true
+        show_sample_data: false
 
 when@test:
     twig:

@@ -1,85 +1,81 @@
-const Encore = require('@symfony/webpack-encore');
+const Encore = require("@symfony/webpack-encore");
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
-    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+  Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
 }
 
-Encore
-    .setOutputPath('public/build/app')
-    .setPublicPath('/build/app')
-    // only needed for CDN's or subdirectory deploy
-    .setManifestKeyPrefix('build/app/')
+Encore.setOutputPath("public/build/app")
+  .setPublicPath("/build/app")
+  // only needed for CDN's or subdirectory deploy
+  .setManifestKeyPrefix("build/app/")
 
-    .addEntry('app', './assets/app.js')
-    .addEntry('events', './assets/events.js')
-    .addEntry('home', './assets/home.js')
+  .addEntry("app", "./assets/app/app.js")
+  .addEntry("events", "./assets/app/events.js")
+  .addEntry("home", "./assets/app/home.js")
 
-    .splitEntryChunks()
+  .copyFiles({
+    from: "./assets/app/images",
+    to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : "images/[path][name].[ext]",
+  })
 
-    .enableSingleRuntimeChunk()
-    .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
+  .splitEntryChunks()
 
-    .enableSourceMaps(!Encore.isProduction())
-    .enableVersioning(Encore.isProduction())
+  .enableSingleRuntimeChunk()
+  .cleanupOutputBeforeBuild()
+  .enableBuildNotifications()
 
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = '3.23';
-    })
+  .enableSourceMaps(!Encore.isProduction())
+  .enableVersioning(Encore.isProduction())
 
-    .enablePostCssLoader()
+  .configureBabelPresetEnv((config) => {
+    config.useBuiltIns = "usage";
+    config.corejs = "3.23";
+  })
 
-    .enableIntegrityHashes(Encore.isProduction())
+  .enablePostCssLoader()
 
-    .configureWatchOptions(function(watchOptions) {
-        watchOptions.poll = 250;
-        watchOptions.aggregateTimeout = 200;
-    })
-    .configureDevServerOptions((options) => {
-        options.liveReload = true;
-        options.hot = true;
-        options.watchFiles = [
-            './templates/**/*',
-            './app/**/*'
-        ]
-    });
-;
+  .enableIntegrityHashes(Encore.isProduction())
 
-
+  .configureWatchOptions(function (watchOptions) {
+    watchOptions.poll = 250;
+    watchOptions.aggregateTimeout = 200;
+  })
+  .configureDevServerOptions((options) => {
+    options.liveReload = true;
+    options.hot = true;
+    options.watchFiles = ["./templates/**/*", "./app/**/*"];
+  });
 const app = Encore.getWebpackConfig();
-app.name = 'app';
+app.name = "app";
 
 Encore.reset();
-Encore
-    .setOutputPath('public/build/mail')
-    .setPublicPath('/build/mail')
-    .setManifestKeyPrefix('build/mail/')
+Encore.setOutputPath("public/build/mail")
+  .setPublicPath("/build/mail")
+  .setManifestKeyPrefix("build/mail/")
 
-    .addStyleEntry('email', './assets/styles/email.css')
+  .addStyleEntry("email", "./assets/mail/email.css")
 
-    .splitEntryChunks()
+  .splitEntryChunks()
 
-    .enableSingleRuntimeChunk()
-    .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
+  .enableSingleRuntimeChunk()
+  .cleanupOutputBeforeBuild()
+  .enableBuildNotifications()
 
-    .enableSourceMaps(!Encore.isProduction())
+  .enableSourceMaps(!Encore.isProduction())
 
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = '3.23';
-    })
+  .configureBabelPresetEnv((config) => {
+    config.useBuiltIns = "usage";
+    config.corejs = "3.23";
+  })
 
-    .enablePostCssLoader()
+  .enablePostCssLoader()
 
-    .configureWatchOptions(function(watchOptions) {
-        watchOptions.poll = 250;
-        watchOptions.aggregateTimeout = 200;
-    })
-;
+  .configureWatchOptions(function (watchOptions) {
+    watchOptions.poll = 250;
+    watchOptions.aggregateTimeout = 200;
+  });
 
 const mail = Encore.getWebpackConfig();
-mail.name = 'mail';
+mail.name = "mail";
 
-module.exports = [ app, mail ];
+module.exports = [app, mail];

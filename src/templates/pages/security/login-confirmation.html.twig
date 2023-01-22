@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-  {% embed 'components/util/message-box.html.twig' with { image_url: '/assets/images/placeholder/1.jpg', class: 'blur-sm' } %}
+  {% embed 'components/util/message-box.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
     {% block box_content %}
       <p class="text-3xl mb-3 md:mb-5 font-bold text-orange">Login</p>
       <p class="text-xl mb-3 md:mb-5 font-bold">Ich möchte mich authentifizieren.</p>
