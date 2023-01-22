@@ -192,6 +192,10 @@ function nobox()
 
 <?php linkstart() ?>
 
+<?php linkbox("2022: Quirin Biryer (Schlagzeug)", null, null, null, null) ?>
+
+<?php linkbox("2021: Birgit Zinner (Gesang)", null, null, null, null) ?>
+
 <?php linkbox("2020: Malik Diao (Saxophon)", null, null, null, null) ?>
 
 <?php linkbox("2019: Lukas Lindner (Trompete)", "http://lukaslindner.net/", null, null, null) ?>
