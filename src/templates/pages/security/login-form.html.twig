@@ -3,7 +3,7 @@
 {% block content %}
   {% embed 'components/util/message-box.html.twig' with { image_url: '/assets/images/placeholder/1.jpg', class: 'blur-sm' } %}
     {% block box_content %}
-      <p class="text-3xl mb-3 md:mb-5 font-bold text-orange">Login. Put some the Jazz on.</p>
+      <p class="text-3xl mb-3 md:mb-5 font-bold text-orange">Login. Put some Jazz on.</p>
       <p class="text-xl mb-3 md:mb-5 font-bold">Sie erhalten einen Authentifizierungslink per Email.</p>
       <form action="{{ path(new_login_route) }}" method="POST">
         <div class="w-full flex flex-col md:flex-row gap-5 lg:gap-10">
