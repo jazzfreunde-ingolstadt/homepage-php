@@ -1,21 +1,25 @@
 {
-	"name": "jazzfreunde-homepage-php",
-	"dockerComposeFile": "../.docker/docker-compose.yml",
-	"service": "jazzfreunde-php-dev-cli",
-	"settings": {
-		"git.path": "/usr/bin/git"
-	},
-	"extensions": [
-		"bmewburn.vscode-intelephense-client",
-		"valeryanm.vscode-phpsab",
-		"neilbrayfield.php-docblocker",
-		"spmeesseman.vscode-taskexplorer",
-		"esbenp.prettier-vscode",
-		"xdebug.php-debug",
-		"jakebathman.mysql-syntax",
-		"rholdos.twig-language-support",
-		"bradlc.vscode-tailwindcss",
-		"junstyle.twig-language"
-	],
-	"workspaceFolder": "/usr/project"
+  "name": "jazzfreunde-homepage-php",
+  "dockerComposeFile": "../.docker/docker-compose.yml",
+  "service": "jazzfreunde-php-dev-cli",
+  "workspaceFolder": "/usr/project",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "git.path": "/usr/bin/git"
+      },
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "valeryanm.vscode-phpsab",
+        "neilbrayfield.php-docblocker",
+        "spmeesseman.vscode-taskexplorer",
+        "esbenp.prettier-vscode",
+        "xdebug.php-debug",
+        "jakebathman.mysql-syntax",
+        "rholdos.twig-language-support",
+        "bradlc.vscode-tailwindcss",
+        "mblode.twig-language-2"
+      ]
+    }
+  }
 }

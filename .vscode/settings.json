@@ -13,7 +13,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[twig]": {
-        "editor.defaultFormatter": "junstyle.twig-language"
+        "editor.defaultFormatter": "mblode.twig-language-2"
     },
     "files.eol": "\n",
     "files.exclude": {
