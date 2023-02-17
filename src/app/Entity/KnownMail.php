@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 
 /**
- * Bekannte Emails
+ * Bekannte Emails werden vom System unter ihrem Handle referenziert und können so über die Datenbank konfiguriert werden.
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'known_mails')]
