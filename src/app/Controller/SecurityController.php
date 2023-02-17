@@ -8,10 +8,10 @@ use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\DependencyInjection\FormCollection;
 use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Entity\Security\User;
-use Jazzfreunde\App\Form\NewsletterSubscriptionType;
 use Jazzfreunde\App\Service\Newsletter\NewsletterService;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use RuntimeException;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -121,7 +121,9 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
         /**
          * @var KnownMail|null $from
          */
-        $from = $knownMails->findOneBy([ 'handle' => 'no-reply' ]);
+        $from = $knownMails
+            ->findOneBy([ 'handle' => 'no-reply' ])
+            ?? throw new RuntimeException("Handle 'no-reply' ist nicht als KnownMail konfiguriert. Zum Versand von Emails muss diese im Datenbestand registriert werden.");
 
         $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
         $loginLink = $loginLinkDetails->getUrl();
