@@ -36,12 +36,12 @@ Encore.setOutputPath("public/build/app")
   .enableIntegrityHashes(Encore.isProduction())
 
   .configureWatchOptions(function (watchOptions) {
-    watchOptions.poll = 500;
+    watchOptions.poll = 700;
     watchOptions.aggregateTimeout = 100;
   })
   .configureDevServerOptions((options) => {
     options.liveReload = true;
-    options.hot = true;
+    options.hot = false;
     options.watchFiles = [ "./templates/**/*", "./app/**/*" ];
   });
 const app = Encore.getWebpackConfig();
