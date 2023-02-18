@@ -27,12 +27,15 @@ class EncoreExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('encore_entry_css_source', [$this, 'getEncoreEntryCssSource']),
+            new TwigFunction('encore_entry_css_source', $this->getEncoreEntryCssSource(...)),
         ];
     }
 
     /**
-     * @inheritDoc
+     * Gibt generierte Encore CSS-Datei zur Laufzeit
+     *
+     * @param string $entryName
+     * @return string
      */
     public function getEncoreEntryCssSource(string $entryName): string
     {
