@@ -12,4 +12,4 @@ framework:
 
 when@prod:
   framework:
-    error_controller: Jazzfreunde\App\Controller\LegacyContentController::show
+    error_controller: Jazzfreunde\App\Controller\AppRoutingController::error

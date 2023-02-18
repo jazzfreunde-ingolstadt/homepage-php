@@ -4,22 +4,14 @@ declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Controller;
 
-use Closure;
-use Components\Component;
-use Components\Props\Props;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Jazzfreunde\App\Component\MainDeprecated;
-use Jazzfreunde\App\Component\EventList;
-use Components\Props\PropsWithChildren;
 use DateInterval;
 use DateTime;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Entity\Ort;
 use Jazzfreunde\App\Entity\Type\EventCategoryEnum;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -32,7 +24,7 @@ class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/home/', name: 'home')]
+    #[Route('/', name: 'home')]
     public function home(): Response
     {
         $sampledata = [
@@ -191,49 +183,13 @@ class AppRoutingController extends AbstractController
     }
 
     /**
-     * Routing für die Termine
-     * @param bool    $edit
-     * @param Request $request
+     * Generische Fehleranzeige für Besucher
      *
      * @return Response
      */
-    #[Route('/termine/{edit}', name: 'termine', requirements: ['edit' => '^(?:edit/?$)?'])]
-    public function termine(string|null $edit = null, SerializerInterface $serializer, UrlGeneratorInterface $router): Response
+    #[Route('/error/', name: 'error')]
+    public function error(): Response
     {
-        $eventProps = new class(
-            edit: $edit ? true : false,
-            debug: 'dev' === $this->getParameter('kernel.environment')
-            ) extends Props
-        {
-            /**
-             * @param bool $edit
-             * @param string $appVersion
-             * @param bool $debug
-             */
-            public function __construct(public bool $edit, public bool $debug = false)
-            {
-            }
-        };
-
-        $props = new class(
-            appVersion: $this->getParameter('app.version') ?? 'v0.0.0',
-            children: new EventList(
-                props: $eventProps,
-                serializer: $serializer,
-                router: $router
-            )
-        ) extends PropsWithChildren {
-            /**
-             * @param string $appVersion
-             */
-            public function __construct(public string $appVersion, Component|Closure $children)
-            {
-                parent::__construct($children);
-            }
-        };
-
-        return new Response(
-            (string) new MainDeprecated($props)
-        );
+        return $this->render('pages/error-notification.html.html.twig');
     }
 }

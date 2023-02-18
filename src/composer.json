@@ -16,7 +16,6 @@
         "doctrine/orm": "^2.14",
         "jms/serializer-bundle": "^5.2",
         "michelf/php-markdown": "^2.0",
-        "michemayer/php-components": "1.0.0",
         "monolog/monolog": "^3.2",
         "symfony/asset": "^6.2",
         "symfony/browser-kit": "^6.2",
@@ -55,12 +54,6 @@
         "psalm/plugin-phpunit": "dev-master",
         "vimeo/psalm": "^5.4"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../packages/php/components"
-        }
-    ],
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",

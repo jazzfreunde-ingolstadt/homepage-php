@@ -14,12 +14,6 @@ services:
     Jazzfreunde\App\Controller\:
         resource: '%kernel.project_dir%/app/Controller/'
 
-    Jazzfreunde\App\Component\:
-        resource: '%kernel.project_dir%/app/Component'
-
-    Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageComponent:
-        factory: ['Jazzfreunde\App\Component\LocalStorage\Share\SharedStorageComponent', 'getSharedStorage']
-
     Jazzfreunde\App\Service\Content\LegacyStub:
         arguments:
         - '%kernel.project_dir%/legacy/pages'
