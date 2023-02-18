@@ -5,7 +5,7 @@
  {% endset %}
 
 {% block content %}
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset(random_image('build/app/images/ambient/')), class: 'blur-sm brightness-75' } %}
+	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset(random_image('build/app/images/ambient/')|default('build/app/images/fulllogo.svg')), class: 'blur-sm brightness-75' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
 			{% embed 'components/layout/container.html.twig' %}
