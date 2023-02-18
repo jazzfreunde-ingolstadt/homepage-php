@@ -2,7 +2,6 @@
 
 namespace Jazzfreunde\App\Service\Twig;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

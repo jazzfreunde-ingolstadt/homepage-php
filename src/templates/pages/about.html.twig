@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
+	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-blue1.jpg'), class: 'blur-sm brightness-75' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
 			{% embed 'components/layout/container.html.twig' %}
@@ -23,7 +23,7 @@
 		{% endembed %}
 	</div>
 
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/2.jpg'), class: 'blur-sm' } %}
+	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody8.jpg'), class: 'blur-sm' } %}
 		{% block infront %}
 			{% embed 'components/layout/container.html.twig' %}
 				{% block content %}
