@@ -32,7 +32,7 @@
 							<div class="w-full bg-white rounded-xl shadow-md overflow-hidden my-10 md:my-15">
 								<div class="md:flex">
 									<div class="md:shrink-0 md:order-{{ loop.index is odd ? 'first' : 'last' }}">
-										<img class="h-fit w-full object-cover md:h-full md:w-64 lg:w-80" src="{{ person.pictureSrc }}" alt="{{ person.name }}"/>
+										<img class="h-fit w-full object-cover md:h-full md:w-64 lg:w-80" src="{{ asset(person.pictureSrc) }}" alt="{{ person.name }}"/>
 									</div>
 									<div
 										class="hidden">
