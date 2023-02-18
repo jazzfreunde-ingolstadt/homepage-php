@@ -15,11 +15,9 @@ use Jazzfreunde\App\Component\EventList;
 use Components\Props\PropsWithChildren;
 use DateInterval;
 use DateTime;
-use Jazzfreunde\App\DependencyInjection\FormCollection;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Entity\Ort;
 use Jazzfreunde\App\Entity\Type\EventCategoryEnum;
-use Jazzfreunde\App\Service\Newsletter\NewsletterService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -29,15 +27,6 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class AppRoutingController extends AbstractController
 {
-    /**
-     * Dependency Injection
-     *
-     * @param NewsletterService $newsletter
-     */
-    public function __construct(private NewsletterService $newsletter)
-    {
-    }
-
     /**
      * Startseite
      *
@@ -59,7 +48,6 @@ class AppRoutingController extends AbstractController
             'pages/home.html.twig',
             [
                 'sampledata' => $sampledata,
-                'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm())
             ]
         );
     }
@@ -113,7 +101,6 @@ class AppRoutingController extends AbstractController
             'pages/about.html.twig',
             [
                 'personen' => $personen,
-                'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm())
             ]
         );
     }
@@ -128,7 +115,6 @@ class AppRoutingController extends AbstractController
     {
         return $this->render(
             'pages/join.html.twig',
-            [ 'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm()) ]
         );
     }
 
@@ -142,7 +128,6 @@ class AppRoutingController extends AbstractController
     {
         return $this->render(
             'pages/legal/end-user-agreement.html.twig',
-            [ 'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm()) ]
         );
     }
 
@@ -156,7 +141,6 @@ class AppRoutingController extends AbstractController
     {
         return $this->render(
             'pages/legal/impressum.html.twig',
-            [ 'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm()) ]
         );
     }
 
@@ -170,7 +154,6 @@ class AppRoutingController extends AbstractController
     {
         return $this->render(
             'pages/legal/satzung.html.twig',
-            [ 'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm()) ]
         );
     }
 
@@ -203,7 +186,6 @@ class AppRoutingController extends AbstractController
             'pages/events.html.twig',
             [
                 'sampledata' => $sampledata,
-                'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm())
             ]
         );
     }

@@ -59,11 +59,11 @@ final class NewsletterService implements LoggerAwareInterface
             $errorMsg = fn(string $handle) => sprintf('%s: Mail mit dem Handle "%s" ist nicht konfiguriert.', KnownMail::class, $handle);
 
             if (is_null($from)) {
-                $this->logger?->error($errorMsg('jazzletter'));
+                $this->logger?->error($errorMsg('no-reply'));
                 throw new SubscriptionException();
             }
             if (is_null($to)) {
-                $this->logger?->error($errorMsg('no-reply'));
+                $this->logger?->error($errorMsg('jazzletter'));
                 throw new SubscriptionException();
             }
 

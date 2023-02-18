@@ -24,7 +24,8 @@ services:
         arguments:
         - '%kernel.project_dir%/legacy/pages'
 
-    Jazzfreunde\App\Service\Newsletter\NewsletterService:
+    jazzfreunde.newsletter_subscription:
+        class: Jazzfreunde\App\Service\Newsletter\NewsletterService
         calls:
             - setLogger: ['@logger']
 

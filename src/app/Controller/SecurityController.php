@@ -5,10 +5,8 @@ declare(strict_types = 1);
 namespace Jazzfreunde\App\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\DependencyInjection\FormCollection;
 use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Entity\Security\User;
-use Jazzfreunde\App\Service\Newsletter\NewsletterService;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use RuntimeException;
@@ -37,7 +35,7 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
      *
      * @param Security $security
      */
-    public function __construct(private Security $security, private NewsletterService $newsletter)
+    public function __construct(private Security $security)
     {
     }
 
@@ -58,7 +56,6 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
             'pages/security/login-form.html.twig',
             [
                 'new_login_route' => 'security_new_login',
-                'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm())
             ]
         );
     }
@@ -82,7 +79,6 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
         }
 
         return $this->render('pages/security/login-confirmation.html.twig', [
-            'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm()),
             'login_check' => 'security_login_check',
             '_expires' => $request->query->get('expires', 'error'),
             '_user' => $request->query->get('user', 'error'),
@@ -157,9 +153,6 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
     {
         return $this->render(
             'pages/security/login-sent.html.twig',
-            [
-            'forms' => new FormCollection(newsletter_subscription: $this->newsletter->createForm())
-            ]
         );
     }
 

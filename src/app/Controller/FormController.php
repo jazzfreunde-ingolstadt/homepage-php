@@ -9,11 +9,9 @@ use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Form\NewsletterSubscriptionType;
 use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
 use Jazzfreunde\App\Service\Newsletter\NewsletterService;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -26,8 +24,7 @@ class FormController extends AbstractController
      * Newletter abonnieren
      *
      * @param Request $request
-     * @param MailerInterface $mailer
-     * @param LoggerInterface $logger
+     * @param NewsletterService $newsletter
      * @return Response
      */
     #[Route('/newsletter_subscribe/', name: 'newsletter_subscribe')]
@@ -45,13 +42,34 @@ class FormController extends AbstractController
 
                 $newsletter->subscribe($subscription);
 
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('form_newsletter_confirmation');
             } catch (SubscriptionException $e) {
-                
-                // Email bereits vorhanden. Nutzer benachrichtigen.
+                return $this->redirectToRoute('form_newsletter_already_subscribed');
             }
         }
 
         return $this->redirectToRoute('404');
+    }
+
+    /**
+     * Bestätigungsnachricht nach dem Abonnieren
+     *
+     * @return Response
+     */
+    #[Route('/newsletter_confirmation/', name: 'newsletter_confirmation')]
+    public function subscriptionConfirmation(): Response
+    {
+        return $this->render('pages/newsletter/confirmation-notification.html.html.twig');
+    }
+
+    /**
+     * Bestätigungsnachricht nach dem Abonnieren
+     *
+     * @return Response
+     */
+    #[Route('/newsletter_already_subscribed/', name: 'newsletter_already_subscribed')]
+    public function alreadySubscribed(): Response
+    {
+        return $this->render('pages/newsletter/already-subscribed-notification.html.twig');
     }
 }
