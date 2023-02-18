@@ -81,7 +81,7 @@ jobs:
           ssh-password: ${{ secrets.CROSS_ENV_SSH_PASSWORD }}
 
       - name: sFTP Deploy (Staging)
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        uses: SamKirkland/FTP-Deploy-Action@3.1.2
         with:
           ftp-server: ${{ secrets.STAGING_FTP_SERVER }}
           ftp-username: ${{ secrets.STAGING_FTP_USER }}
