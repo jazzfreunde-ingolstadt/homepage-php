@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-  {% embed 'layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
+  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
     {% block infront %}
-      {% embed 'layout/container.html.twig' %}
+      {% embed 'components/layout/container.html.twig' %}
         {% block content %}
           <div class="p-5 mt-60 mb-20 font-sans">
             <h1 class="text-8xl font-bold uppercase my-10 text-orange">Über den Verein</h1>
@@ -15,16 +15,16 @@
   {% endembed %}
 
   <div class="py-10 md:py-20 text-justify">
-    {% embed 'layout/container.html.twig' %}
+    {% embed 'components/layout/container.html.twig' %}
       {% block content %}
         {{ include('markdown/about/vereins-geschichte.md.twig')|markdown_to_html }}
       {% endblock %}
     {% endembed %}
   </div>
 
-  {% embed 'layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/2.jpg'), class: 'blur-sm' } %}
+  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/2.jpg'), class: 'blur-sm' } %}
     {% block infront %}
-      {% embed 'layout/container.html.twig' %}
+      {% embed 'components/layout/container.html.twig' %}
         {% block content %}
           <div class="py-10 md:py-20">
             {% for person in personen %}
@@ -56,7 +56,7 @@
   {% endembed %}
 
   <div class="py-10 md:py-20 text-justify">
-    {% embed 'layout/container.html.twig' %}
+    {% embed 'components/layout/container.html.twig' %}
       {% block content %}
         {% include 'typography/section-titel.html.twig' with { titel: 'Projekte des Vereins der Jazzfreunde Ingolstadt' } %}
         <ul class="list-disc list-inside">
@@ -101,7 +101,7 @@
     {% endembed %}
   </div>
 
-  {% embed 'layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/3.jpg'), class: 'blur-sm' } %}
+  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/3.jpg'), class: 'blur-sm' } %}
     {% block infront %}
       <hr class="invisible py-32" />
     {% endblock %}

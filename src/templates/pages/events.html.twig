@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-  {% embed 'layout/container.html.twig' %}
+  {% embed 'components/layout/container.html.twig' %}
     {% block content %}
       {% include 'typography/titel.html.twig' with { titel: 'Veranstaltungskalender' } %}
 
@@ -21,11 +21,11 @@
       </section>
     {% endblock %}
   {% endembed %}
-  {% embed 'layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
+  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
     {% block infront %}
       <hr class="invisible py-32" />
       <div class="bg-white">
-        {% embed 'layout/container.html.twig' %}
+        {% embed 'components/layout/container.html.twig' %}
           {% block content %}
             <section class="py-5 md:py-10">
               {% include 'typography/section-titel.html.twig' with { titel: 'Vergangene Veranstaltungen' } %}
