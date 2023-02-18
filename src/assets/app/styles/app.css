@@ -10,11 +10,11 @@
 @tailwind utilities;
 
 main a {
-  @apply text-yellow;
+  @apply text-orange;
 }
 
 main a:hover {
-  @apply text-orange;
+  @apply text-yellow;
 }
 
 ::-webkit-scrollbar {
