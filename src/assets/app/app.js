@@ -26,7 +26,8 @@ $(() => {
     setExpanded(false);
   };
 
-  const toggleMenu = () => {
+  const toggleMenu = (event) => {
+    isFullScreenMenu() && event.preventDefault();
     menuExpanded() ? closeMenu() : openMenu();
   };
 
