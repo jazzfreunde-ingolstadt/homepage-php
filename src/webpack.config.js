@@ -16,6 +16,10 @@ Encore.setOutputPath("public/build/app")
     from: "./assets/app/images",
     to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : "images/[path][name].[ext]",
   })
+  .copyFiles({
+    from: "./assets/app/documents",
+    to: Encore.isProduction() ? 'documents/[path][name].[hash:8].[ext]' : "documents/[path][name].[ext]",
+  })
 
   .splitEntryChunks()
 
