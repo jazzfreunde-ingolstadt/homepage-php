@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer components {
+  .horizontal-auto-parallax {
+    animation: move-forever 12s linear infinite;
+  }
+
+  .horizontal-auto-parallax:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 12s;
+    opacity: 0.6;
+  }
+
+  .horizontal-auto-parallax:nth-child(2) {
+    animation-delay: -4s;
+    animation-duration: 14s;
+    opacity: 0.8;
+  }
+
+  .horizontal-auto-parallax:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 16s;
+  }
+
+  .horizontal-auto-parallax:nth-child(4) {
+    animation-delay: -2s;
+    animation-duration: 10s;
+    opacity: 0.4;
+  }
+
+  @keyframes move-forever {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+}

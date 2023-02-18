@@ -48,6 +48,7 @@
 					<main role="main" class="relative w-full z-0 grow flex flex-col text-blue">{% block content %}{% endblock %}</main>
 				</div>
 			</div>
+			{% include 'layout/divider.html.twig' with { classnames: "fill-blue h-16" } %}
 			<div class="relative w-full flex-none">
 				{% include 'components/footer.html.twig' %}
 			</div>

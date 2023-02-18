@@ -1,4 +1,5 @@
-@import "./components/header.css";
+@import "./components/components.css";
+@import "./components/layout.css";
 @import "./components/api.css";
 @import "@fortawesome/fontawesome-free";
 @import "@fortawesome/fontawesome-free/css/brands";
