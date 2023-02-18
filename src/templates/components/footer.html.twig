@@ -2,9 +2,7 @@
 	{% embed 'components/layout/container.html.twig' %}
 		{% block content %}
 			<div class="p-5 lg:p-10 xl:p-16">
-				<div class="p-8 rounded-xl shadow-md text-blue bg-white">
-					{% include 'components/newsletter/subscription-widget.html.twig' %}
-				</div>
+				{% include 'components/newsletter/subscription-widget.html.twig' %}
 			</div>
 			<div class="w-full px-10 py-5 text-3xl text-center uppercase">
 				<div class="mb-10">
@@ -31,13 +29,19 @@
 					<hr/>
 					<ul class="mb-5 p-2">
 						<li>
-							<a href="{{ url('impressum') }}">Impressum <i class="fa-solid fa-angle-right"></i></a>
+							<a href="{{ url('impressum') }}">Impressum
+								<i class="fa-solid fa-angle-right"></i>
+							</a>
 						</li>
 						<li>
-							<a href="{{ url('end-user-agreement') }}">Datenschutz <i class="fa-solid fa-angle-right"></i></a>
+							<a href="{{ url('end-user-agreement') }}">Datenschutz
+								<i class="fa-solid fa-angle-right"></i>
+							</a>
 						</li>
 						<li>
-							<a href="{{ url('statute') }}">Satzung <i class="fa-solid fa-angle-right"></i></a>
+							<a href="{{ url('statute') }}">Satzung
+								<i class="fa-solid fa-angle-right"></i>
+							</a>
 						</li>
 					</ul>
 				</div>

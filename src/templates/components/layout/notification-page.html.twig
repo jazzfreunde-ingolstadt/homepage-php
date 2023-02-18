@@ -8,13 +8,16 @@
 	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
-			<div class="container w-full mx-auto md:max-w-screen-2xl px-10 md:px-36 lg:px-48">
-				{% embed 'components/util/message-box.html.twig' %}
-					{% block box_content %}
-                        {{ overrideBoxContent }}
-                    {% endblock %}
-				{% endembed %}
-			</div>
+			{% embed 'components/layout/container.html.twig' %}
+				{% block content %}
+					{% embed 'components/util/message-box.html.twig' %}
+						{% block box_content %}
+							{{ overrideBoxContent }}
+						{% endblock %}
+					{% endembed %}
+					{% include "components/layout/spacer.html.twig" %}
+				{% endblock %}
+			{% endembed %}
 			{% include "components/footer-spacer.html.twig" %}
 		{% endblock %}
 	{% endembed %}
