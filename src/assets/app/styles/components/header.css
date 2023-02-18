@@ -1,28 +1,31 @@
-.header-menu a {
-  font-weight: 300;
-  display: inline-block;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.header-menu a:hover {
-  font-weight: 500;
-  letter-spacing: 0;
-}
+@layer components {
+  .main-navigation-fixed {
+    @apply absolute;
+  }
 
-.header-menu a::before {
-  display: block;
-  content: attr(title);
-  font-weight: bold;
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-  letter-spacing: 0.5px;
-}
+  .main-navigation-toggle {
+    @apply fixed;
+  }
 
-.header-menu a::after {
-  content: attr(title);
+  .main-navigation-fixed[aria-expanded="true"] {
+    @apply w-full h-36 opacity-100;
+  }
+
+  .main-navigation-fixed[aria-expanded="false"] {
+    @apply w-full h-36 opacity-100;
+  }
+
+  .main-navigation-toggle[aria-expanded="true"] {
+    @apply w-screen h-screen opacity-100;
+  }
+
+  .main-navigation-toggle[aria-expanded="false"] {
+    @apply w-0 h-0 opacity-0;
+  }
 }
 
 .logo {

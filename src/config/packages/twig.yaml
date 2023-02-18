@@ -13,5 +13,6 @@ when@test:
 
 when@dev:
     twig:
+        strict_variables: true
         globals:
             show_sample_data: true

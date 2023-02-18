@@ -1,13 +1,10 @@
-<header class="w-full relative bg-blue text-white">
-  {% embed 'layout/container.html.twig' %}
-    {% block content %}
-      {% include 'components/main-menu.html.twig' %}
-    {% endblock %}
-  {% endembed %}
-  <hr class="border-b-2 border-orange" />
-  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    <div class="absolute right-0 bottom-0">
-      {{ app.user.email }}
-    </div>
-  {% endif %}
+<header id="main-navigation" aria-expanded="false" class="main-navigation-toggle lg:main-navigation-fixed overflow-hidden z-10 flex justify-center items-center duration-700">
+	<div class="w-full h-full flex justify-center items-center text-white">
+		<a href="javascript:void(0)" class="main-navigation-close lg:hidden absolute top-6 right-8 z-10 hover:text-yellow text-7xl font-semibold duration-300">&times;</a>
+		<div
+			class="lg:hidden absolute top-0 w-full h-full overflow-clip z-0 bg-blue opacity-95">{# <img src="{{ image_url|raw }}" class="object-cover" /> #}
+		</div>
+		{% include 'components/navigation/menu.html.twig' %}
+	</div>
+	<hr class="border-b-2 border-orange"/>
 </header>

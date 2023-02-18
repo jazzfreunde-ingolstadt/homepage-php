@@ -1,0 +1,14 @@
+<nav class="relative w-full z-10 overflow-visible">
+	{% embed 'layout/container.html.twig' %}
+		{% block content %}
+			<ul class="flex flex-col lg:flex-row content-start">
+				{% include 'components/navigation/menu-item.html.twig' with { url: url('about'), icon: 'fa-solid fa-info', label: 'Verein'} %}
+				{% include 'components/navigation/menu-item.html.twig' with { url: url('events', { edit: false }), icon: 'fa-regular fa-calendar-days', label: 'Veranstaltungen'} %}
+				{% include 'components/navigation/menu-item.html.twig' with { url: url('join'), icon: 'fa-solid fa-handshake-simple', label: 'Mitglied werden'} %}
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					{% include 'components/navigation/menu-item.html.twig' with { url: url('security_logout'), icon: 'fa-solid fa-arrow-right-from-bracket', label: 'Logout'} %}
+				{% endif %}
+			</ul>
+		{% endblock %}
+	{% endembed %}
+</nav>
