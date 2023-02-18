@@ -1,109 +1,107 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
-    {% block infront %}
-      {% embed 'components/layout/container.html.twig' %}
-        {% block content %}
-          <div class="p-5 mt-60 mb-20 font-sans">
-            <h1 class="text-8xl font-bold uppercase my-10 text-orange">Über den Verein</h1>
-            <h2 class="text-4xl my-10 text-white">Jazzfreunde Ingolstadt e.V.</h2>
-          </div>
-        {% endblock %}
-      {% endembed %}
-    {% endblock %}
-  {% endembed %}
+	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
+		{% block infront %}
+			{% include "components/header-spacer.html.twig" %}
+			{% embed 'components/layout/container.html.twig' %}
+				{% block content %}
+					<div class="p-5 mt-48 mb-20 font-sans">
+						<h1 class="text-8xl font-bold uppercase my-10 text-orange">Über den Verein</h1>
+						<h2 class="text-4xl my-10 text-white">Jazzfreunde Ingolstadt e.V.</h2>
+					</div>
+				{% endblock %}
+			{% endembed %}
+		{% endblock %}
+	{% endembed %}
 
-  <div class="py-10 md:py-20 text-justify">
-    {% embed 'components/layout/container.html.twig' %}
-      {% block content %}
-        {{ include('markdown/about/vereins-geschichte.md.twig')|markdown_to_html }}
-      {% endblock %}
-    {% endembed %}
-  </div>
+	<div class="py-5 md:py-20 text-justify">
+		{% embed 'components/layout/container.html.twig' %}
+			{% block content %}
+				{{ include('markdown/about/vereins-geschichte.md.twig')|markdown_to_html }}
+			{% endblock %}
+		{% endembed %}
+	</div>
 
-  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/2.jpg'), class: 'blur-sm' } %}
-    {% block infront %}
-      {% embed 'components/layout/container.html.twig' %}
-        {% block content %}
-          <div class="py-10 md:py-20">
-            {% for person in personen %}
-              <div class="w-full bg-white rounded-xl shadow-md overflow-hidden my-10 md:my-15">
-                <div class="md:flex">
-                  <div class="md:shrink-0 md:order-{{ loop.index is odd ? 'first' : 'last' }}">
-                    <img class="h-fit w-full object-cover md:h-full md:w-64 lg:w-80" src="{{ person.pictureSrc }}" alt="{{ person.name }}" />
-                  </div>
-                  <div class="hidden">
-                    <!-- load classes for dynamic use in template -->
-                    <span class="md:order-first" />
-                    <span class="md:order-last" />
-                  </div>
-                  <div class="p-8">
-                    <h5 class="block mt-1 text-lg leading-tight font-medium">{{ person.position }}</h5>
-                    <h6 class="mt-2 italic">{{ person.name }}</h6>
-                    <p class="text-justify mt-2">{{ person.bio|raw }}</p>
-                    <p class="mt-2">
-                      <a class="text-orange" href="/kontakt/?to={{ person.mail }}" title="Zum Kontaktformular">Kontakt</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        {% endblock %}
-      {% endembed %}
-    {% endblock %}
-  {% endembed %}
+	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/2.jpg'), class: 'blur-sm' } %}
+		{% block infront %}
+			{% embed 'components/layout/container.html.twig' %}
+				{% block content %}
+					<div class="py-5 md:py-20">
+						{% for person in personen %}
+							<div class="w-full bg-white rounded-xl shadow-md overflow-hidden my-10 md:my-15">
+								<div class="md:flex">
+									<div class="md:shrink-0 md:order-{{ loop.index is odd ? 'first' : 'last' }}">
+										<img class="h-fit w-full object-cover md:h-full md:w-64 lg:w-80" src="{{ person.pictureSrc }}" alt="{{ person.name }}"/>
+									</div>
+									<div
+										class="hidden">
+										<!-- load classes for dynamic use in template -->
+										<span class="md:order-first"/>
+										<span class="md:order-last"/>
+									</div>
+									<div class="p-8">
+										<h5 class="block mt-1 text-lg leading-tight font-medium">{{ person.position }}</h5>
+										<h6 class="mt-2 italic">{{ person.name }}</h6>
+										<p class="text-justify mt-2">{{ person.bio|raw }}</p>
+										<p class="mt-2">
+											<a class="text-orange" href="/kontakt/?to={{ person.mail }}" title="Zum Kontaktformular">Kontakt</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				{% endblock %}
+			{% endembed %}
+		{% endblock %}
+	{% endembed %}
 
-  <div class="py-10 md:py-20 text-justify">
-    {% embed 'components/layout/container.html.twig' %}
-      {% block content %}
-        {% include 'typography/section-titel.html.twig' with { titel: 'Projekte des Vereins der Jazzfreunde Ingolstadt' } %}
-        <ul class="list-disc list-inside">
-          <li>
-            <a href="#youngjazzplayers">Sessions der Young-Jazz-Players</a>
-          </li>
-          <li>
-            <a href="#jamsessions">Jam Sessions / Offene Bühne</a>
-          </li>
-          <li>
-            <a href="#jazzliteratur">Jazz &amp; Literatur</a>
-          </li>
-          <li>
-            <a href="#workshops">Workshops</a>
-          </li>
-          <li>
-            <a href="#diagonal">Unterstützung der Jazzkonzertreihe im Diagonal</a>
-          </li>
-          <li>
-            <a href="#jazztage">Unterstützung der Ingolstädter Jazztage</a>
-          </li>
-        </ul>
+	<div class="py-5 md:py-20 text-justify">
+		{% embed 'components/layout/container.html.twig' %}
+			{% block content %}
+				{% include 'typography/section-titel.html.twig' with { titel: 'Projekte des Vereins der Jazzfreunde Ingolstadt' } %}
+				<ul class="list-disc list-inside">
+					<li>
+						<a href="#youngjazzplayers">Sessions der Young-Jazz-Players</a>
+					</li>
+					<li>
+						<a href="#jamsessions">Jam Sessions / Offene Bühne</a>
+					</li>
+					<li>
+						<a href="#jazzliteratur">Jazz &amp; Literatur</a>
+					</li>
+					<li>
+						<a href="#workshops">Workshops</a>
+					</li>
+					<li>
+						<a href="#diagonal">Unterstützung der Jazzkonzertreihe im Diagonal</a>
+					</li>
+					<li>
+						<a href="#jazztage">Unterstützung der Ingolstädter Jazztage</a>
+					</li>
+				</ul>
 
-        <a name="youngjazzplayers"></a>
-        {{ include('markdown/about/youngjazzplayers.md.twig')|markdown_to_html }}
+				<a name="youngjazzplayers"></a>
+				{{ include('markdown/about/youngjazzplayers.md.twig')|markdown_to_html }}
 
-        <a name="jamsessions"></a>
-        {{ include('markdown/about/jamsessions.md.twig')|markdown_to_html }}
+				<a name="jamsessions"></a>
+				{{ include('markdown/about/jamsessions.md.twig')|markdown_to_html }}
 
-        <a name="jazzliteratur"></a>
-        {{ include('markdown/about/jazz-und-literatur.md.twig')|markdown_to_html }}
+				<a name="jazzliteratur"></a>
+				{{ include('markdown/about/jazz-und-literatur.md.twig')|markdown_to_html }}
 
-        <a name="workshops"></a>
-        {{ include('markdown/about/workshops.md.twig')|markdown_to_html }}
+				<a name="workshops"></a>
+				{{ include('markdown/about/workshops.md.twig')|markdown_to_html }}
 
-        <a name="diagonal"></a>
-        {{ include('markdown/about/diagonal.md.twig')|markdown_to_html }}
+				<a name="diagonal"></a>
+				{{ include('markdown/about/diagonal.md.twig')|markdown_to_html }}
 
-        <a name="jazztage"></a>
-        {{ include('markdown/about/jazztage.md.twig')|markdown_to_html }}
-      {% endblock %}
-    {% endembed %}
-  </div>
-
-  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/3.jpg'), class: 'blur-sm' } %}
-    {% block infront %}
-      <hr class="invisible py-32" />
-    {% endblock %}
-  {% endembed %}
+				<a name="jazztage"></a>
+				{{ include('markdown/about/jazztage.md.twig')|markdown_to_html }}
+			{% endblock %}
+		{% endembed %}
+	</div>
+  
+	{% include "components/footer-spacer.html.twig" %}
 {% endblock %}

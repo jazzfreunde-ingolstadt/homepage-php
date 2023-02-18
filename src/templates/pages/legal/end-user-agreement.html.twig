@@ -1,15 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-  {% embed 'components/layout/container.html.twig' %}
-    {% block content %}
-      {% include 'typography/titel.html.twig' with { titel: 'Datenerhebung und Datenschutz' } %}
+	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/placeholder/1.jpg'), class: 'blur-sm' } %}
+		{% block infront %}
+			{% include "components/header-spacer.html.twig" %}
+			{% embed 'components/layout/container.html.twig' %}
+				{% block content %}
+					<div class="p-5 mb-20 font-sans">
+						<h1 class="text-8xl font-bold uppercase my-10 text-white">Datenerhebung und Datenschutz</h1>
+					</div>
+				{% endblock %}
+			{% endembed %}
+		{% endblock %}
+	{% endembed %}
 
-      <section class="mb-10">
-        {{ include('markdown/legal/end-user-agreement.md.twig')|markdown_to_html }}
+	{% embed 'components/layout/container.html.twig' %}
+		{% block content %}
+			<section class="py-5 md:py-10">
+				{{ include('markdown/legal/end-user-agreement.md.twig')|markdown_to_html }}
 
-        <a class="mt-5 text-orange" href="#" onclick="history.back()">Zurück</a>
-      </section>
-    {% endblock %}
-  {% endembed %}
+				<a class="mt-5 text-orange" href="#" onclick="history.back()">Zurück</a>
+			</section>
+		{% endblock %}
+	{% endembed %}
+
+	{% include "components/footer-spacer.html.twig" %}
 {% endblock %}

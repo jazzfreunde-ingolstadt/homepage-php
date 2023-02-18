@@ -39,4 +39,24 @@
       transform: translate(85px, 0%);
     }
   }
+
+  .spacer {
+    @apply invisible py-8;
+  }
+
+  .spacer-16 {
+    @apply py-16;
+  }
+
+  .spacer-32 {
+    @apply py-32;
+  }
+
+  .spacer-36 {
+    @apply py-36;
+  }
+
+  .spacer-48 {
+    @apply py-48;
+  }
 }

@@ -19,7 +19,7 @@
 	</head>
 	<body>
 		<div class="flex flex-col min-h-screen">
-			<div class="flex flex-row grow flex-nowrap w-full">
+			<div class="flex flex-row grow flex-nowrap w-full -mb-16">
 				<div class="relative w-0 grow-0 justify-self-stretch z-20">
 					<a class="nav-logo" href="javascript:void(0)">
 						<div class="sticky top-0 left-0" style="margin-top: -8px;">
@@ -48,7 +48,7 @@
 					<main role="main" class="relative w-full z-0 grow flex flex-col text-blue">{% block content %}{% endblock %}</main>
 				</div>
 			</div>
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-blue h-16" } %}
+			{% include 'components/layout/divider.html.twig' with { classnames: "fill-blue h-16 z-10" } %}
 			<div class="relative w-full flex-none">
 				{% include 'components/footer.html.twig' %}
 			</div>
