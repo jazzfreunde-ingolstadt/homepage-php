@@ -80,7 +80,7 @@ jobs:
           ssh-password: ${{ secrets.CROSS_ENV_SSH_PASSWORD }}
 
       - name: sFTP Deploy (Production)
-        uses: SamKirkland/FTP-Deploy-Action@3.1.2
+        uses: SamKirkland/FTP-Deploy-Action@3.1.2-patch
         with:
           ftp-server: ${{ secrets.PROD_FTP_SERVER }}
           ftp-username: ${{ secrets.PROD_FTP_USER }}
