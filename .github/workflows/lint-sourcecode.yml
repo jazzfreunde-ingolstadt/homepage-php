@@ -34,5 +34,6 @@ jobs:
 
       - name: Run static code analysis
         run: |
+          mkdir var
           chmod +x bin/psalm
           bin/psalm -c=psalm.xml --output-format=github
