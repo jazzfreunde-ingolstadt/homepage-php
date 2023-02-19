@@ -20,7 +20,6 @@ jobs:
         working-directory: ./src
 
     steps:
-      # Check out branch
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
@@ -28,16 +27,20 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.2
+          php-version: 8.1
 
-      # Install packages
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: composer-${{ hashFiles('package-lock.json') }}
 
       - name: Install npm dependencies
         run: npm install
 
-      # Generate assets
       - name: Install assets
         run: |
           echo "DATABASE_URL=dummy" > .env.local
@@ -49,7 +52,6 @@ jobs:
           npm run ${{ inputs.environment == 'prod' && 'build-prod-app' || 'build-dev-app'}}
           npm run ${{ inputs.environment == 'prod' && 'build-prod-mail' || 'build-dev-mail'}}
 
-      # Upload app artifact
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.artifact-name }}
