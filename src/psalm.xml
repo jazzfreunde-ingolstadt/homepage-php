@@ -8,12 +8,10 @@
 >
     <projectFiles>
         <directory name="." />
-        <directory name="../packages" />
         <ignoreFiles>
             <directory name="var"/>
             <directory name="vendor" />
             <directory name="tests" />
-            <directory name="legacy" />
         </ignoreFiles>
     </projectFiles>
     <plugins>
