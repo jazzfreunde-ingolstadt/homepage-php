@@ -29,6 +29,11 @@ jobs:
         with:
           php-version: 8.1
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: v18.x
+
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
 
