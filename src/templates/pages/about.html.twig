@@ -12,6 +12,7 @@
 					</div>
 				{% endblock %}
 			{% endembed %}
+			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
 
@@ -25,6 +26,7 @@
 
 	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody8.jpg'), class: 'blur-sm' } %}
 		{% block infront %}
+			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16 rotate-180" } %}
 			{% embed 'components/layout/container.html.twig' %}
 				{% block content %}
 					<div class="py-5 md:py-20">
@@ -54,6 +56,7 @@
 					</div>
 				{% endblock %}
 			{% endembed %}
+			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
 
@@ -102,6 +105,6 @@
 			{% endblock %}
 		{% endembed %}
 	</div>
-  
+
 	{% include "components/footer-spacer.html.twig" %}
 {% endblock %}

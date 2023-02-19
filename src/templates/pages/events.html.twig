@@ -1,60 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
-  {{ parent() }}
-  {{ encore_entry_script_tags('events', null, 'app') }}
+	{{ parent() }}
+	{{ encore_entry_script_tags('events', null, 'app') }}
 {% endblock %}
 
 {% block content %}
-  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75' } %}
-    {% block infront %}
-      {% include "components/header-spacer.html.twig" %}
-      {% embed 'components/layout/container.html.twig' %}
-        {% block content %}
-          <div class="p-5 mt-48 mb-20 font-sans">
-            <h1 class="text-8xl font-bold uppercase my-10 text-orange">Veranstaltungskalender</h1>
-            <h2 class="text-4xl my-10 text-white">Hier finden Sie eine Übersicht über Veranstaltungen in der Region für Jazzfreunde (unabhängig davon, wer der Veranstalter ist):</h2>
-          </div>
-        {% endblock %}
-      {% endembed %}
-    {% endblock %}
-  {% endembed %}
-  {% embed 'components/layout/container.html.twig' %}
-    {% block content %}
-      {% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
-      <section class="py-5 md:py-10">
-        {% include 'components/events/event-list.html.twig' with { event_list_id: 'upcoming_events', messageOnEmpty: 'Im Moment stehen keine Veranstaltungen an.', data_samples: sampledata.upcoming_events } %}
-        <p class="my-2">
-          Auch interessant: Das Programm unserer Partner des <a class="text-orange" href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
-        </p>
-      </section>
-    {% endblock %}
-  {% endembed %}
-  {% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody9.jpg'), class: 'blur-sm' } %}
-    {% block infront %}
-      {% include 'components/layout/spacer.html.twig' %}
-      <div class="bg-white">
-        {% embed 'components/layout/container.html.twig' %}
-          {% block content %}
-            <section class="py-5 md:py-10">
-              {% include 'typography/section-titel.html.twig' with { titel: 'Vergangene Veranstaltungen' } %}
-              {% include 'components/events/event-list.html.twig' with { event_list_id: 'past_events', messageOnEmpty: 'Es sind keine vergangenen Veranstaltungen eingetragen.', data_samples: sampledata.past_events } %}
-            </section>
+	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75' } %}
+		{% block infront %}
+			{% include "components/header-spacer.html.twig" %}
+			{% embed 'components/layout/container.html.twig' %}
+				{% block content %}
+					<div class="p-5 mt-48 mb-20 font-sans">
+						<h1 class="text-8xl font-bold uppercase my-10 text-orange">Veranstaltungskalender</h1>
+						<h2 class="text-4xl my-10 text-white">Hier finden Sie eine Übersicht über Veranstaltungen in der Region für Jazzfreunde (unabhängig davon, wer der Veranstalter ist):</h2>
+					</div>
+				{% endblock %}
+			{% endembed %}
+			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+		{% endblock %}
+	{% endembed %}
 
-            <section class="py-5 md:py-10">
-              {% include 'typography/section-titel.html.twig' with { titel: 'Veranstaltungsarchiv' } %}
-              <div id="show_archived" class="my-2 block cursor-pointer underline">Archiv anzeigen</div>
-              <div id="archived_events_container" style="display:none;">
-                {% include 'components/events/event-list.html.twig' with { event_list_id: 'archived_events', messageOnEmpty: 'Es befinden sich keine Veranstaltungen im Archiv.', data_samples: sampledata.archived_events } %}
+	{% embed 'components/layout/container.html.twig' %}
+		{% block content %}
+			{% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
+			<section class="py-5 md:py-10">
+				{% include 'components/events/event-list.html.twig' with { event_list_id: 'upcoming_events', messageOnEmpty: 'Im Moment stehen keine Veranstaltungen an.', data_samples: sampledata.upcoming_events } %}
+				<p class="my-2">
+					Auch interessant: Das Programm unserer Partner des
+					<a class="text-orange" href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
+				</p>
+			</section>
+		{% endblock %}
+	{% endembed %}
 
-                <div id="hide_archived" class="my-2 block cursor-pointer underline">Archiv verbergen</div>
-              </div>
-            </section>
-          {% endblock %}
-        {% endembed %}
-      </div>
-    {% endblock %}
-  {% endembed %}
+	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody9.jpg'), class: 'blur-sm' } %}
+		{% block infront %}
+			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16 rotate-180" } %}
+			{% include 'components/layout/spacer.html.twig' with { spacer: 'spacer-48' } %}
+			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+			<div class="bg-white">
+				{% embed 'components/layout/container.html.twig' %}
+					{% block content %}
+						<section class="py-5 md:py-10">
+							{% include 'typography/section-titel.html.twig' with { titel: 'Vergangene Veranstaltungen' } %}
+							{% include 'components/events/event-list.html.twig' with { event_list_id: 'past_events', messageOnEmpty: 'Es sind keine vergangenen Veranstaltungen eingetragen.', data_samples: sampledata.past_events } %}
+						</section>
 
-  {% include "components/footer-spacer.html.twig" %}
+						<section class="py-5 md:py-10">
+							{% include 'typography/section-titel.html.twig' with { titel: 'Veranstaltungsarchiv' } %}
+							<div id="show_archived" class="my-2 block cursor-pointer underline">Archiv anzeigen</div>
+							<div id="archived_events_container" style="display:none;">
+								{% include 'components/events/event-list.html.twig' with { event_list_id: 'archived_events', messageOnEmpty: 'Es befinden sich keine Veranstaltungen im Archiv.', data_samples: sampledata.archived_events } %}
+
+								<div id="hide_archived" class="my-2 block cursor-pointer underline">Archiv verbergen</div>
+							</div>
+						</section>
+					{% endblock %}
+				{% endembed %}
+			</div>
+		{% endblock %}
+	{% endembed %}
+
+	{% include "components/footer-spacer.html.twig" %}
 {% endblock %}
