@@ -1,5 +1,5 @@
 <nav class="relative w-full z-10 overflow-visible">
-	{% embed 'components/layout/container.html.twig' %}
+	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<ul class="flex flex-col lg:flex-row content-start">
 				{% include 'components/navigation/menu-item.html.twig' with { url: url('home'), label: 'Startseite', classnames: 'lg:hidden'} %}

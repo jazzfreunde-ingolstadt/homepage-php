@@ -1,8 +1,12 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     paths:
-        '%kernel.project_dir%/assets/mail': mail
-        '%kernel.project_dir%/public/build/app': app
+        '%kernel.project_dir%/assets/mail': mailasset
+        '%kernel.project_dir%/templates/markdown': markdown
+        '%kernel.project_dir%/templates/components/layout': layout
+        '%kernel.project_dir%/templates/pages': pages
+        '%kernel.project_dir%/templates/email': email
+
     globals:
         app_version: '%env(APP_VERSION)%'
         show_sample_data: false

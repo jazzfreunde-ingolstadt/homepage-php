@@ -59,7 +59,7 @@ class FormController extends AbstractController
     #[Route('/newsletter_confirmation/', name: 'newsletter_confirmation')]
     public function subscriptionConfirmation(): Response
     {
-        return $this->render('pages/newsletter/confirmation-notification.html.html.twig');
+        return $this->render('@pages/newsletter/confirmation-notification.html.html.twig');
     }
 
     /**
@@ -70,6 +70,6 @@ class FormController extends AbstractController
     #[Route('/newsletter_already_subscribed/', name: 'newsletter_already_subscribed')]
     public function alreadySubscribed(): Response
     {
-        return $this->render('pages/newsletter/already-subscribed-notification.html.twig');
+        return $this->render('@pages/newsletter/already-subscribed-notification.html.twig');
     }
 }

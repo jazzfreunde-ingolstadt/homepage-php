@@ -53,7 +53,7 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
         }
 
         return $this->render(
-            'pages/security/login-form.html.twig',
+            '@pages/security/login-form.html.twig',
             [
                 'new_login_route' => 'security_new_login',
             ]
@@ -78,7 +78,7 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
             throw new \LogicException('Login sollte von Event Subscriber behandelt werden. Überprüfe "Security" Konfiguration!');
         }
 
-        return $this->render('pages/security/login-confirmation.html.twig', [
+        return $this->render('@pages/security/login-confirmation.html.twig', [
             'login_check' => 'security_login_check',
             '_expires' => $request->query->get('expires', 'error'),
             '_user' => $request->query->get('user', 'error'),
@@ -152,7 +152,7 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
     public function sent(): Response
     {
         return $this->render(
-            'pages/security/login-sent.html.twig',
+            '@pages/security/login-sent.html.twig',
         );
     }
 

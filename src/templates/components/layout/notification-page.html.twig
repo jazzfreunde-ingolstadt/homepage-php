@@ -5,17 +5,17 @@
  {% endset %}
 
 {% block content %}
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset(random_image('build/app/images/ambient/')|default('build/app/images/fulllogo.svg')), class: 'blur-sm brightness-75' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset(random_image('build/app/images/ambient/')|default('build/app/images/fulllogo.svg')), class: 'blur-sm brightness-75' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
-			{% embed 'components/layout/container.html.twig' %}
+			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					{% embed 'components/util/message-box.html.twig' %}
 						{% block box_content %}
 							{{ overrideBoxContent }}
 						{% endblock %}
 					{% endembed %}
-					{% include "components/layout/spacer.html.twig" %}
+					{% include "@layout/spacer.html.twig" %}
 				{% endblock %}
 			{% endembed %}
 			{% include "components/footer-spacer.html.twig" %}

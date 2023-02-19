@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  linter:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -30,7 +30,7 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction
+        run: composer install --prefer-dist --no-interaction --no-scripts
 
       - name: Run static code analysis
         run: bin/psalm -c=psalm.xml --output-format=github

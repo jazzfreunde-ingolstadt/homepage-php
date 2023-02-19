@@ -37,7 +37,7 @@ class AppRoutingController extends AbstractController
         ];
 
         return $this->render(
-            'pages/home.html.twig',
+            '@pages/home.html.twig',
             [
                 'sampledata' => $sampledata,
             ]
@@ -90,7 +90,7 @@ class AppRoutingController extends AbstractController
         ];
 
         return $this->render(
-            'pages/about.html.twig',
+            '@pages/about.html.twig',
             [
                 'personen' => $personen,
             ]
@@ -106,7 +106,7 @@ class AppRoutingController extends AbstractController
     public function join(): Response
     {
         return $this->render(
-            'pages/join.html.twig',
+            '@pages/join.html.twig',
         );
     }
 
@@ -119,7 +119,7 @@ class AppRoutingController extends AbstractController
     public function endUserAgreement(): Response
     {
         return $this->render(
-            'pages/legal/end-user-agreement.html.twig',
+            '@pages/legal/end-user-agreement.html.twig',
         );
     }
 
@@ -132,7 +132,7 @@ class AppRoutingController extends AbstractController
     public function impressum(): Response
     {
         return $this->render(
-            'pages/legal/impressum.html.twig',
+            '@pages/legal/impressum.html.twig',
         );
     }
 
@@ -145,7 +145,7 @@ class AppRoutingController extends AbstractController
     public function statute(): Response
     {
         return $this->render(
-            'pages/legal/satzung.html.twig',
+            '@pages/legal/satzung.html.twig',
         );
     }
 
@@ -175,7 +175,7 @@ class AppRoutingController extends AbstractController
         ];
 
         return $this->render(
-            'pages/events.html.twig',
+            '@pages/events.html.twig',
             [
                 'sampledata' => $sampledata,
             ]
@@ -190,6 +190,6 @@ class AppRoutingController extends AbstractController
     #[Route('/error/', name: 'error')]
     public function error(): Response
     {
-        return $this->render('pages/error-notification.html.html.twig');
+        return $this->render('@pages/error-notification.html.html.twig');
     }
 }

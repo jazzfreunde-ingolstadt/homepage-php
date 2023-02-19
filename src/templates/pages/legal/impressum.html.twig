@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody3.jpg'), class: 'blur-sm' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody3.jpg'), class: 'blur-sm' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
-			{% embed 'components/layout/container.html.twig' %}
+			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="p-5 mb-20 font-sans">
 						<h1 class="text-8xl font-bold uppercase my-10 text-white">Impressum</h1>
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
 
-	{% embed 'components/layout/container.html.twig' %}
+	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<section class="py-5 md:py-10">
 				{% include 'typography/section-titel.html.twig' with { titel: 'Jazzfreunde Ingolstadt e. V.' } %}

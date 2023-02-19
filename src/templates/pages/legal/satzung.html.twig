@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody6.jpg'), class: 'blur-sm brightness-75' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody6.jpg'), class: 'blur-sm brightness-75' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
-			{% embed 'components/layout/container.html.twig' %}
+			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="p-5 mb-20 font-sans">
 						<h1 class="text-8xl font-bold uppercase my-10 text-white">Satzung Jazzfreunde Ingolstadt</h1>
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
 
-	{% embed 'components/layout/container.html.twig' %}
+	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<style>
 				ol,
@@ -39,7 +39,7 @@
 				}
 			</style>
 			<section class="py-5 md:py-10">
-				{{ include('markdown/legal/satzung.md.twig')|markdown_to_html }}
+				{{ include('@markdown/legal/satzung.md.twig')|markdown_to_html }}
 				<br/>
 				<a class="mt-5 text-orange" href="#" onclick="history.back()">Zurück</a>
 			</section>

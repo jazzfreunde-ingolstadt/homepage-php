@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/bonus-concert-bright1.jpg'), class: 'blur-sm brightness-75' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/bonus-concert-bright1.jpg'), class: 'blur-sm brightness-75' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
-			{% embed 'components/layout/container.html.twig' %}
+			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="p-5 mb-20 font-sans">
 						<h1 class="text-8xl font-bold uppercase my-10 text-white">Datenerhebung und Datenschutz</h1>
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
 
-	{% embed 'components/layout/container.html.twig' %}
+	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<section class="py-5 md:py-10">
-				{{ include('markdown/legal/end-user-agreement.md.twig')|markdown_to_html }}
+				{{ include('@markdown/legal/end-user-agreement.md.twig')|markdown_to_html }}
 
 				<a class="mt-5 text-orange" href="#" onclick="history.back()">Zurück</a>
 			</section>

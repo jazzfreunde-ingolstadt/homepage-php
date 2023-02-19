@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block content %}
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
-			{% embed 'components/layout/container.html.twig' %}
+			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="p-5 mt-48 mb-20 font-sans">
 						<h1 class="text-8xl font-bold uppercase my-10 text-orange">Veranstaltungen</h1>
@@ -17,11 +17,11 @@
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
 
-	{% embed 'components/layout/container.html.twig' %}
+	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			{% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
 			<section class="py-5 md:py-10">
@@ -34,13 +34,13 @@
 		{% endblock %}
 	{% endembed %}
 
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody9.jpg'), class: 'blur-sm' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody9.jpg'), class: 'blur-sm' } %}
 		{% block infront %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16 rotate-180" } %}
-			{% include 'components/layout/spacer.html.twig' with { spacer: 'spacer-48' } %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16 rotate-180" } %}
+			{% include '@layout/spacer.html.twig' with { spacer: 'spacer-48' } %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 			<div class="bg-white">
-				{% embed 'components/layout/container.html.twig' %}
+				{% embed '@layout/container.html.twig' %}
 					{% block content %}
 						<section class="py-5 md:py-10">
 							{% include 'typography/section-titel.html.twig' with { titel: 'Vergangene Veranstaltungen' } %}

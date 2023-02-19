@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-blue1.jpg'), class: 'blur-sm brightness-75' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-blue1.jpg'), class: 'blur-sm brightness-75' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
-			{% embed 'components/layout/container.html.twig' %}
+			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="p-5 mt-48 mb-20 font-sans">
 						<h1 class="text-8xl font-bold uppercase my-10 text-orange">Über den Verein</h1>
@@ -12,22 +12,22 @@
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
 
 	<div class="py-5 md:py-20 text-justify">
-		{% embed 'components/layout/container.html.twig' %}
+		{% embed '@layout/container.html.twig' %}
 			{% block content %}
-				{{ include('markdown/about/vereins-geschichte.md.twig')|markdown_to_html }}
+				{{ include('@markdown/about/vereins-geschichte.md.twig')|markdown_to_html }}
 			{% endblock %}
 		{% endembed %}
 	</div>
 
-	{% embed 'components/layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody8.jpg'), class: 'blur-sm' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody8.jpg'), class: 'blur-sm' } %}
 		{% block infront %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16 rotate-180" } %}
-			{% embed 'components/layout/container.html.twig' %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16 rotate-180" } %}
+			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="py-5 md:py-20">
 						{% for person in personen %}
@@ -56,12 +56,12 @@
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include 'components/layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
+			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
 
 	<div class="py-5 md:py-20 text-justify">
-		{% embed 'components/layout/container.html.twig' %}
+		{% embed '@layout/container.html.twig' %}
 			{% block content %}
 				{% include 'typography/section-titel.html.twig' with { titel: 'Projekte des Vereins der Jazzfreunde Ingolstadt' } %}
 				<ul class="list-disc list-inside">
@@ -86,22 +86,22 @@
 				</ul>
 
 				<a name="youngjazzplayers"></a>
-				{{ include('markdown/about/youngjazzplayers.md.twig')|markdown_to_html }}
+				{{ include('@markdown/about/youngjazzplayers.md.twig')|markdown_to_html }}
 
 				<a name="jamsessions"></a>
-				{{ include('markdown/about/jamsessions.md.twig')|markdown_to_html }}
+				{{ include('@markdown/about/jamsessions.md.twig')|markdown_to_html }}
 
 				<a name="jazzliteratur"></a>
-				{{ include('markdown/about/jazz-und-literatur.md.twig')|markdown_to_html }}
+				{{ include('@markdown/about/jazz-und-literatur.md.twig')|markdown_to_html }}
 
 				<a name="workshops"></a>
-				{{ include('markdown/about/workshops.md.twig')|markdown_to_html }}
+				{{ include('@markdown/about/workshops.md.twig')|markdown_to_html }}
 
 				<a name="diagonal"></a>
-				{{ include('markdown/about/diagonal.md.twig')|markdown_to_html }}
+				{{ include('@markdown/about/diagonal.md.twig')|markdown_to_html }}
 
 				<a name="jazztage"></a>
-				{{ include('markdown/about/jazztage.md.twig')|markdown_to_html }}
+				{{ include('@markdown/about/jazztage.md.twig')|markdown_to_html }}
 			{% endblock %}
 		{% endembed %}
 	</div>
