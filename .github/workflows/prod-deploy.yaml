@@ -31,12 +31,14 @@ jobs:
           fetch-depth: 2
 
       # Get all atrifacts
-      - uses: actions/download-artifact@v3
+      - name: Download Composer artifact
+        uses: actions/download-artifact@v3
         with:
           name: prod-vendor-artifact
           path: src/vendor
 
-      - uses: actions/download-artifact@v3
+      - name: Download Encore artifact
+        uses: actions/download-artifact@v3
         with:
           name: prod-app-artifact
           path: src/public
