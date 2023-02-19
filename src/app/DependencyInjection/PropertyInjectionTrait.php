@@ -11,6 +11,7 @@ trait PropertyInjectionTrait
      * Property Injection
      *
      * @param mixed ...$params
+     * @psalm-suppress UndefinedThisPropertyFetch
      */
     public function __construct(mixed ...$params)
     {
