@@ -89,9 +89,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jazzfreunde\\App\\": "app/",
-            "Jazzfreunde\\Type\\": "Type/"
-        },
+            "Jazzfreunde\\App\\": "app/"        },
         "files": [
             "Function/Assertion.php"
         ]
