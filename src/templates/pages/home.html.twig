@@ -5,9 +5,10 @@
 	{{ encore_entry_script_tags('home', null, 'app') }}
 {% endblock %}
 
-{% block content %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-bright11.jpg'), class: 'brightness-90' } %}
+{% block header_element %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
 		{% block infront %}
+			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="flex flex-col align-middle justify-center h-screen text-center font-sans">
@@ -17,10 +18,11 @@
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
+{% endblock %}
 
+{% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<div class="my-16 lg:my-24 xl:my-36">

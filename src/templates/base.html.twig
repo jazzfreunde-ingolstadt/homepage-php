@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta name="description" content="Verein zur Förderung der Kunst und Kultur in Ingolstadt.">
+		<meta name="description" content="Verein zur Förderung der Kunst und Kultur in Ingolstadt."> {% block link_preview_attributes %}{% endblock %}
 		<title>
 			{% block title %}
 				Welcome!
@@ -46,13 +46,22 @@
 				</div>
 				<div class="w-full bg-white">
 					{% include 'components/header.html.twig' %}
-					<main role="main" class="relative w-full z-0 grow flex flex-col text-blue">{% block content %}{% endblock %}</main>
+					<main role="main" class="relative w-full z-0 grow flex flex-col text-blue">
+						<div class="min-h-[12rem] bg-blue"> {% block header_element %}{% endblock %}
+							</div>
+							<div class="relative">
+								{% block header_divider %}
+									{% include '@layout/divider.html.twig' with { classnames: "absolute top-0 w-full -mt-16 fill-white h-16" } %}
+								{% endblock %}
+								{% block content %}{% endblock %}
+							</div>
+						</main>
+					</div>
+				</div>
+				{% include '@layout/divider.html.twig' with { classnames: "fill-blue h-16 z-10" } %}
+				<div class="relative w-full flex-none">
+					{% include 'components/footer.html.twig' %}
 				</div>
 			</div>
-			{% include '@layout/divider.html.twig' with { classnames: "fill-blue h-16 z-10" } %}
-			<div class="relative w-full flex-none">
-				{% include 'components/footer.html.twig' %}
-			</div>
-		</div>
-	</body>
-</html>
+		</body>
+	</html>

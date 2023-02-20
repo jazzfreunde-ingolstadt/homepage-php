@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-blue1.jpg'), class: 'blur-sm brightness-75' } %}
+{% block header_element %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
-					<div class="p-5 mt-48 mb-20 font-sans">
-						<h1 class="text-8xl font-bold uppercase my-10 text-orange">Über den Verein</h1>
-						<h2 class="text-4xl my-10 text-white">Jazzfreunde Ingolstadt e.V.</h2>
+					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
+						<h1 class="text-2xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase mb-10 text-orange">Über den Verein</h1>
+						<h2 class="text-lg sm:text-2xl md:text-4xl lg:text-4xl xl:text-6xl text-white">Jazzfreunde Ingolstadt e.V.</h2>
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
+{% endblock %}
 
+{% block content %}
 	<div class="py-5 md:py-20 text-justify">
 		{% embed '@layout/container.html.twig' %}
 			{% block content %}

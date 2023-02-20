@@ -1,15 +1,9 @@
-<nav class="relative w-full z-10 overflow-visible">
-	{% embed '@layout/container.html.twig' %}
-		{% block content %}
-			<ul role="menu" class="flex flex-col lg:flex-row content-start">
-				{% include 'components/navigation/menu-item.html.twig' with { url: url('home'), label: 'Startseite', classnames: 'lg:hidden'} %}
-				{% include 'components/navigation/menu-item.html.twig' with { url: url('about'), label: 'Verein'} %}
-				{% include 'components/navigation/menu-item.html.twig' with { url: url('events', { edit: false }), label: 'Veranstaltungen'} %}
-				{% include 'components/navigation/menu-item.html.twig' with { url: url('join'), label: 'Mitglied werden'} %}
-				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-					{% include 'components/navigation/menu-item.html.twig' with { url: url('security_logout'), icon: 'fa-solid fa-arrow-right-from-bracket', label: 'Logout'} %}
-				{% endif %}
-			</ul>
-		{% endblock %}
-	{% endembed %}
-</nav>
+<ul role="menu" class="flex flex-col lg:flex-row content-start">
+	{% include 'components/navigation/menu-item.html.twig' with { url: url('home'), label: 'Startseite', classnames: 'lg:hidden'} %}
+	{% include 'components/navigation/menu-item.html.twig' with { url: url('about'), label: 'Verein'} %}
+	{% include 'components/navigation/menu-item.html.twig' with { url: url('events', { edit: false }), label: 'Veranstaltungen'} %}
+	{% include 'components/navigation/menu-item.html.twig' with { url: url('join'), label: 'Mitglied werden'} %}
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		{% include 'components/navigation/menu-item.html.twig' with { url: url('security_logout'), icon: 'fa-solid fa-arrow-right-from-bracket', label: 'Logout'} %}
+	{% endif %}
+</ul>

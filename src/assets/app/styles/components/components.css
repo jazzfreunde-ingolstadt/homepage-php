@@ -12,11 +12,11 @@
   }
 
   .main-navigation-fixed[aria-expanded="true"] {
-    @apply w-full h-36 opacity-100;
+    @apply w-full opacity-100;
   }
 
   .main-navigation-fixed[aria-expanded="false"] {
-    @apply w-full h-36 opacity-100;
+    @apply w-full opacity-100;
   }
 
   .main-navigation-toggle[aria-expanded="true"] {

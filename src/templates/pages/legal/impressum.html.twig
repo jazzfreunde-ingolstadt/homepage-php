@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody3.jpg'), class: 'blur-sm' } %}
+{% block header_element %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
-					<div class="p-5 mb-20 font-sans">
-						<h1 class="text-8xl font-bold uppercase my-10 text-white">Impressum</h1>
+					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48font-sans">
+						<h1 class="text-2xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase text-white">Impressum</h1>
 					</div>
 				{% endblock %}
 			{% endembed %}
-			{% include '@layout/divider.html.twig' with { classnames: "fill-white h-16" } %}
 		{% endblock %}
 	{% endembed %}
+{% endblock %}
 
+{% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<section class="py-5 md:py-10">
