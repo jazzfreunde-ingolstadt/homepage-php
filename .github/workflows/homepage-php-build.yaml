@@ -17,15 +17,39 @@ env:
   DEPLOYMENT_FOLDER: ./src
 
 jobs:
+  build-vendor-libraries:
+    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
+    with:
+      artifact-name: stage-vendor-artifact
+
+  build-app:
+    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/build-application.yml@master
+    with:
+      artifact-name: stage-app-artifact
+      environment: stage
+
 # Please do not rename this job
   build-project:
     name: build homepage-php
     runs-on: ubuntu-latest
+    needs: [ build-vendor-libraries, build-app ]
     steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
           submodules: 'recursive'
+
+      - name: Download Composer artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: stage-vendor-artifact
+          path: src/vendor
+
+      - name: Download Encore artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: stage-app-artifact
+          path: src/public
 
 # Please do not touch the following action
       - name: Store deployment content
