@@ -18,13 +18,17 @@ env:
 
 jobs:
   build-vendor-libraries:
-    working-directory: ./src
+    defaults:
+      run:
+        working-directory: ./src
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
     with:
       artifact-name: stage-vendor-artifact
 
   build-app:
-    working-directory: ./src
+    defaults:
+      run:
+        working-directory: ./src
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/build-application.yml@master
     with:
       artifact-name: stage-app-artifact
