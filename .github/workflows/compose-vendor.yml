@@ -26,6 +26,9 @@ jobs:
           path: vendor
           key: composer-${{ hashFiles('composer.lock') }}
 
+      - name: Print current directory
+        run: echo $PWD
+
       - name: Install Composer Dependencies
         uses: php-actions/composer@v6
         with:
