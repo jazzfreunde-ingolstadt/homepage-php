@@ -20,21 +20,19 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+
       - name: Cache Composer dependencies
         uses: actions/cache@v3
         with:
           path: vendor
           key: composer-${{ hashFiles('composer.lock') }}
 
-      - name: Print current directory
-        run: echo $PWD
-
-      - name: Install Composer Dependencies
-        uses: php-actions/composer@v6
-        with:
-          php_version: 8.1
-          version: 2
-          args: --prefer-dist --no-dev --optimize-autoloader --no-scripts --no-interaction
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts --no-interaction
 
       - uses: actions/upload-artifact@v3
         with:
