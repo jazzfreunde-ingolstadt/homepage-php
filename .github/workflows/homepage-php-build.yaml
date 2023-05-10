@@ -17,13 +17,13 @@ jobs:
   build-vendor-libraries:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
     with:
-      artifact-name: stage-vendor-artifact
+      artifact-name: prod-vendor-artifact
 
   build-app:
     uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/build-application.yml@master
     with:
-      artifact-name: stage-app-artifact
-      environment: stage
+      artifact-name: prod-app-artifact
+      environment: prod
 
   build-project:
     name: build homepage-php
@@ -38,14 +38,31 @@ jobs:
       - name: Download Composer artifact
         uses: actions/download-artifact@v3
         with:
-          name: stage-vendor-artifact
+          name: prod-vendor-artifact
           path: src/vendor
 
       - name: Download Encore artifact
         uses: actions/download-artifact@v3
         with:
-          name: stage-app-artifact
+          name: prod-app-artifact
           path: src/public
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+  
+      - name: Generate deployable .env
+        run: |
+          chmod +x bin/console
+          echo "APP_ENV=prod" > .env.prod.local
+          echo "APP_VERSION=${{ github.event.release.tag_name }}" >> .env.prod.local
+          php bin/console secrets:decrypt-to-local --force --env=prod
+        env:
+          SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_PROD_DECRYPT_PRIVATE }}
+  
+      - name: Prepare environment config
+        run: mv .env.prod.local .env.local
 
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
