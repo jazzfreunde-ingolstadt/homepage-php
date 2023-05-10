@@ -53,6 +53,7 @@ jobs:
           php-version: 8.1
   
       - name: Generate deployable .env
+        working-directory: ./src
         run: |
           chmod +x bin/console
           echo "APP_ENV=prod" > .env.prod.local
