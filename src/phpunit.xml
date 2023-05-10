@@ -1,10 +1,12 @@
 <phpunit 
     cacheResultFile="var/phpunit/cache/.phpunit.result.cache"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+    cacheResultFile="var/cache/.phpunit.result.cache"
 >
     <coverage cacheDirectory="var/phpunit/cache"
             includeUncoveredFiles="true"
             processUncoveredFiles="true"
-            pathCoverage="false"
+            pathCoverage="true"
             ignoreDeprecatedCodeUnits="true">
         <include>
             <directory suffix=".php">app</directory>
@@ -19,4 +21,10 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+
+    <php>
+        <server name="KERNEL_CLASS" value="Jazzfreunde\App\Kernel" force="true"/>
+        <env name="APP_ENV" value="test" force="true"/>
+        <env name="APP_DEBUG" value="true" force="true"/>
+    </php>
 </phpunit>

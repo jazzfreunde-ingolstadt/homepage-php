@@ -29,11 +29,13 @@
                 "${file}",
             ],
             "port": 9003,
+            "runtimeExecutable":"php",
+            "runtimeArgs": [
+                "-dxdebug.start_with_request=yes"
+            ],
             "env": {
                 "XDEBUG_MODE": "debug",
                 "XDEBUG_CONFIG": "client_host=127.0.0.1 client_port=9003",
-                "DEBUG_MODE": "true",
-                "XDEBUG_SESSION": "true"
             }
         },
         {

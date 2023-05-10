@@ -61,6 +61,16 @@
             },
         },
         {
+            "label": "build encore",
+            "type": "shell",
+            "group": "build",
+            "command": "npm run build",
+            "presentation": {
+                "clear": true,
+                "showReuseMessage": false
+            }
+        },
+        {
             "label": "Run Unit Tests",
             "type": "shell",
             "group": "test",
@@ -70,8 +80,13 @@
             ],
             "options": {
                 "cwd": "${workspaceFolder}/src/",
-                "env": {}
+                "env": {
+                    "XDEBUG_MODE": "coverage"
+                }
             },
+            "dependsOn": [
+                "build encore",
+            ],
             "presentation": {
                 "clear": true
             }
