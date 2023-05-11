@@ -52,5 +52,4 @@ jobs:
           service-host: api-eu.ionos.space
           project-id: 89819d12-f5c7-4de6-bf5c-5bda215d7b2c
           branch-id: ${{ needs.retrieve-project.outputs.branch-id }}
-          config-file: .deploy-now/homepage-php/config.yaml
           action: dispatch-deployments
