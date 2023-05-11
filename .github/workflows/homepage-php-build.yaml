@@ -59,12 +59,10 @@ jobs:
           echo "APP_ENV=prod" > .env.prod.local
           echo "APP_VERSION=${{ github.event.release.tag_name }}" >> .env.prod.local
           php bin/console secrets:decrypt-to-local --force --env=prod
+          mv .env.prod.local .env.local
         env:
           SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_PROD_DECRYPT_PRIVATE }}
   
-      - name: Prepare environment config
-        run: mv .env.prod.local .env.local
-
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
         with:
