@@ -48,7 +48,7 @@ deploy:
       - src/webpack.config.js
     pre-deployment-remote-commands:
       - touch ./public/maintenance.htm
-      - echo "${{ env.GITHUB_WORKFLOW }} >> ${{ env.GITHUB_ACTION }}" > ./public/maintenance.htm
+      - echo "deploy-now" > ./public/maintenance.htm
     post-deployment-remote-commands:
       - php8.1-cli bin/console cache:clear
       - rm -f ./public/maintenance.htm
