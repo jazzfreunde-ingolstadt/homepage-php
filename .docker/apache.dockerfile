@@ -53,11 +53,9 @@ COPY ${xdebuginit_path} /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY ${phpini_path} /usr/local/etc/php/conf.d/custom.ini
 
 # apache
-RUN openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
-  -keyout /etc/apache2/conf-enabled/localhost.key \
-  -out /etc/apache2/conf-enabled/localhost.crt \
-  -subj "/C=DE/ST=BY/L=Ingolstadt/O=Jazzfreunde Ingolstadt e.V./CN=localhost" \
-  -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
+RUN openssl genrsa -out /etc/apache2/conf-enabled/localhost.key 3072
+RUN openssl req -new -out rootCA.csr -sha256 -key /etc/apache2/conf-enabled/localhost.key -subj "/C=DE/ST=BY/L=Ingolstadt/O=Jazzfreunde Ingolstadt e.V./CN=localhost" -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
+RUN openssl x509 -req -in rootCA.csr -days 365 -signkey /etc/apache2/conf-enabled/localhost.key -out /etc/apache2/conf-enabled/localhost.cert -outform PEM
 
 COPY ${virtualhost_conf_dir}/localhost.conf /etc/apache2/sites-available/localhost.conf
 
