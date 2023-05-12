@@ -12,9 +12,21 @@
     AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
 
-### Deploy now ist nicht in der Lage die Document Root zu ändern. Deswegen ist hier der Rewrite notwendig. ###
+<IfModule mod_rewrite.c>
+    RewriteEngine on
 
-RewriteEngine on
+    # Force ssl
+    RewriteCond %{HTTPS} off [OR]
+    RewriteRule ^https://%{HTTP_HOST}%{REQUEST_URI} [R=302,QSA,L]
 
-# route everything else to /public/index.php
-RewriteRule ^ /public/index.php [L]
+    # Remove www
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [R=302,QSA,NC,L]
+
+    ### Deploy now ist nicht in der Lage die Document Root zu ändern. Deswegen ist hier der Rewrite notwendig. ###
+    RewriteCond %{REQUEST_URI} !public/
+    RewriteRule (.*) /public/$1 [L]
+
+    # route everything else to /public/index.php
+    RewriteRule ^ /public/index.php [L,QSA]
+</IfModule>
