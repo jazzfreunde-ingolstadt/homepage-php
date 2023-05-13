@@ -52,16 +52,16 @@ jobs:
         with:
           php-version: 8.1
   
-      - name: Generate deployable .env
-        working-directory: ./src
-        run: |
-          chmod +x bin/console
-          echo "APP_ENV=prod" > .env.prod.local
-          echo "APP_VERSION=${{ github.event.release.tag_name }}" >> .env.prod.local
-          php bin/console secrets:decrypt-to-local --force --env=prod
-          mv .env.prod.local .env.local
-        env:
-          SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_PROD_DECRYPT_PRIVATE }}
+      # - name: Generate deployable .env
+      #   working-directory: ./src
+      #   run: |
+      #     chmod +x bin/console
+      #     echo "APP_ENV=prod" > .env.prod.local
+      #     echo "APP_VERSION=${{ github.event.release.tag_name }}" >> .env.prod.local
+      #     php bin/console secrets:decrypt-to-local --force --env=prod
+      #     mv .env.prod.local .env.local
+      #   env:
+      #     SYMFONY_DECRYPTION_SECRET: ${{ secrets.SYMFONY_PROD_DECRYPT_PRIVATE }}
   
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
