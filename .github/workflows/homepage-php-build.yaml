@@ -72,5 +72,5 @@ jobs:
           branch-id: ${{ inputs.branch-id }}
           version: ${{ github.sha }}
           folder: ${{ env.DEPLOYMENT_FOLDER }}
-          config-file: .deploy-now/config.yaml
+          config-file: .deploy-now/homepage-php/config.yaml
           action: upload
