@@ -2,11 +2,6 @@ version: 1.0
 deploy:
   bootstrap:
     excludes:
-      - .docker
-      - .github
-      - .deploy-now
-      - .vscode
-      - .devcontainer
       - var/
       - tests/
       - node_modules/
@@ -31,11 +26,6 @@ deploy:
       - php8.1-cli bin/console cache:clear
   recurring:
     excludes:
-      - .docker
-      - .github
-      - .deploy-now
-      - .vscode
-      - .devcontainer
       - var/
       - tests/
       - node_modules/
