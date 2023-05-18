@@ -1,6 +1,3 @@
-# To better understand this file read this:
-# https://docs.ionos.space/docs/github-actions-customization/
-
 name: "Deploy Now: Execute Build"
 
 on:
@@ -17,15 +14,38 @@ env:
   DEPLOYMENT_FOLDER: src
 
 jobs:
-# Please do not rename this job
+  build-vendor-libraries:
+    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
+    with:
+      artifact-name: prod-vendor-artifact
+
+  build-app:
+    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/build-application.yml@master
+    with:
+      artifact-name: prod-app-artifact
+      environment: prod
+
   build-project:
     name: build homepage-php
     runs-on: ubuntu-latest
+    needs: [ build-vendor-libraries, build-app ]
     steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
           submodules: 'recursive'
+
+      - name: Download Composer artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: prod-vendor-artifact
+          path: src/vendor
+
+      - name: Download Encore artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: prod-app-artifact
+          path: src/public
 
       - name: Render templates
         uses: ionos-deploy-now/template-renderer-action@v2
@@ -35,7 +55,6 @@ jobs:
           output-directory: ${{ env.DEPLOYMENT_FOLDER }}
           intermediate-data-file: ${{ env.DEPLOYMENT_FOLDER }}/.template-renderer-data
 
-# Please do not touch the following action
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
         with:
