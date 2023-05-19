@@ -47,12 +47,19 @@ jobs:
           name: prod-app-artifact
           path: src/public
 
+      - name: Set outputs
+        id: vars
+        run: |
+          echo "DEPLOYMENT_SHA=${{ github.sha }}" >> $GITHUB_OUTPUT
+          echo "DEPLOYMENT_SHA_SHORT=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
       - name: Render templates
         uses: ionos-deploy-now/template-renderer-action@v2
         id: template
         with:
           input-directory: .deploy-now/homepage-php
           output-directory: ${{ env.DEPLOYMENT_FOLDER }}
+          data: '[${{ toJson(secrets) }}, ${{ steps.deployment.outputs.template-variables }}, ${{ steps.vars.outputs.sha_short }}]'
           intermediate-data-file: ${{ env.DEPLOYMENT_FOLDER }}/.template-renderer-data
 
       - name: Store deployment content
