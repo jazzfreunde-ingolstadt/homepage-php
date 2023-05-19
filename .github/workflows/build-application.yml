@@ -38,7 +38,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-${{ hashFiles('package-lock.json') }}
+          key: node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
