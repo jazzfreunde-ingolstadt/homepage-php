@@ -34,14 +34,14 @@ jobs:
         with:
           node-version: v18.x
 
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
-
       - name: Cache npm dependencies
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: composer-${{ hashFiles('package-lock.json') }}
+          key: node-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
 
       - name: Install npm dependencies
         run: npm install
