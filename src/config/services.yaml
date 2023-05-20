@@ -1,6 +1,3 @@
-parameters:
-    app.version: '%env(APP_VERSION)%'
-
 services:
     _defaults:
         autowire: true

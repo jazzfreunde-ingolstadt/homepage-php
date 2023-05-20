@@ -8,7 +8,9 @@ twig:
         '%kernel.project_dir%/templates/email': email
 
     globals:
-        app_version: '%env(APP_VERSION)%'
+        github_repository: '%env(DEPLOYMENT_GITHUB_REPOSITORY)%'
+        github_sha: '%env(DEPLOYMENT_GITHUB_SHA)%'
+        github_sha_short: '%env(DEPLOYMENT_GITHUB_SHORT_SHA)%'
         show_sample_data: false
         newsletter_subscription_service: "@jazzfreunde.newsletter_subscription"
 
