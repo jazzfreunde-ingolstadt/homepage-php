@@ -78,7 +78,7 @@ jobs:
         id: template
         with:
           deployment-id: ${{ matrix.deployment-id }}
-          data: "[${{ steps.deployment.outputs.template-variables }}, ${{ toJson(secrets) }}, ${{ toJson(steps.commitinfo.outputs)]"
+          data: "[${{ steps.deployment.outputs.template-variables }}, ${{ toJson(secrets) }}, ${{ toJson(steps.commitinfo.outputs) }}]"
           input-directory: deployment
           output-directory: deployment
           intermediate-data-file: deployment/.template-renderer-data
