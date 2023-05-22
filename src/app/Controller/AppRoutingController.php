@@ -190,6 +190,6 @@ class AppRoutingController extends AbstractController
     #[Route('/error/', name: 'error')]
     public function error(): Response
     {
-        return $this->render('@pages/error-notification.html.html.twig');
+        return $this->render('@pages/error-notification.html.twig');
     }
 }
