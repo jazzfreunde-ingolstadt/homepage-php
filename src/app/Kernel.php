@@ -25,6 +25,14 @@ class Kernel extends BaseKernel
     /**
      * @inheritDoc
      */
+    public function getLogDir(): string
+    {
+        return $this->getProjectDir().'/logs';
+    }
+
+    /**
+     * @inheritDoc
+     */
     protected function configureContainer(ContainerConfigurator $container): void
     {
         $container->import(\dirname(__DIR__).'/config/{packages}/*.yaml');

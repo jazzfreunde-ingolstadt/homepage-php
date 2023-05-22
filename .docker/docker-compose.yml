@@ -46,7 +46,7 @@ services:
                 virtualhost_conf_dir: .docker/apache
                 phpini_path: .docker/php/php.ini-development
                 xdebuginit_path: .docker/php/xdebug.ini
-                xdebug_logdir: /usr/project/src/var/log
+                xdebug_logdir: /usr/project/src/logs
                 cache_dirs: /usr/project/src/var/cache
         deploy:
             restart_policy:

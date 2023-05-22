@@ -8,6 +8,7 @@ vendor/
 /config/secrets/**/*.decrypt.private.php
 /public/bundles/
 /var/
+/logs/
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###

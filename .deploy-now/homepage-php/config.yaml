@@ -3,6 +3,7 @@ deploy:
   bootstrap:
     excludes:
       - var/
+      - logs/
       - tests/
       - node_modules/
       - .env.dev
@@ -27,6 +28,7 @@ deploy:
   recurring:
     excludes:
       - var/
+      - logs/
       - tests/
       - node_modules/
       - .env.dev
