@@ -49,7 +49,7 @@ jobs:
       - name: Install assets
         run: |
           chmod +x bin/console
-          bin/console assets:install --env=${{ inputs.environment }} --no-debug
+          bin/console assets:install --env=build --no-debug
 
       - name: Build Encore files
         run: |
