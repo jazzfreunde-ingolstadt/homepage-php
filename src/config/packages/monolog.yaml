@@ -52,7 +52,7 @@ when@prod:
             streamed:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.symfony.log"
-                level: debug
+                level: info
             deduplicated:
                 type: deduplication
                 handler: symfony_mailer
@@ -61,6 +61,6 @@ when@prod:
                 from_email: "error-log@jazzfreunde-ingolstadt.de"
                 to_email: "%env(MAIL_LOG_RECIPIENT)%"
                 subject: "Error Report! %%message%%"
-                level: debug
+                level: error
                 formatter:  monolog.formatter.html
                 content_type: text/html
