@@ -60,21 +60,21 @@ class AppRoutingController extends AbstractController
                 Er hat in jungen Jahren in mehren Rock- und Beat Bands im Ruhrgebiet Gitarre gespielt. Seit 1991 ist er Gitarrist in der Ingolstädter „<a href="http =>//www.kraiberg-jazz-band.de">Kraiberg Jazz Band</a>“. Daneben ist er begeisterter Hörer von Livekonzerten mit dem Schwerpunkt Jazz / Blues / Rock.<br />
                 Seit 2010 ist er Mitglied im Verein und wurde 2011 zum Schriftführer und 2014 zum ersten Vorsitzenden gewählt; er versendet zudem den Jazz–Newsletter des Vereins.',
                 'pictureSrc' => 'build/app/images/people/wewer.jpg',
-                'mail' => 'wewer',
+                'mail' => 'wewer@jazzfreunde-ingolstadt.de',
             ],
             [
                 'name' => 'Tom Diewock',
                 'position' => 'Stellvertretender Vorsitzender, Sessionkoordinator',
                 'bio' => 'Tom Diewock ist Musiker und stellvertretender Leiter der Musikschule Mainburg. Er spielt neben seiner umfangreichen Unterrichtstätigkeit in einer Vielzahl von Bands verschiedener Stilrichtungen, u.&nbsp;a. Wes Mackey, Keith Thopmson, The Blues Hunt, Fiona Boyes, Jamazzing, 4 Of A Kind, Oliver Wasilesku Trio, Captain’s Bog, The Bomb, Clausius Konrad, Charly Böck Latin Project, Late Night Band der Ingolstädter Jazztage...',
                 'pictureSrc' => 'build/app/images/people/diewock.png',
-                'mail' => 'diewock',
+                'mail' => 'diewock@jazzfreunde-ingolstadt.de',
             ],
             [
                 'name' => 'Helmut Bachmaier',
                 'position' => 'Schatzmeister',
                 'bio' => 'Helmut Bachmaier lebt in Ingolstadt und arbeitete in München bei einer internationalen Bank. Er ist seit 2007 Mitglied bei den Jazzfreunden und seit 2020 Schatzmeister. Theater, Kabarett und Livemusik sind in der Freizeit fester Bestandteil.',
                 'pictureSrc' => 'build/app/images/people/bachmaier.jpeg',
-                'mail' => 'bachmaier',
+                'mail' => 'bachmaier@jazzfreunde-ingolstadt.de',
             ],
             [
                 'name' => 'Michael Mayer',
@@ -85,7 +85,7 @@ class AppRoutingController extends AbstractController
                 Zu seinen musikalischen Idolen zählen Chic Korea, Frank Zappa, Allan Holdsworth, Jacob Collier, Robert Glasper, Derek Trucks, Joni Mitchell, um nur ein paar wenige zu nennen.
                 Privat ist der gelernte Softwareentwickler gerne auf dem Rennrad unterwegs. Dann aber notgedrungen ohne Kontrabass.',
                 'pictureSrc' => 'build/app/images/people/mayer.jpg',
-                'mail' => 'mayer',
+                'mail' => 'mayer@jazzfreunde-ingolstadt.de',
             ]
         ];
 
