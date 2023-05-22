@@ -48,8 +48,6 @@ jobs:
 
       - name: Install assets
         run: |
-          echo "DATABASE_URL=dummy" >> .env.local
-          echo "MAILER_DSN=dummy" >> .env.local
           chmod +x bin/console
           bin/console assets:install --env=${{ inputs.environment }}
 
