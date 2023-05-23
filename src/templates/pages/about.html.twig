@@ -65,7 +65,7 @@
 		{% embed '@layout/container.html.twig' %}
 			{% block content %}
 				{% include 'typography/section-titel.html.twig' with { titel: 'Projekte des Vereins der Jazzfreunde Ingolstadt' } %}
-				<ul class="list-disc list-inside">
+				<ul class="list-disc list-inside font-bold">
 					<li>
 						<a href="#youngjazzplayers">Sessions der Young-Jazz-Players</a>
 					</li>
@@ -86,23 +86,30 @@
 					</li>
 				</ul>
 
-				<a name="youngjazzplayers"></a>
-				{{ include('@markdown/about/youngjazzplayers.md.twig')|markdown_to_html }}
-
-				<a name="jamsessions"></a>
-				{{ include('@markdown/about/jamsessions.md.twig')|markdown_to_html }}
-
-				<a name="jazzliteratur"></a>
-				{{ include('@markdown/about/jazz-und-literatur.md.twig')|markdown_to_html }}
-
-				<a name="workshops"></a>
-				{{ include('@markdown/about/workshops.md.twig')|markdown_to_html }}
-
-				<a name="diagonal"></a>
-				{{ include('@markdown/about/diagonal.md.twig')|markdown_to_html }}
-
-				<a name="jazztage"></a>
-				{{ include('@markdown/about/jazztage.md.twig')|markdown_to_html }}
+				<p class="pt-5 md:pt-10">
+					<a name="youngjazzplayers"></a>
+					{{ include('@markdown/about/youngjazzplayers.md.twig')|markdown_to_html }}
+				</p>
+				<p class="pt-5 md:pt-10">
+					<a name="jamsessions"></a>
+					{{ include('@markdown/about/jamsessions.md.twig')|markdown_to_html }}
+				</p>
+				<p class="pt-5 md:pt-10">
+					<a name="jazzliteratur"></a>
+					{{ include('@markdown/about/jazz-und-literatur.md.twig')|markdown_to_html }}
+				</p>
+				<p class="pt-5 md:pt-10">
+					<a name="workshops"></a>
+					{{ include('@markdown/about/workshops.md.twig')|markdown_to_html }}
+				</p>
+				<p class="pt-5 md:pt-10">
+					<a name="diagonal"></a>
+					{{ include('@markdown/about/diagonal.md.twig')|markdown_to_html }}
+				</p>
+				<p class="pt-5 md:pt-10">
+					<a name="jazztage"></a>
+					{{ include('@markdown/about/jazztage.md.twig')|markdown_to_html }}
+				</p>
 			{% endblock %}
 		{% endembed %}
 	</div>
