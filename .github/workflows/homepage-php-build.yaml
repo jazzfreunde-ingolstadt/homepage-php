@@ -15,12 +15,12 @@ env:
 
 jobs:
   build-vendor-libraries:
-    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/compose-vendor.yml@master
+    uses: ./.github/workflows/compose-vendor.yml
     with:
       artifact-name: prod-vendor-artifact
 
   build-app:
-    uses: jazzfreunde-ingolstadt/homepage-php/.github/workflows/build-application.yml@master
+    uses: ./.github/workflows/build-application.yml
     with:
       artifact-name: prod-app-artifact
       environment: prod

@@ -4,8 +4,14 @@
 			<div class="max-w-3xl mx-auto py-5 lg:py-10 xl:py-16">
 				{% include 'components/newsletter/subscription-widget.html.twig' %}
 			</div>
-			<div class="w-full px-10 py-5 text-2xl md:text-3xl text-center uppercase">
-				<div class="mb-10">
+			<div class="w-full px-10 py-5 text-2xl md:text-3xl">
+				<div class="mb-10 text-center uppercase">
+					Partner
+				</div>
+				{% include 'components/information/partner.html.twig' %}
+			</div>
+			<div class="w-full px-10 pt-10 pb-5 text-2xl md:text-3xl">
+				<div class="mb-10 text-center uppercase">
 					Folgen Sie uns auf
 				</div>
 				<div class="flex w-full justify-center text-4xl md:text-5xl">
@@ -52,7 +58,7 @@
 					Es is untersagt, die innerhalb der Internetpräsenz der Jazzfreunde Ingolstadt angegebenen Kontaktdaten für Werbung oder unerwünschte Kontaktierung (i. d. R. nicht den Verein betreffende Angelegenheiten, Umfragen, Statistiken etc.) zu speichern oder zu verwenden!<br/>
 					<br/>
 					Wenn Sie interessiert, was wir mit Ihren Daten anfangen und wie wir sie schützen, lesen Sie unsere Informationen zu
-					<a href="{{ url('end-user-agreement') }}">Datenerhebung und Datenschutz</a>.
+					<a href="{{ url('end-user-agreement') }}" class="font-bold">Datenerhebung und Datenschutz</a>.
 					<br/>
 					© Jazzfreunde Ingolstadt
 					{{ 'now' | date('Y') }}
@@ -61,8 +67,6 @@
 		{% endblock %}
 	{% endembed %}
 	<div class="inline-block m-1">
-		<a href="{{ path('security_login') }}">
-			{% include 'components/version.html.twig' %}
-		</a>
+		{% include 'components/version.html.twig' %}
 	</div>
 </footer>

@@ -67,12 +67,19 @@ jobs:
           deployment-id: ${{ matrix.deployment-id }}
           action: retrieve-info
 
+      - name: Fetch version info
+        id: commitinfo
+        run: |
+          echo "DEPLOYMENT_REPOSITORY=${{ github.repository }}" >> $GITHUB_OUTPUT
+          echo "DEPLOYMENT_SHA=${{ github.sha }}" >> $GITHUB_OUTPUT
+          echo "DEPLOYMENT_SHA_SHORT=$(echo ${{ github.sha }} | cut -c 1-7)" >> $GITHUB_OUTPUT
+
       - name: Render templates
         uses: ionos-deploy-now/template-renderer-action@v2
         id: template
         with:
           deployment-id: ${{ matrix.deployment-id }}
-          data: "[${{ steps.deployment.outputs.template-variables }}, ${{ toJson(secrets) }}]"
+          data: "[${{ steps.deployment.outputs.template-variables }}, ${{ toJson(secrets) }}, ${{ toJson(steps.commitinfo.outputs) }}]"
           input-directory: deployment
           output-directory: deployment
           intermediate-data-file: deployment/.template-renderer-data
