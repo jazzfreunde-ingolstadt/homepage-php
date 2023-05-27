@@ -48,7 +48,7 @@ class FormController extends AbstractController
             }
         }
 
-        return $this->redirectToRoute('404');
+        return $this->redirectToRoute('error');
     }
 
     /**
