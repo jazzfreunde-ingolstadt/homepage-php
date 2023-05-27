@@ -12,6 +12,11 @@ use function Jazzfreunde\Function\Assertion\isAssociativeArray;
  */
 final class FormCollection
 {
+    /**
+     * Alle Formulare in der Collection
+     *
+     * @var FormView[]
+     */
     private array $forms = [];
 
     /**
@@ -33,7 +38,7 @@ final class FormCollection
      * Holt ein Formular anhand des Bezeichners.
      *
      * @param string $method
-     * @return FormInterface
+     * @return FormView
      * @throws \LogicException
      */
     public function __call(string $method, array $arguments): FormView

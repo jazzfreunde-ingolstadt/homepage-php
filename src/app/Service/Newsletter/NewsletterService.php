@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Service\Newsletter;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\KnownMail;
@@ -41,22 +42,21 @@ final class NewsletterService implements LoggerAwareInterface
      */
     public function subscribe(NewsletterSubscription $subscription): void
     {
-        $this->doctrine->getConnection()->beginTransaction();
+        /**
+         * @var Connection @connection
+         */
+        $connection = $this->doctrine->getConnection();
+        $connection->beginTransaction();
         try {
             $entityManager = $this->doctrine->getManager();
             $entityManager->persist($subscription);
             $entityManager->flush();
 
             $knownMails = $this->doctrine->getRepository(KnownMail::class);
-
-            /**
-             * @var KnownMail|null $from
-             * @var KnownMail|null $to
-             */
             $from = $knownMails->findOneBy([ 'handle' => 'no-reply' ]);
             $to = $knownMails->findOneBy([ 'handle' => 'jazzletter' ]);
             
-            $errorMsg = fn(string $handle) => sprintf('%s: Mail mit dem Handle "%s" ist nicht konfiguriert.', KnownMail::class, $handle);
+            $errorMsg = fn(string $handle): string => sprintf('%s: Mail mit dem Handle "%s" ist nicht konfiguriert.', KnownMail::class, $handle);
 
             if (is_null($from)) {
                 $this->logger?->error($errorMsg('no-reply'));
@@ -68,8 +68,8 @@ final class NewsletterService implements LoggerAwareInterface
             }
 
             $email = (new TemplatedEmail())
-                ->from($from?->address ?? '')
-                ->to($to?->address ?? '')
+                ->from($from->address)
+                ->to($to->address)
                 ->subject('Neuer Newsletter Abonnent!')
                 ->htmlTemplate('email/newsletter-subscription-notice.html.twig')
                 ->context([
@@ -80,12 +80,12 @@ final class NewsletterService implements LoggerAwareInterface
             
             $this->mailer->send($email);
 
-            $this->doctrine->getConnection()->commit();
+            $connection->commit();
         } catch (UniqueConstraintViolationException $e) {
             throw new SubscriptionException(code: SubscriptionException::ALREADY_SUBSCRIBED);
         } catch (\Exception $e) {
             $this->logger?->error($e);
-            $this->doctrine->getConnection()->rollback();
+            $connection->rollback();
             throw new SubscriptionException();
         }
     }

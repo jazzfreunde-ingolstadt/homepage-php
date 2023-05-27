@@ -19,11 +19,13 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
+use Symfony\Component\Security\Core\Exception\LogicException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
 /**
  * Controller für Benutzer
+ * @psalm-suppress PropertyNotSetInConstructor $container
  */
 #[Route('/session', name: 'security_')]
 class SecurityController extends AbstractController implements LoggerAwareInterface
@@ -102,31 +104,36 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
             return $this->redirectToOrigin($request);
         }
        
-        $email = $request->request->get('email');
+        $recipient =
+            $request
+            ->request
+            ->get('email')
+            ?? throw new UserNotFoundException('Benutzer mit der angegeben Email existiert nicht.');
 
-        /**
-         * @var User|null $user
-         */
-        $user = $doctrine
+        if (!\is_string($recipient)) {
+            throw new LogicException('Ungültiger Wert für Email.');
+        }
+
+        $user =
+            $doctrine
             ->getRepository(User::class)
-            ->findOneBy([ 'email' => $email ])
+            ->findOneBy([ 'email' => $recipient ])
             ?? throw new UserNotFoundException("Benutzer mit der angegeben Email existiert nicht.");
 
         $knownMails = $doctrine->getRepository(KnownMail::class);
 
-        /**
-         * @var KnownMail|null $from
-         */
-        $from = $knownMails
+        $from =
+            $knownMails
             ->findOneBy([ 'handle' => 'no-reply' ])
             ?? throw new RuntimeException("Handle 'no-reply' ist nicht als KnownMail konfiguriert. Zum Versand von Emails muss diese im Datenbestand registriert werden.");
 
         $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
         $loginLink = $loginLinkDetails->getUrl();
 
-        $email = (new TemplatedEmail())
-            ->from($from?->address ?? '')
-            ->to($email)
+        $email =
+            (new TemplatedEmail())
+            ->from($from->address)
+            ->to($recipient)
             ->subject('Login bei Jazzfreunde Ingolstadt e.V.')
             ->htmlTemplate('email/login-link.html.twig')
             ->context([

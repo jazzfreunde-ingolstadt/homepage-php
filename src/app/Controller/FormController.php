@@ -37,6 +37,10 @@ class FormController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $data = $form->getData();
+                if (!\is_array($data)) {
+                    throw new \LogicException('Form data is invlaid.');
+                }
+
                 $subscription = new NewsletterSubscription(...$data);
                 $subscription->creationTime = new DateTime();
 

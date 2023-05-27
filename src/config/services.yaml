@@ -11,10 +11,6 @@ services:
     Jazzfreunde\App\Controller\:
         resource: '%kernel.project_dir%/app/Controller/'
 
-    Jazzfreunde\App\Service\Content\LegacyStub:
-        arguments:
-        - '%kernel.project_dir%/legacy/pages'
-
     jazzfreunde.newsletter_subscription:
         class: Jazzfreunde\App\Service\Newsletter\NewsletterService
         calls:

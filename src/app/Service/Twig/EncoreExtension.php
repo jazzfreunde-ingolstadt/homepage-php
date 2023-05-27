@@ -41,8 +41,7 @@ class EncoreExtension extends AbstractExtension
     {
         $entrypoints = $this
             ->lookup
-            ?->getCssFiles($entryName)
-            ?? throw new \LogicException(EntrypointLookupInterface::class);
+            ->getCssFiles($entryName);
 
         return array_reduce(
             $entrypoints,
