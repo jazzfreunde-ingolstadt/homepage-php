@@ -8,10 +8,9 @@ on:
   push:
     paths:
       - 'src/**'
+      - '!src/tests/**'
       - '.github/**'
       - '.deploy-now/**'
-    paths-ignore:
-      - 'src/tests/**'
   workflow_dispatch:
 
 jobs:
