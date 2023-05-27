@@ -27,7 +27,10 @@ final class JsonTransformerListener
         }
 
         try {
-            $data = \json_decode((string) $request->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+            /**
+             * @var object|array $data
+             */
+            $data = \json_decode($request->getContent(), true, 512, \JSON_THROW_ON_ERROR);
 
             if (\is_array($data)) {
                 $request->request->replace($data);

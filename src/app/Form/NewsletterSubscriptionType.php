@@ -18,7 +18,7 @@ class NewsletterSubscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->setAction($options['action'] ?? '')
+            ->setAction((string) ($options['action'] ?? ''))
             ->add('email', EmailType::class, ['label' => 'Geben Sie Ihre Email-Adresse an'])
             ->add('subscribe', SubmitType::class, ['label' => 'Benachrichtige mich'])
             ->getForm();

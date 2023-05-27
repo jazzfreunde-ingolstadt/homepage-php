@@ -29,6 +29,10 @@ class EventCategoryType extends Type
      */
     public function convertToPHPValue(mixed $value, AbstractPlatform $platform): mixed
     {
+        if (!\is_string($value)) {
+            throw new ConversionException(sprintf("Value for conversion to type '%s' must be a string.", EventCategoryEnum::class));
+        }
+
         try {
             return EventCategoryEnum::from($value);
         } catch (\ValueError $e) {
@@ -42,7 +46,7 @@ class EventCategoryType extends Type
     public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): mixed
     {
         if (!($value instanceof EventCategoryEnum)) {
-            throw new ConversionException('Conversion to database representation is not possible. Value musst be of type '.EventCategoryEnum::cases());
+            throw new ConversionException(sprintf('Conversion to database representation is not possible. Value musst be of type "%s"', EventCategoryEnum::class));
         }
 
         return $value->value;
