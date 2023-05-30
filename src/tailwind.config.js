@@ -19,7 +19,7 @@ module.exports = {
       'black': '#000000',
     },
     fontFamily: {
-      sans: ['FF DIN Medium', ...defaultTheme.fontFamily.sans],
+      sans: ['FF DIN', ...defaultTheme.fontFamily.sans],
     },
     fontSize: {
       sm: '1rem',
