@@ -9,6 +9,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: "FF DIN";
+    font-weight: 400;
+    src: url(../fonts/ffdin.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "FF DIN Medium";
+    font-weight: 400;
+    src: url(../fonts/ffdin-medium.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "FF DIN Bold";
+    font-weight: 400;
+    src: url(../fonts/ffdin-bold.ttf) format("truetype");
+  }
+
+  html {
+    @apply text-base;
+  }
+}
+
 main a {
   @apply text-orange;
 }
