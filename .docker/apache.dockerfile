@@ -43,6 +43,13 @@ RUN docker-php-source extract \
   && docker-php-ext-install apcu \
   && docker-php-source delete
 
+RUN apt-get install -y libldap2-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+    && docker-php-ext-install -j$(nproc) ldap
+
+RUN docker-php-ext-install opcache
+
 # xDebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN mkdir -p ${xdebug_logdir}/xdebug.log && touch ${xdebug_logdir}/xdebug.log && chmod +rw ${xdebug_logdir}/xdebug.log
