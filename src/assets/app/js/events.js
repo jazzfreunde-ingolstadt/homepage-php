@@ -3,13 +3,13 @@ import { DateTime } from "luxon";
 
 const wochentag = [
   undefined,
-  "Sonntag",
   "Montag",
   "Dienstag",
   "Mittwoch",
   "Donnerstag",
   "Freitag",
   "Samstag",
+  "Sonntag",
 ];
 
 const today = new Date();
