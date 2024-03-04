@@ -25,14 +25,20 @@ jobs:
         with:
           php-version: 8.1
 
-      - name: Cache Composer dependencies
-        uses: actions/cache@v3
+      - name: Restore cached Composer dependencies
+        uses: actions/cache/restore@v3
         with:
           path: vendor
           key: composer-${{ hashFiles('**/composer.lock') }}
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts --no-interaction
+
+      - name: Cache Composer dependencies
+        uses: actions/cache/save@v3
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('**/composer.lock') }}
 
       - uses: actions/upload-artifact@v3
         with:
