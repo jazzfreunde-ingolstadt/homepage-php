@@ -28,7 +28,7 @@ jobs:
       - name: Restore cached Composer dependencies
         uses: actions/cache/restore@v3
         with:
-          path: vendor
+          path: src/vendor
           key: composer-${{ hashFiles('**/composer.lock') }}
 
       - name: Install Composer dependencies
@@ -37,7 +37,7 @@ jobs:
       - name: Cache Composer dependencies
         uses: actions/cache/save@v3
         with:
-          path: vendor
+          path: src/vendor
           key: composer-${{ hashFiles('**/composer.lock') }}
 
       - uses: actions/upload-artifact@v3

@@ -37,7 +37,7 @@ jobs:
       - name: Restore cached npm dependencies
         uses: actions/cache/restore@v3
         with:
-          path: node_modules
+          path: src/node_modules
           key: node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Composer dependencies
@@ -49,7 +49,7 @@ jobs:
       - name: Cache npm dependencies
         uses: actions/cache/save@v3
         with:
-          path: node_modules
+          path: src/node_modules
           key: node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install assets
