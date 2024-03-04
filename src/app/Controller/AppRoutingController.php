@@ -82,7 +82,7 @@ class AppRoutingController extends AbstractController
                 'bio' => 'Mit dem Eintritt ins Gymnasium begann Michael Mayer klassische Gitarre zu lernen.
                 Weil aber im Schulensemble "Not am Bass" war, machte er seine ersten Erfahrungen am E-Bass, ohne überhaupt die zugehörigen Bassnoten lesen zu können.
                 Später kaufte er sich kurzer Hand einen gebrauchten Kontrabass und fing an, darauf umzusetzen, was er sich am E-Bass beigebracht hatte.
-                Zu seinen musikalischen Idolen zählen Chic Korea, Frank Zappa, Allan Holdsworth, Jacob Collier, Robert Glasper, Derek Trucks, Joni Mitchell, um nur ein paar wenige zu nennen.
+                Zu seinen musikalischen Idolen zählen Chick Corea, Frank Zappa, Allan Holdsworth, Jacob Collier, Robert Glasper, Derek Trucks, Joni Mitchell, um nur ein paar wenige zu nennen.
                 Privat ist der gelernte Softwareentwickler gerne auf dem Rennrad unterwegs. Dann aber notgedrungen ohne Kontrabass.',
                 'pictureSrc' => 'build/app/images/people/mayer.jpg',
                 'mail' => 'mayer@jazzfreunde-ingolstadt.de',
