@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Routing Controller für die Website
@@ -28,7 +29,7 @@ class FormController extends AbstractController
      * @return Response
      */
     #[Route('/newsletter_subscribe/', name: 'newsletter_subscribe')]
-    public function newsletterSubscribe(Request $request, NewsletterService $newsletter): Response
+    public function newsletterSubscribe(Request $request, NewsletterService $newsletter, ValidatorInterface $validator): Response
     {
         $form = $this
             ->createForm(NewsletterSubscriptionType::class)
@@ -38,16 +39,20 @@ class FormController extends AbstractController
             try {
                 $data = $form->getData();
                 if (!\is_array($data)) {
-                    throw new \LogicException('Form data is invlaid.');
+                    throw new \LogicException('Unable to load form data');
                 }
 
                 $subscription = new NewsletterSubscription(...$data);
                 $subscription->creationTime = new DateTime();
 
+                if ($validator->validate($subscription)) {
+                    throw new \DomainException('Invalid subscription data');
+                }
+
                 $newsletter->subscribe($subscription);
 
                 return $this->redirectToRoute('form_newsletter_confirmation');
-            } catch (SubscriptionException $e) {
+            } catch (SubscriptionException) {
                 return $this->redirectToRoute('form_newsletter_already_subscribed');
             }
         }
