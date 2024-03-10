@@ -6,6 +6,7 @@ doctrine:
       enum: string
     types:
       event_category: Jazzfreunde\App\Entity\Type\EventCategoryType
+    use_savepoints: true
   orm:
     auto_generate_proxy_classes: true
     enable_lazy_ghost_objects: true
