@@ -20,22 +20,22 @@ jobs:
         working-directory: ./src
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.3
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: v18.x
 
       - name: Restore cached npm dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           path: src/node_modules
           key: node-${{ hashFiles('**/package-lock.json') }}
@@ -47,7 +47,7 @@ jobs:
         run: npm ci
 
       - name: Cache npm dependencies
-        uses: actions/cache/save@v3
+        uses: actions/cache/save@v4
         with:
           path: src/node_modules
           key: node-${{ hashFiles('**/package-lock.json') }}
@@ -62,7 +62,7 @@ jobs:
           npm run ${{ inputs.environment == 'prod' && 'build-prod-app' || 'build-dev-app'}}
           npm run ${{ inputs.environment == 'prod' && 'build-prod-mail' || 'build-dev-mail'}}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.artifact-name }}
           path: src/public/

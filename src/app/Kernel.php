@@ -28,11 +28,11 @@ class Kernel extends BaseKernel
     protected function configureContainer(ContainerConfigurator $container): void
     {
         $container->import(sprintf('%s/config/{packages}/*.yaml', \dirname(__DIR__)));
-        $container->import(sprintf('%s/config/{packages}/%s/*.yaml', \dirname(__DIR__), (string) $this->environment));
+        $container->import(sprintf('%s/config/{packages}/%s/*.yaml', \dirname(__DIR__), $this->environment));
 
         if (is_file(\dirname(__DIR__).'/config/services.yaml')) {
             $container->import(\dirname(__DIR__).'/config/services.yaml');
-        $container->import(sprintf('%s/config/{services}_%s.yaml', \dirname(__DIR__), (string) $this->environment));
+            $container->import(sprintf('%s/config/{services}_%s.yaml', \dirname(__DIR__), $this->environment));
         }
     }
 
@@ -41,7 +41,7 @@ class Kernel extends BaseKernel
      */
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $routes->import(sprintf('%s/config/{routes}/%s/*.yaml', \dirname(__DIR__), (string) $this->environment));
+        $routes->import(sprintf('%s/config/{routes}/%s/*.yaml', \dirname(__DIR__), $this->environment));
         $routes->import(\dirname(__DIR__).'/config/{routes}/*.yaml');
 
         if (is_file(\dirname(__DIR__).'/config/routes.yaml')) {

@@ -45,7 +45,7 @@ class FormController extends AbstractController
                 $subscription = new NewsletterSubscription(...$data);
                 $subscription->creationTime = new DateTime();
 
-                if (!empty($validator->validate($subscription))) {
+                if (0 < count($validator->validate($subscription))) {
                     throw new \DomainException('Invalid subscription data');
                 }
 
