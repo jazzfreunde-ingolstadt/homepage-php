@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Jazzfreunde\App\Event\Listener\Transformer;
+namespace Jazzfreunde\App\Event\Listener;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
