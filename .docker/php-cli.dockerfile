@@ -1,4 +1,4 @@
-FROM php:8.3-cli
+FROM php:8.2-cli
 
 LABEL version="1.1.0" \
     author="Michael Mayer" \
