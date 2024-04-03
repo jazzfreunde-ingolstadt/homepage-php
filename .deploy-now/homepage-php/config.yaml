@@ -50,7 +50,6 @@ deploy:
       - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
       - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
       - chmod -R o+w var
-      - php8.2-cli bin/console about
-      - php8.2-cli bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug
-      - php8.2-cli bin/console cache:clear
+      - php8.2-cli bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug 2>&1 | echo
+      - php8.2-cli bin/console cache:clear 2>&1 | echo
       - rm -f ./public/maintenance.htm
