@@ -6,6 +6,8 @@ LABEL version="1.1.0" \
 
 ARG project_dir
 ARG phpini_path
+ARG xdebuginit_path 
+ARG xdebug_logdir
 
 SHELL ["/bin/bash", "--login", "-c"]
 
@@ -51,6 +53,12 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
 RUN nvm install v18
 RUN nvm alias default v18
 RUN npm install -g npm@latest
+
+# xDebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN mkdir -p ${xdebug_logdir}/xdebug.log && touch ${xdebug_logdir}/xdebug.log && chmod +rw ${xdebug_logdir}/xdebug.log
+
+COPY ${xdebuginit_path} /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # php
 COPY ${phpini_path} /usr/local/etc/php/conf.d/custom.ini

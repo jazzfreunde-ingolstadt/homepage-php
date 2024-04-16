@@ -43,3 +43,6 @@ jobs:
           mkdir var
           chmod +x bin/psalm
           bin/psalm -c=psalm.xml --output-format=github
+
+      - name: Run unit tests
+        run: vendor/bin/phpunit --configuration phpunit.xml
