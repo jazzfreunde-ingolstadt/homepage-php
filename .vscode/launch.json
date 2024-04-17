@@ -27,6 +27,7 @@
             "program": "${workspaceFolder}/src/bin/phpunit",
             "args": [
                 "${file}",
+                "--do-not-cache-result"
             ],
             "port": 9003,
             "runtimeExecutable":"php",

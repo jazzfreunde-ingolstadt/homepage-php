@@ -13,7 +13,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\App\Entity\Type\EventCategoryType;
-use Jazzfreunde\App\Entity\Type\EventCategoryEnum;
+use Jazzfreunde\App\Type\EventCategoryEnum;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -61,6 +61,6 @@ class Event
     #[ORM\Column(type: 'string', nullable: true)]
     #[Groups(groups: ['Event:write'])]
     public ?string $link = null;
-    #[ORM\Column(type: EventCategoryType::NAME, options: [ 'default' => EventCategoryEnum::DEFAULT ])]
+    #[ORM\Column(type: EventCategoryType::ENTITY_NAME, options: [ 'default' => EventCategoryEnum::DEFAULT ])]
     public EventCategoryEnum $category = EventCategoryEnum::default;
 }

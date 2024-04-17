@@ -2,69 +2,14 @@
 
 namespace Jazzfreunde\App\Entity\Type;
 
-use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\ConversionException;
-use Doctrine\DBAL\Types\Type;
-use Jazzfreunde\App\Entity\Type\EventCategoryEnum;
+use Jazzfreunde\App\Entity\Type\Enum\AbstractEnumType;
+use Jazzfreunde\App\Type\EventCategoryEnum;
 
 /**
  * Veranstaltungskategorien
  */
-class EventCategoryType extends Type
+class EventCategoryType extends AbstractEnumType
 {
-    const NAME = 'event_category';
-
-    /**
-     * @inheritDoc
-     */
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
-    {
-        $cases = array_map(fn(EventCategoryEnum $type) => "'{$type->value}'", EventCategoryEnum::cases());
-
-        return sprintf("ENUM(%s)", implode(", ", $cases));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function convertToPHPValue(mixed $value, AbstractPlatform $platform): mixed
-    {
-        if (!\is_string($value)) {
-            throw new ConversionException(sprintf("Value for conversion to type '%s' must be a string.", EventCategoryEnum::class));
-        }
-
-        try {
-            return EventCategoryEnum::from($value);
-        } catch (\ValueError $e) {
-            throw new ConversionException('Conversion to enum type is not possible.', previous: $e);
-        }
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): mixed
-    {
-        if (!($value instanceof EventCategoryEnum)) {
-            throw new ConversionException(sprintf('Conversion to database representation is not possible. Value musst be of type "%s"', EventCategoryEnum::class));
-        }
-
-        return $value->value;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName(): string
-    {
-        return self::NAME;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
-    {
-        return true;
-    }
+    public const ENTITY_NAME = 'event_category';
+    public const ENUM_CLASS_NAME = EventCategoryEnum::class;
 }

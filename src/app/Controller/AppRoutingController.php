@@ -11,7 +11,7 @@ use DateInterval;
 use DateTime;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Entity\Ort;
-use Jazzfreunde\App\Entity\Type\EventCategoryEnum;
+use Jazzfreunde\App\Type\EventCategoryEnum;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**

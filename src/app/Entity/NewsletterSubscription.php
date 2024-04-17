@@ -5,6 +5,7 @@ namespace Jazzfreunde\App\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\App\Entity\Type\NewletterSubscriptionStateEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
