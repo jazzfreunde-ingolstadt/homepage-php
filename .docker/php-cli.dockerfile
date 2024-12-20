@@ -50,8 +50,8 @@ RUN docker-php-ext-install opcache
 
 # Install Node and npm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-RUN nvm install v18
-RUN nvm alias default v18
+RUN nvm install v22
+RUN nvm alias default v22
 RUN npm install -g npm@latest
 
 # xDebug
