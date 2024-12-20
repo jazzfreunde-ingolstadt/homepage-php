@@ -55,6 +55,7 @@ class FormController extends AbstractController
             } catch (SubscriptionException) {
                 return $this->redirectToRoute('form_newsletter_already_subscribed');
             }
+            // Todo Catch Email Transport Exception
         }
 
         return $this->redirectToRoute('error');

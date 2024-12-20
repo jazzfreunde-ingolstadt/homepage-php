@@ -64,11 +64,14 @@
             "label": "build encore",
             "type": "shell",
             "group": "build",
-            "command": "npm run build",
+            "command": "npm run build-dev-app && npm run build-dev-mail",
             "presentation": {
                 "clear": true,
                 "showReuseMessage": false
-            }
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
         },
         {
             "label": "Run Unit Tests",
@@ -76,7 +79,8 @@
             "group": "test",
             "command": "${workspaceFolder}/src/bin/phpunit",
             "args": [
-                "--testsuite=full"
+                "--testsuite=full",
+                "--display-notices"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/src/",
@@ -84,9 +88,6 @@
                     "XDEBUG_MODE": "coverage"
                 }
             },
-            "dependsOn": [
-                "build encore",
-            ],
             "presentation": {
                 "clear": true
             }

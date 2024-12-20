@@ -35,6 +35,37 @@ final class NewsletterService implements LoggerAwareInterface
     }
 
     /**
+     * Fragt den Benutzer nach einer Bestätigung.
+     *
+     * @param NewsletterSubscription $subscription
+     * @return void
+     */
+    public function askForConfirmation(NewsletterSubscription $subscription): void
+    {
+        $knownMails = $this->doctrine->getRepository(KnownMail::class);
+        $from = $knownMails->findOneBy([ 'handle' => 'no-reply' ]);
+        $errorMsg = fn(string $handle): string => sprintf('%s: Mail mit dem Handle "%s" ist nicht konfiguriert.', KnownMail::class, $handle);
+
+        if (is_null($from)) {
+            $this->logger?->error($errorMsg('no-reply'));
+            throw new SubscriptionException();
+        }
+
+        $email = (new TemplatedEmail())
+            ->from($from->address)
+            ->to($subscription->email)
+            ->subject('Neuer Newsletter Abonnent!')
+            ->htmlTemplate('email/newsletter-subscription-notice.html.twig')
+            ->context([
+                'subscription' => [
+                    'email' => $subscription->email
+                ],
+            ]);
+        
+        $this->mailer->send($email);
+    }
+
+    /**
      * Verarbeitet ein neues Abonnement.
      *
      * @return void
@@ -52,33 +83,7 @@ final class NewsletterService implements LoggerAwareInterface
             $entityManager->persist($subscription);
             $entityManager->flush();
 
-            $knownMails = $this->doctrine->getRepository(KnownMail::class);
-            $from = $knownMails->findOneBy([ 'handle' => 'no-reply' ]);
-            $to = $knownMails->findOneBy([ 'handle' => 'jazzletter' ]);
-            
-            $errorMsg = fn(string $handle): string => sprintf('%s: Mail mit dem Handle "%s" ist nicht konfiguriert.', KnownMail::class, $handle);
-
-            if (is_null($from)) {
-                $this->logger?->error($errorMsg('no-reply'));
-                throw new SubscriptionException();
-            }
-            if (is_null($to)) {
-                $this->logger?->error($errorMsg('jazzletter'));
-                throw new SubscriptionException();
-            }
-
-            $email = (new TemplatedEmail())
-                ->from($from->address)
-                ->to($to->address)
-                ->subject('Neuer Newsletter Abonnent!')
-                ->htmlTemplate('email/newsletter-subscription-notice.html.twig')
-                ->context([
-                    'subscription' => [
-                        'email' => $subscription->email
-                    ],
-                ]);
-            
-            $this->mailer->send($email);
+            $this->notifyModerator($subscription);
 
             $connection->commit();
         } catch (UniqueConstraintViolationException $e) {
@@ -88,6 +93,43 @@ final class NewsletterService implements LoggerAwareInterface
             $connection->rollback();
             throw new SubscriptionException();
         }
+    }
+
+    /**
+     * Benachrichtigt den Moderator über ein neues Abonnement.
+     *
+     * @param NewsletterSubscription $subscription
+     * @return void
+     */
+    private function notifyModerator(NewsletterSubscription $subscription): void
+    {
+        $knownMails = $this->doctrine->getRepository(KnownMail::class);
+        $from = $knownMails->findOneBy([ 'handle' => 'no-reply' ]);
+        $to = $knownMails->findOneBy([ 'handle' => 'jazzletter' ]);
+        
+        $errorMsg = fn(string $handle): string => sprintf('%s: Mail mit dem Handle "%s" ist nicht konfiguriert.', KnownMail::class, $handle);
+
+        if (is_null($from)) {
+            $this->logger?->error($errorMsg('no-reply'));
+            throw new SubscriptionException();
+        }
+        if (is_null($to)) {
+            $this->logger?->error($errorMsg('jazzletter'));
+            throw new SubscriptionException();
+        }
+
+        $email = (new TemplatedEmail())
+            ->from($from->address)
+            ->to($to->address)
+            ->subject('Neuer Newsletter Abonnent!')
+            ->htmlTemplate('email/newsletter-subscription-notice.html.twig')
+            ->context([
+                'subscription' => [
+                    'email' => $subscription->email
+                ],
+            ]);
+        
+        $this->mailer->send($email);
     }
 
     /**

@@ -5,7 +5,8 @@ namespace Jazzfreunde\App\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Entity\Type\NewletterSubscriptionStateEnum;
+use Jazzfreunde\App\Entity\Type\Enum\SubscriptionStateEnumType;
+use Jazzfreunde\App\Type\SubscriptionStateEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -27,4 +28,6 @@ class NewsletterSubscription
     public string $email;
     #[ORM\Column(type: 'datetime', options: ["default" => "CURRENT_TIMESTAMP"])]
     public DateTime $creationTime;
+    #[ORM\Column(type: SubscriptionStateEnumType::ENTITY_NAME, options: [ 'default' => SubscriptionStateEnum::PendingConfirmation ])]
+    public SubscriptionStateEnum $state;
 }
