@@ -45,7 +45,7 @@ RUN docker-php-source extract \
 
 RUN apt-get install -y libldap2-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+    && docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
     && docker-php-ext-install -j$(nproc) ldap
 
 RUN docker-php-ext-install opcache
