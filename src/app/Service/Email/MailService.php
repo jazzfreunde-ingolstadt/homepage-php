@@ -8,7 +8,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Service\Email\Exception\MailException;
 use Jazzfreunde\App\Type\KnownMailHandleEnum;
-use Psr\Log\LoggerAwareTrait;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 
@@ -17,14 +16,14 @@ use Symfony\Component\Mailer\MailerInterface;
  */
 final class MailService
 {
-    use LoggerAwareTrait;
-
     /**
      * @param ManagerRegistry $doctrine
      * @param MailerInterface $mailer
      */
-    public function __construct(private ManagerRegistry $doctrine, private MailerInterface $mailer)
-    {
+    public function __construct(
+        private ManagerRegistry $doctrine,
+        private MailerInterface $mailer
+    ) {
     }
 
     /**
@@ -36,8 +35,13 @@ final class MailService
      * @param string $twigTemplate
      * @return void
      */
-    public function send(KnownMailHandleEnum $from, KnownMailHandleEnum|string $to, string $subject, string $twigTemplate): void
-    {
+    public function send(
+        KnownMailHandleEnum $from,
+        KnownMailHandleEnum|string $to,
+        string $subject,
+        string $twigTemplate,
+        array $twigContext = []
+    ): void {
         if (strlen($subject) < 5) {
             throw new \InvalidArgumentException('Subject must be at least 5 characters long.');
         }
@@ -57,7 +61,7 @@ final class MailService
             ->to($recipient)
             ->subject($subject)
             ->htmlTemplate($twigTemplate)
-            ->context([]);
+            ->context($twigContext);
 
         $this->mailer->send($email);
     }
