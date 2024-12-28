@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Service\Email;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\EmailConfirmation;
-use Jazzfreunde\App\Service\Email\Exception\ConfirmationNotFoundException;
+use Doctrine\ORM\EntityManagerInterface;
+use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\App\Service\Email\Exception\ConfirmationContractNotFoundException;
 use Jazzfreunde\App\Type\KnownMailHandleEnum;
+use Jazzfreunde\App\Service\Email\Exception\ConfirmationPeriodExpiredException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Jazzfreunde\App\Event\Event\Contract\ContractConfirmedEvent;
+use Jazzfreunde\App\Event\Event\Contract\ContractCanceledEvent;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * Service zur Verwaltung des Newsletters
+ * Service for email confirmation of contract
  */
 final class EmailConfirmationService implements LoggerAwareInterface
 {
@@ -22,11 +26,17 @@ final class EmailConfirmationService implements LoggerAwareInterface
     private const TOKEN_LENGTH = 32;
 
     /**
-     * @param ManagerRegistry $doctrine
+     * @param EntityManagerInterface $entityManager
+     * @param ValidatorInterface $validator
      * @param MailService $mailer
+     * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(private ManagerRegistry $doctrine, private MailService $mailer)
-    {
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private ValidatorInterface $validator,
+        private MailService $mailer,
+        private EventDispatcherInterface $dispatcher
+    ) {
     }
 
     /**
@@ -34,39 +44,46 @@ final class EmailConfirmationService implements LoggerAwareInterface
      *
      * @param string $email Recipient
      * @param string $subject title of confirmation
+     * @param array $context Context embedded into the email template
      * @return void
      */
-    public function askForConfirmation(string $email, string $subject, array $context): void
-    {
-        /**
-         * @var Connection @connection
-         */
-        $connection = $this->doctrine->getConnection();
-        $entityManager = $this->doctrine->getManager();
-        
-        $connection->beginTransaction();
+    public function askForConfirmation(
+        ConfirmationContract $contract,
+        string $email,
+        string $subject,
+        array $context
+    ): void {
+        $this->entityManager->beginTransaction();
         try {
-            $confirmation = new EmailConfirmation();
-            $confirmation->token = bin2hex(random_bytes($this::TOKEN_LENGTH));
-            $confirmation->expiresAt = new \DateTimeImmutable('+1 day');
-            
-            $entityManager->persist($confirmation);
-            $entityManager->flush();
+            if (0 < count($this->validator->validate($contract))) {
+                throw new \DomainException('Invalid confirmation contract');
+            }
 
-            $connection->commit();
+            $this->entityManager->persist($contract);
+            $this->entityManager->flush();
+
+            $this->entityManager->commit();
         } catch (\Throwable $e) {
-            $connection->rollBack();
+            $this->entityManager->rollBack();
             throw $e;
         }
 
-        $this->mailer->send(KnownMailHandleEnum::NoReply, $email, $subject, 'email/email-confirmation.html.twig');
+        $this->mailer->send(
+            KnownMailHandleEnum::NoReply,
+            $email,
+            $subject,
+            'email/email-confirmation.html.twig',
+            $context + [ 'token' => $contract->token ]
+        );
     }
 
     /**
-     * Undocumented function
+     * Confirm a request.
      *
      * @param string $token Token generated before initializing a new confirmation request
      * @return void
+     * @throws ConfirmationContractNotFoundException
+     * @throws ConfirmationPeriodExpiredException
      */
     public function confirm(string $token): void
     {
@@ -74,16 +91,98 @@ final class EmailConfirmationService implements LoggerAwareInterface
             throw new \InvalidArgumentException('Invalid token length.');
         }
 
-        $repository = $this->doctrine->getRepository(EmailConfirmation::class);
-        $confirmation = $repository->findOneBy([ 'token' => $token ]);
-        
-        if (is_null($confirmation)) {
-            throw new ConfirmationNotFoundException("Confirmation");
+        $contract = $this->retrieveContract($token);
+        $contract->confirm();
+
+        $this->entityManager->beginTransaction();
+        try {
+            $this->entityManager->flush();
+
+            $this->dispatchConfirmation($contract);
+
+            $this->entityManager->commit();
+        } catch (\Throwable $e) {
+            $this->entityManager->rollBack();
+            throw $e;
+        }
+    }
+
+    /**
+     * Cancel a request.
+     *
+     * @param string $token Token generated before initializing a new confirmation request
+     * @return void
+     * @throws ConfirmationContractNotFoundException
+     * @throws ConfirmationPeriodExpiredException
+     */
+    public function cancel(string $token): void
+    {
+        if (strlen($token) != $this::TOKEN_LENGTH) {
+            throw new \InvalidArgumentException('Invalid token length.');
         }
 
-        /**
-         * @var Connection @connection
-         */
-        $connection = $this->doctrine->getConnection();
+        $contract = $this->retrieveContract($token);
+        $contract->cancel();
+
+        $this->entityManager->beginTransaction();
+        try {
+            $this->entityManager->flush();
+
+            $this->dispatchCancelation($contract);
+
+            $this->entityManager->commit();
+        } catch (\Throwable $e) {
+            $this->entityManager->rollBack();
+            throw $e;
+        }
+    }
+
+    /**
+     * Retrieve a confirmation contract by token.
+     *
+     * @param string $token
+     * @return ConfirmationContract
+     * @throws ConfirmationContractNotFoundException
+     * @throws ConfirmationPeriodExpiredException
+     */
+    private function retrieveContract(string $token): ConfirmationContract
+    {
+        $repository = $this->entityManager->getRepository(ConfirmationContract::class);
+        $contract = $repository->findOneBy([ 'token' => $token ])
+            ?? throw new ConfirmationContractNotFoundException($token);
+
+        if ($contract->IsExpired()) {
+            throw new ConfirmationPeriodExpiredException($contract);
+        }
+
+        return $contract;
+    }
+
+    /**
+     * Dispatch confirmation event.
+     *
+     * @param ConfirmationContract $contract
+     * @return void
+     */
+    private function dispatchConfirmation(ConfirmationContract $contract): void
+    {
+        $event = new ContractConfirmedEvent();
+        $event->token = $contract->token;
+
+        $this->dispatcher->dispatch($event);
+    }
+
+    /**
+     * Cancel a request.
+     *
+     * @param ConfirmationContract $contract
+     * @return void
+     */
+    private function dispatchCancelation(ConfirmationContract $contract): void
+    {
+        $event = new ContractCanceledEvent();
+        $event->token = $contract->token;
+
+        $this->dispatcher->dispatch($event);
     }
 }

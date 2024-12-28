@@ -2,6 +2,8 @@
 
 namespace JazzfreundeTests\App\Tests\Service\Email;
 
+use Doctrine\Persistence\ObjectRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Service\Email\MailService;
 use Jazzfreunde\App\Type\KnownMailHandleEnum;
@@ -21,7 +23,7 @@ final class MailServiceTest extends TestCase
      */
     public function testSendMail(): void
     {
-        /** @var MailerInterface|MockObject $mailer */
+        /** @var MailerInterface&MockObject $mailer */
         $mailer = $this->createMock(MailerInterface::class);
         $mailer
         ->expects($this->once())
@@ -37,15 +39,15 @@ final class MailServiceTest extends TestCase
             return true;
         }));
 
-        /** @var \Doctrine\Persistence\ObjectRepository|MockObject $repository */
-        $repository = $this->createMock(\Doctrine\Persistence\ObjectRepository::class);
+        /** @var ObjectRepository&MockObject $repository */
+        $repository = $this->createMock(ObjectRepository::class);
         $repository
             ->expects($this->once())
             ->method('findOneBy')
             ->willReturn(new KnownMail(id: 1, handle: KnownMailHandleEnum::NoReply, address: 'no-reply@test.com'))
             ->with($this->equalTo(['handle' => KnownMailHandleEnum::NoReply]));
-        /** @var \Doctrine\Persistence\ManagerRegistry|MockObject $doctrine */
-        $doctrine = $this->createMock(\Doctrine\Persistence\ManagerRegistry::class);
+        /** @var ManagerRegistry&MockObject $doctrine */
+        $doctrine = $this->createMock(ManagerRegistry::class);
         $doctrine
             ->method('getRepository')
             ->willReturn($repository);
@@ -62,10 +64,10 @@ final class MailServiceTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Subject must be at least 5 characters long.');
 
-        /** @var MailerInterface|MockObject $mailer */
+        /** @var MailerInterface&MockObject $mailer */
         $mailer = $this->createMock(MailerInterface::class);
-        /** @var \Doctrine\Persistence\ManagerRegistry|MockObject $doctrine */
-        $doctrine = $this->createMock(\Doctrine\Persistence\ManagerRegistry::class);
+        /** @var ManagerRegistry&MockObject $doctrine */
+        $doctrine = $this->createMock(ManagerRegistry::class);
 
         $mailService = new MailService($doctrine, $mailer);
         $mailService->send(KnownMailHandleEnum::NoReply, 'test@mail.com', 'subj', 'template.html.twig');
@@ -79,10 +81,10 @@ final class MailServiceTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Template must have a ".html.twig" file extension.');
 
-        /** @var MailerInterface|MockObject $mailer */
+        /** @var MailerInterface&MockObject $mailer */
         $mailer = $this->createMock(MailerInterface::class);
-        /** @var \Doctrine\Persistence\ManagerRegistry|MockObject $doctrine */
-        $doctrine = $this->createMock(\Doctrine\Persistence\ManagerRegistry::class);
+        /** @var ManagerRegistry&MockObject $doctrine */
+        $doctrine = $this->createMock(ManagerRegistry::class);
 
         $mailService = new MailService($doctrine, $mailer);
         $mailService->send(KnownMailHandleEnum::NoReply, 'test@mail.com', 'subject', 'template.twig');
@@ -95,17 +97,17 @@ final class MailServiceTest extends TestCase
     {
         $this->expectException(MailException::class);
 
-        /** @var MailerInterface|MockObject $mailer */
+        /** @var MailerInterface&MockObject $mailer */
         $mailer = $this->createMock(MailerInterface::class);
-        /** @var \Doctrine\Persistence\ObjectRepository|MockObject $repository */
-        $repository = $this->createMock(\Doctrine\Persistence\ObjectRepository::class);
+        /** @var ObjectRepository&MockObject $repository */
+        $repository = $this->createMock(ObjectRepository::class);
         $repository
             ->expects($this->once())
             ->method('findOneBy')
             ->willReturn(null)
             ->with($this->equalTo(['handle' => KnownMailHandleEnum::NoReply]));
-        /** @var \Doctrine\Persistence\ManagerRegistry|MockObject $doctrine */
-        $doctrine = $this->createMock(\Doctrine\Persistence\ManagerRegistry::class);
+        /** @var ManagerRegistry&MockObject $doctrine */
+        $doctrine = $this->createMock(ManagerRegistry::class);
         $doctrine
             ->method('getRepository')
             ->willReturn($repository);

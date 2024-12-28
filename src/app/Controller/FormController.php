@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Jazzfreunde\App\Controller;
 
 use DateTime;
+use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Form\NewsletterSubscriptionType;
 use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
@@ -19,7 +20,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * Routing Controller für die Website
  */
 #[Route('/form', name: 'form_')]
-class FormController extends AbstractController
+final class FormController extends AbstractController
 {
     /**
      * Newletter abonnieren
@@ -44,6 +45,9 @@ class FormController extends AbstractController
 
                 $subscription = new NewsletterSubscription(...$data);
                 $subscription->creationTime = new DateTime();
+                $subscription->confirmation = new ConfirmationContract();
+                $subscription->confirmation->token = bin2hex(random_bytes(32));
+                $subscription->confirmation->openForConfirmationUntil = new \DateTimeImmutable('+1 day');
 
                 if (0 < count($validator->validate($subscription))) {
                     throw new \DomainException('Invalid subscription data');
@@ -55,7 +59,6 @@ class FormController extends AbstractController
             } catch (SubscriptionException) {
                 return $this->redirectToRoute('form_newsletter_already_subscribed');
             }
-            // Todo Catch Email Transport Exception
         }
 
         return $this->redirectToRoute('error');

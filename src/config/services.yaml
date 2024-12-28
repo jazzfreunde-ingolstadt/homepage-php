@@ -11,11 +11,6 @@ services:
     Jazzfreunde\App\Controller\:
         resource: '%kernel.project_dir%/app/Controller/'
 
-    jazzfreunde.newsletter_subscription:
-        class: Jazzfreunde\App\Service\Newsletter\NewsletterService
-        calls:
-            - setLogger: ['@logger']
-
     Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface:
         alias: webpack_encore.entrypoint_lookup[mail]
         public: true

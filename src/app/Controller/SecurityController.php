@@ -28,7 +28,7 @@ use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
  * @psalm-suppress PropertyNotSetInConstructor $container
  */
 #[Route('/session', name: 'security_')]
-class SecurityController extends AbstractController implements LoggerAwareInterface
+final class SecurityController extends AbstractController implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 

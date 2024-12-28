@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 /**
  * Routing Controller für die Website
  */
-class AppRoutingController extends AbstractController
+final class AppRoutingController extends AbstractController
 {
     /**
      * Startseite

@@ -10,11 +10,12 @@ use Jazzfreunde\App\Service\Email\Exception\MailException;
 use Jazzfreunde\App\Type\KnownMailHandleEnum;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 /**
  * Service zum Senden von E-Mails
  */
-final class MailService
+class MailService
 {
     /**
      * @param ManagerRegistry $doctrine
@@ -34,6 +35,7 @@ final class MailService
      * @param string $subject
      * @param string $twigTemplate
      * @return void
+     * @throws MailException
      */
     public function send(
         KnownMailHandleEnum $from,
@@ -63,7 +65,11 @@ final class MailService
             ->htmlTemplate($twigTemplate)
             ->context($twigContext);
 
-        $this->mailer->send($email);
+        try {
+            $this->mailer->send($email);
+        } catch (TransportExceptionInterface $e) {
+            throw new MailException('Failed to send email.', previous: $e);
+        }
     }
 
     /**
@@ -76,7 +82,7 @@ final class MailService
         $mail = $knownMails->findOneBy([ 'handle' => $handle ]);
 
         if (is_null($mail)) {
-            throw new MailException(sprintf('%s: Mail with Handle "%s" is not configured.', KnownMail::class, $handle));
+            throw new MailException(sprintf('%s: Mail with Handle "%s" is not configured.', KnownMail::class, $handle->name));
         }
 
         return $mail;
