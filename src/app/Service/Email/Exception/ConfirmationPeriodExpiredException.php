@@ -18,6 +18,6 @@ final class ConfirmationPeriodExpiredException extends \Exception
      */
     public function __construct(ConfirmationContract $request)
     {
-        $this->message = "Confirmation with token '{$request->token}' has expired at {$request->openForConfirmationUntil}.";
+        $this->message = "Confirmation with token '{$request->token}' has expired at {$request->openForConfirmationUntil->format('Y-m-d H:i:s')}.";
     }
 }

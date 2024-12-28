@@ -67,6 +67,6 @@ class ConfirmationContract
      */
     public function cancel(): void
     {
-        $this->state = ConfirmationStateEnum::Canceled;
+        $this->state = ConfirmationStateEnum::Cancelled;
     }
 }

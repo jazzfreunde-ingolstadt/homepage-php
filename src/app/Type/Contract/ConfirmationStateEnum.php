@@ -9,5 +9,5 @@ enum ConfirmationStateEnum: string
 {
     case PendingConfirmation = 'pending';
     case Confirmed = 'confirmed';
-    case Canceled = 'canceled';
+    case Cancelled = 'cancelled';
 }

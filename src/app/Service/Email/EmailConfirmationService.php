@@ -59,6 +59,10 @@ final class EmailConfirmationService implements LoggerAwareInterface
                 throw new \DomainException('Invalid confirmation contract');
             }
 
+            if ($contract->hasConfirmationPeriodExpired()) {
+                throw new ConfirmationPeriodExpiredException($contract);
+            }
+
             $this->entityManager->persist($contract);
             $this->entityManager->flush();
 
@@ -87,11 +91,12 @@ final class EmailConfirmationService implements LoggerAwareInterface
      */
     public function confirm(string $token): void
     {
-        if (strlen($token) != $this::TOKEN_LENGTH) {
-            throw new \InvalidArgumentException('Invalid token length.');
+        $contract = $this->retrieveContract($token);
+
+        if ($contract->hasConfirmationPeriodExpired()) {
+            throw new ConfirmationPeriodExpiredException($contract);
         }
 
-        $contract = $this->retrieveContract($token);
         $contract->confirm();
 
         $this->entityManager->beginTransaction();
@@ -117,10 +122,6 @@ final class EmailConfirmationService implements LoggerAwareInterface
      */
     public function cancel(string $token): void
     {
-        if (strlen($token) != $this::TOKEN_LENGTH) {
-            throw new \InvalidArgumentException('Invalid token length.');
-        }
-
         $contract = $this->retrieveContract($token);
         $contract->cancel();
 
@@ -148,12 +149,9 @@ final class EmailConfirmationService implements LoggerAwareInterface
     private function retrieveContract(string $token): ConfirmationContract
     {
         $repository = $this->entityManager->getRepository(ConfirmationContract::class);
+        /** @var ConfirmationContract $contract */
         $contract = $repository->findOneBy([ 'token' => $token ])
             ?? throw new ConfirmationContractNotFoundException($token);
-
-        if ($contract->IsExpired()) {
-            throw new ConfirmationPeriodExpiredException($contract);
-        }
 
         return $contract;
     }
