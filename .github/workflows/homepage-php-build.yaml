@@ -14,6 +14,12 @@ env:
   DEPLOYMENT_FOLDER: src
 
 jobs:
+  run-tests:
+    uses: ./.github/workflows/run-unittests.yml
+
+  lint-sourcecode:
+    uses: ./.github/workflows/lint-sourcecode.yml
+
   build-vendor-libraries:
     uses: ./.github/workflows/compose-vendor.yml
     with:
@@ -28,7 +34,7 @@ jobs:
   build-project:
     name: build homepage-php
     runs-on: ubuntu-latest
-    needs: [ build-vendor-libraries, build-app ]
+    needs: [ run-tests, lint-sourcecode, build-vendor-libraries, build-app ]
     steps:
       - name: checkout
         uses: actions/checkout@v4

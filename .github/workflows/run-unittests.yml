@@ -1,4 +1,4 @@
-name: Lint source code
+name: Run unit tests
 on:
   workflow_call:
   pull_request:
@@ -37,8 +37,5 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-scripts
 
-      - name: Run static code analysis
-        run: |
-          mkdir var
-          chmod +x bin/psalm
-          bin/psalm -c=psalm.xml --output-format=github
+      - name: Run unit tests
+        run: vendor/bin/phpunit --configuration phpunit.xml
