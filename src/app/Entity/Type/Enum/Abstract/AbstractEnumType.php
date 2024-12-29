@@ -1,18 +1,24 @@
 <?php declare(strict_types = 1);
 
-namespace Jazzfreunde\App\Entity\Type\Enum;
+namespace Jazzfreunde\App\Entity\Type\Enum\Abstract;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
-use Jazzfreunde\App\Entity\Type\Enum\InvalidEnumTypeNameError;
+use Jazzfreunde\App\Entity\Type\Enum\Abstract\InvalidEnumTypeNameError;
 
 /**
  * Basisklasse Doctrine Enum Typ
  */
 class AbstractEnumType extends Type
 {
+    /**
+     * @var string
+     */
     public const ENTITY_NAME = 'undefined';
+    /**
+     * @var string
+     */
     public const ENUM_CLASS_NAME = 'undefined';
 
     /**
@@ -21,7 +27,7 @@ class AbstractEnumType extends Type
     public static function addType(string $name, string $className): void
     {
         if ($name === self::ENTITY_NAME) {
-            throw new EntityNameUndefinedError();
+            throw new EntityNameUndefinedError(static::class);
         }
         if (static::ENUM_CLASS_NAME === self::ENUM_CLASS_NAME) {
             throw new EnumClassNameUndefinedError(static::class);
@@ -42,7 +48,7 @@ class AbstractEnumType extends Type
             throw new InvalidEnumTypeNameError(static::ENUM_CLASS_NAME);
         }
 
-        $cases = array_map(fn(\BackedEnum $type) => "'{$type->value}'", static::ENUM_CLASS_NAME::cases());
+        $cases = array_map(fn(\BackedEnum $type) => "'{$type->value}'", static::cases());
 
         return sprintf("ENUM(%s)", implode(", ", $cases));
     }
@@ -57,7 +63,7 @@ class AbstractEnumType extends Type
         }
 
         try {
-            return static::ENUM_CLASS_NAME::from($value);
+            return static::from($value);
         } catch (\ValueError $e) {
             throw new ConversionException('Conversion to enum type is not possible.', previous: $e);
         }
@@ -68,7 +74,7 @@ class AbstractEnumType extends Type
      */
     public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): mixed
     {
-        if (!$value instanceof \BackedEnum ||is_null(static::ENUM_CLASS_NAME::tryFrom($value->value))) {
+        if (!$value instanceof \BackedEnum) {
             throw new ConversionException(sprintf('Conversion to database representation is not possible. Value musst be of type "%s"', static::ENUM_CLASS_NAME));
         }
 
@@ -81,5 +87,40 @@ class AbstractEnumType extends Type
     public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
+    }
+
+    /**
+     * @return \BackedEnum[]
+     */
+    private static function cases(): array
+    {
+        /** @var \BackedEnum[] */
+        $cases = call_user_func([static::ENUM_CLASS_NAME, 'cases']);
+
+        return $cases;
+    }
+
+    /**
+     * @param int|string $value
+     * @return \BackedEnum
+     */
+    private static function from(int|string $value): \BackedEnum
+    {
+        /** @var \BackedEnum */
+        $enum = call_user_func([static::ENUM_CLASS_NAME, 'from'], $value);
+
+        return $enum;
+    }
+
+    /**
+     * @param int|string $value
+     * @return \BackedEnum|null
+     */
+    private static function tryFrom(int|string $value): ?\BackedEnum
+    {
+        /** @var \BackedEnum|null */
+        $enum = call_user_func([static::ENUM_CLASS_NAME, 'tryFrom'], $value);
+        
+        return $enum;
     }
 }

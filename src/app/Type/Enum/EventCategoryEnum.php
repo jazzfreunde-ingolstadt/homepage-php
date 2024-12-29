@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Jazzfreunde\App\Type;
+namespace Jazzfreunde\App\Type\Enum;
 
 /**
  * Veranstaltungskategorien

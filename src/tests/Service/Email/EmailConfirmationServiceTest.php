@@ -9,6 +9,7 @@ use Jazzfreunde\App\Service\Email\MailService;
 use Jazzfreunde\App\Service\Email\EmailConfirmationService;
 use Jazzfreunde\App\Service\Email\Exception\ConfirmationContractNotFoundException;
 use Jazzfreunde\App\Service\Email\Exception\ConfirmationPeriodExpiredException;
+use Jazzfreunde\App\Type\Primitive\Email;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -86,7 +87,7 @@ final class EmailConfirmationServiceTest extends TestCase
 
         $service->askForConfirmation(
             $this->confirmation,
-            'test@mail.com',
+            new Email('test@mail.com'),
             'Test',
             []
         );
@@ -139,7 +140,7 @@ final class EmailConfirmationServiceTest extends TestCase
 
         $service->askForConfirmation(
             $this->confirmation,
-            'test@mail.com',
+            new Email('test@mail.com'),
             'Test',
             []
         );

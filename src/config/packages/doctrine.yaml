@@ -4,8 +4,6 @@ doctrine:
     server_version: "mariadb-10.6.10"
     mapping_types:
       enum: string
-    types:
-      event_category: Jazzfreunde\App\Entity\Type\EventCategoryType
     use_savepoints: true
   orm:
     auto_generate_proxy_classes: true

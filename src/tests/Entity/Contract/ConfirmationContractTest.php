@@ -4,7 +4,7 @@ namespace JazzfreundeTests\App\Tests\Entity\Contract;
 
 use PHPUnit\Framework\TestCase;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Type\Contract\ConfirmationStateEnum;
+use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 
 /**
  * Test for email confirmation service

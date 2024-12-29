@@ -6,7 +6,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\App\Entity\Type\Enum\Contract\ConfirmationStateEnumType;
-use Jazzfreunde\App\Type\Contract\ConfirmationStateEnum;
+use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

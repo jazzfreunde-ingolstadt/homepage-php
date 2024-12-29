@@ -12,8 +12,8 @@ use ApiPlatform\Metadata\GetCollection;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Entity\Type\EventCategoryType;
-use Jazzfreunde\App\Type\EventCategoryEnum;
+use Jazzfreunde\App\Entity\Type\Enum\Event\EventCategoryType;
+use Jazzfreunde\App\Type\Enum\EventCategoryEnum;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**

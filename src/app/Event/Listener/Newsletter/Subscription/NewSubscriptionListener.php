@@ -4,7 +4,7 @@ namespace Jazzfreunde\App\Event\Listener\Newsletter\Subscription;
 
 use Jazzfreunde\App\Event\Event\Newsletter\Subscription\NewSubscriptionEvent;
 use Jazzfreunde\App\Service\Email\MailService;
-use Jazzfreunde\App\Type\KnownMailHandleEnum;
+use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 /**

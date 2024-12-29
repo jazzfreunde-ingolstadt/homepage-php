@@ -7,7 +7,8 @@ namespace Jazzfreunde\App\Service\Email;
 use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Service\Email\Exception\MailException;
-use Jazzfreunde\App\Type\KnownMailHandleEnum;
+use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\App\Type\Primitive\Email;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -31,7 +32,7 @@ class MailService
      * Sendet eine E-Mail
      *
      * @param KnownMailHandleEnum $from
-     * @param KnownMailHandleEnum|string $to
+     * @param KnownMailHandleEnum|Email $to
      * @param string $subject
      * @param string $twigTemplate
      * @return void
@@ -39,7 +40,7 @@ class MailService
      */
     public function send(
         KnownMailHandleEnum $from,
-        KnownMailHandleEnum|string $to,
+        KnownMailHandleEnum|Email $to,
         string $subject,
         string $twigTemplate,
         array $twigContext = []
@@ -51,11 +52,14 @@ class MailService
             throw new \InvalidArgumentException('Template must have a ".html.twig" file extension.');
         }
 
-        $sender = $this->getKnownMail($from)->address;
+        $sender = $this->getKnownMail($from)->address->__toString();
 
-        $recipient = $to;
+        $recipient = '';
         if ($to instanceof KnownMailHandleEnum) {
-            $recipient = $this->getKnownMail($to)->address;
+            $recipient = $this->getKnownMail($to)->address->__toString();
+        }
+        if ($to instanceof Email) {
+            $recipient = $to->__toString();
         }
 
         $email = (new TemplatedEmail())

@@ -132,7 +132,7 @@ final class SecurityController extends AbstractController implements LoggerAware
 
         $email =
             (new TemplatedEmail())
-            ->from($from->address)
+            ->from($from->address->__toString())
             ->to($recipient)
             ->subject('Login bei Jazzfreunde Ingolstadt e.V.')
             ->htmlTemplate('email/login-link.html.twig')

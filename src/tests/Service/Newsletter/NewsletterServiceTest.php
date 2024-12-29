@@ -10,6 +10,7 @@ use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Event\Event\Newsletter\Subscription\NewSubscriptionEvent;
 use Jazzfreunde\App\Service\Newsletter\NewsletterService;
 use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
+use Jazzfreunde\App\Type\Primitive\Email;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -30,7 +31,7 @@ final class NewsletterServiceTest extends TestCase
     protected function setUp(): void
     {
         $subscription = new NewsletterSubscription();
-        $subscription->email = 'test@mail.com';
+        $subscription->email = new Email('test@mail.com');
         $subscription->creationTime = new DateTime();
         $subscription->confirmation = new ConfirmationContract();
         $subscription->confirmation->token = bin2hex(random_bytes(32));

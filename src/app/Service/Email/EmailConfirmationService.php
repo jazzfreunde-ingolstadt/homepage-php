@@ -7,13 +7,14 @@ namespace Jazzfreunde\App\Service\Email;
 use Doctrine\ORM\EntityManagerInterface;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Service\Email\Exception\ConfirmationContractNotFoundException;
-use Jazzfreunde\App\Type\KnownMailHandleEnum;
+use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
 use Jazzfreunde\App\Service\Email\Exception\ConfirmationPeriodExpiredException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Jazzfreunde\App\Event\Event\Contract\ContractConfirmedEvent;
 use Jazzfreunde\App\Event\Event\Contract\ContractCanceledEvent;
+use Jazzfreunde\App\Type\Primitive\Email;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -42,14 +43,14 @@ final class EmailConfirmationService implements LoggerAwareInterface
     /**
      * Ask user to confirm a request via email.
      *
-     * @param string $email Recipient
+     * @param Email $email Recipient
      * @param string $subject title of confirmation
      * @param array $context Context embedded into the email template
      * @return void
      */
     public function askForConfirmation(
         ConfirmationContract $contract,
-        string $email,
+        Email $email,
         string $subject,
         array $context
     ): void {
@@ -149,7 +150,6 @@ final class EmailConfirmationService implements LoggerAwareInterface
     private function retrieveContract(string $token): ConfirmationContract
     {
         $repository = $this->entityManager->getRepository(ConfirmationContract::class);
-        /** @var ConfirmationContract $contract */
         $contract = $repository->findOneBy([ 'token' => $token ])
             ?? throw new ConfirmationContractNotFoundException($token);
 
@@ -164,8 +164,9 @@ final class EmailConfirmationService implements LoggerAwareInterface
      */
     private function dispatchConfirmation(ConfirmationContract $contract): void
     {
-        $event = new ContractConfirmedEvent();
-        $event->token = $contract->token;
+        $event = new ContractConfirmedEvent(
+            $contract->token
+        );
 
         $this->dispatcher->dispatch($event);
     }
@@ -178,8 +179,9 @@ final class EmailConfirmationService implements LoggerAwareInterface
      */
     private function dispatchCancelation(ConfirmationContract $contract): void
     {
-        $event = new ContractCanceledEvent();
-        $event->token = $contract->token;
+        $event = new ContractCanceledEvent(
+            $contract->token
+        );
 
         $this->dispatcher->dispatch($event);
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Type\Enum;
+namespace Jazzfreunde\App\Entity\Type\Enum\Abstract;
 
 /**
  * The entity name for the type has not been defined.
@@ -10,9 +10,9 @@ namespace Jazzfreunde\App\Entity\Type\Enum;
 class EntityNameUndefinedError extends \CompileError
 {
     /**
-     * @inheritDoc
+     * @param string $className The class name of the type
      */
-    public function EntityNameUndefinedError(string $className)
+    public function __construct(string $className)
     {
         parent::__construct("The entity name for '$className' has not been defined. Override the ENTITY_NAME constant.");
     }

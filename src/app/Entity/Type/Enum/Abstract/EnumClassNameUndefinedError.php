@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Type\Enum;
+namespace Jazzfreunde\App\Entity\Type\Enum\Abstract;
 
 /**
  * The enum classname for the type has not been defined.
@@ -10,9 +10,9 @@ namespace Jazzfreunde\App\Entity\Type\Enum;
 class EnumClassNameUndefinedError extends \CompileError
 {
     /**
-     * @inheritDoc
+     * @param string $className The class name of the type
      */
-    public function EnumClassNameUndefinedError(string $className)
+    public function __construct(string $className)
     {
         parent::__construct("The enum classname for '$className' has not been defined. Override the ENUM_CLASS_NAME constant.");
     }

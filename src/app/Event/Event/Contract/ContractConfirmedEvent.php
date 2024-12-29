@@ -9,5 +9,11 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 final class ContractConfirmedEvent extends Event
 {
-    public string $token;
+    /**
+     * @param string $token contract token
+     */
+    public function __construct(
+        public string $token
+    ) {
+    }
 }

@@ -1,9 +1,13 @@
 <?php declare(strict_types = 1);
 // phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 
-namespace JazzfreundeTests\App\Tests\Entity\Type\Enum;
+namespace JazzfreundeTests\App\Tests\Entity\Type\Enum\Abstract;
 
-use Jazzfreunde\App\Entity\Type\Enum\AbstractEnumType;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Jazzfreunde\App\Entity\Type\Enum\Abstract\AbstractEnumType;
+use Jazzfreunde\App\Entity\Type\Enum\Abstract\EntityNameUndefinedError;
+use Jazzfreunde\App\Entity\Type\Enum\Abstract\EnumClassNameUndefinedError;
+use Jazzfreunde\App\Entity\Type\Enum\Abstract\InvalidEnumTypeNameError;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -51,7 +55,7 @@ final class AbstractEnumTypeTest extends TestCase
      */
     public function testAddTypeUndefinedEntityName(): void
     {
-        $this->expectException(\Jazzfreunde\App\Entity\Type\Enum\EntityNameUndefinedError::class);
+        $this->expectException(EntityNameUndefinedError::class);
         AbstractEnumType::addType('undefined', TestEnumType::class);
     }
 
@@ -60,7 +64,7 @@ final class AbstractEnumTypeTest extends TestCase
      */
     public function testAddTypeInvalidEnumType(): void
     {
-        $this->expectException(\Jazzfreunde\App\Entity\Type\Enum\InvalidEnumTypeNameError::class);
+        $this->expectException(InvalidEnumTypeNameError::class);
         InvalidTestEnumType::addType(InvalidTestEnumType::ENTITY_NAME, InvalidTestEnumType::class);
     }
 
@@ -69,7 +73,7 @@ final class AbstractEnumTypeTest extends TestCase
      */
     public function testAddTypeUndefinedEnumType(): void
     {
-        $this->expectException(\Jazzfreunde\App\Entity\Type\Enum\EnumClassNameUndefinedError::class);
+        $this->expectException(EnumClassNameUndefinedError::class);
         Invalid2TestEnumType::addType(Invalid2TestEnumType::ENTITY_NAME, Invalid2TestEnumType::class);
     }
 
@@ -79,8 +83,10 @@ final class AbstractEnumTypeTest extends TestCase
     public function testSQLCommentHin(): void
     {
         $type = new TestEnumType();
+        /** @var AbstractPlatform&MockObject */
+        $platform = $this->createMock(AbstractPlatform::class);
 
-        $this->assertEquals(true, $type->requiresSQLCommentHint($this->createMock(\Doctrine\DBAL\Platforms\AbstractPlatform::class)));
+        $this->assertEquals(true, $type->requiresSQLCommentHint($platform));
     }
 
     /**
@@ -89,8 +95,10 @@ final class AbstractEnumTypeTest extends TestCase
     public function testSQLDeclaration(): void
     {
         $type = new TestEnumType();
+        /** @var AbstractPlatform&MockObject */
+        $platform = $this->createMock(AbstractPlatform::class);
 
-        $this->assertEquals("ENUM('first', 'second')", $type->getSQLDeclaration([], $this->createMock(\Doctrine\DBAL\Platforms\AbstractPlatform::class)));
+        $this->assertEquals("ENUM('first', 'second')", $type->getSQLDeclaration([], $platform));
     }
 
     /**
@@ -99,8 +107,10 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToDatabaseValue(): void
     {
         $type = new TestEnumType();
+        /** @var AbstractPlatform&MockObject */
+        $platform = $this->createMock(AbstractPlatform::class);
 
-        $this->assertEquals('first', $type->convertToDatabaseValue(TestEnum::first, $this->createMock(\Doctrine\DBAL\Platforms\AbstractPlatform::class)));
+        $this->assertEquals('first', $type->convertToDatabaseValue(TestEnum::first, $platform));
     }
 
     /**
@@ -109,8 +119,10 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToPHPValue(): void
     {
         $type = new TestEnumType();
+        /** @var AbstractPlatform&MockObject */
+        $platform = $this->createMock(AbstractPlatform::class);
 
-        $this->assertEquals(TestEnum::first, $type->convertToPHPValue('first', $this->createMock(\Doctrine\DBAL\Platforms\AbstractPlatform::class)));
+        $this->assertEquals(TestEnum::first, $type->convertToPHPValue('first', $platform));
     }
 
     /**
@@ -119,9 +131,11 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToDatabaseValueNotBackedEnum(): void
     {
         $type = new TestEnumType();
+        /** @var AbstractPlatform&MockObject */
+        $platform = $this->createMock(AbstractPlatform::class);
 
         $this->expectException(\Doctrine\DBAL\Types\ConversionException::class);
-        $type->convertToDatabaseValue('first', $this->createMock(\Doctrine\DBAL\Platforms\AbstractPlatform::class));
+        $type->convertToDatabaseValue('first', $platform);
     }
 
     /**
@@ -130,9 +144,11 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToPHPValueEnumValueNotExist(): void
     {
         $type = new TestEnumType();
+        /** @var AbstractPlatform&MockObject */
+        $platform = $this->createMock(AbstractPlatform::class);
 
         $this->expectException(\Doctrine\DBAL\Types\ConversionException::class);
-        $type->convertToPHPValue('third', $this->createMock(\Doctrine\DBAL\Platforms\AbstractPlatform::class));
+        $type->convertToPHPValue('third', $platform);
     }
 
     /**
@@ -141,8 +157,10 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToPHPValueNotString(): void
     {
         $type = new TestEnumType();
+        /** @var AbstractPlatform&MockObject */
+        $platform = $this->createMock(AbstractPlatform::class);
 
         $this->expectException(\Doctrine\DBAL\Types\ConversionException::class);
-        $type->convertToPHPValue(1, $this->createMock(\Doctrine\DBAL\Platforms\AbstractPlatform::class));
+        $type->convertToPHPValue(1, $platform);
     }
 }
