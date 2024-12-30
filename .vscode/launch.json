@@ -8,7 +8,7 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
-            "hostname": "localhost",
+            "hostname": "0.0.0.0",
             "port": 9003,
             "log": false,
             "ignore": [

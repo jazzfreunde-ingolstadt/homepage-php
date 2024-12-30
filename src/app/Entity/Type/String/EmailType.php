@@ -17,6 +17,16 @@ final class EmailType extends StringType
     /**
      * @inheritDoc
      */
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        $column['length'] = 254;
+
+        return $platform->getStringTypeDeclarationSQL($column);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function convertToPHPValue(mixed $value, AbstractPlatform $platform): mixed
     {
         if (!\is_string($value)) {

@@ -2,6 +2,9 @@
 
 namespace Jazzfreunde\App\DependencyInjection;
 
+use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
+use ReflectionProperty;
+
 /**
  * Trait zum schnellen Initialisieren von Objekten.
  */
@@ -23,7 +26,21 @@ trait PropertyInjectionTrait
                 throw new \LogicException("Property {$name} does not exist in class {$this->class}.");
             }
 
-            $this->$name = $value;
+            try {
+                $this->$name = $value;
+            } catch (\TypeError $e) {
+                $reflection = new ReflectionProperty(get_class($this), $name);
+                $type = $reflection->getType();
+
+                if (!$type instanceof \ReflectionNamedType 
+                || !$type->getName() instanceof PrimitiveTypeInterface) {
+                    throw $e;
+                }
+
+                $class = $type->getName();
+
+                $this->$name = new $class($value);
+            }
         });
     }
 }

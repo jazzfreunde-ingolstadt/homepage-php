@@ -26,7 +26,7 @@ class NewsletterSubscription
     public Email $email;
     #[ORM\Column(type: 'datetime', options: ["default" => "CURRENT_TIMESTAMP"])]
     public DateTime $creationTime;
-    #[ORM\OneToOne(targetEntity: ConfirmationContract::class)]
+    #[ORM\OneToOne(targetEntity: ConfirmationContract::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(referencedColumnName: 'uuid')]
     public ConfirmationContract $confirmation;
 }

@@ -1,0 +1,9 @@
+{% extends 'email/base.html.twig' %}
+
+{% block content %}
+    <h1 class="text-xl">Jazzletter abonniert!</h1>
+
+    <p class="text-md">Vielen Dank für Ihr Interesse. Sie erhalten künftig jeden Monat unseren Jazzletter</p>
+    
+    <a href="{{url('form_newsletter_confirmation', { token: token})}}"><small>Abonement kündigen</small></a>
+{% endblock %}

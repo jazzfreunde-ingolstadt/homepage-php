@@ -3,8 +3,7 @@
 namespace Jazzfreunde\App\Event\Listener\Newsletter\Subscription;
 
 use Jazzfreunde\App\Event\Event\Newsletter\Subscription\NewSubscriptionEvent;
-use Jazzfreunde\App\Service\Email\MailService;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\App\Service\Email\EmailConfirmationService;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 /**
@@ -14,10 +13,10 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 final class NewSubscriptionListener
 {
     /**
-     * @param MailService $mailer
+     * @param EmailConfirmationService $confirmationService
      */
     public function __construct(
-        private MailService $mailer,
+        private EmailConfirmationService $confirmationService,
     ) {
     }
 
@@ -29,16 +28,11 @@ final class NewSubscriptionListener
      */
     public function onNewSubscription(NewSubscriptionEvent $event): void
     {
-        $this->mailer->send(
-            KnownMailHandleEnum::NoReply,
-            KnownMailHandleEnum::Jazzletter,
-            'Neuer Newsletter Abonnent!',
-            'email/newsletter-subscription-notice.html.twig',
-            [
-                'subscription' => [
-                    'email' => $event->subscription->email
-                ],
-            ]
+        $this->confirmationService->askForConfirmation(
+            $event->subscription->confirmation,
+            $event->subscription->email,
+            'Bestätigen Sie Ihre Newsletter Anmeldung',
+            [],
         );
     }
 }

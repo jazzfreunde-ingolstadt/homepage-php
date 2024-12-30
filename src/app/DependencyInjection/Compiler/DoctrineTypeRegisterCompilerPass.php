@@ -12,6 +12,9 @@ use Symfony\Component\Finder\Finder;
 
 use function is_string;
 use function sprintf;
+use function array_key_exists;
+use function preg_replace;
+use function is_null;
 
 /**
  * Compiler pass to register all Doctrine custom types from the project.
@@ -67,7 +70,12 @@ final readonly class DoctrineTypeRegisterCompilerPass implements CompilerPassInt
         foreach ($finder as $file) {
             $path = $file->getRelativePathname();
             $normalized = self::TOP_LEVEL_NAMESPACE.str_replace('/', '\\', $path);
+            /** @var class-string|null */
             $className = preg_replace('/\.php$/', '', $normalized);
+
+            if (is_null($className)) {
+                continue;
+            }
 
             $reflection = new ReflectionClass($className);
 

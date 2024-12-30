@@ -6,6 +6,7 @@ namespace Jazzfreunde\App\Service\Newsletter;
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
+use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Form\NewsletterSubscriptionType;
 use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
@@ -14,6 +15,9 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
+use function count;
 
 /**
  * Service zur Verwaltung des Newsletters
@@ -25,12 +29,14 @@ final class NewsletterService
      * @param FormFactoryInterface $formFactory
      * @param UrlGeneratorInterface $urlGenerator
      * @param EventDispatcherInterface $dispatcher
+     * @param ValidatorInterface $validator
      */
     public function __construct(
         private EntityManagerInterface $entityManager,
         private FormFactoryInterface $formFactory,
         private UrlGeneratorInterface $urlGenerator,
-        private EventDispatcherInterface $dispatcher
+        private EventDispatcherInterface $dispatcher,
+        private ValidatorInterface $validator,
     ) {
     }
 
@@ -42,12 +48,18 @@ final class NewsletterService
      */
     public function subscribe(NewsletterSubscription $subscription): void
     {
+        $subscription->confirmation = ConfirmationContract::create();
+
+        if (0 < count($this->validator->validate($subscription))) {
+            throw new \DomainException('Invalid subscription data');
+        }
+
         $this->entityManager->beginTransaction();
         try {
             $this->entityManager->persist($subscription);
             $this->entityManager->flush();
 
-            $this->notifyModerator($subscription);
+            $this->dispatcher->dispatch(new NewSubscriptionEvent($subscription));
 
             $this->entityManager->commit();
         } catch (UniqueConstraintViolationException $e) {
@@ -56,17 +68,6 @@ final class NewsletterService
             $this->entityManager->rollback();
             throw new SubscriptionException(previous: $e);
         }
-    }
-
-    /**
-     * Benachrichtigt den Moderator über ein neues Abonnement.
-     *
-     * @param NewsletterSubscription $subscription
-     * @return void
-     */
-    private function notifyModerator(NewsletterSubscription $subscription): void
-    {
-        $this->dispatcher->dispatch(new NewSubscriptionEvent($subscription));
     }
 
     /**

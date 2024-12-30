@@ -33,9 +33,12 @@ class Kernel extends BaseKernel
      */
     protected function build(ContainerBuilder $container): void
     {
+        /** @var string */
+        $projectDir = $container->getParameter('kernel.project_dir');
+        
         $container->addCompilerPass(
             new DoctrineTypeRegisterCompilerPass(
-                $container->getParameter('kernel.project_dir')
+                $projectDir
             )
         );
     }

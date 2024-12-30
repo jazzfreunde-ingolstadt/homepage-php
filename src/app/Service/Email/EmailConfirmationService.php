@@ -13,7 +13,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Jazzfreunde\App\Event\Event\Contract\ContractConfirmedEvent;
-use Jazzfreunde\App\Event\Event\Contract\ContractCanceledEvent;
+use Jazzfreunde\App\Event\Event\Contract\ContractCancelledEvent;
 use Jazzfreunde\App\Type\Primitive\Email;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -165,7 +165,7 @@ final class EmailConfirmationService implements LoggerAwareInterface
     private function dispatchConfirmation(ConfirmationContract $contract): void
     {
         $event = new ContractConfirmedEvent(
-            $contract->token
+            $contract
         );
 
         $this->dispatcher->dispatch($event);
@@ -179,8 +179,8 @@ final class EmailConfirmationService implements LoggerAwareInterface
      */
     private function dispatchCancelation(ConfirmationContract $contract): void
     {
-        $event = new ContractCanceledEvent(
-            $contract->token
+        $event = new ContractCancelledEvent(
+            $contract
         );
 
         $this->dispatcher->dispatch($event);

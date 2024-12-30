@@ -19,16 +19,32 @@ class ConfirmationContract
     use PropertyInjectionTrait;
 
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'ulid')]
-    public ?string $id = null;
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class:"doctrine.uuid_generator")]
+    #[ORM\Column(type: 'uuid')]
+    public ?string $uuid = null;
     #[Assert\NotBlank(message: 'Token is required.')]
     #[ORM\Column(type: 'string')]
     public string $token;
     #[ORM\Column(type: 'datetime_immutable')]
     public DateTimeImmutable $openForConfirmationUntil;
     #[ORM\Column(type: ConfirmationStateEnumType::ENTITY_NAME, options: [ 'default' => ConfirmationStateEnum::PendingConfirmation ])]
-    public ConfirmationStateEnum $state;
+    public ConfirmationStateEnum $state = ConfirmationStateEnum::PendingConfirmation;
+
+    /**
+     * Create a new confirmation contract
+     *
+     * @return ConfirmationContract
+     */
+    public static function create(
+        DateTimeImmutable $openForConfirmationUntil = new DateTimeImmutable('+1 day'),
+    ): ConfirmationContract {
+        $confirmation = new self();
+        $confirmation->token = bin2hex(random_bytes(32));
+        $confirmation->openForConfirmationUntil = $openForConfirmationUntil;
+
+        return $confirmation;
+    }
 
     /**
      * Has the period to confirm the contract expired?

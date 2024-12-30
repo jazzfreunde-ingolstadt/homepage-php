@@ -5,9 +5,9 @@ namespace Jazzfreunde\App\Type\Primitive;
 /**
  * E-Mail Typ
  */
-final class Email
+final class Email implements PrimitiveTypeInterface
 {
-    private string $adress;
+    private string $address;
 
     /**
      * @param string $email
@@ -19,7 +19,7 @@ final class Email
             throw new \InvalidArgumentException("'{$value}' is not a valid email address.");
         }
 
-        $this->adress = $value;
+        $this->address = $value;
     }
 
     /**
@@ -27,6 +27,6 @@ final class Email
      */
     public function __toString(): string
     {
-        return $this->adress;
+        return $this->address;
     }
 }

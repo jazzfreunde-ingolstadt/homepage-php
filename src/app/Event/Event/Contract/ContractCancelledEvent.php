@@ -6,9 +6,9 @@ use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
- * Event that is triggered when a contract is confirmed.
+ * Event that is triggered when a contract is cancelled.
  */
-final class ContractConfirmedEvent extends Event
+final class ContractCancelledEvent extends Event
 {
     /**
      * @param ConfirmationContract $contract

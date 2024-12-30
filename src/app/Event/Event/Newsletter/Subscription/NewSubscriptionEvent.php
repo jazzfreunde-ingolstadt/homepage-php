@@ -14,7 +14,7 @@ final class NewSubscriptionEvent extends Event
      * @param NewsletterSubscription $subscription
      */
     public function __construct(
-        public NewsletterSubscription $subscription
+        public readonly NewsletterSubscription $subscription
     ) {
     }
 }
