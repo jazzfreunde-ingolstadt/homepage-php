@@ -1,5 +1,5 @@
 # Homepage der Jazzfreunde Ingolstadt e.V.
-[![Code Health](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/lint-sourcecode.yml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/lint-sourcecode.yml) [![Deploy Now: Deploy to IONOS](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/deploy-to-ionos.yaml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/deploy-to-ionos.yaml) [![Deploy Now: Orchestration](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/homepage-php-orchestration.yaml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/homepage-php-orchestration.yaml)
+[![Code Health](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/lint-sourcecode.yml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/lint-sourcecode.yml) [![Unit Tests](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/run-unittests.yml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/run-unittests.yml) [![Deploy Now: Deploy to IONOS](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/deploy-to-ionos.yaml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/deploy-to-ionos.yaml) [![Deploy Now: Orchestration](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/homepage-php-orchestration.yaml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/homepage-php-orchestration.yaml)
 
 Offizielle Website der Jazzfreunde Ingolstadt.
 
@@ -18,12 +18,11 @@ Für das Installieren der Composer Abhängigkeiten steht der VS Code Task 'compo
 
 Die Datenbank muss initial befüllt werden. Dieser Vorgang setzt sich aus einem Basisskript und folgenden Datenbankmigrationen zusammen.
 
-1. Basisskript importieren
+1. Basisskript importieren:
 Führe letzten SQL Export `.docker/database/export_*.sql` aus.
 Dafür kann die Weboberfläche [phpMyAdmin](http://localhost:81) verwendet werden, die als lokaler Container zur Verfügung steht.
 
-2. Migrationen ausführen
-
+2. Migrationen ausführen:
 Für das Ausführen der Datenbankmigrationen steht der VS Code Task 'Run Unit Tests' bereit.
 
 [siehe: Symfony - DoctrineMigrationsBundle](https://symfony.com/bundles/DoctrineMigrationsBundle/current/index.html)

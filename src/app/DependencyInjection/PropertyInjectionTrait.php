@@ -32,8 +32,8 @@ trait PropertyInjectionTrait
                 $reflection = new ReflectionProperty(get_class($this), $name);
                 $type = $reflection->getType();
 
-                if (!$type instanceof \ReflectionNamedType 
-                || !$type->getName() instanceof PrimitiveTypeInterface) {
+                if (!$type instanceof \ReflectionNamedType
+                || !is_subclass_of($type->getName(), PrimitiveTypeInterface::class, true)) {
                     throw $e;
                 }
 
