@@ -79,6 +79,8 @@
             "group": "test",
             "command": "${workspaceFolder}/src/bin/phpunit",
             "args": [
+                "--testdox",
+                "--teamcity",
                 "--testsuite=full",
                 "--display-notices"
             ],
@@ -86,6 +88,20 @@
                 "cwd": "${workspaceFolder}/src/",
                 "env": {
                     "XDEBUG_MODE": "coverage"
+                }
+            },
+            "problemMatcher": {
+                "owner": "phpunit",
+                "source": "phpunit",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "severity": "error",
+                "pattern": {
+                    "regexp": "^##teamcity\\[testFailed\\sname\\=\\'(\\w+)\\'\\smessage\\=\\'(.+?)\\'\\sdetails\\=\\'(?:.*?)\\|n([\\w\\/\\\\]+\\.php)\\:(\\d+)\\|n'.*?\\]$",
+                    "file": 3,
+                    "line": 4,
+                    "message": 2,
                 }
             },
             "presentation": {
@@ -104,10 +120,11 @@
                 "-c=psalm.xml",
             ],
             "problemMatcher": {
-                "owner": "php",
+                "owner": "psalm",
+                "source": "psalm",
                 "fileLocation": [
                     "relative",
-                    "${workspaceFolder}"
+                    "${workspaceFolder}/src"
                 ],
                 "severity": "warning",
                 "pattern": {

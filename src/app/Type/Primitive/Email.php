@@ -10,6 +10,18 @@ final class Email implements PrimitiveTypeInterface
     private string $address;
 
     /**
+     * @inheritDoc
+     */
+    public static function tryFrom(mixed $value): static|null
+    {
+        if (!is_string($value)) {
+            return null;
+        }
+        
+        return new self($value);
+    }
+
+    /**
      * @param string $email
      * @return bool
      */

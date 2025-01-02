@@ -45,14 +45,14 @@ final class MailServiceTest extends TestCase
         $repository
             ->expects($this->once())
             ->method('findOneBy')
+            ->with($this->equalTo(['handle' => KnownMailHandleEnum::NoReply->value]))
             ->willReturn(
                 new KnownMail(
                     id: 1,
                     handle: KnownMailHandleEnum::NoReply,
                     address: new Email('no-reply@test.com')
                 )
-            )
-            ->with($this->equalTo(['handle' => KnownMailHandleEnum::NoReply]));
+            );
         /** @var ManagerRegistry&MockObject $doctrine */
         $doctrine = $this->createMock(ManagerRegistry::class);
         $doctrine
@@ -95,14 +95,14 @@ final class MailServiceTest extends TestCase
             ->expects($this->exactly(2))
             ->method('findOneBy')
             ->willReturnCallback(
-                fn(array $criteria) => 
+                fn(array $criteria) =>
                     match ($criteria['handle']) {
-                        KnownMailHandleEnum::NoReply => new KnownMail(
+                        KnownMailHandleEnum::NoReply->value => new KnownMail(
                             id: 1,
                             handle: KnownMailHandleEnum::NoReply,
                             address: new Email('no-reply@test.com')
                         ),
-                        KnownMailHandleEnum::Jazzletter => new KnownMail(
+                        KnownMailHandleEnum::Jazzletter->value => new KnownMail(
                             id: 1,
                             handle: KnownMailHandleEnum::Jazzletter,
                             address: new Email('jazzletter@test.com')
@@ -174,7 +174,7 @@ final class MailServiceTest extends TestCase
             ->expects($this->once())
             ->method('findOneBy')
             ->willReturn(null)
-            ->with($this->equalTo(['handle' => KnownMailHandleEnum::NoReply]));
+            ->with($this->equalTo(['handle' => KnownMailHandleEnum::NoReply->value]));
         /** @var ManagerRegistry&MockObject $doctrine */
         $doctrine = $this->createMock(ManagerRegistry::class);
         $doctrine
