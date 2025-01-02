@@ -41,4 +41,4 @@ jobs:
         uses: mheap/phpunit-matcher-action@v1
 
       - name: Run unit tests
-        run: vendor/bin/phpunit --configuration --teamcity phpunit.xml
+        run: vendor/bin/phpunit --configuration phpunit.xml --teamcity
