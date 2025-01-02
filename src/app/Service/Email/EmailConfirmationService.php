@@ -28,13 +28,11 @@ final class EmailConfirmationService implements LoggerAwareInterface
 
     /**
      * @param EntityManagerInterface $entityManager
-     * @param ValidatorInterface $validator
      * @param MailService $mailer
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private ValidatorInterface $validator,
         private MailService $mailer,
         private EventDispatcherInterface $dispatcher
     ) {

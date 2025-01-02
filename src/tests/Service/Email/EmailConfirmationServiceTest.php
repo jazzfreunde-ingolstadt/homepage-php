@@ -42,33 +42,6 @@ final class EmailConfirmationServiceTest extends TestCase
     {
         /** @var EntityManagerInterface&MockObject $entityManager */
         $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager
-            ->expects($this->once())
-            ->method('beginTransaction');
-        $entityManager
-            ->expects($this->once())
-            ->method('persist')
-            ->with($this->confirmation);
-        $entityManager
-            ->expects($this->once())
-            ->method('flush');
-        $entityManager
-            ->expects($this->once())
-            ->method('commit');
-
-        $violationList = $this->createMock(ConstraintViolationListInterface::class);
-        $violationList
-            ->expects($this->once())
-            ->method('count')
-            ->willReturn(0);
-
-        /** @var ValidatorInterface&MockObject $validator */
-        $validator = $this->createMock(ValidatorInterface::class);
-        $validator
-            ->expects($this->once())
-            ->method('validate')
-            ->willReturn($violationList);
-
         /** @var MailService&MockObject $mailer */
         $mailer = $this->createMock(MailService::class);
         $mailer
@@ -80,63 +53,9 @@ final class EmailConfirmationServiceTest extends TestCase
 
         $service = new EmailConfirmationService(
             $entityManager,
-            $validator,
             $mailer,
             $dispatcher
         );
-
-        $service->askForConfirmation(
-            $this->confirmation,
-            new Email('test@mail.com'),
-            'Test',
-            []
-        );
-    }
-
-    /**
-     * Test asking for confirmation with invalid contract
-     */
-    public function testAskForConfirmationWithInvalidContract(): void
-    {
-        /** @var EntityManagerInterface&MockObject $entityManager */
-        $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager
-            ->expects($this->once())
-            ->method('beginTransaction');
-        $entityManager
-            ->expects($this->never())
-            ->method('commit');
-        $entityManager
-            ->expects($this->once())
-            ->method('rollBack');
-
-        $violationList = $this->createMock(ConstraintViolationListInterface::class);
-        $violationList
-            ->expects($this->once())
-            ->method('count')
-            ->willReturn(1);
-
-        /** @var ValidatorInterface&MockObject $validator */
-        $validator = $this->createMock(ValidatorInterface::class);
-        $validator
-            ->expects($this->once())
-            ->method('validate')
-            ->willReturn($violationList);
-
-        /** @var MailService&MockObject $mailer */
-        $mailer = $this->createMock(MailService::class);
-
-        /** @var EventDispatcherInterface&MockObject $dispatcher */
-        $dispatcher = $this->createMock(EventDispatcherInterface::class);
-
-        $service = new EmailConfirmationService(
-            $entityManager,
-            $validator,
-            $mailer,
-            $dispatcher
-        );
-
-        $this->expectException(\DomainException::class);
 
         $service->askForConfirmation(
             $this->confirmation,
@@ -183,9 +102,6 @@ final class EmailConfirmationServiceTest extends TestCase
             ->method('getRepository')
             ->willReturn($respository);
 
-        /** @var ValidatorInterface&MockObject $validator */
-        $validator = $this->createMock(ValidatorInterface::class);
-
         /** @var MailService&MockObject $mailer */
         $mailer = $this->createMock(MailService::class);
 
@@ -194,7 +110,6 @@ final class EmailConfirmationServiceTest extends TestCase
 
         $service = new EmailConfirmationService(
             $entityManager,
-            $validator,
             $mailer,
             $dispatcher
         );
@@ -224,9 +139,6 @@ final class EmailConfirmationServiceTest extends TestCase
             ->expects($this->never())
             ->method('flush');
 
-        /** @var ValidatorInterface&MockObject $validator */
-        $validator = $this->createMock(ValidatorInterface::class);
-
         /** @var MailService&MockObject $mailer */
         $mailer = $this->createMock(MailService::class);
 
@@ -238,7 +150,6 @@ final class EmailConfirmationServiceTest extends TestCase
 
         $service = new EmailConfirmationService(
             $entityManager,
-            $validator,
             $mailer,
             $dispatcher
         );
@@ -278,9 +189,6 @@ final class EmailConfirmationServiceTest extends TestCase
             ->expects($this->never())
             ->method('flush');
 
-        /** @var ValidatorInterface&MockObject $validator */
-        $validator = $this->createMock(ValidatorInterface::class);
-
         /** @var MailService&MockObject $mailer */
         $mailer = $this->createMock(MailService::class);
 
@@ -292,7 +200,6 @@ final class EmailConfirmationServiceTest extends TestCase
 
         $service = new EmailConfirmationService(
             $entityManager,
-            $validator,
             $mailer,
             $dispatcher
         );
@@ -336,9 +243,6 @@ final class EmailConfirmationServiceTest extends TestCase
             ->method('getRepository')
             ->willReturn($respository);
 
-        /** @var ValidatorInterface&MockObject $validator */
-        $validator = $this->createMock(ValidatorInterface::class);
-
         /** @var MailService&MockObject $mailer */
         $mailer = $this->createMock(MailService::class);
 
@@ -347,7 +251,6 @@ final class EmailConfirmationServiceTest extends TestCase
 
         $service = new EmailConfirmationService(
             $entityManager,
-            $validator,
             $mailer,
             $dispatcher
         );
@@ -377,9 +280,6 @@ final class EmailConfirmationServiceTest extends TestCase
             ->expects($this->never())
             ->method('flush');
 
-        /** @var ValidatorInterface&MockObject $validator */
-        $validator = $this->createMock(ValidatorInterface::class);
-
         /** @var MailService&MockObject $mailer */
         $mailer = $this->createMock(MailService::class);
 
@@ -391,7 +291,6 @@ final class EmailConfirmationServiceTest extends TestCase
 
         $service = new EmailConfirmationService(
             $entityManager,
-            $validator,
             $mailer,
             $dispatcher
         );
