@@ -11,6 +11,9 @@ on:
       - '!src/tests/**'
       - '.github/**'
       - '.deploy-now/**'
+    branches:
+      - 'development'
+      - 'master'
   workflow_dispatch:
 
 jobs:
