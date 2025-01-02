@@ -54,23 +54,8 @@ final class EmailConfirmationService implements LoggerAwareInterface
         string $subject,
         array $context
     ): void {
-        $this->entityManager->beginTransaction();
-        try {
-            if (0 < count($this->validator->validate($contract))) {
-                throw new \DomainException('Invalid confirmation contract');
-            }
-
-            if ($contract->hasConfirmationPeriodExpired()) {
-                throw new ConfirmationPeriodExpiredException($contract);
-            }
-
-            $this->entityManager->persist($contract);
-            $this->entityManager->flush();
-
-            $this->entityManager->commit();
-        } catch (\Throwable $e) {
-            $this->entityManager->rollBack();
-            throw $e;
+        if ($contract->hasConfirmationPeriodExpired()) {
+            throw new ConfirmationPeriodExpiredException($contract);
         }
 
         $this->mailer->send(
