@@ -1,6 +1,18 @@
 {% extends 'email/base.html.twig' %}
 
 {% block content %}
+    <h1 class="text-xl">Bitte bestätigen Sie Ihre Email</h1>
+
+    <p class="text-md">
+        Vielen Dank für Ihr Interesse.
+        Mit dem Klick auf den untenstehenden Link erklären Sie sich damit einverstanden, dass der Verein Ihnen Emails zusenden darf.
+        Sie können das Abonnement jederzeit kündigen.
+    </p>
+
+    Jazz on! 🎷
     
+    <p class="text-md">
+        <a href="{{url('form_newsletter_confirm', { token: token })}}">Email bestätigen</a>
+    </p>
 {% endblock %}
     

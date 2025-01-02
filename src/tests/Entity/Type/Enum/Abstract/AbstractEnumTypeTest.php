@@ -80,7 +80,7 @@ final class AbstractEnumTypeTest extends TestCase
     /**
      * Testet die Comment Vorgabe.
      */
-    public function testSQLCommentHin(): void
+    public function testSQLCommentHint(): void
     {
         $type = new TestEnumType();
         /** @var AbstractPlatform&MockObject */
@@ -126,16 +126,16 @@ final class AbstractEnumTypeTest extends TestCase
     }
 
     /**
-     * Testet die Konvertierung von Datenbankwerten, wenn es kein BackedEnum ist.
+     * Testet die Konvertierung von Datenbankwerten, wenn es kein gültiger Enum Wert ist.
      */
-    public function testConvertToDatabaseValueNotBackedEnum(): void
+    public function testConvertToDatabaseValueNotValid(): void
     {
         $type = new TestEnumType();
         /** @var AbstractPlatform&MockObject */
         $platform = $this->createMock(AbstractPlatform::class);
 
         $this->expectException(\Doctrine\DBAL\Types\ConversionException::class);
-        $type->convertToDatabaseValue('first', $platform);
+        $type->convertToDatabaseValue('third', $platform);
     }
 
     /**

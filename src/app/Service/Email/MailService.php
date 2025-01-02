@@ -83,7 +83,7 @@ class MailService
     private function getKnownMail(KnownMailHandleEnum $handle): KnownMail
     {
         $knownMails = $this->doctrine->getRepository(KnownMail::class);
-        $mail = $knownMails->findOneBy([ 'handle' => $handle->value ]);
+        $mail = $knownMails->findOneBy([ 'handle' => $handle ]);
 
         if (is_null($mail)) {
             throw new MailException(sprintf('%s: Mail with Handle "%s" is not configured.', KnownMail::class, $handle->name));

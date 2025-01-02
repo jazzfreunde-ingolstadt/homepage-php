@@ -33,15 +33,8 @@ final class EmailType extends StringType
             throw new ConversionException(sprintf("Value for conversion to type '%s' must be a string.", Email::class));
         }
 
-        if ($value instanceof Email) {
-            return parent::convertToDatabaseValue($value->__toString(), $platform);
-        }
-
-        try {
-            return new Email($value);
-        } catch (\ValueError $e) {
-            throw new ConversionException('Conversion to enum type is not possible.', previous: $e);
-        }
+        return Email::tryFrom($value)
+            ?? throw new ConversionException(sprintf("Value '%s' is not a valid email address.", $value));
     }
 
     /**
@@ -49,6 +42,10 @@ final class EmailType extends StringType
      */
     public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): mixed
     {
+        if (\is_string($value)) {
+            return $value;
+        }
+
         if (!$value instanceof Email) {
             throw new ConversionException(sprintf('Conversion to database representation is not possible. Value musst be of type "%s"', Email::class));
         }

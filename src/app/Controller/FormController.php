@@ -79,7 +79,7 @@ final class FormController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/newsletter_confirmation/{token}', name: 'newsletter_confirmation')]
+    #[Route('/newsletter_confirm/{token}', name: 'newsletter_confirm')]
     public function subscriptionConfirmation(string $token, EmailConfirmationService $emailConfirmationService): Response
     {
         try {
@@ -98,7 +98,7 @@ final class FormController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/newsletter_cancelled/{token}', name: 'newsletter_confirmation')]
+    #[Route('/newsletter_cancel/{token}', name: 'newsletter_cancel')]
     public function subscriptionCancelled(string $token, EmailConfirmationService $emailConfirmationService): Response
     {
         try {

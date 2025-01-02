@@ -74,6 +74,10 @@ class AbstractEnumType extends Type
      */
     public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): mixed
     {
+        if (\is_string($value) || \is_int($value)) {
+            $value = static::tryFrom($value);
+        }
+
         if (!$value instanceof \BackedEnum) {
             throw new ConversionException(sprintf('Conversion to database representation is not possible. Value musst be of type "%s"', static::ENUM_CLASS_NAME));
         }

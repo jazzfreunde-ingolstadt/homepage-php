@@ -7,7 +7,7 @@ namespace Jazzfreunde\App\Type\Primitive;
  */
 final class Email implements PrimitiveTypeInterface
 {
-    private string $address;
+    private readonly string $address;
 
     /**
      * @inheritDoc

@@ -41,7 +41,7 @@ final class SubscriptionConfirmedListener implements LoggerAwareInterface
     public function onConfirmed(ContractConfirmedEvent $event): void
     {
         $repository = $this->entityManager->getRepository(NewsletterSubscription::class);
-        $subscription = $repository->findOneBy(['confirmation_id' => $event->contract->uuid]);
+        $subscription = $repository->findOneBy(['confirmation' => $event->contract]);
 
         if (is_null($subscription)) {
             return;
