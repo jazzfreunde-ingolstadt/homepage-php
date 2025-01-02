@@ -69,7 +69,7 @@ final class SubscriptionConfirmedListener implements LoggerAwareInterface
                 KnownMailHandleEnum::NoReply,
                 KnownMailHandleEnum::Jazzletter,
                 'Neuer Newsletter Abonnent!',
-                'email/newsletter/newsletter-subscription-notice.html.twig',
+                'email/newsletter/newsletter-confirmation-notice.html.twig',
                 [
                     'subscription' => [
                         'email' => $subscription->email
