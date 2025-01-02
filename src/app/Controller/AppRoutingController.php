@@ -11,13 +11,13 @@ use DateInterval;
 use DateTime;
 use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Entity\Ort;
-use Jazzfreunde\App\Entity\Type\EventCategoryEnum;
+use Jazzfreunde\App\Type\Enum\EventCategoryEnum;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Routing Controller für die Website
  */
-class AppRoutingController extends AbstractController
+final class AppRoutingController extends AbstractController
 {
     /**
      * Startseite

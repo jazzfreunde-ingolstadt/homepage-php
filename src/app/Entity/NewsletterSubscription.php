@@ -5,7 +5,9 @@ namespace Jazzfreunde\App\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Symfony\Component\Validator\Constraints as Assert;
+use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\App\Entity\Type\String\EmailType;
+use Jazzfreunde\App\Type\Primitive\Email;
 
 /**
  * Abonement des Jazzfreunde Newsletters
@@ -20,10 +22,11 @@ class NewsletterSubscription
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     public ?int $id = null;
-    #[ORM\Column(type: 'string', unique: true)]
-    #[Assert\Email(message: 'The email {{ value }} is not a valid email.')]
-    #[Assert\NotBlank(message: 'Email is required.')]
-    public string $email;
+    #[ORM\Column(type: EmailType::ENTITY_NAME, unique: true)]
+    public Email $email;
     #[ORM\Column(type: 'datetime', options: ["default" => "CURRENT_TIMESTAMP"])]
     public DateTime $creationTime;
+    #[ORM\OneToOne(targetEntity: ConfirmationContract::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(referencedColumnName: 'uuid')]
+    public ConfirmationContract $confirmation;
 }

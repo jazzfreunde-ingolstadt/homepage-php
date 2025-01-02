@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Jazzfreunde\App\Event\Listener;
+namespace Jazzfreunde\App\Event\Listener\Api;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -19,6 +19,8 @@ x-volume-node_modules: &node_modules
 x-dev-buildargs: &dev-buildargs
     project_dir: /usr/project
     phpini_path: .docker/php/php.ini-development
+    xdebuginit_path: .docker/php/dev-xdebug.ini
+    xdebug_logdir: /usr/project/src/var/logs
 
 services:
     jazzfreunde-php-dev-cli:
@@ -45,7 +47,7 @@ services:
             args:
                 virtualhost_conf_dir: .docker/apache
                 phpini_path: .docker/php/php.ini-development
-                xdebuginit_path: .docker/php/xdebug.ini
+                xdebuginit_path: .docker/php/server-xdebug.ini
                 xdebug_logdir: /usr/project/src/var/logs
                 cache_dirs: /usr/project/src/var/cache
         deploy:

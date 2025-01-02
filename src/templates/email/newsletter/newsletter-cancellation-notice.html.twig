@@ -1,0 +1,7 @@
+{% extends 'email/base.html.twig' %}
+
+{% block content %}
+    <h1 class="text-xl">Jemand möchte den Jazzletter nicht länger erhalten!</h1>
+
+    <pre class="text-md">{{ subscription.email }}</pre>
+{% endblock %}

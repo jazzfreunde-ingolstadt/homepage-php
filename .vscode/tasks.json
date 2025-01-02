@@ -64,11 +64,14 @@
             "label": "build encore",
             "type": "shell",
             "group": "build",
-            "command": "npm run build",
+            "command": "npm run build-dev-app && npm run build-dev-mail",
             "presentation": {
                 "clear": true,
                 "showReuseMessage": false
-            }
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
         },
         {
             "label": "Run Unit Tests",
@@ -76,7 +79,10 @@
             "group": "test",
             "command": "${workspaceFolder}/src/bin/phpunit",
             "args": [
-                "--testsuite=full"
+                "--testdox",
+                "--teamcity",
+                "--testsuite=full",
+                "--display-notices"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/src/",
@@ -84,9 +90,20 @@
                     "XDEBUG_MODE": "coverage"
                 }
             },
-            "dependsOn": [
-                "build encore",
-            ],
+            "problemMatcher": {
+                "owner": "phpunit",
+                "source": "phpunit",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "severity": "error",
+                "pattern": {
+                    "regexp": "^##teamcity\\[testFailed\\sname\\=\\'(\\w+)\\'\\smessage\\=\\'(.+?)\\'\\sdetails\\=\\'(?:.*?)\\|n([\\w\\/\\\\]+\\.php)\\:(\\d+)\\|n'.*?\\]$",
+                    "file": 3,
+                    "line": 4,
+                    "message": 2,
+                }
+            },
             "presentation": {
                 "clear": true
             }
@@ -103,10 +120,11 @@
                 "-c=psalm.xml",
             ],
             "problemMatcher": {
-                "owner": "php",
+                "owner": "psalm",
+                "source": "psalm",
                 "fileLocation": [
                     "relative",
-                    "${workspaceFolder}"
+                    "${workspaceFolder}/src"
                 ],
                 "severity": "warning",
                 "pattern": {
