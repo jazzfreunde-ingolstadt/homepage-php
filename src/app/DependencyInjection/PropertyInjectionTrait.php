@@ -103,9 +103,15 @@ trait PropertyInjectionTrait
 
             if (is_object($value)) {
                 if (str_contains($type, '&')) {
+                    /** @var class-string[] */
                     $intersectionTypes = explode('&', $type);
                     $fullfillsIntersection = array_reduce(
                         $intersectionTypes,
+                        /**
+                         * @param bool $carry do all types match
+                         * @param class-string $intersectionType
+                         * @return bool
+                         */
                         function (bool $carry, string $intersectionType) use ($value): bool {
                             return $carry && is_a($value, $intersectionType, true);
                         },
