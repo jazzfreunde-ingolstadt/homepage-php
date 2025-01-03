@@ -72,6 +72,7 @@ RUN a2ensite localhost
 RUN a2enmod rewrite
 RUN a2enmod expires
 RUN a2enmod ssl
+RUN a2enmod headers
 
 RUN apachectl restart
 

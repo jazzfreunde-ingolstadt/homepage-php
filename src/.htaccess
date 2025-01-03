@@ -12,6 +12,11 @@
     AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
 
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options nosniff
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self'; script-src-elem 'self';"
+</IfModule>
+
 <IfModule mod_rewrite.c>
     RewriteEngine on
 
