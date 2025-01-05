@@ -36,6 +36,7 @@ final class EncoreNonceListener
         }
 
         if ($event->isLinkTag()) {
+            /** @var string|null */
             $rel = $event->getAttributes()['rel'];
 
             if ('stylesheet' === $rel) {

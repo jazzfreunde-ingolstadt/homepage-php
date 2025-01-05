@@ -54,6 +54,11 @@ class User implements UserInterface
      */
     public function getUserIdentifier(): string
     {
-        return $this->uuid ?? '';
+        $uuid = $this->uuid;
+        if (!is_string($uuid) || '' === $uuid) {
+            throw new \LogicException('User identifier is empty');
+        }
+
+        return $uuid;
     }
 }
