@@ -44,6 +44,7 @@ Encore.setOutputPath("public/build/app")
     watchOptions.aggregateTimeout = 100;
   })
   .configureDevServerOptions((options) => {
+    options.host     = '0.0.0.0';
     options.liveReload = true;
     options.hot = false;
     options.watchFiles = [ "./templates/**/*", "./app/**/*" ];

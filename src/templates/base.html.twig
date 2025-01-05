@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html>
-	{% include 'head.html.twig' %}
+<html lang="de">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="Verein zur Förderung der Kunst und Kultur in Ingolstadt.">
+		<title>{{ title|default('Willkommen!') }}</title>
+		<link rel="icon" href="{{ asset('build/app/images/jicon.svg') }}"/>
+		<link rel="apple-touch-icon" href="{{ asset('build/app/images/jicon.svg') }}">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app', null, 'app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app', null, 'app') }}
+		{% endblock %}
+
+		<meta property="og:type" content="website"/>
+		<meta property="og:url" content="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}"/>
+		<meta property="og:title" content="{{ title |default('Willkommen!') }}"/>
+		<meta property="og:description" content="{{ description|default('Jazzfreunde Ingolstadt e.V.') }}"/>
+		<meta property="og:image" content="{{ absolute_url(asset('build/app/images/FullLogoWithBackground.png')) }}"/>
+	</head>
 	<body>
 		<div class="flex flex-col min-h-screen">
 			<div class="flex flex-row grow flex-nowrap w-full -mb-16">
 				<div class="relative w-0 grow-0 justify-self-stretch z-50">
 					<a class="nav-logo" href="{{ path('home') }}">
-						<div class="sticky top-0 left-0" style="margin-top: -8px;">
+						<div class="sticky top-0 left-0 -mt-2">
 							<svg class="absolute top-0 left-0 h-24 md:h-36 lg:h-48 w-24 md:w-36 lg:w-48 object-cover" viewbox="0 0 100 100">
 								<g transform="rotate(30, 15, -40)">
 									<rect class="fill-yellow" x="0" width="105" height="60" rx="30"/>

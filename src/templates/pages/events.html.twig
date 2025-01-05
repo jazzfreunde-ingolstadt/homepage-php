@@ -1,7 +1,6 @@
-{% set title = 'Veranstaltungen' %}
-
 {% extends 'base.html.twig' %}
-
+	
+{% set title = 'Veranstaltungen' %}
 {% block javascripts %}
 	{{ parent() }}
 	{{ encore_entry_script_tags('events', null, 'app') }}
@@ -53,7 +52,7 @@
 						<section class="py-5 md:py-10">
 							{% include 'typography/section-titel.html.twig' with { titel: 'Veranstaltungsarchiv' } %}
 							<div id="show_archived" class="my-2 block cursor-pointer underline">Archiv anzeigen</div>
-							<div id="archived_events_container" style="display:none;">
+							<div id="archived_events_container hidden">
 								{% include 'components/events/event-list.html.twig' with { event_list_id: 'archived_events', messageOnEmpty: 'Es befinden sich keine Veranstaltungen im Archiv.', data_samples: sampledata.archived_events } %}
 
 								<div id="hide_archived" class="my-2 block cursor-pointer underline">Archiv verbergen</div>
