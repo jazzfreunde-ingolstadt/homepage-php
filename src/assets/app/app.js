@@ -1,6 +1,9 @@
 import "./styles/app.css";
+import './bootstrap.js'
+import { registerReactControllerComponents } from '@symfony/ux-react';
 import $ from "jquery";
 
+registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/));
 global.documentReady = $.Deferred();
 
 $(() => {

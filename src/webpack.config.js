@@ -9,19 +9,27 @@ Encore.setOutputPath("public/build/app")
   .setManifestKeyPrefix("build/app/")
 
   .addEntry("app", "./assets/app/app.js")
-  .addEntry("events", "./assets/app/events.js")
   .addEntry("home", "./assets/app/home.js")
 
   .copyFiles({
     from: "./assets/app/images",
-    to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : "images/[path][name].[ext]",
+    to: Encore.isProduction()
+      ? "images/[path][name].[hash:8].[ext]"
+      : "images/[path][name].[ext]",
   })
   .copyFiles({
     from: "./assets/app/documents",
-    to: Encore.isProduction() ? 'documents/[path][name].[hash:8].[ext]' : "documents/[path][name].[ext]",
+    to: Encore.isProduction()
+      ? "documents/[path][name].[hash:8].[ext]"
+      : "documents/[path][name].[ext]",
   })
 
   .splitEntryChunks()
+
+  .enableReactPreset()
+  .enableTypeScriptLoader()
+
+  .enableStimulusBridge("./assets/app/controllers.json")
 
   .enableSingleRuntimeChunk()
   .cleanupOutputBeforeBuild()
@@ -44,10 +52,10 @@ Encore.setOutputPath("public/build/app")
     watchOptions.aggregateTimeout = 100;
   })
   .configureDevServerOptions((options) => {
-    options.host     = '0.0.0.0';
+    options.host = "0.0.0.0";
     options.liveReload = true;
     options.hot = false;
-    options.watchFiles = [ "./templates/**/*", "./app/**/*" ];
+    options.watchFiles = ["./templates/**/*", "./app/**/*"];
   });
 const app = Encore.getWebpackConfig();
 app.name = "app";

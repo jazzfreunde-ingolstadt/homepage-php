@@ -75,3 +75,23 @@ nelmio_security:
         - 'self'
       font-src:
         - 'self'
+
+when@dev:
+  nelmio_security:
+    csp:
+      enforce:
+        default-src:
+          - 'ws://localhost:8080'
+          - 'http://localhost:8080'
+        script-src:
+          - 'ws://localhost:8080'
+          - 'http://localhost:8080'
+        img-src:
+          - 'ws://localhost:8080'
+          - 'http://localhost:8080'
+        style-src:
+          - 'ws://localhost:8080'
+          - 'http://localhost:8080'
+        font-src:
+          - 'ws://localhost:8080'
+          - 'http://localhost:8080'
