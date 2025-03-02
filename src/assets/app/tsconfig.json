@@ -1,0 +1,15 @@
+{
+    "extends": "../../tsconfig",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "../../public/build/app",
+        "paths": {
+            "@components/*": [
+                "./components/*",
+            ],
+            "@hooks/*": [
+                "./hooks/*",
+            ]
+        },
+    }
+}

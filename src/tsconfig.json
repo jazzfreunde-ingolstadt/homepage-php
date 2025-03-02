@@ -1,9 +1,8 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-        "baseUrl": "assets/app",
-        "paths": {
-        },
+        "baseUrl": "assets",
+        "outDir": "public/build",
         // Enable strict mode. This enables a few options at a time, see https://www.typescriptlang.org/tsconfig#strict for a list.
         "strict": true,
         // Enable top-level await, and other modern ESM features.
@@ -33,6 +32,10 @@
         // Allow JSX files (or files that are internally considered JSX, like Astro files) to be imported inside `.js` and `.ts` files.
         "jsx": "preserve",
         // Let webpack handle the output
-        "noEmit": true
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "public",
+        "vendor"
+    ]
 }

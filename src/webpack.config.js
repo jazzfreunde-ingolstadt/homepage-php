@@ -1,4 +1,14 @@
 const Encore = require("@symfony/webpack-encore");
+const path = require("path");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+const ROOT_PATH = path.resolve(__dirname, './assets');
+const APP_PATH = ROOT_PATH + '/app';
+const MAIL_PATH = ROOT_PATH + '/app';
+const ALIASES = {
+  '@components' : APP_PATH + '/components',
+  '@hooks' : APP_PATH + '/hooks',
+};
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
@@ -7,18 +17,18 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore.setOutputPath("public/build/app")
   .setPublicPath("/build/app")
   .setManifestKeyPrefix("build/app/")
+  .addAliases(ALIASES)
 
-  .addEntry("app", "./assets/app/app.js")
-  .addEntry("home", "./assets/app/home.js")
+  .addEntry("app", APP_PATH + "/app.ts")
 
   .copyFiles({
-    from: "./assets/app/images",
+    from: APP_PATH + "/images",
     to: Encore.isProduction()
       ? "images/[path][name].[hash:8].[ext]"
       : "images/[path][name].[ext]",
   })
   .copyFiles({
-    from: "./assets/app/documents",
+    from: APP_PATH + "/documents",
     to: Encore.isProduction()
       ? "documents/[path][name].[hash:8].[ext]"
       : "documents/[path][name].[ext]",
@@ -29,7 +39,7 @@ Encore.setOutputPath("public/build/app")
   .enableReactPreset()
   .enableTypeScriptLoader()
 
-  .enableStimulusBridge("./assets/app/controllers.json")
+  .enableStimulusBridge(APP_PATH + "/controllers.json")
 
   .enableSingleRuntimeChunk()
   .cleanupOutputBeforeBuild()
@@ -59,13 +69,19 @@ Encore.setOutputPath("public/build/app")
   });
 const app = Encore.getWebpackConfig();
 app.name = "app";
+app.resolve.plugins = [
+  new TsconfigPathsPlugin({
+      configFile: APP_PATH + '/tsconfig.json',
+      extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+  })
+]
 
 Encore.reset();
 Encore.setOutputPath("public/build/mail")
   .setPublicPath("/build/mail")
   .setManifestKeyPrefix("build/mail/")
 
-  .addStyleEntry("email", "./assets/mail/email.css")
+  .addStyleEntry("email", MAIL_PATH + "/email.css")
 
   .splitEntryChunks()
 
