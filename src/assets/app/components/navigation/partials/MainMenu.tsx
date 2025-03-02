@@ -1,20 +1,22 @@
 import React from 'react'
 import type { Link } from 'models/navigation/link.model'
-import useSize from '@hooks/useSize'
 import BarMenu from './BarMenu'
 import FullScreenMenu from './FullScreenMenu'
 
 export interface MainMenuProps {
     links: Link[]
+    usesFullscreenMenu: boolean
     isFullScreenEnabled: boolean
     setToggleFullScreen: (isFullScreenEnabled: boolean) => void
 }
 
-export default ({ links, isFullScreenEnabled, setToggleFullScreen }: MainMenuProps) => {
-    const windowsize = useSize()
-    var minize = windowsize[0] < 1024
-
-    if (minize) {
+export default ({
+    links,
+    isFullScreenEnabled,
+    setToggleFullScreen,
+    usesFullscreenMenu
+}: MainMenuProps) => {
+    if (usesFullscreenMenu) {
         if (!isFullScreenEnabled)
             return
 
@@ -25,5 +27,5 @@ export default ({ links, isFullScreenEnabled, setToggleFullScreen }: MainMenuPro
         />
     }
 
-    return <BarMenu links={links} /> 
+    return <BarMenu links={links} />
 }

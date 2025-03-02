@@ -22,16 +22,14 @@
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			{% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
-			<section class="py-5 md:py-10">
-				<div {{ react_component('Hello')}}>
-					Loading...
-					<i class="fas fa-cog fa-spin fa-3x"></i>
-				</div>
-				<p class="my-2">
-					Auch interessant: Das Programm unserer Partner des
-					<a class="text-orange" href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
-				</p>
-			</section>
+			<div {{ react_component('Event')}}>
+				Loading...
+				<i class="fas fa-cog fa-spin fa-3x"></i>
+			</div>
+			<p class="my-2">
+				Auch interessant: Das Programm unserer Partner des
+				<a class="text-orange" href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
+			</p>
 		{% endblock %}
 	{% endembed %}
 
@@ -42,9 +40,7 @@
 			{% include '@layout/divider.html.twig' with { classnames: "fill-white" } %}
 			<div class="bg-white">
 				{% embed '@layout/container.html.twig' %}
-					{% block content %}
-						
-					{% endblock %}
+					{% block content %}{% endblock %}
 				{% endembed %}
 			</div>
 		{% endblock %}

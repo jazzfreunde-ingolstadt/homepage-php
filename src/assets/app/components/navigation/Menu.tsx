@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import type { Link } from 'models/navigation/link.model'
+import useSize from '@hooks/useSize'
 import MainMenu from './partials/MainMenu'
 import { Logo, type LogoProps } from './partials/Logo'
 import { Burger } from './partials/Burger'
@@ -11,18 +12,23 @@ export interface MenuProps {
 
 export const Menu = ({ links, logo }: MenuProps) => {
     const [isFullScreenEnabled, setToggleFullScreen] = useState(false)
+    const windowsize = useSize()
+    var usesFullscreenMenu = windowsize[0] < 1024
 
     return (
-        <nav role="menu" className="flex flex-row items-center duration-700">
+        <nav role="menu" className="flex flex-row items-center justify-between duration-700">
             <Logo {...logo} />
             <MainMenu
                 links={links}
+                usesFullscreenMenu={usesFullscreenMenu}
                 isFullScreenEnabled={isFullScreenEnabled}
                 setToggleFullScreen={setToggleFullScreen}
             />
-            <button onClick={() => setToggleFullScreen(true)}>
-                <Burger />
-            </button>
+            {usesFullscreenMenu &&
+                <button onClick={() => setToggleFullScreen(true)}>
+                    <Burger />
+                </button>
+            }
         </nav>
     )
 }

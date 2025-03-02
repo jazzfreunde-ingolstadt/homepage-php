@@ -4,7 +4,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const ROOT_PATH = path.resolve(__dirname, './assets');
 const APP_PATH = ROOT_PATH + '/app';
-const MAIL_PATH = ROOT_PATH + '/app';
+const MAIL_PATH = ROOT_PATH + '/mail';
 const ALIASES = {
   '@components' : APP_PATH + '/components',
   '@hooks' : APP_PATH + '/hooks',
