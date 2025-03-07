@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Link } from 'models/navigation/link.model'
+import type { Link } from '@models/navigation/link.model'
 import BarMenu from './BarMenu'
 import FullScreenMenu from './FullScreenMenu'
 

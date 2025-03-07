@@ -1,0 +1,245 @@
+openapi: 3.1.0
+info:
+  title: 'Jazzfreunde API'
+  description: 'Data access for Jazzfreunde database'
+  version: 1.0.0
+servers:
+  -
+    url: /
+    description: ''
+paths:
+  /api/events:
+    get:
+      operationId: api_events_get_collection
+      tags:
+        - Event
+      responses:
+        '200':
+          description: 'Event collection'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+      summary: 'Retrieves the collection of Event resources.'
+      description: 'Retrieves the collection of Event resources.'
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'The collection page number'
+          required: false
+          deprecated: false
+          allowEmptyValue: true
+          schema:
+            type: integer
+            default: 1
+          style: form
+          explode: false
+          allowReserved: false
+        -
+          name: itemsPerPage
+          in: query
+          description: 'The number of items per page'
+          required: false
+          deprecated: false
+          allowEmptyValue: true
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+          style: form
+          explode: false
+          allowReserved: false
+        -
+          name: 'start[before]'
+          in: query
+          description: ''
+          required: false
+          deprecated: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          style: form
+          explode: false
+          allowReserved: false
+        -
+          name: 'start[strictly_before]'
+          in: query
+          description: ''
+          required: false
+          deprecated: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          style: form
+          explode: false
+          allowReserved: false
+        -
+          name: 'start[after]'
+          in: query
+          description: ''
+          required: false
+          deprecated: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          style: form
+          explode: false
+          allowReserved: false
+        -
+          name: 'start[strictly_after]'
+          in: query
+          description: ''
+          required: false
+          deprecated: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          style: form
+          explode: false
+          allowReserved: false
+        -
+          name: 'order[start]'
+          in: query
+          description: ''
+          required: false
+          deprecated: false
+          allowEmptyValue: false
+          schema:
+            type: string
+            default: asc
+            enum:
+              - asc
+              - desc
+          style: form
+          explode: false
+          allowReserved: false
+      deprecated: false
+  '/api/events/{id}':
+    get:
+      operationId: api_events_id_get
+      tags:
+        - Event
+      responses:
+        '200':
+          description: 'Event resource'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: 'Resource not found'
+      summary: 'Retrieves a Event resource.'
+      description: 'Retrieves a Event resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Event identifier'
+          required: true
+          deprecated: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          style: simple
+          explode: false
+          allowReserved: false
+      deprecated: false
+  '/api/orts/{id}':
+    get:
+      operationId: api_orts_id_get
+      tags:
+        - Ort
+      responses:
+        '200':
+          description: 'Ort resource'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ort'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Ort'
+        '404':
+          description: 'Resource not found'
+      summary: 'Retrieves a Ort resource.'
+      description: 'Retrieves a Ort resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Ort identifier'
+          required: true
+          deprecated: false
+          allowEmptyValue: false
+          schema:
+            type: string
+          style: simple
+          explode: false
+          allowReserved: false
+      deprecated: false
+components:
+  schemas:
+    Event:
+      type: object
+      description: 'Terminierte Veranstaltung'
+      deprecated: false
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        titel:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        ort:
+          $ref: '#/components/schemas/Ort'
+        subtitel:
+          type:
+            - string
+            - 'null'
+        link:
+          type:
+            - string
+            - 'null'
+        category:
+          default: none
+          example: none
+          type: string
+          enum:
+            - none
+            - session
+            - jazztage
+    Ort:
+      type: object
+      description: ''
+      deprecated: false
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        name:
+          type: string
+  responses: {  }
+  parameters: {  }
+  examples: {  }
+  requestBodies: {  }
+  headers: {  }
+  securitySchemes: {  }
+security: []
+tags: []
+webhooks: {  }

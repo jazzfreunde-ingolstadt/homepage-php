@@ -1,4 +1,8 @@
 api_platform:
+  title: 'Jazzfreunde API'
+  description: 'Data access for Jazzfreunde database'
+  version: '1.0.0'
+
   enable_re_doc: false
   mapping:
     paths:

@@ -8,6 +8,10 @@ const MAIL_PATH = ROOT_PATH + '/mail';
 const ALIASES = {
   '@components' : APP_PATH + '/components',
   '@hooks' : APP_PATH + '/hooks',
+  '@models' : APP_PATH + '/models',
+  '@api/types' : APP_PATH + '/api/types',
+  '@api/utils' : APP_PATH + '/api/utils',
+  '@services' : APP_PATH + '/services',
 };
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {

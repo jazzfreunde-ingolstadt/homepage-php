@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Picture } from 'models/images/picture.model'
+import type { Picture } from '@models/images/picture.model'
 
 export interface LogoProps extends Picture {
 }
