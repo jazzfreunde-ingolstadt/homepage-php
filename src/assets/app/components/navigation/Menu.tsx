@@ -10,6 +10,9 @@ export interface MenuProps {
     logo: LogoProps
 }
 
+/**
+ * Renders the main navigation component of the application.
+ */
 export const Menu = ({ links, logo }: MenuProps) => {
     const [isFullScreenEnabled, setToggleFullScreen] = useState(false)
     const windowsize = useSize()
@@ -17,7 +20,9 @@ export const Menu = ({ links, logo }: MenuProps) => {
 
     return (
         <nav role="menu" className="flex flex-row items-center justify-between duration-700">
-            <Logo {...logo} />
+            <a href="/">
+                <Logo {...logo} />
+            </a>
             <MainMenu
                 links={links}
                 usesFullscreenMenu={usesFullscreenMenu}

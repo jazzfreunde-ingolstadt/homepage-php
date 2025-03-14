@@ -44,7 +44,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/orts/{id}": {
+    "/api/event_locations/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -52,10 +52,10 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Retrieves a Ort resource.
-         * @description Retrieves a Ort resource.
+         * Retrieves a EventLocation resource.
+         * @description Retrieves a EventLocation resource.
          */
-        get: operations["api_orts_id_get"];
+        get: operations["api_event_locations_id_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -71,13 +71,13 @@ export interface components {
         /** @description Terminierte Veranstaltung */
         Event: {
             readonly id?: number;
-            titel: string;
+            title: string;
             /** Format: date-time */
             start: string;
             /** Format: date-time */
             end: string;
-            ort: components["schemas"]["Ort"];
-            subtitel?: string | null;
+            location: components["schemas"]["EventLocation"];
+            subtitle?: string | null;
             link?: string | null;
             /**
              * @default none
@@ -86,7 +86,7 @@ export interface components {
              */
             category: "none" | "session" | "jazztage";
         };
-        Ort: {
+        EventLocation: {
             readonly id?: number;
             name: string;
         };
@@ -161,26 +161,26 @@ export interface operations {
             };
         };
     };
-    api_orts_id_get: {
+    api_event_locations_id_get: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Ort identifier */
+                /** @description EventLocation identifier */
                 id: string;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Ort resource */
+            /** @description EventLocation resource */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Ort"];
-                    "text/html": components["schemas"]["Ort"];
+                    "application/json": components["schemas"]["EventLocation"];
+                    "text/html": components["schemas"]["EventLocation"];
                 };
             };
             /** @description Resource not found */

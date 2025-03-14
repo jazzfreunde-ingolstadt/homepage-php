@@ -1,5 +1,7 @@
 const Encore = require("@symfony/webpack-encore");
 const path = require("path");
+const dotenv = require('dotenv');
+const fs = require('fs');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const ROOT_PATH = path.resolve(__dirname, './assets');
@@ -13,6 +15,38 @@ const ALIASES = {
   '@api/utils' : APP_PATH + '/api/utils',
   '@services' : APP_PATH + '/services',
 };
+
+const fileExists = (filePath) => {
+  try {
+      return fs.statSync(filePath).isFile();
+  } catch (err) {
+      return false;
+  }
+}
+
+const getEnvPaths = () => {
+  let envmode = '';
+  switch (process.env.NODE_ENV) {
+      case 'production':
+          envmode = 'prod';
+          break;
+      case 'test':
+          envmode = 'test';
+          break;
+      default:
+          envmode = 'dev';
+  }
+  return [
+    `.env.${envmode}.local`,
+    '.env.local',
+    `.env.${envmode}`,
+    '.env'
+  ]
+  .map((file) => `${APP_PATH}/${file}`)
+  .filter(
+      fileExists
+  );
+}
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
@@ -42,6 +76,19 @@ Encore.setOutputPath("public/build/app")
 
   .enableReactPreset()
   .enableTypeScriptLoader()
+  .configureDefinePlugin(options => {
+    const env = dotenv.config({ path: getEnvPaths() });
+
+    if (env.error) {
+        throw env.error;
+    }
+
+    Object.entries(env.parsed).forEach(([key, value]) => {
+        if (key.startsWith('REACT_APP_')) {
+            options['process.env.' + key] = JSON.stringify(value);
+        }
+    });
+})
 
   .enableStimulusBridge(APP_PATH + "/controllers.json")
 

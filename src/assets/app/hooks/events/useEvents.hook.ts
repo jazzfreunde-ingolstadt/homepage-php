@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { client } from '@services/jazzfreunde-api.service'
 import { authenticatedRequest, type ApiRequest } from '@api/utils/request.util'
-import type { Event, EventsParams } from '@models/events/events.model'
+import type { Event } from '@models/events/events.model'
 import type { HTTPError } from 'ky'
-import { config } from 'config'
 
 /**
  * Gets all heating points.
@@ -24,11 +23,10 @@ export const getEvents = (fetcher: ApiRequest ) =>
  */
 export const useUpcommingEvents = () => {
   const { isLoading, error, data } = useQuery<Event[], HTTPError>({
-    queryKey: [config.queryKey, 'events'],
+    queryKey: [process.env.REACT_APP_QUERY_KEY, 'events'],
     queryFn: () => getEvents(authenticatedRequest)({
       "start[after]": new Date().toISOString(),
     }),
-    staleTime: config.staleTime
   })
 
   return {

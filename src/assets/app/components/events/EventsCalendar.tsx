@@ -2,6 +2,10 @@ import React from 'react'
 import EventList from './partials/EventList'
 import { useUpcommingEvents } from '@hooks/events/useEvents.hook'
 
+/**
+ * Renders the event calendar
+ * It displays a list of events
+ */
 export const EventsCalendar = () => {
     const {
         events,

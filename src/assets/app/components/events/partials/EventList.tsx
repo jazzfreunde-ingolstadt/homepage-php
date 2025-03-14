@@ -3,9 +3,17 @@ import type { Event } from '@models/events/events.model'
 import { EventListItem } from './EventListItem'
 
 export interface EventListProps {
+    /**
+     * The events to display
+     */
     events: Event[] | undefined
 }
 
+/**
+ * Renders a list of events
+ * @param events The events to display
+ * @returns A list of events
+ */
 export default ({ events }: EventListProps) => {
     events ??= []
 

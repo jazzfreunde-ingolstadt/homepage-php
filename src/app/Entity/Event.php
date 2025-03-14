@@ -40,7 +40,7 @@ class Event
     #[ORM\Column(type: 'string')]
     #[Groups(groups: ['Event:write'])]
     #[API\ApiProperty(required: true)]
-    public string $titel;
+    public string $title;
     #[ORM\Column(type: 'datetime')]
     #[Groups(groups: ['Event:write'])]
     #[API\ApiProperty(required: true)]
@@ -49,14 +49,14 @@ class Event
     #[Groups(groups: ['Event:write'])]
     #[API\ApiProperty(required: true)]
     public DateTime $end;
-    #[ORM\ManyToOne(targetEntity: Ort::class)]
+    #[ORM\ManyToOne(targetEntity: EventLocation::class)]
     #[ORM\JoinColumn(nullable: false)]
     #[API\ApiProperty(readableLink: true, writableLink: false, required: true)]
     #[Groups(groups: ['Event:write'])]
-    public Ort $ort;
+    public EventLocation $location;
     #[ORM\Column(type: 'string', nullable: true)]
     #[Groups(groups: ['Event:write'])]
-    public ?string $subtitel = null;
+    public ?string $subtitle = null;
     #[ORM\Column(type: 'string', nullable: true)]
     #[Groups(groups: ['Event:write'])]
     public ?string $link = null;

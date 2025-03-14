@@ -7,16 +7,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 
 /**
- * Veranstaltungsorte
+ * Event locations
  */
 #[ORM\Entity]
-#[ORM\Table(name: 'orte')]
+#[ORM\Table(name: 'event_locations')]
 #[API\ApiResource(
     operations: [
         new API\Get(),
     ]
 )]
-class Ort
+class EventLocation
 {
     use PropertyInjectionTrait;
 

@@ -9,4 +9,4 @@ import { createApiClient } from "@api/utils/request.util"
  * @param params.method The request's HTTP method
  * @returns The parsed response body
  */
-export const client = createApiClient<JazzfreundeApi>('http://localhost')
+export const client = createApiClient<JazzfreundeApi>(process.env.REACT_APP_API_URL || '')

@@ -3,8 +3,17 @@ import type { Link } from "@models/navigation/link.model"
 import MenuItem from './MainMenuItem'
 
 export interface MainMenuProps {
+    /**
+     * The links to be displayed in the menu.
+     */
     links: Link[]
+    /**
+     * Whether the fullscreen menu is enabled.
+     */
     isFullScreenEnabled: boolean
+    /**
+     * hook to set state of full screen menu.
+     */
     setToggleFullScreen: (isFullScreenEnabled: boolean) => void
 }
 

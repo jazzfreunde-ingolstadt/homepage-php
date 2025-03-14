@@ -3,10 +3,19 @@ import type { Event } from '@models/events/events.model'
 import { DateDisplay } from '@components/typography/datetine/DateDisplat'
 import { TimeDisplay } from '@components/typography/datetine/TimeDisplay'
 
+
 export interface EventListItemProps {
+    /**
+     * The event to display
+     */
     event: Event
 }
 
+/**
+ * Renders a single event in the event list
+ * @param event The event to display
+ * @returns A single event
+ */
 export const EventListItem = ({ event }: EventListItemProps) => {
     const category = event.category === 'none'
         ? null
@@ -24,11 +33,11 @@ export const EventListItem = ({ event }: EventListItemProps) => {
                 <hr className="w-full bg-blue border-2" />
                 <span className="font-bold"><DateDisplay date={new Date(event.start)} /></span>
                 <TimeDisplay date={new Date(event.start)} />
-                <span className="ml-auto lg:ml-0 mt-0 lg:mt-auto">{event.ort.name}</span>
+                <span className="ml-auto lg:ml-0 mt-0 lg:mt-auto">{event.location.name}</span>
             </div>
             <div className="flex flex-col">
-                <div className="text-xl font-bold">{event.titel}</div>
-                <div>{event.subtitel}</div>
+                <div className="text-xl font-bold">{event.title}</div>
+                <div>{event.subtitle}</div>
                 {event.link && (
                     <div className="text-sm">{event.link}</div>
                 )} 

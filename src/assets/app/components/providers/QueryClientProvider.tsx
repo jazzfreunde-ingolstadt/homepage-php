@@ -1,7 +1,6 @@
 import React from 'react'
 import type { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { config } from 'config'
 
 export interface QueryProviderProps {
     children?: ReactNode
@@ -13,7 +12,7 @@ export interface QueryProviderProps {
 export const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: config.staleTime,
+        staleTime: parseInt(process.env.REACT_APP_API_STALE_TIME || '60000', 10),
         retry: false,
       },
     },

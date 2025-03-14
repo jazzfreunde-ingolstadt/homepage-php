@@ -47,7 +47,7 @@ trait PropertyInjectionTrait
             ->trySetNull($name, $types, $value)
             ?->trySetEnum($name, $types, $value)
             ?->trySetPrimitiveType($name, $types, $value)
-            ?->trySetBuildInType($name, $types, $value)
+            ?->trySetBuiltInType($name, $types, $value)
             ?->throwError($name, $types, $value);
         });
     }
@@ -82,7 +82,7 @@ trait PropertyInjectionTrait
      * @param mixed $value
      * @return self|null return self to continue chaining, return null to stop chaining
      */
-    private function trySetBuildInType(
+    private function trySetBuiltInType(
         string $name,
         array $types,
         mixed $value

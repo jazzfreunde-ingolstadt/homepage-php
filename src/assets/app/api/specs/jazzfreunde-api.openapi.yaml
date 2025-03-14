@@ -155,30 +155,30 @@ paths:
           explode: false
           allowReserved: false
       deprecated: false
-  '/api/orts/{id}':
+  '/api/event_locations/{id}':
     get:
-      operationId: api_orts_id_get
+      operationId: api_event_locations_id_get
       tags:
-        - Ort
+        - EventLocation
       responses:
         '200':
-          description: 'Ort resource'
+          description: 'EventLocation resource'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ort'
+                $ref: '#/components/schemas/EventLocation'
             text/html:
               schema:
-                $ref: '#/components/schemas/Ort'
+                $ref: '#/components/schemas/EventLocation'
         '404':
           description: 'Resource not found'
-      summary: 'Retrieves a Ort resource.'
-      description: 'Retrieves a Ort resource.'
+      summary: 'Retrieves a EventLocation resource.'
+      description: 'Retrieves a EventLocation resource.'
       parameters:
         -
           name: id
           in: path
-          description: 'Ort identifier'
+          description: 'EventLocation identifier'
           required: true
           deprecated: false
           allowEmptyValue: false
@@ -198,7 +198,7 @@ components:
         id:
           readOnly: true
           type: integer
-        titel:
+        title:
           type: string
         start:
           type: string
@@ -206,9 +206,9 @@ components:
         end:
           type: string
           format: date-time
-        ort:
-          $ref: '#/components/schemas/Ort'
-        subtitel:
+        location:
+          $ref: '#/components/schemas/EventLocation'
+        subtitle:
           type:
             - string
             - 'null'
@@ -225,12 +225,12 @@ components:
             - session
             - jazztage
       required:
-        - titel
+        - title
         - start
         - end
-        - ort
+        - location
         - category
-    Ort:
+    EventLocation:
       type: object
       description: ''
       deprecated: false

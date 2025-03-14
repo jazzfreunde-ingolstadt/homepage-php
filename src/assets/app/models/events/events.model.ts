@@ -1,7 +1,9 @@
 import type { components, operations } from '@api/types/jazzfreunde-api.generated'
 
+/** Event type */
 export type Event = components['schemas']['Event']
 
+/** Event type of a events category. */
 export type EventCategory = components['schemas']['Event']['category']
 
 /** Path params of a events request. */
