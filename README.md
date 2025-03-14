@@ -32,3 +32,29 @@ Für das Ausführen der Datenbankmigrationen steht der VS Code Task 'Run Unit Te
 Um die Integrität des Backends sichrzustellen, werden alle wichtigen Backend-Funktionalitäten durch Unit Tests abgesichert \([siehe: PHPUnit](https://phpunit.de/index.html)\).
 
 Für das Ausführen der PHPUnit Unit Tests steht der VS Code Task 'Run Unit Tests' bereit.
+
+### Build Frontend
+
+Das Frontend verwendet standardmäßig Symfonys [Twig](https://twig.symfony.com/).
+Für client-seitige Logik wird jedoch auf [Webpack Encore](https://symfony.com/doc/current/frontend/encore/index.html) zurückgegriffen.
+Folgendes erlaubt es Javascript basierte Komponenten in Templates einzubinden.
+Zusammen mit [Symfony UX](https://ux.symfony.com/) und [Symfony UX React](https://symfony.com/bundles/ux-react/current/index.html) werden so React Komponenten als Micro Frontends eingeschleust.
+
+Um die Encore Komponenten zu kompilieren, muss der VS Code Task 'build encore' ausgeführt werden.
+
+## Entwicklungsprozess
+
+### Lokaler Entwicklungs-Server
+
+Die Webseite ist lokal immer unter [](http://localhost/) erreichbar.
+Sollte das Frontend noch nicht kompiliert worden sein, muss dies vor dem Aufruf nachgeholt werden. Dies betrifft auch die Email Templates.
+Zum Entwickeln der Oberfläche steht das Skript `npm run app:server` zur Verfügung.
+
+### Statische Code-Analyze
+
+Um sicherzustellen, dass der PHP-Code keine Fehler enthällt, verwendet das Projekt [Psalm]a(https://psalm.dev/).
+Abrufbar über den VS Code Task 'Analyze code'.
+
+### Lokaler Email-Server
+
+Alle ausgehenden Email werden über einen lokalen SMTP-Server abgefangen. Sämtlicher Email-Verkehr kann über http://localhost:82 verfolgt werden.
