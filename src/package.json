@@ -28,10 +28,10 @@
         "app:server": "encore dev-server --config-name app",
         "app:watch": "encore dev --watch --config-name app",
         "mail:watch": "encore dev --watch --config-name mail",
-        "app:build-dev": "encore dev --config-name app",
-        "mail:build-dev": "encore dev --config-name mail",
-        "app:build-prod": "encore production --progress --config-name app",
-        "mail:build-prod": "encore production --progress --config-name mail",
+        "app:build:dev": "encore dev --config-name app",
+        "mail:build:dev": "encore dev --config-name mail",
+        "app:build:prod": "encore production --progress --config-name app",
+        "mail:build:prod": "encore production --progress --config-name mail",
         "api:generate": "npx openapi-typescript assets/app/api/specs/*.openapi.yaml --output assets/app/api/types/jazzfreunde-api.generated.ts"
     },
     "dependencies": {
