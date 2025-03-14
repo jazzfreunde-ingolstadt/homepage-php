@@ -10,7 +10,7 @@ use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Confirmation contract authorized by email
+ * Confirmation contract authorized by a user
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'confirmation_contracts')]

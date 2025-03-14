@@ -1,17 +1,29 @@
 {# Korrespondiert mit Höhe in components/header-spacer.html.twig #}
-<header id="main-navigation" role="navigation" aria-expanded="false" class="max-lg:main-navigation-toggle lg:main-navigation-fixed lg:h-36 xl:48 overflow-hidden z-40 flex justify-center items-center duration-700">
-	<div class="w-full h-full flex justify-center items-center text-white">
-		<a href="javascript:void(0)" class="main-navigation-close lg:hidden absolute top-6 right-8 z-10 hover:text-yellow text-5xl md:text-7xl font-bold duration-300">&times;</a>
-		<div
-			class="lg:hidden absolute top-0 w-full h-full overflow-clip z-0 bg-blue opacity-95">{# <img src="{{ image_url|raw }}" class="object-cover" /> #}
-		</div>
-		<nav class="relative w-full z-10 overflow-visible text-xl sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl">
-			{% embed '@layout/container.html.twig' %}
-				{% block content %}
-					{% include 'components/navigation/menu.html.twig' %}
-				{% endblock %}
-			{% endembed %}
-		</nav>
-	</div>
-	<hr class="border-b-2 border-orange"/>
+<header class="w-full absolute top-0 left-0 z-10 text-white">
+	{% embed '@layout/container.html.twig' %}
+		{% block content %}
+			<div
+				{{ react_component('Menu', {
+					links: [
+						{url: url('home'), label: 'Startseite'},
+						{url: url('about'), label: 'Verein'},
+						{url: url('events', { edit: false }), label: 'Veranstaltungen'},
+						{url: url('join'), label: 'Mitglied werden'},
+					],
+					logo: {
+						alt: 'Jazzfreunde Ingolstadt e.V. Logo',
+						src: asset('build/app/images/jazzlogo.svg'),
+						sources: [
+							{
+								srcset: asset('build/app/images/jazzlogo.svg'),
+								media: '(min-width: 768px)',
+							}
+						],
+					},
+				})}}
+			>
+				{% import "components/util/loading-placeholder.html.twig" as name %}
+			</div>
+		{% endblock %}
+	{% endembed %}
 </header>

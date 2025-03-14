@@ -7,11 +7,6 @@ namespace Jazzfreunde\App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use DateInterval;
-use DateTime;
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Entity\Ort;
-use Jazzfreunde\App\Type\Enum\EventCategoryEnum;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -27,20 +22,8 @@ final class AppRoutingController extends AbstractController
     #[Route('/', name: 'home')]
     public function home(): Response
     {
-        $sampledata = [
-            'featured_events' => [
-                new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->add(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
-                new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
-                new Event(id: 2, titel: 'Jazzfreunde Konzert Highlight', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P12D')), end: (new DateTime())->sub(new DateInterval('P12D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
-                new Event(id: 2, titel: 'Jazzfreunde Lesung', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P20D')), end: (new DateTime())->sub(new DateInterval('P20D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
-            ],
-        ];
-
         return $this->render(
-            '@pages/home.html.twig',
-            [
-                'sampledata' => $sampledata,
-            ]
+            '@pages/home.html.twig'
         );
     }
 
@@ -159,26 +142,8 @@ final class AppRoutingController extends AbstractController
     #[Route('/events/{edit}', name: 'events', requirements: ['edit' => '^(?:edit/?$)?'])]
     public function events(string|null $edit = null): Response
     {
-        $sampledata = [
-            'upcoming_events' => [
-                new Event(id: 1, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->add(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de', category: EventCategoryEnum::session),
-                new Event(id: 2, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->add(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
-            ],
-            'past_events' => [
-                new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->sub(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de', category: EventCategoryEnum::session),
-                new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->sub(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
-            ],
-            'archived_events' => [
-                new Event(id: 3, titel: 'Jam Session', subtitel: 'Session mit der Jazzfreunde Band', start: (new DateTime())->sub(new DateInterval('P1D')), end: (new DateTime())->sub(new DateInterval('P1D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de', category: EventCategoryEnum::session),
-                new Event(id: 4, titel: 'Jazzfreunde Konzert', subtitel: 'Konzert der Jazzfreunde Big Band', start: (new DateTime())->sub(new DateInterval('P10D')), end: (new DateTime())->sub(new DateInterval('P10D')), ort: new Ort(id: 1, name: 'Jazzfreunde Club'), link: 'jazzfreunde.de'),
-            ]
-        ];
-
         return $this->render(
-            '@pages/events.html.twig',
-            [
-                'sampledata' => $sampledata,
-            ]
+            '@pages/events.html.twig'
         );
     }
 
@@ -190,6 +155,8 @@ final class AppRoutingController extends AbstractController
     #[Route('/error/', name: 'error')]
     public function error(): Response
     {
-        return $this->render('@pages/error-notification.html.twig');
+        return $this->render(
+            '@pages/error-notification.html.twig'
+        );
     }
 }

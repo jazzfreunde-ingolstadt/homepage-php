@@ -64,7 +64,7 @@
             "label": "build encore",
             "type": "shell",
             "group": "build",
-            "command": "npm run build-dev-app && npm run build-dev-mail",
+            "command": "npm run app:build-dev && npm run mail:build-dev",
             "presentation": {
                 "clear": true,
                 "showReuseMessage": false
@@ -142,5 +142,14 @@
                 "clear": true
             }
         },
+        {
+            "label": "Generate api spec",
+            "type": "shell",
+            "group": "build",
+            "command": "composer run-script api:generate && npm run api:generate",
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
+        }
 	]
 }

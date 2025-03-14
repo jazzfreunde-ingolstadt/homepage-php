@@ -2,22 +2,21 @@
 
 namespace Jazzfreunde\App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata as API;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 
 /**
- * Veranstaltungsorte
+ * Event locations
  */
 #[ORM\Entity]
-#[ORM\Table(name: 'orte')]
-#[ApiResource(
+#[ORM\Table(name: 'event_locations')]
+#[API\ApiResource(
     operations: [
-        new Get(),
+        new API\Get(),
     ]
 )]
-class Ort
+class EventLocation
 {
     use PropertyInjectionTrait;
 
@@ -26,5 +25,6 @@ class Ort
     #[ORM\Column(type: 'integer')]
     public ?int $id = null;
     #[ORM\Column(type: 'string')]
+    #[API\ApiProperty(required: true)]
     public string $name;
 }

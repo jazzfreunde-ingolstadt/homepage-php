@@ -2,32 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .main-navigation-fixed {
-    @apply absolute;
-  }
-
-  .main-navigation-toggle {
-    @apply fixed;
-  }
-
-  .main-navigation-fixed[aria-expanded="true"] {
-    @apply w-full opacity-100;
-  }
-
-  .main-navigation-fixed[aria-expanded="false"] {
-    @apply w-full opacity-100;
-  }
-
-  .main-navigation-toggle[aria-expanded="true"] {
-    @apply w-screen h-screen opacity-100;
-  }
-
-  .main-navigation-toggle[aria-expanded="false"] {
-    @apply w-0 h-0 opacity-0;
-  }
-}
-
 .logo {
   border-radius: 50%;
 }
