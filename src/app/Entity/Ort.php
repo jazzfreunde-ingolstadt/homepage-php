@@ -2,8 +2,7 @@
 
 namespace Jazzfreunde\App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata as API;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 
@@ -12,9 +11,9 @@ use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'orte')]
-#[ApiResource(
+#[API\ApiResource(
     operations: [
-        new Get(),
+        new API\Get(),
     ]
 )]
 class Ort
@@ -26,5 +25,6 @@ class Ort
     #[ORM\Column(type: 'integer')]
     public ?int $id = null;
     #[ORM\Column(type: 'string')]
+    #[API\ApiProperty(required: true)]
     public string $name;
 }

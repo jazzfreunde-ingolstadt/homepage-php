@@ -1,13 +1,13 @@
 import React from 'react'
 import EventList from './partials/EventList'
-import { useEvents } from '@hooks/events/useEvents.hook'
+import { useUpcommingEvents } from '@hooks/events/useEvents.hook'
 
 export const EventsCalendar = () => {
     const {
         events,
         isLoading,
         error,
-      } = useEvents();
+      } = useUpcommingEvents();
 
     return (
         <div>

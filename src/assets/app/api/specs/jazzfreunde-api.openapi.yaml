@@ -224,6 +224,12 @@ components:
             - none
             - session
             - jazztage
+      required:
+        - titel
+        - start
+        - end
+        - ort
+        - category
     Ort:
       type: object
       description: ''
@@ -234,6 +240,8 @@ components:
           type: integer
         name:
           type: string
+      required:
+        - name
   responses: {  }
   parameters: {  }
   examples: {  }

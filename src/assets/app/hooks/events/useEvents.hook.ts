@@ -11,7 +11,7 @@ import { config } from 'config'
  * @param fetcher The authenticated request
  * @returns An object containing the events
  */
-export const getEvents = (fetcher: ApiRequest) =>
+export const getEvents = (fetcher: ApiRequest ) =>
   client({
     fetcher,
     path: '/api/events',
@@ -22,10 +22,12 @@ export const getEvents = (fetcher: ApiRequest) =>
  * Fetches events.
  * @param params The request parameters
  */
-export const useEvents = (params?: EventsParams) => {
+export const useUpcommingEvents = () => {
   const { isLoading, error, data } = useQuery<Event[], HTTPError>({
-    queryKey: [config.queryKey, 'events', params],
-    queryFn: () => getEvents(authenticatedRequest)(params),
+    queryKey: [config.queryKey, 'events'],
+    queryFn: () => getEvents(authenticatedRequest)({
+      "start[after]": new Date().toISOString(),
+    }),
     staleTime: config.staleTime
   })
 

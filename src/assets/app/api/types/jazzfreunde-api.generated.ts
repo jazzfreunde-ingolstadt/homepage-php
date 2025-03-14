@@ -71,12 +71,12 @@ export interface components {
         /** @description Terminierte Veranstaltung */
         Event: {
             readonly id?: number;
-            titel?: string;
+            titel: string;
             /** Format: date-time */
-            start?: string;
+            start: string;
             /** Format: date-time */
-            end?: string;
-            ort?: components["schemas"]["Ort"];
+            end: string;
+            ort: components["schemas"]["Ort"];
             subtitel?: string | null;
             link?: string | null;
             /**
@@ -88,7 +88,7 @@ export interface components {
         };
         Ort: {
             readonly id?: number;
-            name?: string;
+            name: string;
         };
     };
     responses: never;

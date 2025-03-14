@@ -4,11 +4,7 @@ namespace Jazzfreunde\App\Entity;
 
 use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
-use ApiPlatform\Metadata\ApiFilter;
-use ApiPlatform\Metadata\ApiProperty;
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata as API;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
@@ -21,17 +17,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'events')]
-#[ApiResource(
+#[API\ApiResource(
     operations: [
-        new Get(),
-        new GetCollection()
+        new Api\Get(),
+        new Api\GetCollection()
     ],
     // normalizationContext: ['groups' => ['Event:read']],
     denormalizationContext: ['groups' => ['Event:write']],
     paginationClientItemsPerPage: true
 )]
-#[ApiFilter(DateFilter::class, properties: ['start'])]
-#[ApiFilter(OrderFilter::class, properties: ['start'])]
+#[API\ApiFilter(DateFilter::class, properties: ['start'])]
+#[API\ApiFilter(OrderFilter::class, properties: ['start'])]
 class Event
 {
     use PropertyInjectionTrait;
@@ -43,16 +39,19 @@ class Event
     public ?int $id = null;
     #[ORM\Column(type: 'string')]
     #[Groups(groups: ['Event:write'])]
+    #[API\ApiProperty(required: true)]
     public string $titel;
     #[ORM\Column(type: 'datetime')]
     #[Groups(groups: ['Event:write'])]
+    #[API\ApiProperty(required: true)]
     public DateTime $start;
     #[ORM\Column(type: 'datetime')]
     #[Groups(groups: ['Event:write'])]
+    #[API\ApiProperty(required: true)]
     public DateTime $end;
     #[ORM\ManyToOne(targetEntity: Ort::class)]
     #[ORM\JoinColumn(nullable: false)]
-    #[ApiProperty(readableLink: true, writableLink: false)]
+    #[API\ApiProperty(readableLink: true, writableLink: false, required: true)]
     #[Groups(groups: ['Event:write'])]
     public Ort $ort;
     #[ORM\Column(type: 'string', nullable: true)]
@@ -62,5 +61,6 @@ class Event
     #[Groups(groups: ['Event:write'])]
     public ?string $link = null;
     #[ORM\Column(type: EventCategoryType::ENTITY_NAME, options: [ 'default' => EventCategoryEnum::DEFAULT ])]
+    #[API\ApiProperty(required: true)]
     public EventCategoryEnum $category = EventCategoryEnum::default;
 }

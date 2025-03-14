@@ -8,8 +8,17 @@ export interface EventListProps {
 
 export default ({ events }: EventListProps) => {
     events ??= []
+
+    if (events.length === 0) {
+        return (
+            <div className="flex flex-col justify-center w-full">
+                <p className="text-xl">Keine Veranstaltungen gefunden</p>
+            </div>
+        )
+    }
+
     return (
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 w-full">
             {events.map(event => <EventListItem event={event} />)}
         </div>
     )
