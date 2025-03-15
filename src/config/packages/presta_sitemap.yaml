@@ -1,5 +1,5 @@
 presta_sitemap:
-  dump_directory: "%kernel.project_dir%/public/build/app/sitemaps"
+  dump_directory: "%kernel.project_dir%/public/build/sitemaps"
   defaults:
     priority: 1
     changefreq: daily
