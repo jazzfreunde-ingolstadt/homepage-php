@@ -20,11 +20,12 @@
 {% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
-			<section class="py-5 md:py-10">
+			<section class="py-5 md:py-10 text-justify">
 				{{ include('@markdown/join/warum.md.twig')|markdown_to_html }}
 				{{ include('@markdown/join/firmenmitgliedschaft.md.twig')|markdown_to_html }}
 				{{ include('@markdown/join/mitgliedsbeitraege.md.twig')|markdown_to_html }}
 				{{ include('@markdown/join/mitgliedsantrag.md.twig')|markdown_to_html }}
+				{{ include('@markdown/join/spende.md.twig')|markdown_to_html }}
 			</section>
 		{% endblock %}
 	{% endembed %}

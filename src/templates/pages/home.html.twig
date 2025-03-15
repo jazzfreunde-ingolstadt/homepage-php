@@ -26,12 +26,13 @@
 {% endblock %}
 
 {% block content %}
-	{# {% embed '@layout/container.html.twig' %}
+	{% embed '@layout/container.html.twig' %}
 		{% block content %}
-			<div class="my-16 lg:my-24 xl:my-36">
-			</div>
+			<article class="my-16 lg:my-24 xl:my-36 text-justify">
+				{{ include('@markdown/home/donation-letter.md.twig')|markdown_to_html }}
+			</article>
 		{% endblock %}
-	{% endembed %} #}
+	{% endembed %}
 
 	{% include "components/footer-spacer.html.twig" %}
 {% endblock %}
