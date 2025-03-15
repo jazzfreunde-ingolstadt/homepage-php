@@ -28,9 +28,9 @@ export const EventListItem = ({ event }: EventListItemProps) => {
         })()
 
     return (
-        <p className="flex flex-col lg:flex-row gap-6 w-full lg:h-36">
+        <div className="flex flex-col lg:flex-row gap-6 w-full lg:h-36">
             <div className="flex flex-row flex-wrap lg:flex-nowrap lg:flex-col lg:w-40 gap-2 items-end text-center">
-                <hr className="w-full bg-blue border-2" />
+                <hr className="w-full border-blue border-2" />
                 <span className="font-bold"><DateDisplay date={new Date(event.start)} /></span>
                 <TimeDisplay date={new Date(event.start)} />
                 <span className="ml-auto lg:ml-0 mt-0 lg:mt-auto">{event.location.name}</span>
@@ -45,6 +45,6 @@ export const EventListItem = ({ event }: EventListItemProps) => {
                     <div className="mt-auto">{category}</div>
                 )}
             </div>
-        </p>
+        </div>
     )
 }
