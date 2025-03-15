@@ -134,11 +134,10 @@ final class AppRoutingController extends AbstractController
     /**
      * Veranstaltungen
      *
-     * @param string|null $edit
      * @return Response
      */
     #[Route('/events/', name: 'events', options: ['sitemap' => true])]
-    public function events(string|null $edit = null): Response
+    public function events(): Response
     {
         return $this->render(
             '@pages/events.html.twig'
@@ -150,11 +149,11 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/jazz-and-literature/', name: 'jazz-and-literature', options: ['sitemap' => true])]
+    #[Route('/info/jazz-and-literature/', name: 'jazz-and-literature', options: ['sitemap' => true])]
     public function jazzAndLiterature(): Response
     {
         return $this->render(
-            '@pages/jazz-and-literature.html.twig'
+            '@pages/info/jazz-and-literature.html.twig'
         );
     }
 
@@ -163,11 +162,11 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/sessions/', name: 'sessions', options: ['sitemap' => true])]
+    #[Route('/info/sessions/', name: 'sessions', options: ['sitemap' => true])]
     public function sessions(): Response
     {
         return $this->render(
-            '@pages/sessions.html.twig'
+            '@pages/info/sessions.html.twig'
         );
     }
 
