@@ -36,7 +36,7 @@ export const EventListItem = ({ event }: EventListItemProps) => {
                 <span className="ml-auto lg:ml-0 mt-0 lg:mt-auto">{event.location.name}</span>
             </div>
             <div className="flex flex-col">
-                <div className="text-xl font-bold">{event.title}</div>
+                <div className="text-lg font-bold">{event.title}</div>
                 <div>{event.subtitle}</div>
                 {event.link && (
                     <div className="text-sm">{event.link}</div>

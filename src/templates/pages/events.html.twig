@@ -26,10 +26,6 @@
 				Loading...
 				<i class="fas fa-cog fa-spin fa-3x"></i>
 			</div>
-			<p class="my-6">
-				Auch interessant: Das Programm unserer Partner des
-				<a class="text-orange" href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
-			</p>
 		{% endblock %}
 	{% endembed %}
 
@@ -40,7 +36,12 @@
 			{% include '@layout/divider.html.twig' with { classnames: "fill-white" } %}
 			<div class="bg-white">
 				{% embed '@layout/container.html.twig' %}
-					{% block content %}{% endblock %}
+					{% block content %}
+						<p class="my-6">
+							Auch interessant: Das Programm unserer Partner des
+							<a class="text-orange" href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
+						</p>
+					{% endblock %}
 				{% endembed %}
 			</div>
 		{% endblock %}
