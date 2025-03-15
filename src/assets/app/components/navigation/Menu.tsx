@@ -6,6 +6,7 @@ import { Logo, type LogoProps } from './partials/Logo'
 import { Burger } from './partials/Burger'
 
 export interface MenuProps {
+    homeLink: Link,
     links: Link[],
     logo: LogoProps
 }
@@ -13,14 +14,14 @@ export interface MenuProps {
 /**
  * Renders the main navigation component of the application.
  */
-export const Menu = ({ links, logo }: MenuProps) => {
+export const Menu = ({ homeLink, links, logo }: MenuProps) => {
     const [isFullScreenEnabled, setToggleFullScreen] = useState(false)
     const windowsize = useSize()
     const usesFullscreenMenu = windowsize[0] < 1024
 
     return (
         <nav role="navigation" className="flex flex-row items-center justify-between gap-5 duration-700">
-            <a href="/">
+            <a href={homeLink.url} title={homeLink.label}>
                 <Logo {...logo} />
             </a>
             <MainMenu

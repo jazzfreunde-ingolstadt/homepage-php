@@ -4,6 +4,7 @@
 		{% block content %}
 			<div
 				{{ react_component('Menu', {
+					homeLink: {url: url('home'), label: 'Startseite'},
 					links: [
 						{url: url('home'), label: 'Startseite'},
 						{url: url('about'), label: 'Verein'},
