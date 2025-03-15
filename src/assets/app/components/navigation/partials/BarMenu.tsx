@@ -11,7 +11,7 @@ export interface MainMenuProps {
 
 export default ({ links }: MainMenuProps) => {
     return (
-    <ul className="flex flex-row content-start justify-center items-center">
+    <ul role="menubar" className="flex flex-row content-start justify-center items-center gap-5">
         {links.map((link) =>
             <MenuItem label={link.label} url={link.url} />
         )}

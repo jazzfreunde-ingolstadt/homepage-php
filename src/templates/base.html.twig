@@ -6,19 +6,18 @@
 			{% include 'components/header.html.twig' %}
 			<div class="w-full bg-white">
 				<main role="main" class="relative w-full z-0 grow flex flex-col text-blue">
-					<div class="min-h-[12rem] xl:min-h-[14rem] bg-blue">
-						{% block header_element %}{% endblock %}
-					</div>
-					<div class="relative">
-						{% block header_divider %}
-							{% include '@layout/divider.html.twig' with { classnames: "absolute -top-7 sm:-top-11 md:-top-14 fill-white" } %}
-						{% endblock %}
-						{% block content %}{% endblock %}
-					</div>
-				</main>
+					<div class="min-h-[12rem] xl:min-h-[14rem] bg-blue"> {% block header_element %}{% endblock %}
+						</div>
+						<div class="relative">
+							{% block header_divider %}
+								{% include '@layout/divider.html.twig' with { classnames: "absolute -top-7 sm:-top-11 md:-top-14 fill-white" } %}
+							{% endblock %}
+							{% block content %}{% endblock %}
+						</div>
+					</main>
+				</div>
+				{% include '@layout/divider.html.twig' with { classnames: "relative fill-blue z-0" } %}
+				{% include 'components/footer.html.twig' %}
 			</div>
-			{% include '@layout/divider.html.twig' with { classnames: "relative fill-blue z-0" } %}
-			{% include 'components/footer.html.twig' %}
-		</div>
-	</body>
-</html>
+		</body>
+	</html>

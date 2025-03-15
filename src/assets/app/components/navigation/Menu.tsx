@@ -19,7 +19,7 @@ export const Menu = ({ links, logo }: MenuProps) => {
     const usesFullscreenMenu = windowsize[0] < 1024
 
     return (
-        <nav role="menu" className="flex flex-row items-center justify-between duration-700">
+        <nav role="navigation" className="flex flex-row items-center justify-between gap-5 duration-700">
             <a href="/">
                 <Logo {...logo} />
             </a>
@@ -30,7 +30,7 @@ export const Menu = ({ links, logo }: MenuProps) => {
                 setToggleFullScreen={setToggleFullScreen}
             />
             {usesFullscreenMenu &&
-                <button onClick={() => setToggleFullScreen(true)}>
+                <button title="Open main menu" type="button" onClick={() => setToggleFullScreen(true)}>
                     <Burger />
                 </button>
             }

@@ -8,6 +8,7 @@
 {% block header_element %}
 	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-bright11.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
 		{% block infront %}
+			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="flex place-content-center place-items-center h-screen text-center font-sans">

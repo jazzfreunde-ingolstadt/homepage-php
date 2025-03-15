@@ -55,12 +55,17 @@ jobs:
       - name: Install assets
         run: |
           chmod +x bin/console
-          bin/console assets:install --env=build --no-debug
+          bin/console assets:install --env=${{ inputs.environment }} --no-debug
 
       - name: Build Encore files
         run: |
           npm run ${{ inputs.environment == 'prod' && 'app:build:prod' || 'app:build:dev'}}
           npm run ${{ inputs.environment == 'prod' && 'mail:build:prod' || 'mail:build:dev'}}
+
+      - name: Generate sitemaps
+        run: |
+          chmod +x bin/console
+          bin/console presta:sitemap:dump --env=${{ inputs.environment }} --no-debug
 
       - uses: actions/upload-artifact@v4
         with:

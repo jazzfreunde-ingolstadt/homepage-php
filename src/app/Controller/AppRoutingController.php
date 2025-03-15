@@ -7,7 +7,6 @@ namespace Jazzfreunde\App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Routing Controller für die Website
@@ -19,7 +18,7 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/', name: 'home')]
+    #[Route('/', name: 'home', options: ['sitemap' => true])]
     public function home(): Response
     {
         return $this->render(
@@ -32,7 +31,7 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/about/', name: 'about')]
+    #[Route('/about/', name: 'about', options: ['sitemap' => true])]
     public function about(): Response
     {
         $personen = [
@@ -85,7 +84,7 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/join/', name: 'join')]
+    #[Route('/join/', name: 'join', options: ['sitemap' => true])]
     public function join(): Response
     {
         return $this->render(
@@ -98,7 +97,7 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/legal/end-user-agreement/', name: 'end-user-agreement')]
+    #[Route('/legal/end-user-agreement/', name: 'end-user-agreement', options: ['sitemap' => true])]
     public function endUserAgreement(): Response
     {
         return $this->render(
@@ -111,7 +110,7 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/legal/impressum/', name: 'impressum')]
+    #[Route('/legal/impressum/', name: 'impressum', options: ['sitemap' => true])]
     public function impressum(): Response
     {
         return $this->render(
@@ -124,7 +123,7 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/legal/statute/', name: 'statute')]
+    #[Route('/legal/statute/', name: 'statute', options: ['sitemap' => true])]
     public function statute(): Response
     {
         return $this->render(
@@ -136,14 +135,39 @@ final class AppRoutingController extends AbstractController
      * Veranstaltungen
      *
      * @param string|null $edit
-     * @param SerializerInterface $serializer
      * @return Response
      */
-    #[Route('/events/{edit}', name: 'events', requirements: ['edit' => '^(?:edit/?$)?'])]
+    #[Route('/events/', name: 'events', options: ['sitemap' => true])]
     public function events(string|null $edit = null): Response
     {
         return $this->render(
             '@pages/events.html.twig'
+        );
+    }
+
+    /**
+     * Jazz and Literature
+     *
+     * @return Response
+     */
+    #[Route('/jazz-and-literature/', name: 'jazz-and-literature', options: ['sitemap' => true])]
+    public function jazzAndLiterature(): Response
+    {
+        return $this->render(
+            '@pages/jazz-and-literature.html.twig'
+        );
+    }
+
+    /**
+     * Jam Sessions
+     *
+     * @return Response
+     */
+    #[Route('/sessions/', name: 'sessions', options: ['sitemap' => true])]
+    public function sessions(): Response
+    {
+        return $this->render(
+            '@pages/sessions.html.twig'
         );
     }
 
