@@ -3,7 +3,7 @@
 {% extends 'base.html.twig' %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/bonus-concert-bright1.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/bonus-concert-bright1.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}

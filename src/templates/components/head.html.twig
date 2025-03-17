@@ -3,8 +3,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta name="description" content="Verein zur Förderung der Kunst und Kultur in Ingolstadt.">
 	<title>{{ title|default('Willkommen!') }}</title>
-	<link rel="icon" href="{{ asset('build/app/images/jicon.svg') }}"/>
-	<link rel="apple-touch-icon" href="{{ asset('build/app/images/jicon.svg') }}">
+	<link rel="icon" href="{{ asset('app/images/jicon.svg') }}"/>
+	<link rel="apple-touch-icon" href="{{ asset('app/images/jicon.svg') }}">
 	{% block stylesheets %}
 		{{ encore_entry_link_tags('app', null, 'app') }}
 	{% endblock %}
@@ -17,5 +17,5 @@
 	<meta property="og:url" content="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}"/>
 	<meta property="og:title" content="{{ title |default('Willkommen!') }}"/>
 	<meta property="og:description" content="{{ description|default('Jazzfreunde Ingolstadt e.V.') }}"/>
-	<meta property="og:image" content="{{ absolute_url(asset('build/app/images/FullLogoWithBackground.png')) }}"/>
+	<meta property="og:image" content="{{ absolute_url(asset('app/images/FullLogoWithBackground.png')) }}"/>
 </head>

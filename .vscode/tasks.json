@@ -150,6 +150,19 @@
             "options": {
                 "cwd": "${workspaceFolder}/src/",
             },
+        },
+        {
+            "label": "Dump sitemaps",
+            "type": "shell",
+            "group": "test",
+            "command": "${workspaceFolder}/src/bin/console",
+            "args": [
+                "presta:sitemaps:dump",
+                "--env=dev",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
         }
 	]
 }

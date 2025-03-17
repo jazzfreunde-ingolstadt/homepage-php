@@ -52,9 +52,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
 }
 
-Encore.setOutputPath("public/build/app")
-  .setPublicPath("/build/app")
-  .setManifestKeyPrefix("build/app/")
+Encore.setOutputPath("public/app")
+  .setPublicPath("/app")
+  .setManifestKeyPrefix("app/")
   .addAliases(ALIASES)
 
   .addEntry("app", APP_PATH + "/app.ts")
@@ -128,9 +128,9 @@ app.resolve.plugins = [
 ]
 
 Encore.reset();
-Encore.setOutputPath("public/build/mail")
-  .setPublicPath("/build/mail")
-  .setManifestKeyPrefix("build/mail/")
+Encore.setOutputPath("public/mail")
+  .setPublicPath("/mail")
+  .setManifestKeyPrefix("mail/")
 
   .addStyleEntry("email", MAIL_PATH + "/email.css")
 
