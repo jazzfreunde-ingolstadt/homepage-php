@@ -6,8 +6,17 @@ import { Logo, type LogoProps } from './partials/Logo'
 import { Burger } from './partials/Burger'
 
 export interface MenuProps {
+    /**
+     * The link to the home page.
+     */
     homeLink: Link,
+    /**
+     * The links to be displayed in the menu.
+     */
     links: Link[],
+    /**
+     * The logo to be displayed in the menu.
+     */
     logo: LogoProps
 }
 
@@ -25,6 +34,7 @@ export const Menu = ({ homeLink, links, logo }: MenuProps) => {
                 <Logo {...logo} />
             </a>
             <MainMenu
+                logo={logo}
                 links={links}
                 usesFullscreenMenu={usesFullscreenMenu}
                 isFullScreenEnabled={isFullScreenEnabled}

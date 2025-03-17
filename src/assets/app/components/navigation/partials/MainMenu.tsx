@@ -2,8 +2,13 @@ import React from 'react'
 import type { Link } from '@models/navigation/link.model'
 import BarMenu from './BarMenu'
 import FullScreenMenu from './FullScreenMenu'
+import type { LogoProps } from './Logo'
 
 export interface MainMenuProps {
+    /**
+     * The logo to be displayed in the menu.
+     */
+    logo: LogoProps
     /**
      * The links to be displayed in the menu.
      */
@@ -23,6 +28,7 @@ export interface MainMenuProps {
 }
 
 export default ({
+    logo,
     links,
     isFullScreenEnabled,
     setToggleFullScreen,
@@ -33,6 +39,7 @@ export default ({
             return
 
         return <FullScreenMenu
+            logo={logo}
             links={links}
             isFullScreenEnabled={isFullScreenEnabled}
             setToggleFullScreen={setToggleFullScreen}
