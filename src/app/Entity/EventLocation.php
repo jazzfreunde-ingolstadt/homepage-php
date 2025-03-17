@@ -8,6 +8,7 @@ use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 
 /**
  * Event locations
+ * @psalm-api
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'event_locations')]

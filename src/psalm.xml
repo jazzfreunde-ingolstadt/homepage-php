@@ -12,6 +12,7 @@
             <directory name="var"/>
             <directory name="vendor" />
             <directory name="tests" />
+            <directory name="migrations" />
         </ignoreFiles>
     </projectFiles>
     <plugins>

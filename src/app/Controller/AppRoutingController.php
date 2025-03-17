@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Routing Controller für die Website
+ * @psalm-api
  */
 final class AppRoutingController extends AbstractController
 {

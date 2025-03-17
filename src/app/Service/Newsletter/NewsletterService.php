@@ -30,6 +30,7 @@ final class NewsletterService
      * @param UrlGeneratorInterface $urlGenerator
      * @param EventDispatcherInterface $dispatcher
      * @param ValidatorInterface $validator
+     * @psalm-suppress PossiblyUnusedMethod injected into Twig template
      */
     public function __construct(
         private EntityManagerInterface $entityManager,
@@ -74,6 +75,7 @@ final class NewsletterService
      * Generiert das Formular.
      *
      * @return FormInterface
+     * @psalm-suppress PossiblyUnusedMethod used in Twig Template to render html form
      */
     public function createForm(): FormInterface
     {

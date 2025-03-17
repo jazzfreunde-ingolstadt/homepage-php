@@ -45,6 +45,7 @@ class Kernel extends BaseKernel
 
     /**
      * @inheritDoc
+     * @psalm-suppress PossiblyUnusedMethod
      */
     protected function configureContainer(ContainerConfigurator $container): void
     {
@@ -59,6 +60,7 @@ class Kernel extends BaseKernel
 
     /**
      * @inheritDoc
+     * @psalm-suppress PossiblyUnusedMethod
      */
     protected function configureRoutes(RoutingConfigurator $routes): void
     {

@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *  # Befehl zum Anlegen eines neuen Nutzers
  *  INSERT INTO `users` (`uuid`, `email`) VALUES (UNHEX(REPLACE(UUID(), '-', '')), 'new.user@jazzfreunde-ingolstadt.localhost')
  * ```
+ * @psalm-api
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'users')]

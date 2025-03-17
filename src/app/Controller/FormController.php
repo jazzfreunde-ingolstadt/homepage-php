@@ -21,6 +21,7 @@ use function is_array;
 
 /**
  * Routing Controller für die Website
+ * @psalm-api
  */
 #[Route('/form', name: 'form_')]
 final class FormController extends AbstractController

@@ -22,8 +22,7 @@ final class Email implements PrimitiveTypeInterface
     }
 
     /**
-     * @param string $email
-     * @return bool
+     * @param string $value
      */
     public function __construct(string $value)
     {

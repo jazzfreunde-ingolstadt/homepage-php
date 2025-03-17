@@ -16,6 +16,7 @@ use function is_null;
 
 /**
  * Listener after a new subscription has been confirmed
+ * @psalm-api
  */
 #[AsEventListener(event: ContractConfirmedEvent::class, method: 'onConfirmed')]
 final class SubscriptionConfirmedListener implements LoggerAwareInterface

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Benutzerrollen
+ * @psalm-api
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'roles')]

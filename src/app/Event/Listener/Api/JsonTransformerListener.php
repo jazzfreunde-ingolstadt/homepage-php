@@ -9,6 +9,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 /**
  * Dekodiert JSON-Daten in der Request, sofern vorhanden
+ * @psalm-api
  */
 final class JsonTransformerListener
 {
