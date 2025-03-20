@@ -9,7 +9,7 @@
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
-						<h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold uppercase mb-10 text-orange">Veranstaltungen</h1>
+						<h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wider uppercase mb-10 text-orange">Veranstaltungen</h1>
 						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">Hier finden Sie eine Übersicht über Veranstaltungen in der Region für Jazzfreunde (unabhängig davon, wer der Veranstalter ist)</h2>
 					</div>
 				{% endblock %}
@@ -21,7 +21,7 @@
 {% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
-			{% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
+			{% include 'typography/section-titel.html.twig' with { titel: 'Veranstaltungen' } %}
 			<div {{ react_component('events/EventsCalendar')}}>
 				Loading...
 				<i class="fas fa-cog fa-spin fa-3x"></i>
@@ -37,10 +37,13 @@
 			<div class="bg-white">
 				{% embed '@layout/container.html.twig' %}
 					{% block content %}
-						<p class="my-6">
-							Auch interessant: Das Programm unserer Partner des
-							<a class="text-orange" href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
-						</p>
+						<article class="py-6">
+							{% include 'typography/section-titel.html.twig' with { titel: 'Auch interessant' } %}
+							<p class="text-lg">
+								Das Programm unserer Partner des
+								<a href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
+							</p>
+						</article>
 					{% endblock %}
 				{% endembed %}
 			</div>

@@ -3,6 +3,7 @@ import { client } from '@services/jazzfreunde-api.service'
 import { authenticatedRequest, type ApiRequest } from '@api/utils/request.util'
 import type { Event } from '@models/events/events.model'
 import type { HTTPError } from 'ky'
+import type { EventCollection, Month } from '../models/events-collection.model'
 
 /**
  * Gets all heating points.
@@ -34,4 +35,20 @@ export const useUpcommingEvents = () => {
     isLoading,
     events: data,
   }
+}
+
+export const groupEventsByMonth = (events: Event[]) => {
+  const groupedEvents = events.reduce((acc, event) => {
+    const month = new Date(event.start).toLocaleString('de-DE', { month: 'long' })
+    if (!acc[month]) {
+      acc[month] = []
+    }
+    acc[month].push(event)
+    return acc
+  }, {} as Record<string, Event[]>)
+
+  return Object.entries(groupedEvents).map(([month, events]) => ({
+    month: month as Month,
+    events,
+  } satisfies EventCollection))
 }

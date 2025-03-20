@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Event } from '@models/events/events.model'
-import { DateDisplay } from '@components/typography/datetine/DateDisplat'
-import { TimeDisplay } from '@components/typography/datetine/TimeDisplay'
+import { EventInfo } from './EventInfo'
+import { CategoryBadge } from './CategoryBadge'
 
 
 export interface EventListItemProps {
@@ -17,33 +17,15 @@ export interface EventListItemProps {
  * @returns A single event
  */
 export const EventListItem = ({ event }: EventListItemProps) => {
-    const category = event.category === 'none'
-        ? null
-        : (() => {
-            switch (event.category) {
-                case 'session': return 'Session'
-                case 'jazztage': return 'Ingolstädter Jazztage'
-                default: return null
-            }
-        })()
-
     return (
-        <div className="flex flex-col lg:flex-row gap-6 w-full lg:h-36">
-            <div className="flex flex-row flex-wrap lg:flex-nowrap lg:flex-col lg:w-40 gap-2 items-end text-center">
-                <hr className="w-full border-blue border-2" />
-                <span className="font-bold"><DateDisplay date={new Date(event.start)} /></span>
-                <TimeDisplay date={new Date(event.start)} />
-                <span className="ml-auto lg:ml-0 mt-0 lg:mt-auto">{event.location.name}</span>
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 w-full min-h-[12em] py-4 border-b lg:border-0 border-grey-light">
+            <div className="w-full lg:w-56 border-blue border-t-4">
+                <EventInfo start={new Date(event.start)} end={new Date(event.end)} location={event.location} />
             </div>
-            <div className="flex flex-col">
-                <div className="text-lg font-bold">{event.title}</div>
+            <div className="flex flex-col w-full justify-between">
+                <div className="text-lg lg:text-xl font-bold tracking-wider">{event.title.toLocaleUpperCase()}</div>
                 <div>{event.subtitle}</div>
-                {event.link && (
-                    <div className="text-sm">{event.link}</div>
-                )} 
-                {category && (
-                    <div className="mt-auto">{category}</div>
-                )}
+                <CategoryBadge category={event.category} />
             </div>
         </div>
     )
