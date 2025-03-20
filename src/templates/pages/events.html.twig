@@ -21,7 +21,7 @@
 {% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
-			{% include 'typography/section-titel.html.twig' with { titel: 'Veranstaltungen' } %}
+			{% include 'typography/section-titel.html.twig' with { titel: 'Kalender' } %}
 			<div {{ react_component('events/EventsCalendar')}}>
 				Loading...
 				<i class="fas fa-cog fa-spin fa-3x"></i>

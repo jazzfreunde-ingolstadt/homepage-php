@@ -20,6 +20,7 @@ export const CategoryBadge = ({ category }: CategoryBadgeProps) => {
         switch (category) {
             case 'session': return 'Session'
             case 'jazztage': return 'Ingolstädter Jazztage'
+            case 'jazz-and-literature': return 'Jazz & Literatur'
             default: return null
         }
     })()

@@ -12,4 +12,5 @@ enum EventCategoryEnum: string
     case default = self::DEFAULT;
     case session = 'session';
     case jazztage = 'jazztage';
+    case jazzAndLiterature = 'jazz-and-literature';
 }

@@ -68,6 +68,39 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** @description A representation of common errors. */
+        Error: {
+            /** @description A short, human-readable summary of the problem. */
+            readonly title?: string | null;
+            /** @description A human-readable explanation specific to this occurrence of the problem. */
+            readonly detail?: string | null;
+            /**
+             * @default 400
+             * @example 404
+             */
+            status: number;
+            /** @description A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced. */
+            readonly instance?: string | null;
+            /** @description A URI reference that identifies the problem type */
+            readonly type?: string;
+        };
+        /** @description A representation of common errors. */
+        "Error.jsonld": {
+            /** @description A short, human-readable summary of the problem. */
+            readonly title?: string | null;
+            /** @description A human-readable explanation specific to this occurrence of the problem. */
+            readonly detail?: string | null;
+            /**
+             * @default 400
+             * @example 404
+             */
+            status: number;
+            /** @description A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced. */
+            readonly instance?: string | null;
+            /** @description A URI reference that identifies the problem type */
+            readonly type?: string;
+            readonly description?: string | null;
+        };
         /** @description Terminierte Veranstaltung */
         Event: {
             readonly id?: number;
@@ -84,7 +117,7 @@ export interface components {
              * @example none
              * @enum {string}
              */
-            category: "none" | "session" | "jazztage";
+            category: "none" | "session" | "jazztage" | "jazz-and-literature";
         };
         EventLocation: {
             readonly id?: number;
@@ -152,12 +185,16 @@ export interface operations {
                     "text/html": components["schemas"]["Event"];
                 };
             };
-            /** @description Resource not found */
+            /** @description Not found */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
             };
         };
     };
@@ -183,12 +220,16 @@ export interface operations {
                     "text/html": components["schemas"]["EventLocation"];
                 };
             };
-            /** @description Resource not found */
+            /** @description Not found */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
             };
         };
     };
