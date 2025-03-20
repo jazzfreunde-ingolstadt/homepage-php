@@ -49,6 +49,6 @@ export const groupEventsByMonth = (events: Event[]) => {
 
   return Object.entries(groupedEvents).map(([month, events]) => ({
     month: month as Month,
-    events,
+    events: events.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
   } satisfies EventCollection))
 }
