@@ -3,13 +3,14 @@
 {% extends 'base.html.twig' %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-yellow1.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/advertise/jazz-and-literature.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
 						<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-white">Jazz & Literatur im Stadttheater</h1>
+						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">In Kooperation mit dem Stadttheater Ingolstadt</h2>
 					</div>
 				{% endblock %}
 			{% endembed %}
@@ -21,7 +22,18 @@
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<section class="py-5 md:py-10">
-				In Kooperation mit dem Stadttheater Ingolstadt
+				Schon seit vielen Jahren arbeiten die Jazzfreunde mit dem Stadttheater Ingolstadt bei dessen 
+								sehr beliebten und erfolgreichen Veranstaltungsreihe „Jazz & Literatur“ zusammen. 
+								Entsprechend dem Namen werden hier Jazz und Literatur kombiniert, d.h. es gibt Lesungen aus 
+								der Literatur im Wechsel mit Live-Jazzmusik. Die Jazzfreunde Ingolstadt steuern dabei die 
+								Jazzmusik, indem sie die Jazzbands zu dieser Veranstaltung auswählen und engagieren,
+								 Die Veranstaltung findet ca. 4x jährlich sonntags um 11:00 im Foyer des Stadttheaters mit sehr 
+								günstigen Eintrittspreisen statt.
+								 Das Programm zu dieser Veranstaltungsreihe kann auf dieser Website wie auch auf der
+								Homepage des Stadttheaters eingesehen werden:
+								 https://theater.ingolstadt.de/programm/spielplan.html
+								 Tickets gibt es hier im Vorverkauf:
+								 https://theater-ingolstadt.eventim-inhouse.de/webshop/webticket/eventlis
 			</section>
 		{% endblock %}
 	{% endembed %}

@@ -6,24 +6,15 @@
 {% endblock %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-bright11.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
-		{% block infront %}
-			{% include "components/header-spacer.html.twig" %}
-			{% embed '@layout/container.html.twig' %}
-				{% block content %}
-					<div class="flex place-content-center place-items-center h-screen text-center font-sans">
-						
-					</div>
-				{% endblock %}
-			{% endembed %}
-		{% endblock %}
-	{% endembed %}
+	{% include 'components/information/actions.html.twig' with { class: 'w-full' }  %}
 {% endblock %}
 
 {% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
-			<article class="my-16 lg:my-24 xl:my-36 text-justify">
+			{% include 'typography/section-titel.html.twig' with { titel: 'Gemeinsam die Jazzszene in Ingolstadt unterstützen!' } %}
+
+			<article class="text-justify">
 				{{ include('@markdown/home/donation-letter.md.twig')|markdown_to_html }}
 			</article>
 		{% endblock %}
