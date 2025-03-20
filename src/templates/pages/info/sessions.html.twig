@@ -10,7 +10,7 @@
 				{% block content %}
 					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
 						<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-white">Jam-Sessions</h1>
-						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">Offene Bühne und freier Eintritt</h2>
+						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">Deine Bühne für Jazz in Ingolstadt!</h2>
 					</div>
 				{% endblock %}
 			{% endembed %}
@@ -22,15 +22,45 @@
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<section class="py-5 md:py-10">
-				Zur Förderung des Jazz in Ingolstadt organisieren und finanzieren die "Jazzfreunde Ingolstadt e. 
-				V." schon seit vielen Jahren von Oktober bis Juni des Folgejahres eine „JAM-Session“mit offener 
-				Bühne und freiem Eintritt.
-				 Dazu engagieren wir jeweils eine Session-Band; Der geplante Ablauf der „JAM-Session“ ist: die 
-				Session Band spielt ein erstes Set, danach ist die Bühne frei für Mitspieler; die Mitspieler werden 
-				dann von einem Teil oder auch von der gesamten Session Band begleitet.
-				 Seit Dezember 2024 findet diese Veranstaltung auf der Kleinkunstbühne „Neue Welt“ statt 
-				( Ingolstadt, Griesbadgasse 7), in der Regel am 3. Dienstag des Monats um 20:00.
-				 Interessierte Musiker sind herzlich eingeladen, bei der Session mitzuspielen.
+				<div class="w-full flex flex-row py-6 lg:py-10">
+					{% include "components/util/button.html.twig" 
+						with { 
+							link_url: path('events'),
+							icon_url: asset('app/images/icons/calendar.svg'),
+							icon_alt: 'calendar icon',
+							title: 'Veranstaltungen',
+							class: 'block'
+						}
+					%}
+				</div>
+
+				<p class="py-2 md:py-5">
+					Die Jazzfreunde Ingolstadt e. V. laden alle Jazzliebhaber:innen und Musiker:innen ein, Teil einer besonderen musikalischen Erfahrung zu werden! Von Oktober bis Juni veranstalten wir unsere legendären Jam-Sessions – mit offener Bühne, freiem Eintritt und jeder Menge Spielfreude.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Wie läuft eine Jam-Session ab?
+					Jede Session beginnt mit einer Opener-Band, die das erste Set spielt. Danach gehört die Bühne allen, die mitspielen möchten! Die Session-Band begleitet die Mitspieler:innen entweder in Teilen oder komplett.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Wo & Wann?
+					Seit Dezember 2024 finden die Jam-Sessions auf der Kleinkunstbühne „Neue Welt“ (Ingolstadt, Griesbadgasse 7) statt - in der Regel immer am 3. Dienstag des Monats um 20:00 Uhr (bis auf eine Sommerpause).
+				</p>
+
+
+				<p class="py-2 md:py-5">
+					Aufruf an Jazzbands!
+					Wir suchen ständig neue Session-Opener-Bands, die den Abend musikalisch eröffnen! Voraussetzung: Sicherheit im Realbook und eine gewisse stilistische Bandbreite.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Dort findet ihr auch alle Infos zu Gage, Technik & Rahmenbedingungen.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Kommt vorbei - ob als Musiker oder Zuhörer - und erlebt Jazz live & hautnah!
+				</p>
 			</section>
 		{% endblock %}
 	{% endembed %}
