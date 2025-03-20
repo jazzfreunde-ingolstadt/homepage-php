@@ -21,6 +21,7 @@ class MailService
     /**
      * @param ManagerRegistry $doctrine
      * @param MailerInterface $mailer
+     * @psalm-suppress PossiblyUnusedMethod dependency injection
      */
     public function __construct(
         private ManagerRegistry $doctrine,

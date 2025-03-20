@@ -30,6 +30,7 @@ final class EmailConfirmationService implements LoggerAwareInterface
      * @param EntityManagerInterface $entityManager
      * @param MailService $mailer
      * @param EventDispatcherInterface $dispatcher
+     * @psalm-suppress PossiblyUnusedMethod dependency injection
      */
     public function __construct(
         private EntityManagerInterface $entityManager,

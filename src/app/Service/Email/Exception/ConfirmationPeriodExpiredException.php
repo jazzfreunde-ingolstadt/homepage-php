@@ -14,7 +14,7 @@ final class ConfirmationPeriodExpiredException extends \Exception
     /**
      * The requested confirmation has expired
      *
-     * @param string $token Token for the requested confirmation
+     * @param ConfirmationContract $request requested confirmation
      */
     public function __construct(ConfirmationContract $request)
     {

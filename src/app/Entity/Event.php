@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Terminierte Veranstaltung
+ * @psalm-api
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'events')]

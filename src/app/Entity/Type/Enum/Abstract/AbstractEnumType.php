@@ -87,8 +87,9 @@ class AbstractEnumType extends Type
 
     /**
      * @inheritDoc
+     * @psalm-suppress PossiblyUnusedMethod
      */
-    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    public function requiresSQLCommentHint(AbstractPlatform $_): bool
     {
         return true;
     }

@@ -55,14 +55,16 @@ final class EmailType extends StringType
 
     /**
      * @inheritDoc
+     * @psalm-suppress PossiblyUnusedMethod
      */
-    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    public function requiresSQLCommentHint(AbstractPlatform $_): bool
     {
         return true;
     }
 
     /**
      * @inheritDoc
+     * @psalm-suppress PossiblyUnusedMethod
      */
     public function getName(): string
     {

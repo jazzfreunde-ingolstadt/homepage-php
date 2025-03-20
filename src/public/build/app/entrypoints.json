@@ -1,0 +1,16 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "http://localhost:8080/build/app/runtime.js",
+        "http://localhost:8080/build/app/vendors-node_modules_webpack-dev-server_client_index_js_protocol_ws_3A_hostname_0_0_0_0_port_-a5d60f.js",
+        "http://localhost:8080/build/app/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-3d5a2e.js",
+        "http://localhost:8080/build/app/app.js"
+      ],
+      "css": [
+        "http://localhost:8080/build/app/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-3d5a2e.css",
+        "http://localhost:8080/build/app/app.css"
+      ]
+    }
+  }
+}

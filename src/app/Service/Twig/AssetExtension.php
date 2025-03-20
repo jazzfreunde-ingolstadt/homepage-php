@@ -10,6 +10,7 @@ use Twig\TwigFunction;
 
 /**
  * Erweitert die Integration von Assets in Twig Templates
+ * @psalm-suppress UnusedClass
  */
 class AssetExtension extends AbstractExtension
 {

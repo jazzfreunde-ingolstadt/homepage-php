@@ -11,6 +11,7 @@ use Jazzfreunde\App\Type\Primitive\Email;
 
 /**
  * Bekannte Emails werden vom System unter ihrem Handle referenziert und können so über die Datenbank konfiguriert werden.
+ * @psalm-api
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'known_mails')]

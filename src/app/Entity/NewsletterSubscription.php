@@ -11,6 +11,7 @@ use Jazzfreunde\App\Type\Primitive\Email;
 
 /**
  * Abonement des Jazzfreunde Newsletters
+ * @psalm-api
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'newsletter_subscriptions')]

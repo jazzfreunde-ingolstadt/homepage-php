@@ -8,6 +8,7 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 /**
  * Listener for new subscriptions
+ * @psalm-api
  */
 #[AsEventListener(event: NewSubscriptionEvent::class, method: 'onNewSubscription')]
 final class NewSubscriptionListener

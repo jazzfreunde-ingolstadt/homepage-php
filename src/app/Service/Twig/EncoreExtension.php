@@ -8,6 +8,7 @@ use Twig\TwigFunction;
 
 /**
  * Erweitert die Integration von Encore in Twig Templates
+ * @psalm-api
  */
 class EncoreExtension extends AbstractExtension
 {
@@ -36,6 +37,7 @@ class EncoreExtension extends AbstractExtension
      *
      * @param string $entryName
      * @return string
+     * @throws \RuntimeException
      */
     public function getEncoreEntryCssSource(string $entryName): string
     {
@@ -45,8 +47,15 @@ class EncoreExtension extends AbstractExtension
 
         return array_reduce(
             $entrypoints,
-            fn(string $source, string $location)
-                => $source.file_get_contents($this->publicDir.$location),
+            function (string $source, string $location) {
+                $rawCss = file_get_contents($this->publicDir.$location);
+
+                if ($rawCss === false) {
+                    throw new \RuntimeException("Unable to read CSS file: {$location}");
+                }
+
+                return $source.$rawCss;
+            },
             ''
         );
     }

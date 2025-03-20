@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Confirmation contract authorized by a user
+ * @psalm-api
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'confirmation_contracts')]
@@ -59,6 +60,7 @@ class ConfirmationContract
     /**
      * Is the contract confirmed?
      *
+     * @psalm-suppress PossiblyUnusedMethod
      * @return boolean
      */
     public function isConfirmed(): bool
