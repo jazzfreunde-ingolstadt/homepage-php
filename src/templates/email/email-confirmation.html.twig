@@ -1,18 +1,19 @@
 {% extends 'email/base.html.twig' %}
 
 {% block content %}
-    <h1 class="text-xl">Bitte bestätigen Sie Ihre Email</h1>
+	<h1 class="text-xl">Bitte bestätigen Sie Ihre Email</h1>
 
-    <p class="text-md">
-        Vielen Dank für Ihr Interesse.
-        Mit dem Klick auf den untenstehenden Link erklären Sie sich damit einverstanden, dass der Verein Ihnen Emails zusenden darf.
-        Sie können das Abonnement jederzeit kündigen.
-    </p>
+	<p class="text-md">
+		Vielen Dank für Ihr Interesse.<br/>
+		Mit dem Klick auf den untenstehenden Link erklären Sie sich damit einverstanden, dass der Verein Ihnen Emails zusenden darf.<br/>
+		Sie können das Abonnement jederzeit kündigen.
+	</p>
 
-    Jazz on! 🎷
-    
-    <p class="text-md">
-        <a class="font-bold" href="{{url('form_newsletter_confirm', { token: token })}}">Email bestätigen</a>
-    </p>
+	<p class="text-md">
+		Jazz on! 🎷
+	</p>
+
+	<p class="text-md">
+		<a class="font-bold" href="{{url('form_newsletter_confirm', { token: token })}}">Email bestätigen</a>
+	</p>
 {% endblock %}
-    

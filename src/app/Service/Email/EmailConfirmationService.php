@@ -15,7 +15,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Jazzfreunde\App\Event\Event\Contract\ContractConfirmedEvent;
 use Jazzfreunde\App\Event\Event\Contract\ContractCancelledEvent;
 use Jazzfreunde\App\Type\Primitive\Email;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Service for email confirmation of contract

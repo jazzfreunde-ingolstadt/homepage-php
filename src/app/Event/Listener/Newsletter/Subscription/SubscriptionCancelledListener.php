@@ -53,7 +53,7 @@ final class SubscriptionCancelledListener implements LoggerAwareInterface
                 KnownMailHandleEnum::NoReply,
                 KnownMailHandleEnum::Jazzletter,
                 'Abonnement gekündigt!',
-                'email/newsletter/newsletter-cancellation-notice.html.twig',
+                'email/newsletter/admin/subscription-cancelled-notice.html.twig',
                 [
                     'subscription' => [
                         'email' => $subscription->email

@@ -16,6 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
 use function is_array;
 
@@ -24,8 +26,10 @@ use function is_array;
  * @psalm-api
  */
 #[Route('/form', name: 'form_')]
-final class FormController extends AbstractController
+final class FormController extends AbstractController implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * Newletter abonnieren
      *
@@ -40,28 +44,42 @@ final class FormController extends AbstractController
             ->createForm(NewsletterSubscriptionType::class)
             ->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                $data = $form->getData();
-                if (!is_array($data)) {
-                    throw new \LogicException('Unable to load form data');
-                }
-
-                $subscription = new NewsletterSubscription(...$data);
-                $subscription->creationTime = new DateTime();
-
-                $newsletter->subscribe($subscription);
-
-                return $this->redirectToRoute('form_newsletter_subscription_received');
-            } catch (SubscriptionException $e) {
-                if ($e->getCode() === SubscriptionException::ALREADY_SUBSCRIBED) {
-                    return $this->redirectToRoute('form_newsletter_already_subscribed');
-                }
-                throw $e;
-            }
+        if (!$form->isSubmitted()) {
+            return $this->redirectToRoute('error');
         }
 
-        return $this->redirectToRoute('error');
+        if (!$form->isValid()) {
+            $this->logger?->error(
+                'Submitted invalid form data for jazzletter subscription.',
+                [
+                    'route' => $request->attributes->get('_route'),
+                    'form' => $form->getErrors(true, false),
+                    'data' => $form->getData(),
+                    'request' => $request->getContent(),
+                ]
+            );
+                
+            return $this->redirectToRoute('error');
+        }
+        
+        try {
+            $data = $form->getData();
+            if (!is_array($data)) {
+                throw new \LogicException('Unable to load form data');
+            }
+    
+            $subscription = new NewsletterSubscription(...$data);
+            $subscription->creationTime = new DateTime();
+    
+            $newsletter->subscribe($subscription);
+    
+            return $this->redirectToRoute('form_newsletter_subscription_received');
+        } catch (SubscriptionException $e) {
+            if ($e->getCode() === SubscriptionException::ALREADY_SUBSCRIBED) {
+                return $this->redirectToRoute('form_newsletter_already_subscribed');
+            }
+            throw $e;
+        }
     }
 
     /**
