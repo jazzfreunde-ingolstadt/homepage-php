@@ -1,0 +1,27 @@
+{
+    "extends": "../../tsconfig",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "../../public/app",
+        "paths": {
+            "@components/*": [
+                "./components/*",
+            ],
+            "@hooks/*": [
+                "./hooks/*",
+            ],
+            "@models/*": [
+                "./models/*"
+            ],
+            "@api/types/*": [
+                "./api/types/*"
+            ],
+            "@api/utils/*": [
+                "./api/utils/*"
+            ],
+            "@services/*": [
+                "./services/*"
+            ]
+        },
+    }
+}

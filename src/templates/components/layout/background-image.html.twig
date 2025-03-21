@@ -1,8 +1,7 @@
-<div class="relative block w-full min-h-min z-0">
-  <img class="absolute top-0 w-full h-full object-cover -z-10 {{ class|default('') }}" src="{{ image_url|raw }}" />
-  <div class="relative float-left w-full">
-    {% block infront %}
-
-    {% endblock %}
-  </div>
-</div>
+<div class="relative w-auto min-h-min">
+	<div class="absolute top-0 z-0 w-full h-full overflow-hidden">
+		<img alt="Background image" class="relative w-full h-full object-cover object-center {{ class|default('') }}" src="{{ image_url|raw }}"/>
+	</div>
+	<div class="relative w-full z-10 overflow-x-hidden"> {% block infront %}{% endblock %}
+		</div>
+	</div>

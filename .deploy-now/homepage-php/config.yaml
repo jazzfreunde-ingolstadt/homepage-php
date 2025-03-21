@@ -5,6 +5,7 @@ deploy:
       - var/
       - tests/
       - node_modules/
+      - assets/
       - .env.dev
       - .env.test
       - phpunit.xml
@@ -23,12 +24,13 @@ deploy:
       - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
       - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
       - mkdir -p var && chmod -R o+w var
-      - php8.1-cli bin/console cache:clear
+      - php8.2-cli bin/console cache:clear
   recurring:
     excludes:
       - var/
       - tests/
       - node_modules/
+      - assets/
       - .env.dev
       - .env.test
       - phpunit.xml
@@ -50,6 +52,6 @@ deploy:
       - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
       - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
       - chmod -R o+w var
-      - php8.1-cli bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug
-      - php8.1-cli bin/console cache:clear
+      - php8.2-cli bin/console cache:clear --verbose
+      - php8.2-cli bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --all-or-nothing
       - rm -f ./public/maintenance.htm

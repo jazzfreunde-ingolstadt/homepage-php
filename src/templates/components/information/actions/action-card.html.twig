@@ -1,0 +1,13 @@
+<div class="{{ class|default('') }}">
+	<a href="{{ link_url }}" title="{{ link_title }}">
+		{% embed '@layout/background-image.html.twig' with { image_url: image_url, class: 'brightness-75 scale-110' } %}
+			{% block infront %}
+				{% include "components/header-spacer.html.twig" %}
+				<div class="h-[24rem] flex flex-col gap-6 w-full py-10 lg:py-16 px-4 lg:px-16 text-white font-bold tracking-widest">
+					<h2 class="text-lg lg:text-2xl min-h-[4rem] xl:text-3xl uppercase">{{ title }}</h2>
+					<h3 class="text-sm lg:text-lg xl:text-xl">{{ subtitle}}</h3>
+				</div>
+			{% endblock %}
+		{% endembed %}
+	</a>
+</div>

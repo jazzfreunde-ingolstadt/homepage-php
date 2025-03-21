@@ -26,9 +26,10 @@ use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 /**
  * Controller für Benutzer
  * @psalm-suppress PropertyNotSetInConstructor $container
+ * @psalm-api
  */
 #[Route('/session', name: 'security_')]
-class SecurityController extends AbstractController implements LoggerAwareInterface
+final class SecurityController extends AbstractController implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
@@ -132,7 +133,7 @@ class SecurityController extends AbstractController implements LoggerAwareInterf
 
         $email =
             (new TemplatedEmail())
-            ->from($from->address)
+            ->from($from->address->__toString())
             ->to($recipient)
             ->subject('Login bei Jazzfreunde Ingolstadt e.V.')
             ->htmlTemplate('email/login-link.html.twig')

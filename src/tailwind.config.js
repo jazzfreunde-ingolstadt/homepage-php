@@ -3,7 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
-    "./assets/**/*.js",
+    "./assets/**/*.{js,ts,tsx}",
     "./templates/**/*.html.twig",
   ],
   theme: {
@@ -22,9 +22,11 @@ module.exports = {
       sans: ['FF DIN', ...defaultTheme.fontFamily.sans],
     },
     fontSize: {
-      sm: '1rem',
-      base: '1.25rem',
-      xl: '1.56rem',
+      xs: '0.75rem',
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.25rem',
+      xl: '1.563rem',
       '2xl': '1.953rem',
       '3xl': '2.441rem',
       '4xl': '3.052rem',

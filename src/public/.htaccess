@@ -15,8 +15,11 @@ DirectoryIndex index.php
     RewriteCond %{ENV:REDIRECT_STATUS} =""
     RewriteRule ^index\.php(?:/(.*)|$) %{ENV:BASE}/$1 [R=301,L]
 
-    # Rewrite Assets
-    RewriteCond %{REQUEST_URI} !^/(bundles|build)/ [NC]
+    # Rewrite Sitemaps
+    RewriteRule ^sitemap(\..+)?\.xml$ %{ENV:BASE}/sitemaps/sitemap$1.xml [NC,QSA,L]
+
+    # Pipe Assets Requests through
+    RewriteCond %{REQUEST_URI} !^/(bundles|app|mail)/ [NC]
 
     # Alle übrigen Anfragen an Framework übergeben
     RewriteCond %{REQUEST_FILENAME} !-f

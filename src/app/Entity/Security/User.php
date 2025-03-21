@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *  # Befehl zum Anlegen eines neuen Nutzers
  *  INSERT INTO `users` (`uuid`, `email`) VALUES (UNHEX(REPLACE(UUID(), '-', '')), 'new.user@jazzfreunde-ingolstadt.localhost')
  * ```
+ * @psalm-api
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'users')]
@@ -54,6 +55,11 @@ class User implements UserInterface
      */
     public function getUserIdentifier(): string
     {
-        return $this->uuid ?? '';
+        $uuid = $this->uuid;
+        if (!is_string($uuid) || '' === $uuid) {
+            throw new \LogicException('User identifier is empty');
+        }
+
+        return $uuid;
     }
 }

@@ -20,43 +20,54 @@ jobs:
         working-directory: ./src
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: v18.x
 
-      - name: Cache npm dependencies
-        uses: actions/cache@v3
+      - name: Restore cached npm dependencies
+        uses: actions/cache/restore@v4
         with:
-          path: node_modules
+          path: src/node_modules
           key: node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
 
       - name: Install npm dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Cache npm dependencies
+        uses: actions/cache/save@v4
+        with:
+          path: src/node_modules
+          key: node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install assets
         run: |
           chmod +x bin/console
-          bin/console assets:install --env=build --no-debug
+          bin/console assets:install --env=${{ inputs.environment }} --no-debug
 
       - name: Build Encore files
         run: |
-          npm run ${{ inputs.environment == 'prod' && 'build-prod-app' || 'build-dev-app'}}
-          npm run ${{ inputs.environment == 'prod' && 'build-prod-mail' || 'build-dev-mail'}}
+          npm run ${{ inputs.environment == 'prod' && 'app:build:prod' || 'app:build:dev'}}
+          npm run ${{ inputs.environment == 'prod' && 'mail:build:prod' || 'mail:build:dev'}}
 
-      - uses: actions/upload-artifact@v3
+      - name: Generate sitemaps
+        run: |
+          chmod +x bin/console
+          bin/console presta:sitemap:dump --env=${{ inputs.environment }} --no-debug
+
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.artifact-name }}
           path: src/public/

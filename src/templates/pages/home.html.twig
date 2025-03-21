@@ -6,31 +6,17 @@
 {% endblock %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-bright11.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
-		{% block infront %}
-			{% embed '@layout/container.html.twig' %}
-				{% block content %}
-					<div class="flex place-content-center place-items-center h-screen text-center font-sans">
-						<div class="h-3/4 inline-block backdrop-blur-sm backdrop-brightness-90 overflow-hidden p-10 rounded-lg">
-							<img class="h-3/4 mx-auto" src="{{ asset('build/app/images/jazzlogo.svg') }}" alt="Jazzfreunde Ingolstadt e.V. Logo"/>
-							<h1 class="relative text-[6vh] font-bold text-white">
-								Jazzfreunde<br/><span class="whitespace-nowrap">Ingolstadt e.V.</span>
-							</h1>
-						</div>
-					</div>
-				{% endblock %}
-			{% endembed %}
-		{% endblock %}
-	{% endembed %}
+	{% include 'components/information/actions.html.twig' with { class: 'w-full' }  %}
 {% endblock %}
 
 {% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
-			<div class="my-16 lg:my-24 xl:my-36">
-				{% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
-				{% include 'components/events/event-widget.html.twig' with { data_samples: sampledata.featured_events } %}
-			</div>
+			{% include 'typography/section-titel.html.twig' with { titel: 'Gemeinsam die Jazzszene in Ingolstadt unterstützen!' } %}
+
+			<article class="text-justify">
+				{{ include('@markdown/home/donation-letter.md.twig')|markdown_to_html }}
+			</article>
 		{% endblock %}
 	{% endembed %}
 

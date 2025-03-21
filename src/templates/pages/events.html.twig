@@ -1,19 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block javascripts %}
-	{{ parent() }}
-	{{ encore_entry_script_tags('events', null, 'app') }}
-{% endblock %}
+{% set title = 'Veranstaltungen' %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
-						<h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold uppercase mb-10 text-orange">Veranstaltungen</h1>
-						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">Hier finden Sie eine Übersicht über Veranstaltungen in der Region für Jazzfreunde (unabhängig davon, wer der Veranstalter ist)</h2>
+						<h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wider uppercase mb-10 text-orange">Veranstaltungen</h1>
+						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">Hier finden Sie eine Übersicht über Veranstaltungen in der Region für Jazzfreunde <br /> (unabhängig davon, wer der Veranstalter ist)</h2>
 					</div>
 				{% endblock %}
 			{% endembed %}
@@ -24,18 +21,15 @@
 {% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
-			{% include 'typography/section-titel.html.twig' with { titel: 'Kommende Veranstaltungen' } %}
-			<section class="py-5 md:py-10">
-				{% include 'components/events/event-list.html.twig' with { event_list_id: 'upcoming_events', messageOnEmpty: 'Im Moment stehen keine Veranstaltungen an.', data_samples: sampledata.upcoming_events } %}
-				<p class="my-2">
-					Auch interessant: Das Programm unserer Partner des
-					<a class="text-orange" href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
-				</p>
-			</section>
+			{% include 'typography/section-titel.html.twig' with { titel: 'Kalender' } %}
+			<div {{ react_component('events/EventsCalendar')}}>
+				Loading...
+				<i class="fas fa-cog fa-spin fa-3x"></i>
+			</div>
 		{% endblock %}
 	{% endembed %}
 
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-moody9.jpg'), class: 'blur-sm' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-moody9.jpg'), class: 'blur-sm' } %}
 		{% block infront %}
 			{% include '@layout/divider.html.twig' with { classnames: "fill-white rotate-180" } %}
 			{% include '@layout/spacer.html.twig' with { spacer: 'spacer-48' } %}
@@ -43,20 +37,13 @@
 			<div class="bg-white">
 				{% embed '@layout/container.html.twig' %}
 					{% block content %}
-						<section class="py-5 md:py-10">
-							{% include 'typography/section-titel.html.twig' with { titel: 'Vergangene Veranstaltungen' } %}
-							{% include 'components/events/event-list.html.twig' with { event_list_id: 'past_events', messageOnEmpty: 'Es sind keine vergangenen Veranstaltungen eingetragen.', data_samples: sampledata.past_events } %}
-						</section>
-
-						<section class="py-5 md:py-10">
-							{% include 'typography/section-titel.html.twig' with { titel: 'Veranstaltungsarchiv' } %}
-							<div id="show_archived" class="my-2 block cursor-pointer underline">Archiv anzeigen</div>
-							<div id="archived_events_container" style="display:none;">
-								{% include 'components/events/event-list.html.twig' with { event_list_id: 'archived_events', messageOnEmpty: 'Es befinden sich keine Veranstaltungen im Archiv.', data_samples: sampledata.archived_events } %}
-
-								<div id="hide_archived" class="my-2 block cursor-pointer underline">Archiv verbergen</div>
-							</div>
-						</section>
+						<article class="py-6">
+							{% include 'typography/section-titel.html.twig' with { titel: 'Auch interessant' } %}
+							<p class="text-lg">
+								Das Programm unserer Partner des
+								<a href="https://www.birdland.de/programm/" target="_blank">Birdland Jazz Club Neuburg</a>!
+							</p>
+						</article>
 					{% endblock %}
 				{% endembed %}
 			</div>

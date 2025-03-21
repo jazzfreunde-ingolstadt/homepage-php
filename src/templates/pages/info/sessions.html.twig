@@ -1,0 +1,69 @@
+{% set title = 'Jam Sessions' %}
+
+{% extends 'base.html.twig' %}
+
+{% block header_element %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-moody7.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
+		{% block infront %}
+			{% include "components/header-spacer.html.twig" %}
+			{% embed '@layout/container.html.twig' %}
+				{% block content %}
+					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
+						<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-white">Jam-Sessions</h1>
+						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">Deine Bühne für Jazz in Ingolstadt!</h2>
+					</div>
+				{% endblock %}
+			{% endembed %}
+		{% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block content %}
+	{% embed '@layout/container.html.twig' %}
+		{% block content %}
+			<section class="py-5 md:py-10">
+				<div class="w-full flex flex-row py-6 lg:py-10">
+					{% include "components/util/button.html.twig" 
+						with { 
+							link_url: path('events'),
+							icon_url: asset('app/images/icons/calendar.svg'),
+							icon_alt: 'calendar icon',
+							title: 'Veranstaltungen',
+							class: 'block'
+						}
+					%}
+				</div>
+
+				<p class="py-2 md:py-5">
+					Die Jazzfreunde Ingolstadt e. V. laden alle Jazzliebhaber:innen und Musiker:innen ein, Teil einer besonderen musikalischen Erfahrung zu werden! Von Oktober bis Juni veranstalten wir unsere legendären Jam-Sessions – mit offener Bühne, freiem Eintritt und jeder Menge Spielfreude.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Wie läuft eine Jam-Session ab?
+					Jede Session beginnt mit einer Opener-Band, die das erste Set spielt. Danach gehört die Bühne allen, die mitspielen möchten! Die Session-Band begleitet die Mitspieler:innen entweder in Teilen oder komplett.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Wo & Wann?
+					Seit Dezember 2024 finden die Jam-Sessions auf der Kleinkunstbühne „Neue Welt“ (Ingolstadt, Griesbadgasse 7) statt - in der Regel immer am 3. Dienstag des Monats um 20:00 Uhr (bis auf eine Sommerpause).
+				</p>
+
+
+				<p class="py-2 md:py-5">
+					Aufruf an Jazzbands!
+					Wir suchen ständig neue Session-Opener-Bands, die den Abend musikalisch eröffnen! Voraussetzung: Sicherheit im Realbook und eine gewisse stilistische Bandbreite.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Dort findet ihr auch alle Infos zu Gage, Technik & Rahmenbedingungen.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Kommt vorbei - ob als Musiker oder Zuhörer - und erlebt Jazz live & hautnah!
+				</p>
+			</section>
+		{% endblock %}
+	{% endembed %}
+
+	{% include "components/footer-spacer.html.twig" %}
+{% endblock %}

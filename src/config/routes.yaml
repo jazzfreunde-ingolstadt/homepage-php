@@ -1,5 +1,11 @@
 controllers:
-    resource:
-        path: ../app/Controller/
-        namespace: Jazzfreunde\App\Controller
-    type: attribute
+  resource:
+    path: ../app/Controller/
+    namespace: Jazzfreunde\App\Controller
+  type: attribute
+
+csp_report:
+  path: /csp/report
+  methods: [POST]
+  defaults:
+    { _controller: nelmio_security.csp_reporter_controller::indexAction }

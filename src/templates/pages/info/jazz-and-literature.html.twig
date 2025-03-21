@@ -1,0 +1,59 @@
+{% set title = 'Jazz & Literatur' %}
+
+{% extends 'base.html.twig' %}
+
+{% block header_element %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/advertise/jazz-and-literature.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
+		{% block infront %}
+			{% include "components/header-spacer.html.twig" %}
+			{% embed '@layout/container.html.twig' %}
+				{% block content %}
+					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
+						<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-white">Jazz & Literatur im Stadttheater</h1>
+						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">In Kooperation mit dem Stadttheater Ingolstadt</h2>
+					</div>
+				{% endblock %}
+			{% endembed %}
+		{% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block content %}
+	{% embed '@layout/container.html.twig' %}
+		{% block content %}
+			<section class="py-5 md:py-10">
+				<div class="w-full flex flex-row py-6 lg:py-10">
+					{% include "components/util/button.html.twig" 
+						with { 
+							link_url: 'https://theater.ingolstadt.de/programm/spielplan.html',
+							icon_url: asset('app/images/icons/calendar.svg'),
+							icon_alt: 'calendar icon',
+							title: 'Spielplan',
+							class: 'block'
+						}
+					%}
+				</div>
+
+				<p class="py-2 md:py-5">
+					Seit 2016 bringen das Stadttheater Ingolstadt  gemeinsam mit den Jazzfreunden Ingolstadt zwei faszinierende Kunstformen zusammen: Jazz & Literatur!
+																								Diese beliebte und erfolgreiche Veranstaltungsreihe verbindet fesselnde Lesungen mit mitreißender Live-Jazzmusik - ein echtes Highlight für Kulturbegeisterte.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Die Jazzfreunde Ingolstadt übernehmen dabei die musikalische Gestaltung und wählen sorgfältig die Jazzbands aus, die für den perfekten Klangteppich sorgen. Das Ergebnis? Ein inspirierendes Wechselspiel aus Wort und Musik, das das Publikum jedes Mal aufs Neue begeistert.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Die Veranstaltungen finden etwa viermal im Jahr sonntags um 11:00 Uhr im Foyer des Stadttheaters statt - und das zu äußerst fairen Eintrittspreisen.
+				</p>
+
+				<p class="py-2 md:py-5">
+					Neugierig geworden? Das aktuelle Programm finden Sie hier auf unserer Website sowie auf der Homepage des Stadttheaters Ingolstadt.
+																								Lassen Sie sich dieses außergewöhnliche Kulturerlebnis nicht entgehen!
+				</p>
+			</section>
+		{% endblock %}
+	{% endembed %}
+
+	{% include "components/footer-spacer.html.twig" %}
+{% endblock %}

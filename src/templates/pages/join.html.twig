@@ -1,13 +1,15 @@
+{% set title = 'Mitglied werden' %}
+
 {% extends 'base.html.twig' %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('build/app/images/ambient/session-yellow1.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-yellow1.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
 		{% block infront %}
 			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
 					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
-						<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-white">Werden Sie jetzt Mitglied der Jazzfreunde Ingolstadt</h1>
+						<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-wider uppercase text-white">Werden Sie jetzt Mitglied der Jazzfreunde Ingolstadt</h1>
 					</div>
 				{% endblock %}
 			{% endembed %}
@@ -18,11 +20,12 @@
 {% block content %}
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
-			<section class="py-5 md:py-10">
+			<section class="py-5 md:py-10 text-justify">
 				{{ include('@markdown/join/warum.md.twig')|markdown_to_html }}
 				{{ include('@markdown/join/firmenmitgliedschaft.md.twig')|markdown_to_html }}
 				{{ include('@markdown/join/mitgliedsbeitraege.md.twig')|markdown_to_html }}
 				{{ include('@markdown/join/mitgliedsantrag.md.twig')|markdown_to_html }}
+				{{ include('@markdown/join/spende.md.twig')|markdown_to_html }}
 			</section>
 		{% endblock %}
 	{% endembed %}
