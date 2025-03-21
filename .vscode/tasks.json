@@ -64,7 +64,7 @@
             "label": "build encore",
             "type": "shell",
             "group": "build",
-            "command": "npm run app:build:dev && npm run mail:build:dev",
+            "command": "npm run app:build:prod && npm run mail:build:prod",
             "presentation": {
                 "clear": true,
                 "showReuseMessage": false

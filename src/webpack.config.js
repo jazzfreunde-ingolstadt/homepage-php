@@ -25,27 +25,33 @@ const fileExists = (filePath) => {
 }
 
 const getEnvPaths = () => {
-  let envmode = '';
-  switch (process.env.NODE_ENV) {
-      case 'production':
-          envmode = 'prod';
-          break;
-      case 'test':
-          envmode = 'test';
-          break;
-      default:
-          envmode = 'dev';
-  }
-  return [
-    `.env.${envmode}.local`,
-    '.env.local',
-    `.env.${envmode}`,
-    '.env'
-  ]
-  .map((file) => `${APP_PATH}/${file}`)
-  .filter(
-      fileExists
-  );
+  let envFiles = '';
+
+  if (Encore.isProduction())
+    envFiles = [
+      '.env.production',
+      '.env'
+    ]
+
+  if (Encore.isDev())
+    envFiles = [
+      '.env.dev',
+      '.env'
+    ]
+
+  if (Encore.isDevServer())
+    envFiles = [
+      '.env.dev.local',
+      '.env.local',
+      '.env.dev',
+      '.env'
+    ]
+  
+  return envFiles
+    .map((file) => `${APP_PATH}/${file}`)
+    .filter(
+        fileExists
+    );
 }
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
