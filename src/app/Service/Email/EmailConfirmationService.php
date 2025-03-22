@@ -15,6 +15,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Jazzfreunde\App\Event\Event\Contract\ContractConfirmedEvent;
 use Jazzfreunde\App\Event\Event\Contract\ContractCancelledEvent;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\App\Service\Email\Exception\MailException;
 
 /**
  * Service for email confirmation of contract
@@ -45,6 +46,7 @@ final class EmailConfirmationService implements LoggerAwareInterface
      * @param string $subject title of confirmation
      * @param array $context Context embedded into the email template
      * @return void
+     * @throws MailException Thrown by mailer server incase mail can not be sent
      */
     public function askForConfirmation(
         ConfirmationContract $contract,

@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Jazzfreunde\App\Entity\Type\String\EmailType;
+use Jazzfreunde\App\Type\Primitive\Email;
 
 /**
  * Benutzer-Account
@@ -27,8 +29,8 @@ class User implements UserInterface
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\CustomIdGenerator(class:"doctrine.uuid_generator")]
     public ?string $uuid;
-    #[ORM\Column(type: 'string', unique: true)]
-    public string $email;
+    #[ORM\Column(type: EmailType::ENTITY_NAME, unique: true)]
+    public Email $email;
     #[ORM\JoinTable(name: 'users_groups')]
     #[ORM\JoinColumn(referencedColumnName: 'uuid')]
     #[ORM\InverseJoinColumn(referencedColumnName: 'uuid')]

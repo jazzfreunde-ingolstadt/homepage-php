@@ -1,6 +1,6 @@
 import React from 'react'
 import EventList from './partials/EventList'
-import { groupEventsByMonth, useUpcommingEvents } from '@components/events/hooks/event-hooks'
+import { groupEventsByMonth, useUpcommingEvents } from '@components/events/hooks/events-hooks'
 import { MessageBox } from '@components/layout/message-box'
 
 /**

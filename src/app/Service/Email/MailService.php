@@ -9,6 +9,8 @@ use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Service\Email\Exception\MailException;
 use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerAwareInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -16,8 +18,10 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 /**
  * Service zum Senden von E-Mails
  */
-class MailService
+class MailService implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * @param ManagerRegistry $doctrine
      * @param MailerInterface $mailer
@@ -73,6 +77,11 @@ class MailService
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
+            $this->logger?->error(
+                'Failed to send mail.',
+                ['inner-exception' => $e->getMessage()]
+            );
+
             throw new MailException('Failed to send email.', previous: $e);
         }
     }
@@ -87,6 +96,10 @@ class MailService
         $mail = $knownMails->findOneBy([ 'handle' => $handle ]);
 
         if (is_null($mail)) {
+            $this->logger?->error('Tried to send mail to unconfigured handle.', [
+                'handle' => $handle->name,
+            ]);
+
             throw new MailException(sprintf('%s: Mail with Handle "%s" is not configured.', KnownMail::class, $handle->name));
         }
 

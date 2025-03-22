@@ -170,17 +170,4 @@ final class AppRoutingController extends AbstractController
             '@pages/info/sessions.html.twig'
         );
     }
-
-    /**
-     * Generische Fehleranzeige für Besucher
-     *
-     * @return Response
-     */
-    #[Route('/error/', name: 'error')]
-    public function error(): Response
-    {
-        return $this->render(
-            '@pages/error-notification.html.twig'
-        );
-    }
 }
