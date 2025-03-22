@@ -11,7 +11,7 @@ import type { EventCollection, Month } from '../models/events-collection.model'
  * @param fetcher The authenticated request
  * @returns An object containing the events
  */
-export const getEvents = (fetcher: ApiRequest ) =>
+export const getEvents = (fetcher: ApiRequest) =>
   client({
     fetcher,
     path: '/api/events',
@@ -47,8 +47,10 @@ export const groupEventsByMonth = (events: Event[]) => {
     return acc
   }, {} as Record<string, Event[]>)
 
-  return Object.entries(groupedEvents).map(([month, events]) => ({
-    month: month as Month,
-    events: events.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
-  } satisfies EventCollection))
+  return Object.entries(groupedEvents)
+    .map(([month, events]) => ({
+      month: month as Month,
+      events: events.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
+    } satisfies EventCollection))
+    .sort((a, b) => new Date(a.events[0].start).getTime() - new Date(b.events[0].start).getTime())
 }

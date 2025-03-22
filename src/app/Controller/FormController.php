@@ -45,7 +45,7 @@ final class FormController extends AbstractController implements LoggerAwareInte
             ->handleRequest($request);
 
         if (!$form->isSubmitted()) {
-            return $this->redirectToRoute('error');
+            return new Response(status: Response::HTTP_BAD_REQUEST);
         }
 
         if (!$form->isValid()) {
@@ -59,7 +59,7 @@ final class FormController extends AbstractController implements LoggerAwareInte
                 ]
             );
                 
-            return $this->redirectToRoute('error');
+            return new Response(status: Response::HTTP_BAD_REQUEST);
         }
         
         try {
@@ -106,9 +106,9 @@ final class FormController extends AbstractController implements LoggerAwareInte
             
             return $this->render('@pages/newsletter/confirmation-notification.html.twig');
         } catch (ConfirmationPeriodExpiredException) {
-            return $this->redirectToRoute('error');
+            return new Response(status: Response::HTTP_GONE);
         } catch (ConfirmationContractNotFoundException) {
-            return $this->redirectToRoute('error');
+            return new Response(status: Response::HTTP_NOT_FOUND);
         }
     }
 
@@ -125,9 +125,9 @@ final class FormController extends AbstractController implements LoggerAwareInte
             
             return $this->render('@pages/newsletter/cancellation-notification.html.twig');
         } catch (ConfirmationPeriodExpiredException) {
-            return $this->redirectToRoute('error');
+            return new Response(status: Response::HTTP_GONE);
         } catch (ConfirmationContractNotFoundException) {
-            return $this->redirectToRoute('error');
+            return new Response(status: Response::HTTP_NOT_FOUND);
         }
     }
 
