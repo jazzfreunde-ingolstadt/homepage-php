@@ -133,7 +133,13 @@ final class SecurityController extends AbstractController implements LoggerAware
                 [ 'login_link' => $loginLink ]
             );
         } catch (MailException $e) {
-            $this->logger?->error($e->getMessage());
+            $this->logger?->error(
+                'Failed to send login link.',
+                [
+                    'recipient' => $recipient,
+                    'inner-exception' => $e->getMessage(),
+                ]
+            );
             return $this->redirectToRoute('security_login', status: Response::HTTP_SEE_OTHER);
         }
         
