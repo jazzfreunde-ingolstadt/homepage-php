@@ -127,7 +127,7 @@ final class SecurityController extends AbstractController implements LoggerAware
         try {
             $mailer->send(
                 KnownMailHandleEnum::NoReply,
-                $recipient,
+                $user->email,
                 'Login bei Jazzfreunde Ingolstadt e.V.',
                 'email/login-link.html.twig',
                 [ 'login_link' => $loginLink ]
