@@ -1,3 +1,4 @@
 framework:
     mailer:
-        dsn: '%env(MAILER_DSN)%'
+        # dsn: '%env(MAILER_DSN)%'
+        dsn: '%env(IONOS_STAGE_NO_REPLY_MAILER_DSN)%'
