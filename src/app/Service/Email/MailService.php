@@ -79,7 +79,11 @@ class MailService implements LoggerAwareInterface
         } catch (TransportExceptionInterface $e) {
             $this->logger?->error(
                 'Failed to send mail.',
-                ['inner-exception' => $e->getMessage()]
+                [
+                    'from' => $sender,
+                    'to' => $recipient,
+                    'inner-exception' => $e->getMessage()
+                ]
             );
 
             throw new MailException('Failed to send email.', previous: $e);
