@@ -77,7 +77,8 @@ final class AppRoutingController extends AbstractController
                 [
                     'from' => $sender,
                     'to' => $recipient,
-                    'inner-exception' => $e->getMessage()
+                    'inner-exception' => $e->getMessage(),
+                    'debug-info' => $e->getDebug(),
                 ]
             );
         }
