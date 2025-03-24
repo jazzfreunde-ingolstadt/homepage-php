@@ -42,7 +42,7 @@ when@prod:
         handlers:
             main:
                 type: fingers_crossed
-                action_level: critical
+                action_level: info
                 handler: grouped
                 excluded_http_codes: [403, 404, 405]
                 buffer_size: 100
