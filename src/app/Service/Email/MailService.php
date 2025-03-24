@@ -14,6 +14,7 @@ use Psr\Log\LoggerAwareInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mime\Address;
 
 /**
  * Service zum Senden von E-Mails
@@ -67,8 +68,10 @@ class MailService implements LoggerAwareInterface
             $recipient = $to->__toString();
         }
 
+        $address = new Address(address: $sender, name: 'Jazzfreunde Ingolstadt');
+
         $email = (new TemplatedEmail())
-            ->from($sender)
+            ->from($address)
             ->to($recipient)
             ->subject($subject)
             ->htmlTemplate($twigTemplate)

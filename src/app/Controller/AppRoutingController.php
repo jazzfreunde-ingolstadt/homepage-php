@@ -4,9 +4,17 @@ declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Controller;
 
+use Jazzfreunde\App\Entity\KnownMail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Transport\TransportInterface;
+use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Psr\Log\LoggerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Routing Controller für die Website
@@ -14,6 +22,70 @@ use Symfony\Component\HttpFoundation\Response;
  */
 final class AppRoutingController extends AbstractController
 {
+    /**
+     * Test email
+     *
+     * @return Response
+     */
+    #[Route('/test-email', name: 'test-email')]
+    public function testEmail(
+        ManagerRegistry $doctrine,
+        LoggerInterface $logger,
+        TransportInterface $mailer
+    ): Response {
+        $knownMails = $doctrine->getRepository(KnownMail::class);
+        $from = $knownMails->findOneBy([ 'handle' => KnownMailHandleEnum::NoReply ]);
+        $to = $knownMails->findOneBy([ 'handle' => KnownMailHandleEnum ::Jazzletter]);
+                
+        if (\is_null($from)) {
+            return new Response(status: 500, content: 'No sender address found');
+        }
+        if (\is_null($to)) {
+            return new Response(status: 500, content: 'No recipient address found');
+        }
+
+        $sender = $from->address->__toString();
+        $recipient = $to->address->__toString();
+
+        $email = (new TemplatedEmail())
+            ->from(new Address(address: $sender, name: 'Jazzfreunde Ingolstadt'))
+            ->to($recipient)
+            ->subject('Test')
+            ->htmlTemplate('email/newsletter/admin/new-subscriber-notice.html.twig')
+            ->context(
+                [
+                    'subscription' => [
+                        'email' => 'dummy@test.com'
+                    ],
+                ]
+            );
+
+        try {
+            $sentMessage = $mailer->send($email);
+            $logger->info(
+                'Sent test email',
+                [
+                    'from' => $sender,
+                    'to' => $recipient,
+                    'sent-message' => $sentMessage?->getDebug(),
+                ]
+            );
+                return new Response(status: 200, content: 'Test email sent');
+        } catch (TransportExceptionInterface $e) {
+            $logger->error(
+                'Failed to send test mail.',
+                [
+                    'from' => $sender,
+                    'to' => $recipient,
+                    'inner-exception' => $e->getMessage(),
+                    'debug-info' => $e->getDebug(),
+                ]
+            );
+        }
+
+        return new Response(status: 500, content: 'Test email not sent');
+    }
+
     /**
      * Startseite
      *

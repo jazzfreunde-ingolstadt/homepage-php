@@ -54,10 +54,20 @@ jobs:
           path: src/public
 
       - name: Render templates
+        if: ${{ github.ref_name == 'master' }}
         uses: ionos-deploy-now/template-renderer-action@v2
-        id: template
+        id: template-prod
         with:
-          input-directory: .deploy-now/homepage-php
+          input-directory: .deploy-now/homepage-php/production
+          output-directory: ${{ env.DEPLOYMENT_FOLDER }}
+          intermediate-data-file: ${{ env.DEPLOYMENT_FOLDER }}/.template-renderer-data
+
+      - name: Render templates
+        if: ${{ github.ref_name != 'master' }}
+        uses: ionos-deploy-now/template-renderer-action@v2
+        id: template-staging
+        with:
+          input-directory: .deploy-now/homepage-php/staging
           output-directory: ${{ env.DEPLOYMENT_FOLDER }}
           intermediate-data-file: ${{ env.DEPLOYMENT_FOLDER }}/.template-renderer-data
 
