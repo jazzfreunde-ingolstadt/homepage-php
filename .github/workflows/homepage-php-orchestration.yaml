@@ -33,7 +33,6 @@ jobs:
           project-id: b231b1a4-4e91-456e-a36d-5c432505082c
           action: retrieve-info
 
-
   build:
     name: build
     needs: retrieve-project

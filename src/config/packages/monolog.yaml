@@ -10,14 +10,6 @@ when@dev:
                 path: "%kernel.logs_dir%/%kernel.environment%.symfony.log"
                 level: debug
                 channels: ["!event"]
-            # uncomment to get logging in your browser
-            # you may have to allow bigger header sizes in your Web server configuration
-            #firephp:
-            #    type: firephp
-            #    level: info
-            #chromephp:
-            #    type: chromephp
-            #    level: info
             console:
                 type: console
                 process_psr_3_messages: false
@@ -42,7 +34,7 @@ when@prod:
         handlers:
             main:
                 type: fingers_crossed
-                action_level: info
+                action_level: error
                 handler: grouped
                 excluded_http_codes: [403, 404, 405]
                 buffer_size: 100
@@ -61,6 +53,6 @@ when@prod:
                 from_email: "error-log@jazzfreunde-ingolstadt.de"
                 to_email: "%env(MAIL_LOG_RECIPIENT)%"
                 subject: "Error Report! %%message%%"
-                level: error
+                level: critical
                 formatter:  monolog.formatter.html
                 content_type: text/html
