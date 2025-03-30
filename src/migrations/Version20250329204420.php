@@ -40,7 +40,6 @@ final class Version20250329204420 extends AbstractMigration
         $this->addSql("
             UPDATE newsletter_subscriptions
                 SET confirmation_id = UNHEX(REPLACE(UUID(), '-', ''))
-                WHERE confirmation_id IS NULL
         ");
         $this->addSql("
             INSERT INTO confirmation_contracts (uuid, token, open_for_confirmation_until, state)
