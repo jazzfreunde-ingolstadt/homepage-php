@@ -26,7 +26,7 @@ final class <className> extends AbstractMigration
      */
     public function isTransactional(): bool
     {
-        return true;
+        return false;
     }
 
     /**
