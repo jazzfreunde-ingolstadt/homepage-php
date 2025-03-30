@@ -54,5 +54,5 @@ deploy:
       - chmod -R o+w var
       - rm -rf ./var/cache/*
       - php8.2-cli bin/console cache:clear --verbose
-      - php8.2-cli bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --all-or-nothing
+      - php8.2-cli bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction
       - rm -f ./public/maintenance.htm
