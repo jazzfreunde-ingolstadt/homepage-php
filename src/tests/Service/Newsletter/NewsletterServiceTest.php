@@ -3,28 +3,32 @@
 namespace JazzfreundeTests\App\Tests\Service\Newsletter;
 
 use DateTime;
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectRepository;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Event\Event\Newsletter\Subscription\NewSubscriptionEvent;
+use Jazzfreunde\App\Exception\Newsletter\SubscriptionException;
+use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
 use Jazzfreunde\App\Service\Newsletter\NewsletterService;
-use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
+use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Primitive\Email;
-use PHPUnit\Framework\TestCase;
+use Jazzfreunde\UnitTest\Trait\MockingTrait;
+use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\MockObject\MockObject;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Test for the newsletter service.
  */
-final class NewsletterServiceTest extends TestCase
+final class NewsletterServiceTest extends KernelTestCase
 {
+    use MockingTrait;
+
     private NewsletterSubscription $subscription;
 
     /**
@@ -35,7 +39,9 @@ final class NewsletterServiceTest extends TestCase
         $subscription = new NewsletterSubscription();
         $subscription->email = new Email('test@mail.com');
         $subscription->creationTime = new DateTime();
-        $subscription->confirmation = ConfirmationContract::create();
+        $subscription->confirmation = new ConfirmationContract();
+        $subscription->confirmation->token = ConfirmationContract::generateToken();
+        $subscription->confirmation->requestTime = new \DateTimeImmutable();
 
         $this->subscription = $subscription;
     }
@@ -45,46 +51,49 @@ final class NewsletterServiceTest extends TestCase
      */
     public function testSubscribe(): void
     {
+        $this->bootKernel();
+
         $subscription = $this->subscription;
 
-        $entityManager = $this->mockEntityManager();
-        $entityManager
+        $uut = new UnitUnderTest(NewsletterService::class);
+
+        $objectManager = $uut->mock(ObjectManager::class);
+        $objectManager
             ->expects($this->once())
-            ->method('beginTransaction');
-        $entityManager
-            ->expects($this->once())
-            ->method('persist');
-        $entityManager
+            ->method('persist')
+            ->with($this->equalTo($subscription));
+        $objectManager
             ->expects($this->once())
             ->method('flush');
-        $entityManager
+
+        $uut->mock(ManagerRegistry::class)
+            ->expects($this->once())
+            ->method('getManagerForClass')
+            ->with($this->equalTo(ConfirmationContract::class))
+            ->willReturn($objectManager);
+
+        $connection = $uut->mock(Connection::class);
+        $connection
+            ->expects($this->once())
+            ->method('beginTransaction');
+        $connection
             ->expects($this->once())
             ->method('commit');
 
-        $formFactory = $this->mockFormFactory();
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-        $dispatcher
+        $uut->mock(ManagerRegistry::class)
             ->expects($this->once())
-            ->method('dispatch')
-            ->with($this->callback(function (NewSubscriptionEvent $event) use ($subscription): bool {
-                $this->assertSame($event->subscription, $subscription);
+            ->method('getConnection')
+            ->willReturn($connection);
 
-                return true;
-            }));
+        $uut->mock(ConfirmationContractService::class)
+            ->expects($this->once())
+            ->method('startEmailConfirmation')
+            ->with(
+                $this->equalTo($subscription->confirmation),
+                $this->equalTo($subscription->email),
+            );
 
-        $validator = $this->mockValidator(0);
-
-
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
-
-        $newsletterService->subscribe($subscription);
+        $uut->target()->subscribe($subscription);
     }
 
     /**
@@ -92,41 +101,67 @@ final class NewsletterServiceTest extends TestCase
      */
     public function testAlreadyExistingSubscriction(): void
     {
+        $subscription = $this->subscription;
+        $subscription->confirmation->state = ConfirmationStateEnum::Confirmed;
+
         $this->expectException(SubscriptionException::class);
         $this->expectExceptionCode(SubscriptionException::ALREADY_SUBSCRIBED);
+        
+        $uut = new UnitUnderTest(NewsletterService::class);
 
-        /** @var UniqueConstraintViolationException&MockObject $uniqueConstraintException */
-        $uniqueConstraintException = $this->createMock(UniqueConstraintViolationException::class);
-
-        $entityManager = $this->mockEntityManager();
-        $entityManager
-            ->expects($this->once())
-            ->method('beginTransaction');
-        $entityManager
+        $objectManager = $uut->mock(ObjectManager::class);
+        $objectManager
             ->expects($this->once())
             ->method('persist')
-            ->willThrowException($uniqueConstraintException);
-        $entityManager
+            ->willThrowException($this->mock(UniqueConstraintViolationException::class));
+        $objectManager
             ->expects($this->never())
             ->method('flush');
-        $entityManager
+        $repository = $uut->mock(ObjectRepository::class);
+        $repository
+            ->method('findOneBy')
+            ->with($this->equalTo(['email' => $this->subscription->email]))
+            ->willReturn($this->subscription);
+
+        $registry = $uut->mock(ManagerRegistry::class);
+        $registry
+            ->expects($this->once())
+            ->method('getManagerForClass')
+            ->with($this->equalTo(ConfirmationContract::class))
+            ->willReturn($objectManager);
+        $registry
+            ->method('getRepository')
+            ->with($this->equalTo(NewsletterSubscription::class))
+            ->willReturn($repository);
+        $registry
+            ->expects($this->once())
+            ->method('resetManager');
+
+        $connection = $uut->mock(Connection::class);
+        $connection
+            ->expects($this->once())
+            ->method('beginTransaction');
+        $connection
             ->expects($this->never())
             ->method('commit');
+        $connection
+            ->expects($this->once())
+            ->method('rollback');
 
-        $formFactory = $this->mockFormFactory();
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-        $validator = $this->mockValidator(0);
+        $uut->mock(ManagerRegistry::class)
+            ->expects($this->once())
+            ->method('getConnection')
+            ->willReturn($connection);
 
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
+        $uut->mock(ConfirmationContractService::class)
+            ->expects($this->once())
+            ->method('startEmailConfirmation')
+            ->with(
+                $this->equalTo($subscription->confirmation),
+                $this->equalTo($subscription->email),
+            );
 
-        $newsletterService->subscribe($this->subscription);
+        $uut->target()->subscribe($subscription);
     }
 
     /**
@@ -137,142 +172,38 @@ final class NewsletterServiceTest extends TestCase
         $this->expectException(\DomainException::class);
         $this->expectExceptionMessage('Invalid subscription data');
 
-        $entityManager = $this->mockEntityManager();
-        $formFactory = $this->mockFormFactory();
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-        $validator = $this->mockValidator(1);
+        $uut = new UnitUnderTest(NewsletterService::class);
 
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
+        $violationList = $this->mock(ConstraintViolationListInterface::class);
+        $violationList
+            ->method('count')
+            ->willReturn(1);
 
-        $newsletterService->subscribe($this->subscription);
+        $validator = $uut->mock(ValidatorInterface::class);
+        $validator
+            ->expects($this->once())
+            ->method('validate')
+            ->willReturn($violationList);
+
+        $uut->target()->subscribe($this->subscription);
     }
 
     /**
      * Test subscribing to the newsletter with an unknown exception.
      */
-    public function testUnknownException(): void
+    public function testSubscribeHandlesUnknownException(): void
     {
         $this->expectException(SubscriptionException::class);
 
-        /** @var \Throwable&MockObject $exception */
-        $exception = $this->createMock(\Throwable::class);
-
-        $entityManager = $this->mockEntityManager();
-        $entityManager
-            ->expects($this->once())
-            ->method('beginTransaction');
-        $entityManager
+        $uut = new UnitUnderTest(NewsletterService::class);
+        
+        $objectManager = $uut->mock(ObjectManager::class);
+        $objectManager
             ->expects($this->once())
             ->method('persist')
-            ->willThrowException($exception);
-        $entityManager
-            ->expects($this->never())
-            ->method('flush');
-        $entityManager
-            ->expects($this->once())
-            ->method('rollback');
+            ->willThrowException($this->mock(\Throwable::class));
 
-        $formFactory = $this->mockFormFactory();
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-        $validator = $this->mockValidator(0);
-
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
-
-        $newsletterService->subscribe($this->subscription);
-    }
-
-    /**
-     * Test creating the subscription form.
-     */
-    public function testCreateForm(): void
-    {
-        $entityManager = $this->mockEntityManager();
-        $formFactory = $this->mockFormFactory();
-        $formFactory
-            ->expects($this->once())
-            ->method('create')
-            ->willReturn($this->createMock(FormInterface::class));
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-
-        /** @var ValidatorInterface&MockObject */
-        $validator = $this->createMock(ValidatorInterface::class);
-
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
-
-        $newsletterService->createForm();
-    }
-
-    /**
-     * Create a form factory mock.
-     *
-     * @return FormFactoryInterface&MockObject
-     */
-    private function mockFormFactory(): FormFactoryInterface&MockObject
-    {
-        /** @var FormFactoryInterface&MockObject */
-        $formFactory = $this->createMock(FormFactoryInterface::class);
-
-        return $formFactory;
-    }
-
-    /**
-     * Create an event dispatcher mock.
-     *
-     * @return EventDispatcherInterface&MockObject
-     */
-    private function mockEventDispatcher(): EventDispatcherInterface&MockObject
-    {
-        /** @var EventDispatcherInterface&MockObject */
-        $dispatcher = $this->createMock(EventDispatcherInterface::class);
-
-        return $dispatcher;
-    }
-
-    /**
-     * Create an entity manager mock.
-     *
-     * @return EntityManagerInterface&MockObject
-     */
-    private function mockEntityManager(): EntityManagerInterface&MockObject
-    {
-        /** @var EntityManagerInterface&MockObject */
-        $entityManager = $this->createMock(EntityManagerInterface::class);
-
-        return $entityManager;
-    }
-
-    /**
-     * Create a URL generator mock.
-     *
-     * @return UrlGeneratorInterface&MockObject
-     */
-    private function mockUrlGenerator(): UrlGeneratorInterface&MockObject
-    {
-        /** @var UrlGeneratorInterface&MockObject */
-        $urlGenerator = $this->createMock(UrlGeneratorInterface::class);
-
-        return $urlGenerator;
+        $uut->target()->subscribe($this->subscription);
     }
 
     /**
@@ -280,20 +211,17 @@ final class NewsletterServiceTest extends TestCase
      *
      * @return ValidatorInterface&MockObject
      */
-    private function mockValidator(int $errorCount): ValidatorInterface&MockObject
+    private function mockValidator(UnitUnderTest $uut, int $errorCount): void
     {
         $violationList = $this->createMock(ConstraintViolationListInterface::class);
         $violationList
             ->method('count')
             ->willReturn($errorCount);
 
-        /** @var ValidatorInterface&MockObject */
-        $validator = $this->createMock(ValidatorInterface::class);
+        $validator = $uut->mock(ValidatorInterface::class);
         $validator
             ->expects($this->once())
             ->method('validate')
             ->willReturn($violationList);
-
-        return $validator;
     }
 }

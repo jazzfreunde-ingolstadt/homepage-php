@@ -6,7 +6,7 @@ namespace Jazzfreunde\App\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\Security\User;
-use Jazzfreunde\App\Service\Email\Exception\MailException;
+use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,9 +18,10 @@ use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
 use Symfony\Component\Security\Core\Exception\LogicException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
-use Jazzfreunde\App\Service\Email\MailService;
 use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Mime\Address;
 
 /**
  * Controller für Benutzer
@@ -94,16 +95,17 @@ final class SecurityController extends AbstractController implements LoggerAware
      * @param Request $request
      * @param ManagerRegistry $doctrine
      * @param LoginLinkHandlerInterface $loginLinkHandler
-     * @param MailService $mailer
+     * @param MessageBusInterface $bus
      * @return Response
      * @throws \InvalidArgumentException if email is not valid
+     * @throws UserNotFoundException if user is not found
      */
     #[Route('/new', name: 'new_login', methods: [ Request::METHOD_POST ])]
     public function generateNewLoginEmail(
         Request $request,
         ManagerRegistry $doctrine,
         LoginLinkHandlerInterface $loginLinkHandler,
-        MailService $mailer
+        MessageBusInterface $bus
     ): Response {
         if ($this->security->isGranted(AuthenticatedVoter::IS_AUTHENTICATED_FULLY)) {
             return $this->redirectToOrigin($request);
@@ -124,24 +126,13 @@ final class SecurityController extends AbstractController implements LoggerAware
         $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
         $loginLink = $loginLinkDetails->getUrl();
 
-        try {
-            $mailer->send(
-                KnownMailHandleEnum::NoReply,
-                $user->email,
-                'Login bei Jazzfreunde Ingolstadt e.V.',
-                'email/login-link.html.twig',
-                [ 'login_link' => $loginLink ]
-            );
-        } catch (MailException $e) {
-            $this->logger?->error(
-                'Failed to send login link.',
-                [
-                    'recipient' => $recipient,
-                    'inner-exception' => $e->getMessage(),
-                ]
-            );
-            return $this->redirectToRoute('security_login', status: Response::HTTP_SEE_OTHER);
-        }
+        $bus->dispatch(new EmailNotification(
+            sender: KnownMailHandleEnum::NoReply,
+            recipient: new Address($user->email->__toString()),
+            subject: 'Login bei Jazzfreunde Ingolstadt e.V.',
+            twigTemplate: 'email/login-link.html.twig',
+            twigContext: [ 'login_link' => $loginLink ]
+        ));
         
         return $this->redirectToRoute('security_sent_confirmation');
     }

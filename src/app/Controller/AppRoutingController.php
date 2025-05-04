@@ -4,17 +4,9 @@ declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Controller;
 
-use Jazzfreunde\App\Entity\KnownMail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\Transport\TransportInterface;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Psr\Log\LoggerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Routing Controller für die Website

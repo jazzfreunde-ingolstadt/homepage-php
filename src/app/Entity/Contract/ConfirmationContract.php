@@ -28,63 +28,51 @@ class ConfirmationContract
     #[ORM\Column(type: 'string')]
     public string $token;
     #[ORM\Column(type: 'datetime_immutable')]
-    public DateTimeImmutable $openForConfirmationUntil;
-    #[ORM\Column(type: ConfirmationStateEnumType::ENTITY_NAME, options: [ 'default' => ConfirmationStateEnum::PendingConfirmation ])]
-    public ConfirmationStateEnum $state = ConfirmationStateEnum::PendingConfirmation;
+    public DateTimeImmutable $requestTime;
+    #[ORM\Column(type: ConfirmationStateEnumType::ENTITY_NAME, options: [ 'default' => ConfirmationStateEnum::New ])]
+    public ConfirmationStateEnum $state = ConfirmationStateEnum::New;
 
     /**
-     * Create a new confirmation contract
+     * Has the contract been confirmed?
      *
-     * @return ConfirmationContract
-     */
-    public static function create(
-        DateTimeImmutable $openForConfirmationUntil = new DateTimeImmutable('+1 day'),
-    ): ConfirmationContract {
-        $confirmation = new self();
-        $confirmation->token = bin2hex(random_bytes(32));
-        $confirmation->openForConfirmationUntil = $openForConfirmationUntil;
-
-        return $confirmation;
-    }
-
-    /**
-     * Has the period to confirm the contract expired?
-     *
-     * @return boolean
-     */
-    public function hasConfirmationPeriodExpired(): bool
-    {
-        return $this->openForConfirmationUntil < new DateTimeImmutable();
-    }
-
-    /**
-     * Is the contract confirmed?
-     *
-     * @psalm-suppress PossiblyUnusedMethod
      * @return boolean
      */
     public function isConfirmed(): bool
     {
-        return $this->state === ConfirmationStateEnum::Confirmed;
+        return ConfirmationStateEnum::Confirmed === $this->state;
     }
 
     /**
-     * Confirm the contract
+     * Generate a new token
      *
-     * @return void
+     * @return string
      */
-    public function confirm(): void
+    public static function generateToken(): string
     {
-        $this->state = ConfirmationStateEnum::Confirmed;
+        return bin2hex(random_bytes(32));
     }
 
     /**
-     * Cancel the contract
+     * Get the current place of the workflow
      *
-     * @return void
+     * @return string
+     * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
      */
-    public function cancel(): void
+    public function getState(): string
     {
-        $this->state = ConfirmationStateEnum::Cancelled;
+        return $this->state->value;
+    }
+
+    /**
+     * Set the current place of the workflow
+     *
+     * @param string $currentPlace
+     * @param array $context
+     *
+     * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
+     */
+    public function setState(string $currentPlace, array $_ = []): void
+    {
+        $this->state = ConfirmationStateEnumType::tryFrom($currentPlace);
     }
 }

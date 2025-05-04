@@ -109,7 +109,7 @@ class AbstractEnumType extends Type
      * @param int|string $value
      * @return \BackedEnum
      */
-    private static function from(int|string $value): \BackedEnum
+    public static function from(int|string $value): \BackedEnum
     {
         /** @var \BackedEnum */
         $enum = call_user_func([static::ENUM_CLASS_NAME, 'from'], $value);
@@ -121,7 +121,7 @@ class AbstractEnumType extends Type
      * @param int|string $value
      * @return \BackedEnum|null
      */
-    private static function tryFrom(int|string $value): ?\BackedEnum
+    public static function tryFrom(int|string $value): ?\BackedEnum
     {
         /** @var \BackedEnum|null */
         $enum = call_user_func([static::ENUM_CLASS_NAME, 'tryFrom'], $value);
