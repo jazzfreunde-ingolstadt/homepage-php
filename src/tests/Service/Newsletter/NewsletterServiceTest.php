@@ -11,6 +11,7 @@ use Jazzfreunde\App\Event\Event\Newsletter\Subscription\NewSubscriptionEvent;
 use Jazzfreunde\App\Service\Newsletter\NewsletterService;
 use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -35,7 +36,9 @@ final class NewsletterServiceTest extends TestCase
         $subscription = new NewsletterSubscription();
         $subscription->email = new Email('test@mail.com');
         $subscription->creationTime = new DateTime();
-        $subscription->confirmation = ConfirmationContract::create();
+        $subscription->confirmation = new ConfirmationContract();
+        $subscription->confirmation->token = ConfirmationContract::generateToken();
+        $subscription->confirmation->requestTime = new \DateTimeImmutable();
 
         $this->subscription = $subscription;
     }
@@ -61,8 +64,6 @@ final class NewsletterServiceTest extends TestCase
             ->expects($this->once())
             ->method('commit');
 
-        $formFactory = $this->mockFormFactory();
-        $urlGenerator = $this->mockUrlGenerator();
         $dispatcher = $this->mockEventDispatcher();
         $dispatcher
             ->expects($this->once())
@@ -75,16 +76,9 @@ final class NewsletterServiceTest extends TestCase
 
         $validator = $this->mockValidator(0);
 
+        $uut = new UnitUnderTest(NewsletterService::class);
 
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
-
-        $newsletterService->subscribe($subscription);
+        $uut->target()->subscribe($subscription);
     }
 
     /**

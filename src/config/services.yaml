@@ -15,6 +15,9 @@ services:
         resource: '%kernel.project_dir%/app/Event/'
         exclude: '**/*Event'
 
+    Jazzfreunde\App\Message\Handler\:
+        resource: '%kernel.project_dir%/app/Message/Handler/'
+
     # register the service for twig to make createForm available in twig templates
     jazzfreunde.newsletter_subscription:
         class: Jazzfreunde\App\Service\Newsletter\NewsletterService
