@@ -2,6 +2,7 @@
 
 namespace Jazzfreunde\App\Service\Twig;
 
+use Override;
 use Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -10,7 +11,7 @@ use Twig\TwigFunction;
  * Erweitert die Integration von Encore in Twig Templates
  * @psalm-api
  */
-class EncoreExtension extends AbstractExtension
+final class EncoreExtension extends AbstractExtension
 {
     /**
      * Dependency Injection
@@ -25,6 +26,7 @@ class EncoreExtension extends AbstractExtension
     /**
      * @inheritDoc
      */
+    #[Override]
     public function getFunctions(): array
     {
         return [

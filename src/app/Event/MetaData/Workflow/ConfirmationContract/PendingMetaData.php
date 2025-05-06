@@ -3,6 +3,7 @@
 namespace Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract;
 
 use DateInterval;
+use InvalidArgumentException;
 use Jazzfreunde\App\DependencyInjection\FromMetaDataTrait;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -10,8 +11,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * Meta data for the confirmation contract workflow.
  * Used when the contract enters pending state.
- *
- * @psalm-api
  */
 final class PendingMetaData
 {
@@ -26,9 +25,11 @@ final class PendingMetaData
 
     /**
      * @return DateInterval
+     * @throws InvalidArgumentException
      */
     public function getTokenLifeTime(): DateInterval
     {
-        return DateInterval::createFromDateString($this->token_lifetime);
+        $interval = DateInterval::createFromDateString($this->token_lifetime);
+        return $interval ?: throw new InvalidArgumentException('Invalid token lifetime format');
     }
 }

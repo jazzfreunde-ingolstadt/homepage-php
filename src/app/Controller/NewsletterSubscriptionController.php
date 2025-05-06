@@ -62,6 +62,9 @@ final class NewsletterSubscriptionController extends AbstractController implemen
         }
         
         try {
+            /**
+             * @var array<string, mixed>|null $data
+             */
             $data = $form->getData();
             if (!is_array($data)) {
                 throw new \LogicException('Unable to load form data');

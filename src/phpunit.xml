@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" colors="true" cacheDirectory="var/phpunit/cache" bootstrap="vendor/autoload.php">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" colors="true" cacheDirectory="var/phpunit/cache" bootstrap="tests/bootstrap.php">
   <coverage includeUncoveredFiles="true" pathCoverage="true" ignoreDeprecatedCodeUnits="true">
     <report>
       <html outputDirectory="var/phpunit/coverage" lowUpperBound="50" highLowerBound="90"/>
     </report>
   </coverage>
+
   <testsuites>
     <testsuite name="full">
       <directory>tests</directory>
     </testsuite>
   </testsuites>
+
   <php>
     <ini name="display_errors" value="1"/>
     <ini name="error_reporting" value="-1"/>
+    <ini name="memory_limit" value="2G"/>
+
     <server name="KERNEL_CLASS" value="Jazzfreunde\App\Kernel" force="true"/>
     <env name="APP_ENV" value="test" force="true"/>
-    <env name="APP_DEBUG" value="true" force="true"/>
+    <env name="APP_DEBUG" value="false" force="true"/>
   </php>
+
   <source>
     <include>
       <directory suffix=".php">app</directory>

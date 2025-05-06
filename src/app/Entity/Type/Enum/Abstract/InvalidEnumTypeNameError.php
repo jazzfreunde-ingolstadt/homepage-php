@@ -7,7 +7,7 @@ namespace Jazzfreunde\App\Entity\Type\Enum\Abstract;
 /**
  * The type name does not adhere the naming convention.
  */
-class InvalidEnumTypeNameError extends \CompileError
+final class InvalidEnumTypeNameError extends \CompileError
 {
     /**
      * @param string $name The name of the type

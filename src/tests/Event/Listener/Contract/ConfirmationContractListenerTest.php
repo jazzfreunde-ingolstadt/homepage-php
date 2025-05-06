@@ -171,7 +171,7 @@ final class ConfirmationContractListenerTest extends TestCase
         );
 
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Invalid subject type. Expected an instance of Jazzfreunde\App\Entity\Contract\ConfirmationContract');
+        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\App\Entity\Contract\ConfirmationContract'");
 
         $listener = $uut->target();
         $listener->onGuardConfirmExpired($event);
@@ -220,7 +220,7 @@ final class ConfirmationContractListenerTest extends TestCase
         );
 
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Invalid subject type. Expected an instance of Jazzfreunde\App\Entity\Contract\ConfirmationContract');
+        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\App\Entity\Contract\ConfirmationContract'");
 
         $listener = $uut->target();
         $listener->onEnterNew($event);
@@ -241,8 +241,7 @@ final class ConfirmationContractListenerTest extends TestCase
             ->method('flush');
         $objectManager
             ->expects($this->once())
-            ->method('clear')
-            ->with(ConfirmationContract::class);
+            ->method('clear');
 
         $uut->mock(ManagerRegistry::class)
             ->expects($this->once())
@@ -282,7 +281,7 @@ final class ConfirmationContractListenerTest extends TestCase
         );
 
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Invalid subject type. Expected an instance of Jazzfreunde\App\Entity\Contract\ConfirmationContract');
+        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\App\Entity\Contract\ConfirmationContract'");
 
         $listener = $uut->target();
         $listener->onStateChanged($event);

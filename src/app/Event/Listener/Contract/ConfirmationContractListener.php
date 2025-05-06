@@ -11,6 +11,7 @@ use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
 use Jazzfreunde\App\Workflow\ConfirmationContract\TransitionsEnum;
+use LogicException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -68,6 +69,11 @@ class ConfirmationContractListener implements LoggerAwareInterface
         }
 
         $transition = $event->getTransition();
+
+        if (is_null($transition)) {
+            throw new \LogicException('Could not retrieve transition');
+        }
+        
         $context = AwaitConfirmationContext::fromMetaData(
             validator: $this->validator,
             data: $event->getContext(),
@@ -111,9 +117,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
                         ->getPlaceMetadata(ConfirmationStateEnum::Pending->value)
         );
             
-        $expiredOn = $contract->requestTime->add($metaData->getTokenLifeTime());
-
-        if ($expiredOn > new \DateTimeImmutable()) {
+        if (!$contract->isExpired($metaData->getTokenLifeTime())) {
             return;
         }
 
@@ -151,15 +155,17 @@ class ConfirmationContractListener implements LoggerAwareInterface
     public function onStateChanged(EnteredEvent $event): void
     {
         $contract = $this->getContract($event);
-        $entityManager = $this->registry->getManagerForClass(ConfirmationContract::class);
+        $entityManager = $this->registry
+            ->getManagerForClass(ConfirmationContract::class)
+            ?? throw new LogicException(sprintf("Not entity manager found for class '%s'", ConfirmationContract::class));
 
         $entityManager->flush();
-        $entityManager->clear(ConfirmationContract::class);
+        $entityManager->clear();
 
         $this->logger?->debug(
             'Confirmation contract state changed',
             [
-                'state' => $event->getTransition()->getName(),
+                'state' => $event->getTransition()?->getName() ?? 'unknown',
                 'subject' => $contract,
             ]
         );
@@ -174,11 +180,11 @@ class ConfirmationContractListener implements LoggerAwareInterface
      */
     private function getContract(Event $event): ConfirmationContract
     {
-        if (!($event->getSubject() instanceof ConfirmationContract)) {
-            $class = ConfirmationContract::class;
-            throw new \LogicException("Invalid subject type. Expected an instance of {$class}");
+        $subject = $event->getSubject();
+        if ($subject instanceof ConfirmationContract) {
+            return $subject;
         }
-
-        return $event->getSubject();
+        
+        throw new \LogicException(sprintf("Invalid subject type. Expected an instance of '%s'", ConfirmationContract::class));
     }
 }

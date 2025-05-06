@@ -2,6 +2,7 @@
 
 namespace Jazzfreunde\App\Entity\Contract;
 
+use DateInterval;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
@@ -43,6 +44,18 @@ class ConfirmationContract
     }
 
     /**
+     * Has the confirmation period expired?
+     *
+     * @return boolean
+     */
+    public function isExpired(DateInterval $tokenLifeTime): bool
+    {
+        $expiredOn = $this->requestTime->add($tokenLifeTime);
+
+        return $expiredOn < new DateTimeImmutable();
+    }
+
+    /**
      * Generate a new token
      *
      * @return string
@@ -66,13 +79,17 @@ class ConfirmationContract
     /**
      * Set the current place of the workflow
      *
-     * @param string $currentPlace
-     * @param array $context
+     * @param enum-string $currentPlace
+     * @param array $_
      *
      * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
      */
     public function setState(string $currentPlace, array $_ = []): void
     {
-        $this->state = ConfirmationStateEnumType::tryFrom($currentPlace);
+        /**
+         * @var ConfirmationStateEnum $state
+         */
+        $state = ConfirmationStateEnum::From($currentPlace);
+        $this->state = $state;
     }
 }

@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Jazzfreunde\App\Service\Newsletter;
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Doctrine\DBAL\Driver\Connection;
+use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Exception\Newsletter\SubscriptionException;
-use Jazzfreunde\App\Form\NewsletterSubscriptionType;
 use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
 use Jazzfreunde\App\Type\Primitive\Email;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use LogicException;
+use RuntimeException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 use function count;
@@ -26,15 +26,12 @@ final class NewsletterService
 {
     /**
      * @param ManagerRegistry $registry
-     * @param FormFactoryInterface $formFactory
-     * @param UrlGeneratorInterface $urlGenerator
      * @param ValidatorInterface $validator
      * @param ConfirmationContractService $confirmationContracts
+     * @psalm-api
      */
     public function __construct(
         private ManagerRegistry $registry,
-        private FormFactoryInterface $formFactory,
-        private UrlGeneratorInterface $urlGenerator,
         private ValidatorInterface $validator,
         private ConfirmationContractService $confirmationContracts,
     ) {
@@ -56,8 +53,13 @@ final class NewsletterService
             throw new \DomainException('Invalid subscription data');
         }
 
+        /**
+         * @var Connection $connection
+         */
         $connection = $this->registry->getConnection();
-        $entityManager = $this->registry->getManagerForClass(NewsletterSubscription::class);
+        $entityManager = $this->registry
+            ->getManagerForClass(NewsletterSubscription::class)
+            ?? throw new LogicException(sprintf("Not entity manager found for class '%s'", NewsletterSubscription::class));
         
         $connection->beginTransaction();
         try {
@@ -74,7 +76,7 @@ final class NewsletterService
             $connection->rollback();
             $this->registry->resetManager();
 
-            $subscription = $this->getSubscriptionByEmailOrNull($subscription->email);
+            $subscription = $this->getSubscriptionByEmail($subscription->email);
             if ($subscription->confirmation->isConfirmed()) {
                 throw new SubscriptionException(code: SubscriptionException::ALREADY_SUBSCRIBED);
             }
@@ -112,29 +114,14 @@ final class NewsletterService
     }
 
     /**
-     * Generiert das Formular.
-     *
-     * @return FormInterface
-     * @psalm-suppress PossiblyUnusedMethod used in Twig Template to render html form
-     */
-    public function createForm(): FormInterface
-    {
-        return $this->formFactory->create(
-            NewsletterSubscriptionType::class,
-            options: [
-                'action' => $this->urlGenerator->generate('form_newsletter_subscribe')
-            ]
-        );
-    }
-
-    /**
      * @param Email $email unique email address
-     * @return NewsletterSubscription|null
+     * @return NewsletterSubscription
      */
-    private function getSubscriptionByEmailOrNull(Email $email): ?NewsletterSubscription
+    private function getSubscriptionByEmail(Email $email): NewsletterSubscription
     {
         return $this->registry
             ->getRepository(NewsletterSubscription::class)
-            ->findOneBy(['email' => $email]);
+            ->findOneBy(['email' => $email])
+            ?? throw new RuntimeException("Subscription for email '{$email}' not found");
     }
 }

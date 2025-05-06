@@ -2,6 +2,8 @@
 
 namespace JazzfreundeTests\App\Tests\Entity\Contract;
 
+use DateInterval;
+use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
@@ -19,8 +21,10 @@ final class ConfirmationContractTest extends TestCase
     public function testHasConfirmationPeriodExpired(): void
     {
         $contract = new ConfirmationContract();
-        $contract->openForConfirmationUntil = new \DateTimeImmutable('yesterday');
-        $this->assertTrue($contract->hasConfirmationPeriodExpired());
+        $contract->requestTime = new DateTimeImmutable('-1 day');
+        $tokenLifeTime = DateInterval::createFromDateString('1 hour');
+
+        $this->assertTrue($contract->isExpired($tokenLifeTime));
     }
 
     /**
@@ -36,28 +40,15 @@ final class ConfirmationContractTest extends TestCase
     }
 
     /**
-     * Test confirming a contract
+     * Test changing state of a contract
      *
      * @return void
      */
-    public function testConfirm(): void
+    public function testSetState(): void
     {
         $contract = new ConfirmationContract();
-        $contract->confirm();
+        $contract->setState('confirmed', []);
         $this->assertTrue($contract->isConfirmed());
         $this->assertEquals(ConfirmationStateEnum::Confirmed, $contract->state);
-    }
-
-    /**
-     * Test canceling a contract
-     *
-     * @return void
-     */
-    public function testCancel(): void
-    {
-        $contract = new ConfirmationContract();
-        $contract->cancel();
-        $this->assertFalse($contract->isConfirmed());
-        $this->assertEquals(ConfirmationStateEnum::Cancelled, $contract->state);
     }
 }

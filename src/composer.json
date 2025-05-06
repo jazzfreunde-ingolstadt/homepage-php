@@ -59,6 +59,7 @@
         "escapestudios/symfony2-coding-standard": "dev-master",
         "phpunit/phpunit": "^10.0",
         "psalm/plugin-phpunit": "dev-master",
+        "psalm/plugin-symfony": "^5.2",
         "squizlabs/php_codesniffer": "3.12.1",
         "vimeo/psalm": "6.10.0"
     },

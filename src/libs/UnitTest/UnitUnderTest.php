@@ -9,11 +9,12 @@ use ReflectionClass;
 /**
  * @template T
  * Unit under test to speed up mocking.
+ * @psalm-suppress UnusedClass
  */
 final class UnitUnderTest
 {
     /**
-     * @var array<string, MockObject>
+     * @var array<class-string, MockObject>
      */
     private array $mocks = [];
 
@@ -31,19 +32,32 @@ final class UnitUnderTest
     {
         $reflectionClass = new ReflectionClass($class);
         $constructor = $reflectionClass->getConstructor();
-        $args = $constructor->getParameters();
-        $mocks = array_map(
-            function ($arg) {
-                $type = $arg->getType();
-                if ($type === null) {
-                    return null;
-                }
+
+        $mocks = [];
+
+        if (!is_null($constructor)) {
+            $args = $constructor->getParameters();
+            $mocks = array_map(
+                function ($arg) {
+                    $type = $arg->getType();
+                    if ($type === null) {
+                        return null;
+                    }
                 
-                return $this->mock($type->getName());
-            },
-            $args
-        );
+                    /**
+                     * @var class-string $className
+                     * @psalm-suppress UndefinedMethod
+                     */
+                    $className = $type->getName();
+                    return $this->mock($className);
+                },
+                $args
+            );
+        }
         
+        /**
+         * @psalm-suppress MixedMethodCall
+         */
         $this->unitUnderTest = new $class(...$mocks);
     }
 
@@ -63,14 +77,16 @@ final class UnitUnderTest
      * @template TMock
      * @param class-string<TMock> $class
      * @return TMock&MockObject
-     * @throws InvalidArgumentException
-     * @throws MockObjectException
-     * @throws NoPreviousThrowableException
+     * @psalm-suppress InternalClass, InternalMethod
      */
     public function mock(string $class): object
     {
         if (array_key_exists($class, $this->mocks)) {
-            return $this->mocks[$class];
+            /**
+             * @var TMock&MockObject $mock
+             */
+            $mock = $this->mocks[$class];
+            return $mock;
         }
 
         $mock = (new MockGenerator)->testDouble(
