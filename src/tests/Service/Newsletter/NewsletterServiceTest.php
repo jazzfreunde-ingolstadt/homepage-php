@@ -3,29 +3,30 @@
 namespace JazzfreundeTests\App\Tests\Service\Newsletter;
 
 use DateTime;
-use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Doctrine\ORM\EntityManagerInterface;
+use DateTimeImmutable;
+use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Event\Event\Newsletter\Subscription\NewSubscriptionEvent;
+use Jazzfreunde\App\Exception\Contract\ConfirmationPeriodExpiredException;
+use Jazzfreunde\App\Exception\Newsletter\SubscriptionException;
+use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
 use Jazzfreunde\App\Service\Newsletter\NewsletterService;
-use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
+use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Primitive\Email;
-use Jazzfreunde\UnitTest\UnitUnderTest;
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\MockObject\MockObject;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Jazzfreunde\UnitTest\ServiceMocks\InMemoryMessageBus;
+use Jazzfreunde\UnitTest\Trait\MockingTrait;
+use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
  * Test for the newsletter service.
  */
-final class NewsletterServiceTest extends TestCase
+final class NewsletterServiceTest extends KernelTestCase
 {
+    use SetupDatabaseTrait;
+    use MockingTrait;
+
     private NewsletterSubscription $subscription;
 
     /**
@@ -33,261 +34,229 @@ final class NewsletterServiceTest extends TestCase
      */
     protected function setUp(): void
     {
-        $subscription = new NewsletterSubscription();
-        $subscription->email = new Email('test@mail.com');
-        $subscription->creationTime = new DateTime();
-        $subscription->confirmation = new ConfirmationContract();
-        $subscription->confirmation->token = ConfirmationContract::generateToken();
-        $subscription->confirmation->requestTime = new \DateTimeImmutable();
-
-        $this->subscription = $subscription;
     }
 
     /**
      * Test subscribing to the newsletter.
      */
-    public function testSubscribe(): void
+    public function testNewSubscription(): void
     {
-        $subscription = $this->subscription;
+        $kernel = $this->bootKernel();
+        $this->initDatabase($kernel);
 
-        $entityManager = $this->mockEntityManager();
-        $entityManager
-            ->expects($this->once())
-            ->method('beginTransaction');
-        $entityManager
-            ->expects($this->once())
-            ->method('persist');
-        $entityManager
-            ->expects($this->once())
-            ->method('flush');
-        $entityManager
-            ->expects($this->once())
-            ->method('commit');
+        $container = static::getContainer();
+        $messageBus = new InMemoryMessageBus();
+        $container->set(MessageBusInterface::class, $messageBus);
+        /** @var ManagerRegistry $registry */
+        $registry = $container->get(ManagerRegistry::class);
+        $repository = $registry->getRepository(NewsletterSubscription::class);
 
-        $dispatcher = $this->mockEventDispatcher();
-        $dispatcher
-            ->expects($this->once())
-            ->method('dispatch')
-            ->with($this->callback(function (NewSubscriptionEvent $event) use ($subscription): bool {
-                $this->assertSame($event->subscription, $subscription);
+        $this->assertCount(0, $repository->findAll());
+        
+        $subscription = new NewsletterSubscription();
+        $subscription->email = new Email('test@mail.com');
+        $subscription->creationTime = new DateTime();
+        
+        /** @var NewsletterService $newsletter */
+        $newsletter = $container->get(NewsletterService::class);
+        $newsletter->subscribe($subscription);
 
-                return true;
-            }));
+        /** @var NewsletterSubscription */
+        $created = $repository->findOneBy(['email' => 'test@mail.com']);
+        $this->assertEquals(ConfirmationStateEnum::Pending, $created->confirmation->state);
 
-        $validator = $this->mockValidator(0);
+        $dispatchedMessages = $messageBus->getDispatchedMessages();
+        $this->assertCount(1, $dispatchedMessages);
+        $message = array_shift($dispatchedMessages);
+        $notification = $message->getMessage();
 
-        $uut = new UnitUnderTest(NewsletterService::class);
-
-        $uut->target()->subscribe($subscription);
+        $this->assertInstanceOf(EmailNotification::class, $notification);
     }
 
     /**
-     * Test subscribing to the newsletter with an already existing subscription.
+     * Test subscribing to the newsletter with a previous expired confirmation link.
      */
-    public function testAlreadyExistingSubscriction(): void
+    public function testExcpiredConfirmationStillPending(): void
     {
+        $kernel = $this->bootKernel();
+        $this->initDatabase($kernel);
+
+        $container = static::getContainer();
+        $messageBus = new InMemoryMessageBus();
+        $container->set(MessageBusInterface::class, $messageBus);
+        /** @var ManagerRegistry $registry */
+        $registry = $container->get(ManagerRegistry::class);
+        $repository = $registry->getRepository(NewsletterSubscription::class);
+
+        $subscription = new NewsletterSubscription();
+        $subscription->email = new Email('test@mail.com');
+        $subscription->creationTime = new DateTime();
+        $subscription->confirmation = new ConfirmationContract();
+        $subscription->confirmation->token = ConfirmationContract::generateToken();
+        $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
+        $subscription->confirmation->state = ConfirmationStateEnum::Pending;
+
+        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager->persist($subscription);
+        $manager->flush();
+
+        /** @var NewsletterService $newsletter */
+        $newsletter = $container->get(NewsletterService::class);
+        $newsletter->subscribe($subscription);
+
+        /** @var NewsletterSubscription $created */
+        $created = $repository->findOneBy(['email' => 'test@mail.com']);
+        $this->assertEquals(ConfirmationStateEnum::Pending, $created->confirmation->state);
+
+        $dispatchedMessages = $messageBus->getDispatchedMessages();
+        $this->assertCount(1, $dispatchedMessages);
+        $message = array_shift($dispatchedMessages);
+        $notification = $message->getMessage();
+
+        $this->assertInstanceOf(EmailNotification::class, $notification);
+    }
+
+    /**
+     * Test subscribing to the newsletter with an already existing email.
+     */
+    public function testNewAttemptOnExistingEmail(): void
+    {
+        $kernel = $this->bootKernel();
+        $this->initDatabase($kernel);
+
+        $container = static::getContainer();
+        $messageBus = new InMemoryMessageBus();
+        $container->set(MessageBusInterface::class, $messageBus);
+        /** @var ManagerRegistry $registry */
+        $registry = $container->get(ManagerRegistry::class);
+
+        $subscription = new NewsletterSubscription();
+        $subscription->email = new Email('test@mail.com');
+        $subscription->creationTime = new DateTime();
+        $subscription->confirmation = new ConfirmationContract();
+        $subscription->confirmation->token = ConfirmationContract::generateToken();
+        $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
+        $subscription->confirmation->state = ConfirmationStateEnum::Confirmed;
+
+        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager->persist($subscription);
+        $manager->flush();
+
         $this->expectException(SubscriptionException::class);
         $this->expectExceptionCode(SubscriptionException::ALREADY_SUBSCRIBED);
 
-        /** @var UniqueConstraintViolationException&MockObject $uniqueConstraintException */
-        $uniqueConstraintException = $this->createMock(UniqueConstraintViolationException::class);
+        $subscription = new NewsletterSubscription();
+        $subscription->email = new Email('test@mail.com');
+        $subscription->creationTime = new DateTime();
 
-        $entityManager = $this->mockEntityManager();
-        $entityManager
-            ->expects($this->once())
-            ->method('beginTransaction');
-        $entityManager
-            ->expects($this->once())
-            ->method('persist')
-            ->willThrowException($uniqueConstraintException);
-        $entityManager
-            ->expects($this->never())
-            ->method('flush');
-        $entityManager
-            ->expects($this->never())
-            ->method('commit');
-
-        $formFactory = $this->mockFormFactory();
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-        $validator = $this->mockValidator(0);
-
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
-
-        $newsletterService->subscribe($this->subscription);
+        /** @var NewsletterService $newsletter */
+        $newsletter = $container->get(NewsletterService::class);
+        $newsletter->subscribe($subscription);
     }
 
     /**
-     * Test subscribing to the newsletter with invalid subscription data.
+     * Test confirming a subscription with a pending contract.
      */
-    public function testInvalidSubscriction(): void
+    public function testConfirmationOfPendingSubscription(): void
     {
-        $this->expectException(\DomainException::class);
-        $this->expectExceptionMessage('Invalid subscription data');
+        $kernel = $this->bootKernel();
+        $this->initDatabase($kernel);
 
-        $entityManager = $this->mockEntityManager();
-        $formFactory = $this->mockFormFactory();
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-        $validator = $this->mockValidator(1);
+        $container = static::getContainer();
+        $messageBus = new InMemoryMessageBus();
+        $container->set(MessageBusInterface::class, $messageBus);
+        /** @var ManagerRegistry $registry */
+        $registry = $container->get(ManagerRegistry::class);
+        $repository = $registry->getRepository(NewsletterSubscription::class);
 
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
+        $subscription = new NewsletterSubscription();
+        $subscription->email = new Email('test@mail.com');
+        $subscription->creationTime = new DateTime();
+        $subscription->confirmation = new ConfirmationContract();
+        $subscription->confirmation->token = ConfirmationContract::generateToken();
+        $subscription->confirmation->requestTime = new DateTimeImmutable();
+        $subscription->confirmation->state = ConfirmationStateEnum::Pending;
 
-        $newsletterService->subscribe($this->subscription);
+        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager->persist($subscription);
+        $manager->flush();
+
+        /** @var NewsletterService $newsletter */
+        $newsletter = $container->get(NewsletterService::class);
+        $newsletter->confirm($subscription->confirmation->token);
+
+        /** @var NewsletterSubscription */
+        $created = $repository->findOneBy(['email' => 'test@mail.com']);
+        $this->assertEquals(ConfirmationStateEnum::Confirmed, $created->confirmation->state);
     }
 
     /**
-     * Test subscribing to the newsletter with an unknown exception.
+     * Test confirming a subscription with a expired pending contract.
      */
-    public function testUnknownException(): void
+    public function testConfirmationOfExpiredToken(): void
     {
-        $this->expectException(SubscriptionException::class);
+        $kernel = $this->bootKernel();
+        $this->initDatabase($kernel);
 
-        /** @var \Throwable&MockObject $exception */
-        $exception = $this->createMock(\Throwable::class);
+        $container = static::getContainer();
+        $messageBus = new InMemoryMessageBus();
+        $container->set(MessageBusInterface::class, $messageBus);
+        /** @var ManagerRegistry $registry */
+        $registry = $container->get(ManagerRegistry::class);
 
-        $entityManager = $this->mockEntityManager();
-        $entityManager
-            ->expects($this->once())
-            ->method('beginTransaction');
-        $entityManager
-            ->expects($this->once())
-            ->method('persist')
-            ->willThrowException($exception);
-        $entityManager
-            ->expects($this->never())
-            ->method('flush');
-        $entityManager
-            ->expects($this->once())
-            ->method('rollback');
+        $subscription = new NewsletterSubscription();
+        $subscription->email = new Email('test@mail.com');
+        $subscription->creationTime = new DateTime();
+        $subscription->confirmation = new ConfirmationContract();
+        $subscription->confirmation->token = ConfirmationContract::generateToken();
+        $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
+        $subscription->confirmation->state = ConfirmationStateEnum::Pending;
 
-        $formFactory = $this->mockFormFactory();
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-        $validator = $this->mockValidator(0);
+        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager->persist($subscription);
+        $manager->flush();
 
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
+        $this->expectException(ConfirmationPeriodExpiredException::class);
 
-        $newsletterService->subscribe($this->subscription);
+        /** @var NewsletterService $newsletter */
+        $newsletter = $container->get(NewsletterService::class);
+        $newsletter->confirm($subscription->confirmation->token);
     }
 
-    /**
-     * Test creating the subscription form.
-     */
-    public function testCreateForm(): void
-    {
-        $entityManager = $this->mockEntityManager();
-        $formFactory = $this->mockFormFactory();
-        $formFactory
-            ->expects($this->once())
-            ->method('create')
-            ->willReturn($this->createMock(FormInterface::class));
-        $urlGenerator = $this->mockUrlGenerator();
-        $dispatcher = $this->mockEventDispatcher();
-
-        /** @var ValidatorInterface&MockObject */
-        $validator = $this->createMock(ValidatorInterface::class);
-
-        $newsletterService = new NewsletterService(
-            entityManager: $entityManager,
-            formFactory: $formFactory,
-            urlGenerator: $urlGenerator,
-            dispatcher: $dispatcher,
-            validator: $validator,
-        );
-
-        $newsletterService->createForm();
-    }
 
     /**
-     * Create a form factory mock.
-     *
-     * @return FormFactoryInterface&MockObject
+     * Test confirming a subscription with a pending contract.
      */
-    private function mockFormFactory(): FormFactoryInterface&MockObject
+    public function testCancellationOfSubscription(): void
     {
-        /** @var FormFactoryInterface&MockObject */
-        $formFactory = $this->createMock(FormFactoryInterface::class);
+        $kernel = $this->bootKernel();
+        $this->initDatabase($kernel);
 
-        return $formFactory;
-    }
+        $container = static::getContainer();
+        $messageBus = new InMemoryMessageBus();
+        $container->set(MessageBusInterface::class, $messageBus);
+        /** @var ManagerRegistry $registry */
+        $registry = $container->get(ManagerRegistry::class);
+        $repository = $registry->getRepository(NewsletterSubscription::class);
 
-    /**
-     * Create an event dispatcher mock.
-     *
-     * @return EventDispatcherInterface&MockObject
-     */
-    private function mockEventDispatcher(): EventDispatcherInterface&MockObject
-    {
-        /** @var EventDispatcherInterface&MockObject */
-        $dispatcher = $this->createMock(EventDispatcherInterface::class);
+        $subscription = new NewsletterSubscription();
+        $subscription->email = new Email('test@mail.com');
+        $subscription->creationTime = new DateTime();
+        $subscription->confirmation = new ConfirmationContract();
+        $subscription->confirmation->token = ConfirmationContract::generateToken();
+        $subscription->confirmation->requestTime = new DateTimeImmutable();
+        $subscription->confirmation->state = ConfirmationStateEnum::Confirmed;
 
-        return $dispatcher;
-    }
+        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager->persist($subscription);
+        $manager->flush();
 
-    /**
-     * Create an entity manager mock.
-     *
-     * @return EntityManagerInterface&MockObject
-     */
-    private function mockEntityManager(): EntityManagerInterface&MockObject
-    {
-        /** @var EntityManagerInterface&MockObject */
-        $entityManager = $this->createMock(EntityManagerInterface::class);
+        /** @var NewsletterService $newsletter */
+        $newsletter = $container->get(NewsletterService::class);
+        $newsletter->unsubscribe($subscription->confirmation->token);
 
-        return $entityManager;
-    }
-
-    /**
-     * Create a URL generator mock.
-     *
-     * @return UrlGeneratorInterface&MockObject
-     */
-    private function mockUrlGenerator(): UrlGeneratorInterface&MockObject
-    {
-        /** @var UrlGeneratorInterface&MockObject */
-        $urlGenerator = $this->createMock(UrlGeneratorInterface::class);
-
-        return $urlGenerator;
-    }
-
-    /**
-     * Create a validator mock.
-     *
-     * @return ValidatorInterface&MockObject
-     */
-    private function mockValidator(int $errorCount): ValidatorInterface&MockObject
-    {
-        $violationList = $this->createMock(ConstraintViolationListInterface::class);
-        $violationList
-            ->method('count')
-            ->willReturn($errorCount);
-
-        /** @var ValidatorInterface&MockObject */
-        $validator = $this->createMock(ValidatorInterface::class);
-        $validator
-            ->expects($this->once())
-            ->method('validate')
-            ->willReturn($violationList);
-
-        return $validator;
+        /** @var NewsletterSubscription */
+        $created = $repository->findOneBy(['email' => 'test@mail.com']);
+        $this->assertEquals(ConfirmationStateEnum::Cancelled, $created->confirmation->state);
     }
 }

@@ -3,6 +3,7 @@
 namespace Jazzfreunde\App;
 
 use Jazzfreunde\App\DependencyInjection\Compiler\DoctrineTypeRegisterCompilerPass;
+use Override;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -16,13 +17,14 @@ use function is_file;
 /**
  * Symfony Main Kernel
  */
-class Kernel extends BaseKernel
+final class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
     /**
      * @inheritDoc
      */
+    #[Override]
     public function getProjectDir(): string
     {
         return dirname(__DIR__);
@@ -31,6 +33,7 @@ class Kernel extends BaseKernel
     /**
      * @inheritDoc
      */
+    #[Override]
     protected function build(ContainerBuilder $container): void
     {
         /** @var string */
@@ -44,10 +47,12 @@ class Kernel extends BaseKernel
     }
 
     /**
-     * @inheritDoc
-     * @psalm-suppress PossiblyUnusedMethod
+     * Configures the container.
+     *
+     * @param ContainerConfigurator $container
+     * @psalm-suppress UnusedMethod
      */
-    protected function configureContainer(ContainerConfigurator $container): void
+    private function configureContainer(ContainerConfigurator $container): void
     {
         $container->import(sprintf('%s/config/{packages}/*.yaml', dirname(__DIR__)));
         $container->import(sprintf('%s/config/{packages}/%s/*.yaml', dirname(__DIR__), $this->environment));
@@ -59,10 +64,12 @@ class Kernel extends BaseKernel
     }
 
     /**
-     * @inheritDoc
-     * @psalm-suppress PossiblyUnusedMethod
+     * Adds or imports routes into your application.
+     *
+     * @param RoutingConfigurator $routes
+     * @psalm-suppress UnusedMethod
      */
-    protected function configureRoutes(RoutingConfigurator $routes): void
+    private function configureRoutes(RoutingConfigurator $routes): void
     {
         $routes->import(sprintf('%s/config/{routes}/%s/*.yaml', dirname(__DIR__), $this->environment));
         $routes->import(dirname(__DIR__).'/config/{routes}/*.yaml');

@@ -20,9 +20,7 @@ services:
 
     # register the service for twig to make createForm available in twig templates
     jazzfreunde.newsletter_subscription:
-        class: Jazzfreunde\App\Service\Newsletter\NewsletterService
-        # calls:
-        #     - setLogger: ['@logger']
+        class: Jazzfreunde\App\Service\Newsletter\NewsletterFormService
 
     Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface:
         alias: webpack_encore.entrypoint_lookup[mail]

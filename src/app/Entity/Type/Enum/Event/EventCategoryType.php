@@ -7,15 +7,16 @@ use Jazzfreunde\App\Type\Enum\EventCategoryEnum;
 
 /**
  * Veranstaltungskategorien
+ * @extends AbstractEnumType<EventCategoryEnum>
  */
-class EventCategoryType extends AbstractEnumType
+final class EventCategoryType extends AbstractEnumType
 {
     /**
      * @override
      */
     public const ENTITY_NAME = 'event_category';
     /**
-     * @override
+     * @inheritDoc
      */
     public const ENUM_CLASS_NAME = EventCategoryEnum::class;
 }

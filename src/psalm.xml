@@ -17,12 +17,15 @@
     </projectFiles>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin" />
     </plugins>
 
     <issueHandlers>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
                 <directory name="app/Entity" />
+                <directory name="app/Message/Messages" />
+                <directory name="app/Event/MetaData" />
             </errorLevel>
         </PropertyNotSetInConstructor>
     </issueHandlers>

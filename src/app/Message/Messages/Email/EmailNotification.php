@@ -4,10 +4,13 @@ namespace Jazzfreunde\App\Message\Messages\Email;
 
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\App\Validation\Attribute\TwigTemplate;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * Message for sending an email
+ * @psalm-api
  */
 class EmailNotification
 {
@@ -30,6 +33,12 @@ class EmailNotification
      * Subject of the email
      * Has to be at least 5 characters long
      */
+    #[Length(
+        min: 5,
+        max: 100,
+        minMessage: 'Subject must be at least {{ limit }} characters long.',
+        maxMessage: 'Subject cannot be longer than {{ limit }} characters.'
+    )]
     public string $subject;
 
     /**
@@ -37,6 +46,7 @@ class EmailNotification
      * Has to be a valid twig template
      * @see https://symfony.com/doc/current/mailer.html#twig-html-css
      */
+    #[TwigTemplate]
     public string $twigTemplate;
 
     /**
@@ -45,34 +55,4 @@ class EmailNotification
      * @see https://symfony.com/doc/current/mailer.html#html-content
      */
     public array $twigContext = [];
-
-    /**
-     * Set the sender of the email
-     *
-     * @param string $value
-     * @return void
-     */
-    public function setSubject(string $value): void
-    {
-        if (strlen($value) < 5) {
-            throw new \InvalidArgumentException('Subject must be at least 5 characters long.');
-        }
-            
-        $this->subject = $value;
-    }
-
-    /**
-     * Set the template for the email
-     *
-     * @param string $value
-     * @return void
-     */
-    public function setTwigTemplate(string $value): void
-    {
-        if (!str_contains($value, '.html.twig')) {
-            throw new \InvalidArgumentException('Template must be a valid twig template.');
-        }
-            
-        $this->twigTemplate = $value;
-    }
 }

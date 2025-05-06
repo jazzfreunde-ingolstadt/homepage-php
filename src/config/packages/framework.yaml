@@ -8,7 +8,3 @@ framework:
     cookie_samesite: lax
     storage_factory_id: session.storage.factory.native
     cookie_lifetime: 900
-
-# when@prod:
-#   framework:
-#     error_controller: Jazzfreunde\App\Controller\AppRoutingController::error

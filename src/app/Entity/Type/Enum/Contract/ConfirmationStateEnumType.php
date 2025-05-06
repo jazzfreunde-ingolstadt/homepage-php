@@ -7,7 +7,7 @@ use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 
 /**
  * Enity type for the possible states of a confirmation.
- * @see Jazzfreunde\App\Type\Contract\ConfirmationStateEnum
+ * @extends AbstractEnumType<ConfirmationStateEnum>
  */
 final class ConfirmationStateEnumType extends AbstractEnumType
 {

@@ -6,6 +6,7 @@ namespace Jazzfreunde\App\Exception\Newsletter;
 
 /**
  * Fehler bei Abonnements
+ * @psalm-api
  */
 class SubscriptionException extends \Exception
 {

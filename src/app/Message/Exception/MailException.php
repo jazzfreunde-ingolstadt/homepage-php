@@ -7,6 +7,6 @@ namespace Jazzfreunde\App\Message\Exception;
 /**
  * Any occured during email process
  */
-class MailException extends \Exception
+final class MailException extends \Exception
 {
 }

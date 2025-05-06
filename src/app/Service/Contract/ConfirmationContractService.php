@@ -18,12 +18,14 @@ use function is_null;
 
 /**
  * Service for managing confirmation contracts.
+ * @psalm-api
  */
 class ConfirmationContractService
 {
     /**
      * @param WorkflowInterface $workflow
      * @param EntityManagerInterface $entityManager
+     * @psalm-suppress PossiblyUnusedMethod
      */
     public function __construct(
         #[Target('confirmation_contract')]
@@ -85,7 +87,7 @@ class ConfirmationContractService
     /**
      * Confirm the contract.
      *
-     * @param ConfirmationContract $contract
+     * @param string $token
      * @return void
      * @throws ConfirmationPeriodExpiredException
      * @throws ConfirmationContractNotFoundException
@@ -108,7 +110,7 @@ class ConfirmationContractService
     /**
      * Cancel the contract.
      *
-     * @param ConfirmationContract $contract
+     * @param string $token
      * @return void
      * @throws ConfirmationContractNotFoundException
      */
@@ -147,9 +149,10 @@ class ConfirmationContractService
     /**
      * Retrieve a confirmation contract by its token.
      *
+     * @param string $token
      * @return ConfirmationContract
      */
-    private function getContractByToken(string $token): ?ConfirmationContract
+    private function getContractByToken(string $token): ConfirmationContract
     {
         $contract = $this->entityManager
                          ->getRepository(ConfirmationContract::class)

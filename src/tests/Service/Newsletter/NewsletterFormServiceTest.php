@@ -1,0 +1,36 @@
+<?php declare(strict_types = 1);
+
+namespace JazzfreundeTests\App\Tests\Service\Newsletter;
+
+use Jazzfreunde\App\Form\NewsletterSubscriptionType;
+use Jazzfreunde\App\Service\Newsletter\NewsletterFormService;
+use Jazzfreunde\UnitTest\UnitUnderTest;
+use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+/**
+ * Test for the newsletter form service.
+ */
+final class NewsletterFormServiceTest extends KernelTestCase
+{
+    /**
+     * Test creating the subscription form.
+     */
+    public function testCreateForm(): void
+    {
+        $this->bootKernel();
+        $container = $this->getContainer();
+
+        $newsletterForm = $container->get('jazzfreunde.newsletter_subscription');
+        $form = $newsletterForm->createForm();
+        $view = $form->createView();
+
+        $this->assertEquals(
+            '/newsletter/newsletter_subscribe/',
+            $view->vars['action'],
+        );
+    }
+}

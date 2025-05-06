@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 // phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 
-namespace JazzfreundeTests\App\Tests\Entity\Contract;
+namespace JazzfreundeTests\App\Tests\DependencyInjection;
 
 use InvalidArgumentException;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;

@@ -5,8 +5,10 @@ namespace Jazzfreunde\App\DependencyInjection;
 use BackedEnum;
 use InvalidArgumentException;
 use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
+use LogicException;
 use ReflectionClass;
 use ReflectionIntersectionType;
+use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionProperty;
 use ReflectionUnionType;
@@ -38,7 +40,7 @@ use function is_a;
 trait PropertyInjectionTrait
 {
     /**
-     * @var array associative array of [property name => setter method]
+     * @var array<string, ReflectionMethod> associative array of [property name => setter method]
      */
     private array $setterDictionary = [];
 
@@ -360,7 +362,9 @@ trait PropertyInjectionTrait
             return;
         }
         
-        throw new \LogicException("Property {$propertyName} does not exist in class {$this->class}.");
+        throw new \LogicException(
+            sprintf("Property '%s' does not exist in class '%s'.", $propertyName, static::class)
+        );
     }
 
     /**
@@ -377,7 +381,7 @@ trait PropertyInjectionTrait
                 && $method->getName() !== 'setValue'
         );
 
-        array_walk($setterMethods, function ($method) {
+        array_walk($setterMethods, function (ReflectionMethod $method) {
             $name = strtolower(substr($method->getName(), 3));
             $this->setterDictionary[$name] = $method;
         });

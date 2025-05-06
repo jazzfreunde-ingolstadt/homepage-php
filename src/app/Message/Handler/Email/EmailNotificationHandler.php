@@ -4,6 +4,7 @@ namespace Jazzfreunde\App\Message\Handler\Email;
 
 use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
 use Doctrine\Persistence\ManagerRegistry;
+use InvalidArgumentException;
 use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Message\Exception\MailException;
 use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
@@ -14,9 +15,12 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Message handler for sending emails
+ * @psalm-api
  */
 #[AsMessageHandler(method: 'send')]
 class EmailNotificationHandler implements LoggerAwareInterface
@@ -26,27 +30,30 @@ class EmailNotificationHandler implements LoggerAwareInterface
     /**
      * @param ManagerRegistry $doctrine
      * @param MailerInterface $mailer
+     * @param ValidatorInterface $validator
      * @psalm-suppress PossiblyUnusedMethod dependency injection
      */
     public function __construct(
         private ManagerRegistry $doctrine,
-        private MailerInterface $mailer
+        private MailerInterface $mailer,
+        private ValidatorInterface $validator,
     ) {
     }
 
     /**
      * Sendet eine E-Mail
      *
-     * @param KnownMailHandleEnum $from
-     * @param KnownMailHandleEnum|Email $to
-     * @param string $subject
-     * @param string $twigTemplate
-     * @return void
+     * @param EmailNotification $message
      * @throws MailException
      */
     public function send(
         EmailNotification $message
     ): void {
+        $violations = $this->validator->validate($message);
+        if (0 < count($violations)) {
+            throw new ValidationFailedException($message, $violations);
+        }
+
         $sender = $this->getSender($message);
         $recipient = $this->getRecipient($message);
 
@@ -85,13 +92,9 @@ class EmailNotificationHandler implements LoggerAwareInterface
         if ($message->recipient instanceof Address) {
             return $message->recipient;
         }
-
-        if ($message->recipient instanceof KnownMailHandleEnum) {
-            $mail = $this->getKnownMail($message->recipient)->address;
-            return new Address($mail->__toString());
-        }
-
-        throw new \InvalidArgumentException('Recipient must be a KnownMailHandleEnum or Address.');
+        
+        $mail = $this->getKnownMail($message->recipient)->address;
+        return new Address($mail->__toString());
     }
 
     /**

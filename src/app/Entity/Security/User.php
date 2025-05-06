@@ -8,6 +8,7 @@ use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Jazzfreunde\App\Entity\Type\String\EmailType;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Override;
 
 /**
  * Benutzer-Account
@@ -40,6 +41,7 @@ class User implements UserInterface
     /**
      * @inheritDoc
      */
+    #[Override]
     public function getRoles(): array
     {
         return [];
@@ -48,6 +50,7 @@ class User implements UserInterface
     /**
      * @inheritDoc
      */
+    #[Override]
     public function eraseCredentials(): void
     {
     }
@@ -55,6 +58,7 @@ class User implements UserInterface
     /**
      * @inheritDoc
      */
+    #[Override]
     public function getUserIdentifier(): string
     {
         $uuid = $this->uuid;

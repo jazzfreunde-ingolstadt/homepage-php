@@ -7,7 +7,7 @@ namespace Jazzfreunde\App\Entity\Type\Enum\Abstract;
 /**
  * The entity name for the type has not been defined.
  */
-class EntityNameUndefinedError extends \CompileError
+final class EntityNameUndefinedError extends \CompileError
 {
     /**
      * @param string $className The class name of the type

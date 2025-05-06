@@ -4,6 +4,7 @@ namespace Jazzfreunde\App\Validation\Attribute;
 
 use Attribute;
 use Jazzfreunde\App\Validation\Validator\TwigTemplateValidator;
+use Override;
 use Symfony\Component\Validator\Constraint;
 
 /**
@@ -34,6 +35,7 @@ final class TwigTemplate extends Constraint
      *
      * @return string
      */
+    #[Override]
     public function validatedBy(): string
     {
         return TwigTemplateValidator::class;
