@@ -4,10 +4,12 @@
 namespace JazzfreundeTests\App\Tests\Entity\Type\Enum\Abstract;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Platforms\MariaDBPlatform;
 use Jazzfreunde\App\Entity\Type\Enum\Abstract\AbstractEnumType;
 use Jazzfreunde\App\Entity\Type\Enum\Abstract\EntityNameUndefinedError;
 use Jazzfreunde\App\Entity\Type\Enum\Abstract\EnumClassNameUndefinedError;
 use Jazzfreunde\App\Entity\Type\Enum\Abstract\InvalidEnumTypeNameError;
+use Jazzfreunde\UnitTest\Trait\MockingTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -50,6 +52,8 @@ class Invalid2TestEnumType extends AbstractEnumType
  */
 final class AbstractEnumTypeTest extends TestCase
 {
+    use MockingTrait;
+
     /**
      * Testet addType, wenn der Entity Name nicht definiert wurde.
      */
@@ -83,8 +87,7 @@ final class AbstractEnumTypeTest extends TestCase
     public function testSQLCommentHint(): void
     {
         $type = new TestEnumType();
-        /** @var AbstractPlatform&MockObject */
-        $platform = $this->createMock(AbstractPlatform::class);
+        $platform = $this->mock(AbstractPlatform::class);
 
         $this->assertEquals(true, $type->requiresSQLCommentHint($platform));
     }
@@ -95,8 +98,7 @@ final class AbstractEnumTypeTest extends TestCase
     public function testSQLDeclaration(): void
     {
         $type = new TestEnumType();
-        /** @var AbstractPlatform&MockObject */
-        $platform = $this->createMock(AbstractPlatform::class);
+        $platform = $this->mock(MariaDBPlatform::class);
 
         $this->assertEquals("ENUM('first', 'second')", $type->getSQLDeclaration([], $platform));
     }
@@ -107,8 +109,7 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToDatabaseValue(): void
     {
         $type = new TestEnumType();
-        /** @var AbstractPlatform&MockObject */
-        $platform = $this->createMock(AbstractPlatform::class);
+        $platform = $this->mock(AbstractPlatform::class);
 
         $this->assertEquals('first', $type->convertToDatabaseValue(TestEnum::first, $platform));
     }
@@ -119,8 +120,7 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToPHPValue(): void
     {
         $type = new TestEnumType();
-        /** @var AbstractPlatform&MockObject */
-        $platform = $this->createMock(AbstractPlatform::class);
+        $platform = $this->mock(AbstractPlatform::class);
 
         $this->assertEquals(TestEnum::first, $type->convertToPHPValue('first', $platform));
     }
@@ -131,8 +131,7 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToDatabaseValueNotValid(): void
     {
         $type = new TestEnumType();
-        /** @var AbstractPlatform&MockObject */
-        $platform = $this->createMock(AbstractPlatform::class);
+        $platform = $this->mock(AbstractPlatform::class);
 
         $this->expectException(\Doctrine\DBAL\Types\ConversionException::class);
         $type->convertToDatabaseValue('third', $platform);
@@ -144,8 +143,7 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToPHPValueEnumValueNotExist(): void
     {
         $type = new TestEnumType();
-        /** @var AbstractPlatform&MockObject */
-        $platform = $this->createMock(AbstractPlatform::class);
+        $platform = $this->mock(AbstractPlatform::class);
 
         $this->expectException(\Doctrine\DBAL\Types\ConversionException::class);
         $type->convertToPHPValue('third', $platform);
@@ -157,8 +155,7 @@ final class AbstractEnumTypeTest extends TestCase
     public function testConvertToPHPValueNotString(): void
     {
         $type = new TestEnumType();
-        /** @var AbstractPlatform&MockObject */
-        $platform = $this->createMock(AbstractPlatform::class);
+        $platform = $this->mock(AbstractPlatform::class);
 
         $this->expectException(\Doctrine\DBAL\Types\ConversionException::class);
         $type->convertToPHPValue(1, $platform);

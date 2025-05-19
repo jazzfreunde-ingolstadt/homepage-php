@@ -4,11 +4,6 @@ on:
   pull_request:
     paths:
       - 'src/**'
-  push:
-    paths:
-      - 'src/**'
-    branches:
-      - 'feature/*'
 
 jobs:
   unit-tests:
@@ -41,4 +36,4 @@ jobs:
         uses: mheap/phpunit-matcher-action@v1
 
       - name: Run unit tests
-        run: vendor/bin/phpunit --configuration phpunit.xml --teamcity
+        run: vendor/bin/phpunit --configuration phpunit.xml.dist --teamcity

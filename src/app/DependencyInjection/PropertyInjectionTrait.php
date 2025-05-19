@@ -5,8 +5,10 @@ namespace Jazzfreunde\App\DependencyInjection;
 use BackedEnum;
 use InvalidArgumentException;
 use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
-use Reflection;
+use LogicException;
+use ReflectionClass;
 use ReflectionIntersectionType;
+use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionProperty;
 use ReflectionUnionType;
@@ -14,7 +16,19 @@ use ReflectionUnionType;
 use function array_walk;
 use function gettype;
 use function is_int;
+use function is_string;
+use function str_contains;
+use function str_starts_with;
+use function class_exists;
+use function strtolower;
+use function array_reduce;
+use function key_exists;
+use function array_filter;
+use function implode;
+use function array_map;
+use function array_search;
 use function property_exists;
+use function is_object;
 use function is_null;
 use function is_subclass_of;
 use function call_user_func;
@@ -26,6 +40,11 @@ use function is_a;
 trait PropertyInjectionTrait
 {
     /**
+     * @var array<string, ReflectionMethod> associative array of [property name => setter method]
+     */
+    private array $setterDictionary = [];
+
+    /**
      * Property Injection
      *
      * @param mixed ...$params
@@ -33,22 +52,67 @@ trait PropertyInjectionTrait
      */
     public function __construct(mixed ...$params)
     {
-        array_walk($params, function (mixed $value, string|int $name) {
+        $this->injectProperties($params);
+    }
+
+    /**
+     * Serialize the object without any of the traits own technical properties
+     *
+     * @return array
+     */
+    public function __serialize(): array
+    {
+        $properties = array_filter(
+            get_object_vars($this),
+            fn($key) => 'setterDictionary' !== $key,
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $properties;
+    }
+
+    /**
+     * Unserialize the object
+     *
+     * @param array $data
+     * @return void
+     */
+    public function __unserialize(array $data): void
+    {
+        $this->injectProperties($data);
+    }
+
+    /**
+     * Inject properties into the object
+     *
+     * @param array $kvp associative array of [property name => value]
+     * @return void
+     */
+    private function injectProperties(array $kvp): void
+    {
+        if (count($kvp) === 0) {
+            return;
+        }
+
+        $this->createSetterDictionary();
+        
+        array_walk($kvp, function (mixed $value, string|int $name) {
             if (is_int($name)) {
                 throw new \LogicException("Cannot pass property without name.");
             }
             if (!property_exists($this, $name)) {
-                throw new \LogicException("Property {$name} does not exist in class {$this->class}.");
+                $className = static::class;
+                throw new \LogicException("Property {$name} does not exist in class {$className}.");
             }
 
             $types = $this->getPropertyTypes($name);
 
             $this
-            ->trySetNull($name, $types, $value)
-            ?->trySetEnum($name, $types, $value)
-            ?->trySetPrimitiveType($name, $types, $value)
-            ?->trySetBuiltInType($name, $types, $value)
-            ?->throwError($name, $types, $value);
+                ->trySetNull($name, $types, $value)
+                ?->trySetEnum($name, $types, $value)
+                ?->trySetPrimitiveType($name, $types, $value)
+                ?->trySetBuiltInType($name, $types, $value)
+                ?->throwError($name, $types, $value);
         });
     }
 
@@ -67,7 +131,7 @@ trait PropertyInjectionTrait
     ): self|null {
         if (is_null($value)
         && array_search('null', $types) !== false) {
-            $this->$name = $value;
+            $this->setValue($name, $value);
             return null;
         }
 
@@ -97,7 +161,7 @@ trait PropertyInjectionTrait
 
         foreach ($types as $type) {
             if ($type === $typeName) {
-                $this->$name = $value;
+                $this->setValue($name, $value);
                 return null;
             }
 
@@ -126,7 +190,7 @@ trait PropertyInjectionTrait
                     continue;
                 }
 
-                $this->$name = $value;
+                $this->setValue($name, $value);
                 return null;
             }
         }
@@ -150,23 +214,27 @@ trait PropertyInjectionTrait
         foreach ($types as $type) {
             if (is_subclass_of($type, BackedEnum::class, true)) {
                 if (is_a($value, $type, true)) {
-                    $this->$name = $value;
+                    $this->setValue($name, $value);
                     return null;
                 }
 
+                if (!is_int($value) && !is_string($value)) {
+                    continue;
+                }
+
                 /** @var BackedEnum|null */
-                    $enum = call_user_func([$type, 'tryFrom'], $value);
+                $enum = call_user_func([$type, 'tryFrom'], $value);
 
                 if (is_null($enum)) {
                     continue;
                 }
 
-                    $this->$name = $enum;
-                    return null;
+                $this->setValue($name, $enum);
+                return null;
             }
         }
 
-            return $this;
+        return $this;
     }
 
     /**
@@ -191,7 +259,7 @@ trait PropertyInjectionTrait
                     continue;
                 }
 
-                $this->$name = $primitive;
+                $this->setValue($name, $primitive);
                 return null;
             }
         }
@@ -270,5 +338,52 @@ trait PropertyInjectionTrait
             fn(ReflectionNamedType $t) => $t->getName(),
             $type->getTypes()
         ));
+    }
+
+    /**
+     * Set a value to a property
+     * Prefers setter method if available
+     *
+     * @param string $propertyName
+     * @param mixed $value
+     * @return void
+     */
+    private function setValue(string $propertyName, mixed $value): void
+    {
+        $key = strtolower($propertyName);
+        if (key_exists($key, $this->setterDictionary)) {
+            $setter = $this->setterDictionary[$key];
+            $setter->invoke($this, $value);
+            return;
+        }
+
+        if (property_exists($this, $propertyName)) {
+            $this->$propertyName = $value;
+            return;
+        }
+        
+        throw new \LogicException(
+            sprintf("Property '%s' does not exist in class '%s'.", $propertyName, static::class)
+        );
+    }
+
+    /**
+     * Create a dictionary of setter methods
+     *
+     * @return void
+     */
+    private function createSetterDictionary(): void
+    {
+        $reflectionClass = new ReflectionClass(static::class);
+        $setterMethods = array_filter(
+            $reflectionClass->getMethods(),
+            fn($method) => str_starts_with(strtolower($method->getName()), 'set')
+                && $method->getName() !== 'setValue'
+        );
+
+        array_walk($setterMethods, function (ReflectionMethod $method) {
+            $name = strtolower(substr($method->getName(), 3));
+            $this->setterDictionary[$name] = $method;
+        });
     }
 }

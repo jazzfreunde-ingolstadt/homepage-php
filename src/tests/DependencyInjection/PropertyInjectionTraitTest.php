@@ -1,12 +1,13 @@
 <?php declare(strict_types = 1);
 // phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 
-namespace JazzfreundeTests\App\Tests\Entity\Contract;
+namespace JazzfreundeTests\App\Tests\DependencyInjection;
 
 use InvalidArgumentException;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 
 /**
  * Dummy enum for testing property injection
@@ -104,6 +105,20 @@ class DummyClass
     public array $array;
     public DummyComplexType $complexType;
     public DummyInterface1&DummyInterface2 $complexTypeAndInterface;
+    public string $valueWithValidation;
+
+    /**
+     * Setter for valueWithValidation
+     *
+     * @param string $value
+     */
+    public function setValueWithValidation(string $value): void
+    {
+        if (empty($value)) {
+            throw new InvalidArgumentException('Value cannot be empty');
+        }
+        $this->valueWithValidation = $value;
+    }
 }
 
 /**
@@ -235,5 +250,49 @@ final class PropertyInjectionTraitTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Property 'age' must be of type 'int', 'string' given.");
         new DummyClass(age: 'foo');
+    }
+
+    /**
+     * Test setting value with setter
+     */
+    public function testCallsSetterIfAvailable(): void
+    {
+        $mock = $this
+            ->getMockBuilder(DummyClass::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mock
+            ->expects($this->once())
+            ->method('setValueWithValidation')
+            ->with(
+                $this->equalTo('foo')
+            );
+
+        $reflectedClass = new ReflectionClass(DummyClass::class);
+        $constructor = $reflectedClass->getConstructor();
+        $constructor->invoke($mock, valueWithValidation: 'foo');
+    }
+
+    /**
+     * Test validating invalid data with setter
+     */
+    public function testSetterWithInvalidData(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Value cannot be empty');
+        new DummyClass(valueWithValidation: '');
+    }
+
+    /**
+     * Test serialization and unserialization
+     */
+    public function testSerialization(): void
+    {
+        $dummy = new DummyClass(name: 'John', age: 30);
+        $serialized = serialize($dummy);
+        $unserialized = unserialize($serialized);
+
+        $this->assertEquals($dummy, $unserialized);
     }
 }

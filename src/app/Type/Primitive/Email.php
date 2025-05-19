@@ -2,6 +2,8 @@
 
 namespace Jazzfreunde\App\Type\Primitive;
 
+use Override;
+
 /**
  * E-Mail Typ
  */
@@ -12,6 +14,7 @@ final class Email implements PrimitiveTypeInterface
     /**
      * @inheritDoc
      */
+    #[Override]
     public static function tryFrom(mixed $value): static|null
     {
         if (!is_string($value)) {

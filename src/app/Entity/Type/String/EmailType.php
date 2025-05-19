@@ -6,6 +6,7 @@ use Doctrine\DBAL\Types\StringType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Override;
 
 /**
  * E-Mail Typ
@@ -17,6 +18,7 @@ final class EmailType extends StringType
     /**
      * @inheritDoc
      */
+    #[Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $column['length'] = 254;
@@ -27,6 +29,7 @@ final class EmailType extends StringType
     /**
      * @inheritDoc
      */
+    #[Override]
     public function convertToPHPValue(mixed $value, AbstractPlatform $platform): mixed
     {
         if (!\is_string($value)) {
@@ -40,6 +43,7 @@ final class EmailType extends StringType
     /**
      * @inheritDoc
      */
+    #[Override]
     public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): mixed
     {
         if (\is_string($value)) {

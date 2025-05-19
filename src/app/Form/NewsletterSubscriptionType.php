@@ -2,6 +2,7 @@
 
 namespace Jazzfreunde\App\Form;
 
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -10,12 +11,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Formular für Newsletter Abonnement
+ * @extends AbstractType<array>
  */
-class NewsletterSubscriptionType extends AbstractType
+final class NewsletterSubscriptionType extends AbstractType
 {
     /**
      * @inheritDoc
      */
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -28,6 +31,7 @@ class NewsletterSubscriptionType extends AbstractType
     /**
      * @inheritDoc
      */
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

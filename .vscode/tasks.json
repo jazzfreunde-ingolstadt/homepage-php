@@ -163,6 +163,20 @@
             "options": {
                 "cwd": "${workspaceFolder}/src/",
             },
+        },
+        {
+            "label": "Consume message queue",
+            "type": "shell",
+            "group": "test",
+            "command": "${workspaceFolder}/src/bin/console",
+            "args": [
+                "messenger:consume",
+                "async",
+                "--time-limit=15",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/src/",
+            },
         }
 	]
 }

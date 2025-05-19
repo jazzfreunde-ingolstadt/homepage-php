@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\App\DependencyInjection\Compiler;
 
 use Generator;
+use Override;
 use ReflectionClass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -37,6 +38,7 @@ final readonly class DoctrineTypeRegisterCompilerPass implements CompilerPassInt
     /**
      * @inheritDoc
      */
+    #[Override]
     public function process(ContainerBuilder $container): void
     {
         /** @var array<string, array{class: class-string}> $typeDefinition */
