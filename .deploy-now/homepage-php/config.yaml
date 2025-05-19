@@ -48,7 +48,7 @@ deploy:
     pre-deployment-remote-commands:
       - touch ./public/maintenance.htm
       - echo "deploy-now" > ./public/maintenance.htm
-      - php8.2-cli bin/console messenger:stop-workers
+      - php8.2-cli bin/console messenger:stop-workers || true
     post-deployment-remote-commands:
       - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
       - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
