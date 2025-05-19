@@ -2,7 +2,9 @@
 <html>
   <body class="font-sans">
     <div class="p-5 w-full bg-blue text-white">
-      <img class="w-20" src="{{ email.image('@mailasset/images/fulllogo.svg') }}" alt="Logo">
+      <div class="w-20 h-20">
+        <img class="object-contain" src="{{ email.image('@mailasset/images/full-logo.png') }}" alt="Logo">
+      </div>
     </div>
     <main class="p-10 w-full">
       {% block content %}

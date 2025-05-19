@@ -51,7 +51,7 @@
             "label": "Migrate database",
             "type": "shell",
             "group": "test",
-            "command": "${workspaceFolder}/src/bin/console",
+            "command": "bin/console",
             "args": [
                 "doctrine:migrations:migrate",
                 "--no-interaction"
@@ -77,7 +77,7 @@
             "label": "Run Unit Tests",
             "type": "shell",
             "group": "test",
-            "command": "${workspaceFolder}/src/bin/phpunit",
+            "command": "bin/phpunit",
             "args": [
                 "--testdox",
                 "--teamcity",
@@ -112,7 +112,7 @@
             "label": "Analyze code",
             "type": "shell",
             "group": "test",
-            "command": "${workspaceFolder}/src/bin/psalm",
+            "command": "bin/psalm",
             "options": {
                 "cwd": "${workspaceFolder}/src/",
             },
@@ -155,7 +155,7 @@
             "label": "Dump sitemaps",
             "type": "shell",
             "group": "test",
-            "command": "${workspaceFolder}/src/bin/console",
+            "command": "bin/console",
             "args": [
                 "presta:sitemaps:dump",
                 "--env=dev",
@@ -168,7 +168,7 @@
             "label": "Consume message queue",
             "type": "shell",
             "group": "test",
-            "command": "${workspaceFolder}/src/bin/console",
+            "command": "bin/console",
             "args": [
                 "messenger:consume",
                 "async",
