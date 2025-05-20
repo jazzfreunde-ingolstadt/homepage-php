@@ -48,7 +48,7 @@ final class EncoreExtension extends AbstractExtension
          * Since mails are processed in bulk, we need to reset the entrypoint lookup,
          * otherwise it won't render all mail.
          *
-         * @link $this->publicDir.$entryPoint
+         * @link https://symfony.com/doc/current/frontend/encore/advanced-config.html#avoid-missing-css-when-rendering-multiple-templates
          */
         $this->lookup->reset();
 
