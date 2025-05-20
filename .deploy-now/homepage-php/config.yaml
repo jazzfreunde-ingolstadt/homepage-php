@@ -5,7 +5,7 @@ deploy:
       - var/
       - tests/
       - node_modules/
-      - assets/
+      - assets/app/
       - .env.dev
       - .env.test
       - phpunit.xml
@@ -30,7 +30,7 @@ deploy:
       - var/
       - tests/
       - node_modules/
-      - assets/
+      - assets/app/
       - .env.dev
       - .env.test
       - phpunit.xml

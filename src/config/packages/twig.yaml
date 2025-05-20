@@ -11,7 +11,6 @@ twig:
         github_repository: '%env(DEPLOYMENT_GITHUB_REPOSITORY)%'
         github_sha: '%env(DEPLOYMENT_GITHUB_SHA)%'
         github_sha_short: '%env(DEPLOYMENT_GITHUB_SHORT_SHA)%'
-        show_sample_data: false
         newsletter_subscription_service: "@jazzfreunde.newsletter_subscription"
 
 when@test:
@@ -21,5 +20,3 @@ when@test:
 when@dev:
     twig:
         strict_variables: true
-        globals:
-            show_sample_data: true
