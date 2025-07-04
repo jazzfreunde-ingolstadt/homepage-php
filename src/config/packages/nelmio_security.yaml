@@ -1,7 +1,7 @@
 nelmio_security:
   # signs/verifies all cookies
   signed_cookie:
-    names: ['*']
+    names: []
 
   # prevents framing of the entire site
   clickjacking:
@@ -49,6 +49,7 @@ nelmio_security:
         - 'self'
       img-src:
         - 'self'
+        - 'data:'
       style-src:
         - 'self'
       font-src:
@@ -71,6 +72,7 @@ nelmio_security:
         - 'self'
       img-src:
         - 'self'
+        - 'data:'
       style-src:
         - 'self'
       font-src:
@@ -89,6 +91,7 @@ when@dev:
         img-src:
           - 'ws://localhost:8080'
           - 'http://localhost:8080'
+          - 'data:'
         style-src:
           - 'ws://localhost:8080'
           - 'http://localhost:8080'

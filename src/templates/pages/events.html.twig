@@ -3,17 +3,11 @@
 {% set title = 'Veranstaltungen' %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-saturated2.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
-		{% block infront %}
-			{% include "components/header-spacer.html.twig" %}
-			{% embed '@layout/container.html.twig' %}
-				{% block content %}
-					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
-						<h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wider uppercase mb-10 text-orange">Veranstaltungen</h1>
-						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">Hier finden Sie eine Übersicht über Veranstaltungen in der Region für Jazzfreunde <br /> (unabhängig davon, wer der Veranstalter ist)</h2>
-					</div>
-				{% endblock %}
-			{% endembed %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/ambient/session-saturated2.jpg') } %}
+		{% block intro %}
+			{% include 'typography/intro-titel.html.twig' with { titel: 'Veranstaltungen' } %}
+			{% include 'typography/intro-subtitel.html.twig' with { titel: 'Hier finden Sie eine Übersicht über Veranstaltungen in der Region für Jazzfreunde' } %}
+			{% include 'typography/intro-subtitel.html.twig' with { titel: '(unabhängig davon, wer der Veranstalter ist)' } %}
 		{% endblock %}
 	{% endembed %}
 {% endblock %}
@@ -28,6 +22,8 @@
 			</div>
 		{% endblock %}
 	{% endembed %}
+
+	{% include '@layout/spacer.html.twig' with { spacer: 'spacer-48' } %}
 
 	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-moody9.jpg'), class: 'blur-sm' } %}
 		{% block infront %}

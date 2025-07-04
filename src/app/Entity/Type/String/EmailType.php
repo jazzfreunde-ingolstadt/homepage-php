@@ -9,7 +9,7 @@ use Jazzfreunde\App\Type\Primitive\Email;
 use Override;
 
 /**
- * E-Mail Typ
+ * email type
  */
 final class EmailType extends StringType
 {

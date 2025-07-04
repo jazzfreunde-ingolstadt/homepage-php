@@ -10,6 +10,7 @@ use Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract\PendingMetaData
 use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\App\Type\Primitive\HexToken;
 use Jazzfreunde\App\Workflow\ConfirmationContract\TransitionsEnum;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
@@ -138,7 +139,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
     public function onEnterNew(EnterEvent $event): void
     {
         $contract = $this->getContract($event);
-        $contract->token = ConfirmationContract::generateToken();
+        $contract->token = new HexToken();
         $contract->requestTime = new \DateTimeImmutable();
     }
 

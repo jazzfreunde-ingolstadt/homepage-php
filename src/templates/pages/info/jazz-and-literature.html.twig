@@ -3,17 +3,10 @@
 {% extends 'base.html.twig' %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/advertise/jazz-and-literature/audience.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
-		{% block infront %}
-			{% include "components/header-spacer.html.twig" %}
-			{% embed '@layout/container.html.twig' %}
-				{% block content %}
-					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
-						<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-white">Jazz & Literatur im Stadttheater</h1>
-						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">In Kooperation mit dem Stadttheater Ingolstadt</h2>
-					</div>
-				{% endblock %}
-			{% endembed %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/advertise/jazz-and-literature/audience.jpg') } %}
+		{% block intro %}
+			{% include 'typography/intro-titel.html.twig' with { titel: 'Jazz & Literatur im Stadttheater' } %}
+			{% include 'typography/intro-subtitel.html.twig' with { titel: 'In Kooperation mit dem Stadttheater Ingolstadt' } %}
 		{% endblock %}
 	{% endembed %}
 {% endblock %}
@@ -37,7 +30,7 @@
 			<div class="flex flex-col lg:flex-row justify-center gap-4 lg:gap-10">
 				<section class="flex-1">
 					<p class="py-2 md:py-5">
-						Seit 2016 bringen das Stadttheater Ingolstadt  gemeinsam mit den Jazzfreunden Ingolstadt zwei faszinierende Kunstformen zusammen: Jazz & Literatur!
+						Seit 2012 bringen das Stadttheater Ingolstadt  gemeinsam mit den Jazzfreunden Ingolstadt zwei faszinierende Kunstformen zusammen: Jazz & Literatur!
 																																																			Diese beliebte und erfolgreiche Veranstaltungsreihe verbindet fesselnde Lesungen mit mitreißender Live-Jazzmusik - ein echtes Highlight für Kulturbegeisterte.
 					</p>
 

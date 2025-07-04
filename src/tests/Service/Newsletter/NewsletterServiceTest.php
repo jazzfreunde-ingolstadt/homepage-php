@@ -92,7 +92,6 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->email = new Email('test@mail.com');
         $subscription->creationTime = new DateTime();
         $subscription->confirmation = new ConfirmationContract();
-        $subscription->confirmation->token = ConfirmationContract::generateToken();
         $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
         $subscription->confirmation->state = ConfirmationStateEnum::Pending;
 
@@ -134,7 +133,6 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->email = new Email('test@mail.com');
         $subscription->creationTime = new DateTime();
         $subscription->confirmation = new ConfirmationContract();
-        $subscription->confirmation->token = ConfirmationContract::generateToken();
         $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
         $subscription->confirmation->state = ConfirmationStateEnum::Confirmed;
 
@@ -173,7 +171,6 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->email = new Email('test@mail.com');
         $subscription->creationTime = new DateTime();
         $subscription->confirmation = new ConfirmationContract();
-        $subscription->confirmation->token = ConfirmationContract::generateToken();
         $subscription->confirmation->requestTime = new DateTimeImmutable();
         $subscription->confirmation->state = ConfirmationStateEnum::Pending;
 
@@ -183,7 +180,7 @@ final class NewsletterServiceTest extends KernelTestCase
 
         /** @var NewsletterService $newsletter */
         $newsletter = $container->get(NewsletterService::class);
-        $newsletter->confirm($subscription->confirmation->token);
+        $newsletter->confirm($subscription->confirmation->token->value());
 
         /** @var NewsletterSubscription */
         $created = $repository->findOneBy(['email' => 'test@mail.com']);
@@ -208,7 +205,6 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->email = new Email('test@mail.com');
         $subscription->creationTime = new DateTime();
         $subscription->confirmation = new ConfirmationContract();
-        $subscription->confirmation->token = ConfirmationContract::generateToken();
         $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
         $subscription->confirmation->state = ConfirmationStateEnum::Pending;
 
@@ -220,7 +216,7 @@ final class NewsletterServiceTest extends KernelTestCase
 
         /** @var NewsletterService $newsletter */
         $newsletter = $container->get(NewsletterService::class);
-        $newsletter->confirm($subscription->confirmation->token);
+        $newsletter->confirm($subscription->confirmation->token->value());
     }
 
 
@@ -243,7 +239,6 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->email = new Email('test@mail.com');
         $subscription->creationTime = new DateTime();
         $subscription->confirmation = new ConfirmationContract();
-        $subscription->confirmation->token = ConfirmationContract::generateToken();
         $subscription->confirmation->requestTime = new DateTimeImmutable();
         $subscription->confirmation->state = ConfirmationStateEnum::Confirmed;
 
@@ -253,7 +248,7 @@ final class NewsletterServiceTest extends KernelTestCase
 
         /** @var NewsletterService $newsletter */
         $newsletter = $container->get(NewsletterService::class);
-        $newsletter->unsubscribe($subscription->confirmation->token);
+        $newsletter->unsubscribe($subscription->confirmation->token->value());
 
         /** @var NewsletterSubscription */
         $created = $repository->findOneBy(['email' => 'test@mail.com']);

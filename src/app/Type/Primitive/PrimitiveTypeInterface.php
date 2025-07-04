@@ -2,10 +2,12 @@
 
 namespace Jazzfreunde\App\Type\Primitive;
 
+use Stringable;
+
 /**
  * Interface for primitive types
  */
-interface PrimitiveTypeInterface
+interface PrimitiveTypeInterface extends Stringable
 {
     /**
      * Create a new instance from a value
@@ -21,4 +23,11 @@ interface PrimitiveTypeInterface
      * @return string
      */
     public function __toString(): string;
+
+    /**
+     * Returns the value of the primitive type.
+     *
+     * @return non-empty-string
+     */
+    public function value(): string;
 }

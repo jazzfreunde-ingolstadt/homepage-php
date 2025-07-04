@@ -7,15 +7,18 @@ use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Jazzfreunde\App\Entity\Type\String\EmailType;
+use Jazzfreunde\App\Entity\Type\String\HexTokenType;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\App\Type\Primitive\HexToken;
 use Override;
 
 /**
- * Benutzer-Account
+ * user account
  *
  * ```sql
  *  # Befehl zum Anlegen eines neuen Nutzers
- *  INSERT INTO `users` (`uuid`, `email`) VALUES (UNHEX(REPLACE(UUID(), '-', '')), 'new.user@jazzfreunde-ingolstadt.localhost')
+ *  INSERT INTO `users` (`uuid`, `email`, `token`)
+ *      VALUES (UNHEX(REPLACE(UUID(), '-', '')), 'new.user@jazzfreunde-ingolstadt.localhost', SUBSTRING(MD5(CONCAT(uuid, request_time)), 1, 32))
  * ```
  * @psalm-api
  */
@@ -25,13 +28,38 @@ class User implements UserInterface
 {
     use PropertyInjectionTrait;
 
+    /**
+     * Unique identifier in the database
+     *
+     * @var string|null
+     */
     #[ORM\Column(name: "uuid", type: "uuid", nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\CustomIdGenerator(class:"doctrine.uuid_generator")]
     public ?string $uuid;
+
+    /**
+     * User secret to seed generated hashes
+     *
+     * @var HexToken
+     */
+    #[ORM\Column(type: HexTokenType::ENTITY_NAME, unique: true)]
+    public HexToken $token;
+
+    /**
+     * Email address of the user
+     *
+     * @var Email
+     */
     #[ORM\Column(type: EmailType::ENTITY_NAME, unique: true)]
     public Email $email;
+
+    /**
+     * Assigned roles of the user
+     *
+     * @var Collection<array-key, Role>
+     */
     #[ORM\JoinTable(name: 'users_groups')]
     #[ORM\JoinColumn(referencedColumnName: 'uuid')]
     #[ORM\InverseJoinColumn(referencedColumnName: 'uuid')]
@@ -44,7 +72,10 @@ class User implements UserInterface
     #[Override]
     public function getRoles(): array
     {
-        return [];
+        return $this->roles
+                    ->map(static fn(Role $role): string
+                    => $role->name)
+                    ->toArray();
     }
 
     /**
@@ -61,11 +92,6 @@ class User implements UserInterface
     #[Override]
     public function getUserIdentifier(): string
     {
-        $uuid = $this->uuid;
-        if (!is_string($uuid) || '' === $uuid) {
-            throw new \LogicException('User identifier is empty');
-        }
-
-        return $uuid;
+        return $this->email->value();
     }
 }

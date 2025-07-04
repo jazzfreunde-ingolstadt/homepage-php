@@ -2,11 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Jazzfreunde\App\Controller;
+namespace Jazzfreunde\App\Controller\Security;
 
-use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\Security\User;
+use InvalidArgumentException;
 use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
+use Jazzfreunde\App\Service\Security\Request\RequestHelper;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,17 +20,17 @@ use Symfony\Component\Security\Core\Exception\LogicException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
- * Controller für Benutzer
+ * Controller for handling logins via login links sent to the users email.
  * @psalm-suppress PropertyNotSetInConstructor $container
  * @psalm-api
  */
-#[Route('/session', name: 'security_')]
-final class SecurityController extends AbstractController implements LoggerAwareInterface
+#[Route('/session', name: 'security_link_')]
+final class LoginLinkSecurityController extends AbstractController implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
@@ -43,7 +44,7 @@ final class SecurityController extends AbstractController implements LoggerAware
     }
 
     /**
-     * Generiere Login-Email und beginne Authentifizierung
+     * Generate login email and start authentication process.
      *
      * @param Request $request
      * @return Response
@@ -52,37 +53,38 @@ final class SecurityController extends AbstractController implements LoggerAware
     public function requestLoginLink(Request $request): Response
     {
         if ($this->security->isGranted(AuthenticatedVoter::IS_AUTHENTICATED_FULLY)) {
-            return $this->redirectToOrigin($request);
+            return RequestHelper::redirectToOrigin($request, $this->generateUrl('home'));
         }
 
         return $this->render(
-            '@pages/security/login-form.html.twig',
+            '@pages/security/link/login-form.html.twig',
             [
-                'new_login_route' => 'security_new_login',
+                'new_login_route' => 'security_link_new_login',
             ]
         );
     }
 
     /**
-     * Bestätigungsmaske vor dem eigentlichen Login und Ziel des Authentifizierungslinks.
+     * Confirmation form before the actual login and target of the authentication link.
      *
      * @param Request $request
      * @return Response
      * @link https://symfony.com/doc/current/security/login_link.html#allow-a-link-to-only-be-used-once
      */
+    #[FirewallEntryPoint(firewallName: 'main')]
     #[Route('/auth', name: 'login_check', methods: [ Request::METHOD_GET, Request::METHOD_POST ])]
     public function enter(Request $request): Response
     {
         if ($this->security->isGranted(AuthenticatedVoter::IS_AUTHENTICATED_FULLY)) {
-            return $this->redirectToRoute('home');
+            return RequestHelper::redirectToOrigin($request, $this->generateUrl('home'));
         }
 
         if (!$request->isMethod(Request::METHOD_GET)) {
-            throw new \LogicException('Login sollte von Event Subscriber behandelt werden. Überprüfe "Security" Konfiguration!');
+            throw new \LogicException('Logout should be handled by an event subscriber. Check your "Security" configuration!');
         }
 
-        return $this->render('@pages/security/login-confirmation.html.twig', [
-            'login_check' => 'security_login_check',
+        return $this->render('@pages/security/link/login-confirmation.html.twig', [
+            'login_check' => 'security_link_login_check',
             '_expires' => $request->query->get('expires', 'error'),
             '_user' => $request->query->get('user', 'error'),
             '_hash' => $request->query->get('hash', 'error'),
@@ -90,55 +92,56 @@ final class SecurityController extends AbstractController implements LoggerAware
     }
 
     /**
-     * Generiert neue Email mit Authentifizierungslink und sendet diese an den Nutzer
+     * Generates a new email with an authentication link and sends it to the user.
      *
      * @param Request $request
-     * @param ManagerRegistry $doctrine
+     * @param UserProviderInterface $userProvider
      * @param LoginLinkHandlerInterface $loginLinkHandler
      * @param MessageBusInterface $bus
      * @return Response
      * @throws \InvalidArgumentException if email is not valid
      * @throws UserNotFoundException if user is not found
      */
+    #[FirewallEntryPoint(firewallName: 'main')]
     #[Route('/new', name: 'new_login', methods: [ Request::METHOD_POST ])]
     public function generateNewLoginEmail(
         Request $request,
-        ManagerRegistry $doctrine,
+        UserProviderInterface $userProvider,
         LoginLinkHandlerInterface $loginLinkHandler,
         MessageBusInterface $bus
     ): Response {
         if ($this->security->isGranted(AuthenticatedVoter::IS_AUTHENTICATED_FULLY)) {
-            return $this->redirectToOrigin($request);
+            return RequestHelper::redirectToOrigin($request, $this->generateUrl('home'));
         }
        
-        $recipient = Email::tryFrom(
-            $request
-            ->request
-            ->get('email')
-        );
+        try {
+            $email = RequestHelper::getUserEmailFromPost($request);
+        } catch (InvalidArgumentException) {
+            $this->addFlash('error', 'Die eingegebene E-Mail-Adresse ist ungültig.');
+            return $this->redirect($this->generateUrl('security_code_login'));
+        }
+        
+        if (is_null($email)) {
+            throw new LogicException('Email address is required for login.');
+        }
 
-        $user =
-            $doctrine
-            ->getRepository(User::class)
-            ->findOneBy([ 'email' => $recipient ])
-            ?? throw new UserNotFoundException("Benutzer mit der angegeben Email existiert nicht.");
-
+        $user = $userProvider->loadUserByIdentifier($email->value());
         $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
         $loginLink = $loginLinkDetails->getUrl();
 
         $bus->dispatch(new EmailNotification(
             sender: KnownMailHandleEnum::NoReply,
-            recipient: new Address($user->email->__toString()),
+            recipient: new Address($email->value()),
             subject: 'Login bei Jazzfreunde Ingolstadt e.V.',
-            twigTemplate: 'email/login-link.html.twig',
+            twigTemplate: 'email/security/login-link.html.twig',
             twigContext: [ 'login_link' => $loginLink ]
         ));
         
-        return $this->redirectToRoute('security_sent_confirmation');
+        return $this->redirectToRoute('security_link_sent_confirmation');
     }
 
     /**
-     * Bestätigungsnachricht, sobald der Link an den Benutzer versendet wurde.
+     * Confirmation banner after the link has been sent to the user.
      *
      * @return Response
      */
@@ -146,12 +149,12 @@ final class SecurityController extends AbstractController implements LoggerAware
     public function sent(): Response
     {
         return $this->render(
-            '@pages/security/login-sent.html.twig',
+            '@pages/security/link/login-sent.html.twig',
         );
     }
 
     /**
-     * Melde Benutzer ab
+     * Logout action.
      *
      * @return never
      */
@@ -159,22 +162,5 @@ final class SecurityController extends AbstractController implements LoggerAware
     public function logout(): never
     {
         throw new \LogicException('Logout sollte von Event Subscriber behandelt werden. Überprüfe "Security" Konfiguration!');
-    }
-
-    /**
-     * Leitet den Benutzer zur Herkunftsseite zurück.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    private function redirectToOrigin(Request $request): Response
-    {
-        $referer = $request->headers->get('referer');
-
-        if (is_null($referer)) {
-            return $this->redirectToRoute('home');
-        }
-
-        return $this->redirect($referer);
     }
 }

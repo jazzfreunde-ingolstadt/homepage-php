@@ -5,6 +5,7 @@ namespace Jazzfreunde\App\DependencyInjection;
 use BackedEnum;
 use InvalidArgumentException;
 use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
+use Jazzfreunde\Util\ArrayUtil;
 use LogicException;
 use ReflectionClass;
 use ReflectionIntersectionType;
@@ -52,6 +53,10 @@ trait PropertyInjectionTrait
      */
     public function __construct(mixed ...$params)
     {
+        if (!ArrayUtil::isAssociativeArray($params)) {
+            throw new InvalidArgumentException('params must be an associative array');
+        }
+
         $this->injectProperties($params);
     }
 
@@ -88,7 +93,7 @@ trait PropertyInjectionTrait
      * @param array $kvp associative array of [property name => value]
      * @return void
      */
-    private function injectProperties(array $kvp): void
+    protected function injectProperties(array $kvp): void
     {
         if (count($kvp) === 0) {
             return;
@@ -112,6 +117,7 @@ trait PropertyInjectionTrait
                 ?->trySetEnum($name, $types, $value)
                 ?->trySetPrimitiveType($name, $types, $value)
                 ?->trySetBuiltInType($name, $types, $value)
+                ?->tryObject($name, $types, $value)
                 ?->throwError($name, $types, $value);
         });
     }
@@ -232,6 +238,31 @@ trait PropertyInjectionTrait
                 $this->setValue($name, $enum);
                 return null;
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Try setting an object type
+     *
+     * @param string $name
+     * @param string[] $types
+     * @param mixed $value
+     * @return self|null return self to continue chaining, return null to stop chaining
+     */
+    private function tryObject(
+        string $name,
+        array $types,
+        mixed $value
+    ): self|null {
+        foreach ($types as $type) {
+            if (class_exists($type, true) && is_a($value, $type, true)) {
+                $this->setValue($name, $value);
+                return null;
+            }
+
+               continue;
         }
 
         return $this;

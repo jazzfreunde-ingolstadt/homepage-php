@@ -7,7 +7,9 @@ use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\App\Entity\Type\Enum\Contract\ConfirmationStateEnumType;
+use Jazzfreunde\App\Entity\Type\String\HexTokenType;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\App\Type\Primitive\HexToken;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -20,18 +22,53 @@ class ConfirmationContract
 {
     use PropertyInjectionTrait;
 
+    /**
+     * Unique identifier in the database
+     *
+     * @var string|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\CustomIdGenerator(class:"doctrine.uuid_generator")]
     #[ORM\Column(type: 'uuid')]
     public ?string $uuid = null;
+
+    /**
+     * Unique token that acts as a public identifier on the API
+     *
+     * @var HexToken
+     */
     #[Assert\NotBlank(message: 'Token is required.')]
-    #[ORM\Column(type: 'string')]
-    public string $token;
+    #[ORM\Column(type: HexTokenType::ENTITY_NAME, unique: true)]
+    public HexToken $token;
+
+    /**
+     * Time the confirmation request was created
+     *
+     * @var DateTimeImmutable
+     */
     #[ORM\Column(type: 'datetime_immutable')]
     public DateTimeImmutable $requestTime;
+
+    /**
+     * State of the confirmation contract
+     *
+     * @var ConfirmationStateEnum
+     */
     #[ORM\Column(type: ConfirmationStateEnumType::ENTITY_NAME, options: [ 'default' => ConfirmationStateEnum::New ])]
     public ConfirmationStateEnum $state = ConfirmationStateEnum::New;
+
+    /**
+     * Create a new contract
+     * @param array<string, mixed> ...$params
+     * @psalm-suppress UndefinedThisPropertyFetch
+     */
+    public function __construct(array ...$params)
+    {
+        $params['requestTime'] ??= new DateTimeImmutable();
+        $params['token'] ??= new HexToken();
+        $this->injectProperties($params);
+    }
 
     /**
      * Has the contract been confirmed?
@@ -53,16 +90,6 @@ class ConfirmationContract
         $expiredOn = $this->requestTime->add($tokenLifeTime);
 
         return $expiredOn < new DateTimeImmutable();
-    }
-
-    /**
-     * Generate a new token
-     *
-     * @return string
-     */
-    public static function generateToken(): string
-    {
-        return bin2hex(random_bytes(32));
     }
 
     /**

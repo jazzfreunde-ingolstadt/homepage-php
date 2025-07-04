@@ -4,9 +4,13 @@ declare(strict_types = 1);
 
 namespace Jazzfreunde\App\Controller;
 
+use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
  * Routing Controller für die Website
@@ -163,11 +167,31 @@ final class AppRoutingController extends AbstractController
      *
      * @return Response
      */
+    #[FirewallEntryPoint(firewallName: 'low_trust')]
     #[Route('/info/sessions/', name: 'sessions', options: ['sitemap' => true])]
-    public function sessions(): Response
+    public function sessions(Security $security): Response
+    {
+        $isAuthenticated = $security->isGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render(
+            '@pages/info/sessions.html.twig',
+            [
+                'showCommunityLink' => $isAuthenticated
+            ]
+        );
+    }
+
+    /**
+     * Jam Sessions
+     *
+     * @return Response
+     */
+    #[IsGranted(AuthenticatedVoter::IS_AUTHENTICATED_FULLY)]
+    #[FirewallEntryPoint(firewallName: 'low_trust')]
+    #[Route('/info/sessions/community/invite', name: 'sessions_community')]
+    public function sessionsCommunity(): Response
     {
         return $this->render(
-            '@pages/info/sessions.html.twig'
+            '@pages/info/sessions-community.html.twig'
         );
     }
 }
