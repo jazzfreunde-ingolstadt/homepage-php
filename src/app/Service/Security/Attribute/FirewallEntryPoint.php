@@ -11,8 +11,6 @@ use Attribute;
 final class FirewallEntryPoint
 {
     /**
-     * Undocumented function
-     *
      * @param string $firewallName
      */
     public function __construct(

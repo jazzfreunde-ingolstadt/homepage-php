@@ -2,14 +2,7 @@
 
 namespace JazzfreundeTests\App\Tests\Service\Newsletter;
 
-use Jazzfreunde\App\Form\NewsletterSubscriptionType;
-use Jazzfreunde\App\Service\Newsletter\NewsletterFormService;
-use Jazzfreunde\UnitTest\UnitUnderTest;
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Test for the newsletter form service.

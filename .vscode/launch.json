@@ -30,7 +30,7 @@
                 "--do-not-cache-result"
             ],
             "port": 9003,
-            "runtimeExecutable":"php",
+            "runtimeExecutable": "php",
             "runtimeArgs": [
                 "-dxdebug.start_with_request=yes"
             ],

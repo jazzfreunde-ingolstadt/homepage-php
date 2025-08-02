@@ -117,7 +117,6 @@ trait PropertyInjectionTrait
                 ?->trySetEnum($name, $types, $value)
                 ?->trySetPrimitiveType($name, $types, $value)
                 ?->trySetBuiltInType($name, $types, $value)
-                ?->tryObject($name, $types, $value)
                 ?->throwError($name, $types, $value);
         });
     }
@@ -191,7 +190,7 @@ trait PropertyInjectionTrait
                     if (!$fullfillsIntersection) {
                         continue;
                     }
-                } elseif (!class_exists($type, true)
+                } elseif (!(class_exists($type, true) || interface_exists($type, true))
                     || !is_a($value, $type, true)) {
                     continue;
                 }
@@ -238,31 +237,6 @@ trait PropertyInjectionTrait
                 $this->setValue($name, $enum);
                 return null;
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Try setting an object type
-     *
-     * @param string $name
-     * @param string[] $types
-     * @param mixed $value
-     * @return self|null return self to continue chaining, return null to stop chaining
-     */
-    private function tryObject(
-        string $name,
-        array $types,
-        mixed $value
-    ): self|null {
-        foreach ($types as $type) {
-            if (class_exists($type, true) && is_a($value, $type, true)) {
-                $this->setValue($name, $value);
-                return null;
-            }
-
-               continue;
         }
 
         return $this;

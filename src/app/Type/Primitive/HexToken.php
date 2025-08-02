@@ -2,6 +2,7 @@
 
 namespace Jazzfreunde\App\Type\Primitive;
 
+use InvalidArgumentException;
 use Override;
 
 /**
@@ -26,23 +27,27 @@ final class HexToken implements PrimitiveTypeInterface
             return null;
         }
         
-        return new self($value);
+        try {
+            return new self($value);
+        } catch (InvalidArgumentException) {
+            return null;
+        }
     }
 
     /**
      * @param string $value
      */
-    public function __construct(string $value = '')
+    public function __construct(?string $value = null)
     {
         $length = self::LENGTH;
 
-        if (strlen($value) === 0) {
+        if ($value === null) {
             $this->token = self::generateToken($length);
             return;
         }
 
         if (empty($value) || false === preg_match("/\^[0-9a-f]{$length}\$/", $value)) {
-            throw new \InvalidArgumentException('Invalid token format');
+            throw new InvalidArgumentException('Invalid token format');
         }
 
         $this->token = $value;

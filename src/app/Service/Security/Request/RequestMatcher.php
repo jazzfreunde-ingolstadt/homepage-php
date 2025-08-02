@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security;
+namespace Jazzfreunde\App\Service\Security\Request;
 
 use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
 use Override;
@@ -8,17 +8,14 @@ use ReflectionFunction;
 use ReflectionFunctionAbstract;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestMatcherInterface;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 
 /**
- * Undocumented class
+ * Checks if a request matches a specific firewall name.
  */
 final class RequestMatcher implements RequestMatcherInterface
 {
     /**
-     * Undocumented function
-     *
      * @param ControllerResolverInterface $controllerResolver
      * @param string $firewallName
      */
@@ -60,7 +57,7 @@ final class RequestMatcher implements RequestMatcherInterface
     }
 
     /**
-     * Undocumented function
+     * Determine the reflection class for the controller handling the request.
      *
      * @param Request $request
      * @return ReflectionFunctionAbstract|null
@@ -80,8 +77,9 @@ final class RequestMatcher implements RequestMatcherInterface
     }
 
     /**
-     * @param ReflectionFunctionAbstract|null $controllerReflector
+     * Get all FirewallEntryPoint attributes from class and method.
      *
+     * @param ReflectionFunctionAbstract|null $controllerReflector
      * @return FirewallEntryPoint[]
      */
     public function getAttributes(?ReflectionFunctionAbstract $controllerReflector): array

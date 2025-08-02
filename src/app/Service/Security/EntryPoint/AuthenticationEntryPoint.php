@@ -47,16 +47,16 @@ final class AuthenticationEntryPoint implements AuthenticationEntryPointInterfac
         if (is_null($firewallName)) {
             throw new \LogicException('Unable to load firewall for the request.');
         }
-
-        $redirectUri = RequestHelper::getRedirectUri($request);
-        SessionHelper::setRedirectUri($request->getSession(), $redirectUri);
-
+        
         $entryPointRouteName = match ($firewallName) {
             'low_trust' => 'security_code_login',
             'main' => 'security_link_login',
-            default => throw new \LogicException('Unknown firewall name: '.$firewallName),
+            default => throw new \LogicException("Unknown firewall name: '$firewallName'"),
         };
         
+        $redirectUri = RequestHelper::getRedirectUri($request);
+        SessionHelper::setRedirectUri($request->getSession(), $redirectUri);
+
         $url = $this->urlGenerator->generate($entryPointRouteName);
 
         return new RedirectResponse($url);
