@@ -4,9 +4,11 @@ namespace Jazzfreunde\App\Service\Security\VerificationCode;
 
 use InvalidArgumentException;
 use Jazzfreunde\App\Service\Security\Exception\InvalidVerificationCodeException;
-use Jazzfreunde\App\Service\Security\Signature\SignatureHasher;
+use Jazzfreunde\App\Service\Security\Signature\SignatureHasherInterface;
 use Jazzfreunde\App\Service\Security\VerificationCode\Model\VerificationCodeDetails;
+use Override;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\Signature\Exception\ExpiredSignatureException;
 use Symfony\Component\Security\Core\Signature\Exception\InvalidSignatureException;
@@ -25,7 +27,7 @@ use function str_pad;
  * @psalm-api
  */
 #[AsAlias(id: 'jazzfreunde.security.verification_code_handler')]
-final class VerificationCodeHandler
+final class VerificationCodeHandler implements VerificationCodeHandlerInterface
 {
     /**
      * @var array<array-key, string|int> Options for generating verification codes.
@@ -33,16 +35,17 @@ final class VerificationCodeHandler
     private array $options;
 
     /**
-     * @param SignatureHasher $signatureHasher
+     * @param SignatureHasherInterface $signatureHasher
      * @param UserProviderInterface $userProvider
-     * @param VerificationCodeStorage $verificationCodeStorage
+     * @param VerificationCodeStorageInterface $verificationCodeStorage
      * @param array<array-key, string|int> $options
      * @psalm-api
      */
     public function __construct(
-        private readonly SignatureHasher $signatureHasher,
+        private readonly SignatureHasherInterface $signatureHasher,
+        #[Autowire('@security.user.provider.concrete.all_users')]
         private UserProviderInterface $userProvider,
-        private VerificationCodeStorage $verificationCodeStorage,
+        private VerificationCodeStorageInterface $verificationCodeStorage,
         array $options = [],
     ) {
         $this->options = array_merge([
@@ -51,11 +54,9 @@ final class VerificationCodeHandler
     }
 
     /**
-     * Creates a verification code for the given user.
-     *
-     * @param string $userIdentifier The user for whom the verification code is created.
-     * @return VerificationCodeDetails
+     * @inheritDoc
      */
+    #[Override]
     public function createVerificationCode(
         string $userIdentifier
     ): VerificationCodeDetails {
@@ -72,15 +73,9 @@ final class VerificationCodeHandler
     }
 
     /**
-     * Consumes a verification code and returns the user if valid.
-     *
-     * @param string $userIdentifier The identifier of the user.
-     * @param string $hash The hash associated with the verification code.
-     * @param int $expires The expiration time of the verification code.
-     * @param string $code The verification code to validate.
-     * @return UserInterface
-     * @throws InvalidVerificationCodeException If the verification code is invalid or expired.
+     * @inheritDoc
      */
+    #[Override]
     public function consumeVerificationCode(
         string $userIdentifier,
         string $hash,

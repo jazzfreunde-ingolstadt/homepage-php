@@ -116,5 +116,7 @@ final class RequestHelperTest extends TestCase
     {
         $request = new Request([], [], [], [], [], ['REQUEST_URI' => '/current']);
         $uri = RequestHelper::getRedirectUri($request, null);
+
+        $this->assertEquals('/current', $uri);
     }
 }

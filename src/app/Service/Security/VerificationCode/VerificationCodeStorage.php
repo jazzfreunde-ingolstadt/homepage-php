@@ -2,6 +2,7 @@
 
 namespace Jazzfreunde\App\Service\Security\VerificationCode;
 
+use Override;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -11,8 +12,8 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
  * A verification code is a one-time code that is used to verify a user's identity.
  * @psalm-api
  */
-#[AsAlias(id: 'jazzfreunde.security.verification_code_storage')]
-final class VerificationCodeStorage
+#[AsAlias]
+final class VerificationCodeStorage implements VerificationCodeStorageInterface
 {
     /**
      * @param CacheItemPoolInterface $cache Cache pool for storing verification code usage counts.
@@ -26,11 +27,9 @@ final class VerificationCodeStorage
     }
 
     /**
-     * Stores a verification code for a given hash.
-     *
-     * @param string $hash The hash to associate with the verification code.
-     * @param string $code The verification code to store.
+     *@inheritDoc
      */
+    #[Override]
     public function store(string $hash, string $code): void
     {
         $item = $this->cache->getItem($this->getKey($hash));
@@ -44,11 +43,9 @@ final class VerificationCodeStorage
     }
 
     /**
-     * Retrieves and deletes a verification code for a given hash.
-     *
-     * @param string $hash The hash associated with the verification code.
-     * @return string|null The verification code if found, null otherwise.
+     *@inheritDoc
      */
+    #[Override]
     public function retrieve(string $hash): ?string
     {
         $key = $this->getKey($hash);

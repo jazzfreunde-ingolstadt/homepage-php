@@ -24,6 +24,7 @@ final class AuthenticationEntryPointTest extends TestCase
     /**
      * Test the start method with a valid firewall name.
      */
+    #[Test]
     #[TestWith(['main', 'security_link_login'])]
     #[TestWith(['low_trust', 'security_code_login'])]
     public function startWithValidFirewallName(

@@ -52,9 +52,6 @@ services:
 
   jazzfreunde.security.verification_code_handler:
     arguments:
-      $signatureHasher: '@jazzfreunde.security.verification_code_signature_hasher'
-      $userProvider: '@security.user.provider.concrete.all_users'
-      $verificationCodeStorage: '@jazzfreunde.security.verification_code_storage'
       $options:
         lifetime: 300
 

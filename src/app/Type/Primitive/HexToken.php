@@ -11,6 +11,7 @@ use Override;
 final class HexToken implements PrimitiveTypeInterface
 {
     public const LENGTH = 32;
+    private const PATTERN = '/^[0-9a-f]{32}$/';
 
     /**
      * @var non-empty-string
@@ -46,7 +47,7 @@ final class HexToken implements PrimitiveTypeInterface
             return;
         }
 
-        if (empty($value) || false === preg_match("/\^[0-9a-f]{$length}\$/", $value)) {
+        if (empty($value) || 1 != preg_match(self::PATTERN, $value)) {
             throw new InvalidArgumentException('Invalid token format');
         }
 
@@ -80,6 +81,12 @@ final class HexToken implements PrimitiveTypeInterface
      */
     private static function generateToken(int $length): string
     {
-        return bin2hex(random_bytes($length));
+        $numberOfBytes = (int) ceil($length / 2);
+
+        if ($numberOfBytes < 1) {
+            throw new InvalidArgumentException('Token length must be at least 1 byte');
+        }
+
+        return bin2hex(random_bytes($numberOfBytes));
     }
 }

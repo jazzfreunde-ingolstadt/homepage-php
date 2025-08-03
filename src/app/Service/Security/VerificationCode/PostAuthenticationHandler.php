@@ -3,6 +3,7 @@
 namespace Jazzfreunde\App\Service\Security\VerificationCode;
 
 use Jazzfreunde\App\Service\Security\Request\SessionHelper;
+use LogicException;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
@@ -16,9 +17,13 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerI
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Security\Http\HttpUtils;
 
+use function sprintf;
+use function get_debug_type;
+
 /**
  * Default handler for authentication success and failure.
  * Redirects to a target URL based on request parameters or default settings.
+ * @psalm-api
  */
 #[AsAlias(id: 'jazzfreunde.security.verification_code_post_authentication_handler')]
 final class PostAuthenticationHandler implements
@@ -59,11 +64,11 @@ final class PostAuthenticationHandler implements
         try {
             $session = $request->getSession();
         } catch (SessionNotFoundException $e) {
-            throw new \LogicException('You cannot use the addFlash method if sessions are disabled. Enable them in "config/packages/framework.yaml".', 0, $e);
+            throw new LogicException('You cannot use the flash messages if there is no active session.', 0, $e);
         }
 
         if (!$session instanceof FlashBagAwareSessionInterface) {
-            throw new \LogicException(\sprintf('You cannot use the addFlash method because class "%s" doesn\'t implement "%s".', get_debug_type($session), FlashBagAwareSessionInterface::class));
+            throw new LogicException(sprintf('You cannot use the addFlash method because class "%s" doesn\'t implement "%s".', get_debug_type($session), FlashBagAwareSessionInterface::class));
         }
         
         $url = $this->urlGenerator->generate(

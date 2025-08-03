@@ -58,7 +58,7 @@ final class Version20250706120854 extends AbstractMigration
             CREATE UNIQUE INDEX UNIQ_1483A5E95F37A13B ON users (token)
         SQL);
         $this->addSql(<<<'SQL'
-            UPDATE users SET token = SUBSTRING(MD5(CONCAT(uuid, request_time)), 1, 32)
+            UPDATE users SET token = SUBSTRING(MD5(CONCAT(uuid, email)), 1, 32)
         SQL);
     }
 

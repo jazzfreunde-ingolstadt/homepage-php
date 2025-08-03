@@ -4,6 +4,7 @@ namespace Jazzfreunde\App\Tests\Validation\Validator;
 
 use Jazzfreunde\App\Validation\Attribute\TwigTemplate;
 use Jazzfreunde\App\Validation\Validator\TwigTemplateValidator;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
@@ -36,6 +37,7 @@ final class TwigTemplateValidatorTest extends ConstraintValidatorTestCase
     /**
      * Test invalid input.
      */
+    #[Test]
     #[TestWith(['test.twig'])]
     #[TestWith(['test.html'])]
     #[TestWith(['.html.twig'])]

@@ -41,8 +41,8 @@ final class VerificationCodeDetails
      */
     public function __construct(string $digits, string $signatureHash, DateTimeImmutable $expiresAt)
     {
-        if (strlen($digits) !== 6 || !ctype_alnum($digits)) {
-            throw new InvalidArgumentException('The digit code must be a 6-digit alphanumeric string.');
+        if (strlen($digits) !== 6 || !ctype_digit($digits)) {
+            throw new InvalidArgumentException('The digit code must be a 6-digit numeric string.');
         }
         if (empty($signatureHash)) {
             throw new InvalidArgumentException('The signature hash cannot be empty.');

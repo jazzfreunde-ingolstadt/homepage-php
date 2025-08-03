@@ -34,14 +34,6 @@ CREATE TABLE `doctrine_migration_versions` (
   `execution_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
---
--- Daten für Tabelle `doctrine_migration_versions`
---
-
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20211014210300', '2022-10-29 23:14:44', 2318),
-('DoctrineMigrations\\Version20221206200515', '2022-12-26 20:25:59', 320);
-
 -- --------------------------------------------------------
 
 --

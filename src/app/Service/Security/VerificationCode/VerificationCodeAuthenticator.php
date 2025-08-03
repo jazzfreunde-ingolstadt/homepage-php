@@ -5,14 +5,15 @@ namespace Jazzfreunde\App\Service\Security\VerificationCode;
 use InvalidArgumentException;
 use Jazzfreunde\App\Exception\Security\InvalidVerificationCodeAuthenticationException;
 use Jazzfreunde\App\Service\Security\Exception\InvalidVerificationCodeException;
-use Jazzfreunde\App\Service\Security\VerificationCode\VerificationCodeHandler;
-    use Override;
+use Override;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\InteractiveAuthenticatorInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
@@ -30,16 +31,20 @@ final class VerificationCodeAuthenticator extends AbstractAuthenticator implemen
     private array $options;
 
     /**
-     * @param VerificationCodeHandler $verificationCodeHandler
+     * @param VerificationCodeHandlerInterface $verificationCodeHandler
      * @param HttpUtils $httpUtils
-     * @param PostAuthenticationHandler $postAuthenticationHandler
+     * @param AuthenticationSuccessHandlerInterface $authenticationSuccessHandler
+     * @param AuthenticationFailureHandlerInterface $authenticationFailureHandler
      * @param array<array-key, string|int> $options Options for the authenticator.
      * @psalm-api
      */
     public function __construct(
-        private VerificationCodeHandler $verificationCodeHandler,
+        private VerificationCodeHandlerInterface $verificationCodeHandler,
         private HttpUtils $httpUtils,
-        private PostAuthenticationHandler $postAuthenticationHandler,
+        #[Autowire('@jazzfreunde.security.verification_code_post_authentication_handler')]
+        private AuthenticationSuccessHandlerInterface $authenticationSuccessHandler,
+        #[Autowire('@jazzfreunde.security.verification_code_post_authentication_handler')]
+        private AuthenticationFailureHandlerInterface $authenticationFailureHandler,
         #[Autowire('%jazzfreunde.security.verification_code.authenticator_options%')]
         array $options,
     ) {
@@ -63,7 +68,7 @@ final class VerificationCodeAuthenticator extends AbstractAuthenticator implemen
     public function authenticate(Request $request): Passport
     {
         if (!$userIdentifier = $request->request->getString('user')) {
-            throw new InvalidVerificationCodeAuthenticationException('Missing user from link.');
+            throw new InvalidVerificationCodeAuthenticationException('Missing "user" parameter.');
         }
 
         if (!$hash = $request->request->getString('hash')) {
@@ -105,7 +110,7 @@ final class VerificationCodeAuthenticator extends AbstractAuthenticator implemen
     #[Override]
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return $this->postAuthenticationHandler->onAuthenticationSuccess($request, $token);
+        return $this->authenticationSuccessHandler->onAuthenticationSuccess($request, $token);
     }
 
     /**
@@ -114,7 +119,7 @@ final class VerificationCodeAuthenticator extends AbstractAuthenticator implemen
     #[Override]
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
-        return $this->postAuthenticationHandler->onAuthenticationFailure($request, $exception);
+        return $this->authenticationFailureHandler->onAuthenticationFailure($request, $exception);
     }
 
     /**

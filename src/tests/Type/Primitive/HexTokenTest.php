@@ -20,6 +20,8 @@ final class HexTokenTest extends TestCase
     #[Test]
     public function validHexTokenCreation()
     {
+        $length = HexToken::LENGTH;
+
         $token = new HexToken('1234567890abcdef1234567890abcdef');
         $this->assertEquals('1234567890abcdef1234567890abcdef', $token->value());
     }
@@ -47,6 +49,7 @@ final class HexTokenTest extends TestCase
     /**
      * Test tryFrom with invalid inputs
      */
+    #[Test]
     #[TestWith([123])]
     #[TestWith(['invalid'])]
     #[TestWith([''])]

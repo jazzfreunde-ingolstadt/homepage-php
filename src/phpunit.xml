@@ -5,6 +5,7 @@
          colors="true" 
          cacheDirectory="var/phpunit/cache" 
          bootstrap="tests/bootstrap.php"
+         displayDetailsOnTestsThatTriggerWarnings="true" 
 >
   <coverage includeUncoveredFiles="true" pathCoverage="true" ignoreDeprecatedCodeUnits="true">
     <report>

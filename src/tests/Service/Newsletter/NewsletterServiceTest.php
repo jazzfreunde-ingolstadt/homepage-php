@@ -28,14 +28,7 @@ final class NewsletterServiceTest extends KernelTestCase
     use MockingTrait;
 
     private NewsletterSubscription $subscription;
-
-    /**
-     * @inheritDoc
-     */
-    protected function setUp(): void
-    {
-    }
-
+    
     /**
      * Test subscribing to the newsletter.
      */
