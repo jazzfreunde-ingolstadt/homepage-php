@@ -98,7 +98,7 @@ final class VerificationCodeHandler implements VerificationCodeHandlerInterface
         } catch (UserNotFoundException $e) {
             throw new InvalidVerificationCodeException('User not found.', 0, $e);
         } catch (ExpiredSignatureException $e) {
-            throw new InvalidVerificationCodeException('Verification code expired.', 0, $e);
+            throw new InvalidVerificationCodeException('Verification code has expired.', 0, $e);
         } catch (InvalidSignatureException $e) {
             throw new InvalidVerificationCodeException('Invalid verification code.', 0, $e);
         }
