@@ -150,7 +150,7 @@ final class UnitUnderTest
                         }
 
                         throw new InvalidArgumentException(
-                            "Constructor parameter '{$arg->getName()}' of class '{$class}' cannot be automatically."
+                            "Constructor parameter '{$arg->getName()}' of class '{$class}' cannot be automatically mocked."
                         );
                     }
 

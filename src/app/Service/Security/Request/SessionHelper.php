@@ -56,7 +56,7 @@ abstract class SessionHelper
      * @param SessionInterface $session
      * @return ?Email
      */
-    public static function getUserEmail(SessionInterface $session): ?   Email
+    public static function getUserEmail(SessionInterface $session): ?Email
     {
         $value = $session->get('user_email');
 

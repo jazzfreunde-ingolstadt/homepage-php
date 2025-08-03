@@ -38,7 +38,7 @@ final class HexTokenType extends StringType
         }
 
         return HexToken::tryFrom($value)
-            ?? throw new ConversionException(sprintf("Value '%s' is not a valid email address.", $value));
+            ?? throw new ConversionException(sprintf("Value '%s' is not a valid hex token.", $value));
     }
 
     /**

@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use Override;
 
 /**
- * E-Mail Typ
+ * Represents a fixed-length hexadecimal token.
  */
 final class HexToken implements PrimitiveTypeInterface
 {

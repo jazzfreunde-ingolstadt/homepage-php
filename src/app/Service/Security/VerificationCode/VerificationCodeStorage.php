@@ -27,7 +27,7 @@ final class VerificationCodeStorage implements VerificationCodeStorageInterface
     }
 
     /**
-     *@inheritDoc
+     * @inheritDoc
      */
     #[Override]
     public function store(string $hash, string $code): void
@@ -43,7 +43,7 @@ final class VerificationCodeStorage implements VerificationCodeStorageInterface
     }
 
     /**
-     *@inheritDoc
+     * @inheritDoc
      */
     #[Override]
     public function retrieve(string $hash): ?string
