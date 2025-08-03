@@ -296,7 +296,6 @@ final class ConfirmationContractListenerTest extends TestCase
     {
         $contract = new ConfirmationContract();
         $contract->requestTime = new \DateTimeImmutable();
-        $contract->token = ConfirmationContract::generateToken();
 
         return $contract;
     }

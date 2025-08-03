@@ -22,6 +22,9 @@ export const EventsCalendar = () => {
     return (
         <div className="flex flex-col gap-5 w-full">
             {error && <MessageBox>Fehler beim Laden der Veranstaltungen</MessageBox>}
+            {eventsByMonth.length === 0 && !error && (
+                <MessageBox>Keine Veranstaltungen gefunden</MessageBox>
+            )}
 
             {eventsByMonth.map(eventCollection => (
                 <div key={eventCollection.month} className="flex flex-col gap-5">

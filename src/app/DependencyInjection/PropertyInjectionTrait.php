@@ -5,6 +5,7 @@ namespace Jazzfreunde\App\DependencyInjection;
 use BackedEnum;
 use InvalidArgumentException;
 use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
+use Jazzfreunde\Util\ArrayUtil;
 use LogicException;
 use ReflectionClass;
 use ReflectionIntersectionType;
@@ -52,6 +53,10 @@ trait PropertyInjectionTrait
      */
     public function __construct(mixed ...$params)
     {
+        if (!ArrayUtil::isAssociativeArray($params)) {
+            throw new InvalidArgumentException('params must be an associative array');
+        }
+
         $this->injectProperties($params);
     }
 
@@ -88,7 +93,7 @@ trait PropertyInjectionTrait
      * @param array $kvp associative array of [property name => value]
      * @return void
      */
-    private function injectProperties(array $kvp): void
+    protected function injectProperties(array $kvp): void
     {
         if (count($kvp) === 0) {
             return;
@@ -185,7 +190,7 @@ trait PropertyInjectionTrait
                     if (!$fullfillsIntersection) {
                         continue;
                     }
-                } elseif (!class_exists($type, true)
+                } elseif (!(class_exists($type, true) || interface_exists($type, true))
                     || !is_a($value, $type, true)) {
                     continue;
                 }

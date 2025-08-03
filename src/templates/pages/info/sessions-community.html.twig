@@ -1,0 +1,34 @@
+{% set title = 'Jam Sessions' %}
+
+{% extends 'base.html.twig' %}
+
+{% block header_element %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/ambient/session-moody7.jpg') } %}
+		{% block intro %}
+			{% include 'typography/intro-titel.html.twig' with { titel: 'Jam-Sessions Community' } %}
+			{% include 'typography/intro-subtitel.html.twig' with { titel: 'Tritt unserer WhatsApp-Community bei!' } %}
+		{% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block content %}
+	{% embed '@layout/container.html.twig' %}
+		{% block content %}
+			<section class="py-5 md:py-10">
+				<p class="py-2 md:py-5">
+					<a href="{{ whatsapp_community_link }}" class="hover:underline" target="_blank" rel="noopener noreferrer">
+						<div class="bg-white shadow-md p-3 w-48 lg:w-64 mx-auto border-2 border-blue rounded-lg">
+							<img src="{{ qr_code_data_uri(whatsapp_community_link) }}" alt="QR Code zur WhatsApp Community" class="object-contain" />
+							<div class="text-center font-bold text-md lg:text-lg pt-3">
+								<span class="fa-brands fa-whatsapp inline-block align-middle mr-2"></span>
+								Zur Community
+							</div>
+						</div>
+					</a>
+				</p>
+			</section>
+		{% endblock %}
+	{% endembed %}
+
+	{% include "components/footer-spacer.html.twig" %}
+{% endblock %}

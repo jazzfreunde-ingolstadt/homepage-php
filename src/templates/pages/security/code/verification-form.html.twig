@@ -1,0 +1,18 @@
+{% extends '@pages/notification-page.html.twig' %}
+
+{% block notification %}
+	<p class="text-3xl mb-3 md:mb-5 font-bold text-orange">6-stelligen Code</p>
+	<p class="text-xl mb-3 md:mb-5 font-bold">Wir haben Ihnen einen Verifizierungscode an Ihre Email gesendet.</p>
+	{% include 'components/util/error-flash.html.twig' %}
+	<form action="{{ path(login_check) }}" method="POST">
+		<div class="w-full flex flex-col md:flex-row gap-5 lg:gap-10">
+			<input type="hidden" name="expires" value="{{ _expires }}"/>
+			<input type="hidden" name="user" value="{{ _user }}"/>
+			<input type="hidden" name="hash" value="{{ _hash }}"/>
+			<input type="tel" name="code" required pattern="[0-9]{6}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-grey bg-transparent rounded-lg border border-grey appearance-none focus:outline-none focus:ring-0 focus:border-blue peer'"/>
+			<div class="relative flex-none">
+				<button class="bg-orange hover:bg-yellow text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Fortfahren</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}

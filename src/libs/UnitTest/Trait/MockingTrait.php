@@ -10,7 +10,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 trait MockingTrait
 {
     /**
-     * @template T
+     * @template T of object
      * @param class-string<T> $class
      * @return T&MockObject
      */

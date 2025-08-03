@@ -3,24 +3,68 @@ security:
     users:
       entity:
         class: 'Jazzfreunde\App\Entity\Security\User'
-        property: "uuid"
+        property: "email"
+    temporary_users:
+      id: "jazzfreunde.security.temporary_user_provider"
+    all_users:
+      chain:
+        providers: ["users", "temporary_users"]
+
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
+
+    low_trust:
+      lazy: true
+      provider: all_users
+      custom_authenticators:
+        - jazzfreunde.security.verification_code_authenticator
+      request_matcher: jazzfreunde.security.request_matcher.low_trust
+      entry_point: jazzfreunde.security.verification_code_entry_point
+
     main:
       lazy: true
       provider: users
       login_link:
-        check_route: security_login_check
-        signature_properties: ["uuid"]
+        check_route: security_link_login_check
+        signature_properties: ['email', 'token']
         check_post_only: true
         lifetime: 300
         max_uses: 1
-
       logout:
-        path: security_logout
+        path: security_link_logout
         target: home
-
+      request_matcher: jazzfreunde.security.request_matcher.main
+      entry_point: jazzfreunde.security.verification_code_entry_point
       # https://symfony.com/doc/current/security/impersonating_user.html
       # switch_user: true
+
+parameters:
+  jazzfreunde.security.verification_code.signature_properties: ['email']
+  jazzfreunde.security.verification_code.token_lifetime: 180
+  jazzfreunde.security.verification_code.authenticator_options:
+    check_route: security_code_login_check
+
+services:
+  Symfony\Component\Security\Core\User\UserProviderInterface:
+    alias: security.user.provider.concrete.all_users
+
+  jazzfreunde.security.verification_code_handler:
+    arguments:
+      $options:
+        lifetime: 300
+
+  jazzfreunde.security.request_matcher.low_trust:
+    class: Jazzfreunde\App\Service\Security\Request\RequestMatcher
+    factory: [null, 'create']
+    arguments:
+      $controllerResolver: '@controller_resolver'
+      $firewallName: 'low_trust'
+
+  jazzfreunde.security.request_matcher.main:
+    class: Jazzfreunde\App\Service\Security\Request\RequestMatcher
+    factory: [null, 'create']
+    arguments:
+      $controllerResolver: '@controller_resolver'
+      $firewallName: 'main'

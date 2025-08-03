@@ -7,6 +7,7 @@ services:
 
     Jazzfreunde\App\Service\:
         resource: '%kernel.project_dir%/app/Service/'
+        exclude: 'Security/**'
 
     Jazzfreunde\App\Controller\:
         resource: '%kernel.project_dir%/app/Controller/'

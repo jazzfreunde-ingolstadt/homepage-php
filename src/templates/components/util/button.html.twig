@@ -1,6 +1,6 @@
-<a class="flex flex-row items-center gap-2 border-2 py-2 px-4 border-blue text-blue hover:text-blue {{ class|default('') }}" href="{{ link_url|default('#') }}" title="{{ title }}">
+<a class="flex flex-row items-center gap-2 border-2 py-2 px-6 border-blue text-blue hover:text-blue {{ class|default('') }}" href="{{ link_url|default('#') }}" title="{{ title }}">
 	{% if icon_url is not empty %}
 		<img class="inline-block h-6 w-6 align-middle" src="{{ icon_url|raw }}" alt="{{ icon_alt }}"/>
 	{% endif %}
-	<span class="font-bold">{{ title }}</span>
+	<span class="inline-block font-bold">{{ title }}</span>
 </a>

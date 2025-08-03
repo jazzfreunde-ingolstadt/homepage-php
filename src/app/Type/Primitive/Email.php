@@ -2,6 +2,7 @@
 
 namespace Jazzfreunde\App\Type\Primitive;
 
+use InvalidArgumentException;
 use Override;
 
 /**
@@ -9,6 +10,9 @@ use Override;
  */
 final class Email implements PrimitiveTypeInterface
 {
+    /**
+     * @var non-empty-string
+     */
     private readonly string $address;
 
     /**
@@ -21,7 +25,11 @@ final class Email implements PrimitiveTypeInterface
             return null;
         }
         
-        return new self($value);
+        try {
+            return new self($value);
+        } catch (InvalidArgumentException) {
+            return null;
+        }
     }
 
     /**
@@ -29,17 +37,26 @@ final class Email implements PrimitiveTypeInterface
      */
     public function __construct(string $value)
     {
-        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            throw new \InvalidArgumentException("'{$value}' is not a valid email address.");
+        if (empty($value) || !filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidArgumentException("'{$value}' is not a valid email address.");
         }
 
         $this->address = $value;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function __toString(): string
+    {
+        return $this->value();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function value(): string
     {
         return $this->address;
     }

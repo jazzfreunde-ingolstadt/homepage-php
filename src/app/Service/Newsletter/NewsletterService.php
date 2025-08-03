@@ -6,7 +6,6 @@ namespace Jazzfreunde\App\Service\Newsletter;
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\DBAL\Driver\Connection;
-use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
@@ -46,8 +45,6 @@ final class NewsletterService
     public function subscribe(NewsletterSubscription $subscription): void
     {
         $subscription->confirmation = new ConfirmationContract();
-        $subscription->confirmation->token = ConfirmationContract::generateToken();
-        $subscription->confirmation->requestTime = new \DateTimeImmutable();
 
         if (0 < count($this->validator->validate($subscription))) {
             throw new \DomainException('Invalid subscription data');

@@ -14,6 +14,7 @@
         "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.1",
+        "endroid/qr-code-bundle": "^6.0",
         "jms/serializer-bundle": "^5.4",
         "michelf/php-markdown": "^2.0",
         "monolog/monolog": "^3.2",
@@ -93,8 +94,9 @@
         "sort-packages": true,
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "symfony/runtime": true,
-            "symfony/flex": true
+            "endroid/installer": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
         }
     },
     "autoload": {

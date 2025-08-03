@@ -6,6 +6,7 @@ namespace JazzfreundeTests\App\Tests\DependencyInjection;
 use InvalidArgumentException;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
+use Override;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -28,6 +29,7 @@ class DummyType implements PrimitiveTypeInterface
     /**
      * @inheritDoc
      */
+    #[Override]
     public static function tryFrom(mixed $value): static|null
     {
         if (!is_string($value)) {
@@ -39,7 +41,17 @@ class DummyType implements PrimitiveTypeInterface
     /**
      * @inheritDoc
      */
+    #[Override]
     public function __toString(): string
+    {
+        return $this->value;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function value(): string
     {
         return $this->value;
     }
@@ -60,6 +72,7 @@ class DummyComplexType implements DummyInterface1, DummyInterface2
     /**
      * @inheritDoc
      */
+    #[Override]
     public function getValue(): string
     {
         return $this->value;

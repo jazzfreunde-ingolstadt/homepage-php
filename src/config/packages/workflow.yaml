@@ -20,7 +20,7 @@ framework:
           to: pending
           metadata:
             email_subject: 'Bestätigen Sie Ihre Newsletter Anmeldung'
-            email_template: 'email/email-confirmation.html.twig'
+            email_template: 'email/newsletter/email-confirmation.html.twig'
         confirm:
           from: pending
           to: confirmed

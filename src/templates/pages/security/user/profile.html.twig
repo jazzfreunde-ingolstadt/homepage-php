@@ -1,0 +1,22 @@
+{% set title = 'Profil' %}
+
+{% extends 'base.html.twig' %}
+
+{% block header_element %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset(random_image('app/images/ambient/')|default('app/images/fulllogo.svg')) } %}
+		{% block intro %}
+			{% include 'typography/intro-titel.html.twig' with { titel: 'Profil' } %}
+			{% embed 'components/util/message-box.html.twig' %}
+				{% block box_content %}
+					<p>Email: {{ app.user.email }}</p>
+				{% endblock %}
+			{% endembed %}
+		{% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block header_divider %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}

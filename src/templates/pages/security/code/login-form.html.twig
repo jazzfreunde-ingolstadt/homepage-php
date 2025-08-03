@@ -1,0 +1,18 @@
+{% extends '@pages/notification-page.html.twig' %}
+
+{% block notification %}
+	<p class="text-3xl mb-3 md:mb-5 font-bold text-orange">Verifizieren Sie ihre Identität. Put some Jazz on.</p>
+	<p class="text-xl mb-3 md:mb-5 font-bold">Wir senden Ihnen einen Verifizierungscode an Ihre Email.</p>
+	{% include 'components/util/error-flash.html.twig' %}
+	<form action="{{ path(new_login_route) }}" method="POST">
+		<div class="w-full flex flex-col md:flex-row gap-5 lg:gap-10">
+			<div class="relative w-full md:flex-shrink md:flex-grow">
+				<label class="absolute text-sm text-grey duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] rounded bg-white px-2 peer-focus:px-2 peer-focus:text-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Geben Sie Ihre Email-Adresse an</label>
+				<input class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-grey bg-transparent rounded-lg border border-grey appearance-none focus:outline-none focus:ring-0 focus:border-blue peer" type="email" name="email"/>
+			</div>
+			<div class="relative flex-none">
+				<button class="bg-orange hover:bg-yellow text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Sende mir einen Code</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}
