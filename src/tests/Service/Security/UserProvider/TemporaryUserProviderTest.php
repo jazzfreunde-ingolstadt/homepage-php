@@ -13,7 +13,7 @@ use PHPUnit\Framework\Attributes\TestWith;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Tests for the temprorary user provider.
+ * Tests for the temporary user provider.
  */
 final class TemporaryUserProviderTest extends TestCase
 {

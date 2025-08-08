@@ -69,7 +69,7 @@ final class NewsletterServiceTest extends KernelTestCase
     /**
      * Test subscribing to the newsletter with a previous expired confirmation link.
      */
-    public function testExcpiredConfirmationStillPending(): void
+    public function testExpiredConfirmationStillPending(): void
     {
         $kernel = $this->bootKernel();
         $this->initDatabase($kernel);
