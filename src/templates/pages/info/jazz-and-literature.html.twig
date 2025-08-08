@@ -3,10 +3,24 @@
 {% extends 'base.html.twig' %}
 
 {% block header_element %}
+<<<<<<< HEAD
 	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/advertise/jazz-and-literature/audience.jpg') } %}
 		{% block intro %}
 			{% include 'typography/intro-titel.html.twig' with { titel: 'Jazz & Literatur im Stadttheater' } %}
 			{% include 'typography/intro-subtitel.html.twig' with { titel: 'In Kooperation mit dem Stadttheater Ingolstadt' } %}
+=======
+	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/advertise/jazz-and-literature/audience.jpg'), class: 'blur-sm brightness-75 scale-110' } %}
+		{% block infront %}
+			{% include "components/header-spacer.html.twig" %}
+			{% embed '@layout/container.html.twig' %}
+				{% block content %}
+					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
+						<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-white">Jazz & Literatur im Stadttheater</h1>
+						<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">In Kooperation mit dem Stadttheater Ingolstadt</h2>
+					</div>
+				{% endblock %}
+			{% endembed %}
+>>>>>>> master
 		{% endblock %}
 	{% endembed %}
 {% endblock %}
@@ -59,5 +73,5 @@
 		{% endblock %}
 	{% endembed %}
 
-	{% include "components/footer-spacer.html.twig" %}
-{% endblock %}
+		{% include "components/footer-spacer.html.twig" %}
+	{% endblock %}
