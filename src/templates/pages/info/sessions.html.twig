@@ -12,11 +12,11 @@
 {% endblock %}
 
 {% block content %}
-	{% embed '@layout/container.html.twig' %}
-		{% block content %}
-			<section class="py-5 md:py-10">
-				<div class="w-full flex flex-row gap-5 py-6 lg:py-10">
-					{% include "components/util/button.html.twig" 
+{% embed '@layout/container.html.twig' %}
+	{% block content %}
+		<section class="py-5 md:py-10">
+			<div class="w-full flex flex-row gap-5 py-6 lg:py-10">
+				{% include "components/util/button.html.twig" 
 						with { 
 							link_url: path('events'),
 							icon_url: asset('app/images/icons/calendar.svg'),
@@ -25,8 +25,8 @@
 							class: 'block'
 						}
 					%}
-					{% if not showCommunityLink %}
-						{% include "components/util/button.html.twig" 
+				{% if not showCommunityLink %}
+					{% include "components/util/button.html.twig" 
 							with { 
 								link_url: path('sessions_community'),
 								icon_url: asset('app/images/icons/whatsapp.svg'),
@@ -35,12 +35,13 @@
 								class: 'block'
 							}
 						%}
-					{% endif %}
-				</div>
+				{% endif %}
+			</div>
 
+			<div class="flex flex-col lg:flex-row justify-center gap-4 lg:gap-10">
 				{% if showCommunityLink %}
 					<a href="{{ whatsapp_community_link }}" target="_blank" rel="noopener noreferrer">
-						<div class="inline-block ml-4 md:ml-10 my-2 md:my-5 float-right p-3 w-40 md:w-52 lg:w-64 mx-auto border-2 border-blue rounded-lg shadow-md">
+						<div class="self-center my-2 md:my-5 p-3 w-48 md:w-52 lg:w-64 mx-auto border-2 border-blue rounded-lg shadow-md">
 							<img src="{{ qr_code_data_uri(whatsapp_community_link) }}" alt="QR Code zur WhatsApp Community" class="object-contain"/>
 							<div class="text-center font-bold text-md lg:text-lg p-3">
 								<span class="fa-brands fa-whatsapp inline-block align-middle mr-2"></span>
@@ -49,31 +50,33 @@
 						</div>
 					</a>
 				{% endif %}
+				<section class="flex-1">
+					<p class="py-2 md:py-5 text-justify">
+						Die Jazzfreunde Ingolstadt e. V. laden alle Jazzliebhaber:innen und Musiker:innen ein, Teil einer besonderen musikalischen Erfahrung zu werden! Von Oktober bis Juni veranstalten wir unsere legendären Jam-Sessions – mit offener Bühne, freiem Eintritt und jeder Menge Spielfreude.
+					</p>
 
-				<p class="py-2 md:py-5 text-justify">
-					Die Jazzfreunde Ingolstadt e. V. laden alle Jazzliebhaber:innen und Musiker:innen ein, Teil einer besonderen musikalischen Erfahrung zu werden! Von Oktober bis Juni veranstalten wir unsere legendären Jam-Sessions – mit offener Bühne, freiem Eintritt und jeder Menge Spielfreude.
-				</p>
+					<p class="py-2 md:py-5 text-justify">
+						<h4 class="font-bold">Wie läuft eine Jam-Session ab?</h4>
+						Jede Session beginnt mit einer Opener-Band, die das erste Set spielt. Danach gehört die Bühne allen, die mitspielen möchten! Die Session-Band begleitet die Mitspieler:innen entweder in Teilen oder komplett.
+					</p>
 
-				<p class="py-2 md:py-5 text-justify">
-					Wie läuft eine Jam-Session ab?
-															Jede Session beginnt mit einer Opener-Band, die das erste Set spielt. Danach gehört die Bühne allen, die mitspielen möchten! Die Session-Band begleitet die Mitspieler:innen entweder in Teilen oder komplett.
-				</p>
-
-				<p class="py-2 md:py-5 text-justify">
-					Wo & Wann?
-															Seit Dezember 2024 finden die Jam-Sessions auf der Kleinkunstbühne „Neue Welt“ (Ingolstadt, Griesbadgasse 7) statt - in der Regel immer am 3. Dienstag des Monats um 20:00 Uhr (bis auf eine Sommerpause).
-				</p>
+					<p class="py-2 md:py-5 text-justify">
+						<h4 class="font-bold">Wo & Wann?</h4>
+						Seit Dezember 2024 finden die Jam-Sessions auf der Kleinkunstbühne „Neue Welt“ (Ingolstadt, Griesbadgasse 7) statt - in der Regel immer am 3. Dienstag des Monats um 20:00 Uhr (bis auf eine Sommerpause).
+					</p>
 
 
-				<p class="py-2 md:py-5 text-justify">
-					Aufruf an Jazzbands!
-															Wir suchen ständig neue Session-Opener-Bands, die den Abend musikalisch eröffnen! Voraussetzung: Sicherheit im Realbook und eine gewisse stilistische Bandbreite.
-				</p>
+					<p class="py-2 md:py-5 text-justify">
+						<h4 class="font-bold">Aufruf an Jazzbands!</h4>
+						Wir suchen ständig neue Session-Opener-Bands, die den Abend musikalisch eröffnen! Voraussetzung: Sicherheit im Realbook und eine gewisse stilistische Bandbreite.
+						Bei Interesse tretet unserer WhatsApp Community bei. Der Link dazu findet sich weiter oben.
+					</p>
 
-				<p class="py-2 md:py-5 text-justify">
-					Kommt vorbei - ob als Musiker oder Zuhörer - und erlebt Jazz live & hautnah!
-				</p>
-			</section>
+					<p class="py-2 md:py-5 text-justify">
+						Kommt vorbei - ob als Musiker oder Zuhörer - und erlebt Jazz live & hautnah!
+					</p>
+				</section>
+			</div>
 		{% endblock %}
 	{% endembed %}
 
