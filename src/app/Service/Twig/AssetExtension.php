@@ -2,6 +2,7 @@
 
 namespace Jazzfreunde\App\Service\Twig;
 
+use Override;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -10,9 +11,9 @@ use Twig\TwigFunction;
 
 /**
  * Erweitert die Integration von Assets in Twig Templates
- * @psalm-suppress UnusedClass
+ * @psalm-api
  */
-class AssetExtension extends AbstractExtension
+final class AssetExtension extends AbstractExtension
 {
     /**
      * Dependency Injection
@@ -26,6 +27,7 @@ class AssetExtension extends AbstractExtension
     /**
      * @inheritDoc
      */
+    #[Override]
     public function getFunctions(): array
     {
         return [

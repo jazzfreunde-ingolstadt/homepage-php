@@ -5,18 +5,11 @@
 {% endset %}
 
 {% block header_element %}
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset(random_image('app/images/ambient/')|default('app/images/fulllogo.svg')), class: 'blur-sm brightness-75 scale-110' } %}
-		{% block infront %}
-			{% include "components/header-spacer.html.twig" %}
-			{% embed '@layout/container.html.twig' %}
-				{% block content %}
-					<div class="my-32 sm:my-36 md:my-48 lg:py-24 xl:py-48 font-sans">
-						{% embed 'components/util/message-box.html.twig' %}
-							{% block box_content %}
-								{{ overrideBoxContent }}
-							{% endblock %}
-						{% endembed %}
-					</div>
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset(random_image('app/images/ambient/')|default('app/images/fulllogo.svg')) } %}
+		{% block intro %}
+			{% embed 'components/util/message-box.html.twig' %}
+				{% block box_content %}
+					{{ overrideBoxContent }}
 				{% endblock %}
 			{% endembed %}
 		{% endblock %}

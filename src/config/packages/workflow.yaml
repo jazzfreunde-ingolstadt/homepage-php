@@ -1,0 +1,41 @@
+framework:
+  workflows:
+    confirmation_contract:
+      marking_store:
+        type: "method"
+        property: "state"
+      supports:
+        - Jazzfreunde\App\Entity\Contract\ConfirmationContract
+      initial_marking: pending
+      places:
+        new:
+        pending:
+          metadata:
+            token_lifetime: '10 minutes'
+        confirmed:
+        cancelled:
+      transitions:
+        await_confirmation:
+          from: new
+          to: pending
+          metadata:
+            email_subject: 'Bestätigen Sie Ihre Newsletter Anmeldung'
+            email_template: 'email/newsletter/email-confirmation.html.twig'
+        confirm:
+          from: pending
+          to: confirmed
+        cancel:
+          from: confirmed
+          to: cancelled
+        retry:
+          from:
+            - new
+            - pending
+          to: new
+
+when@dev:
+    framework:
+        workflows:
+            confirmation_contract:
+                audit_trail:
+                    enabled: true

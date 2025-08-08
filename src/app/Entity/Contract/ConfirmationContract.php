@@ -2,11 +2,14 @@
 
 namespace Jazzfreunde\App\Entity\Contract;
 
+use DateInterval;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\App\Entity\Type\Enum\Contract\ConfirmationStateEnumType;
+use Jazzfreunde\App\Entity\Type\String\HexTokenType;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\App\Type\Primitive\HexToken;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -19,72 +22,101 @@ class ConfirmationContract
 {
     use PropertyInjectionTrait;
 
+    /**
+     * Unique identifier in the database
+     *
+     * @var string|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\CustomIdGenerator(class:"doctrine.uuid_generator")]
     #[ORM\Column(type: 'uuid')]
     public ?string $uuid = null;
+
+    /**
+     * Unique token that acts as a public identifier on the API
+     *
+     * @var HexToken
+     */
     #[Assert\NotBlank(message: 'Token is required.')]
-    #[ORM\Column(type: 'string')]
-    public string $token;
+    #[ORM\Column(type: HexTokenType::ENTITY_NAME, unique: true)]
+    public HexToken $token;
+
+    /**
+     * Time the confirmation request was created
+     *
+     * @var DateTimeImmutable
+     */
     #[ORM\Column(type: 'datetime_immutable')]
-    public DateTimeImmutable $openForConfirmationUntil;
-    #[ORM\Column(type: ConfirmationStateEnumType::ENTITY_NAME, options: [ 'default' => ConfirmationStateEnum::PendingConfirmation ])]
-    public ConfirmationStateEnum $state = ConfirmationStateEnum::PendingConfirmation;
+    public DateTimeImmutable $requestTime;
 
     /**
-     * Create a new confirmation contract
+     * State of the confirmation contract
      *
-     * @return ConfirmationContract
+     * @var ConfirmationStateEnum
      */
-    public static function create(
-        DateTimeImmutable $openForConfirmationUntil = new DateTimeImmutable('+1 day'),
-    ): ConfirmationContract {
-        $confirmation = new self();
-        $confirmation->token = bin2hex(random_bytes(32));
-        $confirmation->openForConfirmationUntil = $openForConfirmationUntil;
-
-        return $confirmation;
-    }
+    #[ORM\Column(type: ConfirmationStateEnumType::ENTITY_NAME, options: [ 'default' => ConfirmationStateEnum::New ])]
+    public ConfirmationStateEnum $state = ConfirmationStateEnum::New;
 
     /**
-     * Has the period to confirm the contract expired?
-     *
-     * @return boolean
+     * Create a new contract
+     * @param array<string, mixed> ...$params
+     * @psalm-suppress UndefinedThisPropertyFetch
      */
-    public function hasConfirmationPeriodExpired(): bool
+    public function __construct(array ...$params)
     {
-        return $this->openForConfirmationUntil < new DateTimeImmutable();
+        $params['requestTime'] ??= new DateTimeImmutable();
+        $params['token'] ??= new HexToken();
+        $this->injectProperties($params);
     }
 
     /**
-     * Is the contract confirmed?
+     * Has the contract been confirmed?
      *
-     * @psalm-suppress PossiblyUnusedMethod
      * @return boolean
      */
     public function isConfirmed(): bool
     {
-        return $this->state === ConfirmationStateEnum::Confirmed;
+        return ConfirmationStateEnum::Confirmed === $this->state;
     }
 
     /**
-     * Confirm the contract
+     * Has the confirmation period expired?
      *
-     * @return void
+     * @return boolean
      */
-    public function confirm(): void
+    public function isExpired(DateInterval $tokenLifeTime): bool
     {
-        $this->state = ConfirmationStateEnum::Confirmed;
+        $expiredOn = $this->requestTime->add($tokenLifeTime);
+
+        return $expiredOn < new DateTimeImmutable();
     }
 
     /**
-     * Cancel the contract
+     * Get the current place of the workflow
      *
-     * @return void
+     * @return string
+     * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
      */
-    public function cancel(): void
+    public function getState(): string
     {
-        $this->state = ConfirmationStateEnum::Cancelled;
+        return $this->state->value;
+    }
+
+    /**
+     * Set the current place of the workflow
+     *
+     * @param enum-string $currentPlace
+     * @param array $_
+     *
+     * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
+     */
+    public function setState(string $currentPlace, array $_ = []): void
+    {
+        /**
+         * @var ConfirmationStateEnum $state
+         */
+        $state = ConfirmationStateEnum::From($currentPlace);
+        $this->state = $state;
     }
 }

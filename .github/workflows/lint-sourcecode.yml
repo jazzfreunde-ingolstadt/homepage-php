@@ -2,13 +2,6 @@ name: Lint source code
 on:
   workflow_call:
   pull_request:
-    paths:
-      - 'src/**'
-  push:
-    paths:
-      - 'src/**'
-    branches:
-      - 'feature/*'
 
 jobs:
   linting:

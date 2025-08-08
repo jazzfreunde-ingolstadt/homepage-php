@@ -1,0 +1,8 @@
+{% extends 'email/base.html.twig' %}
+
+{% block content %}
+    <h1 class="text-xl">Ihr Verifizierungs-Code</h1>
+    <code class="text-2xl font-mono">{{ verification_code }}</code>
+    <p class="text-md">Dieser Code kann nur einmal verwendet werden. Er verfällt nach kurzer Zeit.</p>
+{% endblock %}
+    

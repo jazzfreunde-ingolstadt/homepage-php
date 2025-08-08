@@ -7,7 +7,8 @@ namespace Jazzfreunde\App\Type\Enum\Contract;
  */
 enum ConfirmationStateEnum: string
 {
-    case PendingConfirmation = 'pending';
+    case New = 'new';
+    case Pending = 'pending';
     case Confirmed = 'confirmed';
     case Cancelled = 'cancelled';
 }

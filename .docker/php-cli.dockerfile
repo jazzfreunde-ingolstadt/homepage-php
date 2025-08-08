@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.2.27-cli
 
 LABEL version="1.1.0" \
     author="Michael Mayer" \
@@ -37,7 +37,7 @@ RUN apt-get install -y libpq-dev \
 
 RUN docker-php-source extract \
     && mkdir -p /usr/src/php/ext/apcu \
-    && curl -fsSL https://github.com/krakjoe/apcu/archive/v5.1.21.tar.gz | tar xvz -C /usr/src/php/ext/apcu --strip 1 \
+    && curl -fsSL https://github.com/krakjoe/apcu/archive/refs/tags/v5.1.24.tar.gz | tar xvz -C /usr/src/php/ext/apcu --strip 1 \
     && docker-php-ext-install apcu \
     && docker-php-source delete
 

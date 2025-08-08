@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace Jazzfreunde\App\Service\Newsletter;
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\DBAL\Driver\Connection;
+use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Form\NewsletterSubscriptionType;
-use Jazzfreunde\App\Service\Newsletter\Exception\SubscriptionException;
-use Jazzfreunde\App\Event\Event\Newsletter\Subscription\NewSubscriptionEvent;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Jazzfreunde\App\Exception\Newsletter\SubscriptionException;
+use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
+use Jazzfreunde\App\Type\Primitive\Email;
+use LogicException;
+use RuntimeException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 use function count;
@@ -25,65 +24,101 @@ use function count;
 final class NewsletterService
 {
     /**
-     * @param EntityManagerInterface $entityManager
-     * @param FormFactoryInterface $formFactory
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param EventDispatcherInterface $dispatcher
+     * @param ManagerRegistry $registry
      * @param ValidatorInterface $validator
-     * @psalm-suppress PossiblyUnusedMethod injected into Twig template
+     * @param ConfirmationContractService $confirmationContracts
+     * @psalm-api
      */
     public function __construct(
-        private EntityManagerInterface $entityManager,
-        private FormFactoryInterface $formFactory,
-        private UrlGeneratorInterface $urlGenerator,
-        private EventDispatcherInterface $dispatcher,
+        private ManagerRegistry $registry,
         private ValidatorInterface $validator,
+        private ConfirmationContractService $confirmationContracts,
     ) {
     }
 
     /**
-     * Verarbeitet ein neues Abonnement.
+     * Process new subscription request.
      *
      * @return void
      * @throws SubscriptionException
      */
     public function subscribe(NewsletterSubscription $subscription): void
     {
-        $subscription->confirmation = ConfirmationContract::create();
+        $subscription->confirmation = new ConfirmationContract();
 
         if (0 < count($this->validator->validate($subscription))) {
             throw new \DomainException('Invalid subscription data');
         }
 
-        $this->entityManager->beginTransaction();
+        /**
+         * @var Connection $connection
+         */
+        $connection = $this->registry->getConnection();
+        $entityManager = $this->registry
+            ->getManagerForClass(NewsletterSubscription::class)
+            ?? throw new LogicException(sprintf("Not entity manager found for class '%s'", NewsletterSubscription::class));
+        
+        $connection->beginTransaction();
         try {
-            $this->entityManager->persist($subscription);
-            $this->entityManager->flush();
+            $entityManager->persist($subscription);
+            $entityManager->flush();
 
-            $this->dispatcher->dispatch(new NewSubscriptionEvent($subscription));
+            $this->confirmationContracts->startEmailConfirmation(
+                $subscription->confirmation,
+                $subscription->email
+            );
 
-            $this->entityManager->commit();
+            $connection->commit();
         } catch (UniqueConstraintViolationException $e) {
-            throw new SubscriptionException(code: SubscriptionException::ALREADY_SUBSCRIBED);
+            $connection->rollback();
+            $this->registry->resetManager();
+
+            $subscription = $this->getSubscriptionByEmail($subscription->email);
+            if ($subscription->confirmation->isConfirmed()) {
+                throw new SubscriptionException(code: SubscriptionException::ALREADY_SUBSCRIBED);
+            }
+
+            $this->confirmationContracts->restartEmailConfirmation(
+                $subscription->confirmation,
+                $subscription->email
+            );
         } catch (\Throwable $e) {
-            $this->entityManager->rollback();
+            $connection->rollback();
             throw new SubscriptionException(previous: $e);
         }
     }
 
     /**
-     * Generiert das Formular.
+     * Confirm the subscription.
      *
-     * @return FormInterface
-     * @psalm-suppress PossiblyUnusedMethod used in Twig Template to render html form
+     * @param string $token Token of the confirmation contract
+     * @return void
      */
-    public function createForm(): FormInterface
+    public function confirm(string $token): void
     {
-        return $this->formFactory->create(
-            NewsletterSubscriptionType::class,
-            options: [
-                'action' => $this->urlGenerator->generate('form_newsletter_subscribe')
-            ]
-        );
+        $this->confirmationContracts->confirmContract($token);
+    }
+
+    /**
+     * Unsubscribe from the newsletter.
+     *
+     * @param string $token Token of the confirmation contract
+     * @return void
+     */
+    public function unsubscribe(string $token): void
+    {
+        $this->confirmationContracts->cancelContract($token);
+    }
+
+    /**
+     * @param Email $email unique email address
+     * @return NewsletterSubscription
+     */
+    private function getSubscriptionByEmail(Email $email): NewsletterSubscription
+    {
+        return $this->registry
+            ->getRepository(NewsletterSubscription::class)
+            ->findOneBy(['email' => $email])
+            ?? throw new RuntimeException("Subscription for email '{$email}' not found");
     }
 }

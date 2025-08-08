@@ -7,6 +7,7 @@ services:
 
     Jazzfreunde\App\Service\:
         resource: '%kernel.project_dir%/app/Service/'
+        exclude: 'Security/**'
 
     Jazzfreunde\App\Controller\:
         resource: '%kernel.project_dir%/app/Controller/'
@@ -15,11 +16,12 @@ services:
         resource: '%kernel.project_dir%/app/Event/'
         exclude: '**/*Event'
 
+    Jazzfreunde\App\Message\Handler\:
+        resource: '%kernel.project_dir%/app/Message/Handler/'
+
     # register the service for twig to make createForm available in twig templates
     jazzfreunde.newsletter_subscription:
-        class: Jazzfreunde\App\Service\Newsletter\NewsletterService
-        # calls:
-        #     - setLogger: ['@logger']
+        class: Jazzfreunde\App\Service\Newsletter\NewsletterFormService
 
     Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface:
         alias: webpack_encore.entrypoint_lookup[mail]

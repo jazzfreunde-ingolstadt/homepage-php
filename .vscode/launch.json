@@ -30,12 +30,13 @@
                 "--do-not-cache-result"
             ],
             "port": 9003,
-            "runtimeExecutable":"php",
+            "runtimeExecutable": "php",
             "runtimeArgs": [
                 "-dxdebug.start_with_request=yes"
             ],
+            "cwd": "${workspaceFolder}/src/",
             "env": {
-                "XDEBUG_MODE": "debug",
+                "XDEBUG_MODE": "coverage,debug",
                 "XDEBUG_CONFIG": "client_host=127.0.0.1 client_port=9003",
             }
         },

@@ -1,4 +1,5 @@
 # Homepage der Jazzfreunde Ingolstadt e.V.
+
 [![Code Health](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/lint-sourcecode.yml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/lint-sourcecode.yml) [![Unit Tests](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/run-unittests.yml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/run-unittests.yml) [![Deploy Now: Deploy to IONOS](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/deploy-to-ionos.yaml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/deploy-to-ionos.yaml) [![Deploy Now: Orchestration](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/homepage-php-orchestration.yaml/badge.svg)](https://github.com/jazzfreunde-ingolstadt/homepage-php/actions/workflows/homepage-php-orchestration.yaml)
 
 Offizielle Website der Jazzfreunde Ingolstadt.
@@ -19,11 +20,11 @@ Für das Installieren der Composer Abhängigkeiten steht der VS Code Task 'compo
 Die Datenbank muss initial befüllt werden. Dieser Vorgang setzt sich aus einem Basisskript und folgenden Datenbankmigrationen zusammen.
 
 1. Basisskript importieren:
-Führe letzten SQL Export `.docker/database/export_*.sql` aus.
-Dafür kann die Weboberfläche [phpMyAdmin](http://localhost:81) verwendet werden, die als lokaler Container zur Verfügung steht.
+   Führe letzten SQL Export `.docker/database/export_*.sql` aus.
+   Dafür kann die Weboberfläche [phpMyAdmin](http://localhost:81) verwendet werden, die als lokaler Container zur Verfügung steht.
 
 2. Migrationen ausführen:
-Für das Ausführen der Datenbankmigrationen steht der VS Code Task 'Run Unit Tests' bereit.
+   Für das Ausführen der Datenbankmigrationen steht der VS Code Task 'Run Unit Tests' bereit.
 
 [siehe: Symfony - DoctrineMigrationsBundle](https://symfony.com/bundles/DoctrineMigrationsBundle/current/index.html)
 
@@ -43,6 +44,24 @@ Zusammen mit [Symfony UX](https://ux.symfony.com/) und [Symfony UX React](https:
 Um die Encore Komponenten zu kompilieren, muss der VS Code Task 'build encore' ausgeführt werden.
 
 ## Entwicklungsprozess
+
+### Symfony Console
+
+Über die Konsolenkomponente von Symfony werden viele Tools im Entwicklungsprozress ausgeführt.
+Siehe [](https://symfony.com/doc/current/console.html)
+Einige der wichtigsten Symfony Console Befehle sind:
+
+- Messenger [(Documentation)](https://symfony.com/doc/current/messenger.html#consuming-messages-running-the-worker)
+  Nachrichten konsumieren, um beispielsweise Emails zu versenden.
+  ```bash
+    bin/console messenger:consume async --time-limit=15
+  ```
+- Doctrine Migrations [(Documentation)](https://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html)
+  Migrationen ausführen.
+  ```bash
+      bin/console doctrine:migrations:migrate
+      bin/console doctrine:migrations:diff
+  ```
 
 ### Lokaler Entwicklungs-Server
 

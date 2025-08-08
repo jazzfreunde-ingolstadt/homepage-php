@@ -2,6 +2,8 @@
 
 namespace Jazzfreunde\App\Service\Twig;
 
+use Override;
+use RuntimeException;
 use Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -10,7 +12,7 @@ use Twig\TwigFunction;
  * Erweitert die Integration von Encore in Twig Templates
  * @psalm-api
  */
-class EncoreExtension extends AbstractExtension
+final class EncoreExtension extends AbstractExtension
 {
     /**
      * Dependency Injection
@@ -25,6 +27,7 @@ class EncoreExtension extends AbstractExtension
     /**
      * @inheritDoc
      */
+    #[Override]
     public function getFunctions(): array
     {
         return [
@@ -41,22 +44,42 @@ class EncoreExtension extends AbstractExtension
      */
     public function getEncoreEntryCssSource(string $entryName): string
     {
-        $entrypoints = $this
+        /**
+         * Since mails are processed in bulk, we need to reset the entrypoint lookup,
+         * otherwise it won't render all mail.
+         *
+         * @link https://symfony.com/doc/current/frontend/encore/advanced-config.html#avoid-missing-css-when-rendering-multiple-templates
+         */
+        $this->lookup->reset();
+
+        $entryPoints = $this
             ->lookup
             ->getCssFiles($entryName);
 
         return array_reduce(
-            $entrypoints,
-            function (string $source, string $location) {
-                $rawCss = file_get_contents($this->publicDir.$location);
-
-                if ($rawCss === false) {
-                    throw new \RuntimeException("Unable to read CSS file: {$location}");
-                }
-
-                return $source.$rawCss;
-            },
+            $entryPoints,
+            fn(string $source, string $entryPoint) => $source.$this->readFile($this->publicDir.$entryPoint),
             ''
         );
+    }
+
+    /**
+     * Reads a file and returns its content
+     *
+     * @param string $fullPath
+     * @return string
+     */
+    private function readFile(string $fullPath): string
+    {
+        if (!file_exists($fullPath)) {
+            throw new RuntimeException(sprintf('File not found: "%s"', $fullPath));
+        }
+        $raw = file_get_contents($fullPath);
+
+        if ($raw === false) {
+            throw new RuntimeException(sprintf('Unable to read file: "%s"', $fullPath));
+        }
+
+        return $raw;
     }
 }

@@ -1,0 +1,14 @@
+services:
+  messenger.default_bus:
+    class: Symfony\Component\Messenger\MessageBus
+    public: true
+    arguments:
+      $middlewareHandlers:
+        [
+          'messenger.bus.default.middleware.add_bus_name_stamp_middleware',
+          'messenger.bus.default.middleware.reject_redelivered_message_middleware',
+          'messenger.bus.default.middleware.dispatch_after_current_bus',
+          'messenger.bus.default.middleware.failed_message_processing_middleware',
+          'messenger.bus.default.middleware.send_message',
+          'messenger.bus.default.middleware.handle_message',
+        ]

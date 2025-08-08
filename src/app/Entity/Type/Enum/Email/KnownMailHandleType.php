@@ -7,8 +7,9 @@ use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
 
 /**
  * All known mail handles
+ * @extends AbstractEnumType<KnownMailHandleEnum>
  */
-class KnownMailHandleType extends AbstractEnumType
+final class KnownMailHandleType extends AbstractEnumType
 {
     /**
      * @override
