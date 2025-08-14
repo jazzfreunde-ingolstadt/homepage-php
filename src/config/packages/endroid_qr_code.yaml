@@ -6,6 +6,6 @@ endroid_qr_code:
     error_correction_level: 'high'
     round_block_size_mode: 'margin'
     foregroundColor: [ 36, 44, 127 ]
-    logo_path: '%kernel.project_dir%/assets/app/images/FullLogoWithBackground.png'
+    logo_path: '%kernel.project_dir%/assets/api/images/FullLogoWithBackground.png'
     logo_resize_to_width: 400
     logo_punchout_background: true
