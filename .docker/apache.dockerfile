@@ -1,22 +1,25 @@
-FROM php:8.2-apache
+ARG php_version="8.2"
 
-LABEL version="1.1.0" \
-  author="Michael Mayer" \
-  email="business.miche.mayer@outlook.de"
+FROM php:${php_version}-apache
+
+ARG virtualhost_conf_dir
+ARG phpini_path
+ARG xdebugini_path 
+ARG xdebug_logdir
+ARG cache_dirs
 
 EXPOSE 80
 EXPOSE 443
+
+ENV VIRTUALHOST_FILE_PATH=${virtualhost_conf_dir}/localhost.conf
+ENV XDEBUG_INI_PATH=${xdebugini_path}
+ENV PHP_INI_PATH=${phpini_path}
+ENV XDEBUG_LOG=${xdebug_logdir}/xdebug.log
 
 SHELL ["/bin/bash", "--login", "-c"]
 
 RUN apt-get update && \
   apt-get upgrade -y
-
-ARG virtualhost_conf_dir
-ARG phpini_path
-ARG xdebuginit_path 
-ARG xdebug_logdir
-ARG cache_dirs
 
 # php extensions
 RUN apt-get install -y libzip-dev zip \
@@ -52,19 +55,19 @@ RUN docker-php-ext-install opcache
 
 # xDebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
-RUN mkdir -p ${xdebug_logdir}/xdebug.log && touch ${xdebug_logdir}/xdebug.log && chmod +rw ${xdebug_logdir}/xdebug.log
+RUN mkdir -p $XDEBUG_LOG && touch $XDEBUG_LOG && chmod +rw $XDEBUG_LOG
 
-COPY ${xdebuginit_path} /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+COPY $XDEBUG_INI_PATH /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # php
-COPY ${phpini_path} /usr/local/etc/php/conf.d/custom.ini
+COPY $PHP_INI_PATH /usr/local/etc/php/conf.d/custom.ini
 
 # apache
 RUN openssl genrsa -out /etc/apache2/conf-enabled/localhost.key 3072
 RUN openssl req -new -out rootCA.csr -sha256 -key /etc/apache2/conf-enabled/localhost.key -subj "/C=DE/ST=BY/L=Ingolstadt/O=Jazzfreunde Ingolstadt e.V./CN=localhost" -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
 RUN openssl x509 -req -in rootCA.csr -days 365 -signkey /etc/apache2/conf-enabled/localhost.key -out /etc/apache2/conf-enabled/localhost.cert -outform PEM
 
-COPY ${virtualhost_conf_dir}/localhost.conf /etc/apache2/sites-available/localhost.conf
+COPY $VIRTUALHOST_FILE_PATH /etc/apache2/sites-available/localhost.conf
 
 RUN a2dissite 000-default.conf
 RUN a2ensite localhost

@@ -1,13 +1,15 @@
-FROM php:8.2.27-cli
+ARG php_version="8.2"
 
-LABEL version="1.1.0" \
-    author="Michael Mayer" \
-    email="business.miche.mayer@outlook.de"
+FROM php:${php_version}-cli
 
 ARG project_dir
 ARG phpini_path
-ARG xdebuginit_path 
+ARG xdebugini_path 
 ARG xdebug_logdir
+
+ENV XDEBUG_INI_PATH=${xdebugini_path}
+ENV PHP_INI_PATH=${phpini_path}
+ENV XDEBUG_LOG=${xdebug_logdir}/xdebug.log
 
 SHELL ["/bin/bash", "--login", "-c"]
 
@@ -56,12 +58,12 @@ RUN npm install -g npm@latest
 
 # xDebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
-RUN mkdir -p ${xdebug_logdir}/xdebug.log && touch ${xdebug_logdir}/xdebug.log && chmod +rw ${xdebug_logdir}/xdebug.log
+RUN mkdir -p $XDEBUG_LOG && touch $XDEBUG_LOG && chmod +rw $XDEBUG_LOG
 
-COPY ${xdebuginit_path} /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+COPY $XDEBUG_INI_PATH /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # php
-COPY ${phpini_path} /usr/local/etc/php/conf.d/custom.ini
+COPY $PHP_INI_PATH /usr/local/etc/php/conf.d/custom.ini
 
 # composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

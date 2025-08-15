@@ -1,7 +1,7 @@
 {
-  "name": "jazzfreunde-homepage-php",
+  "name": "jazzfreunde-homepage",
   "dockerComposeFile": "../.docker/docker-compose.yml",
-  "service": "jazzfreunde-php-dev-cli",
+  "service": "jazzfreunde-dev-environment",
   "workspaceFolder": "/usr/project",
   "customizations": {
     "vscode": {
