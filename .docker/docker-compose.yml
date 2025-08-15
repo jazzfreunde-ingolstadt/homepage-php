@@ -1,5 +1,3 @@
-version: '3.8'
-
 # source code bindings
 x-bind-source: &source
     type: bind
@@ -10,24 +8,25 @@ x-bind-source: &source
 x-volume-shared-vendor: &vendor
     type: volume
     source: jazzfreunde-vendor
-    target: /usr/project/src/vendor
+    target: /usr/project/api/vendor
 x-volume-node_modules: &node_modules
     type: volume
-    target: /usr/project/src/node_modules
+    target: /usr/project/api/node_modules
 
 # docker build.args
 x-dev-buildargs: &dev-buildargs
+    php_version: "8.4"
     project_dir: /usr/project
     phpini_path: .docker/php/php.ini-development
-    xdebuginit_path: .docker/php/dev-xdebug.ini
-    xdebug_logdir: /usr/project/src/var/logs
+    xdebugini_path: .docker/php/dev-xdebug.ini
+    xdebug_logdir: /usr/project/api/var/logs
 
 services:
-    jazzfreunde-php-dev-cli:
-        container_name: jazzfreunde-vscode-dev
+    jazzfreunde-dev-environment:
+        container_name: jazzfreunde-dev-environment
         build:
             context: ..
-            dockerfile: .docker/php-cli.dockerfile
+            dockerfile: .docker/dev-cli.dockerfile
             args: *dev-buildargs
         volumes:
             - *source
@@ -45,11 +44,12 @@ services:
             context: ..
             dockerfile: .docker/apache.dockerfile
             args:
+                php_version: "8.4"
                 virtualhost_conf_dir: .docker/apache
                 phpini_path: .docker/php/php.ini-development
-                xdebuginit_path: .docker/php/server-xdebug.ini
-                xdebug_logdir: /usr/project/src/var/logs
-                cache_dirs: /usr/project/src/var/cache
+                xdebugini_path: .docker/php/server-xdebug.ini
+                xdebug_logdir: /usr/project/api/var/logs
+                cache_dirs: /usr/project/api/var/cache
         deploy:
             restart_policy:
                 condition: on-failure
@@ -57,14 +57,14 @@ services:
         depends_on:
             - jazzfreunde-database-server
         environment:
-            - APACHE_DOCUMENT_ROOT=/usr/project/src
+            - APACHE_DOCUMENT_ROOT=/usr/project/api
         ports:
             - "80:80"
             - "443:443"
         volumes:
             - *source
             - *vendor
-            - /usr/project/src/var/cache
+            - /usr/project/api/var/cache
 
     jazzfreunde-database-server:
         container_name: jazzfreunde-mysql-database
@@ -93,6 +93,10 @@ services:
         depends_on:
             - jazzfreunde-database-server
 
+        deploy:
+            restart_policy:
+                condition: on-failure
+                max_attempts: 3
         environment:
             PMA_HOST: jazzfreunde-mysql-database
             PMA_USER: dbu_localdev
