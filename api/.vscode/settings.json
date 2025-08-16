@@ -1,8 +1,8 @@
 {
-    "phpsab.composerJsonPath": "src",
-    "phpsab.standard": "src/ruleset.xml,Security",
-    "phpsab.fixerArguments": [ "--ignore=src/legacy/*,src/vendor/*" ],
-    "phpsab.snifferArguments": [ "--ignore=src/legacy/*,src/vendor/*" ],
+    "phpsab.composerJsonPath": "composer.json",
+    "phpsab.standard": "ruleset.xml,Security",
+    "phpsab.fixerArguments": [ "--ignore=vendor/*" ],
+    "phpsab.snifferArguments": [ "--ignore=vendor/*" ],
     "[php]": {
         "editor.defaultFormatter": "valeryanm.vscode-phpsab"
     },

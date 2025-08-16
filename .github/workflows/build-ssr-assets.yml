@@ -18,7 +18,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./src
+        working-directory: ./api
 
     steps:
       - uses: actions/checkout@v4
@@ -38,8 +38,8 @@ jobs:
       - name: Restore cached npm dependencies
         uses: actions/cache/restore@v4
         with:
-          path: src/node_modules
-          key: node-${{ hashFiles('**/package-lock.json') }}
+          path: api/node_modules
+          key: node-api-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts
@@ -50,8 +50,8 @@ jobs:
       - name: Cache npm dependencies
         uses: actions/cache/save@v4
         with:
-          path: src/node_modules
-          key: node-${{ hashFiles('**/package-lock.json') }}
+          path: api/node_modules
+          key: node-api-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install assets
         run: |
@@ -71,4 +71,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.artifact-name }}
-          path: src/public/
+          path: api/public/
