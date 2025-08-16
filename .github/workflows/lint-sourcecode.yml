@@ -9,7 +9,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./src
+        working-directory: ./api
 
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
       - name: Cache Composer dependencies
         uses: actions/cache@v4
         with:
-          path: src/vendor
+          path: api/vendor
           key: lint-composer-${{ hashFiles('composer.lock') }}
 
       - name: Install Composer dependencies

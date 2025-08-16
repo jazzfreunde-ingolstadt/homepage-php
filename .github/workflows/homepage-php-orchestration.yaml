@@ -7,8 +7,8 @@ run-name: "Deploy Now: Build homepage-php · ${{ github.event.head_commit.messag
 on:
   push:
     paths:
-      - 'src/**'
-      - '!src/tests/**'
+      - 'api/**'
+      - '!api/tests/**'
       - '.github/**'
       - '.deploy-now/**'
     branches:

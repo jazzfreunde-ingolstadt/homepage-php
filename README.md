@@ -9,7 +9,7 @@ Offizielle Website der Jazzfreunde Ingolstadt.
 > [!IMPORTANT]  
 > Sollten manche der PHP-Skripte aufgrund fehlender Berechtigung nicht ausführbar sein, vergebe die Berechtigung zum ausführen von Skripten neu für alle Executables im 'bin' Verzeichnis.
 >
-> `root:/usr/project# chmod -R +x src/bin`
+> `root:/usr/project# chmod -R +x api/bin`
 
 ### Installiere PHP Abhängigkeiten
 

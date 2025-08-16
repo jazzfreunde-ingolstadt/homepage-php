@@ -11,7 +11,7 @@
             },
             "command": "composer install",
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
             "presentation": {
                 "clear": true
@@ -27,7 +27,7 @@
             },
             "command": "npm install",
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
             "presentation": {
                 "clear": true
@@ -41,7 +41,7 @@
             "group": "build",
             "command": "composer dump-autoload",
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
             "presentation": {
                 "clear": true
@@ -57,7 +57,7 @@
                 "--no-interaction"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
         },
         {
@@ -70,7 +70,7 @@
                 "showReuseMessage": false
             },
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
         },
         {
@@ -85,7 +85,7 @@
                 "--display-notices"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
                 "env": {
                     "XDEBUG_MODE": "coverage"
                 }
@@ -114,7 +114,7 @@
             "group": "test",
             "command": "bin/psalm",
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
             "args": [
                 "-c=psalm.xml",
@@ -124,7 +124,7 @@
                 "source": "psalm",
                 "fileLocation": [
                     "relative",
-                    "${workspaceFolder}/src"
+                    "${workspaceFolder}"
                 ],
                 "severity": "warning",
                 "pattern": {
@@ -148,7 +148,7 @@
             "group": "build",
             "command": "composer run-script api:generate && npm run api:generate",
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
         },
         {
@@ -161,7 +161,7 @@
                 "--env=dev",
             ],
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
         },
         {
@@ -175,7 +175,7 @@
                 "--time-limit=15",
             ],
             "options": {
-                "cwd": "${workspaceFolder}/src/",
+                "cwd": "${workspaceFolder}",
             },
         }
 	]

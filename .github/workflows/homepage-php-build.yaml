@@ -11,7 +11,7 @@ on:
         type: string
 
 env:
-  DEPLOYMENT_FOLDER: src
+  DEPLOYMENT_FOLDER: api
 
 jobs:
   run-tests:
@@ -26,7 +26,7 @@ jobs:
       artifact-name: prod-vendor-artifact
 
   build-app:
-    uses: ./.github/workflows/build-application.yml
+    uses: ./.github/workflows/build-ssr-assets.yml
     with:
       artifact-name: prod-app-artifact
       environment: prod
@@ -45,13 +45,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: prod-vendor-artifact
-          path: src/vendor
+          path: ${{ env.DEPLOYMENT_FOLDER }}/vendor
 
       - name: Download Encore artifact
         uses: actions/download-artifact@v4
         with:
           name: prod-app-artifact
-          path: src/public
+          path: ${{ env.DEPLOYMENT_FOLDER }}/public
 
       - name: Render templates
         if: ${{ github.ref_name == 'master' }}
