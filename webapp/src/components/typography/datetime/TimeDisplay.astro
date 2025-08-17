@@ -1,0 +1,21 @@
+---
+import type { DefaultComponentProps } from '@models'
+
+interface Props extends DefaultComponentProps {
+  date: Date;
+}
+
+const { date, ...props } = Astro.props
+
+const displayMinutes = date.getMinutes() === 0 ? undefined : '2-digit'
+---
+
+<time id={props.id} class:list={props.classNames} datetime={date.toISOString()}>
+  {
+    new Date(date).toLocaleTimeString('de-de', {
+      hour: '2-digit',
+      minute: displayMinutes
+    })
+  }
+  { displayMinutes && ' Uhr' }
+</time>

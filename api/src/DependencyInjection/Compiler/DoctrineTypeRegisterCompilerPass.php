@@ -23,7 +23,7 @@ use function is_null;
 final readonly class DoctrineTypeRegisterCompilerPass implements CompilerPassInterface
 {
     private const CONTAINER_TYPES_PARAMETER = 'doctrine.dbal.connection_factory.types';
-    private const SRC_FOLDER_MASK           = '%s/app/Entity/Type';
+    private const SRC_FOLDER_MASK           = '%s/src/Entity/Type';
     private const TOP_LEVEL_NAMESPACE       = 'Jazzfreunde\\App\\Entity\\Type\\';
     private const TYPE_NAME_CONSTANT_NAME   = 'ENTITY_NAME';
 

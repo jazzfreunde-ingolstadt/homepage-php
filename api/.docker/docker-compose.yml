@@ -1,7 +1,7 @@
 # source code bindings
 x-bind-source: &source
     type: bind
-    source: ..
+    source: ../..
     target: /usr/project
 
 # cached dependencies

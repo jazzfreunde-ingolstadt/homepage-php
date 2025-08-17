@@ -23,9 +23,9 @@
     <issueHandlers>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
-                <directory name="app/Entity" />
-                <directory name="app/Message/Messages" />
-                <directory name="app/Event/MetaData" />
+                <directory name="src/Entity" />
+                <directory name="src/Message/Messages" />
+                <directory name="src/Event/MetaData" />
             </errorLevel>
         </PropertyNotSetInConstructor>
     </issueHandlers>

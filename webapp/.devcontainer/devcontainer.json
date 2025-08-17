@@ -1,0 +1,34 @@
+{
+	"name": "jazzfreunde-webapp",
+	"build": {
+		"dockerfile": "./dockerfile",
+		"args": {
+			"node_version": "24"
+		},
+		"context": "../.."
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"git.path": "/usr/bin/git"
+			},
+			"extensions": [
+				"naumovs.color-highlight",
+				"spmeesseman.vscode-taskexplorer",
+				"esbenp.prettier-vscode",
+				"GitHub.copilot",
+				"ms-vscode.vscode-typescript-next",
+				"astro-build.astro-vscode",
+				"unifiedjs.vscode-mdx"
+			]
+		}
+	},
+	"workspaceFolder": "/usr/project/webapp/",
+	"workspaceMount": "source=${localWorkspaceFolder}/..,target=/usr/project,type=bind",
+	"mounts": [
+		"source=node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+	], 
+	"containerEnv": {
+		"NODE_ENV": "development"
+	}
+}

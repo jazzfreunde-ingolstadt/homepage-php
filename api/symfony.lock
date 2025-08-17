@@ -9,7 +9,7 @@
         },
         "files": [
             "config/routes/api_platform.yaml",
-            "app/ApiResource/.gitignore"
+            "src/ApiResource/.gitignore"
         ]
     },
     "doctrine/annotations": {
@@ -213,6 +213,18 @@
             "config/packages/monolog.yaml"
         ]
     },
+    "symfony/property-info": {
+        "version": "7.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "7.3",
+            "ref": "dae70df71978ae9226ae915ffd5fad817f5ca1f7"
+        },
+        "files": [
+            "config/packages/property_info.yaml"
+        ]
+    },
     "symfony/routing": {
         "version": "6.2",
         "recipe": {
@@ -235,7 +247,7 @@
             "ref": "caea3c928ee9e1b21288fd76aef36f16ea355515"
         },
         "files": [
-            "app/Schedule.php"
+            "src/Schedule.php"
         ]
     },
     "symfony/security-bundle": {

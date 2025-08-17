@@ -6,18 +6,18 @@ services:
             string $publicDir: '%kernel.project_dir%/public'
 
     Jazzfreunde\App\Service\:
-        resource: '%kernel.project_dir%/app/Service/'
+        resource: '%kernel.project_dir%/src/Service/'
         exclude: 'Security/**'
 
     Jazzfreunde\App\Controller\:
-        resource: '%kernel.project_dir%/app/Controller/'
+        resource: '%kernel.project_dir%/src/Controller/'
 
     Jazzfreunde\App\Event\:
-        resource: '%kernel.project_dir%/app/Event/'
+        resource: '%kernel.project_dir%/src/Event/'
         exclude: '**/*Event'
 
     Jazzfreunde\App\Message\Handler\:
-        resource: '%kernel.project_dir%/app/Message/Handler/'
+        resource: '%kernel.project_dir%/src/Message/Handler/'
 
     # register the service for twig to make createForm available in twig templates
     jazzfreunde.newsletter_subscription:

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"explorer.autoRevealExclude": {
+			"**/node_modules": true,
+		},
+	},
+	"extensions": {
+		"recommendations": [
+			"eamodio.gitlens"
+		]
+	}
+}

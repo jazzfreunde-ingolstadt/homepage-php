@@ -1,9 +1,11 @@
 {
-    "name": "jazzfreunde-ingolstadt/php-homepage",
+    "name": "jazzfreunde-ingolstadt/api",
+    "description": "API of the Jazzfreunde Ingolstadt e.V. website",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Michael Mayer",
-            "email": "business.miche.mayer@outlook.de",
+            "email": "info@miche-mayer.de",
             "role": "Webmaster"
         }
     ],
@@ -86,7 +88,7 @@
             "require": "^7.2",
             "docker": false
         },
-        "src-dir": "app/",
+        "src-dir": "src/",
         "public-dir": "public/"
     },
     "config": {
@@ -101,7 +103,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jazzfreunde\\App\\": "app/",
+            "Jazzfreunde\\App\\": "src/",
             "Jazzfreunde\\": "libs/"  
         }
     }
