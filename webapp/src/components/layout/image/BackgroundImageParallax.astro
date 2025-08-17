@@ -1,0 +1,24 @@
+---
+import type { DefaultComponentProps } from '@models'
+import { Image } from 'astro:assets'
+import BackgroundContentContainer from '@components/layout/BackgroundContentContainer.astro'
+import { backgroundImage } from './BackgroundImageParallax.css'
+
+interface Props extends DefaultComponentProps {
+  src: ImageMetadata | Promise<{
+    default: ImageMetadata
+  }>,
+  alt: string,
+}
+const {
+  id,
+  classNames,
+  src,
+  alt,
+} = Astro.props
+---
+
+<BackgroundContentContainer id={id} class:list={[classNames]} isParallax={true}>
+  <Image slot="background" class={backgroundImage} src={src} alt={alt} />
+  <slot />
+</BackgroundContentContainer>

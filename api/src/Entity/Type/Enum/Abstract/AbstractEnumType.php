@@ -31,7 +31,7 @@ abstract class AbstractEnumType extends Type
      * @inheritDoc
      */
     #[Override]
-    public static function addType(string $name, string $className): void
+    public static function addType(string $name, string|Type $type): void
     {
         if ($name === self::ENTITY_NAME) {
             throw new EntityNameUndefinedError(static::class);
@@ -43,7 +43,7 @@ abstract class AbstractEnumType extends Type
             throw new InvalidEnumTypeNameError(static::ENUM_CLASS_NAME);
         }
 
-        parent::addType($name, $className);
+        parent::addType($name, $type);
     }
 
     /**

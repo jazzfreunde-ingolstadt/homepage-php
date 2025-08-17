@@ -122,7 +122,7 @@ Encore.setOutputPath("public/app")
     options.host = "0.0.0.0";
     options.liveReload = true;
     options.hot = false;
-    options.watchFiles = ["./templates/**/*", "./app/**/*"];
+    options.watchFiles = ["./templates/**/*", "./src/**/*"];
   });
 const app = Encore.getWebpackConfig();
 app.name = "app";

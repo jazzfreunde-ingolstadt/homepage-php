@@ -1,8 +1,8 @@
 {
-  "name": "jazzfreunde-homepage",
+  "name": "jazzfreunde-api",
   "dockerComposeFile": "../.docker/docker-compose.yml",
   "service": "jazzfreunde-dev-environment",
-  "workspaceFolder": "/usr/project",
+  "workspaceFolder": "/usr/project/api",
   "customizations": {
     "vscode": {
       "settings": {

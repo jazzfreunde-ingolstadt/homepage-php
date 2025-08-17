@@ -1,0 +1,54 @@
+---
+import type { FontSize } from '@styles/properties/font-sizes.property'
+import { sprinkles, type Sprinkles } from '@styles/sprinkles.css'
+import type { HTMLTag } from 'astro/types'
+import { uppercase } from './Heading.css'
+import type { DefaultComponentProps } from '@models'
+
+export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
+
+export type HeadingSize = `h${HeadingLevel}`
+
+/**
+ * Provides a semantically correct heading.
+ *
+ * If you only want to increase the visual size, but keep a lower semantical
+ * level, use a combination of "as" and "level".
+ */
+interface Props extends DefaultComponentProps {
+    as? : HeadingSize & HTMLTag,
+    isCapitalized?: boolean,
+    level?: HeadingLevel,
+}
+
+interface HeadingStyles extends Pick<Props, 'as'> {
+  /** The level's size */
+  size: FontSize;
+
+  /** The level's color */
+  color: Sprinkles['color']
+}
+
+const levelMap: Record<HeadingLevel, HeadingStyles> = {
+  '1': { as: 'h1', size: '5xl', color: 'primaryOneDefault' },
+  '2': { as: 'h2', size: '4xl', color: 'primaryOneDefault' },
+  '3': { as: 'h3', size: '2xl', color: 'primaryOneDefault' },
+  '4': { as: 'h4', size: 'xl', color: 'textDefault' },
+  '5': { as: 'h5', size: 'lg', color: 'textDefault' },
+  '6': { as: 'h6', size: 'default', color: 'textDefault' },
+}
+
+const {
+    id,
+    classNames,
+    level = '2',
+    as: HtmlElement = levelMap[level].as ?? 'h2',
+    isCapitalized = false,
+} = Astro.props as Props
+
+const fontSize = sprinkles({fontSize: levelMap[level].size}) 
+---
+
+<HtmlElement id={id} class:list={[ isCapitalized ? uppercase : undefined, levelMap[level].color, fontSize, classNames ]}>
+    <slot />
+</HtmlElement>
