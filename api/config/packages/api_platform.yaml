@@ -6,7 +6,7 @@ api_platform:
   enable_re_doc: false
   mapping:
     paths:
-      - '%kernel.project_dir%/app/Entity'
+      - '%kernel.project_dir%/src/Entity'
   swagger:
     versions: [3]
   formats:

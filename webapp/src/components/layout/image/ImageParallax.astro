@@ -1,0 +1,27 @@
+---
+import type { DefaultComponentProps } from '@models'
+import * as styles from './ImageParallax.css'
+import { Image } from 'astro:assets'
+
+interface Props extends DefaultComponentProps {
+  src:
+    | ImageMetadata
+    | Promise<{
+        default: ImageMetadata
+      }>
+  alt: string,
+}
+
+const { id, classNames, src, alt } = Astro.props
+---
+
+<div class:list={[styles.wrapper, classNames]}>
+  <div class={styles.fixedBackgroundContainer}>
+    <div
+      id={id}
+      class:list={[styles.parallaxContainer, styles.fallbackContainer]}
+    >
+      <Image class={styles.parallaxImage} src={src} alt={alt} width="1920" />
+    </div>
+  </div>
+</div>

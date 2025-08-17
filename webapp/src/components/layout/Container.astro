@@ -1,0 +1,22 @@
+---
+import type { HTMLTag } from 'astro/types'
+import type { DefaultComponentProps } from '@models'
+import type { MaxWidth } from '@styles'
+import * as styles from './Container.css'
+
+interface Props extends DefaultComponentProps {
+    as? : HTMLTag,
+    maxWidth?: MaxWidth;
+}
+
+const {
+    as: HtmlElement = 'div',
+    maxWidth = 'xl',
+    id,
+    classNames,
+} = Astro.props
+---
+
+<HtmlElement id={id} class:list={[styles.container({maxWidth}), classNames]}>
+    <slot />
+</HtmlElement>

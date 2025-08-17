@@ -1,0 +1,25 @@
+---
+import type { DefaultComponentProps } from '@models'
+import { Image } from 'astro:assets'
+import * as styles from './ImageHoverZoom.css'
+
+interface Props extends DefaultComponentProps {
+  src:
+    | ImageMetadata
+    | Promise<{
+        default: ImageMetadata
+      }>
+  alt: string
+}
+
+const { src, alt, ...props } = Astro.props
+---
+
+<div class:list={[styles.imageContainer, props.classNames]}>
+  <Image
+    id={props.id}
+    class:list={styles.image}
+    src={src}
+    alt={alt}
+  />
+</div>

@@ -1,0 +1,8 @@
+ARG node_version=22
+FROM node:${node_version}
+
+RUN apt-get update && \
+    apt-get upgrade -y
+RUN apt-get install -y git
+
+SHELL ["/bin/bash", "--login", "-c"]

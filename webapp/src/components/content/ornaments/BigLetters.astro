@@ -1,0 +1,12 @@
+---
+import type { DefaultComponentProps } from '@models'
+import * as styles from './BigLetters.css'
+
+interface Props extends DefaultComponentProps {
+    text: string
+}
+
+const { text } = Astro.props
+---
+
+<div class:list={styles.bigLetters}>{text}</div>

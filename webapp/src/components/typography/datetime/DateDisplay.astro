@@ -1,0 +1,18 @@
+---
+import type { DefaultComponentProps } from '@models'
+import * as styles from './DateDisplay.css'
+
+interface Props extends DefaultComponentProps {
+  date: Date;
+}
+
+const { date, ...props } = Astro.props
+
+const shortDate = new Intl.DateTimeFormat('de-de', { weekday: 'short', day: 'numeric', month: 'short' }).format(date)
+const longDate = new Intl.DateTimeFormat('de-de', { weekday: 'long', day: 'numeric', month: 'long' }).format(date) 
+---
+
+<time id={props.id} class:list={props.classNames} datetime={date.toISOString()}>
+  <span class={styles.shortDate}>{shortDate}</span>
+  <span class={styles.longDate}>{longDate}</span>
+</time>

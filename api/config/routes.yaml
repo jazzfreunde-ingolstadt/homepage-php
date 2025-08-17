@@ -1,6 +1,6 @@
 controllers:
   resource:
-    path: ../app/Controller/
+    path: ../src/Controller/
     namespace: Jazzfreunde\App\Controller
   type: attribute
 

@@ -1,0 +1,25 @@
+---
+import BaseHead from '@components/meta/BaseHead.astro'
+import { themesClasses } from '@styles/themes'
+import * as styles from './BaseLayout.css'
+
+interface Props {
+  title: string
+  description: string
+  image?: string
+}
+
+const { title, description, image = '/logos/band/full.png' } = Astro.props
+---
+
+<html lang="de">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+  </head>
+
+  <body class:list={[themesClasses.default, styles.wrapper]}>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
