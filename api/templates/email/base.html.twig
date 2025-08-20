@@ -6,7 +6,7 @@
         <img class="object-contain" width="100" height="100" src="{{ email.image('@mailasset/images/full-logo.png') }}" alt="Logo">
       </div>
     </div>
-    <main class="p-10 w-full">
+    <main class="p-10 w-full bg-white text-blue">
       {% block content %}
 
       {% endblock %}
@@ -16,6 +16,7 @@
         © Jazzfreunde Ingolstadt e.V.
         {{ 'now' | date('Y') }}
       </p>
+    </footer>
   </body>
 </html>
 {% endapply %}
