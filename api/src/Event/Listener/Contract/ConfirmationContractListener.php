@@ -27,6 +27,7 @@ use Symfony\Component\Workflow\Event\EnterEvent;
 use Symfony\Component\Workflow\Event\Event;
 use Symfony\Component\Workflow\Event\GuardEvent;
 use Symfony\Component\Workflow\Event\TransitionEvent;
+use Symfony\Component\Workflow\WorkflowInterface;
 
 /**
  * @psalm-api
@@ -42,11 +43,13 @@ class ConfirmationContractListener implements LoggerAwareInterface
      * @param ManagerRegistry $registry
      * @param MessageBusInterface $bus
      * @param ValidatorInterface $validator
+     * @param WorkflowInterface $confirmationContractStateMachine
      */
     public function __construct(
         private ManagerRegistry $registry,
         private MessageBusInterface $bus,
         private ValidatorInterface $validator,
+        private WorkflowInterface $confirmationContractStateMachine,
     ) {
     }
 
@@ -81,7 +84,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
         );
         $metaData = AwaitConfirmationMetaData::fromMetaData(
             validator: $this->validator,
-            data: $event->getWorkflow()
+            data: $this->confirmationContractStateMachine
                         ->getDefinition()
                         ->getMetadataStore()
                         ->getTransitionMetadata($transition)
@@ -112,7 +115,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
         $contract = $this->getContract($event);
         $metaData = PendingMetaData::fromMetaData(
             validator: $this->validator,
-            data: $event->getWorkflow()
+            data: $this->confirmationContractStateMachine
                         ->getDefinition()
                         ->getMetadataStore()
                         ->getPlaceMetadata(ConfirmationStateEnum::Pending->value)

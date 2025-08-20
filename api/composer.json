@@ -53,9 +53,9 @@
         "symfony/workflow": "^7.2",
         "symfony/yaml": "^7.2",
         "thecodingmachine/safe": "^3.0",
-        "twig/cssinliner-extra": "^3.8",
-        "twig/extra-bundle": "^3.8",
-        "twig/markdown-extra": "^3.8"
+        "twig/cssinliner-extra": "^3.21",
+        "twig/extra-bundle": "^3.21",
+        "twig/markdown-extra": "^3.21"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
