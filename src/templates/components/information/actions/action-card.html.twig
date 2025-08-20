@@ -1,9 +1,9 @@
 <div class="{{ class|default('') }}">
 	<a href="{{ link_url }}" title="{{ link_title }}">
-		{% embed '@layout/background-image.html.twig' with { image_url: image_url, class: 'brightness-75 scale-110' } %}
-			{% block infront %}
+		{% embed '@layout/layers/background-image.html.twig' with { image_url: image_url, alt: alt, class: 'brightness-75 scale-110' } %}
+			{% block foreground %}
 				{% include "components/header-spacer.html.twig" %}
-				<div class="h-[24rem] flex flex-col gap-6 w-full py-10 lg:py-16 px-4 lg:px-16 text-white font-bold tracking-widest">
+				<div class="h-[24rem] flex flex-col gap-6 py-10 lg:py-16 px-4 lg:px-16 text-white font-bold tracking-widest hover:translate-x-2 transition-transform duration-500 ease-in-out">
 					<h2 class="text-lg lg:text-2xl min-h-[4rem] xl:text-3xl uppercase">{{ title }}</h2>
 					<h3 class="text-sm lg:text-lg xl:text-xl">{{ subtitle}}</h3>
 				</div>

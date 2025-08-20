@@ -25,8 +25,8 @@
 
 	{% include '@layout/spacer.html.twig' with { spacer: 'spacer-48' } %}
 
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-moody9.jpg'), class: 'blur-sm' } %}
-		{% block infront %}
+	{% embed '@layout/layers/background-image-parallax.html.twig' with { image_url: asset('app/images/ambient/session-moody9.jpg'), alt: 'Hintergrundbild', class: 'blur-sm' } %}
+		{% block foreground %}
 			{% include '@layout/divider.html.twig' with { classnames: "fill-white rotate-180" } %}
 			{% include '@layout/spacer.html.twig' with { spacer: 'spacer-48' } %}
 			{% include '@layout/divider.html.twig' with { classnames: "fill-white" } %}

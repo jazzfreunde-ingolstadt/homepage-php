@@ -140,24 +140,14 @@ Encore.setOutputPath("public/mail")
 
   .addStyleEntry("email", MAIL_PATH + "/email.css")
 
-  .splitEntryChunks()
-
-  .enableSingleRuntimeChunk()
+  .disableSingleRuntimeChunk()
   .cleanupOutputBeforeBuild()
   .enableBuildNotifications()
 
-  .enableSourceMaps(!Encore.isProduction())
-
-  .configureBabelPresetEnv((config) => {
-    config.useBuiltIns = "usage";
-    config.corejs = "3.23";
-  })
-
-  .enablePostCssLoader()
-
-  .configureWatchOptions(function (watchOptions) {
-    watchOptions.poll = 250;
-    watchOptions.aggregateTimeout = 200;
+  .enablePostCssLoader((options) => {
+    options.postcssOptions = {
+      config: path.resolve(__dirname, 'postcss.config.js'),
+    };
   });
 
 const mail = Encore.getWebpackConfig();
