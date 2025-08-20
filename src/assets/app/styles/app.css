@@ -31,12 +31,20 @@
   }
 }
 
-main a {
-  @apply text-orange;
-}
-
-main a:hover {
-  @apply text-yellow;
+@layer components {
+  .parallax-container {
+    position: relative;
+    /*
+     * Versionen < 16  von Safari unterstützen kein overflow-clip.
+     * Um Overflow am Seitenende zu vermeiden wird die Containerhöhe in diesen Browser Versionen limitiert.
+     * Damit wird der Parallax-Effekt deaktiviert.
+     */
+    @supports (overflow: clip) {
+      overflow: clip;
+      height: 2000vh;
+      margin-top: -1000vh;
+    }
+  }
 }
 
 ::-webkit-scrollbar {

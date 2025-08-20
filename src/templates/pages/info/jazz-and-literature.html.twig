@@ -51,8 +51,12 @@
 				</section>
 				<div class="flex-1 px-0 lg:px-16">
 					<div class="w-full h-full shadow-md">
-						<img class="w-full h-full object-cover" alt="Background image" src="{{ asset('app/images/advertise/jazz-and-literature/reading.jpg') }}"/>
-						<div></div>
+						{% include '@layout/layers/zoom-image-on-hover.html.twig' 
+							with { 
+								image_url: asset('app/images/advertise/jazz-and-literature/reading.jpg'), 
+								alt: 'Lesung bei Jazz & Literatur'
+							}
+						%}
 					</div>
 				</article>
 			</div>

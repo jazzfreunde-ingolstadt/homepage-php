@@ -20,8 +20,8 @@
 		{% endembed %}
 	</div>
 
-	{% embed '@layout/background-parallax.html.twig' with { image_url: asset('app/images/ambient/session-moody8.jpg'), class: 'blur-sm' } %}
-		{% block infront %}
+	{% embed '@layout/layers/background-image-parallax.html.twig' with { image_url: asset('app/images/ambient/session-moody8.jpg'), alt: 'Hintergrundbild', class: 'blur-sm' } %}
+		{% block foreground %}
 			{% include '@layout/divider.html.twig' with { classnames: "fill-white rotate-180" } %}
 			{% embed '@layout/container.html.twig' %}
 				{% block content %}
@@ -30,7 +30,7 @@
 							<div class="w-full bg-white rounded-xl shadow-md overflow-hidden my-10 md:my-15">
 								<div class="md:flex">
 									<div class="md:shrink-0 md:order-{{ loop.index is odd ? 'first' : 'last' }}">
-										<img class="h-fit w-full object-cover md:h-full md:w-64 lg:w-80" src="{{ asset(person.pictureSrc) }}" alt="{{ person.name }}"/>
+										<img class="w-full md:w-64 lg:w-80 object-cover h-full" src="{{ asset(person.pictureSrc) }}" alt="{{ person.name }}"/>
 									</div>
 									<div
 										class="hidden">
