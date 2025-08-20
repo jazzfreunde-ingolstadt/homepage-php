@@ -2,8 +2,8 @@
 {% block intro %}{% endblock %}
 {% endset %}
 
-{% embed '@layout/background-parallax.html.twig' with { image_url: image_url, class: 'blur-sm brightness-75 scale-110' } %}
-	{% block infront %}
+{% embed '@layout/layers/background-image-parallax.html.twig' with { image_url: image_url, alt: 'Titelbild', class: 'blur-sm brightness-75' } %}
+	{% block foreground %}
 		<div class="min-h-screen flex items-center">
 			{% include "components/header-spacer.html.twig" %}
 			{% embed '@layout/container.html.twig' %}
