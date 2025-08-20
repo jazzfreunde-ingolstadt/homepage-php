@@ -1,9 +1,10 @@
 framework:
   workflows:
     confirmation_contract:
+      type: 'state_machine'
       marking_store:
-        type: "method"
-        property: "state"
+        type: 'method'
+        property: 'state'
       supports:
         - Jazzfreunde\App\Entity\Contract\ConfirmationContract
       initial_marking: pending
