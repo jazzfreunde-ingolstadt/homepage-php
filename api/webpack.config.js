@@ -1,58 +1,41 @@
 const Encore = require("@symfony/webpack-encore");
 const path = require("path");
-const dotenv = require('dotenv');
-const fs = require('fs');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const dotenv = require("dotenv");
+const fs = require("fs");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
-const ROOT_PATH = path.resolve(__dirname, './assets');
-const APP_PATH = ROOT_PATH + '/app';
-const MAIL_PATH = ROOT_PATH + '/mail';
+const ROOT_PATH = path.resolve(__dirname, "./assets");
+const APP_PATH = ROOT_PATH + "/app";
+const MAIL_PATH = ROOT_PATH + "/mail";
 const ALIASES = {
-  '@components' : APP_PATH + '/components',
-  '@hooks' : APP_PATH + '/hooks',
-  '@models' : APP_PATH + '/models',
-  '@api/types' : APP_PATH + '/api/types',
-  '@api/utils' : APP_PATH + '/api/utils',
-  '@services' : APP_PATH + '/services',
+  "@components": APP_PATH + "/components",
+  "@hooks": APP_PATH + "/hooks",
+  "@models": APP_PATH + "/models",
+  "@api/types": APP_PATH + "/api/types",
+  "@api/utils": APP_PATH + "/api/utils",
+  "@services": APP_PATH + "/services",
 };
 
 const fileExists = (filePath) => {
   try {
-      return fs.statSync(filePath).isFile();
+    return fs.statSync(filePath).isFile();
   } catch (err) {
-      return false;
+    return false;
   }
-}
+};
 
 const getEnvPaths = () => {
-  let envFiles = '';
+  let envFiles = "";
 
-  if (Encore.isProduction())
-    envFiles = [
-      '.env.production',
-      '.env'
-    ]
+  if (Encore.isProduction()) envFiles = [".env.production", ".env"];
 
-  if (Encore.isDev())
-    envFiles = [
-      '.env.dev',
-      '.env'
-    ]
+  if (Encore.isDev()) envFiles = [".env.dev", ".env"];
 
   if (Encore.isDevServer())
-    envFiles = [
-      '.env.dev.local',
-      '.env.local',
-      '.env.dev',
-      '.env'
-    ]
-  
-  return envFiles
-    .map((file) => `${APP_PATH}/${file}`)
-    .filter(
-        fileExists
-    );
-}
+    envFiles = [".env.dev.local", ".env.local", ".env.dev", ".env"];
+
+  return envFiles.map((file) => `${APP_PATH}/${file}`).filter(fileExists);
+};
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
@@ -82,19 +65,19 @@ Encore.setOutputPath("public/app")
 
   .enableReactPreset()
   .enableTypeScriptLoader()
-  .configureDefinePlugin(options => {
+  .configureDefinePlugin((options) => {
     const env = dotenv.config({ path: getEnvPaths() });
 
     if (env.error) {
-        throw env.error;
+      throw env.error;
     }
 
     Object.entries(env.parsed).forEach(([key, value]) => {
-        if (key.startsWith('REACT_APP_')) {
-            options['process.env.' + key] = JSON.stringify(value);
-        }
+      if (key.startsWith("REACT_APP_")) {
+        options["process.env." + key] = JSON.stringify(value);
+      }
     });
-})
+  })
 
   .enableStimulusBridge(APP_PATH + "/controllers.json")
 
@@ -110,28 +93,33 @@ Encore.setOutputPath("public/app")
     config.corejs = "3.23";
   })
 
-  .enablePostCssLoader()
+  .enablePostCssLoader((options) => {
+    options.postcssOptions = {
+        config: path.resolve(__dirname, 'postcss.config.js'),
+    };
+  })
 
   .enableIntegrityHashes(Encore.isProduction())
 
   .configureWatchOptions(function (watchOptions) {
     watchOptions.poll = 700;
     watchOptions.aggregateTimeout = 100;
+    watchOptions.ignored = [path.resolve("public/"), path.resolve("node_modules/")];
   })
   .configureDevServerOptions((options) => {
     options.host = "0.0.0.0";
     options.liveReload = true;
     options.hot = false;
-    options.watchFiles = ["./templates/**/*", "./src/**/*"];
+    options.watchFiles = [path.resolve("templates/**/*"), path.resolve("src/**/*.php")];
   });
 const app = Encore.getWebpackConfig();
 app.name = "app";
 app.resolve.plugins = [
   new TsconfigPathsPlugin({
-      configFile: APP_PATH + '/tsconfig.json',
-      extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
-  })
-]
+    configFile: APP_PATH + "/tsconfig.json",
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
+  }),
+];
 
 Encore.reset();
 Encore.setOutputPath("public/mail")
