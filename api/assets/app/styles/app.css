@@ -1,13 +1,9 @@
-@import "./components/components.css";
+@import "tailwindcss";
 @import "./components/layout.css";
 @import "./components/api.css";
 @import "@fortawesome/fontawesome-free";
 @import "@fortawesome/fontawesome-free/css/brands";
 @import "@fortawesome/fontawesome-free/css/solid";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   @font-face {
@@ -29,6 +25,33 @@
   html {
     @apply text-base;
   }
+}
+
+@theme {
+  --color-current: currentColor;
+  --color-blue: #242c7f;
+  --color-yellow: #e8c400;
+  --color-orange: #ee8811;
+  --color-red: #bf1300;
+  --color-grey: #6b7280;
+  --color-grey-light: #eeeef0;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: "FF DIN";
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.563rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-4xl: 3.052rem;
+  --text-5xl: 3.815rem;
+  --text-6xl: 4.768rem;
+  --text-7xl: 5.960rem;
+  --text-8xl: 7.451rem;
 }
 
 @layer components {
