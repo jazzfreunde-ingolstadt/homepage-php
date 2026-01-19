@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Jazzfreunde\App\Controller;
 
 use DateTime;
+use InvalidArgumentException;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Exception\Contract\ConfirmationContractNotFoundException;
 use Jazzfreunde\App\Exception\Contract\ConfirmationPeriodExpiredException;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use Symfony\Component\Form\FormInterface;
 
 use function is_array;
 
@@ -47,32 +49,27 @@ final class NewsletterSubscriptionController extends AbstractController implemen
             return new Response(status: Response::HTTP_BAD_REQUEST);
         }
 
-        if (!$form->isValid()) {
-            $this->logger?->error(
-                'Submitted invalid form data for jazzletter subscription.',
-                [
-                    'route' => $request->attributes->get('_route'),
-                    'form' => $form->getErrors(true, false),
-                    'data' => $form->getData(),
-                    'request' => $request->getContent(),
-                ]
-            );
-                
-            return new Response(status: Response::HTTP_BAD_REQUEST);
+        /**
+         * @var array<string, mixed>|null $data
+         */
+        $data = $form->getData();
+        if (!is_array($data)) {
+            throw new \LogicException('Unable to load form data');
         }
-        
+
+        if (!$form->isValid()) {
+            return $this->CreateBadRequestResponse($request, $form);
+        }
+
         try {
-            /**
-             * @var array<string, mixed>|null $data
-             */
-            $data = $form->getData();
-            if (!is_array($data)) {
-                throw new \LogicException('Unable to load form data');
-            }
-    
             $subscription = new NewsletterSubscription(...$data);
             $subscription->creationTime = new DateTime();
-    
+        } catch (InvalidArgumentException) {
+            return $this->CreateBadRequestResponse($request, $form);
+        }
+
+        
+        try {
             $newsletter->subscribe($subscription);
     
             return $this->redirectToRoute('form_newsletter_subscription_received');
@@ -142,5 +139,27 @@ final class NewsletterSubscriptionController extends AbstractController implemen
     public function alreadySubscribed(): Response
     {
         return $this->render('@pages/newsletter/already-subscribed-notification.html.twig');
+    }
+
+    /**
+     * Creates a response for a bad request due to invalid form data.
+     *
+     * @param  Request       $request
+     * @param  FormInterface $form
+     * @return Response
+     */
+    private function CreateBadRequestResponse(Request $request, FormInterface $form): Response
+    {
+        $this->logger?->error(
+            'Submitted invalid form data for jazzletter subscription.',
+            [
+                    'route' => $request->attributes->get('_route'),
+                    'form' => $form->getErrors(true, false),
+                    'data' => $form->getData(),
+                    'request' => $request->getContent(),
+                ]
+        );
+                
+        return new Response(status: Response::HTTP_BAD_REQUEST, content: 'Invalid form data submitted.');
     }
 }
