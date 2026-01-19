@@ -9,10 +9,10 @@ interface Props {
   image?: string
 }
 
-const { title, description, image = '/logos/band/full.png' } = Astro.props
+const { title, description, image = 'full-logo-with-background.png' } = Astro.props
 ---
 
-<html lang="de">
+<html lang="de-DE">
   <head>
     <BaseHead title={title} description={description} image={image} />
   </head>

@@ -118,11 +118,22 @@ final class EncoreExtension extends AbstractExtension
         }
         $raw = file_get_contents($fullPath);
 
-        
         if ($raw === false) {
             throw new RuntimeException(sprintf('Unable to read file: "%s"', $fullPath));
         }
         
-        return mb_convert_encoding($raw, 'UTF-8', mb_detect_encoding($raw, 'UTF-8, ISO-8859-1', true));
+        $encoding = mb_detect_encoding($raw, 'UTF-8, ISO-8859-1', true);
+
+        if ($encoding === "UTF-8") {
+            return $raw;
+        }
+
+        $encoded = mb_convert_encoding($raw, 'UTF-8', 'ISO-8859-1');
+
+        if (!is_string($encoded)) {
+            throw new RuntimeException(sprintf('Unable to encode file content: "%s"', $fullPath));
+        }
+
+        return $encoded;
     }
 }
