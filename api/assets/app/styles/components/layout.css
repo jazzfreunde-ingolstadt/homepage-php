@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+
 @layer components {
   .horizontal-auto-parallax {
     animation: move-forever 30s linear infinite;

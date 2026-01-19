@@ -40,6 +40,7 @@ final class ConfirmationContractListenerTest extends TestCase
     public function testOnTransitionAwaitConfirmation(): void
     {
         $contract = $this->newContract();
+        $contract->state = ConfirmationStateEnum::Pending;
 
         $uut = new UnitUnderTest(ConfirmationContractListener::class);
         $uut->mock(MessageBusInterface::class)
@@ -52,7 +53,7 @@ final class ConfirmationContractListenerTest extends TestCase
             }))
             ->willReturn(new Envelope($this->mock(EmailNotification::class)));
 
-        $workflow = $this->mockWorkflow([
+        $workflow = $this->mockWorkflow($uut, [
             'email_subject' => 'Test subject',
             'email_template' => 'test.html.twig',
         ]);
@@ -69,6 +70,8 @@ final class ConfirmationContractListenerTest extends TestCase
 
         $listener = $uut->target();
         $listener->onTransitionAwaitConfirmation($event);
+
+        $this->assertEquals(ConfirmationStateEnum::Pending, $contract->state, "Contract state should be set to pending");
     }
 
     /**
@@ -84,7 +87,7 @@ final class ConfirmationContractListenerTest extends TestCase
         $contract->state = ConfirmationStateEnum::Pending;
         $contract->requestTime = new \DateTimeImmutable('-1 days');
 
-        $workflow = $this->mockWorkflow([
+        $workflow = $this->mockWorkflow($uut, [
             'token_lifetime' => '10 minutes',
         ]);
 
@@ -136,7 +139,7 @@ final class ConfirmationContractListenerTest extends TestCase
             metadataStore: $metaDataStore,
         );
 
-        $workflow = $this->mock(WorkflowInterface::class);
+        $workflow = $uut->mock(WorkflowInterface::class);
         $workflow
             ->expects($this->once())
             ->method('getDefinition')
@@ -305,7 +308,7 @@ final class ConfirmationContractListenerTest extends TestCase
      *
      * @return WorkflowInterface&MockObject
      */
-    private function mockWorkflow(array $metaData): WorkflowInterface&MockObject
+    private function mockWorkflow(UnitUnderTest $uut, array $metaData): WorkflowInterface&MockObject
     {
         $metaDataStore = $this->mock(MetadataStoreInterface::class);
         $metaDataStore
@@ -322,7 +325,7 @@ final class ConfirmationContractListenerTest extends TestCase
             metadataStore: $metaDataStore,
         );
 
-        $workflow = $this->mock(WorkflowInterface::class);
+        $workflow = $uut->mock(WorkflowInterface::class);
         $workflow
             ->expects($this->once())
             ->method('getDefinition')
