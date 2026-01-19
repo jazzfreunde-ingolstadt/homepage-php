@@ -15,7 +15,7 @@ x-volume-node_modules: &node_modules
 
 # docker build.args
 x-dev-buildargs: &dev-buildargs
-    php_version: "8.4"
+    php_version: "8.2"
     project_dir: /usr/project
     phpini_path: .docker/php/php.ini-development
     xdebugini_path: .docker/php/dev-xdebug.ini
@@ -44,7 +44,7 @@ services:
             context: ..
             dockerfile: .docker/apache.dockerfile
             args:
-                php_version: "8.4"
+                php_version: "8.2"
                 virtualhost_conf_dir: .docker/apache
                 phpini_path: .docker/php/php.ini-development
                 xdebugini_path: .docker/php/server-xdebug.ini

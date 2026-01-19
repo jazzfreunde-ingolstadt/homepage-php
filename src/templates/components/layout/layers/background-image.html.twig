@@ -1,9 +1,0 @@
-{% extends '@layout/layers/background-content-container.html.twig' %}
-
-{% block background %}
-	<img class="relative w-full h-full object-cover object-center" src="{{ image_url|raw }}" alt="{{ alt }}"/>
-{% endblock %}
-
-{% block foreground %}
-  {% include '@layout/spacer.html.twig' with { spacer: 'spacer-32' } %}
-{% endblock %}
