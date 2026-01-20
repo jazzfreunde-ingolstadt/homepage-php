@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Formular für Newsletter Abonnement
@@ -23,7 +24,11 @@ final class NewsletterSubscriptionType extends AbstractType
     {
         $builder
             ->setAction((string) ($options['action'] ?? ''))
-            ->add('email', EmailType::class, ['label' => 'Geben Sie Ihre Email-Adresse an'])
+            ->add('email', EmailType::class, [
+                'label' => 'Geben Sie Ihre Email-Adresse an',
+                 'required' => true,
+                 'constraints' => [new Assert\Email(message: 'The email {{ value }} is not a valid email.',)],
+            ])
             ->add('subscribe', SubmitType::class, ['label' => 'Benachrichtige mich'])
             ->getForm();
     }

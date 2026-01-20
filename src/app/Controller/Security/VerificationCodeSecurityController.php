@@ -17,7 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
@@ -99,7 +98,9 @@ final class VerificationCodeSecurityController extends AbstractController implem
         $email ??= SessionHelper::getUserEmail($request->getSession());
 
         if (is_null($email)) {
-            throw new LogicException('Email address is required for verification.');
+            $this->logger?->info('User email could not be determined from the request or session.');
+            $this->addFlash('error', 'Diese Sitzung ist veraltet. Starten Sie den Anmeldevorgang bitte neu.');
+            return $this->redirect($this->generateUrl('security_code_login'));
         }
         $verificationCode = $verificationCodeHandler->createVerificationCode($email->value());
 
