@@ -7,6 +7,7 @@
 		<div id="newsletter-subscription-widget" class="w-full overflow-hidden">
 			<h2 class="text-xl md:text-2xl font-bold mb-2 text-blue">Sie möchten gerne auf dem Laufenden bleiben?</h2>
 			<p class="text-xl md:text-2xl mb-5 md:mb-8 font-bold text-orange">Abonnieren Sie unseren Newsletter.</p>
+			{% include 'components/util/error-flash.html.twig' %}
 			{{ form_start(subscription_form) }}
 			<div class="w-full flex flex-col md:flex-row gap-5 lg:gap-10">
 				<div class="relative w-full md:flex-shrink md:flex-grow">
