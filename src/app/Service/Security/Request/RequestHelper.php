@@ -16,11 +16,17 @@ abstract class RequestHelper
      * Redirects the user back to the origin page.
      *
      * @param Request $request
+     * @param string $default
+     * @param string $anchor
      * @return RedirectResponse
      */
-    public static function redirectToOrigin(Request $request, string $default): RedirectResponse
+    public static function redirectToOrigin(Request $request, string $default, string $anchor = ''): RedirectResponse
     {
         $url = self::getRedirectUri($request, $default);
+
+        if ($anchor !== '') {
+            $url .= '#'.$anchor;
+        }
 
         return new RedirectResponse($url);
     }
