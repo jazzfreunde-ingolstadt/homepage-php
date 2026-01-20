@@ -46,6 +46,21 @@ final class RequestHelperTest extends TestCase
     }
 
     /**
+     * Test that redirectToOrigin appends the anchor if provided.
+     */
+    #[Test]
+    public function redirectToOriginAppendsAnchor()
+    {
+        $request = new Request();
+        $default = 'https://example.com/default';
+        $anchor = 'section1';
+
+        $response = RequestHelper::redirectToOrigin($request, $default, $anchor);
+
+        $this->assertEquals($default.'#'.$anchor, $response->getTargetUrl());
+    }
+
+    /**
      * Test that getUserEmailFromPost returns an Email instance for a valid email.
      */
     #[Test]
