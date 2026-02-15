@@ -80,6 +80,21 @@ final class NewsletterSubscriptionController extends AbstractController implemen
             $newsletter->subscribe($subscription);
     
             return $this->redirectToRoute('form_newsletter_subscription_received');
+        } catch (\InvalidArgumentException $e) { // Todo: Keep this in for debugging, but replace with a more specific exception in the future
+            $this->logger?->error(
+                'Failed to create newsletter subscription entity from form data.',
+                [
+                    'route' => $request->attributes->get('_route'),
+                    'data' => $data,
+                    'exception' => $e,
+                ]
+            );
+            $this->addFlash('error', 'Die eingegebene E-Mail-Adresse ist ungültig.');
+            return RequestHelper::redirectToOrigin(
+                $request,
+                default: $this->generateUrl('home'),
+                anchor: 'newsletter-subscription-widget'
+            );
         } catch (SubscriptionException $e) {
             if ($e->getCode() === SubscriptionException::ALREADY_SUBSCRIBED) {
                 return $this->redirectToRoute('form_newsletter_already_subscribed');
