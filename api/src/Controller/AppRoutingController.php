@@ -41,27 +41,41 @@ final class AppRoutingController extends AbstractController
     {
         $personen = [
             [
-                'name' => 'Karl Wewer',
-                'position' => 'Erster Vorsitzender, Schriftführer, Newsletter',
-                'bio' => 'Karl Wewer ist aufgewachsen in Datteln (Ruhrgebiet); Studium konstruktiver Ingenieurbau in Bochum, seit 1979 in Ingolstadt – Manager in der IT in einem Automobilunternehmen, jetzt im Ruhestand<br />
-                Er hat in jungen Jahren in mehren Rock- und Beat Bands im Ruhrgebiet Gitarre gespielt. Seit 1991 ist er Gitarrist in der Ingolstädter „<a href="http =>//www.kraiberg-jazz-band.de">Kraiberg Jazz Band</a>“. Daneben ist er begeisterter Hörer von Livekonzerten mit dem Schwerpunkt Jazz / Blues / Rock.<br />
-                Seit 2010 ist er Mitglied im Verein und wurde 2011 zum Schriftführer und 2014 zum ersten Vorsitzenden gewählt; er versendet zudem den Jazz–Newsletter des Vereins.',
-                'pictureSrc' => 'app/images/people/wewer.jpg',
-                'mail' => 'wewer@jazzfreunde-ingolstadt.de',
+                'name' => 'Steffen Mayer',
+                'position' => 'Erster Vorsitzender',
+                'bio' => 'Er wird uns bald mehr von sich erzählen.',
+                'pictureSrc' => 'app/images/people/steffen.jpg',
+                'mail' => 'steffen.mayer@jazzfreunde-ingolstadt.de',
             ],
             [
-                'name' => 'Tom Diewock',
+                'name' => 'Sven Wittig',
                 'position' => 'Stellvertretender Vorsitzender, Sessionkoordinator',
-                'bio' => 'Tom Diewock ist Musiker und stellvertretender Leiter der Musikschule Mainburg. Er spielt neben seiner umfangreichen Unterrichtstätigkeit in einer Vielzahl von Bands verschiedener Stilrichtungen, u.&nbsp;a. Wes Mackey, Keith Thopmson, The Blues Hunt, Fiona Boyes, Jamazzing, 4 Of A Kind, Oliver Wasilesku Trio, Captain’s Bog, The Bomb, Clausius Konrad, Charly Böck Latin Project, Late Night Band der Ingolstädter Jazztage...',
-                'pictureSrc' => 'app/images/people/diewock.png',
-                'mail' => 'diewock@jazzfreunde-ingolstadt.de',
+                'bio' => 'Er wird uns bald mehr von sich erzählen.',
+                'pictureSrc' => 'app/images/people/sven.jpg',
+                'mail' => 'sven.wittig@jazzfreunde-ingolstadt.de',
+            ],
+            [
+                'name' => 'Manfred See',
+                'position' => 'Stellvertretender Vorsitzender, Sessionkoordinator',
+                'bio' => 'Er wird uns bald mehr von sich erzählen.',
+                'pictureSrc' => 'app/images/people/manfred.jpg',
+                'mail' => 'manfred.see@jazzfreunde-ingolstadt.de',
             ],
             [
                 'name' => 'Helmut Bachmaier',
                 'position' => 'Schatzmeister',
                 'bio' => 'Helmut Bachmaier lebt in Ingolstadt und arbeitete in München bei einer internationalen Bank. Er ist seit 2007 Mitglied bei den Jazzfreunden und seit 2020 Schatzmeister. Theater, Kabarett und Livemusik sind in der Freizeit fester Bestandteil.',
-                'pictureSrc' => 'app/images/people/bachmaier.jpeg',
-                'mail' => 'bachmaier@jazzfreunde-ingolstadt.de',
+                'pictureSrc' => 'app/images/people/helmut.jpg',
+                'mail' => 'helmut.bachmaier@jazzfreunde-ingolstadt.de',
+            ],
+            [
+                'name' => 'Karl Wewer',
+                'position' => 'Schriftführer, Newsletter',
+                'bio' => 'Karl Wewer ist aufgewachsen in Datteln (Ruhrgebiet); Studium konstruktiver Ingenieurbau in Bochum, seit 1979 in Ingolstadt – Manager in der IT in einem Automobilunternehmen, jetzt im Ruhestand<br />
+                Er hat in jungen Jahren in mehren Rock- und Beat Bands im Ruhrgebiet Gitarre gespielt. Seit 1991 ist er Gitarrist in der Ingolstädter „<a href="http =>//www.kraiberg-jazz-band.de">Kraiberg Jazz Band</a>“. Daneben ist er begeisterter Hörer von Livekonzerten mit dem Schwerpunkt Jazz / Blues / Rock.<br />
+                Seit 2010 ist er Mitglied im Verein und wurde 2011 zum Schriftführer und 2014 zum ersten Vorsitzenden gewählt; er versendet zudem den Jazz–Newsletter des Vereins.',
+                'pictureSrc' => 'app/images/people/karl.jpg',
+                'mail' => 'karl.wewer@jazzfreunde-ingolstadt.de',
             ],
             [
                 'name' => 'Michael Mayer',
@@ -71,8 +85,8 @@ final class AppRoutingController extends AbstractController
                 Später kaufte er sich kurzer Hand einen gebrauchten Kontrabass und fing an, darauf umzusetzen, was er sich am E-Bass beigebracht hatte.
                 Zu seinen musikalischen Idolen zählen Chick Corea, Frank Zappa, Allan Holdsworth, Jacob Collier, Robert Glasper, Derek Trucks, Joni Mitchell, um nur ein paar wenige zu nennen.
                 Privat ist der gelernte Softwareentwickler gerne auf dem Rennrad unterwegs. Dann aber notgedrungen ohne Kontrabass.',
-                'pictureSrc' => 'app/images/people/mayer.jpg',
-                'mail' => 'mayer@jazzfreunde-ingolstadt.de',
+                'pictureSrc' => 'app/images/people/michael.jpg',
+                'mail' => 'michael.mayer@jazzfreunde-ingolstadt.de',
             ]
         ];
 
