@@ -24,6 +24,12 @@
     font-weight: 400;
     src: url(../fonts/ffdin-bold.ttf) format("truetype");
   }
+  @font-face {
+    font-family: "Brushed";
+    font-weight: 400;
+    src: url(../fonts/brushed.ttf) format("truetype");
+  }
+
 
   html {
     @apply text-base;
