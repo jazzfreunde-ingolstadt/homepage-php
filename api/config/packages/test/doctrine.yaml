@@ -1,0 +1,7 @@
+services:
+  # Enable foreign key constraints for SQLite in tests
+  # This is necessary to cascade database operations properly and to ensure that tests reflect real-world behavior
+  doctrine.dbal.sqlite_enable_foreign_keys:
+    class: Doctrine\DBAL\Driver\AbstractSQLiteDriver\Middleware\EnableForeignKeys
+    tags:
+      - { name: doctrine.middleware, connection: default, priority: 100 }

@@ -61,5 +61,5 @@ runtime:
   cron-jobs:
     - command: php8.2-cli $HOME/htdocs/bin/console messenger:consume async --time-limit=58
       schedule: "* * * * *"
-    - command: php8.2-cli $HOME/htdocs/bin/console messenger:consume jobs --time-limit=60
-      schedule: "0 0 * * *"
+    - command: php8.2-cli $HOME/htdocs/bin/console messenger:consume scheduler_daily --time-limit=60
+      schedule: "0 * * * *"

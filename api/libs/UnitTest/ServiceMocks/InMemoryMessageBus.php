@@ -5,7 +5,6 @@ namespace Jazzfreunde\UnitTest\ServiceMocks;
 use Override;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Messenger\Stamp\StampInterface;
 
 /**
  * Mock implementation of the MessageBusInterface for integration testing.
