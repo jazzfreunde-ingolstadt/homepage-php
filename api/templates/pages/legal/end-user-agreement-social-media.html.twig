@@ -1,11 +1,11 @@
-{% set title = 'Impressum' %}
+{% set title = 'Datenschutz Social Media' %}
 
 {% extends 'base.html.twig' %}
 
 {% block header_element %}
-	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/ambient/session-moody3.jpg') } %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/ambient/bonus-concert-bright1.jpg') } %}
 		{% block intro %}
-			{% include 'typography/intro-titel.html.twig' with { titel: 'Impressum' } %}
+			{% include 'typography/intro-titel.html.twig' with { titel: 'Datenschutz Social Media' } %}
 		{% endblock %}
 	{% endembed %}
 {% endblock %}
@@ -14,7 +14,7 @@
 	{% embed '@layout/container.html.twig' %}
 		{% block content %}
 			<section class="py-5 md:py-10">
-				{{ include('@markdown/legal/impressum.md.twig')|markdown_to_html }}
+				{{ include('@markdown/legal/end-user-agreement-social-media.md.twig')|markdown_to_html }}
 			</section>
 		{% endblock %}
 	{% endembed %}

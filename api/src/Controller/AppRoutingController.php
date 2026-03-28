@@ -72,7 +72,7 @@ final class AppRoutingController extends AbstractController
                 'name' => 'Karl Wewer',
                 'position' => 'Schriftführer, Newsletter',
                 'bio' => 'Karl Wewer ist aufgewachsen in Datteln (Ruhrgebiet); Studium konstruktiver Ingenieurbau in Bochum, seit 1979 in Ingolstadt – Manager in der IT in einem Automobilunternehmen, jetzt im Ruhestand<br />
-                Er hat in jungen Jahren in mehren Rock- und Beat Bands im Ruhrgebiet Gitarre gespielt. Seit 1991 ist er Gitarrist in der Ingolstädter „<a href="http =>//www.kraiberg-jazz-band.de">Kraiberg Jazz Band</a>“. Daneben ist er begeisterter Hörer von Livekonzerten mit dem Schwerpunkt Jazz / Blues / Rock.<br />
+                Er hat in jungen Jahren in mehren Rock- und Beat Bands im Ruhrgebiet Gitarre gespielt. Seit 1991 ist er Gitarrist in der Ingolstädter Kraiberg Jazz Band. Daneben ist er begeisterter Hörer von Livekonzerten mit dem Schwerpunkt Jazz / Blues / Rock.<br />
                 Seit 2010 ist er Mitglied im Verein und wurde 2011 zum Schriftführer und 2014 zum ersten Vorsitzenden gewählt; er versendet zudem den Jazz–Newsletter des Vereins.',
                 'pictureSrc' => 'app/images/people/karl.jpg',
                 'mail' => 'karl.wewer@jazzfreunde-ingolstadt.de',
@@ -121,6 +121,19 @@ final class AppRoutingController extends AbstractController
     {
         return $this->render(
             '@pages/legal/end-user-agreement.html.twig',
+        );
+    }
+
+    /**
+     * Datenschutzbestimmung Social Media
+     *
+     * @return Response
+     */
+    #[Route('/legal/end-user-agreement-social-media/', name: 'end-user-agreement-social-media', options: ['sitemap' => true])]
+    public function endUserAgreementSocialMedia(): Response
+    {
+        return $this->render(
+            '@pages/legal/end-user-agreement-social-media.html.twig',
         );
     }
 
