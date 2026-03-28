@@ -7,7 +7,8 @@ use Jazzfreunde\App\Service\Contract\ConfirmationContractPurgingService;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
- * Handle purge of any vacant confirmation contracts by deleting all unfullfilled newsletter subscriptions
+ * Deletes all unfulfilled confirmation contracts that are older than a certain time period.
+ * Related entities should configure cascade delete to ensure that all related data is also removed.
  * @psalm-api
  */
 #[AsMessageHandler(handles: PurgeVacantConfirmationContractsMessage::class, method: 'handlePurgeVacantConfirmationContracts')]
