@@ -2,8 +2,6 @@ doctrine:
   dbal:
     url: "%env(DATABASE_URL)%"
     server_version: "mariadb-10.6.10"
-    mapping_types:
-      enum: string
     use_savepoints: true
   orm:
     auto_generate_proxy_classes: true

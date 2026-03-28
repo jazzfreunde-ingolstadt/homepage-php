@@ -9,6 +9,9 @@ services:
         resource: '%kernel.project_dir%/src/Service/'
         exclude: 'Security/**'
 
+    Jazzfreunde\App\Repository\:
+        resource: '%kernel.project_dir%/src/Repository/'
+
     Jazzfreunde\App\Controller\:
         resource: '%kernel.project_dir%/src/Controller/'
 
@@ -26,3 +29,6 @@ services:
     Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface:
         alias: webpack_encore.entrypoint_lookup[mail]
         public: true
+
+    Jazzfreunde\App\Schedule\:
+        resource: '%kernel.project_dir%/src/Schedule/'
