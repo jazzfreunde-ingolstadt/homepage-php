@@ -14,7 +14,6 @@ use Jazzfreunde\App\Service\Newsletter\NewsletterService;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\ServiceMocks\InMemoryMessageBus;
-use Jazzfreunde\UnitTest\Trait\MockingTrait;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -25,7 +24,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 final class NewsletterServiceTest extends KernelTestCase
 {
     use SetupDatabaseTrait;
-    use MockingTrait;
 
     private NewsletterSubscription $subscription;
     

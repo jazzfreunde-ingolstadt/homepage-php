@@ -57,7 +57,7 @@ services:
         depends_on:
             - jazzfreunde-database-server
         environment:
-            - APACHE_DOCUMENT_ROOT=/usr/project/api
+            - APACHE_DOCUMENT_ROOT=/usr/project/api/public
         ports:
             - "80:80"
             - "443:443"
