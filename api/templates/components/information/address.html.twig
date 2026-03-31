@@ -1,0 +1,15 @@
+<p class="mb-5 p-2">
+	<span class="whitespace-nowrap">{{ name }}</span><br/>
+	<span class="whitespace-nowrap">{{ street }}</span><br/>
+	<span class="whitespace-nowrap">{{ postalCode }}
+		{{city}}</span>
+	{% if phone is defined %}
+		<br/>
+		<span class="whitespace-nowrap">Telefon:
+			{{phone}}</span>
+	{% endif %}
+	{% if email is defined %}
+		<br/>
+		<a class="font-bold" href="mailto:{{ email }}" title="Zum Kontaktformular">Kontakt</a>
+	{% endif %}
+</p>

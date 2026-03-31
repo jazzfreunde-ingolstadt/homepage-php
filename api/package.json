@@ -36,7 +36,7 @@
         "api:generate": "npx openapi-typescript assets/app/api/specs/*.openapi.yaml --output assets/app/api/types/jazzfreunde-api.generated.ts"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^6.2.1",
+        "@fortawesome/fontawesome-free": "^7.2.0",
         "@tanstack/react-query": "^5.67.1",
         "@types/react": "^18.3.18",
         "dotenv": "^16.4.7",

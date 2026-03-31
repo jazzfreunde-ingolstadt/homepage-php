@@ -29,8 +29,10 @@
 						{% for person in personen %}
 							<div class="w-full bg-white rounded-xl shadow-md overflow-hidden my-10 md:my-15">
 								<div class="md:flex">
-									<div class="md:shrink-0 md:order-{{ loop.index is odd ? 'first' : 'last' }}">
-										<img class="w-full md:w-64 lg:w-80 object-cover h-full" src="{{ asset(person.pictureSrc) }}" alt="{{ person.name }}"/>
+									<div class="relative w-full md:w-64 lg:w-80 h-[25rem] md:h-auto min-h-80 md:self-stretch md:shrink-0 md:order-{{ loop.index is odd ? 'first' : 'last' }}">
+										<div class="absolute left-0 top-0 right-0 bottom-0 overflow-hidden bg-blue">
+											<img class="h-full w-full object-cover object-top" src="{{ asset(person.pictureSrc) }}" alt="{{ person.name }}"/>
+										</div>
 									</div>
 									<div
 										class="hidden">

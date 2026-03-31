@@ -1,16 +1,22 @@
 {% include 'typography/section-titel.html.twig' with { titel: 'Jazzfreunde Ingolstadt e. V.' } %}
+
 ## <strong>Erster Vorsitzender:</strong>
-Karl Wewer
-Wallensteinstraße 79
-85051 Ingolstadt
-<a class="kontakt" href="mailto:1.vorsitzender@jazzfreunde-ingolstadt.de" title="Zum Kontaktformular">Kontakt</a>
+{% include 'components/information/address.html.twig' with {
+    name: 'Steffen Mayer',
+    street: 'Martin-Hemm-Str. 29a',
+    postalCode: '85053',
+    city: 'Ingolstadt',
+    email: '1.vorsitzender@jazzfreunde-ingolstadt.de',
+} %}
 
 ## <strong>Webmaster:</strong>
-Michael Mayer
-Ettinger Straße 24a
-85080 Gaimersheim
-Telefon: 08458 5597
-<a class="kontakt" href="mailto:michael.mayer@jazzfreunde-ingolstadt.de" title="Zum Kontaktformular">Kontakt</a>
+{% include 'components/information/address.html.twig' with {
+    name: 'Michael Mayer',
+    street: 'Ettinger Straße 24a',
+    postalCode: '85080',
+    city: 'Gaimersheim',
+    email: 'michael.mayer@jazzfreunde-ingolstadt.de',
+} %}
 
 Haftungshinweis:
 Für die Inhalte externer Links übernehmen wir trotz sorgfältiger Prüfung keine Haftung. Den Inhalt verlinkter Seiten verantworten deren Betreiber.
