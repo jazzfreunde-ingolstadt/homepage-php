@@ -24,8 +24,9 @@ export const EventListItem = ({ event }: EventListItemProps) => {
             </div>
             <div className="flex flex-col w-full justify-between">
                 <div className="text-lg lg:text-xl font-bold tracking-wider">{event.title.toLocaleUpperCase()}</div>
-                <div>{event.subtitle}</div>
                 <CategoryBadge category={event.category} />
+                <div>{event.subtitle}</div>
+                {event.link && (<a href={event.link} target="_blank" rel="noopener noreferrer"><i className="fa-solid fa-link" aria-hidden="true"></i> Zur Webseite</a>)}
             </div>
         </div>
     )

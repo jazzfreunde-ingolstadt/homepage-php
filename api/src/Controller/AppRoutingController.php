@@ -43,21 +43,33 @@ final class AppRoutingController extends AbstractController
             [
                 'name' => 'Steffen Mayer',
                 'position' => 'Erster Vorsitzender',
-                'bio' => 'Er wird uns bald mehr von sich erzählen.',
+                'bio' => 'Gründungsmitglied des Vereins und seit 2026 1. Vorstand der Jazzfreunde Ingolstadt.<br/>
+                Ich bin Jazzfan seit der Pubertät und auch Amateurmusiker seit dieser Zeit.
+                Jazz ist für mich aber weniger ein Genre, sondern eine Geisteshaltung. Offen für alle Stilistiken und Spielarten, entscheidend ist die Improvisation.<br/>
+                Vor allen Dingen geht es mir um die Überwindung von Klischees. Leider spielen die in der Rezeption und der öffentlichen Wahrnehmung eine viel zu große Rolle.<br/>
+                Hier möchte ich - und auch der Verein - stärker ansetzen: Jazz ist lebendige Musik und braucht keine Stereotype, um bekannt zu werden.
+                Und es gibt viele Bezüge zu anderen Gattungen, die ich gerne einlade mitzumachen. Damit die Jazzlandschaft in Ingolstadt auch jenseits der Festivalkultur besteht.',
                 'pictureSrc' => 'app/images/people/steffen.jpg',
                 'mail' => 'steffen.mayer@jazzfreunde-ingolstadt.de',
             ],
             [
                 'name' => 'Sven Wittig',
                 'position' => 'Stellvertretender Vorsitzender, Sessionkoordinator',
-                'bio' => 'Er wird uns bald mehr von sich erzählen.',
+                'bio' => 'Sven Wittig wurde 1966 in Karl- Marx- Stadt (heute wieder Chemnitz) geboren und begeisterte sich bereits als Jugendlicher für den Jazz im weitesten Sinne mit all seinen Facetten.
+                Er studierte Informatik in Dresden, Moskau und Stuttgart.<br/>
+                Dennoch blieben auch während des anschließenden Berufslebens der Jazz und die Mitwirkung in zahlreichen Ensembles und Bands immer die wichtigsten Konstanten im Leben des experimentierfreudigen, mittlerweile bayerisch-sächsichen Amateursaxofonisten.<br/>
+                Sven ist seit 2026 2. Vorsitzender des Vereins und Teil des Veranstaltungsteams.',
                 'pictureSrc' => 'app/images/people/sven.jpg',
                 'mail' => 'sven.wittig@jazzfreunde-ingolstadt.de',
             ],
             [
                 'name' => 'Manfred See',
                 'position' => 'Stellvertretender Vorsitzender, Sessionkoordinator',
-                'bio' => 'Er wird uns bald mehr von sich erzählen.',
+                'bio' => 'Manfred See entdeckte früh seine Leidenschaft für Musik, geprägt durch seinen Großvater, einen bekannten Augsburger Zitherspieler<br/>
+                Er begann mit klassischem Gitarrenunterricht und sammelte erste Bühnenerfahrungen als Gitarrist der Ingolstädter Rockband „Brainstorm“.<br/>
+                Anfang der 1980er-Jahre wandte er sich verstärkt den Holzblasinstrumenten zu und spielte Saxophon, Klarinette und Querflöte in verschiedenen Projekten, darunter „Yaqui Yagua“ und „United Cervelat“.<br/>
+                Seine musikalische Entwicklung führte ihn über Bigband-Erfahrungen an der Ingolstädter Musikschule und Workshops bei renommierten Jazzpädagogen bis zur Münchner Universitäts-Bigband unter Joe Viera,
+                mit der er in mehreren Städten auftrat. Ergänzt wurde sein Schaffen durch CD-Produktionen, Theatervertonungen sowie Engagements in Funk- und Coverbands.',
                 'pictureSrc' => 'app/images/people/manfred.jpg',
                 'mail' => 'manfred.see@jazzfreunde-ingolstadt.de',
             ],

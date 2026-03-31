@@ -2,6 +2,7 @@
 @import "./components/api.css";
 @import "@fortawesome/fontawesome-free";
 @import "@fortawesome/fontawesome-free/css/brands";
+@import "@fortawesome/fontawesome-free/css/regular";
 @import "@fortawesome/fontawesome-free/css/solid";
 
 @tailwind base;
