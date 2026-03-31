@@ -20,6 +20,7 @@ jobs:
   retrieve-project:
     name: check readiness
     runs-on: ubuntu-latest
+    if: github.repository == 'jazzfreunde-ingolstadt/homepage-php'
     outputs:
       deployment-enabled: ${{ fromJson(steps.project.outputs.info).deployment-enabled }}
       branch-id: ${{ fromJson(steps.project.outputs.info).branch-id }}
