@@ -27,11 +27,12 @@
 				<div class="basis-1/2">
 					<h5 class="my-3 uppercase">Adresse</h5>
 					<hr/>
-					<p class="mb-5 p-2">
-						<span class="whitespace-nowrap">Jazzfreunde Ingolstadt e. V.</span><br/>
-						<span class="whitespace-nowrap">Wallensteinstraße 79</span><br/>
-						<span class="whitespace-nowrap">85051 Ingolstadt</span>
-					</p>
+					{% include 'components/information/address.html.twig' with {
+						name: 'Jazzfreunde Ingolstadt e. V.',
+						street: 'Martin-Hemm-Str. 29a',
+						postalCode: '85053',
+						city: 'Ingolstadt',
+					} %}
 				</div>
 				<div class="basis-1/2">
 					<h5 class="my-3 uppercase">Information</h5>
