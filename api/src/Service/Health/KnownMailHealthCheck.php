@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Jazzfreunde\App\Service\Health;
 
 use Doctrine\Persistence\ManagerRegistry;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Jazzfreunde\App\Entity\KnownMail;
 use Jazzfreunde\App\Type\Enum\HealthStatusEnum;
 use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
@@ -15,8 +17,10 @@ use Override;
  *
  * @psalm-api
  */
-final class KnownMailHealthCheck implements HealthCheckInterface
+final class KnownMailHealthCheck implements HealthCheckInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     public function __construct(
         private readonly ManagerRegistry $doctrine,
     ) {}
@@ -33,12 +37,14 @@ final class KnownMailHealthCheck implements HealthCheckInterface
             $knownMails,
         );
 
+        $status = HealthStatusEnum::Healthy;
         foreach (KnownMailHandleEnum::cases() as $handle) {
             if (!in_array($handle, $configuredHandles, true)) {
-                return HealthStatusEnum::Degraded;
+                $status = HealthStatusEnum::Degraded;
+                $this->logger?->error(sprintf('Known mail handle "%s" is not configured.', $handle->value));
             }
         }
 
-        return HealthStatusEnum::Healthy;
+        return $status;
     }
 }
