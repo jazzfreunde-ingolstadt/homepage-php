@@ -1,0 +1,10 @@
+---
+import { Heading } from '@michemayer/astro-components/components'
+import * as styles from './h.css'
+
+const { 'class:list': classList, ...props } = Astro.props
+---
+
+<Heading {...props} level="1" as="h1" class:list={[styles.heading, classList]}>
+  <slot />
+</Heading>

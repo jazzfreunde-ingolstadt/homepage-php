@@ -1,7 +1,13 @@
 ---
-import BaseHead from '@components/meta/BaseHead.astro'
-import { themesClasses } from '@styles/themes'
-import * as styles from './BaseLayout.css'
+import { Head } from '@michemayer/astro-components/components'
+import ThemeProvider from '@components/providers/ThemeProvider.astro'
+import type { Favicon } from '@michemayer/astro-components/models'
+import * as styles from './BaseLayout.css.ts'
+import { fontFaces } from '@/themes/font-faces.css'
+
+// Import the global.css file here so that it is included on
+// all pages through the use of the <BaseLayout /> component.
+import '@/global.css'
 
 interface Props {
   title: string
@@ -9,17 +15,28 @@ interface Props {
   image?: string
 }
 
+const favicon: Favicon = {
+  type: 'image/png',
+  href: '/favicon.png',
+}
+
 const { title, description, image = 'full-logo-with-background.png' } = Astro.props
 ---
 
-<html lang="de-DE">
-  <head>
-    <BaseHead title={title} description={description} image={image} />
-  </head>
-
-  <body class:list={[themesClasses.default, styles.wrapper]}>
-    <main>
-      <slot />
-    </main>
-  </body>
+<html lang="de">
+  <Head
+    title={title}
+    description={description}
+    image={image}
+    favicon={[favicon]}
+    fontFaces={fontFaces}
+  />
+  <ThemeProvider as="body" classNames={styles.wrapper}>
+    <div class={styles.stretchContent}>
+      <main>
+        <slot />
+      </main>
+    </div>
+  </ThemeProvider>
 </html>
+

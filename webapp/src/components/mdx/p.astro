@@ -1,0 +1,9 @@
+---
+import * as styles from './p.css'
+
+const { 'class:list': classList, ...props } = Astro.props
+---
+
+<p class:list={[classList, styles.paragraph]} {...props}>
+  <slot />
+</p>
