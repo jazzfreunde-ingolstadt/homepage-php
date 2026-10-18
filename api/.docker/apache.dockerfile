@@ -1,4 +1,4 @@
-ARG php_version="8.2"
+ARG php_version
 
 FROM php:${php_version}-apache
 

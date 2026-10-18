@@ -22,9 +22,10 @@ x-dev-buildargs: &dev-buildargs
     xdebugini_path: .docker/php/dev-xdebug.ini
     xdebug_logdir: /usr/project/api/var/logs
 
+name: jazzfreunde-dev-environment
 services:
     jazzfreunde-dev-environment:
-        container_name: jazzfreunde-dev-environment
+        container_name: jazzfreunde-dev-host
         build:
             context: ..
             dockerfile: .docker/dev-cli.dockerfile
