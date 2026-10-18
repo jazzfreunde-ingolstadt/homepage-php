@@ -47,9 +47,12 @@ final class HealthCheckController extends AbstractController
             }
         }
 
-        return $this->json([
-            'status' => $status->value,
-            'timestamp' => (new DateTimeImmutable())->format('Y-m-d H:i:s'),
-        ]);
+        return $this->json(
+            data: [
+                'status' => $status->value,
+                'timestamp' => (new DateTimeImmutable())->format('Y-m-d H:i:s'),
+            ],
+            status: $status === HealthStatusEnum::Healthy ? Response::HTTP_OK : Response::HTTP_SERVICE_UNAVAILABLE,
+        );
     }
 }
