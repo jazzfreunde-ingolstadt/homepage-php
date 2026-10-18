@@ -40,15 +40,11 @@
 
 			<div class="flex flex-col lg:flex-row justify-center gap-4 lg:gap-10">
 				{% if showCommunityLink %}
-					<a href="{{ whatsapp_community_link }}" target="_blank" rel="noopener noreferrer">
-						<div class="self-center my-2 md:my-5 p-3 w-48 md:w-52 lg:w-64 mx-auto border-2 border-blue rounded-lg shadow-md">
-							<img src="{{ qr_code_data_uri(whatsapp_community_link) }}" alt="QR Code zur WhatsApp Community" class="object-contain"/>
-							<div class="text-center font-bold text-md lg:text-lg p-3">
-								<span class="fa-brands fa-whatsapp inline-block align-middle mr-2"></span>
-								Zur Community
-							</div>
-						</div>
-					</a>
+					{% include 'components/qr-code-card.html.twig' with {
+						route: whatsapp_community_link,
+						label: 'Zur Community',
+						alt: 'QR Code zur WhatsApp Community'
+					} only %}
 				{% endif %}
 				<section class="flex-1">
 					<p class="py-2 md:py-5 text-justify">

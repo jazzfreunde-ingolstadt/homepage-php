@@ -13,6 +13,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -111,6 +112,7 @@ final class LoginLinkSecurityController extends AbstractController implements Lo
     #[Route('/new', name: 'new_login', methods: [Request::METHOD_POST])]
     public function generateNewLoginEmail(
         Request $request,
+        #[Autowire(service: 'security.user.provider.concrete.users')]
         UserProviderInterface $userProvider,
         LoginLinkHandlerInterface $loginLinkHandler,
         MessageBusInterface $bus
@@ -121,17 +123,25 @@ final class LoginLinkSecurityController extends AbstractController implements Lo
 
         try {
             $email = RequestHelper::getUserEmailFromPost($request);
-        } catch (InvalidArgumentException) {
+    } catch (InvalidArgumentException) {
             $this->addFlash('error', 'Die eingegebene E-Mail-Adresse ist ungültig.');
 
-            return $this->redirect($this->generateUrl('security_code_login'));
+            return $this->redirect($this->generateUrl('security_link_login'));
         }
 
         if (is_null($email)) {
             throw new LogicException('Email address is required for login.');
         }
 
-        $user = $userProvider->loadUserByIdentifier($email->value());
+        try {
+
+            $user = $userProvider->loadUserByIdentifier($email->value());
+        } catch (UserNotFoundException) {
+            $this->addFlash('error', 'Der Benutzer wurde nicht gefunden.');
+
+            return $this->redirect($this->generateUrl('security_link_login'));
+        }
+
         $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
         $loginLink = $loginLinkDetails->getUrl();
 
