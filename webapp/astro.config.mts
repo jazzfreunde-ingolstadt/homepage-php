@@ -5,8 +5,11 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
 	site: 'https://jazzfreunde-ingolstadt.de',
-	vite:{
-		plugins:[
+	vite: {
+		resolve: {
+			tsconfigPaths: true,
+		},
+		plugins: [
 			vanillaExtractPlugin({
 			})
 		],

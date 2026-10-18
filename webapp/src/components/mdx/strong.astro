@@ -1,0 +1,6 @@
+---
+import * as styles from './strong.css'
+
+const { 'class:list': classList, ...props } = Astro.props
+---
+<strong class:list={[classList, styles.strong]} {...props}><slot /></strong>

@@ -1,0 +1,20 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types'
+import type { DefaultComponentProps } from '@michemayer/astro-components/models'
+import colorTheme from "@themes/colors.css";
+import typographyTheme from "@themes/typography.css";
+import * as styles from "./ThemeProvider.css";
+
+export type Props<Tag extends HTMLTag = 'div'> = Polymorphic<{ as: Tag }> & DefaultComponentProps & {
+}
+
+const {
+    as: HtmlElement = 'div',
+    classNames,
+    ...props
+} = Astro.props
+---
+
+<HtmlElement class:list={[colorTheme, typographyTheme, styles.applyColors, classNames]} {...props}>
+    <slot />
+</HtmlElement>
