@@ -1,7 +1,7 @@
-ARG php_version="8.2"
-ARG node_version="24"
-
+ARG php_version
 FROM php:${php_version}-cli
+
+ARG node_version
 
 ARG project_dir
 ARG phpini_path
@@ -52,9 +52,9 @@ RUN apt-get install -y libldap2-dev \
 RUN docker-php-ext-install opcache
 
 # Install Node and npm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-RUN nvm install v${node_version}
-RUN nvm alias default v${node_version}
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+RUN nvm install ${node_version}
+RUN nvm alias default ${node_version}
 RUN npm install -g npm
 
 # xDebug
