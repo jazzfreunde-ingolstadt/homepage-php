@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * ```sql
  *  # Befehl zum Anlegen eines neuen Nutzers
  *  INSERT INTO `users` (`uuid`, `email`, `token`)
- *      VALUES (UNHEX(REPLACE(UUID(), '-', '')), 'new.user@jazzfreunde-ingolstadt.localhost', SUBSTRING(MD5(CONCAT(uuid, request_time)), 1, 32))
+ *      VALUES (UNHEX(REPLACE(UUID(), '-', '')), 'new.user@jazzfreunde-ingolstadt.localhost', SUBSTRING(MD5(CONCAT(uuid, NOW())), 1, 32))
  * ```
  *
  * @psalm-api

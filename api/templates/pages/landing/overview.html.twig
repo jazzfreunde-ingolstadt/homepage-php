@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'Landingpages' %}
+
+{% block header_element %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/ambient/session-saturated2.jpg') } %}
+		{% block intro %}
+			{% include 'typography/intro-titel.html.twig' with { titel: 'Landingpages' } %}
+			{% include 'typography/intro-subtitel.html.twig' with { titel: 'Übersicht der verfügbaren Landingpages' } %}
+		{% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block content %}
+	{% embed '@layout/container.html.twig' %}
+		{% block content %}
+			<section class="py-5 md:py-10">
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					{% for landingPage in landingPages %}
+						<div class="text-center">
+							{% include 'components/qr-code-card.html.twig' with {
+								route: absolute_url(path(landingPage.route)),
+								label: landingPage.title,
+								alt: 'QR-Code für ' ~ landingPage.title
+							} only %}
+							<p class="pt-2">{{ landingPage.description }}</p>
+						</div>
+					{% endfor %}
+				</div>
+			</section>
+		{% endblock %}
+	{% endembed %}
+
+	{% include 'components/footer-spacer.html.twig' %}
+{% endblock %}

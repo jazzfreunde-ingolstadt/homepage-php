@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'Socials' %}
+
+{% block header_element %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset(random_image('app/images/ambient/')|default('app/images/fulllogo.svg')) } %}
+		{% block intro %}
+			<section class="py-5 md:py-10">
+				<div class="max-w-xl mx-auto">
+					{% embed 'components/util/message-box.html.twig' %}
+						{% block box_content %}
+							<h1 class="text-2xl font-bold text-center mb-6">Folgen Sie uns</h1>
+							<ul class="flex flex-col gap-3">
+								<li>
+									<a href="{{ path('home') }}" class="bg-orange hover:bg-yellow text-white font-bold py-3.5 px-4 rounded focus:outline-none focus:shadow-outline flex items-center gap-3 text-lg">
+										<i class="fa-solid fa-globe w-6 text-center text-xl" aria-hidden="true"></i>
+										Webseite
+									</a>
+								</li>
+								<li>
+									<a href="#newsletter-subscription-widget" class="flex items-center gap-3 p-3 rounded border-2 border-blue hover:bg-grey-light font-bold text-lg">
+										<i class="fa-solid fa-envelope w-6 text-center text-xl" aria-hidden="true"></i>
+										Newsletter
+									</a>
+								</li>
+								<li>
+									<a href="https://www.instagram.com/jazzfreunde_ingolstadt_e_v/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded border-2 border-blue hover:bg-grey-light font-bold text-lg">
+										<i class="fa-brands fa-instagram w-6 text-center text-xl" aria-hidden="true"></i>
+										Instagram
+									</a>
+								</li>
+								<li>
+									<a href="https://de-de.facebook.com/Wewerkarl/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded border-2 border-blue hover:bg-grey-light font-bold text-lg">
+										<i class="fa-brands fa-facebook w-6 text-center text-xl" aria-hidden="true"></i>
+										Facebook
+									</a>
+								</li>
+							</ul>
+						{% endblock %}
+					{% endembed %}
+				</div>
+			</section>
+		{% endblock %}
+	{% endembed %}
+{% endblock %}

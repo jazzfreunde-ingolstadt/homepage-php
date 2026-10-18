@@ -166,6 +166,35 @@
             }
         },
         {
+            "label": "Lint Twig templates",
+            "type": "shell",
+            "group": "test",
+            "command": "bin/console",
+            "args": [
+                "lint:twig"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "problemMatcher": {
+                "owner": "twig",
+                "source": "twig",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "pattern": {
+                    "regexp": "^\\s*ERROR\\s+in\\s+(.+?)\\s+\\(line\\s+(?:(\\d+)|-1)\\)$",
+                    "file": 1,
+                    "line": 2,
+                    "message": 0,
+                    "severity": "error"
+                }
+            },
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
             "label": "Check PHP Syntax",
             "type": "shell",
             "group": "build",

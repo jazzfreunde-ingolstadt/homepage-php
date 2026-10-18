@@ -13,14 +13,14 @@ use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
- * Routing Controller für die Website.
+ * All content pages of the website.
  *
  * @psalm-api
  */
 final class AppRoutingController extends AbstractController
 {
     /**
-     * Startseite.
+     * Home page.
      *
      * @return Response
      */
@@ -33,7 +33,7 @@ final class AppRoutingController extends AbstractController
     }
 
     /**
-     * Informationen zum Verein.
+     * Information about the association.
      *
      * @return Response
      */
@@ -112,7 +112,7 @@ final class AppRoutingController extends AbstractController
     }
 
     /**
-     * Mitglied werden.
+     * Become a member.
      *
      * @return Response
      */
@@ -125,7 +125,7 @@ final class AppRoutingController extends AbstractController
     }
 
     /**
-     * Datenschutzbestimmung.
+     * Privacy policy.
      *
      * @return Response
      */
@@ -138,7 +138,7 @@ final class AppRoutingController extends AbstractController
     }
 
     /**
-     * Datenschutzbestimmung Social Media.
+     * Privacy policy Social Media.
      *
      * @return Response
      */
@@ -151,7 +151,7 @@ final class AppRoutingController extends AbstractController
     }
 
     /**
-     * Datenschutzbestimmung.
+     * Privacy policy.
      *
      * @return Response
      */
@@ -164,7 +164,7 @@ final class AppRoutingController extends AbstractController
     }
 
     /**
-     * Vereinssatzung.
+     * Association's statute.
      *
      * @return Response
      */
@@ -177,7 +177,7 @@ final class AppRoutingController extends AbstractController
     }
 
     /**
-     * Veranstaltungen.
+     * Events.
      *
      * @return Response
      */

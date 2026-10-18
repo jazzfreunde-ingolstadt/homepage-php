@@ -1,0 +1,10 @@
+<article class="self-center my-2 md:my-5 p-3 w-48 md:w-52 lg:w-64 mx-auto border-2 border-blue rounded-lg shadow-md">
+	<a href="{{ route }}" target="_blank" rel="noopener noreferrer">
+		<img
+			src="{{ qr_code_data_uri(route) }}"
+			alt="{{ alt }}"
+			class="object-contain"
+		/>
+		<div class="text-center font-bold text-md lg:text-lg p-3">{{ label }}</div>
+	</a>
+</article>

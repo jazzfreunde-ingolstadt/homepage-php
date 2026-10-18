@@ -55,7 +55,9 @@
         "symfony/workflow": "^7.4",
         "symfony/yaml": "^7.4",
         "thecodingmachine/safe": "^3.0",
+        "twig/cssinliner-extra": "^3.26",
         "twig/extra-bundle": "^3.21",
+        "twig/inky-extra": "^3.26",
         "twig/markdown-extra": "^3.21"
     },
     "require-dev": {
@@ -66,6 +68,7 @@
         "phpunit/phpunit": "12.5.23",
         "psalm/plugin-phpunit": "0.19.7",
         "psalm/plugin-symfony": "^5.3",
+        "symfony/web-profiler-bundle": "^7.4",
         "vimeo/psalm": "6.10.0"
     },
     "scripts": {
