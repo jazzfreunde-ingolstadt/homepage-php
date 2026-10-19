@@ -73,6 +73,14 @@ final class WriteConfirmationListenerTest extends TestCase
         $uut->target()->validateExistingSubscription($event);
 
         $this->assertSame(200, $event->getResponse()?->getStatusCode());
+        $this->assertSame(
+            NotificationSubscription::class,
+            $subscription->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS]
+        );
+        $this->assertSame(
+            $subscription->uuid,
+            $subscription->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID]
+        );
     }
 
     public function testConfirmedSubscriptionThrowsAlreadySubscribedError(): void
@@ -114,6 +122,15 @@ final class WriteConfirmationListenerTest extends TestCase
         $event = $this->newViewEvent($subscription);
 
         $uut->target()->startConfirmationProcess($event);
+
+        $this->assertSame(
+            NotificationSubscription::class,
+            $subscription->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS]
+        );
+        $this->assertSame(
+            $subscription->uuid,
+            $subscription->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID]
+        );
     }
 
     private function newApiSubscription(): NotificationSubscriptionApi
@@ -127,6 +144,7 @@ final class WriteConfirmationListenerTest extends TestCase
     private function newEntitySubscription(ConfirmationStateEnum $state): NotificationSubscription
     {
         $subscription = new NotificationSubscription();
+        $subscription->uuid = '00000000-0000-4000-8000-000000000001';
         $subscription->resourceScope = Uri::from('/events/123');
         $subscription->email = Email::from('test@mail.com');
         $subscription->confirmation = new ConfirmationContract();

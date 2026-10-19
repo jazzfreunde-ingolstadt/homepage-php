@@ -8,18 +8,15 @@ use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract\AwaitConfirmationContext;
-use Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract\AwaitConfirmationMetaData;
 use Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract\PendingMetaData;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\App\Service\Contract\ContractConfirmationRequestMailGeneratorInterface;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
 use Jazzfreunde\App\Type\Primitive\HexToken;
 use Jazzfreunde\App\Workflow\ConfirmationContract\TransitionsEnum;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Workflow\Attribute\AsEnteredListener;
 use Symfony\Component\Workflow\Attribute\AsEnterListener;
@@ -44,16 +41,18 @@ class ConfirmationContractListener implements LoggerAwareInterface
     public const string WORKFLOW_NAME = 'confirmation_contract';
 
     /**
-     * @param ManagerRegistry     $registry
-     * @param MessageBusInterface $bus
-     * @param ValidatorInterface  $validator
-     * @param WorkflowInterface   $confirmationContractStateMachine
+     * @param ManagerRegistry                                   $registry
+     * @param MessageBusInterface                               $bus
+     * @param ValidatorInterface                                $validator
+     * @param WorkflowInterface                                 $confirmationContractStateMachine
+     * @param ContractConfirmationRequestMailGeneratorInterface $mailGenerator
      */
     public function __construct(
         private ManagerRegistry $registry,
         private MessageBusInterface $bus,
         private ValidatorInterface $validator,
         private WorkflowInterface $confirmationContractStateMachine,
+        private ContractConfirmationRequestMailGeneratorInterface $mailGenerator,
     ) {}
 
     /**
@@ -75,31 +74,13 @@ class ConfirmationContractListener implements LoggerAwareInterface
             throw new LogicException('Invalid subject type');
         }
 
-        $transition = $event->getTransition();
-
-        if (is_null($transition)) {
-            throw new LogicException('Could not retrieve transition');
-        }
-
         $context = AwaitConfirmationContext::fromMetaData(
             validator: $this->validator,
             data: $event->getContext(),
         );
-        $metaData = AwaitConfirmationMetaData::fromMetaData(
-            validator: $this->validator,
-            data: $this->confirmationContractStateMachine
-                ->getDefinition()
-                ->getMetadataStore()
-                ->getTransitionMetadata($transition)
-        );
 
-        $this->bus->dispatch(new EmailNotification(
-            sender: KnownMailHandleEnum::NoReply,
-            recipient: new Address($context->email->__toString()),
-            subject: $metaData->email_subject,
-            twigTemplate: $metaData->email_template,
-            twigContext: ['token' => $contract->token]
-        ));
+        $message = $this->mailGenerator->generate($contract, $context->email);
+        $this->bus->dispatch($message);
     }
 
     /**

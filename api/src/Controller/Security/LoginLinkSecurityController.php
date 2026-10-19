@@ -123,7 +123,7 @@ final class LoginLinkSecurityController extends AbstractController implements Lo
 
         try {
             $email = RequestHelper::getUserEmailFromPost($request);
-    } catch (InvalidArgumentException) {
+        } catch (InvalidArgumentException) {
             $this->addFlash('error', 'Die eingegebene E-Mail-Adresse ist ungültig.');
 
             return $this->redirect($this->generateUrl('security_link_login'));
@@ -134,7 +134,6 @@ final class LoginLinkSecurityController extends AbstractController implements Lo
         }
 
         try {
-
             $user = $userProvider->loadUserByIdentifier($email->value());
         } catch (UserNotFoundException) {
             $this->addFlash('error', 'Der Benutzer wurde nicht gefunden.');

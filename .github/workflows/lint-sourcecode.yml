@@ -26,6 +26,9 @@ jobs:
       - name: "Run PHP Lint"
         run: bin/php-cs-fixer check
 
+      - name: "Run Twig Lint"
+        run: bin/console lint:twig
+
   static-code-analysis:
     name: "Static Code Analysis"
     runs-on: ubuntu-latest

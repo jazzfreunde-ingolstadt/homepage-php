@@ -131,6 +131,8 @@ final class UnitUnderTest
      *
      * @param string $name
      * @param mixed  $value
+     * 
+     * @psalm-suppress PossiblyUnusedMethod
      */
     public function configure(string $name, mixed $value): void
     {

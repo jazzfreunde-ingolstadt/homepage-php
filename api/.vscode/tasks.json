@@ -61,7 +61,7 @@
             },
         },
         {
-            "label": "build encore",
+            "label": "Build Encore",
             "type": "shell",
             "group": "build",
             "command": "npm run app:build:dev && npm run mail:build:dev",

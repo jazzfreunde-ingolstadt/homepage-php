@@ -144,8 +144,12 @@ final class EventNotificationLifecycleTest extends WebTestCase
         self::assertEmailCount(1);
         $confirmationEmail = self::getMailerMessage(0);
         self::assertNotNull($confirmationEmail);
-        self::assertEmailSubjectContains($confirmationEmail, 'Bestätigen Sie Ihre Newsletter Anmeldung');
+        self::assertEmailSubjectContains($confirmationEmail, 'Bitte bestätigen Sie Ihre Anmeldung für Benachrichtigungen');
         self::assertInstanceOf(TemplatedEmail::class, $confirmationEmail);
+        self::assertEmailHtmlBodyContains(
+            $confirmationEmail,
+            'Vielen Dank für Ihr Interesse an unseren Benachrichtigungen.'
+        );
 
         /** @var null|NotificationSubscription $subscription */
         $subscription = $this->registry->getRepository(NotificationSubscription::class)->findOneBy([

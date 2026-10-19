@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  * @psalm-api
  */
 #[AsEventListener(event: KernelEvents::VIEW, method: 'validateExistingSubscription', priority: EventPriorities::POST_VALIDATE)]
-#[AsEventListener(event: KernelEvents::VIEW, method: 'startConfirmationProcess', priority: EventPriorities::PRE_WRITE)]
+#[AsEventListener(event: KernelEvents::VIEW, method: 'startConfirmationProcess', priority: EventPriorities::POST_WRITE)]
 final class WriteConfirmationListener
 {
     /**
@@ -71,6 +71,8 @@ final class WriteConfirmationListener
             throw new AlreadySubscribedError();
         }
 
+        $existingSubscription->confirmation->setConfirmableEntity($existingSubscription);
+
         $this->confirmationContracts->restartEmailConfirmation(
             $existingSubscription->confirmation,
             $existingSubscription->email
@@ -101,6 +103,7 @@ final class WriteConfirmationListener
         }
 
         $confirmationContract = $controllerResult->confirmation;
+        $confirmationContract->setConfirmableEntity($controllerResult);
         $email = $controllerResult->email;
 
         $this->confirmationContracts->startEmailConfirmation(

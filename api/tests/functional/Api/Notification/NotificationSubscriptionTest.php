@@ -68,10 +68,19 @@ final class NotificationSubscriptionTest extends WebTestCase
         $contract = $subscription->confirmation;
         $this->assertNotNull($contract);
         $this->assertEquals($contract->state, ConfirmationStateEnum::Pending);
+        self::assertSame(
+            NotificationSubscription::class,
+            $contract->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS]
+        );
+        self::assertSame(
+            $subscription->uuid,
+            $contract->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID]
+        );
 
         $email = self::getMailerMessage();
         self::assertNotNull($email);
-        self::assertEmailSubjectContains($email, 'Bestätigen Sie Ihre Newsletter Anmeldung');
+        self::assertEmailSubjectContains($email, 'Bitte bestätigen Sie Ihre Anmeldung für Benachrichtigungen');
+        self::assertEmailHtmlBodyContains($email, 'Vielen Dank für Ihr Interesse an unseren Benachrichtigungen.');
     }
 
     /**
@@ -115,7 +124,7 @@ final class NotificationSubscriptionTest extends WebTestCase
 
         $email = self::getMailerMessage();
         self::assertNotNull($email);
-        self::assertEmailSubjectContains($email, 'Bestätigen Sie Ihre Newsletter Anmeldung');
+        self::assertEmailSubjectContains($email, 'Bitte bestätigen Sie Ihre Anmeldung für Benachrichtigungen');
     }
 
     /**

@@ -7,6 +7,7 @@ namespace JazzfreundeTests\App\Tests\Entity\Contract;
 use DateInterval;
 use DateTimeImmutable;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
@@ -20,6 +21,30 @@ use Symfony\Component\Validator\Validation;
  */
 final class ConfirmationContractTest extends TestCase
 {
+    public function testMetadataDefaultsToEmpty(): void
+    {
+        $contract = new ConfirmationContract();
+
+        $this->assertSame([], $contract->metadata);
+    }
+
+    public function testSetConfirmableEntityPreservesExistingMetadata(): void
+    {
+        $contract = new ConfirmationContract();
+        $contract->metadata = ['customKey' => 'customValue'];
+
+        $entity = new NewsletterSubscription();
+        $entity->uuid = 'f020db38-914c-4bb9-9990-017b7bf831ce';
+
+        $contract->setConfirmableEntity($entity);
+
+        $this->assertSame([
+            'customKey' => 'customValue',
+            ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS => NewsletterSubscription::class,
+            ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID => $entity->uuid,
+        ], $contract->metadata);
+    }
+
     /**
      * Test if the confirmation period has expired.
      */

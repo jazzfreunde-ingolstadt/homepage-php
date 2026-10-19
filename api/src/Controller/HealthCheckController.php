@@ -52,7 +52,7 @@ final class HealthCheckController extends AbstractController
                 'status' => $status->value,
                 'timestamp' => (new DateTimeImmutable())->format('Y-m-d H:i:s'),
             ],
-            status: $status === HealthStatusEnum::Healthy ? Response::HTTP_OK : Response::HTTP_SERVICE_UNAVAILABLE,
+            status: HealthStatusEnum::Healthy === $status ? Response::HTTP_OK : Response::HTTP_SERVICE_UNAVAILABLE,
         );
     }
 }
