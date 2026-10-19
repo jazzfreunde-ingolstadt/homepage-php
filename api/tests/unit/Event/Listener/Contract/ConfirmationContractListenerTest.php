@@ -11,7 +11,10 @@ use Doctrine\Persistence\ObjectManager;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Event\Listener\Contract\ConfirmationContractListener;
 use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\App\Service\Contract\ContractConfirmationRequestMailGeneratorInterface;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\App\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -19,6 +22,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Workflow\Definition;
 use Symfony\Component\Workflow\Event\EnteredEvent;
 use Symfony\Component\Workflow\Event\EnterEvent;
@@ -46,28 +50,34 @@ final class ConfirmationContractListenerTest extends TestCase
     {
         $contract = $this->newContract();
         $contract->state = ConfirmationStateEnum::Pending;
+        $mail = new EmailNotification(
+            sender: KnownMailHandleEnum::NoReply,
+            recipient: new Address('test@mail.com'),
+            subject: 'Bitte bestätigen Sie Ihre Anmeldung',
+            twigTemplate: 'email/contract/confirmation-request.html.twig',
+            twigContext: ['token' => $contract->token],
+        );
 
         $uut = new UnitUnderTest(ConfirmationContractListener::class);
+        $uut->mock(ContractConfirmationRequestMailGeneratorInterface::class)
+            ->expects($this->once())
+            ->method('generate')
+            ->with(
+                $contract,
+                $this->callback(static fn (Email $email): bool => 'test@mail.com' === $email->value())
+            )
+            ->willReturn($mail);
         $uut->mock(MessageBusInterface::class)
             ->expects($this->once())
             ->method('dispatch')
-            ->with($this->callback(function (EmailNotification $message) use ($contract): bool {
-                return 'Test subject' == $message->subject
-                    && 'test.html.twig' == $message->twigTemplate
-                    && $message->twigContext == ['token' => $contract->token];
-            }))
-            ->willReturn(new Envelope($this->strictMock(EmailNotification::class)));
-
-        $workflow = $this->mockWorkflow($uut, [
-            'email_subject' => 'Test subject',
-            'email_template' => 'test.html.twig',
-        ]);
+            ->with($mail)
+            ->willReturn(new Envelope($mail));
 
         $event = new TransitionEvent(
             subject: $contract,
             marking: $this->strictMock(Marking::class),
             transition: $this->strictMock(Transition::class),
-            workflow: $workflow,
+            workflow: $this->strictMock(WorkflowInterface::class),
             context: [
                 'email' => 'test@mail.com',
             ],

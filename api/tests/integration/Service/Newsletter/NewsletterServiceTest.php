@@ -61,6 +61,15 @@ final class NewsletterServiceTest extends KernelTestCase
         $email = self::getMailerMessage();
         self::assertNotNull($email);
         self::assertEmailSubjectContains($email, 'Bestätigen Sie Ihre Newsletter Anmeldung');
+        self::assertSame(
+            NewsletterSubscription::class,
+            $created->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS]
+        );
+        self::assertSame(
+            $created->uuid,
+            $created->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID]
+        );
+        self::assertEmailHtmlBodyContains($email, 'Vielen Dank für Ihr Interesse am Jazzfreunde-Newsletter.');
     }
 
     /**

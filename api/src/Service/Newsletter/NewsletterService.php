@@ -77,6 +77,7 @@ final class NewsletterService
             $entityManager->persist($subscription);
             $entityManager->flush();
 
+            $subscription->confirmation->setConfirmableEntity($subscription);
             $this->confirmationContracts->startEmailConfirmation(
                 $subscription->confirmation,
                 $subscription->email
@@ -130,6 +131,7 @@ final class NewsletterService
             throw new SubscriptionException(code: SubscriptionException::ALREADY_SUBSCRIBED);
         }
 
+        $subscription->confirmation->setConfirmableEntity($subscription);
         $this->confirmationContracts->restartEmailConfirmation(
             $subscription->confirmation,
             $subscription->email

@@ -39,7 +39,7 @@ final class LandingPageController extends AbstractController
                         'title' => 'Jazztage 2026',
                         'description' => 'Informationen zu den Jazztagen 2026.',
                         'route' => 'landing_pages_jazztage_2026',
-                    ]
+                    ],
                 ],
             ]
         );

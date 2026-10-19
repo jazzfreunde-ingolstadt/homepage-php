@@ -13,6 +13,7 @@ use Jazzfreunde\App\Entity\Type\String\HexTokenType;
 use Jazzfreunde\App\Repository\ConfirmationContractRepository;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Primitive\HexToken;
+use LogicException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -25,6 +26,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ConfirmationContract
 {
     use PropertyInjectionTrait;
+
+    public const string METADATA_CONFIRMABLE_ENTITY_CLASS = 'confirmableEntityClass';
+
+    public const string METADATA_CONFIRMABLE_ENTITY_UUID = 'confirmableEntityUuid';
 
     /**
      * Unique identifier in the database.
@@ -67,6 +72,14 @@ class ConfirmationContract
     public ?DateTimeImmutable $expirationTime = null;
 
     /**
+     * Metadata containing additional information about the confirmation contract.
+     *
+     * @var array<string, mixed>
+     */
+    #[ORM\Column(type: 'json')]
+    public array $metadata = [];
+
+    /**
      * State of the confirmation contract.
      *
      * @var ConfirmationStateEnum
@@ -86,6 +99,20 @@ class ConfirmationContract
         $params['requestTime'] ??= new DateTimeImmutable();
         $params['token'] ??= new HexToken();
         $this->injectProperties($params);
+    }
+
+    /**
+     * Store the identity of the entity that owns this confirmation contract.
+     *
+     * @throws LogicException if the confirmable entity has not been persisted
+     */
+    public function setConfirmableEntity(ConfirmableEntity $entity): void
+    {
+        $uuid = $entity->uuid
+            ?? throw new LogicException('Cannot associate a confirmation contract with an unpersisted entity.');
+
+        $this->metadata[self::METADATA_CONFIRMABLE_ENTITY_CLASS] = $entity::class;
+        $this->metadata[self::METADATA_CONFIRMABLE_ENTITY_UUID] = $uuid;
     }
 
     /**

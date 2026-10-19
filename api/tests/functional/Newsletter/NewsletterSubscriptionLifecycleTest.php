@@ -80,7 +80,7 @@ final class NewsletterSubscriptionLifecycleTest extends WebTestCase
         $this->client->request(Request::METHOD_GET, '/newsletter/newsletter_confirm/'.$token);
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('body', 'Newsletter abonniert!');
+        $this->assertSelectorTextContains('body', 'Anmeldung bestätigt!');
         self::assertSame(ConfirmationStateEnum::Confirmed, $this->findSubscription()->confirmation->state);
     }
 
