@@ -42,13 +42,18 @@ final class ConfirmationContractRepository extends ServiceEntityRepository imple
         $connection->beginTransaction();
 
         try {
-            $cutoff = new DateTimeImmutable('-7 days');
+            // Make sure this interval is not shorter than the confirmation workflow token lifetime.
+            $now = new DateTimeImmutable();
+            $cutoff = $now->modify('-7 days');
 
             $queryBuilder = $this->createQueryBuilder('contract');
             $queryBuilder
                 ->delete(ConfirmationContract::class, 'contract')
+                ->where('contract.expirationTime IS NULL')
                 ->andWhere('contract.requestTime < :cutoff')
                 ->andWhere('contract.state != :confirmedState')
+                ->orWhere('contract.expirationTime < :now')
+                ->setParameter('now', $now)
                 ->setParameter('cutoff', $cutoff)
                 ->setParameter('confirmedState', ConfirmationStateEnum::Confirmed)
                 ->getQuery()

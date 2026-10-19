@@ -64,7 +64,8 @@ final class EventNotificationLifecycleTest extends WebTestCase
     public function testEventNotificationSubscriptionLifecycle(): void
     {
         $resourceScope = $this->createDueEvent(self::EVENT_TITLE);
-        $token = $this->requestSubscription(self::SUBSCRIBER_EMAIL, $resourceScope);
+        $expirationTime = new DateTimeImmutable('+3 days', new DateTimeZone('Europe/Berlin'));
+        $token = $this->requestSubscription(self::SUBSCRIBER_EMAIL, $resourceScope, $expirationTime);
         $subscriptionRepository = $this->confirmSubscription(
             self::SUBSCRIBER_EMAIL,
             $resourceScope,
@@ -74,6 +75,24 @@ final class EventNotificationLifecycleTest extends WebTestCase
         $this->assertAlreadySubscribedRequestIsRejected(self::SUBSCRIBER_EMAIL, $resourceScope);
         $this->dispatchEventNotification(self::EVENT_TITLE);
         $this->cancelSubscription($subscriptionRepository, $resourceScope, $token);
+    }
+
+    public function testSubscriptionRejectsExpirationTimeBeforeRequestTime(): void
+    {
+        $resourceScope = $this->createDueEvent('Event With Invalid Expiration');
+
+        $this->client->request(
+            Request::METHOD_POST,
+            '/api/notifications',
+            server: ['CONTENT_TYPE' => 'application/json'],
+            content: json_encode([
+                'resourceScope' => $resourceScope,
+                'email' => 'invalid-expiration@example.test',
+                'expirationTime' => (new DateTimeImmutable('-1 day'))->format(DATE_ATOM),
+            ], flags: JSON_THROW_ON_ERROR),
+        );
+
+        $this->assertResponseStatusCodeSame(422);
     }
 
     private function createDueEvent(string $eventTitle): string
@@ -105,8 +124,11 @@ final class EventNotificationLifecycleTest extends WebTestCase
         return '/events/'.$event->id;
     }
 
-    private function requestSubscription(string $subscriberEmail, string $resourceScope): string
-    {
+    private function requestSubscription(
+        string $subscriberEmail,
+        string $resourceScope,
+        DateTimeImmutable $expirationTime,
+    ): string {
         $this->client->request(
             Request::METHOD_POST,
             '/api/notifications',
@@ -114,6 +136,7 @@ final class EventNotificationLifecycleTest extends WebTestCase
             content: json_encode([
                 'resourceScope' => $resourceScope,
                 'email' => $subscriberEmail,
+                'expirationTime' => $expirationTime->format(DATE_ATOM),
             ], flags: JSON_THROW_ON_ERROR),
         );
 
@@ -130,6 +153,11 @@ final class EventNotificationLifecycleTest extends WebTestCase
         ]);
         self::assertNotNull($subscription);
         self::assertSame(ConfirmationStateEnum::Pending, $subscription->confirmation->state);
+        self::assertNotNull($subscription->confirmation->expirationTime);
+        self::assertSame(
+            $expirationTime->getTimestamp(),
+            $subscription->confirmation->expirationTime->getTimestamp(),
+        );
 
         return $subscription->confirmation->token->value();
     }

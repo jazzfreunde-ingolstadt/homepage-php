@@ -4,20 +4,40 @@
  */
 
 export interface paths {
-    "/api/already_subscribed_errors": {
+    "/api/contracts/cancel/{token}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /**
-         * Retrieves a AlreadySubscribedError resource.
-         * @description Retrieves a AlreadySubscribedError resource.
-         */
-        get: operations["api_already_subscribed_errors_get"];
+        get?: never;
         put?: never;
         post?: never;
+        /**
+         * Removes the Contracts resource.
+         * @description Removes the Contracts resource.
+         */
+        delete: operations["cancel"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/contracts/confirm/{token}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Creates a Contracts resource.
+         * @description Creates a Contracts resource.
+         */
+        post: operations["confirm"];
         delete?: never;
         options?: never;
         head?: never;
@@ -74,17 +94,17 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Creates a NotificationSubscription resource.
-         * @description Creates a NotificationSubscription resource.
+         * Creates a Notification Subscriptions resource.
+         * @description Creates a Notification Subscriptions resource.
          */
-        post: operations["api_notification_subscriptions_post"];
+        post: operations["api_notifications_post"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/api/retry_subscribing_errors": {
+    "/api/problems/already_subscribed_errors": {
         parameters: {
             query?: never;
             header?: never;
@@ -92,10 +112,50 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Retrieves a RetrySubscribingError resource.
-         * @description Retrieves a RetrySubscribingError resource.
+         * Retrieves a AlreadySubscribedError resource.
+         * @description Retrieves a AlreadySubscribedError resource.
          */
-        get: operations["api_retry_subscribing_errors_get"];
+        get: operations["api_problemsalready_subscribed_errors_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/problems/confirmation_contract_not_found_errors": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a ConfirmationContractNotFoundError resource.
+         * @description Retrieves a ConfirmationContractNotFoundError resource.
+         */
+        get: operations["api_problemsconfirmation_contract_not_found_errors_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/problems/confirmation_period_expired_errors": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a ConfirmationPeriodExpiredError resource.
+         * @description Retrieves a ConfirmationPeriodExpiredError resource.
+         */
+        get: operations["api_problemsconfirmation_period_expired_errors_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -108,11 +168,15 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * @description Error when a subscription already exists for the given email and resource scope.
+         *     This indicates that the user has already subscribed to notifications for this resource.
+         */
         AlreadySubscribedError: {
             /** @default  */
-            readonly message: string;
+            message: string;
             /** @default 0 */
-            readonly code: number;
+            code: number;
             /** @default  */
             readonly file: string;
             /** @default 0 */
@@ -123,7 +187,45 @@ export interface components {
             readonly detail?: string | null;
             readonly instance?: string | null;
             readonly trace?: (string | null)[];
-            readonly previous?: components["schemas"]["Throwable"] | null;
+            previous?: components["schemas"]["Throwable"] | null;
+            readonly traceAsString?: string;
+        };
+        /** @description Error when a confirmation contract cannot be found. */
+        ConfirmationContractNotFoundError: {
+            /** @default  */
+            message: string;
+            /** @default 0 */
+            code: number;
+            /** @default  */
+            readonly file: string;
+            /** @default 0 */
+            readonly line: number;
+            readonly type?: string;
+            readonly title?: string | null;
+            readonly status?: number | null;
+            readonly detail?: string | null;
+            readonly instance?: string | null;
+            readonly trace?: (string | null)[];
+            previous?: components["schemas"]["Throwable"] | null;
+            readonly traceAsString?: string;
+        };
+        /** @description Error when the confirmation period for a contract has expired. */
+        ConfirmationPeriodExpiredError: {
+            /** @default  */
+            message: string;
+            /** @default 0 */
+            code: number;
+            /** @default  */
+            readonly file: string;
+            /** @default 0 */
+            readonly line: number;
+            readonly type?: string;
+            readonly title?: string | null;
+            readonly status?: number | null;
+            readonly detail?: string | null;
+            readonly instance?: string | null;
+            readonly trace?: (string | null)[];
+            previous?: components["schemas"]["Throwable"] | null;
             readonly traceAsString?: string;
         };
         /** @description A representation of common errors. */
@@ -142,7 +244,7 @@ export interface components {
             /** @description A URI reference that identifies the problem type */
             readonly type?: string;
         };
-        /** @description API resource for planned events (e.g., concerts, meetings, etc.) */
+        /** @description API resource for planned events (e.g., concerts, meetings, etc.). */
         Event: {
             id: number;
             title: string;
@@ -153,13 +255,10 @@ export interface components {
             location: components["schemas"]["EventLocation"];
             subtitle?: string | null;
             link?: string | null;
-            /**
-             * @default none
-             * @enum {string}
-             */
+            /** @enum {string} */
             category: "none" | "session" | "jazztage" | "jazz-and-literature";
         };
-        /** @description API resource for planned events (e.g., concerts, meetings, etc.) */
+        /** @description API resource for planned events (e.g., concerts, meetings, etc.). */
         "Event.html": {
             id: number;
             title: string;
@@ -170,53 +269,40 @@ export interface components {
             location: components["schemas"]["EventLocation.html"];
             subtitle?: string | null;
             link?: string | null;
-            /**
-             * @default none
-             * @enum {string}
-             */
+            /** @enum {string} */
             category: "none" | "session" | "jazztage" | "jazz-and-literature";
         };
         EventLocation: {
             readonly id?: number;
             name: string;
-            value?: string;
         };
         "EventLocation.html": {
             readonly id?: number;
             name: string;
-            value?: string;
         };
-        /** @description Subscription for any type of notifications */
-        NotificationSubscription: {
+        /** @description Subscription for any type of notifications. */
+        "Notification.Subscriptions": {
             /** @example /events/123 */
             resourceScope: string;
             /** Format: email */
             email: string;
+            /**
+             * Format: date-time
+             * @description Optional expiration time for this notification subscription.
+             */
+            expirationTime?: string | null;
         };
-        /** @description Subscription for any type of notifications */
-        "NotificationSubscription.html": {
+        /** @description Subscription for any type of notifications. */
+        "Notification.Subscriptions.html": {
             /** @example /events/123 */
             resourceScope: string;
             /** Format: email */
             email: string;
-        };
-        RetrySubscribingError: {
-            /** @default  */
-            readonly message: string;
-            /** @default 0 */
-            readonly code: number;
-            /** @default  */
-            readonly file: string;
-            /** @default 0 */
-            readonly line: number;
-            readonly type?: string;
-            readonly title?: string | null;
-            readonly status?: number | null;
-            readonly detail?: string | null;
-            readonly instance?: string | null;
-            readonly trace?: (string | null)[];
-            readonly previous?: components["schemas"]["Throwable"] | null;
-            readonly traceAsString?: string;
+            /**
+             * Format: date-time
+             * @description Optional expiration time for this notification subscription.
+             */
+            expirationTime?: string | null;
         };
         Throwable: {
             readonly message?: string;
@@ -236,33 +322,84 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    api_already_subscribed_errors_get: {
+    cancel: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                /** @description Contracts identifier */
+                token: string;
+            };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Not found */
+            /** @description Cancellation accepted. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Confirmation contract not found */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["Error"];
-                    "application/json": components["schemas"]["Error"];
+                    "application/problem+json": components["schemas"]["ConfirmationContractNotFoundError"];
+                    "application/json": components["schemas"]["ConfirmationContractNotFoundError"];
                 };
             };
-            /** @description AlreadySubscribedError resource */
-            409: {
+            /** @description Confirmation expired */
+            410: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["AlreadySubscribedError"];
-                    "application/json": components["schemas"]["AlreadySubscribedError"];
+                    "application/problem+json": components["schemas"]["ConfirmationPeriodExpiredError"];
+                    "application/json": components["schemas"]["ConfirmationPeriodExpiredError"];
+                };
+            };
+        };
+    };
+    confirm: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Contracts identifier */
+                token: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Confirmation accepted. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Confirmation contract not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ConfirmationContractNotFoundError"];
+                    "application/json": components["schemas"]["ConfirmationContractNotFoundError"];
+                };
+            };
+            /** @description Confirmation expired */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ConfirmationPeriodExpiredError"];
+                    "application/json": components["schemas"]["ConfirmationPeriodExpiredError"];
                 };
             };
         };
@@ -332,29 +469,36 @@ export interface operations {
             };
         };
     };
-    api_notification_subscriptions_post: {
+    api_notifications_post: {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description The new NotificationSubscription resource */
+        /** @description The new Notification Subscriptions resource */
         requestBody: {
             content: {
-                "application/json": components["schemas"]["NotificationSubscription"];
-                "text/html": components["schemas"]["NotificationSubscription.html"];
+                "application/json": components["schemas"]["Notification.Subscriptions"];
+                "text/html": components["schemas"]["Notification.Subscriptions.html"];
             };
         };
         responses: {
-            /** @description NotificationSubscription resource created */
+            /** @description Restarted unfinalized subscription. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Subscription created. */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["NotificationSubscription"];
-                    "text/html": components["schemas"]["NotificationSubscription.html"];
+                    "application/json": components["schemas"]["Notification.Subscriptions"];
+                    "text/html": components["schemas"]["Notification.Subscriptions.html"];
                 };
             };
             /** @description Already subscribed */
@@ -369,7 +513,7 @@ export interface operations {
             };
         };
     };
-    api_retry_subscribing_errors_get: {
+    api_problemsalready_subscribed_errors_get: {
         parameters: {
             query?: never;
             header?: never;
@@ -388,14 +532,66 @@ export interface operations {
                     "application/json": components["schemas"]["Error"];
                 };
             };
-            /** @description RetrySubscribingError resource */
+            /** @description AlreadySubscribedError resource */
             409: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["RetrySubscribingError"];
-                    "application/json": components["schemas"]["RetrySubscribingError"];
+                    "application/problem+json": components["schemas"]["AlreadySubscribedError"];
+                    "application/json": components["schemas"]["AlreadySubscribedError"];
+                };
+            };
+        };
+    };
+    api_problemsconfirmation_contract_not_found_errors_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ConfirmationContractNotFoundError resource */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ConfirmationContractNotFoundError"];
+                    "application/json": components["schemas"]["ConfirmationContractNotFoundError"];
+                };
+            };
+        };
+    };
+    api_problemsconfirmation_period_expired_errors_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description ConfirmationPeriodExpiredError resource */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ConfirmationPeriodExpiredError"];
+                    "application/json": components["schemas"]["ConfirmationPeriodExpiredError"];
                 };
             };
         };

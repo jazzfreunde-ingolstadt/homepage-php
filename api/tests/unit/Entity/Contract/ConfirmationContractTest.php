@@ -9,6 +9,7 @@ use DateTimeImmutable;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Validation;
 
 /**
  * Test for email confirmation service.
@@ -29,6 +30,19 @@ final class ConfirmationContractTest extends TestCase
         $tokenLifeTime = DateInterval::createFromDateString('1 hour');
 
         $this->assertTrue($contract->isExpired($tokenLifeTime));
+    }
+
+    public function testExpirationTimeCannotPrecedeRequestTime(): void
+    {
+        $contract = new ConfirmationContract();
+        $contract->requestTime = new DateTimeImmutable('2026-10-18T12:00:00+00:00');
+        $contract->expirationTime = $contract->requestTime->modify('-1 second');
+
+        $validator = Validation::createValidatorBuilder()
+            ->enableAttributeMapping()
+            ->getValidator();
+
+        $this->assertCount(1, $validator->validateProperty($contract, 'expirationTime'));
     }
 
     /**

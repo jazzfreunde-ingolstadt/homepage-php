@@ -8,6 +8,7 @@ use ApiPlatform\Doctrine\Orm\State\Options;
 use ApiPlatform\Metadata as API;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
+use DateTimeImmutable;
 use Jazzfreunde\App\Entity\Notification\NotificationSubscription as NotificationEntity;
 use Jazzfreunde\App\Type\Primitive\Email;
 use Jazzfreunde\App\Type\Primitive\Uri;
@@ -73,5 +74,14 @@ final class NotificationSubscription
         #[Map(if: new TargetClass(NotificationEntity::class), transform: [Email::class, 'from'])]
         #[Map(if: new TargetClass(self::class), transform: [Email::class, 'value'])]
         public string $email,
+
+        /**
+         * Optional time after which this notification subscription expires.
+         *
+         * @var null|DateTimeImmutable
+         */
+        #[API\ApiProperty(description: 'Optional expiration time for this notification subscription.')]
+        #[Map(target: 'confirmation.expirationTime', source: 'confirmation.expirationTime')]
+        public ?DateTimeImmutable $expirationTime = null,
     ) {}
 }

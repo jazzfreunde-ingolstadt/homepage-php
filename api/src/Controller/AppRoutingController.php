@@ -151,6 +151,19 @@ final class AppRoutingController extends AbstractController
     }
 
     /**
+     * Privacy policy for notifications.
+     *
+     * @return Response
+     */
+    #[Route('/legal/end-user-agreement-notifications/', name: 'end-user-agreement-notifications', options: ['sitemap' => true])]
+    public function endUserAgreementNotifications(): Response
+    {
+        return $this->render(
+            '@pages/legal/end-user-agreement-notifications.html.twig',
+        );
+    }
+
+    /**
      * Privacy policy.
      *
      * @return Response
