@@ -4,9 +4,11 @@ import { useEventNotificationSubscription } from '@components/events/hooks/event
 
 interface EventNotificationSubscriptionProps {
     eventId: number | null
+    expirationTime: string | null
     isOpen: boolean
     onClose: () => void
     onSubscribed: (eventId: number) => void
+    notificationPrivacyUrl: string
 }
 
 /**
@@ -14,9 +16,11 @@ interface EventNotificationSubscriptionProps {
  */
 export const EventNotificationSubscription = ({
     eventId,
+    expirationTime,
     isOpen,
     onClose,
     onSubscribed,
+    notificationPrivacyUrl,
 }: EventNotificationSubscriptionProps) => {
     const [email, setEmail] = useState('')
     const dialogRef = useRef<HTMLDialogElement>(null)
@@ -27,7 +31,7 @@ export const EventNotificationSubscription = ({
         isSubmitting,
         reset,
         submitSubscription,
-    } = useEventNotificationSubscription(eventId)
+    } = useEventNotificationSubscription(eventId, expirationTime)
 
     useEffect(() => {
         const dialog = dialogRef.current
@@ -123,6 +127,17 @@ export const EventNotificationSubscription = ({
                             {error && <p role="alert" className="mt-3 text-red-700">{error}</p>}
                         </form>
                     )}
+                    <p className="mt-3 text-sm text-grey">
+                        Informationen zur Verarbeitung Ihrer Daten finden Sie in unserer{' '}
+                        <a
+                            href={notificationPrivacyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-bold text-blue underline"
+                        >
+                            Datenschutzerklärung für Benachrichtigungen
+                        </a>.
+                    </p>
                 </MessageBox>
             </dialog>
         </>

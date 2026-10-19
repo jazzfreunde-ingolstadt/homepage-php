@@ -16,3 +16,9 @@
 - All public methods must have PHPDoc comments describing their purpose, parameters, return type, and any exceptions they may throw.
 - All public properties must have PHPDoc comments describing their purpose and type.
 - Psalm annotations should be used to provide additional information that cannot be expressed using native PHPDoc.
+
+## API Documentation
+The API documentation is generated using the configured tooling. Run this command any time a change is made to the API code.
+```bash
+composer run-script api:generate && npm run api:generate
+```

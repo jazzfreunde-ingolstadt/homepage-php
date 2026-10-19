@@ -57,22 +57,38 @@ final class ConfirmationContractRepositoryTest extends KernelTestCase
             new DateTimeImmutable('-1 days'),
             ConfirmationStateEnum::Pending
         );
+        $this->createSubscription(
+            $registry,
+            'active-expiration-pending@test.com',
+            new DateTimeImmutable('-10 days'),
+            ConfirmationStateEnum::Pending,
+            new DateTimeImmutable('+1 day')
+        );
+        $this->createSubscription(
+            $registry,
+            'expired-expiration-confirmed@test.com',
+            new DateTimeImmutable('-1 day'),
+            ConfirmationStateEnum::Confirmed,
+            new DateTimeImmutable('-1 hour')
+        );
 
         /** @var ConfirmationContractRepository $contractRepository */
         $contractRepository = $container->get(ConfirmationContractRepository::class);
         $newsletterRepository = $registry->getRepository(NewsletterSubscription::class);
 
-        $this->assertCount(3, $contractRepository->findAll());
-        $this->assertCount(3, $newsletterRepository->findAll());
+        $this->assertCount(5, $contractRepository->findAll());
+        $this->assertCount(5, $newsletterRepository->findAll());
 
         $contractRepository->purgeVacantContracts();
 
-        $this->assertCount(2, $contractRepository->findAll());
-        $this->assertCount(2, $newsletterRepository->findAll());
+        $this->assertCount(3, $contractRepository->findAll());
+        $this->assertCount(3, $newsletterRepository->findAll());
 
         $this->assertNull($newsletterRepository->findOneBy(['email' => 'expired-pending@test.com']));
+        $this->assertNull($newsletterRepository->findOneBy(['email' => 'expired-expiration-confirmed@test.com']));
         $this->assertNotNull($newsletterRepository->findOneBy(['email' => 'expired-confirmed@test.com']));
         $this->assertNotNull($newsletterRepository->findOneBy(['email' => 'fresh-pending@test.com']));
+        $this->assertNotNull($newsletterRepository->findOneBy(['email' => 'active-expiration-pending@test.com']));
     }
 
     /**
@@ -82,7 +98,8 @@ final class ConfirmationContractRepositoryTest extends KernelTestCase
         ManagerRegistry $registry,
         string $email,
         DateTimeImmutable $requestTime,
-        ConfirmationStateEnum $state
+        ConfirmationStateEnum $state,
+        ?DateTimeImmutable $expirationTime = null,
     ): void {
         $subscription = new NewsletterSubscription();
         $subscription->email = new Email($email);
@@ -90,6 +107,7 @@ final class ConfirmationContractRepositoryTest extends KernelTestCase
 
         $confirmation = new ConfirmationContract();
         $confirmation->requestTime = $requestTime;
+        $confirmation->expirationTime = $expirationTime;
         $confirmation->state = $state;
         $subscription->confirmation = $confirmation;
 

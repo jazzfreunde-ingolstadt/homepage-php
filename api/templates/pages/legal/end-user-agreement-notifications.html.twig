@@ -1,0 +1,23 @@
+{% set title = 'Datenschutz für Benachrichtigungen' %}
+
+{% extends 'base.html.twig' %}
+
+{% block header_element %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/ambient/bonus-concert-bright1.jpg') } %}
+		{% block intro %}
+			{% include 'typography/intro-titel.html.twig' with { titel: 'Datenschutz für Benachrichtigungen' } %}
+		{% endblock %}
+	{% endembed %}
+{% endblock %}
+
+{% block content %}
+	{% embed '@layout/container.html.twig' %}
+		{% block content %}
+			<section class="py-5 md:py-10">
+				{{ include('@markdown/legal/end-user-agreement-notifications.md.twig')|markdown_to_html }}
+			</section>
+		{% endblock %}
+	{% endembed %}
+
+	{% include "components/footer-spacer.html.twig" %}
+{% endblock %}

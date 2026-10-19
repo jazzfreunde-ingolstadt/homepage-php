@@ -38,7 +38,10 @@ export const useUpcommingEvents = () => {
   }
 }
 
-export const useEventNotificationSubscription = (eventId: number | null) => {
+export const useEventNotificationSubscription = (
+  eventId: number | null,
+  expirationTime: string | null,
+) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -51,7 +54,7 @@ export const useEventNotificationSubscription = (eventId: number | null) => {
   const submitSubscription = async (email: string): Promise<'subscribed' | 'already-subscribed' | null> => {
     setError(null)
 
-    if (eventId == null) {
+    if (eventId == null || expirationTime == null) {
       setError('Für diese Veranstaltung können derzeit keine Benachrichtigungen angefordert werden.')
       return null
     }
@@ -69,6 +72,7 @@ export const useEventNotificationSubscription = (eventId: number | null) => {
         json: {
           resourceScope: `/events/${eventId}`,
           email,
+          expirationTime,
         },
       })
       setIsSubmitted(true)

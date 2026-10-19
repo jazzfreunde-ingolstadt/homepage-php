@@ -17,6 +17,10 @@
 				<div class="relative flex-none">{{ form_widget(subscription_form.subscribe, { attr: { class: 'bg-orange hover:bg-yellow text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' } }) }}</div>
 			</div>
 			{{ form_end(subscription_form) }}
+			<p class="mt-3 text-sm text-grey">
+				Informationen zur Verarbeitung Ihrer Daten finden Sie in unserer
+				<a href="{{ url('end-user-agreement-notifications') }}" target="_blank" rel="noopener noreferrer" class="font-bold text-blue underline">Datenschutzerklärung für Benachrichtigungen</a>.
+			</p>
 		</div>
 	{% endblock %}
 {% endembed %}

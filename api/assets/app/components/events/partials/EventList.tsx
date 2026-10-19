@@ -8,6 +8,7 @@ export interface EventListProps {
      * The events to display
      */
     events: Event[]
+    notificationPrivacyUrl: string
 }
 
 /**
@@ -15,8 +16,8 @@ export interface EventListProps {
  * @param events The events to display
  * @returns A list of events
  */
-export default ({ events }: EventListProps) => {
-    const [notificationEventId, setNotificationEventId] = useState<number | null>(null)
+export default ({ events, notificationPrivacyUrl }: EventListProps) => {
+    const [notificationEvent, setNotificationEvent] = useState<Event | null>(null)
     const [subscribedEventIds, setSubscribedEventIds] = useState<Set<number>>(() => new Set())
 
     return (
@@ -26,14 +27,16 @@ export default ({ events }: EventListProps) => {
                     key={event.id}
                     event={event}
                     isSubscribed={subscribedEventIds.has(event.id)}
-                    onNotify={setNotificationEventId}
+                    onNotify={setNotificationEvent}
                 />
             ))}
             <EventNotificationSubscription
-                eventId={notificationEventId}
-                isOpen={notificationEventId !== null}
-                onClose={() => setNotificationEventId(null)}
+                eventId={notificationEvent?.id ?? null}
+                expirationTime={notificationEvent?.end ?? null}
+                isOpen={notificationEvent !== null}
+                onClose={() => setNotificationEvent(null)}
                 onSubscribed={eventId => setSubscribedEventIds(ids => new Set(ids).add(eventId))}
+                notificationPrivacyUrl={notificationPrivacyUrl}
             />
         </div>
     )

@@ -3,11 +3,15 @@ import EventList from './partials/EventList'
 import { groupEventsByMonth, useUpcommingEvents } from '@components/events/hooks/events-hooks'
 import { MessageBox } from '@components/layout/message-box'
 
+export interface EventsCalendarProps {
+    notificationPrivacyUrl: string
+}
+
 /**
  * Renders the event calendar
  * It displays a list of events
  */
-export const EventsCalendar = () => {
+export const EventsCalendar = ({ notificationPrivacyUrl }: EventsCalendarProps) => {
     const {
         events,
         isLoading,
@@ -31,7 +35,10 @@ export const EventsCalendar = () => {
                     <div className="sticky top-0 py-2 bg-white border-b border-grey-light">
                         <h3 className="text-xl lg:text-4xl font-bold tracking-wider">{eventCollection.month.toLocaleUpperCase()}</h3>
                     </div>
-                    <EventList events={eventCollection.events} />
+                    <EventList
+                        events={eventCollection.events}
+                        notificationPrivacyUrl={notificationPrivacyUrl}
+                    />
                 </div>
             ))}
         </div>

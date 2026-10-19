@@ -9,7 +9,7 @@ export interface EventListItemProps {
      */
     event: Event
      isSubscribed: boolean
-     onNotify: (eventId: number) => void
+     onNotify: (event: Event) => void
 }
 
 /**
@@ -30,7 +30,7 @@ export const EventListItem = ({ event, isSubscribed, onNotify }: EventListItemPr
                     <button
                         type="button"
                         className="ml-auto flex w-fit flex-none items-center gap-2 whitespace-nowrap bg-orange px-4 py-2 font-bold text-white hover:bg-yellow rounded focus:outline-none focus:shadow-outline"
-                        onClick={() => onNotify(event.id)}
+                        onClick={() => onNotify(event)}
                     >
                         <i
                             className={`${isSubscribed ? 'fa-solid' : 'fa-regular'} fa-bookmark`}

@@ -1,14 +1,14 @@
 import React from 'react'
-import { EventsCalendar } from "@components/events/EventsCalendar"
+import { EventsCalendar, type EventsCalendarProps } from "@components/events/EventsCalendar"
 import { Providers } from '@components/providers/Providers'
 
 /**
  * Makes the event calendar component accessable via symfony-ux.
  */
-export default () => {
+export default ({ notificationPrivacyUrl }: EventsCalendarProps) => {
     return (
         <Providers>
-            <EventsCalendar />
+            <EventsCalendar notificationPrivacyUrl={notificationPrivacyUrl} />
         </Providers>
     )
 }

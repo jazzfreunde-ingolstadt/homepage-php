@@ -55,6 +55,18 @@ class ConfirmationContract
     public DateTimeImmutable $requestTime;
 
     /**
+     * Time after which the contract can be purged.
+     *
+     * @var null|DateTimeImmutable
+     */
+    #[Assert\GreaterThanOrEqual(
+        propertyPath: 'requestTime',
+        message: 'The expiration time cannot be before the request time.',
+    )]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    public ?DateTimeImmutable $expirationTime = null;
+
+    /**
      * State of the confirmation contract.
      *
      * @var ConfirmationStateEnum

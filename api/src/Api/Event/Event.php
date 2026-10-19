@@ -49,6 +49,7 @@ final class Event
          *
          * @var int
          */
+        #[API\ApiProperty(required: true)]
         public int $id,
 
         /**

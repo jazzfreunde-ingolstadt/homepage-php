@@ -8,34 +8,89 @@ servers:
     url: /
     description: ''
 paths:
-  /api/already_subscribed_errors:
-    get:
-      operationId: api_already_subscribed_errors_get
+  '/api/contracts/cancel/{token}':
+    delete:
+      operationId: cancel
       tags:
-        - AlreadySubscribedError
+        - Contracts
       responses:
-        '409':
-          description: 'AlreadySubscribedError resource'
+        '202':
+          description: 'Cancellation accepted.'
+        '410':
+          description: 'Confirmation expired'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/AlreadySubscribedError'
+                $ref: '#/components/schemas/ConfirmationPeriodExpiredError'
             application/json:
               schema:
-                $ref: '#/components/schemas/AlreadySubscribedError'
-        '404':
-          description: 'Not found'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ConfirmationPeriodExpiredError'
           links: {  }
-      summary: 'Retrieves a AlreadySubscribedError resource.'
-      description: 'Retrieves a AlreadySubscribedError resource.'
-      parameters: []
+        '404':
+          description: 'Confirmation contract not found'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationContractNotFoundError'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationContractNotFoundError'
+          links: {  }
+      summary: 'Removes the Contracts resource.'
+      description: 'Removes the Contracts resource.'
+      parameters:
+        -
+          name: token
+          in: path
+          description: 'Contracts identifier'
+          required: true
+          deprecated: false
+          schema:
+            type: string
+          style: simple
+          explode: false
+  '/api/contracts/confirm/{token}':
+    post:
+      operationId: confirm
+      tags:
+        - Contracts
+      responses:
+        '202':
+          description: 'Confirmation accepted.'
+          links: {  }
+        '410':
+          description: 'Confirmation expired'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationPeriodExpiredError'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationPeriodExpiredError'
+          links: {  }
+        '404':
+          description: 'Confirmation contract not found'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationContractNotFoundError'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationContractNotFoundError'
+          links: {  }
+      summary: 'Creates a Contracts resource.'
+      description: 'Creates a Contracts resource.'
+      parameters:
+        -
+          name: token
+          in: path
+          description: 'Contracts identifier'
+          required: true
+          deprecated: false
+          schema:
+            type: string
+          style: simple
+          explode: false
   /api/events:
     get:
       operationId: api_events_get_collection
@@ -176,10 +231,22 @@ paths:
           explode: false
   /api/notifications:
     post:
-      operationId: api_notification_subscriptions_post
+      operationId: api_notifications_post
       tags:
-        - NotificationSubscription
+        - 'Notification Subscriptions'
       responses:
+        '200':
+          description: 'Restarted unfinalized subscription.'
+        '201':
+          description: 'Subscription created.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification.Subscriptions'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Notification.Subscriptions.html'
+          links: {  }
         '409':
           description: 'Already subscribed'
           content:
@@ -190,44 +257,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/AlreadySubscribedError'
           links: {  }
-        '201':
-          description: 'NotificationSubscription resource created'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotificationSubscription'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/NotificationSubscription.html'
-          links: {  }
-      summary: 'Creates a NotificationSubscription resource.'
-      description: 'Creates a NotificationSubscription resource.'
+      summary: 'Creates a Notification Subscriptions resource.'
+      description: 'Creates a Notification Subscriptions resource.'
       parameters: []
       requestBody:
-        description: 'The new NotificationSubscription resource'
+        description: 'The new Notification Subscriptions resource'
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NotificationSubscription'
+              $ref: '#/components/schemas/Notification.Subscriptions'
           text/html:
             schema:
-              $ref: '#/components/schemas/NotificationSubscription.html'
+              $ref: '#/components/schemas/Notification.Subscriptions.html'
         required: true
-  /api/retry_subscribing_errors:
+  /api/problems/already_subscribed_errors:
     get:
-      operationId: api_retry_subscribing_errors_get
+      operationId: api_problemsalready_subscribed_errors_get
       tags:
-        - RetrySubscribingError
+        - Problems
       responses:
         '409':
-          description: 'RetrySubscribingError resource'
+          description: 'AlreadySubscribedError resource'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/RetrySubscribingError'
+                $ref: '#/components/schemas/AlreadySubscribedError'
             application/json:
               schema:
-                $ref: '#/components/schemas/RetrySubscribingError'
+                $ref: '#/components/schemas/AlreadySubscribedError'
         '404':
           description: 'Not found'
           content:
@@ -238,20 +295,68 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           links: {  }
-      summary: 'Retrieves a RetrySubscribingError resource.'
-      description: 'Retrieves a RetrySubscribingError resource.'
+      summary: 'Retrieves a AlreadySubscribedError resource.'
+      description: 'Retrieves a AlreadySubscribedError resource.'
+      parameters: []
+  /api/problems/confirmation_contract_not_found_errors:
+    get:
+      operationId: api_problemsconfirmation_contract_not_found_errors_get
+      tags:
+        - Problems
+      responses:
+        '404':
+          description: 'ConfirmationContractNotFoundError resource'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationContractNotFoundError'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationContractNotFoundError'
+          links: {  }
+      summary: 'Retrieves a ConfirmationContractNotFoundError resource.'
+      description: 'Retrieves a ConfirmationContractNotFoundError resource.'
+      parameters: []
+  /api/problems/confirmation_period_expired_errors:
+    get:
+      operationId: api_problemsconfirmation_period_expired_errors_get
+      tags:
+        - Problems
+      responses:
+        '410':
+          description: 'ConfirmationPeriodExpiredError resource'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationPeriodExpiredError'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationPeriodExpiredError'
+        '404':
+          description: 'Not found'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          links: {  }
+      summary: 'Retrieves a ConfirmationPeriodExpiredError resource.'
+      description: 'Retrieves a ConfirmationPeriodExpiredError resource.'
       parameters: []
 components:
   schemas:
     AlreadySubscribedError:
       type: object
+      description: |-
+        Error when a subscription already exists for the given email and resource scope.
+        This indicates that the user has already subscribed to notifications for this resource.
       properties:
         message:
-          readOnly: true
           default: ''
           type: string
         code:
-          readOnly: true
           default: 0
           type: integer
         file:
@@ -298,7 +403,120 @@ components:
               $ref: '#/components/schemas/Throwable'
             -
               type: 'null'
+        traceAsString:
           readOnly: true
+          type: string
+    ConfirmationContractNotFoundError:
+      type: object
+      description: 'Error when a confirmation contract cannot be found.'
+      properties:
+        message:
+          default: ''
+          type: string
+        code:
+          default: 0
+          type: integer
+        file:
+          readOnly: true
+          default: ''
+          type: string
+        line:
+          readOnly: true
+          default: 0
+          type: integer
+        type:
+          readOnly: true
+          type: string
+        title:
+          readOnly: true
+          type:
+            - string
+            - 'null'
+        status:
+          readOnly: true
+          type:
+            - integer
+            - 'null'
+        detail:
+          readOnly: true
+          type:
+            - string
+            - 'null'
+        instance:
+          readOnly: true
+          type:
+            - string
+            - 'null'
+        trace:
+          readOnly: true
+          type: array
+          items:
+            type:
+              - string
+              - 'null'
+        previous:
+          anyOf:
+            -
+              $ref: '#/components/schemas/Throwable'
+            -
+              type: 'null'
+        traceAsString:
+          readOnly: true
+          type: string
+    ConfirmationPeriodExpiredError:
+      type: object
+      description: 'Error when the confirmation period for a contract has expired.'
+      properties:
+        message:
+          default: ''
+          type: string
+        code:
+          default: 0
+          type: integer
+        file:
+          readOnly: true
+          default: ''
+          type: string
+        line:
+          readOnly: true
+          default: 0
+          type: integer
+        type:
+          readOnly: true
+          type: string
+        title:
+          readOnly: true
+          type:
+            - string
+            - 'null'
+        status:
+          readOnly: true
+          type:
+            - integer
+            - 'null'
+        detail:
+          readOnly: true
+          type:
+            - string
+            - 'null'
+        instance:
+          readOnly: true
+          type:
+            - string
+            - 'null'
+        trace:
+          readOnly: true
+          type: array
+          items:
+            type:
+              - string
+              - 'null'
+        previous:
+          anyOf:
+            -
+              $ref: '#/components/schemas/Throwable'
+            -
+              type: 'null'
         traceAsString:
           readOnly: true
           type: string
@@ -337,7 +555,14 @@ components:
           type: string
     Event:
       type: object
-      description: 'API resource for planned events (e.g., concerts, meetings, etc.)'
+      description: 'API resource for planned events (e.g., concerts, meetings, etc.).'
+      required:
+        - id
+        - title
+        - start
+        - end
+        - location
+        - category
       properties:
         id:
           type: integer
@@ -360,13 +585,15 @@ components:
             - string
             - 'null'
         category:
-          default: none
           type: string
           enum:
             - none
             - session
             - jazztage
             - jazz-and-literature
+    Event.html:
+      type: object
+      description: 'API resource for planned events (e.g., concerts, meetings, etc.).'
       required:
         - id
         - title
@@ -374,9 +601,6 @@ components:
         - end
         - location
         - category
-    Event.html:
-      type: object
-      description: 'API resource for planned events (e.g., concerts, meetings, etc.)'
       properties:
         id:
           type: integer
@@ -399,20 +623,12 @@ components:
             - string
             - 'null'
         category:
-          default: none
           type: string
           enum:
             - none
             - session
             - jazztage
             - jazz-and-literature
-      required:
-        - id
-        - title
-        - start
-        - end
-        - location
-        - category
     EventLocation:
       type: object
       properties:
@@ -420,9 +636,6 @@ components:
           readOnly: true
           type: integer
         name:
-          type: string
-        value:
-          writeOnly: true
           type: string
       required:
         - name
@@ -434,14 +647,11 @@ components:
           type: integer
         name:
           type: string
-        value:
-          writeOnly: true
-          type: string
       required:
         - name
-    NotificationSubscription:
+    Notification.Subscriptions:
       type: object
-      description: 'Subscription for any type of notifications'
+      description: 'Subscription for any type of notifications.'
       required:
         - resourceScope
         - email
@@ -454,9 +664,15 @@ components:
           externalDocs:
             url: 'https://schema.org/email'
           type: string
-    NotificationSubscription.html:
+        expirationTime:
+          description: 'Optional expiration time for this notification subscription.'
+          type:
+            - string
+            - 'null'
+          format: date-time
+    Notification.Subscriptions.html:
       type: object
-      description: 'Subscription for any type of notifications'
+      description: 'Subscription for any type of notifications.'
       required:
         - resourceScope
         - email
@@ -469,65 +685,12 @@ components:
           externalDocs:
             url: 'https://schema.org/email'
           type: string
-    RetrySubscribingError:
-      type: object
-      properties:
-        message:
-          readOnly: true
-          default: ''
-          type: string
-        code:
-          readOnly: true
-          default: 0
-          type: integer
-        file:
-          readOnly: true
-          default: ''
-          type: string
-        line:
-          readOnly: true
-          default: 0
-          type: integer
-        type:
-          readOnly: true
-          type: string
-        title:
-          readOnly: true
+        expirationTime:
+          description: 'Optional expiration time for this notification subscription.'
           type:
             - string
             - 'null'
-        status:
-          readOnly: true
-          type:
-            - integer
-            - 'null'
-        detail:
-          readOnly: true
-          type:
-            - string
-            - 'null'
-        instance:
-          readOnly: true
-          type:
-            - string
-            - 'null'
-        trace:
-          readOnly: true
-          type: array
-          items:
-            type:
-              - string
-              - 'null'
-        previous:
-          anyOf:
-            -
-              $ref: '#/components/schemas/Throwable'
-            -
-              type: 'null'
-          readOnly: true
-        traceAsString:
-          readOnly: true
-          type: string
+          format: date-time
     Throwable:
       type: object
       properties:
@@ -568,15 +731,17 @@ components:
 security: []
 tags:
   -
+    name: Contracts
+    description: 'API resource for confirming and cancelling contracts.'
+  -
+    name: Problems
+    description: |-
+      Error when a subscription already exists for the given email and resource scope.
+      This indicates that the user has already subscribed to notifications for this resource.
+  -
     name: Event
-    description: 'API resource for planned events (e.g., concerts, meetings, etc.)'
+    description: 'API resource for planned events (e.g., concerts, meetings, etc.).'
   -
-    name: AlreadySubscribedError
-    description: "Resource 'AlreadySubscribedError' operations."
-  -
-    name: NotificationSubscription
-    description: 'Subscription for any type of notifications'
-  -
-    name: RetrySubscribingError
-    description: "Resource 'RetrySubscribingError' operations."
+    name: 'Notification Subscriptions'
+    description: 'Subscription for any type of notifications.'
 webhooks: {  }

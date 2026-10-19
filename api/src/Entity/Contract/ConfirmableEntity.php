@@ -11,6 +11,7 @@ use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
 use Jazzfreunde\App\Entity\Type\String\EmailType;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Base class for entities that require confirmation (e.g., subscriptions).
@@ -62,6 +63,7 @@ abstract class ConfirmableEntity
      *
      * @var ConfirmationContract
      */
+    #[Assert\Valid]
     #[ORM\OneToOne(targetEntity: ConfirmationContract::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(referencedColumnName: 'uuid', nullable: false, onDelete: 'CASCADE')]
     public ConfirmationContract $confirmation;
