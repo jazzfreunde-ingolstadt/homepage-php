@@ -68,6 +68,20 @@ final class EventTest extends WebTestCase
         self::assertSame(['Middle event', 'Late event'], $this->eventTitles($client));
     }
 
+    public function testCollectionDefaultsToAscendingStartDateOrderWhenPaginated(): void
+    {
+        $client = $this->createClientWithEvents();
+        $query = http_build_query([
+            'itemsPerPage' => 2,
+            'page' => 2,
+        ]);
+
+        $client->request(Request::METHOD_GET, '/api/events?'.$query);
+
+        $this->assertResponseIsSuccessful();
+        self::assertSame(['Middle event', 'Late event'], $this->eventTitles($client));
+    }
+
     /**
      * Create a client with events whose insertion order differs from start-date order.
      */

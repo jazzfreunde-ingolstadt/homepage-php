@@ -26,6 +26,7 @@ use Symfony\Component\ObjectMapper\Attribute\Map;
         new API\Get(),
         new API\GetCollection(),
     ],
+    order: ['start' => 'ASC'],
     paginationClientItemsPerPage: true
 )]
 #[API\ApiFilter(DateFilter::class, properties: ['start'])]
