@@ -53,9 +53,11 @@ final class ConfirmationContractRepository extends ServiceEntityRepository imple
                 ->andWhere('contract.requestTime < :cutoff')
                 ->andWhere('contract.state != :confirmedState')
                 ->orWhere('contract.expirationTime < :now')
+                ->orWhere('contract.state = :canceledState')
                 ->setParameter('now', $now)
                 ->setParameter('cutoff', $cutoff)
                 ->setParameter('confirmedState', ConfirmationStateEnum::Confirmed)
+                ->setParameter('canceledState', ConfirmationStateEnum::Cancelled)
                 ->getQuery()
                 ->execute();
 
