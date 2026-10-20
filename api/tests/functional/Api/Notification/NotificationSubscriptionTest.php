@@ -36,6 +36,7 @@ final class NotificationSubscriptionTest extends WebTestCase
     public function testCreateSubscription(): void
     {
         $client = self::createClient();
+        $client->disableReboot();
         $this->initDatabase(self::$kernel);
         $this->applyFixtures(self::$kernel, new KnownEmailsFixture());
 
@@ -82,6 +83,19 @@ final class NotificationSubscriptionTest extends WebTestCase
         self::assertNotNull($email);
         self::assertEmailSubjectContains($email, 'Bitte bestätigen Sie Ihre Anmeldung für Benachrichtigungen');
         self::assertEmailHtmlBodyContains($email, 'Vielen Dank für Ihr Interesse an unseren Benachrichtigungen.');
+        self::assertEmailHtmlBodyContains(
+            $email,
+            '/notifications/confirm/'.$contract->token->value(),
+        );
+
+        $client->request(Request::METHOD_GET, '/notifications/confirm/'.$contract->token->value());
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('body', 'Benachrichtigung bestätigt!');
+        $this->assertSame(
+            ConfirmationStateEnum::Confirmed,
+            $registry->getRepository(NotificationSubscription::class)->findOneBy(['email' => 'test@mail.com'])?->confirmation->state,
+        );
     }
 
     /**
