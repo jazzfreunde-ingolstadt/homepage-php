@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Tests\Event\Listener\Api\Contract;
 
+use DateTimeImmutable;
 use Jazzfreunde\App\Api\Notification\AlreadySubscribedError;
 use Jazzfreunde\App\Api\Notification\NotificationSubscription as NotificationSubscriptionApi;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
@@ -16,6 +17,7 @@ use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Primitive\Email;
 use Jazzfreunde\App\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\UnitUnderTest;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
@@ -55,6 +57,8 @@ final class WriteConfirmationListenerTest extends TestCase
     public function testPendingSubscriptionRestartsConfirmation(): void
     {
         $subscription = $this->newEntitySubscription(ConfirmationStateEnum::Pending);
+        $expirationTime = new DateTimeImmutable('+3 days');
+        $apiSubscription = $this->newApiSubscription($expirationTime);
         $uut = new UnitUnderTest(WriteConfirmationListener::class);
         $repository = $uut->mock(NotificationSubscriptionRepositoryInterface::class);
         $repository
@@ -66,9 +70,20 @@ final class WriteConfirmationListenerTest extends TestCase
         $confirmationContracts
             ->expects($this->once())
             ->method('restartEmailConfirmation')
-            ->with($subscription->confirmation, $subscription->email);
+            ->with(
+                $this->callback(function (ConfirmationContract $contract) use ($subscription, $expirationTime): bool {
+                    $this->assertSame($subscription->confirmation, $contract);
+                    $this->assertEquals(
+                        NotificationSubscriptionApi::normalizeExpirationTime($expirationTime),
+                        $contract->expirationTime
+                    );
 
-        $event = $this->newViewEvent($this->newApiSubscription());
+                    return true;
+                }),
+                $subscription->email,
+            );
+
+        $event = $this->newViewEvent($apiSubscription);
 
         $uut->target()->validateExistingSubscription($event);
 
@@ -111,15 +126,16 @@ final class WriteConfirmationListenerTest extends TestCase
     {
         $subscription = $this->newEntitySubscription(ConfirmationStateEnum::New);
         $uut = new UnitUnderTest(WriteConfirmationListener::class);
-        $repository = $uut->mock(NotificationSubscriptionRepositoryInterface::class);
-        $repository->expects($this->never())->method('findByFilter');
+        $uut->mock(NotificationSubscriptionRepositoryInterface::class)
+            ->expects($this->never())
+            ->method('findOneByFilter');
         $confirmationContracts = $uut->mock(ConfirmationContractService::class);
         $confirmationContracts
             ->expects($this->once())
             ->method('startEmailConfirmation')
             ->with($subscription->confirmation, $subscription->email);
 
-        $event = $this->newViewEvent($subscription);
+        $event = $this->newViewEvent($this->newApiSubscription(), $subscription);
 
         $uut->target()->startConfirmationProcess($event);
 
@@ -133,11 +149,28 @@ final class WriteConfirmationListenerTest extends TestCase
         );
     }
 
-    private function newApiSubscription(): NotificationSubscriptionApi
+    public function testWrittenSubscriptionFailsIfPersistedDataIsMissing(): void
+    {
+        $uut = new UnitUnderTest(WriteConfirmationListener::class);
+        $uut->mock(NotificationSubscriptionRepositoryInterface::class)
+            ->expects($this->never())
+            ->method('findOneByFilter');
+        $uut->mock(ConfirmationContractService::class)
+            ->expects($this->never())
+            ->method('startEmailConfirmation');
+
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('The output mapper did not provide the persisted notification subscription.');
+
+        $uut->target()->startConfirmationProcess($this->newViewEvent($this->newApiSubscription()));
+    }
+
+    private function newApiSubscription(?DateTimeImmutable $expirationTime = null): NotificationSubscriptionApi
     {
         return new NotificationSubscriptionApi(
             resourceScope: '/events/123',
             email: 'test@mail.com',
+            expirationTime: $expirationTime,
         );
     }
 
@@ -153,11 +186,16 @@ final class WriteConfirmationListenerTest extends TestCase
         return $subscription;
     }
 
-    private function newViewEvent(object $controllerResult): ViewEvent
+    private function newViewEvent(object $controllerResult, ?NotificationSubscription $persistedData = null): ViewEvent
     {
+        $request = Request::create('/', Request::METHOD_POST);
+        if (null !== $persistedData) {
+            $request->attributes->set('persisted_data', $persistedData);
+        }
+
         return new ViewEvent(
             $this->createStub(HttpKernelInterface::class),
-            Request::create('/', Request::METHOD_POST),
+            $request,
             HttpKernelInterface::MAIN_REQUEST,
             $controllerResult,
         );

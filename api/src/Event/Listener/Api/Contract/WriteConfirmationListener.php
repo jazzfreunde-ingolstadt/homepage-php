@@ -6,11 +6,13 @@ namespace Jazzfreunde\App\Event\Listener\Api\Contract;
 
 use ApiPlatform\Symfony\EventListener\EventPriorities;
 use Jazzfreunde\App\Api\Notification\AlreadySubscribedError;
-use Jazzfreunde\App\Api\Notification\NotificationSubscription;
+use Jazzfreunde\App\Api\Notification\NotificationSubscription as NotificationSubscriptionApi;
 use Jazzfreunde\App\Entity\Contract\ConfirmableEntity;
+use Jazzfreunde\App\Entity\Notification\NotificationSubscription as NotificationSubscriptionEntity;
 use Jazzfreunde\App\Repository\Filter\NotificationSubscriptionFilter;
 use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
 use Jazzfreunde\App\Service\Notification\NotificationSubscriptionRepositoryInterface;
+use LogicException;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +53,7 @@ final class WriteConfirmationListener
 
         $controllerResult = $event->getControllerResult();
 
-        if (!$controllerResult instanceof NotificationSubscription) {
+        if (!$controllerResult instanceof NotificationSubscriptionApi) {
             return;
         }
 
@@ -69,6 +71,12 @@ final class WriteConfirmationListener
 
         if ($existingSubscription->confirmation->isConfirmed()) {
             throw new AlreadySubscribedError();
+        }
+
+        if (null !== $controllerResult->expirationTime) {
+            $existingSubscription->confirmation->expirationTime = NotificationSubscriptionApi::normalizeExpirationTime(
+                $controllerResult->expirationTime
+            );
         }
 
         $existingSubscription->confirmation->setConfirmableEntity($existingSubscription);
@@ -96,19 +104,38 @@ final class WriteConfirmationListener
             return;
         }
 
-        $controllerResult = $event->getControllerResult();
+        $subscription = $this->getWrittenSubscription(
+            $event->getControllerResult(),
+            $event->getRequest()->attributes->get('persisted_data'),
+        );
 
-        if (!$controllerResult instanceof ConfirmableEntity) {
+        if (!$subscription instanceof ConfirmableEntity) {
             return;
         }
 
-        $confirmationContract = $controllerResult->confirmation;
-        $confirmationContract->setConfirmableEntity($controllerResult);
-        $email = $controllerResult->email;
+        $confirmationContract = $subscription->confirmation;
+        $confirmationContract->setConfirmableEntity($subscription);
 
         $this->confirmationContracts->startEmailConfirmation(
             $confirmationContract,
-            $email
+            $subscription->email
         );
+    }
+
+    private function getWrittenSubscription(mixed $controllerResult, mixed $persistedData): ?ConfirmableEntity
+    {
+        if ($controllerResult instanceof ConfirmableEntity) {
+            return $controllerResult;
+        }
+
+        if ($controllerResult instanceof NotificationSubscriptionApi) {
+            if (!$persistedData instanceof NotificationSubscriptionEntity) {
+                throw new LogicException('The output mapper did not provide the persisted notification subscription.');
+            }
+
+            return $persistedData;
+        }
+
+        return null;
     }
 }

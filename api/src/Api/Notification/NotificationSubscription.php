@@ -9,6 +9,7 @@ use ApiPlatform\Metadata as API;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use DateTimeImmutable;
+use DateTimeZone;
 use Jazzfreunde\App\Entity\Notification\NotificationSubscription as NotificationEntity;
 use Jazzfreunde\App\Type\Primitive\Email;
 use Jazzfreunde\App\Type\Primitive\Uri;
@@ -81,7 +82,24 @@ final class NotificationSubscription
          * @var null|DateTimeImmutable
          */
         #[API\ApiProperty(description: 'Optional expiration time for this notification subscription.')]
-        #[Map(target: 'confirmation.expirationTime', source: 'confirmation.expirationTime')]
+        #[Map(
+            if: new TargetClass(NotificationEntity::class),
+            target: 'confirmation.expirationTime',
+            transform: [self::class, 'normalizeExpirationTime'],
+        )]
+        #[Map(
+            if: new TargetClass(self::class),
+            source: 'confirmation.expirationTime',
+            transform: [self::class, 'normalizeExpirationTime'],
+        )]
         public ?DateTimeImmutable $expirationTime = null,
     ) {}
+
+    /**
+     * Match Doctrine's timezone-naive datetime storage to its hydration timezone.
+     */
+    public static function normalizeExpirationTime(?DateTimeImmutable $expirationTime): ?DateTimeImmutable
+    {
+        return $expirationTime?->setTimezone(new DateTimeZone(date_default_timezone_get()));
+    }
 }

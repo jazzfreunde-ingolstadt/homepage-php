@@ -71,13 +71,20 @@ final class ConfirmationContractRepositoryTest extends KernelTestCase
             ConfirmationStateEnum::Confirmed,
             new DateTimeImmutable('-1 hour')
         );
+        $this->createSubscription(
+            $registry,
+            'cancelled-before-expiration@test.com',
+            new DateTimeImmutable('-1 day'),
+            ConfirmationStateEnum::Cancelled,
+            new DateTimeImmutable('+1 day')
+        );
 
         /** @var ConfirmationContractRepository $contractRepository */
         $contractRepository = $container->get(ConfirmationContractRepository::class);
         $newsletterRepository = $registry->getRepository(NewsletterSubscription::class);
 
-        $this->assertCount(5, $contractRepository->findAll());
-        $this->assertCount(5, $newsletterRepository->findAll());
+        $this->assertCount(6, $contractRepository->findAll());
+        $this->assertCount(6, $newsletterRepository->findAll());
 
         $contractRepository->purgeVacantContracts();
 
@@ -86,6 +93,7 @@ final class ConfirmationContractRepositoryTest extends KernelTestCase
 
         $this->assertNull($newsletterRepository->findOneBy(['email' => 'expired-pending@test.com']));
         $this->assertNull($newsletterRepository->findOneBy(['email' => 'expired-expiration-confirmed@test.com']));
+        $this->assertNull($newsletterRepository->findOneBy(['email' => 'cancelled-before-expiration@test.com']));
         $this->assertNotNull($newsletterRepository->findOneBy(['email' => 'expired-confirmed@test.com']));
         $this->assertNotNull($newsletterRepository->findOneBy(['email' => 'fresh-pending@test.com']));
         $this->assertNotNull($newsletterRepository->findOneBy(['email' => 'active-expiration-pending@test.com']));

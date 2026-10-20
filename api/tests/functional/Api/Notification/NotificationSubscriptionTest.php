@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Tests\Api\Notification;
 
+use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
@@ -89,6 +90,7 @@ final class NotificationSubscriptionTest extends WebTestCase
     public function testCreateSubscriptionRestartsUnconfirmedSubscription(): void
     {
         $client = self::createClient();
+        $expirationTime = new DateTimeImmutable('+3 days');
         $this->initDatabase(self::$kernel);
         $this->applyFixtures(
             self::$kernel,
@@ -113,6 +115,7 @@ final class NotificationSubscriptionTest extends WebTestCase
             content: json_encode([
                 'resourceScope' => '/events/123',
                 'email' => 'test@mail.com',
+                'expirationTime' => $expirationTime->format(DATE_ATOM),
             ])
         );
 
@@ -125,6 +128,18 @@ final class NotificationSubscriptionTest extends WebTestCase
         $email = self::getMailerMessage();
         self::assertNotNull($email);
         self::assertEmailSubjectContains($email, 'Bitte bestätigen Sie Ihre Anmeldung für Benachrichtigungen');
+
+        /** @var ManagerRegistry $registry */
+        $registry = self::getContainer()->get(ManagerRegistry::class);
+
+        /** @var null|NotificationSubscription $subscription */
+        $subscription = $registry->getRepository(NotificationSubscription::class)->findOneBy(['email' => 'test@mail.com']);
+        self::assertNotNull($subscription);
+        self::assertNotNull($subscription->confirmation->expirationTime);
+        self::assertSame(
+            $expirationTime->getTimestamp(),
+            $subscription->confirmation->expirationTime->getTimestamp(),
+        );
     }
 
     /**
