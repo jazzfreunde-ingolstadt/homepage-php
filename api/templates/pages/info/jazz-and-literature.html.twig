@@ -3,7 +3,7 @@
 {% extends 'base.html.twig' %}
 
 {% block header_element %}
-	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/advertise/jazz-and-literature/audience.jpg') } %}
+	{% embed '@layout/intro-banner.html.twig' with { image_url: asset('app/images/advertise/jazz-and-literature/stage-big.jpg') } %}
 		{% block intro %}
 			{% include 'typography/intro-titel.html.twig' with { titel: 'Jazz & Literatur im Stadttheater' } %}
 			{% include 'typography/intro-subtitel.html.twig' with { titel: 'In Kooperation mit dem Stadttheater Ingolstadt' } %}
@@ -53,7 +53,7 @@
 					<div class="w-full h-full shadow-md">
 						{% include '@layout/layers/zoom-image-on-hover.html.twig' 
 							with { 
-								image_url: asset('app/images/advertise/jazz-and-literature/reading.jpg'), 
+								image_url: asset('app/images/advertise/jazz-and-literature/disbelief.jpg'), 
 								alt: 'Lesung bei Jazz & Literatur'
 							}
 						%}
