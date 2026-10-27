@@ -50,7 +50,7 @@ final class LandingPageControllerTest extends TestCase
             ->method('build')
             ->willReturnCallback(function (mixed ...$arguments) use ($result): ResultInterface {
                 $this->assertSame(
-                    'https://example.org/landing/summer-jazz',
+                    'qr.jzz-f.de/summer-jazz',
                     $arguments[3],
                 );
 

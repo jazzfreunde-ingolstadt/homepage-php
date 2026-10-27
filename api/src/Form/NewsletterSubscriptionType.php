@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Form;
 
+use Jazzfreunde\App\Validation\Attribute\EmailDomainDns;
 use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -31,7 +32,10 @@ final class NewsletterSubscriptionType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Geben Sie Ihre Email-Adresse an',
                 'required' => true,
-                'constraints' => [new Assert\Email(message: 'The email {{ value }} is not a valid email.')],
+                'constraints' => [
+                    new Assert\Email(message: 'The email {{ value }} is not a valid email.'),
+                    new EmailDomainDns(),
+                ],
             ])
             ->add('website', TextType::class, [
                 'label' => false,

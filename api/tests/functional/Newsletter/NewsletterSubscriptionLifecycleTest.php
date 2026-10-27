@@ -6,6 +6,7 @@ namespace Jazzfreunde\App\Tests\Newsletter;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
+use Jazzfreunde\App\Service\Email\DnsRecordLookupInterface;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\UnitTest\Fixtures\KnownEmailsFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
@@ -39,6 +40,15 @@ final class NewsletterSubscriptionLifecycleTest extends WebTestCase
 
         $this->client = self::createClient();
         $this->client->disableReboot();
+        $dnsRecordLookup = self::createStub(DnsRecordLookupInterface::class);
+        $dnsRecordLookup->method('lookup')
+            ->willReturnCallback(
+                static fn (string $domain, int $type): array|false => DNS_MX === $type
+                    ? [['target' => 'mail.example.test', 'pri' => 10]]
+                    : [],
+            );
+        self::getContainer()->set(DnsRecordLookupInterface::class, $dnsRecordLookup);
+
         $this->initDatabase(self::$kernel);
         $this->applyFixtures(self::$kernel, new KnownEmailsFixture());
 
