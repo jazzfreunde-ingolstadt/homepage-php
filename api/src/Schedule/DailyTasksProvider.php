@@ -39,7 +39,7 @@ final class DailyTasksProvider implements ScheduleProviderInterface
         return (new Schedule())
             ->with(
                 RecurringMessage::cron('0 0 * * *', new PurgeVacantConfirmationContractsMessage()),
-                RecurringMessage::cron('0 12 * * *', new SendEventNotificationsMessage(upcomingIn: new DateInterval('P5D'))),
+                RecurringMessage::cron('0 10 * * *', new SendEventNotificationsMessage(upcomingIn: new DateInterval('P5D'))),
                 RecurringMessage::cron('0 0 * * *', new SendMonitoringReportMessage())
             )
             ->stateful($this->cache)

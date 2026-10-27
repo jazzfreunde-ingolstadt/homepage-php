@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Controller;
 
+use Endroid\QrCode\Builder\BuilderRegistryInterface;
+use Endroid\QrCodeBundle\Response\QrCodeResponse;
 use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
 use Jazzfreunde\App\Service\Twig\PageTemplatePath;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -38,7 +41,7 @@ final class LandingPageController extends AbstractController
                     ],
                     [
                         'title' => 'Jazztage 2026',
-                        'description' => 'Informationen zu den Jazztagen 2026.',
+                        'description' => 'Tracker für die Jazztage 2026.',
                         'route' => 'landing_pages_jazztage_2026',
                     ],
                 ],
@@ -79,10 +82,38 @@ final class LandingPageController extends AbstractController
      * @return Response
      */
     #[Route('/socials', name: 'socials')]
+    #[Route('/s', name: 'socials_short')]
     public function landingSocials(): Response
     {
         return $this->render(
             PageTemplatePath::LANDING_SOCIALS
+        );
+    }
+
+    /**
+     * Returns a PNG QR code pointing to the landing page identified by the slug.
+     * The optional "design" query parameter selects the configured QR design and defaults to "default".
+     *
+     * @param string                   $slug            Landing page slug to encode
+     * @param Request                  $request         Current request
+     * @param BuilderRegistryInterface $builderRegistry Configured QR code builders
+     *
+     * @return Response QR code image response
+     */
+    #[FirewallEntryPoint(firewallName: 'main')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[Route('/qr/{slug}', name: 'qr_code', methods: ['GET'])]
+    public function qrCode(
+        string $slug,
+        Request $request,
+        BuilderRegistryInterface $builderRegistry,
+    ): Response {
+        $design = $request->query->getString('design', 'default');
+
+        return new QrCodeResponse(
+            $builderRegistry
+                ->get($design)
+                ->build(data: 'qr.jzz-f.de/'.$slug)
         );
     }
 }

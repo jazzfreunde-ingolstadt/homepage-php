@@ -5,8 +5,19 @@ endroid_qr_code:
     encoding: 'UTF-8'
     error_correction_level: 'high'
     round_block_size_mode: 'margin'
-    foregroundColor: [ 36, 44, 127 ]
-    logo_path: '%kernel.project_dir%/assets/api/images/jazz-logo-with-background.png'
-    logo_resize_to_width: 337
-    logo_punchout_background: false
-    background_color: [ 255, 255, 255 ]
+    foregroundColor: [ 36, 44, 127, 0 ]
+    logo_path: '%kernel.project_dir%/assets/api/images/jazz-icon-square-solid-blue.png'
+    logo_resize_to_width: 355
+    logo_punchout_background: true
+    background_color: [ 255, 255, 255, 127 ]
+  small_yellow:
+    writer: Endroid\QrCode\Writer\PngWriter
+    size: 1000
+    encoding: 'UTF-8'
+    error_correction_level: 'quartile'
+    round_block_size_mode: 'margin'
+    foregroundColor: [ 232, 196, 0, 0 ]
+    # logo_path: '%kernel.project_dir%/assets/api/images/j-icon-solid-yellow.png'
+    # logo_resize_to_width: 280
+    # logo_punchout_background: false
+    background_color: [ 0, 0, 0, 127 ]

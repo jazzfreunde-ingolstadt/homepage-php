@@ -21,7 +21,8 @@
 							{% include 'components/qr-code-card.html.twig' with {
 								route: absolute_url(path(landingPage.route)),
 								label: landingPage.title,
-								alt: 'QR-Code für ' ~ landingPage.title
+								alt: 'QR-Code für ' ~ landingPage.title,
+								design: landingPage.design is defined ? landingPage.design : 'default'
 							} only %}
 							<p class="pt-2">{{ landingPage.description }}</p>
 						</div>
