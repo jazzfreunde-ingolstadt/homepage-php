@@ -9,6 +9,9 @@
 			<p class="text-xl md:text-2xl mb-5 md:mb-8 font-bold text-orange">Abonnieren Sie unseren Newsletter.</p>
 			{% include 'components/util/error-flash.html.twig' %}
 			{{ form_start(subscription_form) }}
+			<div aria-hidden="true" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">
+				{{ form_widget(subscription_form.website) }}
+			</div>
 			<div class="w-full flex flex-col md:flex-row gap-5 lg:gap-10">
 				<div class="relative w-full md:flex-shrink md:flex-grow">
 					{{ form_widget(subscription_form.email, { attr: { class: 'block px-2.5 pb-2.5 pt-4 w-full text-sm text-grey bg-transparent rounded-lg border border-grey appearance-none focus:outline-none focus:ring-0 focus:border-blue peer' } }) }}

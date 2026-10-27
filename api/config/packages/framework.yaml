@@ -8,3 +8,12 @@ framework:
     cookie_samesite: strict
     storage_factory_id: session.storage.factory.native
     cookie_lifetime: 900
+  rate_limiter:
+    newsletter_subscription_ip:
+      policy: fixed_window
+      limit: 5
+      interval: '10 minutes'
+    newsletter_subscription_email:
+      policy: fixed_window
+      limit: 3
+      interval: '1 hour'

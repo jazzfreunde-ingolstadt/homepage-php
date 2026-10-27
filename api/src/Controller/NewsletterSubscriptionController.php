@@ -19,8 +19,11 @@ use LogicException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\RateLimiter\RateLimit;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
 use Symfony\Component\Routing\Attribute\Route;
 
 use function is_array;
@@ -39,20 +42,50 @@ final class NewsletterSubscriptionController extends AbstractController implemen
     /**
      * Newletter abonnieren.
      *
-     * @param Request           $request
-     * @param NewsletterService $newsletter
+     * @param Request            $request
+     * @param NewsletterService  $newsletter
+     * @param RateLimiterFactory $ipRateLimiter
+     * @param RateLimiterFactory $emailRateLimiter
+     * @param string             $rateLimitSecret
      *
      * @return Response
      */
-    #[Route('/newsletter_subscribe/', name: 'newsletter_subscribe')]
-    public function newsletterSubscribe(Request $request, NewsletterService $newsletter): Response
-    {
+    #[Route('/newsletter_subscribe/', name: 'newsletter_subscribe', methods: ['POST'])]
+    public function newsletterSubscribe(
+        Request $request,
+        NewsletterService $newsletter,
+        #[Autowire(service: 'limiter.newsletter_subscription_ip')]
+        RateLimiterFactory $ipRateLimiter,
+        #[Autowire(service: 'limiter.newsletter_subscription_email')]
+        RateLimiterFactory $emailRateLimiter,
+        #[Autowire('%kernel.secret%')]
+        string $rateLimitSecret,
+    ): Response {
+        $clientIp = $request->getClientIp() ?? 'unknown';
+        $ipRateLimit = $ipRateLimiter
+            ->create(hash_hmac('sha256', $clientIp, $rateLimitSecret))
+            ->consume();
+
+        if (!$ipRateLimit->isAccepted()) {
+            $this->logger?->notice('Rate limited newsletter submission by client IP.');
+
+            return $this->rateLimitedResponse($ipRateLimit);
+        }
+
         $form = $this
             ->createForm(NewsletterSubscriptionType::class)
             ->handleRequest($request);
 
         if (!$form->isSubmitted()) {
             return new Response(status: Response::HTTP_BAD_REQUEST);
+        }
+
+        /** @var null|string $honeypot */
+        $honeypot = $form->get('website')->getData();
+        if (is_string($honeypot) && '' !== trim($honeypot)) {
+            $this->logger?->info('Discarded newsletter submission after honeypot field was filled.');
+
+            return $this->redirectToRoute('form_newsletter_subscription_received');
         }
 
         if (!$form->isValid()) {
@@ -86,6 +119,17 @@ final class NewsletterSubscriptionController extends AbstractController implemen
             $email = $data['email'] ?? null;
             if (!is_string($email)) {
                 throw new LogicException('Submitted newsletter data must contain an email address.');
+            }
+
+            $email = trim($email);
+            $emailRateLimit = $emailRateLimiter
+                ->create(hash_hmac('sha256', strtolower($email), $rateLimitSecret))
+                ->consume();
+
+            if (!$emailRateLimit->isAccepted()) {
+                $this->logger?->notice('Rate limited newsletter submission by normalized email address.');
+
+                return $this->rateLimitedResponse($emailRateLimit);
             }
 
             $subscription = new NewsletterSubscription();
@@ -175,5 +219,19 @@ final class NewsletterSubscriptionController extends AbstractController implemen
     public function alreadySubscribed(): Response
     {
         return $this->render(PageTemplatePath::NEWSLETTER_ALREADY_SUBSCRIBED);
+    }
+
+    private function rateLimitedResponse(RateLimit $rateLimit): Response
+    {
+        $retryAfter = max(1, $rateLimit->getRetryAfter()->getTimestamp() - time());
+
+        return new Response(
+            content: 'Zu viele Anmeldeversuche. Bitte versuchen Sie es später erneut.',
+            status: Response::HTTP_TOO_MANY_REQUESTS,
+            headers: [
+                'Content-Type' => 'text/plain; charset=UTF-8',
+                'Retry-After' => (string) $retryAfter,
+            ],
+        );
     }
 }

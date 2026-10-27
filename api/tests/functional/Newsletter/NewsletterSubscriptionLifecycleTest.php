@@ -9,10 +9,12 @@ use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\UnitTest\Fixtures\KnownEmailsFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
+use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Functional coverage for the newsletter subscription lifecycle.
@@ -43,6 +45,10 @@ final class NewsletterSubscriptionLifecycleTest extends WebTestCase
         /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);
         $this->registry = $registry;
+
+        /** @var CacheItemPoolInterface $rateLimiterCache */
+        $rateLimiterCache = self::getContainer()->get('cache.rate_limiter');
+        $rateLimiterCache->clear();
     }
 
     public function testNewsletterSubscriptionLifecycle(): void
@@ -50,6 +56,58 @@ final class NewsletterSubscriptionLifecycleTest extends WebTestCase
         $token = $this->requestNewsletterSubscription();
         $this->confirmNewsletterSubscription($token);
         $this->cancelNewsletterSubscription($token);
+    }
+
+    public function testHoneypotSubmissionDoesNotSendEmailOrCreateSubscription(): void
+    {
+        $crawler = $this->client->request(Request::METHOD_GET, '/');
+        $form = $crawler->selectButton('Benachrichtige mich')->form();
+        $form['newsletter_subscription[email]'] = self::NEWSLETTER_EMAIL;
+        $form['newsletter_subscription[website]'] = 'https://spam.example';
+
+        $this->client->submit($form);
+
+        $this->assertResponseRedirects('/newsletter/newsletter_subscription_received/');
+        self::assertEmailCount(0);
+        self::assertNull(
+            $this->registry->getRepository(NewsletterSubscription::class)
+                ->findOneBy(['email' => self::NEWSLETTER_EMAIL])
+        );
+    }
+
+    public function testNewsletterSubscriptionIsRateLimitedByEmail(): void
+    {
+        for ($attempt = 0; $attempt < 3; ++$attempt) {
+            $this->submitNewsletterSubscription(self::NEWSLETTER_EMAIL);
+            $this->assertResponseRedirects('/newsletter/newsletter_subscription_received/');
+        }
+
+        $confirmationToken = $this->findSubscription()->confirmation->token->value();
+        $this->submitNewsletterSubscription(self::NEWSLETTER_EMAIL);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_TOO_MANY_REQUESTS);
+        self::assertGreaterThan(0, (int) $this->client->getResponse()->headers->get('Retry-After'));
+        self::assertSame(
+            $confirmationToken,
+            $this->findSubscription()->confirmation->token->value(),
+        );
+    }
+
+    public function testNewsletterSubscriptionIsRateLimitedByIp(): void
+    {
+        for ($attempt = 0; $attempt < 5; ++$attempt) {
+            $this->submitNewsletterSubscription(sprintf('ip-limit-%d@example.test', $attempt));
+            $this->assertResponseRedirects('/newsletter/newsletter_subscription_received/');
+        }
+
+        $this->submitNewsletterSubscription('ip-limit-final@example.test');
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_TOO_MANY_REQUESTS);
+        self::assertGreaterThan(0, (int) $this->client->getResponse()->headers->get('Retry-After'));
+        self::assertNull(
+            $this->registry->getRepository(NewsletterSubscription::class)
+                ->findOneBy(['email' => 'ip-limit-final@example.test'])
+        );
     }
 
     private function requestNewsletterSubscription(): string
@@ -73,6 +131,14 @@ final class NewsletterSubscriptionLifecycleTest extends WebTestCase
         self::assertSame(ConfirmationStateEnum::Pending, $subscription->confirmation->state);
 
         return $subscription->confirmation->token->value();
+    }
+
+    private function submitNewsletterSubscription(string $email): void
+    {
+        $crawler = $this->client->request(Request::METHOD_GET, '/');
+        $form = $crawler->selectButton('Benachrichtige mich')->form();
+        $form['newsletter_subscription[email]'] = $email;
+        $this->client->submit($form);
     }
 
     private function confirmNewsletterSubscription(string $token): void

@@ -8,6 +8,7 @@ use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -31,6 +32,16 @@ final class NewsletterSubscriptionType extends AbstractType
                 'label' => 'Geben Sie Ihre Email-Adresse an',
                 'required' => true,
                 'constraints' => [new Assert\Email(message: 'The email {{ value }} is not a valid email.')],
+            ])
+            ->add('website', TextType::class, [
+                'label' => false,
+                'mapped' => false,
+                'required' => false,
+                'attr' => [
+                    'autocomplete' => 'off',
+                    'aria-hidden' => 'true',
+                    'tabindex' => '-1',
+                ],
             ])
             ->add('subscribe', SubmitType::class, ['label' => 'Benachrichtige mich'])
             ->getForm();
