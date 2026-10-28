@@ -24,7 +24,7 @@ deploy:
       - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
       - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
       - mkdir -p var && chmod -R o+w var
-      - php8.3-cli bin/console cache:clear
+      - php8.4-cli bin/console cache:clear
   recurring:
     excludes:
       - var/
@@ -48,18 +48,18 @@ deploy:
     pre-deployment-remote-commands:
       - touch ./public/maintenance.htm
       - echo "deploy-now" > ./public/maintenance.htm
-      - php8.3-cli bin/console messenger:stop-workers || true
+      - php8.4-cli bin/console messenger:stop-workers || true
     post-deployment-remote-commands:
       - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
       - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
       - chmod -R o+w var
       - rm -rf ./var/cache/*
-      - php8.3-cli bin/console cache:clear --verbose
-      - php8.3-cli bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction
+      - php8.4-cli bin/console cache:clear --verbose
+      - php8.4-cli bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction
       - rm -f ./public/maintenance.htm
 runtime:
   cron-jobs:
-    - command: php8.3-cli $HOME/htdocs/bin/console messenger:consume async --time-limit=58
+    - command: php8.4-cli $HOME/htdocs/bin/console messenger:consume async --time-limit=58
       schedule: "* * * * *"
-    - command: php8.3-cli $HOME/htdocs/bin/console messenger:consume scheduler_daily --time-limit=60
+    - command: php8.4-cli $HOME/htdocs/bin/console messenger:consume scheduler_daily --time-limit=60
       schedule: "0 * * * *"

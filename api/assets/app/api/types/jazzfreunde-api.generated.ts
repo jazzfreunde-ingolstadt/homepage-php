@@ -181,12 +181,17 @@ export interface components {
             readonly file: string;
             /** @default 0 */
             readonly line: number;
+            /** @description {@inheritDoc} */
             readonly type?: string;
+            /** @description {@inheritDoc} */
             readonly title?: string | null;
+            /** @description {@inheritDoc} */
             readonly status?: number | null;
+            /** @description {@inheritDoc} */
             readonly detail?: string | null;
+            /** @description {@inheritDoc} */
             readonly instance?: string | null;
-            readonly trace?: (string | null)[];
+            readonly trace?: unknown[];
             previous?: components["schemas"]["Throwable"] | null;
             readonly traceAsString?: string;
         };
@@ -200,12 +205,17 @@ export interface components {
             readonly file: string;
             /** @default 0 */
             readonly line: number;
+            /** @description {@inheritDoc} */
             readonly type?: string;
+            /** @description {@inheritDoc} */
             readonly title?: string | null;
+            /** @description {@inheritDoc} */
             readonly status?: number | null;
+            /** @description {@inheritDoc} */
             readonly detail?: string | null;
+            /** @description {@inheritDoc} */
             readonly instance?: string | null;
-            readonly trace?: (string | null)[];
+            readonly trace?: unknown[];
             previous?: components["schemas"]["Throwable"] | null;
             readonly traceAsString?: string;
         };
@@ -219,12 +229,17 @@ export interface components {
             readonly file: string;
             /** @default 0 */
             readonly line: number;
+            /** @description {@inheritDoc} */
             readonly type?: string;
+            /** @description {@inheritDoc} */
             readonly title?: string | null;
+            /** @description {@inheritDoc} */
             readonly status?: number | null;
+            /** @description {@inheritDoc} */
             readonly detail?: string | null;
+            /** @description {@inheritDoc} */
             readonly instance?: string | null;
-            readonly trace?: (string | null)[];
+            readonly trace?: unknown[];
             previous?: components["schemas"]["Throwable"] | null;
             readonly traceAsString?: string;
         };
@@ -246,47 +261,87 @@ export interface components {
         };
         /** @description API resource for planned events (e.g., concerts, meetings, etc.). */
         Event: {
+            /** @description Unique identifier in the database. */
             id: number;
+            /** @description Title of the event. */
             title: string;
-            /** Format: date-time */
+            /**
+             * Format: date-time
+             * @description Start time of the event.
+             */
             start: string;
-            /** Format: date-time */
+            /**
+             * Format: date-time
+             * @description End time of the event.
+             */
             end: string;
+            /** @description Location of the event. */
             location: components["schemas"]["EventLocation"];
+            /** @description Optional subtitle for the event. */
             subtitle?: string | null;
+            /** @description Optional description for the event. */
             link?: string | null;
-            /** @enum {string} */
+            /**
+             * @description Category of the event (e.g., concert, meeting, etc.).
+             * @enum {string}
+             */
             category: "none" | "session" | "jazztage" | "jazz-and-literature" | "jazz-the-kiesch";
+            /** @description Notification subscription data, when a subscription is available. */
             notificationSource?: components["schemas"]["NotificationSource"] | null;
         };
         /** @description API resource for planned events (e.g., concerts, meetings, etc.). */
         "Event.html": {
+            /** @description Unique identifier in the database. */
             id: number;
+            /** @description Title of the event. */
             title: string;
-            /** Format: date-time */
+            /**
+             * Format: date-time
+             * @description Start time of the event.
+             */
             start: string;
-            /** Format: date-time */
+            /**
+             * Format: date-time
+             * @description End time of the event.
+             */
             end: string;
+            /** @description Location of the event. */
             location: components["schemas"]["EventLocation.html"];
+            /** @description Optional subtitle for the event. */
             subtitle?: string | null;
+            /** @description Optional description for the event. */
             link?: string | null;
-            /** @enum {string} */
+            /**
+             * @description Category of the event (e.g., concert, meeting, etc.).
+             * @enum {string}
+             */
             category: "none" | "session" | "jazztage" | "jazz-and-literature" | "jazz-the-kiesch";
+            /** @description Notification subscription data, when a subscription is available. */
             notificationSource?: components["schemas"]["NotificationSource.html"] | null;
         };
         EventLocation: {
+            /** @description Unique identifier in the database. */
             readonly id?: number;
+            /** @description Name of the location. */
             name: string;
         };
         "EventLocation.html": {
+            /** @description Unique identifier in the database. */
             readonly id?: number;
+            /** @description Name of the location. */
             name: string;
         };
         /** @description Subscription for any type of notifications. */
         "Notification.Subscriptions": {
-            /** @example /events/123 */
+            /**
+             * @description URI associated with the subscription (e.g., endpoint for push notifications).
+             * @example /events/123
+             */
             resourceScope: string;
-            /** Format: email */
+            /**
+             * Format: email
+             * @description Email address associated with the subscription.
+             */
             email: string;
             /**
              * Format: date-time
@@ -296,9 +351,15 @@ export interface components {
         };
         /** @description Subscription for any type of notifications. */
         "Notification.Subscriptions.html": {
-            /** @example /events/123 */
+            /**
+             * @description URI associated with the subscription (e.g., endpoint for push notifications).
+             * @example /events/123
+             */
             resourceScope: string;
-            /** Format: email */
+            /**
+             * Format: email
+             * @description Email address associated with the subscription.
+             */
             email: string;
             /**
              * Format: date-time
@@ -307,13 +368,21 @@ export interface components {
             expirationTime?: string | null;
         };
         NotificationSource: {
+            /** @description Resource scope associated with the notification subscription. */
             resourceScope: string;
-            /** Format: date-time */
+            /**
+             * Format: date-time
+             * @description Time after which the notification subscription expires.
+             */
             expirationTime: string;
         };
         "NotificationSource.html": {
+            /** @description Resource scope associated with the notification subscription. */
             resourceScope: string;
-            /** Format: date-time */
+            /**
+             * Format: date-time
+             * @description Time after which the notification subscription expires.
+             */
             expirationTime: string;
         };
         Throwable: {
@@ -321,7 +390,7 @@ export interface components {
             readonly code?: unknown;
             readonly file?: string;
             readonly line?: number;
-            readonly trace?: (string | null)[];
+            readonly trace?: unknown[];
             readonly previous?: components["schemas"]["Throwable"] | null;
             readonly traceAsString?: string;
         };
@@ -423,11 +492,18 @@ export interface operations {
                 page?: number;
                 /** @description The number of items per page */
                 itemsPerPage?: number;
-                "start[before]"?: string;
-                "start[strictly_before]"?: string;
+                /** @description Event start */
                 "start[after]"?: string;
+                /** @description Event start */
+                "start[before]"?: string;
+                /** @description Event start */
                 "start[strictly_after]"?: string;
-                "order[start]"?: "asc" | "desc";
+                /** @description Event start */
+                "start[strictly_before]"?: string;
+                /** @description Event order[start] */
+                "order[start]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Event order[start] */
+                "order[start][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
             };
             header?: never;
             path?: never;
@@ -449,7 +525,20 @@ export interface operations {
     };
     api_events_id_get: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Event start */
+                "start[after]"?: string;
+                /** @description Event start */
+                "start[before]"?: string;
+                /** @description Event start */
+                "start[strictly_after]"?: string;
+                /** @description Event start */
+                "start[strictly_before]"?: string;
+                /** @description Event order[start] */
+                "order[start]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Event order[start] */
+                "order[start][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
             header?: never;
             path: {
                 /** @description Event identifier */

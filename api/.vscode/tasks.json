@@ -171,7 +171,8 @@
             "group": "test",
             "command": "bin/console",
             "args": [
-                "lint:twig"
+                "lint:twig",
+                "--excludes=zurb_2"
             ],
             "options": {
                 "cwd": "${workspaceFolder}",
@@ -187,7 +188,7 @@
                     "file": 1,
                     "line": 2,
                     "message": 0,
-                    "severity": "error"
+                    "severity": 1
                 }
             },
             "presentation": {

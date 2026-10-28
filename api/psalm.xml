@@ -10,6 +10,7 @@
         <directory name="src" />
         <directory name="libs" />
         <ignoreFiles>
+            <directory name="bin"/>
             <directory name="var"/>
             <directory name="vendor" />
             <directory name="tests" />

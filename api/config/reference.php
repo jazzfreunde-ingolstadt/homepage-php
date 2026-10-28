@@ -718,7 +718,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             servicename?: scalar|Param|null, // Overrules dbname parameter if given and used as SERVICE_NAME or SID connection parameter for Oracle depending on the service parameter.
  *             sessionMode?: scalar|Param|null, // The session mode to use for the oci8 driver
  *             server?: scalar|Param|null, // The name of a running database server to connect to for SQL Anywhere.
- *             default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connexion.
+ *             default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connection.
  *             sslmode?: scalar|Param|null, // Determines whether or with what priority a SSL TCP/IP connection will be negotiated with the server for PostgreSQL.
  *             sslrootcert?: scalar|Param|null, // The name of a file containing SSL certificate authority (CA) certificate(s). If the file exists, the server's certificate will be verified to be signed by one of these authorities.
  *             sslcert?: scalar|Param|null, // The path to the SSL client certificate file for PostgreSQL.
@@ -769,7 +769,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *                 servicename?: scalar|Param|null, // Overrules dbname parameter if given and used as SERVICE_NAME or SID connection parameter for Oracle depending on the service parameter.
  *                 sessionMode?: scalar|Param|null, // The session mode to use for the oci8 driver
  *                 server?: scalar|Param|null, // The name of a running database server to connect to for SQL Anywhere.
- *                 default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connexion.
+ *                 default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connection.
  *                 sslmode?: scalar|Param|null, // Determines whether or with what priority a SSL TCP/IP connection will be negotiated with the server for PostgreSQL.
  *                 sslrootcert?: scalar|Param|null, // The name of a file containing SSL certificate authority (CA) certificate(s). If the file exists, the server's certificate will be verified to be signed by one of these authorities.
  *                 sslcert?: scalar|Param|null, // The path to the SSL client certificate file for PostgreSQL.
@@ -802,7 +802,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *                 servicename?: scalar|Param|null, // Overrules dbname parameter if given and used as SERVICE_NAME or SID connection parameter for Oracle depending on the service parameter.
  *                 sessionMode?: scalar|Param|null, // The session mode to use for the oci8 driver
  *                 server?: scalar|Param|null, // The name of a running database server to connect to for SQL Anywhere.
- *                 default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connexion.
+ *                 default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connection.
  *                 sslmode?: scalar|Param|null, // Determines whether or with what priority a SSL TCP/IP connection will be negotiated with the server for PostgreSQL.
  *                 sslrootcert?: scalar|Param|null, // The name of a file containing SSL certificate authority (CA) certificate(s). If the file exists, the server's certificate will be verified to be signed by one of these authorities.
  *                 sslcert?: scalar|Param|null, // The path to the SSL client certificate file for PostgreSQL.
@@ -1138,10 +1138,10 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     inflector?: scalar|Param|null, // Specify an inflector to use. // Default: "api_platform.metadata.inflector"
  *     validator?: array{
  *         serialize_payload_fields?: mixed, // Set to null to serialize all payload fields when a validation error is thrown, or set the fields you want to include explicitly. // Default: []
- *         query_parameter_validation?: bool|Param, // Deprecated: Will be removed in API Platform 5.0. // Default: true
  *     },
  *     jsonapi?: array{
- *         use_iri_as_id?: bool|Param, // Set to false to use entity identifiers instead of IRIs as the "id" field in JSON:API responses. // Default: true
+ *         use_iri_as_id?: bool|Param, // Set to true to use IRIs instead of entity identifiers as the "id" field in JSON:API responses. Defaults to false, which uses the entity identifier and exposes the IRI as "links.self". // Default: false
+ *         allow_client_generated_id?: bool|Param, // Allow client-generated IDs on JSON:API POST per https://jsonapi.org/format/#crud-creating-client-ids. Off by default to prevent id spoofing on public endpoints. // Default: false
  *     },
  *     eager_loading?: bool|array{
  *         enabled?: bool|Param, // Default: true
@@ -1157,9 +1157,9 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     enable_scalar?: bool|Param, // Enable Scalar API Reference // Default: true
  *     enable_entrypoint?: bool|Param, // Enable the entrypoint // Default: true
  *     enable_docs?: bool|Param, // Enable the docs // Default: true
+ *     enable_head_request_optimization?: bool|Param, // Skip response body construction on HEAD requests so collections are not iterated. Disable to process HEAD identically to GET. // Default: true
  *     enable_profiler?: bool|Param, // Enable the data collector and the WebProfilerBundle integration. // Default: true
  *     enable_phpdoc_parser?: bool|Param, // Enable resource metadata collector using PHPStan PhpDocParser. // Default: true
- *     enable_link_security?: bool|Param, // Deprecated: This option is always enabled and will be removed in API Platform 5.0. // Enable security for Links (sub resources). // Default: true
  *     collection?: array{
  *         exists_parameter_name?: scalar|Param|null, // The name of the query parameter to filter on nullable field values. // Default: "exists"
  *         order?: scalar|Param|null, // The default order of results. // Default: "ASC"
@@ -1177,7 +1177,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         imports?: list<scalar|Param|null>,
  *         paths?: list<scalar|Param|null>,
  *     },
- *     resource_class_directories?: list<scalar|Param|null>,
  *     serializer?: array{
  *         hydra_prefix?: bool|Param, // Use the "hydra:" prefix. // Default: false
  *     },
@@ -1209,9 +1208,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             enabled?: bool|Param, // Default: true
  *         },
  *         max_query_depth?: int|Param, // Default: 20
- *         graphql_playground?: bool|array{ // Deprecated: The "graphql_playground" configuration is deprecated and will be ignored.
- *             enabled?: bool|Param, // Default: false
- *         },
  *         max_query_complexity?: int|Param, // Default: 500
  *         nesting_separator?: scalar|Param|null, // The separator to use to filter nested fields. // Default: "_"
  *         collection?: array{
@@ -1222,6 +1218,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     swagger?: array{
  *         persist_authorization?: bool|Param, // Persist the SwaggerUI Authorization in the localStorage. // Default: false
+ *         with_credentials?: bool|Param, // Send credentials (cookies, authorization headers) on Swagger UI cross-origin requests (e.g. when running behind Cloudflare Access). // Default: false
  *         versions?: list<scalar|Param|null>,
  *         api_keys?: array<string, array{ // Default: []
  *             name?: scalar|Param|null, // The name of the header or query parameter containing the api key.
@@ -1237,15 +1234,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         public?: bool|Param|null, // To make all responses public by default. // Default: null
  *         invalidation?: bool|array{ // Enable the tags-based cache invalidation system.
  *             enabled?: bool|Param, // Default: false
- *             varnish_urls?: list<scalar|Param|null>,
  *             urls?: list<scalar|Param|null>,
  *             scoped_clients?: list<scalar|Param|null>,
  *             max_header_length?: int|Param, // Max header length supported by the cache server. // Default: 7500
  *             request_options?: mixed, // To pass options to the client charged with the request. // Default: []
  *             purger?: scalar|Param|null, // Specify a purger to use (available values: "api_platform.http_cache.purger.varnish.ban", "api_platform.http_cache.purger.varnish.xkey", "api_platform.http_cache.purger.souin"). // Default: "api_platform.http_cache.purger.varnish"
- *             xkey?: array{ // Deprecated: The "xkey" configuration is deprecated, use your own purger to customize surrogate keys or the appropriate parameters.
- *                 glue?: scalar|Param|null, // xkey glue between keys // Default: " "
- *             },
  *         },
  *     },
  *     mercure?: bool|array{
@@ -1338,6 +1331,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         denormalization_context?: mixed,
  *         collect_denormalization_errors?: mixed,
  *         hydra_context?: mixed,
+ *         jsonld_context?: mixed,
  *         openapi?: mixed,
  *         validation_context?: mixed,
  *         filters?: mixed,
@@ -1377,6 +1371,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         policy?: mixed,
  *         middleware?: mixed,
  *         parameters?: array<string, array{ // Default: []
+ *             class?: scalar|Param|null, // The parameter class for a named global parameter entry.
  *             key?: mixed,
  *             schema?: mixed,
  *             open_api?: mixed,
@@ -1399,11 +1394,13 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             cast_fn?: mixed,
  *             default?: mixed,
  *             filter_class?: mixed,
+ *             operations?: mixed,
  *             ...<string, mixed>
  *         }>,
  *         strict_query_parameter_validation?: mixed,
  *         hide_hydra_operation?: mixed,
  *         json_stream?: mixed,
+ *         throw_on_not_found?: mixed,
  *         extra_properties?: mixed,
  *         map?: mixed,
  *         mcp?: mixed,
@@ -1416,6 +1413,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         serialize?: mixed,
  *         content_negotiation?: mixed,
  *         priority?: mixed,
+ *         route_priority?: mixed,
  *         name?: mixed,
  *         allow_create?: mixed,
  *         item_uri_template?: mixed,
@@ -1456,209 +1454,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     mailer?: array{
  *         html_to_text_converter?: scalar|Param|null, // A service implementing the "Symfony\Component\Mime\HtmlToTextConverter\HtmlToTextConverterInterface". // Default: null
  *     },
- * }
- * @psalm-type JmsSerializerConfig = array{
- *     twig_enabled?: scalar|Param|null, // Default: "default"
- *     profiler?: scalar|Param|null, // Default: true
- *     enum_support?: scalar|Param|null, // Default: false
- *     default_value_property_reader_support?: scalar|Param|null, // Default: false
- *     handlers?: array{
- *         datetime?: array{
- *             default_format?: scalar|Param|null, // Default: "Y-m-d\\TH:i:sP"
- *             default_deserialization_formats?: list<scalar|Param|null>,
- *             default_timezone?: scalar|Param|null, // Default: "Europe/Berlin"
- *             cdata?: scalar|Param|null, // Default: true
- *         },
- *         array_collection?: array{
- *             initialize_excluded?: bool|Param, // Default: false
- *         },
- *         symfony_uid?: array{
- *             default_format?: scalar|Param|null, // Default: "canonical"
- *             cdata?: scalar|Param|null, // Default: true
- *         },
- *     },
- *     subscribers?: array{
- *         doctrine_proxy?: array{
- *             initialize_excluded?: bool|Param, // Default: false
- *             initialize_virtual_types?: bool|Param, // Default: false
- *         },
- *     },
- *     object_constructors?: array{
- *         doctrine?: bool|array{
- *             enabled?: bool|Param, // Default: true
- *             fallback_strategy?: "null"|"exception"|"fallback"|Param, // Default: "null"
- *         },
- *     },
- *     property_naming?: Param|string|array{
- *         id?: scalar|Param|null,
- *         separator?: scalar|Param|null, // Default: "_"
- *         lower_case?: bool|Param, // Default: true
- *     },
- *     expression_evaluator?: Param|string|array{
- *         id?: scalar|Param|null, // Default: "jms_serializer.expression_evaluator"
- *     },
- *     metadata?: array{
- *         warmup?: array{
- *             paths?: array{
- *                 included?: list<scalar|Param|null>,
- *                 excluded?: list<scalar|Param|null>,
- *             },
- *         },
- *         cache?: scalar|Param|null, // Default: "file"
- *         debug?: bool|Param, // Default: true
- *         file_cache?: array{
- *             dir?: scalar|Param|null, // Default: null
- *         },
- *         include_interfaces?: bool|Param, // Default: false
- *         auto_detection?: bool|Param, // Default: true
- *         infer_types_from_doc_block?: bool|Param, // Default: false
- *         infer_types_from_doctrine_metadata?: bool|Param, // Infers type information from Doctrine metadata if no explicit type has been defined for a property. // Default: true
- *         directories?: array<string, array{ // Default: []
- *             path?: scalar|Param|null,
- *             namespace_prefix?: scalar|Param|null, // Default: ""
- *         }>,
- *     },
- *     visitors?: array{
- *         json_serialization?: array{
- *             depth?: scalar|Param|null,
- *             options?: scalar|Param|null, // Default: 1024
- *         },
- *         json_deserialization?: array{
- *             options?: scalar|Param|null, // Default: 0
- *             strict?: bool|Param, // Default: false
- *         },
- *         xml_serialization?: array{
- *             version?: scalar|Param|null,
- *             encoding?: scalar|Param|null,
- *             format_output?: bool|Param, // Default: false
- *             default_root_name?: scalar|Param|null,
- *             default_root_ns?: scalar|Param|null, // Default: ""
- *         },
- *         xml_deserialization?: array{
- *             doctype_whitelist?: list<scalar|Param|null>,
- *             external_entities?: bool|Param, // Default: false
- *             options?: scalar|Param|null, // Default: 0
- *         },
- *     },
- *     default_context?: array{
- *         serialization?: Param|string|array{
- *             id?: scalar|Param|null,
- *             serialize_null?: scalar|Param|null, // Flag if null values should be serialized
- *             enable_max_depth_checks?: scalar|Param|null, // Flag to enable the max-depth exclusion strategy
- *             attributes?: array<string, scalar|Param|null>,
- *             groups?: list<scalar|Param|null>,
- *             version?: scalar|Param|null, // Application version to use in exclusion strategies
- *         },
- *         deserialization?: Param|string|array{
- *             id?: scalar|Param|null,
- *             serialize_null?: scalar|Param|null, // Flag if null values should be serialized
- *             enable_max_depth_checks?: scalar|Param|null, // Flag to enable the max-depth exclusion strategy
- *             attributes?: array<string, scalar|Param|null>,
- *             groups?: list<scalar|Param|null>,
- *             version?: scalar|Param|null, // Application version to use in exclusion strategies
- *         },
- *     },
- *     instances?: array<string, array{ // Default: []
- *         inherit?: bool|Param, // Default: false
- *         enum_support?: scalar|Param|null, // Default: false
- *         default_value_property_reader_support?: scalar|Param|null, // Default: false
- *         handlers?: array{
- *             datetime?: array{
- *                 default_format?: scalar|Param|null, // Default: "Y-m-d\\TH:i:sP"
- *                 default_deserialization_formats?: list<scalar|Param|null>,
- *                 default_timezone?: scalar|Param|null, // Default: "Europe/Berlin"
- *                 cdata?: scalar|Param|null, // Default: true
- *             },
- *             array_collection?: array{
- *                 initialize_excluded?: bool|Param, // Default: false
- *             },
- *             symfony_uid?: array{
- *                 default_format?: scalar|Param|null, // Default: "canonical"
- *                 cdata?: scalar|Param|null, // Default: true
- *             },
- *         },
- *         subscribers?: array{
- *             doctrine_proxy?: array{
- *                 initialize_excluded?: bool|Param, // Default: false
- *                 initialize_virtual_types?: bool|Param, // Default: false
- *             },
- *         },
- *         object_constructors?: array{
- *             doctrine?: bool|array{
- *                 enabled?: bool|Param, // Default: true
- *                 fallback_strategy?: "null"|"exception"|"fallback"|Param, // Default: "null"
- *             },
- *         },
- *         property_naming?: Param|string|array{
- *             id?: scalar|Param|null,
- *             separator?: scalar|Param|null, // Default: "_"
- *             lower_case?: bool|Param, // Default: true
- *         },
- *         expression_evaluator?: Param|string|array{
- *             id?: scalar|Param|null, // Default: "jms_serializer.expression_evaluator"
- *         },
- *         metadata?: array{
- *             warmup?: array{
- *                 paths?: array{
- *                     included?: list<scalar|Param|null>,
- *                     excluded?: list<scalar|Param|null>,
- *                 },
- *             },
- *             cache?: scalar|Param|null, // Default: "file"
- *             debug?: bool|Param, // Default: true
- *             file_cache?: array{
- *                 dir?: scalar|Param|null, // Default: null
- *             },
- *             include_interfaces?: bool|Param, // Default: false
- *             auto_detection?: bool|Param, // Default: true
- *             infer_types_from_doc_block?: bool|Param, // Default: false
- *             infer_types_from_doctrine_metadata?: bool|Param, // Infers type information from Doctrine metadata if no explicit type has been defined for a property. // Default: true
- *             directories?: array<string, array{ // Default: []
- *                 path?: scalar|Param|null,
- *                 namespace_prefix?: scalar|Param|null, // Default: ""
- *             }>,
- *         },
- *         visitors?: array{
- *             json_serialization?: array{
- *                 depth?: scalar|Param|null,
- *                 options?: scalar|Param|null, // Default: 1024
- *             },
- *             json_deserialization?: array{
- *                 options?: scalar|Param|null, // Default: 0
- *                 strict?: bool|Param, // Default: false
- *             },
- *             xml_serialization?: array{
- *                 version?: scalar|Param|null,
- *                 encoding?: scalar|Param|null,
- *                 format_output?: bool|Param, // Default: false
- *                 default_root_name?: scalar|Param|null,
- *                 default_root_ns?: scalar|Param|null, // Default: ""
- *             },
- *             xml_deserialization?: array{
- *                 doctype_whitelist?: list<scalar|Param|null>,
- *                 external_entities?: bool|Param, // Default: false
- *                 options?: scalar|Param|null, // Default: 0
- *             },
- *         },
- *         default_context?: array{
- *             serialization?: Param|string|array{
- *                 id?: scalar|Param|null,
- *                 serialize_null?: scalar|Param|null, // Flag if null values should be serialized
- *                 enable_max_depth_checks?: scalar|Param|null, // Flag to enable the max-depth exclusion strategy
- *                 attributes?: array<string, scalar|Param|null>,
- *                 groups?: list<scalar|Param|null>,
- *                 version?: scalar|Param|null, // Application version to use in exclusion strategies
- *             },
- *             deserialization?: Param|string|array{
- *                 id?: scalar|Param|null,
- *                 serialize_null?: scalar|Param|null, // Flag if null values should be serialized
- *                 enable_max_depth_checks?: scalar|Param|null, // Flag to enable the max-depth exclusion strategy
- *                 attributes?: array<string, scalar|Param|null>,
- *                 groups?: list<scalar|Param|null>,
- *                 version?: scalar|Param|null, // Application version to use in exclusion strategies
- *             },
- *         },
- *     }>,
  * }
  * @psalm-type SecurityConfig = array{
  *     access_denied_url?: scalar|Param|null, // Default: null
@@ -1880,7 +1675,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             token_handler?: Param|string|array{
  *                 id?: scalar|Param|null,
  *                 oidc_user_info?: Param|string|array{
- *                     base_uri?: scalar|Param|null, // Base URI of the userinfo endpoint on the OIDC server, or the OIDC server URI to use the discovery (require "discovery" to be configured).
+ *                     base_uri?: scalar|Param|null, // Base URI of the userinfo endpoint on the OIDC server, or the OIDC server URI to use the discovery (require "discovery" to be configured). The latter must end with a slash when it has a path, as the discovery path is resolved against it as a relative URL.
  *                     discovery?: array{ // Enable the OIDC discovery.
  *                         cache?: array{
  *                             id?: scalar|Param|null, // Cache service id to use to cache the OIDC discovery configuration.
@@ -1998,7 +1793,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         enabled?: bool|Param, // Default: true
  *     },
  *     inky?: bool|array{
- *         enabled?: bool|Param, // Default: true
+ *         enabled?: bool|Param, // Default: false
  *     },
  *     string?: bool|array{
  *         enabled?: bool|Param, // Default: false
@@ -2262,7 +2057,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     monolog?: MonologConfig,
  *     api_platform?: ApiPlatformConfig,
  *     twig?: TwigConfig,
- *     jms_serializer?: JmsSerializerConfig,
  *     security?: SecurityConfig,
  *     webpack_encore?: WebpackEncoreConfig,
  *     twig_extra?: TwigExtraConfig,
@@ -2282,7 +2076,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         api_platform?: ApiPlatformConfig,
  *         twig?: TwigConfig,
- *         jms_serializer?: JmsSerializerConfig,
  *         security?: SecurityConfig,
  *         webpack_encore?: WebpackEncoreConfig,
  *         twig_extra?: TwigExtraConfig,
@@ -2303,7 +2096,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         api_platform?: ApiPlatformConfig,
  *         twig?: TwigConfig,
- *         jms_serializer?: JmsSerializerConfig,
  *         security?: SecurityConfig,
  *         webpack_encore?: WebpackEncoreConfig,
  *         twig_extra?: TwigExtraConfig,
@@ -2323,7 +2115,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         api_platform?: ApiPlatformConfig,
  *         twig?: TwigConfig,
- *         jms_serializer?: JmsSerializerConfig,
  *         security?: SecurityConfig,
  *         webpack_encore?: WebpackEncoreConfig,
  *         twig_extra?: TwigExtraConfig,

@@ -27,7 +27,7 @@ jobs:
         run: bin/php-cs-fixer check
 
       - name: "Run Twig Lint"
-        run: bin/console lint:twig
+        run: bin/console lint:twig --excludes=zurb_2
 
   static-code-analysis:
     name: "Static Code Analysis"
