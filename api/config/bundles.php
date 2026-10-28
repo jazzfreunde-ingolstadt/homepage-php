@@ -1,21 +1,37 @@
 <?php
 
+use ApiPlatform\Symfony\Bundle\ApiPlatformBundle;
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
+use Endroid\QrCodeBundle\EndroidQrCodeBundle;
+use Nelmio\SecurityBundle\NelmioSecurityBundle;
+use Presta\SitemapBundle\PrestaSitemapBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\MakerBundle\MakerBundle;
+use Symfony\Bundle\MonologBundle\MonologBundle;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
+use Symfony\UX\React\ReactBundle;
+use Symfony\UX\StimulusBundle\StimulusBundle;
+use Symfony\WebpackEncoreBundle\WebpackEncoreBundle;
+use Twig\Extra\TwigExtraBundle\TwigExtraBundle;
+
 return [
-    Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
-    Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
-    Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
-    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
-    Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
-    ApiPlatform\Symfony\Bundle\ApiPlatformBundle::class => ['all' => true],
-    Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
-    JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
-    Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
-    Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
-    Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
-    Nelmio\SecurityBundle\NelmioSecurityBundle::class => ['all' => true],
-    Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
-    Symfony\UX\React\ReactBundle::class => ['all' => true],
-    Presta\SitemapBundle\PrestaSitemapBundle::class => ['all' => true],
-    Endroid\QrCodeBundle\EndroidQrCodeBundle::class => ['all' => true],
-    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
+    FrameworkBundle::class => ['all' => true],
+    DoctrineBundle::class => ['all' => true],
+    DoctrineMigrationsBundle::class => ['all' => true],
+    MakerBundle::class => ['dev' => true],
+    MonologBundle::class => ['all' => true],
+    ApiPlatformBundle::class => ['all' => true],
+    TwigBundle::class => ['all' => true],
+    SecurityBundle::class => ['all' => true],
+    WebpackEncoreBundle::class => ['all' => true],
+    TwigExtraBundle::class => ['all' => true],
+    NelmioSecurityBundle::class => ['all' => true],
+    StimulusBundle::class => ['all' => true],
+    ReactBundle::class => ['all' => true],
+    PrestaSitemapBundle::class => ['all' => true],
+    EndroidQrCodeBundle::class => ['all' => true],
+    WebProfilerBundle::class => ['dev' => true, 'test' => true],
 ];

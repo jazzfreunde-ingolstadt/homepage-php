@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\App\Api\Event;
 
 use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SortFilter;
 use ApiPlatform\Doctrine\Orm\State\Options;
 use ApiPlatform\Metadata as API;
 use DateTime;
@@ -25,6 +25,16 @@ use Symfony\Component\ObjectMapper\Attribute\Map;
     shortName: 'Event',
     provider: EventProvider::class,
     stateOptions: new Options(entityClass: EventEntity::class),
+    parameters: [
+        'start' => new API\QueryParameter(
+            filter: new DateFilter(),
+            property: 'start',
+        ),
+        'order[:property]' => new API\QueryParameter(
+            filter: new SortFilter(),
+            properties: ['start'],
+        ),
+    ],
     operations: [
         new API\Get(map: false),
         new API\GetCollection(map: false),
@@ -32,8 +42,6 @@ use Symfony\Component\ObjectMapper\Attribute\Map;
     order: ['start' => 'ASC'],
     paginationClientItemsPerPage: true
 )]
-#[API\ApiFilter(DateFilter::class, properties: ['start'])]
-#[API\ApiFilter(OrderFilter::class, properties: ['start'])]
 #[Map(source: EventEntity::class)]
 final class Event
 {

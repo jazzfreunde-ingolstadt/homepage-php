@@ -69,6 +69,16 @@ Use the `npm run app:server` script to develop the interface.
 To help ensure that the PHP code is free of errors, the project uses [Psalm](https://psalm.dev/).
 Run it using the VS Code task `Analyze code`.
 
+### Twig Template Linting
+
+Run the VS Code task `Lint Twig templates` or:
+
+```bash
+bin/console lint:twig --excludes=zurb_2
+```
+
+This validates the project and dependency templates except Symfony's unused Zurb email templates, which require the optional `twig/inky-extra` package. Inky is disabled in this project and does not need to be installed.
+
 ### Local Email Server
 
 All outgoing email is intercepted by a local SMTP server. You can inspect all email traffic at http://localhost:82.

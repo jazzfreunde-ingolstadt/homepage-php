@@ -1,4 +1,5 @@
 twig:
+    file_name_pattern: '*.twig'
     default_path: '%kernel.project_dir%/templates'
     paths:
         '%kernel.project_dir%/assets/mail': mailasset
@@ -21,3 +22,5 @@ when@test:
 when@dev:
     twig:
         strict_variables: true
+twig_extra:
+    inky: false

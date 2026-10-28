@@ -21,25 +21,10 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-
-      - name: Restore cached Composer dependencies
-        uses: actions/cache/restore@v6
-        with:
-          path: api/vendor
-          key: composer-${{ hashFiles('**/composer.lock') }}
-
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-dev --optimize-autoloader --no-scripts --no-interaction
-
-      - name: Cache Composer dependencies
-        uses: actions/cache/save@v6
+        uses: ./.github/actions/install-composer-dependencies
         with:
-          path: api/vendor
-          key: composer-${{ hashFiles('**/composer.lock') }}
+          installation-path: ./api
 
       - uses: actions/upload-artifact@v7
         with:
