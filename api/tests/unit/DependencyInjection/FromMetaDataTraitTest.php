@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * Dummy class for testing the FromMetaDataTrait.
  */
-class DummyMetaDataClass
+final class DummyMetaDataClass
 {
     use FromMetaDataTrait;
 
@@ -70,7 +70,6 @@ final class FromMetaDataTraitTest extends TestCase
             ]
         );
 
-        $this->assertInstanceOf(DummyMetaDataClass::class, $instance);
         $this->assertSame('John Doe', $instance->name);
         $this->assertSame(30, $instance->age);
         $this->assertNull($instance->nullable);
@@ -111,7 +110,6 @@ final class FromMetaDataTraitTest extends TestCase
             ]
         );
 
-        $this->assertInstanceOf(DummyMetaDataClass::class, $instance);
         $this->assertSame('John Doe', $instance->name);
         $this->assertSame(30, $instance->age);
     }

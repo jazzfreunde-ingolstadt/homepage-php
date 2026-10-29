@@ -23,7 +23,7 @@ final class HexTokenTest extends TestCase
      * Test that a valid hex token is created successfully.
      */
     #[Test]
-    public function validHexTokenCreation()
+    public function validHexTokenCreation(): void
     {
         $length = HexToken::LENGTH;
 
@@ -35,7 +35,7 @@ final class HexTokenTest extends TestCase
      * Test that an invalid hex token throws an exception.
      */
     #[Test]
-    public function invalidHexTokenThrowsException()
+    public function invalidHexTokenThrowsException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new HexToken('invalid_token');
@@ -45,7 +45,7 @@ final class HexTokenTest extends TestCase
      * Test that no value generates a valid hex token.
      */
     #[Test]
-    public function noValueGeneratesHexToken()
+    public function noValueGeneratesHexToken(): void
     {
         $token = new HexToken();
         $this->assertMatchesRegularExpression('/^[0-9a-f]{32}$/', $token->value());
@@ -58,7 +58,7 @@ final class HexTokenTest extends TestCase
     #[TestWith([123])]
     #[TestWith(['invalid'])]
     #[TestWith([''])]
-    public function tryFromInvalidInputs($input)
+    public function tryFromInvalidInputs(mixed $input): void
     {
         $result = HexToken::tryFrom($input);
         $this->assertNull($result);
@@ -68,7 +68,7 @@ final class HexTokenTest extends TestCase
      * Test tryFrom with valid hex token.
      */
     #[Test]
-    public function tryFromValidHexToken()
+    public function tryFromValidHexToken(): void
     {
         $result = HexToken::tryFrom('1234567890abcdef1234567890abcdef');
         $this->assertInstanceOf(HexToken::class, $result);
@@ -79,7 +79,7 @@ final class HexTokenTest extends TestCase
      * Test string representation of HexToken.
      */
     #[Test]
-    public function hexTokenStringRepresentation()
+    public function hexTokenStringRepresentation(): void
     {
         $token = new HexToken('1234567890abcdef1234567890abcdef');
         $this->assertEquals('1234567890abcdef1234567890abcdef', (string) $token);

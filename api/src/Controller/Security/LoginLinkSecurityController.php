@@ -24,6 +24,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
 use Symfony\Component\Security\Core\Exception\LogicException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
@@ -100,10 +101,10 @@ final class LoginLinkSecurityController extends AbstractController implements Lo
     /**
      * Generates a new email with an authentication link and sends it to the user.
      *
-     * @param Request                   $request
-     * @param UserProviderInterface     $userProvider
-     * @param LoginLinkHandlerInterface $loginLinkHandler
-     * @param MessageBusInterface       $bus
+     * @param Request                              $request
+     * @param UserProviderInterface<UserInterface> $userProvider
+     * @param LoginLinkHandlerInterface            $loginLinkHandler
+     * @param MessageBusInterface                  $bus
      *
      * @return Response
      *

@@ -50,6 +50,5 @@ jobs:
 
       - name: "Run Static Code Analysis"
         run: |
-          mkdir var
-          chmod +x bin/psalm
-          bin/psalm -c=psalm.xml --output-format=github
+          APP_ENV=dev bin/console cache:warmup
+          bin/phpstan analyse --no-progress --error-format=github

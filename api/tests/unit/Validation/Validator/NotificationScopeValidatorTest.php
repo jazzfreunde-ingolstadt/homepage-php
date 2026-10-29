@@ -25,6 +25,8 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  * @covers \Jazzfreunde\App\Validation\Validator\NotificationScopeValidator
  *
  * @internal
+ *
+ * @extends ConstraintValidatorTestCase<NotificationScopeValidator>
  */
 final class NotificationScopeValidatorTest extends ConstraintValidatorTestCase
 {

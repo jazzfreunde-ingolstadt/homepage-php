@@ -43,14 +43,15 @@ final class NewsletterSubscriptionLifecycleTest extends WebTestCase
         $dnsRecordLookup = self::createStub(DnsRecordLookupInterface::class);
         $dnsRecordLookup->method('lookup')
             ->willReturnCallback(
-                static fn (string $domain, int $type): array|false => DNS_MX === $type
+                static fn (string $domain, int $type): array => DNS_MX === $type
                     ? [['target' => 'mail.example.test', 'pri' => 10]]
                     : [],
             );
         self::getContainer()->set(DnsRecordLookupInterface::class, $dnsRecordLookup);
 
-        $this->initDatabase(self::$kernel);
-        $this->applyFixtures(self::$kernel, new KnownEmailsFixture());
+        $kernel = $this->client->getKernel();
+        $this->initDatabase($kernel);
+        $this->applyFixtures($kernel, new KnownEmailsFixture());
 
         /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);

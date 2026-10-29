@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Tests\Event\Listener\Contract;
 
-use ArrayIterator;
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
@@ -74,14 +73,10 @@ final class ConfirmationContractListenerTest extends TestCase
             ->with($mail)
             ->willReturn(new Envelope($mail));
 
-        $event = new TransitionEvent(
-            subject: $contract,
-            marking: $this->strictMock(Marking::class),
-            transition: $this->strictMock(Transition::class),
-            workflow: $this->strictMock(WorkflowInterface::class),
-            context: [
-                'email' => 'test@mail.com',
-            ],
+        $event = $this->transitionEvent(
+            $contract,
+            $this->strictMock(WorkflowInterface::class),
+            ['email' => 'test@mail.com'],
         );
 
         $listener = $uut->target();
@@ -105,12 +100,7 @@ final class ConfirmationContractListenerTest extends TestCase
             'token_lifetime' => '10 minutes',
         ]);
 
-        $event = new GuardEvent(
-            subject: $contract,
-            marking: $this->strictMock(Marking::class),
-            transition: $this->strictMock(Transition::class),
-            workflow: $workflow,
-        );
+        $event = $this->guardEvent($contract, $workflow);
 
         $listener = $uut->target();
         $listener->onGuardConfirmExpired($event);
@@ -119,9 +109,14 @@ final class ConfirmationContractListenerTest extends TestCase
         $transitionBlockerList = $event->getTransitionBlockerList();
         $this->assertCount(1, $transitionBlockerList, 'There should be one transition blocker');
 
-        /** @var ArrayIterator&TransitionBlocker $blocker */
-        $blocker = $transitionBlockerList->getIterator();
-        $this->assertEquals('Confirmation token expired', $blocker->current()->getMessage(), "Blocker reason should be 'Confirmation token expired'");
+        $blocker = null;
+        foreach ($transitionBlockerList as $transitionBlocker) {
+            $blocker = $transitionBlocker;
+
+            break;
+        }
+        self::assertInstanceOf(TransitionBlocker::class, $blocker);
+        $this->assertEquals('Confirmation token expired', $blocker->getMessage(), "Blocker reason should be 'Confirmation token expired'");
     }
 
     /**
@@ -157,12 +152,7 @@ final class ConfirmationContractListenerTest extends TestCase
             ->method('getDefinition')
             ->willReturn($definition);
 
-        $event = new GuardEvent(
-            subject: $contract,
-            marking: $this->strictMock(Marking::class),
-            transition: $this->strictMock(Transition::class),
-            workflow: $workflow,
-        );
+        $event = $this->guardEvent($contract, $workflow);
 
         $listener = $uut->target();
         $listener->onGuardConfirmExpired($event);
@@ -177,11 +167,7 @@ final class ConfirmationContractListenerTest extends TestCase
     {
         $uut = new UnitUnderTest(ConfirmationContractListener::class);
 
-        $event = new GuardEvent(
-            subject: new stdClass(),
-            marking: $this->strictMock(Marking::class),
-            transition: $this->strictMock(Transition::class),
-        );
+        $event = $this->guardEvent(new stdClass());
 
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\App\\Entity\\Contract\\ConfirmationContract'");
@@ -199,10 +185,7 @@ final class ConfirmationContractListenerTest extends TestCase
 
         $contract = $this->newContract();
 
-        $event = new EnterEvent(
-            subject: $contract,
-            marking: $this->strictMock(Marking::class),
-        );
+        $event = $this->enterEvent($contract);
 
         $uuid = $contract->uuid;
         $token = $contract->token;
@@ -211,9 +194,9 @@ final class ConfirmationContractListenerTest extends TestCase
         $listener = $uut->target();
         $listener->onEnterNew($event);
 
-        $this->assertEquals($uuid, $event->getSubject()->uuid, 'UUID should not be changed');
-        $this->assertNotEquals($token, $event->getSubject()->token, 'Token should be regenerated');
-        $this->assertNotEquals($requestTime, $event->getSubject()->requestTime, 'Request time should be set to current time');
+        $this->assertEquals($uuid, $contract->uuid, 'UUID should not be changed');
+        $this->assertNotEquals($token, $contract->token, 'Token should be regenerated');
+        $this->assertNotEquals($requestTime, $contract->requestTime, 'Request time should be set to current time');
     }
 
     /**
@@ -223,10 +206,7 @@ final class ConfirmationContractListenerTest extends TestCase
     {
         $uut = new UnitUnderTest(ConfirmationContractListener::class);
 
-        $event = new EnterEvent(
-            subject: new stdClass(),
-            marking: $this->strictMock(Marking::class),
-        );
+        $event = $this->enterEvent(new stdClass());
 
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\App\\Entity\\Contract\\ConfirmationContract'");
@@ -258,10 +238,7 @@ final class ConfirmationContractListenerTest extends TestCase
 
         $contract = $this->newContract();
 
-        $event = new EnteredEvent(
-            subject: $contract,
-            marking: $this->strictMock(Marking::class),
-        );
+        $event = $this->enteredEvent($contract);
 
         $uuid = $contract->uuid;
         $token = $contract->token;
@@ -269,8 +246,8 @@ final class ConfirmationContractListenerTest extends TestCase
         $listener = $uut->target();
         $listener->onStateChanged($event);
 
-        $this->assertEquals($uuid, $event->getSubject()->uuid, 'UUID should not be changed');
-        $this->assertEquals($token, $event->getSubject()->token, 'Token should not be changed');
+        $this->assertEquals($uuid, $contract->uuid, 'UUID should not be changed');
+        $this->assertEquals($token, $contract->token, 'Token should not be changed');
     }
 
     /**
@@ -280,10 +257,7 @@ final class ConfirmationContractListenerTest extends TestCase
     {
         $uut = new UnitUnderTest(ConfirmationContractListener::class);
 
-        $event = new EnteredEvent(
-            subject: new stdClass(),
-            marking: $this->strictMock(Marking::class),
-        );
+        $event = $this->enteredEvent(new stdClass());
 
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\App\\Entity\\Contract\\ConfirmationContract'");
@@ -308,10 +282,15 @@ final class ConfirmationContractListenerTest extends TestCase
     /**
      * Mock the workflow.
      *
+     * @param UnitUnderTest<ConfirmationContractListener> $uut
+     * @param array<string, mixed>                        $metaData
+     *
      * @return MockObject&WorkflowInterface
      */
-    private function mockWorkflow(UnitUnderTest $uut, array $metaData): MockObject&WorkflowInterface
-    {
+    private function mockWorkflow(
+        UnitUnderTest $uut,
+        array $metaData,
+    ): MockObject&WorkflowInterface {
         $metaDataStore = $this->createMock(MetadataStoreInterface::class);
         $metaDataStore
             ->expects($this->atMost(1))
@@ -336,6 +315,62 @@ final class ConfirmationContractListenerTest extends TestCase
             ->willReturn($definition);
 
         return $workflow;
+    }
+
+    /**
+     * @param array<string, mixed> $context
+     *
+     * @return TransitionEvent<object>
+     */
+    private function transitionEvent(
+        object $subject,
+        WorkflowInterface $workflow,
+        array $context = [],
+    ): TransitionEvent {
+        return new TransitionEvent(
+            subject: $subject,
+            marking: $this->strictMock(Marking::class),
+            transition: $this->strictMock(Transition::class),
+            workflow: $workflow,
+            context: $context,
+        );
+    }
+
+    /**
+     * @return GuardEvent<object>
+     */
+    private function guardEvent(
+        object $subject,
+        ?WorkflowInterface $workflow = null,
+    ): GuardEvent {
+        return new GuardEvent(
+            subject: $subject,
+            marking: $this->strictMock(Marking::class),
+            transition: $this->strictMock(Transition::class),
+            workflow: $workflow,
+        );
+    }
+
+    /**
+     * @return EnterEvent<object>
+     */
+    private function enterEvent(object $subject): EnterEvent
+    {
+        return new EnterEvent(
+            subject: $subject,
+            marking: $this->strictMock(Marking::class),
+        );
+    }
+
+    /**
+     * @return EnteredEvent<object>
+     */
+    private function enteredEvent(object $subject): EnteredEvent
+    {
+        return new EnteredEvent(
+            subject: $subject,
+            marking: $this->strictMock(Marking::class),
+        );
     }
 
     /**

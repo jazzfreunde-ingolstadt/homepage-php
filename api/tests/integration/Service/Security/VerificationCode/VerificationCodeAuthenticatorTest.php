@@ -107,7 +107,6 @@ final class VerificationCodeAuthenticatorTest extends TestCase
         $authenticationException->setToken($token);
 
         $response = $uut->target()->onAuthenticationFailure($request, $authenticationException);
-        $this->assertInstanceOf(Response::class, $response);
         $this->assertSame('Failure', $response->getContent());
     }
 

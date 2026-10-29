@@ -70,13 +70,14 @@ final class NotificationScopeCollectionProviderTest extends TestCase
                 self::assertSame('notifications.scope.collection', $key);
                 $item = $this->createMock(ItemInterface::class);
                 $item->expects(self::once())->method('expiresAfter')->with(86400);
+                $collection = $callback($item);
+                self::assertInstanceOf(NotificationScopeCollection::class, $collection);
 
-                return $callback($item);
+                return $collection;
             });
 
         $collection = $uut->target()->provide();
 
-        self::assertInstanceOf(NotificationScopeCollection::class, $collection);
         self::assertSame([$scope], $collection->all());
     }
 

@@ -22,6 +22,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @internal
@@ -87,13 +88,14 @@ final class WriteConfirmationListenerTest extends TestCase
 
         $uut->target()->validateExistingSubscription($event);
 
+        self::assertNotNull($subscription->uuid);
         $this->assertSame(200, $event->getResponse()?->getStatusCode());
         $this->assertSame(
             NotificationSubscription::class,
             $subscription->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS]
         );
         $this->assertSame(
-            $subscription->uuid,
+            $subscription->uuid->toRfc4122(),
             $subscription->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID]
         );
     }
@@ -139,12 +141,13 @@ final class WriteConfirmationListenerTest extends TestCase
 
         $uut->target()->startConfirmationProcess($event);
 
+        self::assertNotNull($subscription->uuid);
         $this->assertSame(
             NotificationSubscription::class,
             $subscription->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS]
         );
         $this->assertSame(
-            $subscription->uuid,
+            $subscription->uuid->toRfc4122(),
             $subscription->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID]
         );
     }
@@ -177,7 +180,7 @@ final class WriteConfirmationListenerTest extends TestCase
     private function newEntitySubscription(ConfirmationStateEnum $state): NotificationSubscription
     {
         $subscription = new NotificationSubscription();
-        $subscription->uuid = '00000000-0000-4000-8000-000000000001';
+        $subscription->uuid = Uuid::fromString('00000000-0000-4000-8000-000000000001');
         $subscription->resourceScope = Uri::from('/events/123');
         $subscription->email = Email::from('test@mail.com');
         $subscription->confirmation = new ConfirmationContract();

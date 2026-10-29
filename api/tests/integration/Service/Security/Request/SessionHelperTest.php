@@ -23,7 +23,7 @@ final class SessionHelperTest extends TestCase
      * Test getRedirectUri returns the URI if present and valid.
      */
     #[Test]
-    public function getRedirectUriReturnsUriIfPresent()
+    public function getRedirectUriReturnsUriIfPresent(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $session->method('get')->with('redirect_uri')->willReturn('https://example.com/redirect');
@@ -37,7 +37,7 @@ final class SessionHelperTest extends TestCase
      * Test getRedirectUri returns null if not present.
      */
     #[Test]
-    public function getRedirectUriReturnsNullIfNotPresent()
+    public function getRedirectUriReturnsNullIfNotPresent(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $session->method('get')->with('redirect_uri')->willReturn(null);
@@ -51,7 +51,7 @@ final class SessionHelperTest extends TestCase
      * Test getRedirectUri returns null if value is not a string.
      */
     #[Test]
-    public function getRedirectUriReturnsNullIfNotString()
+    public function getRedirectUriReturnsNullIfNotString(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $session->method('get')->with('redirect_uri')->willReturn(['not', 'a', 'string']);
@@ -65,7 +65,7 @@ final class SessionHelperTest extends TestCase
      * Test setRedirectUri sets the value in the session.
      */
     #[Test]
-    public function setRedirectUriSetsValue()
+    public function setRedirectUriSetsValue(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $session->expects($this->once())
@@ -79,7 +79,7 @@ final class SessionHelperTest extends TestCase
      * Test clearRedirectUri removes the value from the session.
      */
     #[Test]
-    public function clearRedirectUriRemovesValue()
+    public function clearRedirectUriRemovesValue(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $session->expects($this->once())
@@ -93,7 +93,7 @@ final class SessionHelperTest extends TestCase
      * Test getUserEmail returns Email instance if present and valid.
      */
     #[Test]
-    public function getUserEmailReturnsEmailIfPresent()
+    public function getUserEmailReturnsEmailIfPresent(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $session->method('get')->with('user_email')->willReturn('user@example.com');
@@ -108,7 +108,7 @@ final class SessionHelperTest extends TestCase
      * Test getUserEmail returns null if not present.
      */
     #[Test]
-    public function getUserEmailReturnsNullIfNotPresent()
+    public function getUserEmailReturnsNullIfNotPresent(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $session->method('get')->with('user_email')->willReturn(null);
@@ -122,7 +122,7 @@ final class SessionHelperTest extends TestCase
      * Test getUserEmail returns null if value is not a string.
      */
     #[Test]
-    public function getUserEmailReturnsNullIfNotString()
+    public function getUserEmailReturnsNullIfNotString(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $session->method('get')->with('user_email')->willReturn(['not', 'a', 'string']);
@@ -136,7 +136,7 @@ final class SessionHelperTest extends TestCase
      * Test setUserEmail sets the value in the session.
      */
     #[Test]
-    public function setUserEmailSetsValue()
+    public function setUserEmailSetsValue(): void
     {
         $session = $this->createMock(SessionInterface::class);
         $email = new Email('user@example.com');

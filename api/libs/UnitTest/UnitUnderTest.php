@@ -14,7 +14,6 @@ use stdClass;
 
 use function array_key_exists;
 use function array_map;
-use function assert;
 use function is_null;
 
 /**
@@ -41,7 +40,7 @@ final class UnitUnderTest
     private array $configuredArguments = [];
 
     /**
-     * @var class-string<T of object>
+     * @var class-string<T>
      */
     private string $class;
 
@@ -93,20 +92,27 @@ final class UnitUnderTest
     public function mock(string $class): object
     {
         if (array_key_exists($class, $this->mocks)) {
-            // @var MockObject&TMock $mock
-            return $this->mocks[$class];
+            $mock = $this->mocks[$class];
+            if (!$mock instanceof $class) {
+                throw new LogicException("Cached mock does not implement '{$class}'.");
+            }
+
+            return $mock;
         }
 
-        /** @var MockObject&TMock $mock */
         $mock = (new MockGenerator())->testDouble(
             $class,
-            mockObject: true,
-            callOriginalConstructor: false,
-            callOriginalClone: false,
+            true,
+            [],
+            [],
+            '',
+            false,
+            false,
         );
 
-        assert($mock instanceof $class);
-        assert($mock instanceof MockObject);
+        if (!$mock instanceof $class || !$mock instanceof MockObject) {
+            throw new LogicException("Generated mock does not implement '{$class}' and MockObject.");
+        }
 
         $this->mocks[$class] = $mock;
 
@@ -192,6 +198,9 @@ final class UnitUnderTest
                     }
 
                     $className = $type->getName();
+                    if (!class_exists($className) && !interface_exists($className)) {
+                        throw new InvalidArgumentException("Constructor dependency '{$className}' does not exist.");
+                    }
 
                     if (array_key_exists($className, $this->usedInstances)) {
                         return $this->usedInstances[$className];

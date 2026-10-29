@@ -15,6 +15,7 @@ use ReflectionIntersectionType;
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionProperty;
+use ReflectionType;
 use ReflectionUnionType;
 
 use function array_filter;
@@ -71,7 +72,7 @@ trait PropertyInjectionTrait
     /**
      * Serialize the object without any of the traits own technical properties.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function __serialize(): array
     {
@@ -85,7 +86,7 @@ trait PropertyInjectionTrait
     /**
      * Unserialize the object.
      *
-     * @param array $data
+     * @param array<array-key, mixed> $data
      */
     public function __unserialize(array $data): void
     {
@@ -95,7 +96,7 @@ trait PropertyInjectionTrait
     /**
      * Inject properties into the object.
      *
-     * @param array $kvp associative array of [property name => value]
+     * @param array<array-key, mixed> $kvp associative array of [property name => value]
      */
     protected function injectProperties(array $kvp): void
     {
@@ -233,7 +234,7 @@ trait PropertyInjectionTrait
     ): bool {
         foreach ($types as $type) {
             if (is_subclass_of($type, BackedEnum::class, true)) {
-                if (is_a($value, $type, true)) {
+                if ((is_object($value) || is_string($value)) && is_a($value, $type, true)) {
                     $this->setValue($name, $value);
 
                     return true;
@@ -362,7 +363,7 @@ trait PropertyInjectionTrait
     private function getIntersectionType(ReflectionIntersectionType $type): string
     {
         return implode('&', array_map(
-            fn (ReflectionNamedType $t) => $t->getName(),
+            fn (ReflectionType $t) => (string) $t,
             $type->getTypes()
         ));
     }

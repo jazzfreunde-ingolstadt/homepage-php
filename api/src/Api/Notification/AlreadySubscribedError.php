@@ -39,7 +39,7 @@ final class AlreadySubscribedError extends Exception implements ProblemException
      * {@inheritDoc}
      */
     #[Override]
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return 'Already subscribed';
     }
@@ -48,7 +48,7 @@ final class AlreadySubscribedError extends Exception implements ProblemException
      * {@inheritDoc}
      */
     #[Override]
-    public function getStatus(): ?int
+    public function getStatus(): int
     {
         return 409;
     }
@@ -57,7 +57,7 @@ final class AlreadySubscribedError extends Exception implements ProblemException
      * {@inheritDoc}
      */
     #[Override]
-    public function getDetail(): ?string
+    public function getDetail(): string
     {
         return 'User with this email is already subscribed to this resource scope.';
     }

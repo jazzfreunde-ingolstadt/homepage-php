@@ -12,7 +12,7 @@ abstract class ArrayUtil
     /**
      * Checks if the given array is an associative array.
      *
-     * @param array $array
+     * @param array<array-key, mixed> $array
      *
      * @return bool
      */

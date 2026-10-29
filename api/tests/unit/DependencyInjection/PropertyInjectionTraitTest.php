@@ -24,9 +24,21 @@ enum DummyEnum: string
 /**
  * Dummy type for testing property injection.
  */
-class DummyType implements PrimitiveTypeInterface
+final class DummyType implements PrimitiveTypeInterface
 {
+    /**
+     * @var non-empty-string
+     */
     private string $value;
+
+    public function __construct(string $value)
+    {
+        if ('' === $value) {
+            throw new InvalidArgumentException('Value must not be empty.');
+        }
+
+        $this->value = $value;
+    }
 
     /**
      * {@inheritDoc}
@@ -43,7 +55,7 @@ class DummyType implements PrimitiveTypeInterface
     #[Override]
     public static function from(mixed $value): static
     {
-        if (!is_string($value)) {
+        if (!is_string($value) || '' === $value) {
             throw new InvalidArgumentException('Value must be a string.');
         }
 
@@ -56,7 +68,7 @@ class DummyType implements PrimitiveTypeInterface
     #[Override]
     public static function tryFrom(mixed $value): ?static
     {
-        if (!is_string($value)) {
+        if (!is_string($value) || '' === $value) {
             return null;
         }
 
@@ -70,6 +82,30 @@ class DummyType implements PrimitiveTypeInterface
     public function value(): string
     {
         return $this->value;
+    }
+}
+
+interface DummyHookInterface
+{
+    public string $interfaceValue { get; set; }
+}
+
+class DummyHookClass implements DummyHookInterface
+{
+    use PropertyInjectionTrait;
+
+    public string $trimmedValue {
+        get => $this->trimmedValue;
+        set => $this->trimmedValue = trim($value);
+    }
+
+    public string $virtualValue {
+        get => 'computed';
+    }
+
+    public string $interfaceValue {
+        get => $this->interfaceValue;
+        set => $this->interfaceValue = trim($value);
     }
 }
 
@@ -129,6 +165,8 @@ class DummyClass
     public DummyEnum|string $enumOrString;
     public DummyType $type;
     public DummyType|int $typeOrInt;
+
+    /** @var array<mixed> */
     public array $array;
     public DummyComplexType $complexType;
     public DummyInterface1&DummyInterface2 $complexTypeAndInterface;
@@ -272,6 +310,18 @@ final class PropertyInjectionTraitTest extends TestCase
         $this->assertEquals($complexType, $dummy->complexTypeAndInterface);
     }
 
+    public function testInjectingPropertiesWithHooks(): void
+    {
+        $dummy = new DummyHookClass(
+            trimmedValue: '  backed value  ',
+            interfaceValue: '  interface value  ',
+        );
+
+        self::assertSame('backed value', $dummy->trimmedValue);
+        self::assertSame('computed', $dummy->virtualValue);
+        self::assertSame('interface value', $dummy->interfaceValue);
+    }
+
     /**
      * Test injecting invalid argument.
      */
@@ -301,7 +351,8 @@ final class PropertyInjectionTraitTest extends TestCase
 
         $reflectedClass = new ReflectionClass(DummyClass::class);
         $constructor = $reflectedClass->getConstructor();
-        $constructor->invoke($mock, valueWithValidation: 'foo');
+        self::assertNotNull($constructor);
+        $constructor->invokeArgs($mock, ['valueWithValidation' => 'foo']);
     }
 
     /**

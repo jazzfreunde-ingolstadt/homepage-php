@@ -57,7 +57,6 @@ final class PostAuthenticationHandlerTest extends TestCase
 
         $response = $uut->target()->onAuthenticationSuccess($request, $token);
 
-        $this->assertNotNull($response, 'Response should not be null');
         $this->assertInstanceOf(RedirectResponse::class, $response, 'Response should be a RedirectResponse');
     }
 
@@ -96,7 +95,6 @@ final class PostAuthenticationHandlerTest extends TestCase
 
         $response = $uut->target()->onAuthenticationFailure($request, $authenticationException);
 
-        $this->assertNotNull($response, 'Response should not be null');
         $this->assertInstanceOf(RedirectResponse::class, $response, 'Response should be a RedirectResponse');
     }
 

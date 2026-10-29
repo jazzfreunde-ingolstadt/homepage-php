@@ -38,7 +38,7 @@ final class ConfirmationPeriodExpiredError extends Exception implements ProblemE
      * {@inheritDoc}
      */
     #[Override]
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return 'Confirmation expired';
     }
@@ -47,7 +47,7 @@ final class ConfirmationPeriodExpiredError extends Exception implements ProblemE
      * {@inheritDoc}
      */
     #[Override]
-    public function getStatus(): ?int
+    public function getStatus(): int
     {
         return 410;
     }
@@ -56,7 +56,7 @@ final class ConfirmationPeriodExpiredError extends Exception implements ProblemE
      * {@inheritDoc}
      */
     #[Override]
-    public function getDetail(): ?string
+    public function getDetail(): string
     {
         return 'The confirmation period for this contract has expired.';
     }

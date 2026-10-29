@@ -35,6 +35,7 @@ final class EventRepositoryTest extends KernelTestCase
         /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);
         $manager = $registry->getManagerForClass(Event::class);
+        self::assertNotNull($manager);
 
         $location = new EventLocation();
         $location->name = 'Test venue';
@@ -46,6 +47,7 @@ final class EventRepositoryTest extends KernelTestCase
         /** @var EventRepository $repository */
         $repository = self::getContainer()->get(EventRepository::class);
 
+        self::assertNotNull($event->id);
         self::assertSame($event, $repository->getById($event->id));
         self::assertNull($repository->getById(-1));
     }
@@ -58,6 +60,7 @@ final class EventRepositoryTest extends KernelTestCase
         /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);
         $manager = $registry->getManagerForClass(Event::class);
+        self::assertNotNull($manager);
 
         $location = new EventLocation();
         $location->name = 'Test venue';
@@ -101,6 +104,7 @@ final class EventRepositoryTest extends KernelTestCase
         /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);
         $manager = $registry->getManagerForClass(Event::class);
+        self::assertNotNull($manager);
 
         $location = new EventLocation();
         $location->name = 'Test venue';

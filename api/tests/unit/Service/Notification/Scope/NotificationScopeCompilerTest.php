@@ -56,7 +56,6 @@ final class NotificationScopeCompilerTest extends TestCase
         self::assertSame('eventId', $compiled->getParameters()[0]->getName());
         self::assertSame(stdClass::class, $compiled->getEntityClassName());
         self::assertSame('/events/{eventId:number}/items', $compiled->getUri()->value());
-        self::assertInstanceOf(Uri::class, $compiled->getUri());
     }
 
     /**

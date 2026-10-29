@@ -15,6 +15,7 @@ use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @internal
@@ -46,7 +47,8 @@ final class ContractConfirmationRequestMailGeneratorTest extends TestCase
     public function testGeneratesNewsletterConfirmationEmailFromStoredEntityReference(): void
     {
         $subscription = new NewsletterSubscription();
-        $subscription->uuid = 'f020db38-914c-4bb9-9990-017b7bf831ce';
+        $uuid = Uuid::fromString('f020db38-914c-4bb9-9990-017b7bf831ce');
+        $subscription->uuid = $uuid;
         $contract = new ConfirmationContract();
         $contract->setConfirmableEntity($subscription);
 
@@ -54,7 +56,7 @@ final class ContractConfirmationRequestMailGeneratorTest extends TestCase
         $uut->mock(ObjectManager::class)
             ->expects($this->once())
             ->method('find')
-            ->with(NewsletterSubscription::class, $subscription->uuid)
+            ->with(NewsletterSubscription::class, $uuid->toRfc4122())
             ->willReturn($subscription);
 
         $uut->mock(ManagerRegistry::class)

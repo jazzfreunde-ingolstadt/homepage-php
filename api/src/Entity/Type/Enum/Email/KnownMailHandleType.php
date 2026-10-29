@@ -23,4 +23,12 @@ final class KnownMailHandleType extends AbstractEnumType
      * @override
      */
     public const string ENUM_CLASS_NAME = KnownMailHandleEnum::class;
+
+    /**
+     * @return class-string<KnownMailHandleEnum>
+     */
+    protected static function enumClass(): string
+    {
+        return self::ENUM_CLASS_NAME;
+    }
 }

@@ -14,6 +14,7 @@ use Jazzfreunde\App\Repository\ConfirmationContractRepository;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Primitive\HexToken;
 use LogicException;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -34,13 +35,13 @@ class ConfirmationContract
     /**
      * Unique identifier in the database.
      *
-     * @var null|string
+     * @var null|Uuid
      */
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
     #[ORM\Column(type: 'uuid')]
-    public ?string $uuid = null;
+    public ?Uuid $uuid = null;
 
     /**
      * Unique token that acts as a public identifier on the API.
@@ -112,7 +113,7 @@ class ConfirmationContract
             ?? throw new LogicException('Cannot associate a confirmation contract with an unpersisted entity.');
 
         $this->metadata[self::METADATA_CONFIRMABLE_ENTITY_CLASS] = $entity::class;
-        $this->metadata[self::METADATA_CONFIRMABLE_ENTITY_UUID] = $uuid;
+        $this->metadata[self::METADATA_CONFIRMABLE_ENTITY_UUID] = $uuid->toRfc4122();
     }
 
     /**
@@ -152,17 +153,13 @@ class ConfirmationContract
     /**
      * Set the current place of the workflow.
      *
-     * @param enum-string $currentPlace
-     * @param array       $_
+     * @param value-of<ConfirmationStateEnum> $currentPlace
+     * @param array<string, mixed>            $_
      *
      * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
      */
     public function setState(string $currentPlace, array $_ = []): void
     {
-        /**
-         * @var ConfirmationStateEnum $state
-         */
-        $state = ConfirmationStateEnum::From($currentPlace);
-        $this->state = $state;
+        $this->state = ConfirmationStateEnum::from($currentPlace);
     }
 }

@@ -7,8 +7,6 @@ use Symfony\Component\Dotenv\Dotenv;
  * This bootstrap is designed to work in tandem with the default bootstrap file.
  */
 
-if (method_exists(Dotenv::class, 'bootEnv')) {
-    (new Dotenv())->overload(
-        dirname(__DIR__, 2).'/.env.test.functional',
-    );
-}
+(new Dotenv())->overload(
+    dirname(__DIR__, 2).'/.env.test.functional',
+);

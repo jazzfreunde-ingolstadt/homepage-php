@@ -88,14 +88,15 @@ final class EventTest extends WebTestCase
     public function testCollectionOnlyIncludesNotificationSourceWhenSubscriptionIsAvailable(): void
     {
         $client = self::createClient();
-        $this->initDatabase(self::$kernel);
+        $kernel = $client->getKernel();
+        $this->initDatabase($kernel);
         $now = new DateTimeImmutable(timezone: new DateTimeZone('Europe/Berlin'));
         $eventStarts = [
             'Soon event' => $now->add(new DateInterval('P2D')),
             'Available event' => $now->add(new DateInterval('P4D')),
         ];
         $this->applyFixtures(
-            self::$kernel,
+            $kernel,
             new CallbackFixture(callback: static function (ObjectManager $manager) use ($eventStarts): void {
                 $location = new EventLocation();
                 $location->name = 'Test venue';
@@ -123,6 +124,7 @@ final class EventTest extends WebTestCase
 
         $availableEvent = $eventsByTitle['Available event'];
         self::assertIsArray($availableEvent['notificationSource']);
+        self::assertIsInt($availableEvent['id']);
         self::assertSame(
             '/events/'.$availableEvent['id'],
             $availableEvent['notificationSource']['resourceScope'],
@@ -157,9 +159,10 @@ final class EventTest extends WebTestCase
     private function createClientWithEvents(): KernelBrowser
     {
         $client = self::createClient();
-        $this->initDatabase(self::$kernel);
+        $kernel = $client->getKernel();
+        $this->initDatabase($kernel);
         $this->applyFixtures(
-            self::$kernel,
+            $kernel,
             new CallbackFixture(callback: static function (ObjectManager $manager): void {
                 $location = new EventLocation();
                 $location->name = 'Test venue';
@@ -191,11 +194,16 @@ final class EventTest extends WebTestCase
      */
     private function eventTitles(KernelBrowser $client): array
     {
-        return array_column($this->eventResources($client), 'title');
+        return array_map(static function (array $event): string {
+            self::assertArrayHasKey('title', $event);
+            self::assertIsString($event['title']);
+
+            return $event['title'];
+        }, $this->eventResources($client));
     }
 
     /**
-     * @return list<array<string, mixed>>
+     * @return list<array<mixed>>
      */
     private function eventResources(KernelBrowser $client): array
     {
@@ -206,6 +214,10 @@ final class EventTest extends WebTestCase
         self::assertIsArray($events);
         self::assertIsList($events);
 
-        return $events;
+        return array_map(static function (mixed $event): array {
+            self::assertIsArray($event);
+
+            return $event;
+        }, $events);
     }
 }

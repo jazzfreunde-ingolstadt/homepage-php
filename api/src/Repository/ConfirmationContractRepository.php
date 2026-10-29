@@ -16,6 +16,8 @@ use Throwable;
 /**
  * Repository for managing {@see ConfirmationContract} entities.
  *
+ * @extends ServiceEntityRepository<ConfirmationContract>
+ *
  * @psalm-api
  */
 final class ConfirmationContractRepository extends ServiceEntityRepository implements ConfirmationContractPurgingInterface

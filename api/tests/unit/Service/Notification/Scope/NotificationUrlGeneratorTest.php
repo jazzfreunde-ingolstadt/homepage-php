@@ -30,7 +30,6 @@ final class NotificationUrlGeneratorTest extends TestCase
         self::assertCount(1, $attributes);
 
         $resource = $attributes[0]->newInstance();
-        self::assertInstanceOf(NotificationResourceAttribute::class, $resource);
         $scope = (new NotificationScopeCompiler())->compile($resource, EventNotification::class);
         $scopes = new NotificationScopeCollection();
         $scopes->add($scope);

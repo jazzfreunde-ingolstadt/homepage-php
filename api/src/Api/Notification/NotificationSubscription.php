@@ -61,7 +61,7 @@ final class NotificationSubscription
         #[CustomAssert\NotificationScope(message: 'The string "{{ string }}" is not a valid notification scope.')]
         #[API\ApiProperty(openapiContext: ['example' => '/events/123'], required: true)]
         #[Map(if: new TargetClass(NotificationEntity::class), transform: [Uri::class, 'from'])]
-        #[Map(if: new TargetClass(self::class), transform: [Uri::class, 'value'])]
+        #[Map(if: new TargetClass(self::class), transform: 'strval')]
         public string $resourceScope,
 
         /**
@@ -73,7 +73,7 @@ final class NotificationSubscription
         #[Assert\Email(message: 'The email {{ value }} is not a valid email.')]
         #[API\ApiProperty(required: true)]
         #[Map(if: new TargetClass(NotificationEntity::class), transform: [Email::class, 'from'])]
-        #[Map(if: new TargetClass(self::class), transform: [Email::class, 'value'])]
+        #[Map(if: new TargetClass(self::class), transform: 'strval')]
         public string $email,
 
         /**

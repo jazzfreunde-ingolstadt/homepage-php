@@ -3,6 +3,7 @@
 namespace Jazzfreunde\App\Entity\Security;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * User roles.
@@ -16,13 +17,13 @@ class Role
     /**
      * Unique identifier in the database.
      *
-     * @var null|string
+     * @var null|Uuid
      */
     #[ORM\Column(name: 'uuid', type: 'uuid', nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
-    public ?string $uuid;
+    public ?Uuid $uuid;
 
     /**
      * Name of the role.

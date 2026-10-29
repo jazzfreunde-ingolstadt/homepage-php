@@ -65,10 +65,11 @@
         "escapestudios/symfony2-coding-standard": "dev-master",
         "friendsofphp/php-cs-fixer": "^3.95",
         "phpunit/phpunit": "12.5.23",
-        "psalm/plugin-phpunit": "^0.21.1",
-        "psalm/plugin-symfony": "^5.9.1",
-        "symfony/web-profiler-bundle": "*",
-        "vimeo/psalm": "^7.0@RC"
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "symfony/web-profiler-bundle": "*"
     },
     "scripts": {
         "auto-scripts": {

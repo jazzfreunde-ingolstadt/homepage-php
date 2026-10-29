@@ -47,12 +47,6 @@ class TemporaryUser implements UserInterface
      * {@inheritDoc}
      */
     #[Override]
-    public function eraseCredentials(): void {}
-
-    /**
-     * {@inheritDoc}
-     */
-    #[Override]
     public function getUserIdentifier(): string
     {
         return $this->email->value();

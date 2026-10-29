@@ -13,6 +13,7 @@ use Jazzfreunde\App\Type\Primitive\Email;
 use Jazzfreunde\App\Type\Primitive\HexToken;
 use Override;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * user account.
@@ -34,13 +35,13 @@ class User implements UserInterface
     /**
      * Unique identifier in the database.
      *
-     * @var null|string
+     * @var null|Uuid
      */
     #[ORM\Column(name: 'uuid', type: 'uuid', nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
-    public ?string $uuid;
+    public ?Uuid $uuid;
 
     /**
      * User secret to seed generated hashes.
@@ -79,12 +80,6 @@ class User implements UserInterface
             ->map(static fn (Role $role): string => $role->name)
             ->toArray();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    #[Override]
-    public function eraseCredentials(): void {}
 
     /**
      * {@inheritDoc}

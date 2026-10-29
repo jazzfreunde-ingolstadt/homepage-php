@@ -9,7 +9,6 @@ use Jazzfreunde\App\Service\Security\Request\RequestHelper;
 use Jazzfreunde\App\Type\Primitive\Email;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -25,7 +24,7 @@ final class RequestHelperTest extends TestCase
      * Test that redirectToOrigin uses the Referer header if present.
      */
     #[Test]
-    public function redirectToOriginUsesRefererHeader()
+    public function redirectToOriginUsesRefererHeader(): void
     {
         $request = new Request();
         $request->headers->set('referer', 'https://example.com/origin');
@@ -33,7 +32,6 @@ final class RequestHelperTest extends TestCase
 
         $response = RequestHelper::redirectToOrigin($request, $default);
 
-        $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertEquals('https://example.com/origin', $response->getTargetUrl());
     }
 
@@ -41,7 +39,7 @@ final class RequestHelperTest extends TestCase
      * Test that redirectToOrigin uses the default URL if no Referer header is present.
      */
     #[Test]
-    public function redirectToOriginUsesDefaultIfNoReferer()
+    public function redirectToOriginUsesDefaultIfNoReferer(): void
     {
         $request = new Request();
         $default = 'https://example.com/default';
@@ -55,7 +53,7 @@ final class RequestHelperTest extends TestCase
      * Test that redirectToOrigin appends the anchor if provided.
      */
     #[Test]
-    public function redirectToOriginAppendsAnchor()
+    public function redirectToOriginAppendsAnchor(): void
     {
         $request = new Request();
         $default = 'https://example.com/default';
@@ -70,7 +68,7 @@ final class RequestHelperTest extends TestCase
      * Test that getUserEmailFromPost returns an Email instance for a valid email.
      */
     #[Test]
-    public function getUserEmailFromPostReturnsEmailInstance()
+    public function getUserEmailFromPostReturnsEmailInstance(): void
     {
         $request = new Request([], ['email' => 'user@example.com']);
         // Assuming Email::tryFrom returns Email instance for valid email
@@ -84,7 +82,7 @@ final class RequestHelperTest extends TestCase
      * Test that getUserEmailFromPost returns null if the email is missing.
      */
     #[Test]
-    public function getUserEmailFromPostReturnsNullIfEmailMissing()
+    public function getUserEmailFromPostReturnsNullIfEmailMissing(): void
     {
         $request = new Request([], []);
         $email = RequestHelper::getUserEmailFromPost($request);
@@ -96,7 +94,7 @@ final class RequestHelperTest extends TestCase
      * Test that getUserEmailFromPost throws an exception for an invalid email.
      */
     #[Test]
-    public function getUserEmailFromPostThrowsOnInvalidEmail()
+    public function getUserEmailFromPostThrowsOnInvalidEmail(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -108,7 +106,7 @@ final class RequestHelperTest extends TestCase
      * Test that getRedirectUri uses the Referer header if present.
      */
     #[Test]
-    public function getRedirectUriUsesReferer()
+    public function getRedirectUriUsesReferer(): void
     {
         $request = new Request();
         $request->headers->set('referer', 'https://example.com/prev');
@@ -121,7 +119,7 @@ final class RequestHelperTest extends TestCase
      * Test that getRedirectUri uses the default URI if no Referer header is present.
      */
     #[Test]
-    public function getRedirectUriUsesDefaultIfNoReferer()
+    public function getRedirectUriUsesDefaultIfNoReferer(): void
     {
         $request = new Request();
         $uri = RequestHelper::getRedirectUri($request, 'https://example.com/fallback');
@@ -133,7 +131,7 @@ final class RequestHelperTest extends TestCase
      * Test that getRedirectUri uses the request URI if neither Referer nor default is present.
      */
     #[Test]
-    public function getRedirectUriUsesRequestUriIfNoRefererOrDefault()
+    public function getRedirectUriUsesRequestUriIfNoRefererOrDefault(): void
     {
         $request = new Request([], [], [], [], [], ['REQUEST_URI' => '/current']);
         $uri = RequestHelper::getRedirectUri($request, null);

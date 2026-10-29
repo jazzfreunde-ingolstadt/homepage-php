@@ -40,6 +40,6 @@ final class MonitoringReportHandlerTest extends TestCase
             }))
             ->willReturnCallback(static fn (object $message): Envelope => new Envelope($message));
 
-        $uut->target()->handleSendMonitoringReport('TEST');
+        $uut->target()->handleSendMonitoringReport();
     }
 }

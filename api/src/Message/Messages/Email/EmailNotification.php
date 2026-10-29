@@ -58,6 +58,8 @@ class EmailNotification
      * Context for the email
      * Associative array of key-value pairs.
      *
+     * @var array<string, mixed>
+     *
      * @see https://symfony.com/doc/current/mailer.html#html-content
      */
     public array $twigContext = [];

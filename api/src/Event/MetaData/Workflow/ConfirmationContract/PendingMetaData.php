@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract;
 
 use DateInterval;
+use DateMalformedIntervalStringException;
 use InvalidArgumentException;
 use Jazzfreunde\App\DependencyInjection\FromMetaDataTrait;
 use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
@@ -32,8 +33,10 @@ final class PendingMetaData
      */
     public function getTokenLifeTime(): DateInterval
     {
-        $interval = DateInterval::createFromDateString($this->token_lifetime);
-
-        return $interval ?: throw new InvalidArgumentException('Invalid token lifetime format');
+        try {
+            return DateInterval::createFromDateString($this->token_lifetime);
+        } catch (DateMalformedIntervalStringException $e) {
+            throw new InvalidArgumentException('Invalid token lifetime format', previous: $e);
+        }
     }
 }

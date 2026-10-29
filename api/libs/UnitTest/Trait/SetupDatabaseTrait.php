@@ -10,7 +10,6 @@ use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
-use LogicException;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -51,11 +50,6 @@ trait SetupDatabaseTrait
 
     private function getEntityManager(KernelInterface $kernel): EntityManagerInterface
     {
-        $entityManager = $kernel->getContainer()->get('doctrine.orm.entity_manager');
-        if (!$entityManager instanceof EntityManagerInterface) {
-            throw new LogicException('The doctrine.orm.entity_manager service must be an ORM entity manager.');
-        }
-
-        return $entityManager;
+        return $kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
 }

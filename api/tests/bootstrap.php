@@ -4,15 +4,18 @@ use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
-if (method_exists(Dotenv::class, 'bootEnv')) {
-    (new Dotenv())->overload(
-        dirname(__DIR__).'/.env',
-        dirname(__DIR__).'/.env.test',
-    );
+(new Dotenv())->overload(
+    dirname(__DIR__).'/.env',
+    dirname(__DIR__).'/.env.test',
+);
+
+$appEnv = $_ENV['APP_ENV'] ?? null;
+if (!is_string($appEnv)) {
+    throw new RuntimeException('APP_ENV must be defined as a string.');
 }
 
 passthru(sprintf(
     'APP_ENV=%s php "%s/../bin/console" cache:clear --no-warmup',
-    $_ENV['APP_ENV'],
+    $appEnv,
     __DIR__
 ));

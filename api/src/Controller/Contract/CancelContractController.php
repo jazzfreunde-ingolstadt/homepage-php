@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\App\Controller\Contract;
 
 use Jazzfreunde\App\Api\Contract\ConfirmationContractNotFoundError as ConfirmationContractNotFoundApiError;
-use Jazzfreunde\App\Api\Contract\ConfirmationPeriodExpiredError as ConfirmationPeriodExpiredApiError;
 use Jazzfreunde\App\Exception\Contract\ConfirmationContractNotFoundException;
-use Jazzfreunde\App\Exception\Contract\ConfirmationPeriodExpiredException;
 use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,8 +39,6 @@ final class CancelContractController extends AbstractController
             $this->confirmationContracts->cancelContract($token);
 
             return new Response(status: Response::HTTP_ACCEPTED);
-        } catch (ConfirmationPeriodExpiredException) {
-            throw new ConfirmationPeriodExpiredApiError();
         } catch (ConfirmationContractNotFoundException) {
             throw new ConfirmationContractNotFoundApiError();
         }
