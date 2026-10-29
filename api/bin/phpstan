@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+define('PROJECT_DIR', dirname(__DIR__));
+
+$autoload = PROJECT_DIR.'/vendor/autoload.php';
+$analyser = PROJECT_DIR.'/vendor/phpstan/phpstan/phpstan';
+
+if (!is_file($autoload) || !is_file($analyser)) {
+    fwrite(STDERR, 'PHPStan dependencies are unavailable. Run composer install.'.PHP_EOL);
+
+    exit(1);
+}
+
+require $analyser;

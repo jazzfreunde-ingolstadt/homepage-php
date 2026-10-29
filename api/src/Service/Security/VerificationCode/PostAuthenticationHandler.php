@@ -46,7 +46,7 @@ final class PostAuthenticationHandler implements AuthenticationSuccessHandlerInt
      * {@inheritDoc}
      */
     #[Override]
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token): ?Response
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token): Response
     {
         $redirectUri = SessionHelper::getRedirectUri($request->getSession())
             ?? $this->httpUtils->generateUri($request, 'home');

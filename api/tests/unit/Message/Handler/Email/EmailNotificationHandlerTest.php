@@ -248,8 +248,8 @@ final class EmailNotificationHandlerTest extends TestCase
     /**
      * Configure validator mock.
      *
-     * @param UnitUnderTest $uut
-     * @param int           $errorCount error count after validation
+     * @param UnitUnderTest<EmailNotificationHandler> $uut
+     * @param int                                     $errorCount error count after validation
      *
      * @return MockObject&ValidatorInterface
      */

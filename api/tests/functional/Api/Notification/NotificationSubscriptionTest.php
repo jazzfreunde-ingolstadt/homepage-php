@@ -37,18 +37,18 @@ final class NotificationSubscriptionTest extends WebTestCase
     {
         $client = self::createClient();
         $client->disableReboot();
-        $this->initDatabase(self::$kernel);
-        $this->applyFixtures(self::$kernel, new KnownEmailsFixture());
+        $kernel = $client->getKernel();
+        $this->initDatabase($kernel);
+        $this->applyFixtures($kernel, new KnownEmailsFixture());
 
         $container = self::getContainer();
 
-        /** @var ManagerRegistry $registry */
         $registry = $container->get(ManagerRegistry::class);
 
         $content = json_encode([
             'resourceScope' => '/events/123',
             'email' => 'test@mail.com',
-        ]);
+        ], flags: JSON_THROW_ON_ERROR);
 
         $client->request(
             Request::METHOD_POST,
@@ -61,21 +61,20 @@ final class NotificationSubscriptionTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(201);
 
-        /** @var NotificationSubscription $subscription */
         $subscription = $registry->getRepository(NotificationSubscription::class)->findOneBy(['email' => 'test@mail.com']);
         $this->assertNotNull($subscription);
         $this->assertEquals('/events/123', $subscription->resourceScope->value());
         $this->assertEquals('test@mail.com', $subscription->email->value());
 
         $contract = $subscription->confirmation;
-        $this->assertNotNull($contract);
         $this->assertEquals($contract->state, ConfirmationStateEnum::Pending);
         self::assertSame(
             NotificationSubscription::class,
             $contract->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS]
         );
+        self::assertNotNull($subscription->uuid);
         self::assertSame(
-            $subscription->uuid,
+            $subscription->uuid->toRfc4122(),
             $contract->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID]
         );
 
@@ -105,9 +104,10 @@ final class NotificationSubscriptionTest extends WebTestCase
     {
         $client = self::createClient();
         $expirationTime = new DateTimeImmutable('+3 days');
-        $this->initDatabase(self::$kernel);
+        $kernel = $client->getKernel();
+        $this->initDatabase($kernel);
         $this->applyFixtures(
-            self::$kernel,
+            $kernel,
             new KnownEmailsFixture(),
             new CallbackFixture(callback: function (ObjectManager $manager): void {
                 $subscription = new NotificationSubscription();
@@ -130,7 +130,7 @@ final class NotificationSubscriptionTest extends WebTestCase
                 'resourceScope' => '/events/123',
                 'email' => 'test@mail.com',
                 'expirationTime' => $expirationTime->format(DATE_ATOM),
-            ])
+            ], flags: JSON_THROW_ON_ERROR)
         );
 
         $this->assertResponseStatusCodeSame(200);
@@ -143,7 +143,6 @@ final class NotificationSubscriptionTest extends WebTestCase
         self::assertNotNull($email);
         self::assertEmailSubjectContains($email, 'Bitte bestätigen Sie Ihre Anmeldung für Benachrichtigungen');
 
-        /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);
 
         /** @var null|NotificationSubscription $subscription */
@@ -162,9 +161,10 @@ final class NotificationSubscriptionTest extends WebTestCase
     public function testCreateSubscriptionAlreadySubscribed(): void
     {
         $client = self::createClient();
-        $this->initDatabase(self::$kernel);
+        $kernel = $client->getKernel();
+        $this->initDatabase($kernel);
         $this->applyFixtures(
-            self::$kernel,
+            $kernel,
             new KnownEmailsFixture(),
             new CallbackFixture(callback: function (ObjectManager $manager) {
                 $subscription = new NotificationSubscription();
@@ -180,7 +180,7 @@ final class NotificationSubscriptionTest extends WebTestCase
         $content = json_encode([
             'resourceScope' => '/events/123',
             'email' => 'test@mail.com',
-        ]);
+        ], flags: JSON_THROW_ON_ERROR);
 
         $client->request(
             Request::METHOD_POST,
@@ -208,11 +208,12 @@ final class NotificationSubscriptionTest extends WebTestCase
     {
         $client = self::createClient();
         $client->disableReboot();
-        $this->initDatabase(self::$kernel);
+        $kernel = $client->getKernel();
+        $this->initDatabase($kernel);
 
         $subscriberEmail = 'test@mail.com';
         $this->applyFixtures(
-            self::$kernel,
+            $kernel,
             new KnownEmailsFixture(),
             new CallbackFixture(callback: static function (ObjectManager $manager) use ($subscriberEmail): void {
                 $subscription = new NewsletterSubscription();
@@ -237,7 +238,6 @@ final class NotificationSubscriptionTest extends WebTestCase
             $this->assertResponseStatusCodeSame(201);
         }
 
-        /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);
         self::assertCount(
             2,

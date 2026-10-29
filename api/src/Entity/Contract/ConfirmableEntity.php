@@ -11,6 +11,7 @@ use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
 use Jazzfreunde\App\Entity\Type\String\EmailType;
 use Jazzfreunde\App\Type\Primitive\Email;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -34,13 +35,13 @@ abstract class ConfirmableEntity
     /**
      * Unique identifier in the database.
      *
-     * @var null|string
+     * @var null|Uuid
      */
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
     #[ORM\Column(type: 'uuid')]
-    public ?string $uuid = null;
+    public ?Uuid $uuid = null;
 
     /**
      * Email address associated with the subscription.

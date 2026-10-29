@@ -9,12 +9,13 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use InvalidArgumentException;
 use Override;
+use stdClass;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Provides sample payloads for notification ErrorResource endpoints.
  *
- * @implements ProviderInterface<object>
+ * @implements ProviderInterface<stdClass>
  *
  * @psalm-api
  */
@@ -22,11 +23,9 @@ final class ErrorResourceSampleProvider implements ProviderInterface
 {
     /**
      * {@inheritDoc}
-     *
-     * @psalm-suppress InvalidReturnStatement ApiPlatform permits array payloads for error resources.
      */
     #[Override]
-    public function provide(Operation $operation, array $uriVariables = [], array $context = []): array|object|null
+    public function provide(Operation $operation, array $uriVariables = [], array $context = []): ?stdClass
     {
         $request = $context['request'] ?? null;
         $resourceClass = $context['resource_class'] ?? null;
@@ -43,7 +42,7 @@ final class ErrorResourceSampleProvider implements ProviderInterface
 
         $error = new $resourceClass($baseUrl);
 
-        return [
+        return (object) [
             'type' => $error->getType(),
             'title' => $error->getTitle(),
             'status' => $error->getStatus(),

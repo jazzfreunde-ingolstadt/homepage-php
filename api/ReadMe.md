@@ -66,8 +66,19 @@ Use the `npm run app:server` script to develop the interface.
 
 ### Static Code Analysis
 
-To help ensure that the PHP code is free of errors, the project uses [Psalm](https://psalm.dev/).
-Run it using the VS Code task `Analyze code`.
+The project uses [PHPStan](https://phpstan.org/) at maximum strictness, with Symfony, Doctrine, and PHPUnit extensions.
+PHP 8.4 property hooks are supported, including type checking inside getters and setters.
+Application code, libraries, and tests are analysed. There is no baseline for existing findings.
+
+Run the VS Code task `Static Code Analysis` (which warms the development container first), or:
+
+```sh
+APP_ENV=dev bin/console cache:warmup
+bin/phpstan analyse
+```
+
+For focused analysis, pass files or directories after `analyse`, for example `bin/phpstan analyse src/Service`.
+Warm the container again after changing service configuration. Analysis uses Doctrine metadata without connecting to the database.
 
 ### Twig Template Linting
 

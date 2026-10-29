@@ -28,7 +28,7 @@ final class NewsletterFormService
     /**
      * Generiert das Formular.
      *
-     * @return FormInterface
+     * @return FormInterface<null|array<string, mixed>>
      *
      * @psalm-suppress PossiblyUnusedMethod used in Twig Template to render html form
      */

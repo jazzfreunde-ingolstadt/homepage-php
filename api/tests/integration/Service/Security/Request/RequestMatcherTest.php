@@ -44,24 +44,25 @@ final class RequestMatcherTest extends TestCase
      * Test that the RequestMatcher can be created with valid parameters.
      */
     #[Test]
-    public function createRequestMatcher()
+    public function createRequestMatcher(): void
     {
         $controllerResolver = $this->createMock(ControllerResolverInterface::class);
         $controllerResolver
-            ->expects($this->never())
-            ->method($this->anything());
+            ->expects($this->once())
+            ->method('getController')
+            ->willReturn(false);
         $firewallName = 'test_firewall';
 
         $matcher = RequestMatcher::create($controllerResolver, $firewallName);
 
-        $this->assertInstanceOf(RequestMatcher::class, $matcher);
+        $this->assertFalse($matcher->matches(new Request()));
     }
 
     /**
      * Test that matches returns true if requested route has entry point attribute with matching name.
      */
     #[Test]
-    public function matchesReturnsTrueForMatchingEntryPoint()
+    public function matchesReturnsTrueForMatchingEntryPoint(): void
     {
         $controller = #[FirewallEntryPoint('test_firewall')] fn () => new Response('Hello World');
         $uut = new UnitUnderTest(RequestMatcher::class);
@@ -83,7 +84,7 @@ final class RequestMatcherTest extends TestCase
      * Test that matches returns false if requested route has entry point attribute with different name.
      */
     #[Test]
-    public function matchesReturnsFalseForNonMatchingEntryPoint()
+    public function matchesReturnsFalseForNonMatchingEntryPoint(): void
     {
         $controller = #[FirewallEntryPoint('test_firewall')] fn () => new Response('Hello World');
         $uut = new UnitUnderTest(RequestMatcher::class);
@@ -105,7 +106,7 @@ final class RequestMatcherTest extends TestCase
      * Test that matches returns false if no entry point attribute is present.
      */
     #[Test]
-    public function matchesReturnsFalseForNoEntryPoint()
+    public function matchesReturnsFalseForNoEntryPoint(): void
     {
         $controller = fn () => new Response('Hello World');
 
@@ -128,7 +129,7 @@ final class RequestMatcherTest extends TestCase
      * Test that  matches returns true if entrypoint attribute is present on class level.
      */
     #[Test]
-    public function matchesReturnsTrueForClassLevelEntryPoint()
+    public function matchesReturnsTrueForClassLevelEntryPoint(): void
     {
         $controller = new DummyController();
         $uut = new UnitUnderTest(RequestMatcher::class);

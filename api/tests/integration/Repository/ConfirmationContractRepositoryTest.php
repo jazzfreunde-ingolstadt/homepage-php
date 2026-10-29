@@ -119,7 +119,7 @@ final class ConfirmationContractRepositoryTest extends KernelTestCase
         $confirmation->state = $state;
         $subscription->confirmation = $confirmation;
 
-        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager = $registry->getManager();
         $manager->persist($subscription);
         $manager->flush();
     }

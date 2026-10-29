@@ -16,6 +16,8 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  * @internal
  *
  * @coversNothing
+ *
+ * @extends ConstraintValidatorTestCase<TwigTemplateValidator>
  */
 final class TwigTemplateValidatorTest extends ConstraintValidatorTestCase
 {

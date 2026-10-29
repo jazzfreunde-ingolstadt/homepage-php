@@ -25,28 +25,58 @@ enum TestEnum: string
 
 /**
  * Test Enum Type.
+ *
+ * @extends AbstractEnumType<TestEnum>
  */
 class TestEnumType extends AbstractEnumType
 {
     public const string ENTITY_NAME = 'test_enum';
     public const string ENUM_CLASS_NAME = TestEnum::class;
+
+    /**
+     * @return class-string<TestEnum>
+     */
+    protected static function enumClass(): string
+    {
+        return self::ENUM_CLASS_NAME;
+    }
 }
 
 /**
  * Test Enum Type.
+ *
+ * @extends AbstractEnumType<TestEnum>
  */
 class InvalidTestEnumType extends AbstractEnumType
 {
     public const string ENTITY_NAME = 'test_enum_invalid';
     public const string ENUM_CLASS_NAME = 'invalid\class';
+
+    /**
+     * @return class-string<TestEnum>
+     */
+    protected static function enumClass(): string
+    {
+        return TestEnum::class;
+    }
 }
 
 /**
  * Test Enum Type.
+ *
+ * @extends AbstractEnumType<TestEnum>
  */
 class Invalid2TestEnumType extends AbstractEnumType
 {
     public const string ENTITY_NAME = 'test_enum_undefined';
+
+    /**
+     * @return class-string<TestEnum>
+     */
+    protected static function enumClass(): string
+    {
+        return TestEnum::class;
+    }
 }
 
 /**

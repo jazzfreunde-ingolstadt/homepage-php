@@ -10,7 +10,7 @@ deploy:
       - .env.test
       - phpunit.xml
       - phpunit.xml.dist
-      - psalm.xml
+      - phpstan.neon
       - ruleset.xml
       - symfony.lock
       - composer.json
@@ -35,7 +35,7 @@ deploy:
       - .env.test
       - phpunit.xml
       - phpunit.xml.dist
-      - psalm.xml
+      - phpstan.neon
       - ruleset.xml
       - symfony.lock
       - composer.json

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Jazzfreunde\App\Form;
 
+use InvalidArgumentException;
 use Jazzfreunde\App\Validation\Attribute\EmailDomainDns;
 use Override;
 use Symfony\Component\Form\AbstractType;
@@ -17,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Formular für Newsletter Abonnement.
  *
- * @extends AbstractType<array>
+ * @extends AbstractType<array<string, mixed>>
  */
 final class NewsletterSubscriptionType extends AbstractType
 {
@@ -27,8 +28,13 @@ final class NewsletterSubscriptionType extends AbstractType
     #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $action = $options['action'] ?? '';
+        if (!\is_string($action)) {
+            throw new InvalidArgumentException('The form action must be a string.');
+        }
+
         $builder
-            ->setAction((string) ($options['action'] ?? ''))
+            ->setAction($action)
             ->add('email', EmailType::class, [
                 'label' => 'Geben Sie Ihre Email-Adresse an',
                 'required' => true,

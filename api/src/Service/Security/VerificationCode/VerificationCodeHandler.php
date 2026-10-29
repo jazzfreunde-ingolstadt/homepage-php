@@ -38,10 +38,10 @@ final class VerificationCodeHandler implements VerificationCodeHandlerInterface
     private array $options;
 
     /**
-     * @param SignatureHasherInterface         $signatureHasher
-     * @param UserProviderInterface            $userProvider
-     * @param VerificationCodeStorageInterface $verificationCodeStorage
-     * @param array<array-key, int|string>     $options
+     * @param SignatureHasherInterface             $signatureHasher
+     * @param UserProviderInterface<UserInterface> $userProvider
+     * @param VerificationCodeStorageInterface     $verificationCodeStorage
+     * @param array<array-key, int|string>         $options
      *
      * @psalm-api
      */

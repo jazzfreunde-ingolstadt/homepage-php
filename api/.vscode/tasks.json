@@ -132,32 +132,45 @@
             }
         },
         {
+            "label": "Warm development container",
+            "type": "shell",
+            "command": "bin/console",
+            "args": [
+                "cache:warmup"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "APP_ENV": "dev"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Static Code Analysis",
             "type": "shell",
             "group": "test",
-            "command": "bin/psalm",
+            "dependsOn": "Warm development container",
+            "command": "bin/phpstan",
             "options": {
                 "cwd": "${workspaceFolder}",
             },
             "args": [
-                "-c=psalm.xml",
+                "analyse",
+                "--error-format=raw",
             ],
             "problemMatcher": {
-                "owner": "psalm",
-                "source": "psalm",
+                "owner": "phpstan",
+                "source": "phpstan",
                 "fileLocation": [
-                    "relative",
-                    "${workspaceFolder}"
+                    "absolute"
                 ],
-                "severity": "warning",
+                "severity": "error",
                 "pattern": {
-                    "regexp": "^(ERROR):\\s([^\\s]+)\\s-\\s([^:]+):([0-9]+):([0-9]+)\\s-\\s(.+)$",
-                    "file": 3,
-                    "line": 4,
-                    "column": 5,
-                    "severity": 1,
-                    "message": 6,
-                    "code": 2
+                    "regexp": "^(.+\\.php):(\\d+):(.+)$",
+                    "file": 1,
+                    "line": 2,
+                    "message": 3
                 }
             },
             "presentation": {

@@ -16,7 +16,7 @@ use Traversable;
  * @template TSource of object
  * @template TDto of object
  *
- * @implements IteratorAggregate<int, TDto>
+ * @implements IteratorAggregate<mixed, TDto>
  * @implements PaginatorInterface<TDto>
  *
  * @psalm-api

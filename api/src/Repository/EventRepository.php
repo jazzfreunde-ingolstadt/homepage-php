@@ -13,6 +13,8 @@ use Jazzfreunde\App\Service\Event\EventRepositoryInterface;
 /**
  * Repository for managing {@see Event} entities.
  *
+ * @extends ServiceEntityRepository<Event>
+ *
  * @psalm-api
  */
 final class EventRepository extends ServiceEntityRepository implements EventRepositoryInterface
@@ -57,7 +59,6 @@ final class EventRepository extends ServiceEntityRepository implements EventRepo
                 ->setParameter('category', $filter->category);
         }
 
-        // @var array<Event> $events
         return $qb->getQuery()->getResult();
     }
 }

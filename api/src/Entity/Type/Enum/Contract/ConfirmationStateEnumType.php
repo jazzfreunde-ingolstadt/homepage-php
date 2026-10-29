@@ -23,4 +23,12 @@ final class ConfirmationStateEnumType extends AbstractEnumType
      * @override
      */
     public const string ENUM_CLASS_NAME = ConfirmationStateEnum::class;
+
+    /**
+     * @return class-string<ConfirmationStateEnum>
+     */
+    protected static function enumClass(): string
+    {
+        return self::ENUM_CLASS_NAME;
+    }
 }

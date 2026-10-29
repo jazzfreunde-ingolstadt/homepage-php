@@ -9,7 +9,6 @@ use Jazzfreunde\App\Service\Notification\Scope\Attribute\NotificationResource;
 use LogicException;
 use Override;
 use ReflectionClass;
-use ReflectionException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Finder\Finder;
@@ -73,11 +72,7 @@ final readonly class NotificationScopeRegisterCompilerPass implements CompilerPa
                 continue;
             }
 
-            try {
-                $reflection = new ReflectionClass($className);
-            } catch (ReflectionException) {
-                continue;
-            }
+            $reflection = new ReflectionClass($className);
 
             $attributes = $reflection->getAttributes(NotificationResource::class);
 

@@ -18,9 +18,7 @@ use Twig\TwigFunction;
 
 use function array_filter;
 use function array_map;
-use function array_reduce;
 use function implode;
-use function is_string;
 use function mb_convert_encoding;
 use function mb_detect_encoding;
 use function sprintf;
@@ -85,11 +83,15 @@ final class EncoreExtension extends AbstractExtension
             ->lookup
             ->getCssFiles($entryName);
 
-        return array_reduce(
-            $entryPoints,
-            fn (string $source, string $entryPoint) => $source.$this->readFile($this->publicDir.$entryPoint),
-            ''
-        );
+        $source = '';
+        foreach ($entryPoints as $entryPoint) {
+            if (!\is_string($entryPoint)) {
+                throw new RuntimeException('Encore CSS entrypoint must be a string.');
+            }
+            $source .= $this->readFile($this->publicDir.$entryPoint);
+        }
+
+        return $source;
     }
 
     /**
@@ -152,13 +154,7 @@ final class EncoreExtension extends AbstractExtension
             return $raw;
         }
 
-        $encoded = mb_convert_encoding($raw, 'UTF-8', 'ISO-8859-1');
-
-        if (!is_string($encoded)) {
-            throw new RuntimeException(sprintf('Unable to encode file content: "%s"', $fullPath));
-        }
-
-        return $encoded;
+        return mb_convert_encoding($raw, 'UTF-8', 'ISO-8859-1');
     }
 
     /**

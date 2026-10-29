@@ -33,6 +33,8 @@ final class HealthCheckControllerTest extends TestCase
         $response = $this->createController([$healthyCheck, $degradedCheck])->healthCheck();
         $payload = json_decode((string) $response->getContent(), true, flags: JSON_THROW_ON_ERROR);
 
+        self::assertIsArray($payload);
+        self::assertArrayHasKey('status', $payload);
         $this->assertSame(HealthStatusEnum::Degraded->value, $payload['status']);
     }
 
@@ -51,6 +53,8 @@ final class HealthCheckControllerTest extends TestCase
         $response = $this->createController([$unhealthyCheck, $degradedCheck])->healthCheck();
         $payload = json_decode((string) $response->getContent(), true, flags: JSON_THROW_ON_ERROR);
 
+        self::assertIsArray($payload);
+        self::assertArrayHasKey('status', $payload);
         $this->assertSame(HealthStatusEnum::Unhealthy->value, $payload['status']);
     }
 

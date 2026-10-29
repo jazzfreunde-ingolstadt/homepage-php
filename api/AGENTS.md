@@ -4,7 +4,7 @@ When writing code follow these general guidelines to ensure readability, maintai
 
 ## Guidelines for completing a Task
 
-Run PHP-CS-Fixer and Psalm against the changed PHP files or their containing directory before completing a task. Pass file or directory paths as positional arguments to avoid scanning unrelated code and wasting agent/API resources. Use project-wide checks only for broad changes or when explicitly requested.
+Run PHP-CS-Fixer and PHPStan against the changed PHP files or their containing directory before completing a task. Pass file or directory paths as positional arguments to avoid scanning unrelated code and wasting agent/API resources. Use project-wide checks only for broad changes or when explicitly requested.
 
 ## Tools
 This section provides an overview of the tools and practices used in this project to ensure code quality and maintainability.
@@ -29,18 +29,24 @@ bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php src/Path/ChangedDirectory
 
 ### Static Code Analysis
 
-Static code analysis helps identify potential issues in your code without executing it. This project uses [Psalm](https://github.com/vimeo/psalm) for static code analysis.
+Static code analysis helps identify potential issues in your code without executing it. This project uses [PHPStan](https://phpstan.org/) at maximum strictness, without a baseline.
 
-Available commands for Psalm can be found with 
+Available commands for PHPStan can be found with
 ```bash
-./vendor/bin/psalm --help
+bin/phpstan analyse --help
 ```
-Run Psalm on only the changed files (or their containing directory) for static analysis:
+Warm the development container after installing dependencies or changing service configuration:
 ```bash
-./vendor/bin/psalm -c=psalm.xml src/Path/ChangedFile.php
+APP_ENV=dev bin/console cache:warmup
 ```
 
-Multiple files and directories can be supplied as positional arguments. Run `./vendor/bin/psalm -c=psalm.xml` without paths only when a project-wide scan is warranted.
+Run PHPStan on only the changed files (or their containing directory):
+
+```bash
+bin/phpstan analyse src/Path/ChangedFile.php
+```
+
+Multiple files and directories can be supplied as positional arguments. Run `bin/phpstan analyse` without paths only when a project-wide scan is warranted. Fix findings rather than suppressing them or adding baseline entries.
 
 ### Testing Code
 

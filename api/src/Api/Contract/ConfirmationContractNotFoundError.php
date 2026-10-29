@@ -38,7 +38,7 @@ final class ConfirmationContractNotFoundError extends Exception implements Probl
      * {@inheritDoc}
      */
     #[Override]
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return 'Confirmation contract not found';
     }
@@ -47,7 +47,7 @@ final class ConfirmationContractNotFoundError extends Exception implements Probl
      * {@inheritDoc}
      */
     #[Override]
-    public function getStatus(): ?int
+    public function getStatus(): int
     {
         return 404;
     }
@@ -56,7 +56,7 @@ final class ConfirmationContractNotFoundError extends Exception implements Probl
      * {@inheritDoc}
      */
     #[Override]
-    public function getDetail(): ?string
+    public function getDetail(): string
     {
         return 'The confirmation contract could not be found.';
     }

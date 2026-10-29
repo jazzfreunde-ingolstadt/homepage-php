@@ -13,7 +13,9 @@ use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Primitive\Email;
 use Jazzfreunde\App\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
+use LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * Tests for {@see NotificationSubscriptionRepository}.
@@ -42,7 +44,7 @@ final class NotificationSubscriptionRepositoryTest extends KernelTestCase
 
         self::assertEqualsCanonicalizing(
             [$parentScope->uuid, $exactScope->uuid],
-            array_map(static fn (NotificationSubscription $subscription): ?string => $subscription->uuid, $results),
+            array_map(static fn (NotificationSubscription $subscription): ?Uuid => $subscription->uuid, $results),
         );
     }
 
@@ -67,7 +69,7 @@ final class NotificationSubscriptionRepositoryTest extends KernelTestCase
         ));
 
         self::assertSame([$matchingSubscription->uuid], array_map(
-            static fn (NotificationSubscription $subscription): ?string => $subscription->uuid,
+            static fn (NotificationSubscription $subscription): ?Uuid => $subscription->uuid,
             $results,
         ));
         self::assertSame([], $noResults);
@@ -105,15 +107,15 @@ final class NotificationSubscriptionRepositoryTest extends KernelTestCase
 
         self::assertSame(
             [$confirmedSubscription->uuid],
-            array_map(static fn (NotificationSubscription $subscription): ?string => $subscription->uuid, $confirmedResults),
+            array_map(static fn (NotificationSubscription $subscription): ?Uuid => $subscription->uuid, $confirmedResults),
         );
         self::assertEqualsCanonicalizing(
             [$confirmedSubscription->uuid, $pendingSubscription->uuid],
-            array_map(static fn (NotificationSubscription $subscription): ?string => $subscription->uuid, $allResults),
+            array_map(static fn (NotificationSubscription $subscription): ?Uuid => $subscription->uuid, $allResults),
         );
         self::assertSame(
             [$pendingSubscription->uuid],
-            array_map(static fn (NotificationSubscription $subscription): ?string => $subscription->uuid, $pendingResults),
+            array_map(static fn (NotificationSubscription $subscription): ?Uuid => $subscription->uuid, $pendingResults),
         );
     }
 
@@ -143,7 +145,8 @@ final class NotificationSubscriptionRepositoryTest extends KernelTestCase
         /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);
 
-        return $registry->getManagerForClass(NotificationSubscription::class);
+        return $registry->getManagerForClass(NotificationSubscription::class)
+            ?? throw new LogicException('No manager is configured for notification subscriptions.');
     }
 
     private function getRepository(): NotificationSubscriptionRepository

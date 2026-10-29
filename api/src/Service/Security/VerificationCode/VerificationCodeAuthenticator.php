@@ -29,6 +29,9 @@ use Symfony\Component\Security\Http\HttpUtils;
 #[AsAlias(id: 'jazzfreunde.security.verification_code_authenticator')]
 final class VerificationCodeAuthenticator extends AbstractAuthenticator implements InteractiveAuthenticatorInterface
 {
+    /**
+     * @var array<array-key, int|string>
+     */
     private array $options;
 
     /**
@@ -57,7 +60,7 @@ final class VerificationCodeAuthenticator extends AbstractAuthenticator implemen
      * {@inheritDoc}
      */
     #[Override]
-    public function supports(Request $request): ?bool
+    public function supports(Request $request): bool
     {
         return $request->isMethod('POST')
             && $this->httpUtils->checkRequestPath($request, $this->getCheckRoute());

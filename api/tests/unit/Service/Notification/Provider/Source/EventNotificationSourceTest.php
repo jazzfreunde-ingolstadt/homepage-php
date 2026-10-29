@@ -10,7 +10,6 @@ use Jazzfreunde\App\Entity\Event;
 use Jazzfreunde\App\Entity\EventLocation;
 use Jazzfreunde\App\Exception\Notification\NotificationSourceNotFound;
 use Jazzfreunde\App\Service\Event\EventRepositoryInterface;
-use Jazzfreunde\App\Service\Notification\Provider\Model\NotificationResource;
 use Jazzfreunde\App\Service\Notification\Provider\Source\EventNotificationSource;
 use Jazzfreunde\App\Service\Notification\Scope\ParsedScope;
 use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
@@ -47,7 +46,6 @@ final class EventNotificationSourceTest extends TestCase
             $this->createScope(new EventNotification(42)),
         );
 
-        self::assertInstanceOf(NotificationResource::class, $resource);
         self::assertSame('/events/42', $resource->uri->value());
         self::assertSame(EmailTemplatePath::EVENT_NOTIFICATION, $resource->email_template);
         self::assertSame('Erinnerung: Jazz concert', $resource->title);
@@ -78,6 +76,7 @@ final class EventNotificationSourceTest extends TestCase
             $this->createScope(new EventNotification(42)),
         );
 
+        self::assertIsArray($resource->metadata['event']);
         self::assertArrayNotHasKey('end', $resource->metadata['event']);
     }
 

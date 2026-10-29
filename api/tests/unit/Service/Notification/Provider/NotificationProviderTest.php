@@ -110,6 +110,9 @@ final class NotificationProviderTest extends TestCase
         $provider->getByScope('/events/42');
     }
 
+    /**
+     * @param UnitUnderTest<NotificationProvider> $uut
+     */
     private function configureScopeMatcher(
         UnitUnderTest $uut,
         ?EventNotification $notification = null,

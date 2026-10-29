@@ -13,6 +13,8 @@ use Jazzfreunde\App\Service\Notification\NotificationSubscriptionRepositoryInter
 /**
  * Repository for managing {@see NotificationSubscription} entities.
  *
+ * @extends ServiceEntityRepository<NotificationSubscription>
+ *
  * @psalm-api
  */
 final class NotificationSubscriptionRepository extends ServiceEntityRepository implements NotificationSubscriptionRepositoryInterface
@@ -52,7 +54,6 @@ final class NotificationSubscriptionRepository extends ServiceEntityRepository i
                 ->setParameter('confirmationState', $filter->confirmationState);
         }
 
-        // @var array<NotificationSubscription> $subscriptions
         return $qb->getQuery()->getResult();
     }
 

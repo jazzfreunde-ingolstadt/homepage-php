@@ -22,9 +22,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 final class TemporaryUserProviderTest extends TestCase
 {
-    private const SIGNATURE_PROPERTIES = ['email'];
-    private const SECRET = 'test';
-
     /**
      * Tests that the signature hasher computes and verifies a valid signature.
      */
@@ -36,7 +33,6 @@ final class TemporaryUserProviderTest extends TestCase
 
         $refreshedUser = $provider->target()->refreshUser($user);
 
-        $this->assertInstanceOf(TemporaryUser::class, $refreshedUser);
         $this->assertSame($user->email->value(), $refreshedUser->email->value());
     }
 
@@ -80,7 +76,6 @@ final class TemporaryUserProviderTest extends TestCase
         $identifier = 'user123@example.com';
 
         $user = $provider->target()->loadUserByIdentifier($identifier);
-        $this->assertInstanceOf(TemporaryUser::class, $user);
         $this->assertSame($identifier, $user->email->value());
         $this->assertEmpty($user->roles, 'Temporary users should have no roles');
     }

@@ -7,6 +7,7 @@ namespace JazzfreundeTests\App\Tests\Service\Newsletter;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Exception\Contract\ConfirmationPeriodExpiredException;
@@ -16,6 +17,7 @@ use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\App\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\Fixtures\KnownEmailsFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
+use LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -36,7 +38,7 @@ final class NewsletterServiceTest extends KernelTestCase
     {
         $kernel = $this->bootKernel();
         $this->initDatabase($kernel);
-        $this->applyFixtures(self::$kernel, new KnownEmailsFixture());
+        $this->applyFixtures($kernel, new KnownEmailsFixture());
 
         $container = self::getContainer();
 
@@ -65,8 +67,9 @@ final class NewsletterServiceTest extends KernelTestCase
             NewsletterSubscription::class,
             $created->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS]
         );
+        self::assertNotNull($created->uuid);
         self::assertSame(
-            $created->uuid,
+            $created->uuid->toRfc4122(),
             $created->confirmation->metadata[ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID]
         );
         self::assertEmailHtmlBodyContains($email, 'Vielen Dank für Ihr Interesse am Jazzfreunde-Newsletter.');
@@ -79,7 +82,7 @@ final class NewsletterServiceTest extends KernelTestCase
     {
         $kernel = $this->bootKernel();
         $this->initDatabase($kernel);
-        $this->applyFixtures(self::$kernel, new KnownEmailsFixture());
+        $this->applyFixtures($kernel, new KnownEmailsFixture());
 
         $container = self::getContainer();
 
@@ -94,7 +97,7 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
         $subscription->confirmation->state = ConfirmationStateEnum::Pending;
 
-        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager = $this->getObjectManager($registry);
         $manager->persist($subscription);
         $manager->flush();
 
@@ -123,7 +126,7 @@ final class NewsletterServiceTest extends KernelTestCase
     {
         $kernel = $this->bootKernel();
         $this->initDatabase($kernel);
-        $this->applyFixtures(self::$kernel, new KnownEmailsFixture());
+        $this->applyFixtures($kernel, new KnownEmailsFixture());
 
         $container = self::getContainer();
 
@@ -137,7 +140,7 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
         $subscription->confirmation->state = ConfirmationStateEnum::Confirmed;
 
-        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager = $this->getObjectManager($registry);
         $manager->persist($subscription);
         $manager->flush();
 
@@ -174,7 +177,7 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->confirmation->requestTime = new DateTimeImmutable();
         $subscription->confirmation->state = ConfirmationStateEnum::Pending;
 
-        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager = $this->getObjectManager($registry);
         $manager->persist($subscription);
         $manager->flush();
 
@@ -207,7 +210,7 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->confirmation->requestTime = new DateTimeImmutable('-1 day');
         $subscription->confirmation->state = ConfirmationStateEnum::Pending;
 
-        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager = $this->getObjectManager($registry);
         $manager->persist($subscription);
         $manager->flush();
 
@@ -239,7 +242,7 @@ final class NewsletterServiceTest extends KernelTestCase
         $subscription->confirmation->requestTime = new DateTimeImmutable();
         $subscription->confirmation->state = ConfirmationStateEnum::Confirmed;
 
-        $manager = $registry->getManagerForClass(NewsletterSubscription::class);
+        $manager = $this->getObjectManager($registry);
         $manager->persist($subscription);
         $manager->flush();
 
@@ -250,5 +253,11 @@ final class NewsletterServiceTest extends KernelTestCase
         /** @var NewsletterSubscription */
         $created = $repository->findOneBy(['email' => 'test@mail.com']);
         $this->assertEquals(ConfirmationStateEnum::Cancelled, $created->confirmation->state);
+    }
+
+    private function getObjectManager(ManagerRegistry $registry): ObjectManager
+    {
+        return $registry->getManagerForClass(NewsletterSubscription::class)
+            ?? throw new LogicException('No manager is configured for newsletter subscriptions.');
     }
 }

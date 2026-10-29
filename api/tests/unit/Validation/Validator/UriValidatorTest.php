@@ -16,6 +16,8 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  * @internal
  *
  * @coversNothing
+ *
+ * @extends ConstraintValidatorTestCase<UriValidator>
  */
 final class UriValidatorTest extends ConstraintValidatorTestCase
 {

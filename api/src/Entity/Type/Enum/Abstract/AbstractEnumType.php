@@ -15,18 +15,18 @@ use Override;
 use ValueError;
 
 /**
- * @template TEnum extends BackedEnum
+ * @template TEnum of BackedEnum
  * Basisklasse Doctrine Enum Typ
  */
 abstract class AbstractEnumType extends Type
 {
     /**
-     * @var string
+     * Doctrine type name used in entity column mappings; subclasses must override it.
      */
     public const string ENTITY_NAME = 'undefined';
 
     /**
-     * @var 'undefined'|class-string
+     * Backed enum class converted to and from database values; subclasses must override it.
      */
     public const string ENUM_CLASS_NAME = 'undefined';
 
@@ -66,7 +66,7 @@ abstract class AbstractEnumType extends Type
              * @return string
              */
             fn (BackedEnum $type) => "'{$type->value}'",
-            static::cases()
+            self::cases()
         );
 
         if ($platform instanceof MariaDBPlatform) {
@@ -138,10 +138,7 @@ abstract class AbstractEnumType extends Type
      */
     public static function from(int|string $value): BackedEnum
     {
-        /** @var TEnum */
-        $enum = call_user_func([static::ENUM_CLASS_NAME, 'from'], $value);
-
-        return $enum;
+        return static::enumClass()::from($value);
     }
 
     /**
@@ -151,20 +148,19 @@ abstract class AbstractEnumType extends Type
      */
     public static function tryFrom(int|string $value): ?BackedEnum
     {
-        /** @var null|TEnum */
-        $enum = call_user_func([static::ENUM_CLASS_NAME, 'tryFrom'], $value);
-
-        return $enum;
+        return static::enumClass()::tryFrom($value);
     }
+
+    /**
+     * @return class-string<TEnum>
+     */
+    abstract protected static function enumClass(): string;
 
     /**
      * @return TEnum[]
      */
     private static function cases(): array
     {
-        /** @var TEnum[] */
-        $cases = call_user_func([static::ENUM_CLASS_NAME, 'cases']);
-
-        return $cases;
+        return static::enumClass()::cases();
     }
 }

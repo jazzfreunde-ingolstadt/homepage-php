@@ -54,7 +54,7 @@ final class EventNotificationLifecycleTest extends WebTestCase
 
         $this->client = self::createClient();
         $this->client->disableReboot();
-        $this->initDatabase(self::$kernel);
+        $this->initDatabase($this->client->getKernel());
 
         /** @var ManagerRegistry $registry */
         $registry = self::getContainer()->get(ManagerRegistry::class);
@@ -98,7 +98,7 @@ final class EventNotificationLifecycleTest extends WebTestCase
     private function createDueEvent(string $eventTitle): string
     {
         $this->applyFixtures(
-            self::$kernel,
+            $this->client->getKernel(),
             new KnownEmailsFixture(),
             new CallbackFixture(callback: static function (ObjectManager $manager) use ($eventTitle): void {
                 $location = new EventLocation();
@@ -256,8 +256,12 @@ final class EventNotificationLifecycleTest extends WebTestCase
         self::assertCount(2, self::getMailerEvents());
         self::assertQueuedEmailCount(1);
         self::assertEmailCount(1);
-        self::assertEmailIsQueued(self::getMailerEvent(0));
-        self::assertEmailIsNotQueued(self::getMailerEvent(1));
+        $queuedEvent = self::getMailerEvent(0);
+        self::assertNotNull($queuedEvent);
+        $notQueuedEvent = self::getMailerEvent(1);
+        self::assertNotNull($notQueuedEvent);
+        self::assertEmailIsQueued($queuedEvent);
+        self::assertEmailIsNotQueued($notQueuedEvent);
         $eventNotificationEmail = self::getMailerMessage(0);
         self::assertNotNull($eventNotificationEmail);
         self::assertEmailSubjectContains($eventNotificationEmail, $eventTitle);

@@ -10,6 +10,7 @@ use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\App\Entity\NewsletterSubscription;
 use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validation;
 
 /**
@@ -34,14 +35,15 @@ final class ConfirmationContractTest extends TestCase
         $contract->metadata = ['customKey' => 'customValue'];
 
         $entity = new NewsletterSubscription();
-        $entity->uuid = 'f020db38-914c-4bb9-9990-017b7bf831ce';
+        $uuid = Uuid::fromString('f020db38-914c-4bb9-9990-017b7bf831ce');
+        $entity->uuid = $uuid;
 
         $contract->setConfirmableEntity($entity);
 
         $this->assertSame([
             'customKey' => 'customValue',
             ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_CLASS => NewsletterSubscription::class,
-            ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID => $entity->uuid,
+            ConfirmationContract::METADATA_CONFIRMABLE_ENTITY_UUID => $uuid->toRfc4122(),
         ], $contract->metadata);
     }
 

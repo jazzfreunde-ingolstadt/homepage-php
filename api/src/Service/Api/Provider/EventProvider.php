@@ -101,9 +101,6 @@ final class EventProvider implements ProviderInterface
         }
 
         $event = $this->objectMapper->map($source, Event::class);
-        if (!$event instanceof Event) {
-            throw new LogicException(sprintf('Expected the object mapper to return an instance of %s.', Event::class));
-        }
 
         $notificationAvailableAfter = (new DateTimeImmutable(timezone: new DateTimeZone('Europe/Berlin')))
             ->add(new DateInterval('P3D'));

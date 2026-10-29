@@ -147,7 +147,7 @@ class ConfirmationContractService
      *
      * @param ConfirmationContract $contract
      * @param TransitionsEnum      $transition
-     * @param array                $context
+     * @param array<string, mixed> $context
      *
      * @throws LogicException if the transition is not valid
      */

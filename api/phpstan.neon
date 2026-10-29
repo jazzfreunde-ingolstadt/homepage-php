@@ -1,0 +1,21 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-doctrine/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+
+parameters:
+    level: max
+    phpVersion: 80403
+    paths:
+        - src
+        - libs
+        - tests
+        - config/phpstan-doctrine.php
+        - bin/phpstan
+    tmpDir: var/phpstan
+    doctrine:
+        objectManagerLoader: config/phpstan-doctrine.php
+    symfony:
+        containerXmlPath: var/cache/dev/Jazzfreunde_App_KernelDevDebugContainer.xml

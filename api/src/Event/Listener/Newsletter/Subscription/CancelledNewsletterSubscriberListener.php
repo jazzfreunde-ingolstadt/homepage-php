@@ -30,6 +30,9 @@ final class CancelledNewsletterSubscriberListener
         private readonly MessageBusInterface $messageBus,
     ) {}
 
+    /**
+     * @param EnterEvent<object> $event
+     */
     #[AsEnterListener(
         workflow: ConfirmationContractListener::WORKFLOW_NAME,
         place: ConfirmationStateEnum::Cancelled->value,

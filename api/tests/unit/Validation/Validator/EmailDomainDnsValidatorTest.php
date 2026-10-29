@@ -18,10 +18,12 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  * @internal
  *
  * @coversNothing
+ *
+ * @extends ConstraintValidatorTestCase<EmailDomainDnsValidator>
  */
 final class EmailDomainDnsValidatorTest extends ConstraintValidatorTestCase
 {
-    private DnsRecordLookupInterface|MockObject $dnsRecordLookup;
+    private DnsRecordLookupInterface&MockObject $dnsRecordLookup;
 
     #[Test]
     public function isValidWhenDomainHasMxRecords(): void

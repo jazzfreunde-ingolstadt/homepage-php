@@ -58,7 +58,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
     /**
      * Send confirmation request to user.
      *
-     * @param TransitionEvent $event
+     * @param TransitionEvent<object> $event
      *
      * @throws LogicException if the subject is not a ConfirmationContract
      */
@@ -86,7 +86,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
     /**
      * Block the transition if the confirmation token is expired.
      *
-     * @param GuardEvent $event
+     * @param GuardEvent<object> $event
      *
      * @throws LogicException if the subject is not a ConfirmationContract
      */
@@ -115,7 +115,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
     /**
      * Renew time and token of contract to restart the confirmation process on this contract.
      *
-     * @param EnterEvent $event
+     * @param EnterEvent<object> $event
      *
      * @throws LogicException if the subject is not a ConfirmationContract
      */
@@ -133,7 +133,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
     /**
      * Log the state change of the contract.
      *
-     * @param EnteredEvent $event
+     * @param EnteredEvent<object> $event
      *
      * @throws LogicException if the subject is not a ConfirmationContract
      */
@@ -162,7 +162,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
     /**
      * Get the contract from the event.
      *
-     * @param Event $event
+     * @param Event<object> $event
      *
      * @return ConfirmationContract
      *
