@@ -18,4 +18,4 @@ parameters:
     doctrine:
         objectManagerLoader: config/phpstan-doctrine.php
     symfony:
-        containerXmlPath: var/cache/dev/Jazzfreunde_App_KernelDevDebugContainer.xml
+        containerXmlPath: var/cache/dev/Jazzfreunde_Api_KernelDevDebugContainer.xml

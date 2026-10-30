@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Controller\Contract;
+namespace Jazzfreunde\Api\Controller\Contract;
 
-use Jazzfreunde\App\Api\Contract\ConfirmationContractNotFoundError as ConfirmationContractNotFoundApiError;
-use Jazzfreunde\App\Exception\Contract\ConfirmationContractNotFoundException;
-use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
+use Jazzfreunde\Api\Exception\Contract\ConfirmationContractNotFoundException;
+use Jazzfreunde\Api\Platform\Contract\ConfirmationContractNotFoundError as ConfirmationContractNotFoundApiError;
+use Jazzfreunde\Api\Service\Contract\ConfirmationContractService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;

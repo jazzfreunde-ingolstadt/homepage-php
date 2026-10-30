@@ -1,6 +1,6 @@
 <?php
 
-namespace Jazzfreunde\App\Entity\Security;
+namespace Jazzfreunde\Api\Entity\Security;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;

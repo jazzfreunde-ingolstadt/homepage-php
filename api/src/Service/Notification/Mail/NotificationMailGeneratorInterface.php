@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Mail;
+namespace Jazzfreunde\Api\Service\Notification\Mail;
 
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Service\Notification\Provider\Model\NotificationResource;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Service\Notification\Provider\Model\NotificationResource;
 
 /**
  * Generates notification emails for subscribers.

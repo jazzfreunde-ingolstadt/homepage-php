@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Controller\Notification;
+namespace Jazzfreunde\Api\Controller\Notification;
 
-use Jazzfreunde\App\Exception\Contract\ConfirmationContractNotFoundException;
-use Jazzfreunde\App\Exception\Contract\ConfirmationPeriodExpiredException;
-use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
-use Jazzfreunde\App\Service\Twig\PageTemplatePath;
+use Jazzfreunde\Api\Exception\Contract\ConfirmationContractNotFoundException;
+use Jazzfreunde\Api\Exception\Contract\ConfirmationPeriodExpiredException;
+use Jazzfreunde\Api\Service\Contract\ConfirmationContractService;
+use Jazzfreunde\Api\Service\Twig\PageTemplatePath;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

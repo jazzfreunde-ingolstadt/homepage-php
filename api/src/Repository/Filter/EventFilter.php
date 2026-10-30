@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Repository\Filter;
+namespace Jazzfreunde\Api\Repository\Filter;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use Jazzfreunde\App\Type\Enum\EventCategoryEnum;
+use Jazzfreunde\Api\Type\Enum\EventCategoryEnum;
 
 /**
  * Filter criteria for querying events.

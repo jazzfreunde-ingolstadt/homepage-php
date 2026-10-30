@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Type\Enum\Contract;
+namespace Jazzfreunde\Api\Entity\Type\Enum\Contract;
 
-use Jazzfreunde\App\Entity\Type\Enum\Abstract\AbstractEnumType;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Entity\Type\Enum\Abstract\AbstractEnumType;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
 
 /**
  * Enity type for the possible states of a confirmation.

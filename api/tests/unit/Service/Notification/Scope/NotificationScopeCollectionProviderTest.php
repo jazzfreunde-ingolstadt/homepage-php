@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Notification\Scope;
+namespace Jazzfreunde\Api\Tests\Service\Notification\Scope;
 
-use Jazzfreunde\App\Service\Notification\Scope\Attribute\NotificationResource;
-use Jazzfreunde\App\Service\Notification\Scope\CompiledScope;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollection;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollectionProvider;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCompilerInterface;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Scope\CompiledScope;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollection;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProvider;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCompilerInterface;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +22,7 @@ use Symfony\Contracts\Cache\ItemInterface;
  *
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollectionProvider
+ * @covers \Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProvider
  */
 final class NotificationScopeCollectionProviderTest extends TestCase
 {

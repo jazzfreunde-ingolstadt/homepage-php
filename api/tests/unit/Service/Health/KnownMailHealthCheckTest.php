@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Health;
+namespace Jazzfreunde\Api\Tests\Service\Health;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectRepository;
-use Jazzfreunde\App\Entity\KnownMail;
-use Jazzfreunde\App\Service\Health\KnownMailHealthCheck;
-use Jazzfreunde\App\Type\Enum\HealthStatusEnum;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\KnownMail;
+use Jazzfreunde\Api\Service\Health\KnownMailHealthCheck;
+use Jazzfreunde\Api\Type\Enum\HealthStatusEnum;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Jazzfreunde\App\Service\Health\KnownMailHealthCheck
+ * @covers \Jazzfreunde\Api\Service\Health\KnownMailHealthCheck
  *
  * @internal
  */

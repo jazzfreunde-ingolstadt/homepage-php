@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Api;
+namespace Jazzfreunde\Api\Platform;
 
 use ApiPlatform\State\Pagination\PaginatorInterface;
 use Closure;

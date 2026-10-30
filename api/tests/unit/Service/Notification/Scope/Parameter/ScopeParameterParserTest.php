@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Notification\Scope\Parameter;
+namespace Jazzfreunde\Api\Tests\Service\Notification\Scope\Parameter;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Service\Notification\Scope\Parameter\Number;
-use Jazzfreunde\App\Service\Notification\Scope\Parameter\ScopeParameterParser;
+use Jazzfreunde\Api\Service\Notification\Scope\Parameter\Number;
+use Jazzfreunde\Api\Service\Notification\Scope\Parameter\ScopeParameterParser;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Notification\Scope\Parameter\ScopeParameterParser
+ * @covers \Jazzfreunde\Api\Service\Notification\Scope\Parameter\ScopeParameterParser
  */
 final class ScopeParameterParserTest extends TestCase
 {

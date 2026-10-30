@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Api\Contract;
+namespace Jazzfreunde\Api\Tests\Platform\Contract;
 
 use DateTimeImmutable;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Primitive\HexToken;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Primitive\HexToken;
 use Jazzfreunde\UnitTest\Fixtures\CallbackFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;

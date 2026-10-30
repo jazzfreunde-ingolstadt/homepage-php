@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Notification\Scope;
+namespace Jazzfreunde\Api\Tests\Service\Notification\Scope;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Service\Notification\Scope\Attribute\NotificationResource;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCompiler;
-use Jazzfreunde\App\Service\Notification\Scope\Parameter\Number;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCompiler;
+use Jazzfreunde\Api\Service\Notification\Scope\Parameter\Number;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -18,7 +18,7 @@ use stdClass;
  *
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCompiler
+ * @covers \Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCompiler
  */
 final class NotificationScopeCompilerTest extends TestCase
 {

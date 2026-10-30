@@ -24,7 +24,7 @@
         <ini name="error_reporting" value="-1"/>
         <ini name="memory_limit" value="2G"/>
 
-        <server name="KERNEL_CLASS" value="Jazzfreunde\App\Kernel" force="true"/>
+        <server name="KERNEL_CLASS" value="Jazzfreunde\Api\Kernel" force="true"/>
         <env name="APP_ENV" value="test" force="true"/>
         <env name="APP_DEBUG" value="false" force="true"/>
     </php>

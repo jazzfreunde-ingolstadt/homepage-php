@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Provider;
+namespace Jazzfreunde\Api\Service\Notification\Provider;
 
-use Jazzfreunde\App\Exception\Notification\NotificationScopeNotFoundException;
-use Jazzfreunde\App\Service\Notification\Provider\Model\NotificationResource;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeMatcher;
-use Jazzfreunde\App\Service\Notification\Scope\ParsedScope;
+use Jazzfreunde\Api\Exception\Notification\NotificationScopeNotFoundException;
+use Jazzfreunde\Api\Service\Notification\Provider\Model\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeMatcher;
+use Jazzfreunde\Api\Service\Notification\Scope\ParsedScope;
 use LogicException;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;

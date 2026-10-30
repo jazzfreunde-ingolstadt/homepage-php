@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\UserProvider;
+namespace Jazzfreunde\Api\Service\Security\UserProvider;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Entity\Security\TemporaryUser;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\Security\TemporaryUser;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\Security\Core\User\UserInterface;

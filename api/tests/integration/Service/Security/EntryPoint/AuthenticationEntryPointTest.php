@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Security\EntryPoint;
+namespace JazzfreundeTests\Api\Tests\Service\Security\EntryPoint;
 
-use Jazzfreunde\App\Service\Security\EntryPoint\AuthenticationEntryPoint;
+use Jazzfreunde\Api\Service\Security\EntryPoint\AuthenticationEntryPoint;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\Attributes\Test;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Type\Primitive;
+namespace Jazzfreunde\Api\Type\Primitive;
 
 use InvalidArgumentException;
 use Override;

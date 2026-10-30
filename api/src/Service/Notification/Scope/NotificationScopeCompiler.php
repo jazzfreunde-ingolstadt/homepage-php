@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Scope;
+namespace Jazzfreunde\Api\Service\Notification\Scope;
 
-use Jazzfreunde\App\Service\Notification\Scope\Attribute\NotificationResource;
-use Jazzfreunde\App\Service\Notification\Scope\Parameter\ScopeParameterParser;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Scope\Parameter\ScopeParameterParser;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Override;
 
 /**

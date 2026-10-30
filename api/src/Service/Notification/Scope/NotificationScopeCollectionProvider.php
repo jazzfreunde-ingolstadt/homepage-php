@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Scope;
+namespace Jazzfreunde\Api\Service\Notification\Scope;
 
-use Jazzfreunde\App\Service\Notification\Scope\Attribute\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource;
 use LogicException;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;

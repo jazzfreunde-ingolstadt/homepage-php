@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Repository;
+namespace Jazzfreunde\Api\Repository;
 
 use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Service\Contract\ConfirmationContractPurgingInterface;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Service\Contract\ConfirmationContractPurgingInterface;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
 use RuntimeException;
 use Throwable;
 

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Type\Enum;
+namespace Jazzfreunde\Api\Type\Enum;
 
 /**
  * Sammlung aller bekannten Mail-Handles.
  *
- * @see Jazzfreunde\App\Entity\KnownMail
+ * @see Jazzfreunde\Api\Entity\KnownMail
  */
 enum KnownMailHandleEnum: string
 {

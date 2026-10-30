@@ -1,9 +1,9 @@
 <?php
 
-namespace Jazzfreunde\App;
+namespace Jazzfreunde\Api;
 
-use Jazzfreunde\App\DependencyInjection\Compiler\DoctrineTypeRegisterCompilerPass;
-use Jazzfreunde\App\DependencyInjection\Compiler\NotificationScopeRegisterCompilerPass;
+use Jazzfreunde\Api\DependencyInjection\Compiler\DoctrineTypeRegisterCompilerPass;
+use Jazzfreunde\Api\DependencyInjection\Compiler\NotificationScopeRegisterCompilerPass;
 use Override;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

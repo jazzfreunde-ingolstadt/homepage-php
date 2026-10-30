@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Message\Messages\Tasks;
+namespace Jazzfreunde\Api\Message\Messages\Tasks;
 
 use DateInterval;
 

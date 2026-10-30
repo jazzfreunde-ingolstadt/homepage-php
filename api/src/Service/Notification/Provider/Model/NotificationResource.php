@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Provider\Model;
+namespace Jazzfreunde\Api\Service\Notification\Provider\Model;
 
-use Jazzfreunde\App\Type\Primitive\Uri;
-use Jazzfreunde\App\Validation\Attribute\TwigTemplate;
+use Jazzfreunde\Api\Type\Primitive\Uri;
+use Jazzfreunde\Api\Validation\Attribute\TwigTemplate;
 
 /**
  * Represents a notification resource that users can subscribe to.

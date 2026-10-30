@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract;
+namespace Jazzfreunde\Api\Event\MetaData\Workflow\ConfirmationContract;
 
-use Jazzfreunde\App\DependencyInjection\FromMetaDataTrait;
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\DependencyInjection\FromMetaDataTrait;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**

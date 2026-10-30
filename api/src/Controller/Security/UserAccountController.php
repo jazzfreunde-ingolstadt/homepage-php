@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Controller\Security;
+namespace Jazzfreunde\Api\Controller\Security;
 
-use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
-use Jazzfreunde\App\Service\Twig\PageTemplatePath;
+use Jazzfreunde\Api\Service\Security\Attribute\FirewallEntryPoint;
+use Jazzfreunde\Api\Service\Twig\PageTemplatePath;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

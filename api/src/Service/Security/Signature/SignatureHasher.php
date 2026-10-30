@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\Signature;
+namespace Jazzfreunde\Api\Service\Security\Signature;
 
 use DateTimeInterface;
 use InvalidArgumentException;

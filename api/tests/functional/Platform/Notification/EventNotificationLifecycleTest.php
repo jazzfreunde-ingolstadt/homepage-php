@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Api\Notification;
+namespace Jazzfreunde\Api\Tests\Platform\Notification;
 
 use DateInterval;
 use DateTime;
@@ -10,16 +10,16 @@ use DateTimeImmutable;
 use DateTimeZone;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Entity\EventLocation;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Message\Handler\Tasks\EventNotificationHandler;
-use Jazzfreunde\App\Message\Messages\Tasks\SendEventNotificationsMessage;
-use Jazzfreunde\App\Repository\Filter\EventFilter;
-use Jazzfreunde\App\Repository\Filter\NotificationSubscriptionFilter;
-use Jazzfreunde\App\Service\Event\EventRepositoryInterface;
-use Jazzfreunde\App\Service\Notification\NotificationSubscriptionRepositoryInterface;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Entity\Event;
+use Jazzfreunde\Api\Entity\EventLocation;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Message\Handler\Tasks\EventNotificationHandler;
+use Jazzfreunde\Api\Message\Messages\Tasks\SendEventNotificationsMessage;
+use Jazzfreunde\Api\Repository\Filter\EventFilter;
+use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
+use Jazzfreunde\Api\Service\Event\EventRepositoryInterface;
+use Jazzfreunde\Api\Service\Notification\NotificationSubscriptionRepositoryInterface;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\UnitTest\Fixtures\CallbackFixture;
 use Jazzfreunde\UnitTest\Fixtures\KnownEmailsFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;

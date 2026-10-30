@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\DependencyInjection\Compiler;
+namespace Jazzfreunde\Api\DependencyInjection\Compiler;
 
 use Generator;
 use Override;
@@ -24,7 +24,7 @@ final readonly class DoctrineTypeRegisterCompilerPass implements CompilerPassInt
 {
     private const CONTAINER_TYPES_PARAMETER = 'doctrine.dbal.connection_factory.types';
     private const SRC_FOLDER_MASK = '%s/src/Entity/Type';
-    private const TOP_LEVEL_NAMESPACE = 'Jazzfreunde\App\Entity\Type\\';
+    private const TOP_LEVEL_NAMESPACE = 'Jazzfreunde\Api\Entity\Type\\';
     private const TYPE_NAME_CONSTANT_NAME = 'ENTITY_NAME';
 
     /**

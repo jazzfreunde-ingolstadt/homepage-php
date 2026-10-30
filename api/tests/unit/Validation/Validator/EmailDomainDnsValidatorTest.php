@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Validation\Validator;
+namespace Jazzfreunde\Api\Tests\Validation\Validator;
 
-use Jazzfreunde\App\Service\Email\DnsRecordLookupInterface;
-use Jazzfreunde\App\Validation\Attribute\EmailDomainDns;
-use Jazzfreunde\App\Validation\Validator\EmailDomainDnsValidator;
+use Jazzfreunde\Api\Service\Email\DnsRecordLookupInterface;
+use Jazzfreunde\Api\Validation\Attribute\EmailDomainDns;
+use Jazzfreunde\Api\Validation\Validator\EmailDomainDnsValidator;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;

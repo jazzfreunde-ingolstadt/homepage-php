@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Controller;
+namespace Jazzfreunde\Api\Tests\Controller;
 
-use Jazzfreunde\App\Controller\HealthCheckController;
-use Jazzfreunde\App\Service\Health\HealthCheckInterface;
-use Jazzfreunde\App\Type\Enum\HealthStatusEnum;
+use Jazzfreunde\Api\Controller\HealthCheckController;
+use Jazzfreunde\Api\Service\Health\HealthCheckInterface;
+use Jazzfreunde\Api\Type\Enum\HealthStatusEnum;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
- * @covers \Jazzfreunde\App\Controller\HealthCheckController
+ * @covers \Jazzfreunde\Api\Controller\HealthCheckController
  *
  * @internal
  */

@@ -1,10 +1,10 @@
 <?php
 
-namespace Jazzfreunde\App\Service\Security\VerificationCode;
+namespace Jazzfreunde\Api\Service\Security\VerificationCode;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Exception\Security\InvalidVerificationCodeAuthenticationException;
-use Jazzfreunde\App\Service\Security\Exception\InvalidVerificationCodeException;
+use Jazzfreunde\Api\Exception\Security\InvalidVerificationCodeAuthenticationException;
+use Jazzfreunde\Api\Service\Security\Exception\InvalidVerificationCodeException;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;

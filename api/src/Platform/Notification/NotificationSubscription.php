@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Api\Notification;
+namespace Jazzfreunde\Api\Platform\Notification;
 
 use ApiPlatform\Doctrine\Orm\State\Options;
 use ApiPlatform\Metadata as API;
@@ -10,10 +10,10 @@ use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use DateTimeImmutable;
 use DateTimeZone;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription as NotificationEntity;
-use Jazzfreunde\App\Type\Primitive\Email;
-use Jazzfreunde\App\Type\Primitive\Uri;
-use Jazzfreunde\App\Validation\Attribute as CustomAssert;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription as NotificationEntity;
+use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\Uri;
+use Jazzfreunde\Api\Validation\Attribute as CustomAssert;
 use Symfony\Component\ObjectMapper\Attribute\Map;
 use Symfony\Component\ObjectMapper\Condition\TargetClass;
 use Symfony\Component\Validator\Constraints as Assert;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Type\String;
+namespace Jazzfreunde\Api\Entity\Type\String;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\StringType;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Override;
 
 /**

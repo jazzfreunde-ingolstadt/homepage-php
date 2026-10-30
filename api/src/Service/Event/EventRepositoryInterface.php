@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Event;
+namespace Jazzfreunde\Api\Service\Event;
 
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Repository\Filter\EventFilter;
+use Jazzfreunde\Api\Entity\Event;
+use Jazzfreunde\Api\Repository\Filter\EventFilter;
 
 /**
  * Service for managing {@see Event} entities.

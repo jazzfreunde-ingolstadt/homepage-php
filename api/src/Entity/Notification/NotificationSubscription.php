@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Notification;
+namespace Jazzfreunde\Api\Entity\Notification;
 
 use Doctrine\ORM\Mapping as ORM;
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Entity\Contract\ConfirmableEntity;
-use Jazzfreunde\App\Entity\Type\String\UriType;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Entity\Contract\ConfirmableEntity;
+use Jazzfreunde\Api\Entity\Type\String\UriType;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**

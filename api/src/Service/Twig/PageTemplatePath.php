@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Twig;
+namespace Jazzfreunde\Api\Service\Twig;
 
 /**
  * Twig template paths for pages.

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Provider;
+namespace Jazzfreunde\Api\Service\Notification\Provider;
 
-use Jazzfreunde\App\Exception\Notification\NotificationScopeNotFoundException;
-use Jazzfreunde\App\Service\Notification\Provider\Model\NotificationResource;
+use Jazzfreunde\Api\Exception\Notification\NotificationScopeNotFoundException;
+use Jazzfreunde\Api\Service\Notification\Provider\Model\NotificationResource;
 
 /**
  * Provides notification resources based on their scope.

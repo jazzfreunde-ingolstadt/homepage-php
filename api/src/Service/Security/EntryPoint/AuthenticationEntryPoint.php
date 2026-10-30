@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\EntryPoint;
+namespace Jazzfreunde\Api\Service\Security\EntryPoint;
 
-use Jazzfreunde\App\Service\Security\Request\RequestHelper;
-use Jazzfreunde\App\Service\Security\Request\SessionHelper;
+use Jazzfreunde\Api\Service\Security\Request\RequestHelper;
+use Jazzfreunde\Api\Service\Security\Request\SessionHelper;
 use LogicException;
 use Override;
 use Symfony\Bundle\SecurityBundle\Security;

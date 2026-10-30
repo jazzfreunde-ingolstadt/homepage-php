@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\Exception;
+namespace Jazzfreunde\Api\Service\Security\Exception;
 
 use RuntimeException;
 

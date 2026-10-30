@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Validation\Validator;
+namespace Jazzfreunde\Api\Tests\Validation\Validator;
 
-use Jazzfreunde\App\Validation\Attribute\Uri;
-use Jazzfreunde\App\Validation\Validator\UriValidator;
+use Jazzfreunde\Api\Validation\Attribute\Uri;
+use Jazzfreunde\Api\Validation\Validator\UriValidator;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;

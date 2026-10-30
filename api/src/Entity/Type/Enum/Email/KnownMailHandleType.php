@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Type\Enum\Email;
+namespace Jazzfreunde\Api\Entity\Type\Enum\Email;
 
-use Jazzfreunde\App\Entity\Type\Enum\Abstract\AbstractEnumType;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Entity\Type\Enum\Abstract\AbstractEnumType;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 
 /**
  * All known mail handles.

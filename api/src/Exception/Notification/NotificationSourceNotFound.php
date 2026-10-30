@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Exception\Notification;
+namespace Jazzfreunde\Api\Exception\Notification;
 
 use RuntimeException;
 

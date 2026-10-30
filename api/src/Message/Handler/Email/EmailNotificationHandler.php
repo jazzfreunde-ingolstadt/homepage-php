@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Message\Handler\Email;
+namespace Jazzfreunde\Api\Message\Handler\Email;
 
 use Doctrine\Persistence\ManagerRegistry;
 use InvalidArgumentException;
-use Jazzfreunde\App\Entity\KnownMail;
-use Jazzfreunde\App\Message\Exception\MailException;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Entity\KnownMail;
+use Jazzfreunde\Api\Message\Exception\MailException;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;

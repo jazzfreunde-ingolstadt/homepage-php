@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Controller;
+namespace Jazzfreunde\Api\Controller;
 
 use DateTimeImmutable;
-use Jazzfreunde\App\Service\Health\HealthCheckInterface;
-use Jazzfreunde\App\Type\Enum\HealthStatusEnum;
+use Jazzfreunde\Api\Service\Health\HealthCheckInterface;
+use Jazzfreunde\Api\Type\Enum\HealthStatusEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 use Symfony\Component\HttpFoundation\Response;

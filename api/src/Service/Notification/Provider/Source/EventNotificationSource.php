@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Provider\Source;
+namespace Jazzfreunde\Api\Service\Notification\Provider\Source;
 
-use Jazzfreunde\App\Api\Notification\Resource\EventNotification;
-use Jazzfreunde\App\Exception\Notification\NotificationSourceNotFound;
-use Jazzfreunde\App\Service\Event\EventRepositoryInterface;
-use Jazzfreunde\App\Service\Notification\Provider\Model\NotificationResource;
-use Jazzfreunde\App\Service\Notification\Provider\NotificationSourceInterface;
-use Jazzfreunde\App\Service\Notification\Scope\ParsedScope;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Exception\Notification\NotificationSourceNotFound;
+use Jazzfreunde\Api\Platform\Notification\Resource\EventNotification;
+use Jazzfreunde\Api\Service\Event\EventRepositoryInterface;
+use Jazzfreunde\Api\Service\Notification\Provider\Model\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Provider\NotificationSourceInterface;
+use Jazzfreunde\Api\Service\Notification\Scope\ParsedScope;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
 use LogicException;
 use Override;
 

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Controller;
+namespace Jazzfreunde\Api\Controller;
 
 use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCodeBundle\Response\QrCodeResponse;
-use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
-use Jazzfreunde\App\Service\Twig\PageTemplatePath;
+use Jazzfreunde\Api\Service\Security\Attribute\FirewallEntryPoint;
+use Jazzfreunde\Api\Service\Twig\PageTemplatePath;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

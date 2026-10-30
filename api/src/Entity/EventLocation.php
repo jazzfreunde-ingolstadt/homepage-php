@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity;
+namespace Jazzfreunde\Api\Entity;
 
 use ApiPlatform\Metadata as API;
 use Doctrine\ORM\Mapping as ORM;
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
 
 /**
  * Event locations.

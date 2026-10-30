@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Contract;
+namespace Jazzfreunde\Api\Entity\Contract;
 
 use DateInterval;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Entity\Type\Enum\Contract\ConfirmationStateEnumType;
-use Jazzfreunde\App\Entity\Type\String\HexTokenType;
-use Jazzfreunde\App\Repository\ConfirmationContractRepository;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Primitive\HexToken;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Entity\Type\Enum\Contract\ConfirmationStateEnumType;
+use Jazzfreunde\Api\Entity\Type\String\HexTokenType;
+use Jazzfreunde\Api\Repository\ConfirmationContractRepository;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Primitive\HexToken;
 use LogicException;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;

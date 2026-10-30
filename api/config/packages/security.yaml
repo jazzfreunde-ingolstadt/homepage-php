@@ -2,7 +2,7 @@ security:
   providers:
     users:
       entity:
-        class: 'Jazzfreunde\App\Entity\Security\User'
+        class: 'Jazzfreunde\Api\Entity\Security\User'
         property: "email"
     temporary_users:
       id: "jazzfreunde.security.temporary_user_provider"
@@ -56,14 +56,14 @@ services:
         lifetime: 300
 
   jazzfreunde.security.request_matcher.low_trust:
-    class: Jazzfreunde\App\Service\Security\Request\RequestMatcher
+    class: Jazzfreunde\Api\Service\Security\Request\RequestMatcher
     factory: [null, 'create']
     arguments:
       $controllerResolver: '@controller_resolver'
       $firewallName: 'low_trust'
 
   jazzfreunde.security.request_matcher.main:
-    class: Jazzfreunde\App\Service\Security\Request\RequestMatcher
+    class: Jazzfreunde\Api\Service\Security\Request\RequestMatcher
     factory: [null, 'create']
     arguments:
       $controllerResolver: '@controller_resolver'

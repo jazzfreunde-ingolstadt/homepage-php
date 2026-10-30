@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\DependencyInjection\Compiler;
+namespace Jazzfreunde\Api\DependencyInjection\Compiler;
 
 use Generator;
-use Jazzfreunde\App\Service\Notification\Scope\Attribute\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource;
 use LogicException;
 use Override;
 use ReflectionClass;
@@ -26,8 +26,8 @@ use function strlen;
 final readonly class NotificationScopeRegisterCompilerPass implements CompilerPassInterface
 {
     public const SCOPE_RESOURCES_PARAMETER = 'jazzfreunde.notification.scope_resources';
-    private const SRC_FOLDER_MASK = '%s/src/Api';
-    private const TOP_LEVEL_NAMESPACE = 'Jazzfreunde\App\Api\\';
+    private const SRC_FOLDER_MASK = '%s/src/Platform';
+    private const TOP_LEVEL_NAMESPACE = 'Jazzfreunde\Api\Platform\\';
 
     public function __construct(
         private string $projectDir,

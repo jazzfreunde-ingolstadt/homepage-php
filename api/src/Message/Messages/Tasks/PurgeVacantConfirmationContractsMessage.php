@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Message\Messages\Tasks;
+namespace Jazzfreunde\Api\Message\Messages\Tasks;
 
 /**
  * Message dispatched to trigger the purge of vacant confirmation contracts.

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification;
+namespace Jazzfreunde\Api\Service\Notification;
 
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Repository\Filter\NotificationSubscriptionFilter;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
 
 /**
  * Interface for the NotificationSubscription repository.

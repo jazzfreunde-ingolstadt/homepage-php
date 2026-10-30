@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Api\Contract;
+namespace Jazzfreunde\Api\Platform\Contract;
 
 use ApiPlatform\Metadata as API;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
-use Jazzfreunde\App\Controller\Contract\CancelContractController;
-use Jazzfreunde\App\Controller\Contract\ConfirmContractController;
+use Jazzfreunde\Api\Controller\Contract\CancelContractController;
+use Jazzfreunde\Api\Controller\Contract\ConfirmContractController;
 
 /**
  * API resource for confirming and cancelling contracts.

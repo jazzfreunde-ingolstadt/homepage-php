@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Validation\Validator;
+namespace Jazzfreunde\Api\Validation\Validator;
 
-use Jazzfreunde\App\Validation\Attribute\TwigTemplate;
+use Jazzfreunde\Api\Validation\Attribute\TwigTemplate;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\Validator\Constraint;

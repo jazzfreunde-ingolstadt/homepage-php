@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\DependencyInjection\Compiler;
+namespace JazzfreundeTests\Api\Tests\DependencyInjection\Compiler;
 
-use Jazzfreunde\App\DependencyInjection\Compiler\NotificationScopeRegisterCompilerPass;
+use Jazzfreunde\Api\DependencyInjection\Compiler\NotificationScopeRegisterCompilerPass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**

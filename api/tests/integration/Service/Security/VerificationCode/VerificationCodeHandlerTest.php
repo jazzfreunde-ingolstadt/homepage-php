@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Security\VerificationCode;
+namespace JazzfreundeTests\Api\Tests\Service\Security\VerificationCode;
 
-use Jazzfreunde\App\Entity\Security\TemporaryUser;
-use Jazzfreunde\App\Service\Security\Exception\InvalidVerificationCodeException;
-use Jazzfreunde\App\Service\Security\Signature\SignatureHasherInterface;
-use Jazzfreunde\App\Service\Security\VerificationCode\VerificationCodeHandler;
-use Jazzfreunde\App\Service\Security\VerificationCode\VerificationCodeStorageInterface;
+use Jazzfreunde\Api\Entity\Security\TemporaryUser;
+use Jazzfreunde\Api\Service\Security\Exception\InvalidVerificationCodeException;
+use Jazzfreunde\Api\Service\Security\Signature\SignatureHasherInterface;
+use Jazzfreunde\Api\Service\Security\VerificationCode\VerificationCodeHandler;
+use Jazzfreunde\Api\Service\Security\VerificationCode\VerificationCodeStorageInterface;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

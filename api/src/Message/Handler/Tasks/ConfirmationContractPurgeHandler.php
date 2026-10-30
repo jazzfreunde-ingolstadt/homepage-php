@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Message\Handler\Tasks;
+namespace Jazzfreunde\Api\Message\Handler\Tasks;
 
-use Jazzfreunde\App\Message\Messages\Tasks\PurgeVacantConfirmationContractsMessage;
-use Jazzfreunde\App\Service\Contract\ConfirmationContractPurgingInterface;
+use Jazzfreunde\Api\Message\Messages\Tasks\PurgeVacantConfirmationContractsMessage;
+use Jazzfreunde\Api\Service\Contract\ConfirmationContractPurgingInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**

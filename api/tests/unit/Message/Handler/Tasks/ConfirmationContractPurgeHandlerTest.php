@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Message\Handler\Tasks;
+namespace JazzfreundeTests\Api\Tests\Message\Handler\Tasks;
 
-use Jazzfreunde\App\Message\Handler\Tasks\ConfirmationContractPurgeHandler;
-use Jazzfreunde\App\Service\Contract\ConfirmationContractPurgingInterface;
+use Jazzfreunde\Api\Message\Handler\Tasks\ConfirmationContractPurgeHandler;
+use Jazzfreunde\Api\Service\Contract\ConfirmationContractPurgingInterface;
 use PHPUnit\Framework\TestCase;
 
 /**

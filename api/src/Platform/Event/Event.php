@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Api\Event;
+namespace Jazzfreunde\Api\Platform\Event;
 
 use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Doctrine\Orm\Filter\SortFilter;
 use ApiPlatform\Doctrine\Orm\State\Options;
 use ApiPlatform\Metadata as API;
 use DateTime;
-use Jazzfreunde\App\Api\Notification\NotificationSource;
-use Jazzfreunde\App\Entity\Event as EventEntity;
-use Jazzfreunde\App\Entity\EventLocation;
-use Jazzfreunde\App\Service\Api\Provider\EventProvider;
-use Jazzfreunde\App\Type\Enum\EventCategoryEnum;
+use Jazzfreunde\Api\Entity\Event as EventEntity;
+use Jazzfreunde\Api\Entity\EventLocation;
+use Jazzfreunde\Api\Platform\Notification\NotificationSource;
+use Jazzfreunde\Api\Service\Api\Provider\EventProvider;
+use Jazzfreunde\Api\Type\Enum\EventCategoryEnum;
 use Symfony\Component\ObjectMapper\Attribute\Map;
 
 /**

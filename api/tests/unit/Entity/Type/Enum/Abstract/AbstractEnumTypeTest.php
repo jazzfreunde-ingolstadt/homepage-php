@@ -3,15 +3,15 @@
 declare(strict_types=1);
 // phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 
-namespace JazzfreundeTests\App\Tests\Entity\Type\Enum\Abstract;
+namespace JazzfreundeTests\Api\Tests\Entity\Type\Enum\Abstract;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\MariaDBPlatform;
 use Doctrine\DBAL\Types\ConversionException;
-use Jazzfreunde\App\Entity\Type\Enum\Abstract\AbstractEnumType;
-use Jazzfreunde\App\Entity\Type\Enum\Abstract\EntityNameUndefinedError;
-use Jazzfreunde\App\Entity\Type\Enum\Abstract\EnumClassNameUndefinedError;
-use Jazzfreunde\App\Entity\Type\Enum\Abstract\InvalidEnumTypeNameError;
+use Jazzfreunde\Api\Entity\Type\Enum\Abstract\AbstractEnumType;
+use Jazzfreunde\Api\Entity\Type\Enum\Abstract\EntityNameUndefinedError;
+use Jazzfreunde\Api\Entity\Type\Enum\Abstract\EnumClassNameUndefinedError;
+use Jazzfreunde\Api\Entity\Type\Enum\Abstract\InvalidEnumTypeNameError;
 use PHPUnit\Framework\TestCase;
 
 /**

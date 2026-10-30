@@ -3,10 +3,10 @@
 declare(strict_types=1);
 // phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 
-namespace JazzfreundeTests\App\Tests\Service\Security\Request;
+namespace JazzfreundeTests\Api\Tests\Service\Security\Request;
 
-use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
-use Jazzfreunde\App\Service\Security\Request\RequestMatcher;
+use Jazzfreunde\Api\Service\Security\Attribute\FirewallEntryPoint;
+use Jazzfreunde\Api\Service\Security\Request\RequestMatcher;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

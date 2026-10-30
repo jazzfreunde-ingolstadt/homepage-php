@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Type\Enum\Abstract;
+namespace Jazzfreunde\Api\Entity\Type\Enum\Abstract;
 
 use BackedEnum;
 use CompileError;

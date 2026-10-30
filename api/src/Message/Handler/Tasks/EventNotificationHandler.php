@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Message\Handler\Tasks;
+namespace Jazzfreunde\Api\Message\Handler\Tasks;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Message\Messages\Tasks\SendEventNotificationsMessage;
-use Jazzfreunde\App\Repository\Filter\EventFilter;
-use Jazzfreunde\App\Repository\Filter\NotificationSubscriptionFilter;
-use Jazzfreunde\App\Service\Event\EventRepositoryInterface;
-use Jazzfreunde\App\Service\Notification\Mail\NotificationMailGeneratorInterface;
-use Jazzfreunde\App\Service\Notification\NotificationSubscriptionRepositoryInterface;
-use Jazzfreunde\App\Service\Notification\Provider\NotificationProviderInterface;
+use Jazzfreunde\Api\Entity\Event;
+use Jazzfreunde\Api\Message\Messages\Tasks\SendEventNotificationsMessage;
+use Jazzfreunde\Api\Repository\Filter\EventFilter;
+use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
+use Jazzfreunde\Api\Service\Event\EventRepositoryInterface;
+use Jazzfreunde\Api\Service\Notification\Mail\NotificationMailGeneratorInterface;
+use Jazzfreunde\Api\Service\Notification\NotificationSubscriptionRepositoryInterface;
+use Jazzfreunde\Api\Service\Notification\Provider\NotificationProviderInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

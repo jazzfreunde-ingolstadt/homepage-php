@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Security\EntryPoint;
+namespace JazzfreundeTests\Api\Tests\Service\Security\EntryPoint;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Service\Security\Request\RequestHelper;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Service\Security\Request\RequestHelper;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;

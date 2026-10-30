@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Repository\Filter;
+namespace Jazzfreunde\Api\Repository\Filter;
 
-use Jazzfreunde\App\Repository\Filter\Trait\ConfirmationContractFilterTrait;
+use Jazzfreunde\Api\Repository\Filter\Trait\ConfirmationContractFilterTrait;
 
 /**
  * Filter for querying NotificationSubscription entities.

@@ -1,9 +1,10 @@
 <?php
 
-use Jazzfreunde\App\Kernel;
+use Jazzfreunde\Api\Kernel;
 
 if (\file_exists(__DIR__.'/maintenance.htm')) {
     http_response_code(503);
+
     exit('Diese Seite befindet sich aktuell in Wartung. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.');
 }
 

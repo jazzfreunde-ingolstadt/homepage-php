@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\VerificationCode;
+namespace Jazzfreunde\Api\Service\Security\VerificationCode;
 
 use DateTimeImmutable;
 use InvalidArgumentException;
-use Jazzfreunde\App\Service\Security\Exception\InvalidVerificationCodeException;
-use Jazzfreunde\App\Service\Security\Signature\SignatureHasherInterface;
-use Jazzfreunde\App\Service\Security\VerificationCode\Model\VerificationCodeDetails;
+use Jazzfreunde\Api\Service\Security\Exception\InvalidVerificationCodeException;
+use Jazzfreunde\Api\Service\Security\Signature\SignatureHasherInterface;
+use Jazzfreunde\Api\Service\Security\VerificationCode\Model\VerificationCodeDetails;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;

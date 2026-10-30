@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Newsletter;
+namespace JazzfreundeTests\Api\Tests\Service\Newsletter;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

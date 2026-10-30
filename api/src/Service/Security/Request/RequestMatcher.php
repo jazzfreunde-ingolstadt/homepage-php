@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\Request;
+namespace Jazzfreunde\Api\Service\Security\Request;
 
 use Closure;
-use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
+use Jazzfreunde\Api\Service\Security\Attribute\FirewallEntryPoint;
 use Override;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;

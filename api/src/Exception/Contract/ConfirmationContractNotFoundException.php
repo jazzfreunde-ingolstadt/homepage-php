@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Exception\Contract;
+namespace Jazzfreunde\Api\Exception\Contract;
 
 use Exception;
 

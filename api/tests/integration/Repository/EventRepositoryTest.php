@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Repository;
+namespace JazzfreundeTests\Api\Tests\Repository;
 
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Entity\EventLocation;
-use Jazzfreunde\App\Repository\EventRepository;
-use Jazzfreunde\App\Repository\Filter\EventFilter;
-use Jazzfreunde\App\Type\Enum\EventCategoryEnum;
+use Jazzfreunde\Api\Entity\Event;
+use Jazzfreunde\Api\Entity\EventLocation;
+use Jazzfreunde\Api\Repository\EventRepository;
+use Jazzfreunde\Api\Repository\Filter\EventFilter;
+use Jazzfreunde\Api\Type\Enum\EventCategoryEnum;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

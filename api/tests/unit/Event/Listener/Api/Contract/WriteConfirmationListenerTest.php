@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Event\Listener\Api\Contract;
+namespace Jazzfreunde\Api\Tests\Event\Listener\Api\Contract;
 
 use DateTimeImmutable;
-use Jazzfreunde\App\Api\Notification\AlreadySubscribedError;
-use Jazzfreunde\App\Api\Notification\NotificationSubscription as NotificationSubscriptionApi;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Event\Listener\Api\Contract\WriteConfirmationListener;
-use Jazzfreunde\App\Repository\Filter\NotificationSubscriptionFilter;
-use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
-use Jazzfreunde\App\Service\Notification\NotificationSubscriptionRepositoryInterface;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Event\Listener\Api\Contract\WriteConfirmationListener;
+use Jazzfreunde\Api\Platform\Notification\AlreadySubscribedError;
+use Jazzfreunde\Api\Platform\Notification\NotificationSubscription as NotificationSubscriptionApi;
+use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
+use Jazzfreunde\Api\Service\Contract\ConfirmationContractService;
+use Jazzfreunde\Api\Service\Notification\NotificationSubscriptionRepositoryInterface;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\TestCase;
