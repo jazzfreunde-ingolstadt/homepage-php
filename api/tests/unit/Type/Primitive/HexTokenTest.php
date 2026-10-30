@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Type\Primitive;
+namespace JazzfreundeTests\Api\Tests\Type\Primitive;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Type\Primitive\HexToken;
+use Jazzfreunde\Api\Type\Primitive\HexToken;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;

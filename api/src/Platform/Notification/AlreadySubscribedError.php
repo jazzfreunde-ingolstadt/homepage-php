@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Api\Notification;
+namespace Jazzfreunde\Api\Platform\Notification;
 
 use ApiPlatform\Metadata\ErrorResource;
 use ApiPlatform\Metadata\Exception\ProblemExceptionInterface;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use Exception;
-use Jazzfreunde\App\Api\ProblemType;
-use Jazzfreunde\App\Service\Api\Provider\ErrorResourceSampleProvider;
+use Jazzfreunde\Api\Platform\ProblemType;
+use Jazzfreunde\Api\Service\Api\Provider\ErrorResourceSampleProvider;
 use Override;
 
 /**

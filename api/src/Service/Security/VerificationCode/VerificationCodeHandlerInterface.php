@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\VerificationCode;
+namespace Jazzfreunde\Api\Service\Security\VerificationCode;
 
-use Jazzfreunde\App\Service\Security\Exception\InvalidVerificationCodeException;
-use Jazzfreunde\App\Service\Security\VerificationCode\Model\VerificationCodeDetails;
+use Jazzfreunde\Api\Service\Security\Exception\InvalidVerificationCodeException;
+use Jazzfreunde\Api\Service\Security\VerificationCode\Model\VerificationCodeDetails;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**

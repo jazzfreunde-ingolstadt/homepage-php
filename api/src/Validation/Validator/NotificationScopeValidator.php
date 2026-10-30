@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Validation\Validator;
+namespace Jazzfreunde\Api\Validation\Validator;
 
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeMatcher;
-use Jazzfreunde\App\Validation\Attribute\NotificationScope;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeMatcher;
+use Jazzfreunde\Api\Validation\Attribute\NotificationScope;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\Validator\Constraint;

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Event\Listener\Api\Contract;
+namespace Jazzfreunde\Api\Event\Listener\Api\Contract;
 
 use ApiPlatform\Symfony\EventListener\EventPriorities;
-use Jazzfreunde\App\Api\Notification\AlreadySubscribedError;
-use Jazzfreunde\App\Api\Notification\NotificationSubscription as NotificationSubscriptionApi;
-use Jazzfreunde\App\Entity\Contract\ConfirmableEntity;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription as NotificationSubscriptionEntity;
-use Jazzfreunde\App\Repository\Filter\NotificationSubscriptionFilter;
-use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
-use Jazzfreunde\App\Service\Notification\NotificationSubscriptionRepositoryInterface;
+use Jazzfreunde\Api\Entity\Contract\ConfirmableEntity;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription as NotificationSubscriptionEntity;
+use Jazzfreunde\Api\Platform\Notification\AlreadySubscribedError;
+use Jazzfreunde\Api\Platform\Notification\NotificationSubscription as NotificationSubscriptionApi;
+use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
+use Jazzfreunde\Api\Service\Contract\ConfirmationContractService;
+use Jazzfreunde\Api\Service\Notification\NotificationSubscriptionRepositoryInterface;
 use LogicException;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\JsonResponse;

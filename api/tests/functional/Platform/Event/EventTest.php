@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Api\Event;
+namespace Jazzfreunde\Api\Tests\Platform\Event;
 
 use DateInterval;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Entity\EventLocation;
+use Jazzfreunde\Api\Entity\Event;
+use Jazzfreunde\Api\Entity\EventLocation;
 use Jazzfreunde\UnitTest\Fixtures\CallbackFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;

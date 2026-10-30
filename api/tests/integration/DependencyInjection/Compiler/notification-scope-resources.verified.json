@@ -1,3 +1,3 @@
 {
-    "/events/{id:number}": "Jazzfreunde\\App\\Api\\Notification\\Resource\\EventNotification"
+    "/events/{id:number}": "Jazzfreunde\\Api\\Platform\\Notification\\Resource\\EventNotification"
 }

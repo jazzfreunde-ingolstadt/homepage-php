@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Newsletter;
+namespace Jazzfreunde\Api\Service\Newsletter;
 
 use Doctrine\DBAL\Driver\Connection;
 use Doctrine\Persistence\ManagerRegistry;
 use DomainException;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Exception\Newsletter\SubscriptionException;
-use Jazzfreunde\App\Service\Contract\ConfirmationContractService;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Exception\Newsletter\SubscriptionException;
+use Jazzfreunde\Api\Service\Contract\ConfirmationContractService;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use LogicException;
 use RuntimeException;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;

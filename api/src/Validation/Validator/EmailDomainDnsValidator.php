@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Validation\Validator;
+namespace Jazzfreunde\Api\Validation\Validator;
 
-use Jazzfreunde\App\Service\Email\DnsRecordLookupInterface;
-use Jazzfreunde\App\Validation\Attribute\EmailDomainDns;
+use Jazzfreunde\Api\Service\Email\DnsRecordLookupInterface;
+use Jazzfreunde\Api\Validation\Attribute\EmailDomainDns;
 use Override;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;

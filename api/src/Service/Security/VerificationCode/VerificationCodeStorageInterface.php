@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\VerificationCode;
+namespace Jazzfreunde\Api\Service\Security\VerificationCode;
 
 /**
  * Storage for tracking pending verification codes.

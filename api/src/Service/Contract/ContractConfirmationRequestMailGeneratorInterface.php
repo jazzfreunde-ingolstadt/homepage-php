@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Contract;
+namespace Jazzfreunde\Api\Service\Contract;
 
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Type\Primitive\Email;
 
 /**
  * Generates a confirmation request email for a contract.

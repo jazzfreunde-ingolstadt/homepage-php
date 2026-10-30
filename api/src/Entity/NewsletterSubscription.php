@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity;
+namespace Jazzfreunde\Api\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Jazzfreunde\App\Entity\Contract\ConfirmableEntity;
+use Jazzfreunde\Api\Entity\Contract\ConfirmableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**

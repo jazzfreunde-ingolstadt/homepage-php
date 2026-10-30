@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Notification\Mail;
+namespace Jazzfreunde\Api\Tests\Service\Notification\Mail;
 
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Service\Notification\Mail\NotificationMailGenerator;
-use Jazzfreunde\App\Service\Notification\Provider\Model\NotificationResource;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
-use Jazzfreunde\App\Type\Primitive\HexToken;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Service\Notification\Mail\NotificationMailGenerator;
+use Jazzfreunde\Api\Service\Notification\Provider\Model\NotificationResource;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\HexToken;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Envelope;
@@ -23,7 +23,7 @@ use Symfony\Component\Mime\Address;
 /**
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Notification\Mail\NotificationMailGenerator
+ * @covers \Jazzfreunde\Api\Service\Notification\Mail\NotificationMailGenerator
  */
 final class NotificationMailGeneratorTest extends TestCase
 {

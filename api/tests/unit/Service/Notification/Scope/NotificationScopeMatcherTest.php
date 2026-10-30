@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Notification\Scope;
+namespace Jazzfreunde\Api\Tests\Service\Notification\Scope;
 
-use Jazzfreunde\App\Exception\Notification\NotificationScopeMappingException;
-use Jazzfreunde\App\Service\Notification\Scope\CompiledScope;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollection;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeMatcher;
-use Jazzfreunde\App\Service\Notification\Scope\Parameter\Number;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Exception\Notification\NotificationScopeMappingException;
+use Jazzfreunde\Api\Service\Notification\Scope\CompiledScope;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollection;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeMatcher;
+use Jazzfreunde\Api\Service\Notification\Scope\Parameter\Number;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ use Throwable;
  *
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Notification\Scope\NotificationScopeMatcher
+ * @covers \Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeMatcher
  */
 final class NotificationScopeMatcherTest extends TestCase
 {

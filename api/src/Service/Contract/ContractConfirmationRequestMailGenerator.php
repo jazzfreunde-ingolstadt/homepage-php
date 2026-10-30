@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Contract;
+namespace Jazzfreunde\Api\Service\Contract;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\Contract\ConfirmableEntity;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\Contract\ConfirmableEntity;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use LogicException;
 use Override;
 use Symfony\Component\Mime\Address;

@@ -16,10 +16,10 @@ framework:
                     queue_name: failed
 
         routing:
-            'Jazzfreunde\App\Message\Messages\*': async
+            'Jazzfreunde\Api\Message\Messages\*': async
 
 when@dev:
     framework:
         messenger:
             routing:
-                'Jazzfreunde\App\Message\Messages\*': sync
+                'Jazzfreunde\Api\Message\Messages\*': sync

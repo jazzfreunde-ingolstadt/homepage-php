@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Event\Listener\Twig;
+namespace Jazzfreunde\Api\Event\Listener\Twig;
 
 use Nelmio\SecurityBundle\EventListener\ContentSecurityPolicyListener;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;

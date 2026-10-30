@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Newsletter;
+namespace Jazzfreunde\Api\Service\Newsletter;
 
-use Jazzfreunde\App\Form\NewsletterSubscriptionType;
+use Jazzfreunde\Api\Form\NewsletterSubscriptionType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

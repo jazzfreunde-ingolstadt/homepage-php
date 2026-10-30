@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Api\Notification;
+namespace Jazzfreunde\Api\Tests\Platform\Notification;
 
-use Jazzfreunde\App\Api\Notification\NotificationSubscription as NotificationSubscriptionDto;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Type\Primitive\Email;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Platform\Notification\NotificationSubscription as NotificationSubscriptionDto;
+use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use Symfony\Component\ObjectMapper\ObjectMapper;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Api\Notification;
+namespace Jazzfreunde\Api\Platform\Notification;
 
 use ApiPlatform\Metadata as API;
 use DateTimeImmutable;

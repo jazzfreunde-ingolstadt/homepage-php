@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Api\Provider;
+namespace Jazzfreunde\Api\Service\Api\Provider;
 
 use ApiPlatform\Metadata\CollectionOperationInterface;
 use ApiPlatform\Metadata\Operation;
@@ -11,12 +11,12 @@ use ApiPlatform\State\ProviderInterface;
 use DateInterval;
 use DateTimeImmutable;
 use DateTimeZone;
-use Jazzfreunde\App\Api\DtoPaginator;
-use Jazzfreunde\App\Api\Event\Event;
-use Jazzfreunde\App\Api\Notification\NotificationSource;
-use Jazzfreunde\App\Api\Notification\Resource\EventNotification;
-use Jazzfreunde\App\Entity\Event as EventEntity;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationUrlGeneratorInterface;
+use Jazzfreunde\Api\Entity\Event as EventEntity;
+use Jazzfreunde\Api\Platform\DtoPaginator;
+use Jazzfreunde\Api\Platform\Event\Event;
+use Jazzfreunde\Api\Platform\Notification\NotificationSource;
+use Jazzfreunde\Api\Platform\Notification\Resource\EventNotification;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationUrlGeneratorInterface;
 use LogicException;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;

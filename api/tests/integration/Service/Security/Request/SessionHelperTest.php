@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Security\Request;
+namespace JazzfreundeTests\Api\Tests\Service\Security\Request;
 
-use Jazzfreunde\App\Service\Security\Request\SessionHelper;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Service\Security\Request\SessionHelper;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

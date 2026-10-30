@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Repository;
+namespace Jazzfreunde\Api\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Repository\Filter\NotificationSubscriptionFilter;
-use Jazzfreunde\App\Service\Notification\NotificationSubscriptionRepositoryInterface;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
+use Jazzfreunde\Api\Service\Notification\NotificationSubscriptionRepositoryInterface;
 
 /**
  * Repository for managing {@see NotificationSubscription} entities.

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Api;
+namespace Jazzfreunde\Api\Platform;
 
 /**
  * Provides stable URN identifiers for API problem responses.

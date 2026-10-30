@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Event\Listener\Contract;
+namespace Jazzfreunde\Api\Event\Listener\Contract;
 
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract\AwaitConfirmationContext;
-use Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract\PendingMetaData;
-use Jazzfreunde\App\Service\Contract\ContractConfirmationRequestMailGeneratorInterface;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Primitive\HexToken;
-use Jazzfreunde\App\Workflow\ConfirmationContract\TransitionsEnum;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Event\MetaData\Workflow\ConfirmationContract\AwaitConfirmationContext;
+use Jazzfreunde\Api\Event\MetaData\Workflow\ConfirmationContract\PendingMetaData;
+use Jazzfreunde\Api\Service\Contract\ContractConfirmationRequestMailGeneratorInterface;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Primitive\HexToken;
+use Jazzfreunde\Api\Workflow\ConfirmationContract\TransitionsEnum;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;

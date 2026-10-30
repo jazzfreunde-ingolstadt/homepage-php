@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Contract;
+namespace Jazzfreunde\Api\Service\Contract;
 
 /**
  * Purges expired and unconfirmed confirmation contracts.

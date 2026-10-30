@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Contract;
+namespace Jazzfreunde\Api\Entity\Contract;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Entity\Type\String\EmailType;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Entity\Type\String\EmailType;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 

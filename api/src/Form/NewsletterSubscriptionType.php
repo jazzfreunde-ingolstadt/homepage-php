@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Form;
+namespace Jazzfreunde\Api\Form;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Validation\Attribute\EmailDomainDns;
+use Jazzfreunde\Api\Validation\Attribute\EmailDomainDns;
 use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;

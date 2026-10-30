@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Controller;
+namespace Jazzfreunde\Api\Controller;
 
 use DateTime;
 use InvalidArgumentException;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Exception\Contract\ConfirmationContractNotFoundException;
-use Jazzfreunde\App\Exception\Contract\ConfirmationPeriodExpiredException;
-use Jazzfreunde\App\Exception\Newsletter\SubscriptionException;
-use Jazzfreunde\App\Form\NewsletterSubscriptionType;
-use Jazzfreunde\App\Service\Newsletter\NewsletterService;
-use Jazzfreunde\App\Service\Security\Request\RequestHelper;
-use Jazzfreunde\App\Service\Twig\PageTemplatePath;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Exception\Contract\ConfirmationContractNotFoundException;
+use Jazzfreunde\Api\Exception\Contract\ConfirmationPeriodExpiredException;
+use Jazzfreunde\Api\Exception\Newsletter\SubscriptionException;
+use Jazzfreunde\Api\Form\NewsletterSubscriptionType;
+use Jazzfreunde\Api\Service\Newsletter\NewsletterService;
+use Jazzfreunde\Api\Service\Security\Request\RequestHelper;
+use Jazzfreunde\Api\Service\Twig\PageTemplatePath;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;

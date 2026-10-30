@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Controller;
+namespace Jazzfreunde\Api\Tests\Controller;
 
 use Endroid\QrCode\Builder\BuilderInterface;
 use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCode\Writer\Result\ResultInterface;
-use Jazzfreunde\App\Controller\LandingPageController;
+use Jazzfreunde\Api\Controller\LandingPageController;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @covers \Jazzfreunde\App\Controller\LandingPageController
+ * @covers \Jazzfreunde\Api\Controller\LandingPageController
  *
  * @internal
  */

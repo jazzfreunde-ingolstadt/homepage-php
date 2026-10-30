@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Api\Provider;
+namespace Jazzfreunde\Api\Tests\Service\Api\Provider;
 
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\State\ProviderInterface;
 use DateInterval;
 use DateTime;
 use DateTimeZone;
-use Jazzfreunde\App\Api\Event\Event;
-use Jazzfreunde\App\Api\Notification\Resource\EventNotification;
-use Jazzfreunde\App\Entity\Event as EventEntity;
-use Jazzfreunde\App\Entity\EventLocation;
-use Jazzfreunde\App\Service\Api\Provider\EventProvider;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationUrlGeneratorInterface;
+use Jazzfreunde\Api\Entity\Event as EventEntity;
+use Jazzfreunde\Api\Entity\EventLocation;
+use Jazzfreunde\Api\Platform\Event\Event;
+use Jazzfreunde\Api\Platform\Notification\Resource\EventNotification;
+use Jazzfreunde\Api\Service\Api\Provider\EventProvider;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationUrlGeneratorInterface;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\ObjectMapper\ObjectMapperInterface;
@@ -22,7 +22,7 @@ use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 /**
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Api\Provider\EventProvider
+ * @covers \Jazzfreunde\Api\Service\Api\Provider\EventProvider
  */
 final class EventProviderTest extends TestCase
 {

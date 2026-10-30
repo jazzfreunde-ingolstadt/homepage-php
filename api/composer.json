@@ -108,7 +108,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jazzfreunde\\App\\": "src/",
+            "Jazzfreunde\\Api\\": "src/",
             "Jazzfreunde\\": "libs/"  
         }
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Security\Signature;
+namespace JazzfreundeTests\Api\Tests\Service\Security\Signature;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Entity\Security\TemporaryUser;
-use Jazzfreunde\App\Service\Security\UserProvider\TemporaryUserProvider;
+use Jazzfreunde\Api\Entity\Security\TemporaryUser;
+use Jazzfreunde\Api\Service\Security\UserProvider\TemporaryUserProvider;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;

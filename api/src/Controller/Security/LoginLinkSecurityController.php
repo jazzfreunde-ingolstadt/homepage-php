@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Controller\Security;
+namespace Jazzfreunde\Api\Controller\Security;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Service\Security\Attribute\FirewallEntryPoint;
-use Jazzfreunde\App\Service\Security\Request\RequestHelper;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
-use Jazzfreunde\App\Service\Twig\PageTemplatePath;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Service\Security\Attribute\FirewallEntryPoint;
+use Jazzfreunde\Api\Service\Security\Request\RequestHelper;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Service\Twig\PageTemplatePath;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

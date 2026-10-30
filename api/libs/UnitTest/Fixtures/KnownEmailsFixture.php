@@ -6,9 +6,9 @@ namespace Jazzfreunde\UnitTest\Fixtures;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\KnownMail;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\KnownMail;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Override;
 
 /**

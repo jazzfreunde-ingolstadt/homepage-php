@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Exception\Security;
+namespace Jazzfreunde\Api\Exception\Security;
 
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Scope\Parameter;
+namespace Jazzfreunde\Api\Service\Notification\Scope\Parameter;
 
 use Override;
 

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Entity\Contract;
+namespace JazzfreundeTests\Api\Tests\Entity\Contract;
 
 use DateInterval;
 use DateTimeImmutable;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validation;

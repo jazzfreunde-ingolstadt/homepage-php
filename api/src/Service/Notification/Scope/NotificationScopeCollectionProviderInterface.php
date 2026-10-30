@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Scope;
+namespace Jazzfreunde\Api\Service\Notification\Scope;
 
 /**
  * Provides the compiled collection of notification scopes.

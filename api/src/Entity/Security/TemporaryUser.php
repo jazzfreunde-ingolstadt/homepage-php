@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Security;
+namespace Jazzfreunde\Api\Entity\Security;
 
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Override;
 use Symfony\Component\Security\Core\User\UserInterface;
 

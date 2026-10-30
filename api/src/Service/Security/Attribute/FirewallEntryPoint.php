@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\Attribute;
+namespace Jazzfreunde\Api\Service\Security\Attribute;
 
 use Attribute;
 

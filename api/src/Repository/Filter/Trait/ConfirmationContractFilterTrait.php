@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Repository\Filter\Trait;
+namespace Jazzfreunde\Api\Repository\Filter\Trait;
 
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
 
 /**
  * Trait for filtering confirmation contracts.

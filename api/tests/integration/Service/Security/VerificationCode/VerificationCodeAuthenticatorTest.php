@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Security\VerificationCode;
+namespace JazzfreundeTests\Api\Tests\Service\Security\VerificationCode;
 
-use Jazzfreunde\App\Exception\Security\InvalidVerificationCodeAuthenticationException;
-use Jazzfreunde\App\Service\Security\VerificationCode\VerificationCodeAuthenticator;
-use Jazzfreunde\App\Service\Security\VerificationCode\VerificationCodeHandlerInterface;
+use Jazzfreunde\Api\Exception\Security\InvalidVerificationCodeAuthenticationException;
+use Jazzfreunde\Api\Service\Security\VerificationCode\VerificationCodeAuthenticator;
+use Jazzfreunde\Api\Service\Security\VerificationCode\VerificationCodeHandlerInterface;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;

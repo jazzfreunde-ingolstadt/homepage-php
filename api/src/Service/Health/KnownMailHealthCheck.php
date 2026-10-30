@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Health;
+namespace Jazzfreunde\Api\Service\Health;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\KnownMail;
-use Jazzfreunde\App\Type\Enum\HealthStatusEnum;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Entity\KnownMail;
+use Jazzfreunde\Api\Type\Enum\HealthStatusEnum;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use Override;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;

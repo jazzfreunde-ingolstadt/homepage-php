@@ -3,10 +3,10 @@
 declare(strict_types=1);
 // phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 
-namespace JazzfreundeTests\App\Tests\DependencyInjection;
+namespace JazzfreundeTests\Api\Tests\DependencyInjection;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\DependencyInjection\FromMetaDataTrait;
+use Jazzfreunde\Api\DependencyInjection\FromMetaDataTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints\Length;

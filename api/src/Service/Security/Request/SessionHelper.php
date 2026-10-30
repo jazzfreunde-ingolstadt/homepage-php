@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\Request;
+namespace Jazzfreunde\Api\Service\Security\Request;
 
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use function is_string;

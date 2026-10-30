@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\Request;
+namespace Jazzfreunde\Api\Service\Security\Request;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 

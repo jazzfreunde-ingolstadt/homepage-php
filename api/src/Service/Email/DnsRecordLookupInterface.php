@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Email;
+namespace Jazzfreunde\Api\Service\Email;
 
 /**
  * Looks up DNS records for email domain validation.

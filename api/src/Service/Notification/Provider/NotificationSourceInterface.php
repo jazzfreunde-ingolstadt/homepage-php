@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Provider;
+namespace Jazzfreunde\Api\Service\Notification\Provider;
 
-use Jazzfreunde\App\Service\Notification\Provider\Model\NotificationResource;
-use Jazzfreunde\App\Service\Notification\Scope\ParsedScope;
+use Jazzfreunde\Api\Service\Notification\Provider\Model\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Scope\ParsedScope;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 /**

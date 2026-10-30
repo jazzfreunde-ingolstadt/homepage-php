@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Repository;
+namespace JazzfreundeTests\Api\Tests\Repository;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\App\Repository\Filter\NotificationSubscriptionFilter;
-use Jazzfreunde\App\Repository\NotificationSubscriptionRepository;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
+use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
+use Jazzfreunde\Api\Repository\NotificationSubscriptionRepository;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

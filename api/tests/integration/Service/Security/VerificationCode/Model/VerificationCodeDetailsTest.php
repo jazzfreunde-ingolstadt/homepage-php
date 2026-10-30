@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Security\VerificationCode\Model;
+namespace JazzfreundeTests\Api\Tests\Service\Security\VerificationCode\Model;
 
 use DateTimeImmutable;
 use InvalidArgumentException;
-use Jazzfreunde\App\Service\Security\VerificationCode\Model\VerificationCodeDetails;
+use Jazzfreunde\Api\Service\Security\VerificationCode\Model\VerificationCodeDetails;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;

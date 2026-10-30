@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Message\Messages\Email;
+namespace Jazzfreunde\Api\Message\Messages\Email;
 
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Jazzfreunde\App\Validation\Attribute\TwigTemplate;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Validation\Attribute\TwigTemplate;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Validator\Constraints\Length;
 

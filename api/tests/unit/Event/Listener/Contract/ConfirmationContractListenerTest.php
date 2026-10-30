@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Event\Listener\Contract;
+namespace Jazzfreunde\Api\Tests\Event\Listener\Contract;
 
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Event\Listener\Contract\ConfirmationContractListener;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Service\Contract\ContractConfirmationRequestMailGeneratorInterface;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Event\Listener\Contract\ConfirmationContractListener;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Service\Contract\ContractConfirmationRequestMailGeneratorInterface;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -170,7 +170,7 @@ final class ConfirmationContractListenerTest extends TestCase
         $event = $this->guardEvent(new stdClass());
 
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\App\\Entity\\Contract\\ConfirmationContract'");
+        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\Api\\Entity\\Contract\\ConfirmationContract'");
 
         $listener = $uut->target();
         $listener->onGuardConfirmExpired($event);
@@ -209,7 +209,7 @@ final class ConfirmationContractListenerTest extends TestCase
         $event = $this->enterEvent(new stdClass());
 
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\App\\Entity\\Contract\\ConfirmationContract'");
+        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\Api\\Entity\\Contract\\ConfirmationContract'");
 
         $listener = $uut->target();
         $listener->onEnterNew($event);
@@ -260,7 +260,7 @@ final class ConfirmationContractListenerTest extends TestCase
         $event = $this->enteredEvent(new stdClass());
 
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\App\\Entity\\Contract\\ConfirmationContract'");
+        $this->expectExceptionMessage("Invalid subject type. Expected an instance of 'Jazzfreunde\\Api\\Entity\\Contract\\ConfirmationContract'");
 
         $listener = $uut->target();
         $listener->onStateChanged($event);

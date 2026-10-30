@@ -3,4 +3,4 @@ framework:
         transports:
             default: '%env(MESSENGER_TRANSPORT_DSN)%'
         routing:
-            'Jazzfreunde\App\Message\Messages\*': default
+            'Jazzfreunde\Api\Message\Messages\*': default

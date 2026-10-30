@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity\Security;
+namespace Jazzfreunde\Api\Entity\Security;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Entity\Type\String\EmailType;
-use Jazzfreunde\App\Entity\Type\String\HexTokenType;
-use Jazzfreunde\App\Type\Primitive\Email;
-use Jazzfreunde\App\Type\Primitive\HexToken;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Entity\Type\String\EmailType;
+use Jazzfreunde\Api\Entity\Type\String\HexTokenType;
+use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\HexToken;
 use Override;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;

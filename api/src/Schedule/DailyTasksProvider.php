@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Schedule;
+namespace Jazzfreunde\Api\Schedule;
 
 use DateInterval;
-use Jazzfreunde\App\Message\Messages\Tasks\PurgeVacantConfirmationContractsMessage;
-use Jazzfreunde\App\Message\Messages\Tasks\SendEventNotificationsMessage;
-use Jazzfreunde\App\Message\Messages\Tasks\SendMonitoringReportMessage;
+use Jazzfreunde\Api\Message\Messages\Tasks\PurgeVacantConfirmationContractsMessage;
+use Jazzfreunde\Api\Message\Messages\Tasks\SendEventNotificationsMessage;
+use Jazzfreunde\Api\Message\Messages\Tasks\SendMonitoringReportMessage;
 use Override;
 use Symfony\Component\Scheduler\Attribute\AsSchedule;
 use Symfony\Component\Scheduler\RecurringMessage;

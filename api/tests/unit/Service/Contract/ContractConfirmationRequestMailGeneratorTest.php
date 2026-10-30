@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Contract;
+namespace Jazzfreunde\Api\Tests\Service\Contract;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Service\Contract\ContractConfirmationRequestMailGenerator;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Service\Contract\ContractConfirmationRequestMailGenerator;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\TestCase;

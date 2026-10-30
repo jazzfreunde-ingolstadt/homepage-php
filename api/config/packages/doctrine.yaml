@@ -10,7 +10,7 @@ doctrine:
         is_bundle: false
         type: attribute
         dir: "%kernel.project_dir%/src/Entity"
-        prefix: 'Jazzfreunde\App\Entity'
+        prefix: 'Jazzfreunde\Api\Entity'
         alias: App
 
 when@prod:

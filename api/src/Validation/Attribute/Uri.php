@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Validation\Attribute;
+namespace Jazzfreunde\Api\Validation\Attribute;
 
 use Attribute;
-use Jazzfreunde\App\Validation\Validator\UriValidator;
+use Jazzfreunde\Api\Validation\Validator\UriValidator;
 use Override;
 use Symfony\Component\Validator\Constraint;
 

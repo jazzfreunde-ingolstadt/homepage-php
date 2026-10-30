@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Newsletter;
+namespace JazzfreundeTests\Api\Tests\Service\Newsletter;
 
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Exception\Contract\ConfirmationPeriodExpiredException;
-use Jazzfreunde\App\Exception\Newsletter\SubscriptionException;
-use Jazzfreunde\App\Service\Newsletter\NewsletterService;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Exception\Contract\ConfirmationPeriodExpiredException;
+use Jazzfreunde\Api\Exception\Newsletter\SubscriptionException;
+use Jazzfreunde\Api\Service\Newsletter\NewsletterService;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\Fixtures\KnownEmailsFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
 use LogicException;

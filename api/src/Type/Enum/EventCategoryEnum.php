@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Type\Enum;
+namespace Jazzfreunde\Api\Type\Enum;
 
 /**
  * Veranstaltungskategorien.

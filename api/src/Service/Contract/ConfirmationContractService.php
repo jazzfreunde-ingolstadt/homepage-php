@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Contract;
+namespace Jazzfreunde\Api\Service\Contract;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Event\MetaData\Workflow\ConfirmationContract\AwaitConfirmationContext;
-use Jazzfreunde\App\Exception\Contract\ConfirmationContractNotFoundException;
-use Jazzfreunde\App\Exception\Contract\ConfirmationPeriodExpiredException;
-use Jazzfreunde\App\Type\Primitive\Email;
-use Jazzfreunde\App\Workflow\ConfirmationContract\TransitionsEnum;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Event\MetaData\Workflow\ConfirmationContract\AwaitConfirmationContext;
+use Jazzfreunde\Api\Exception\Contract\ConfirmationContractNotFoundException;
+use Jazzfreunde\Api\Exception\Contract\ConfirmationPeriodExpiredException;
+use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Api\Workflow\ConfirmationContract\TransitionsEnum;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\Workflow\Exception\LogicException;
 use Symfony\Component\Workflow\Workflow;

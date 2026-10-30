@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Notification\Scope;
+namespace Jazzfreunde\Api\Service\Notification\Scope;
 
-use Jazzfreunde\App\Exception\Notification\NotificationScopeMappingException;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Exception\Notification\NotificationScopeMappingException;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use LogicException;
 use stdClass;
 use Symfony\Component\ObjectMapper\Exception\MappingException;

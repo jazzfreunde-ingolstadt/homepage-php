@@ -3,11 +3,11 @@
 declare(strict_types=1);
 // phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 
-namespace JazzfreundeTests\App\Tests\DependencyInjection;
+namespace JazzfreundeTests\Api\Tests\DependencyInjection;
 
 use InvalidArgumentException;
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Type\Primitive\PrimitiveTypeInterface;
 use Override;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;

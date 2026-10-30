@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Email;
+namespace JazzfreundeTests\Api\Tests\Service\Email;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectRepository;
-use Jazzfreunde\App\Entity\KnownMail;
-use Jazzfreunde\App\Message\Exception\MailException;
-use Jazzfreunde\App\Message\Handler\Email\EmailNotificationHandler;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
-use Jazzfreunde\App\Type\Primitive\Email;
+use Jazzfreunde\Api\Entity\KnownMail;
+use Jazzfreunde\Api\Message\Exception\MailException;
+use Jazzfreunde\Api\Message\Handler\Email\EmailNotificationHandler;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Notification\Provider;
+namespace Jazzfreunde\Api\Tests\Service\Notification\Provider;
 
-use Jazzfreunde\App\Api\Notification\Resource\EventNotification;
-use Jazzfreunde\App\Exception\Notification\NotificationScopeNotFoundException;
-use Jazzfreunde\App\Service\Notification\Provider\Model\NotificationResource;
-use Jazzfreunde\App\Service\Notification\Provider\NotificationProvider;
-use Jazzfreunde\App\Service\Notification\Provider\NotificationSourceInterface;
-use Jazzfreunde\App\Service\Notification\Scope\CompiledScope;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollection;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeMatcher;
-use Jazzfreunde\App\Service\Notification\Scope\Parameter\Number;
-use Jazzfreunde\App\Service\Notification\Scope\ParsedScope;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Exception\Notification\NotificationScopeNotFoundException;
+use Jazzfreunde\Api\Platform\Notification\Resource\EventNotification;
+use Jazzfreunde\Api\Service\Notification\Provider\Model\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Provider\NotificationProvider;
+use Jazzfreunde\Api\Service\Notification\Provider\NotificationSourceInterface;
+use Jazzfreunde\Api\Service\Notification\Scope\CompiledScope;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollection;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeMatcher;
+use Jazzfreunde\Api\Service\Notification\Scope\Parameter\Number;
+use Jazzfreunde\Api\Service\Notification\Scope\ParsedScope;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +25,7 @@ use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 /**
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Notification\Provider\NotificationProvider
+ * @covers \Jazzfreunde\Api\Service\Notification\Provider\NotificationProvider
  */
 final class NotificationProviderTest extends TestCase
 {

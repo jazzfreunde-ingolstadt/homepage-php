@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Notification\Scope;
+namespace Jazzfreunde\Api\Tests\Service\Notification\Scope;
 
-use Jazzfreunde\App\Api\Notification\Resource\EventNotification;
-use Jazzfreunde\App\Service\Notification\Scope\Attribute\NotificationResource as NotificationResourceAttribute;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollection;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCompiler;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationUrlGenerator;
+use Jazzfreunde\Api\Platform\Notification\Resource\EventNotification;
+use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource as NotificationResourceAttribute;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollection;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCompiler;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationUrlGenerator;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 /**
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Notification\Scope\NotificationUrlGenerator
+ * @covers \Jazzfreunde\Api\Service\Notification\Scope\NotificationUrlGenerator
  */
 final class NotificationUrlGeneratorTest extends TestCase
 {

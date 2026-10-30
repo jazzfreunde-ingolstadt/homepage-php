@@ -3,7 +3,7 @@
 controllers:
   resource:
     path: ../src/Controller/
-    namespace: Jazzfreunde\App\Controller
+    namespace: Jazzfreunde\Api\Controller
   type: attribute
 
 csp_report:

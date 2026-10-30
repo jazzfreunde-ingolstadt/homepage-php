@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\VerificationCode;
+namespace Jazzfreunde\Api\Service\Security\VerificationCode;
 
-use Jazzfreunde\App\Service\Security\Request\SessionHelper;
+use Jazzfreunde\Api\Service\Security\Request\SessionHelper;
 use LogicException;
 use Override;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\DependencyInjection;
+namespace Jazzfreunde\Api\DependencyInjection;
 
 use InvalidArgumentException;
 use Jazzfreunde\Util\ArrayUtil;

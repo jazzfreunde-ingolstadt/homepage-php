@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Service\Notification\Provider\Source;
+namespace Jazzfreunde\Api\Tests\Service\Notification\Provider\Source;
 
 use DateTime;
-use Jazzfreunde\App\Api\Notification\Resource\EventNotification;
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Entity\EventLocation;
-use Jazzfreunde\App\Exception\Notification\NotificationSourceNotFound;
-use Jazzfreunde\App\Service\Event\EventRepositoryInterface;
-use Jazzfreunde\App\Service\Notification\Provider\Source\EventNotificationSource;
-use Jazzfreunde\App\Service\Notification\Scope\ParsedScope;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
-use Jazzfreunde\App\Type\Primitive\Uri;
+use Jazzfreunde\Api\Entity\Event;
+use Jazzfreunde\Api\Entity\EventLocation;
+use Jazzfreunde\Api\Exception\Notification\NotificationSourceNotFound;
+use Jazzfreunde\Api\Platform\Notification\Resource\EventNotification;
+use Jazzfreunde\Api\Service\Event\EventRepositoryInterface;
+use Jazzfreunde\Api\Service\Notification\Provider\Source\EventNotificationSource;
+use Jazzfreunde\Api\Service\Notification\Scope\ParsedScope;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -21,7 +21,7 @@ use stdClass;
 /**
  * @internal
  *
- * @covers \Jazzfreunde\App\Service\Notification\Provider\Source\EventNotificationSource
+ * @covers \Jazzfreunde\Api\Service\Notification\Provider\Source\EventNotificationSource
  */
 final class EventNotificationSourceTest extends TestCase
 {

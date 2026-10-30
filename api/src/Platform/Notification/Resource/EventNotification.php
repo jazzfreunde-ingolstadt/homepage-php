@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Api\Notification\Resource;
+namespace Jazzfreunde\Api\Platform\Notification\Resource;
 
-use Jazzfreunde\App\Service\Notification\Scope\Attribute\NotificationResource;
-use Jazzfreunde\App\Service\Notification\Scope\Parameter\Number;
+use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource;
+use Jazzfreunde\Api\Service\Notification\Scope\Parameter\Number;
 use Symfony\Component\ObjectMapper\Attribute\Map;
 use Symfony\Component\ObjectMapper\Condition\TargetClass;
 

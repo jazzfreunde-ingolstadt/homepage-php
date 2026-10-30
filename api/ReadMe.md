@@ -40,6 +40,17 @@ To compile the Encore components, run the VS Code task `build encore`.
 
 ## Development Workflow
 
+### PHP Namespaces
+
+Application code uses `Jazzfreunde\Api`, mapped to `src/` by Composer.
+API Platform resources use `Jazzfreunde\Api\Platform` and live in `src/Platform/`.
+
+When deploying the namespace rename:
+
+- Enable maintenance mode and stop scheduled message producers, then drain Messenger queues with the old release before switching. Resolve failed messages as well; serialized messages reference the old classes.
+- Stop old workers, deploy the new code, run `composer install` and `bin/console doctrine:migrations:migrate`, then clear/warm the Symfony cache and restart workers.
+- The data migration updates entity class names in existing confirmation metadata. Existing sessions containing serialized users must be invalidated; users will need to sign in again.
+
 ### Symfony Console
 
 Many development tools are run through the Symfony Console component.

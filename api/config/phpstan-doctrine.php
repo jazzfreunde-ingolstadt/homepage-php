@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Jazzfreunde\App\Kernel;
+use Jazzfreunde\Api\Kernel;
 use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Newsletter;
+namespace Jazzfreunde\Api\Tests\Newsletter;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Service\Email\DnsRecordLookupInterface;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Service\Email\DnsRecordLookupInterface;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\UnitTest\Fixtures\KnownEmailsFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
 use Psr\Cache\CacheItemPoolInterface;

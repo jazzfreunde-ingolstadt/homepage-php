@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Message\Handler\Tasks;
+namespace Jazzfreunde\Api\Message\Handler\Tasks;
 
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Message\Messages\Tasks\SendMonitoringReportMessage;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Messages\Tasks\SendMonitoringReportMessage;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\MessageBusInterface;

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Entity;
+namespace Jazzfreunde\Api\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Jazzfreunde\App\DependencyInjection\PropertyInjectionTrait;
-use Jazzfreunde\App\Entity\Type\Enum\Event\EventCategoryType;
-use Jazzfreunde\App\Type\Enum\EventCategoryEnum;
+use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
+use Jazzfreunde\Api\Entity\Type\Enum\Event\EventCategoryType;
+use Jazzfreunde\Api\Type\Enum\EventCategoryEnum;
 
 /**
  * Entity representing a planned event (e.g., a concert, meeting, etc.).

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\DependencyInjection;
+namespace Jazzfreunde\Api\DependencyInjection;
 
 use BackedEnum;
 use Deprecated;
 use InvalidArgumentException;
-use Jazzfreunde\App\Type\Primitive\PrimitiveTypeInterface;
+use Jazzfreunde\Api\Type\Primitive\PrimitiveTypeInterface;
 use Jazzfreunde\Util\ArrayUtil;
 use LogicException;
 use ReflectionClass;

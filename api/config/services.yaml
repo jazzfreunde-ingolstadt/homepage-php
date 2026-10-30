@@ -8,37 +8,37 @@ services:
         bind:
             string $publicDir: '%kernel.project_dir%/public'
 
-    Jazzfreunde\App\Service\:
+    Jazzfreunde\Api\Service\:
         resource: '%kernel.project_dir%/src/Service/'
         exclude: 'Security/**'
 
-    Jazzfreunde\App\Repository\:
+    Jazzfreunde\Api\Repository\:
         resource: '%kernel.project_dir%/src/Repository/'
 
-    Jazzfreunde\App\Controller\:
+    Jazzfreunde\Api\Controller\:
         resource: '%kernel.project_dir%/src/Controller/'
 
-    Jazzfreunde\App\Event\:
+    Jazzfreunde\Api\Event\:
         resource: '%kernel.project_dir%/src/Event/'
         exclude: '**/*Event'
 
-    Jazzfreunde\App\Message\Handler\:
+    Jazzfreunde\Api\Message\Handler\:
         resource: '%kernel.project_dir%/src/Message/Handler/'
 
     # register the service for twig to make createForm available in twig templates
     jazzfreunde.newsletter_subscription:
-        class: Jazzfreunde\App\Service\Newsletter\NewsletterFormService
+        class: Jazzfreunde\Api\Service\Newsletter\NewsletterFormService
 
     Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface:
         alias: webpack_encore.entrypoint_lookup[mail]
         public: true
 
-    Jazzfreunde\App\Schedule\:
+    Jazzfreunde\Api\Schedule\:
         resource: '%kernel.project_dir%/src/Schedule/'
 
-    Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollectionProvider:
+    Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProvider:
         arguments:
             $scopeResources: '%jazzfreunde.notification.scope_resources%'
 
-    Jazzfreunde\App\Validation\:
+    Jazzfreunde\Api\Validation\:
         resource: '%kernel.project_dir%/src/Validation/'

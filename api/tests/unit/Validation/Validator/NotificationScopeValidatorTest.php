@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Tests\Validation\Validator;
+namespace Jazzfreunde\Api\Tests\Validation\Validator;
 
-use Jazzfreunde\App\Service\Notification\Scope\CompiledScope;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollection;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
-use Jazzfreunde\App\Service\Notification\Scope\NotificationScopeMatcher;
-use Jazzfreunde\App\Service\Notification\Scope\Parameter\Number;
-use Jazzfreunde\App\Type\Primitive\Uri;
-use Jazzfreunde\App\Validation\Attribute\NotificationScope;
-use Jazzfreunde\App\Validation\Validator\NotificationScopeValidator;
+use Jazzfreunde\Api\Service\Notification\Scope\CompiledScope;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollection;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
+use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeMatcher;
+use Jazzfreunde\Api\Service\Notification\Scope\Parameter\Number;
+use Jazzfreunde\Api\Type\Primitive\Uri;
+use Jazzfreunde\Api\Validation\Attribute\NotificationScope;
+use Jazzfreunde\Api\Validation\Validator\NotificationScopeValidator;
 use stdClass;
 use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 /**
  * Tests for the NotificationScopeValidator class.
  *
- * @covers \Jazzfreunde\App\Validation\Validator\NotificationScopeValidator
+ * @covers \Jazzfreunde\Api\Validation\Validator\NotificationScopeValidator
  *
  * @internal
  *

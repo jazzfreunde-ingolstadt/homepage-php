@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Exception\Contract;
+namespace Jazzfreunde\Api\Exception\Contract;
 
 use Exception;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
 
 /**
  * The requested confirmation has expired.

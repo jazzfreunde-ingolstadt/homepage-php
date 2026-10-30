@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Repository;
+namespace Jazzfreunde\Api\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\Event;
-use Jazzfreunde\App\Repository\Filter\EventFilter;
-use Jazzfreunde\App\Service\Event\EventRepositoryInterface;
+use Jazzfreunde\Api\Entity\Event;
+use Jazzfreunde\Api\Repository\Filter\EventFilter;
+use Jazzfreunde\Api\Service\Event\EventRepositoryInterface;
 
 /**
  * Repository for managing {@see Event} entities.

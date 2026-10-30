@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JazzfreundeTests\App\Tests\Service\Security\VerificationCode;
+namespace JazzfreundeTests\Api\Tests\Service\Security\VerificationCode;
 
-use Jazzfreunde\App\Service\Security\VerificationCode\VerificationCodeStorage;
+use Jazzfreunde\Api\Service\Security\VerificationCode\VerificationCodeStorage;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;

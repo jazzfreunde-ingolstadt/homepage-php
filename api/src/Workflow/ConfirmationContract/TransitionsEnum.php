@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Workflow\ConfirmationContract;
+namespace Jazzfreunde\Api\Workflow\ConfirmationContract;
 
 /**
  * All possible transitions of a confirmation contract.

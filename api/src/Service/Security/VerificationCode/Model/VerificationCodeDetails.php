@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Service\Security\VerificationCode\Model;
+namespace Jazzfreunde\Api\Service\Security\VerificationCode\Model;
 
 use DateTimeImmutable;
 use InvalidArgumentException;

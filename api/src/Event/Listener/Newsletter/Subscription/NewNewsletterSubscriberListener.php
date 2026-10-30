@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Jazzfreunde\App\Event\Listener\Newsletter\Subscription;
+namespace Jazzfreunde\Api\Event\Listener\Newsletter\Subscription;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Jazzfreunde\App\Entity\Contract\ConfirmableEntity;
-use Jazzfreunde\App\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\App\Entity\NewsletterSubscription;
-use Jazzfreunde\App\Event\Listener\Contract\ConfirmationContractListener;
-use Jazzfreunde\App\Message\Messages\Email\EmailNotification;
-use Jazzfreunde\App\Service\Twig\EmailTemplatePath;
-use Jazzfreunde\App\Type\Enum\Contract\ConfirmationStateEnum;
-use Jazzfreunde\App\Type\Enum\KnownMailHandleEnum;
+use Jazzfreunde\Api\Entity\Contract\ConfirmableEntity;
+use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
+use Jazzfreunde\Api\Entity\NewsletterSubscription;
+use Jazzfreunde\Api\Event\Listener\Contract\ConfirmationContractListener;
+use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use LogicException;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Workflow\Attribute\AsEnterListener;
