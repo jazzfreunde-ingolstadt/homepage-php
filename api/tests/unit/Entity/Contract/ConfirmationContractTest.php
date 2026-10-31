@@ -79,17 +79,6 @@ final class ConfirmationContractTest extends TestCase
     {
         $contract = new ConfirmationContract();
         $contract->state = ConfirmationStateEnum::Confirmed;
-        $this->assertTrue($contract->isConfirmed());
-    }
-
-    /**
-     * Test changing state of a contract.
-     */
-    public function testSetState(): void
-    {
-        $contract = new ConfirmationContract();
-        $contract->setState('confirmed', []);
-        $this->assertTrue($contract->isConfirmed());
-        $this->assertEquals(ConfirmationStateEnum::Confirmed, $contract->state);
+        $this->assertTrue($contract->confirmed);
     }
 }

@@ -58,7 +58,7 @@ final class RequestMatcher implements RequestMatcherInterface
         $attributes = $this->getAttributes($controllerReflector);
         $attribute = array_pop($attributes);
 
-        return $attribute?->getFirewallName() === $this->firewallName;
+        return $attribute?->firewallName === $this->firewallName;
     }
 
     /**

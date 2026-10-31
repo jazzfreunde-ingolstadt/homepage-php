@@ -6,6 +6,8 @@ namespace Jazzfreunde\Api\DependencyInjection;
 
 use InvalidArgumentException;
 use Jazzfreunde\Util\ArrayUtil;
+use PropertyHookType;
+use ReflectionProperty;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -37,7 +39,7 @@ trait FromMetaDataTrait
 
         $data = array_filter(
             $data,
-            static fn (int|string $name): bool => is_string($name) && property_exists(static::class, $name),
+            static fn (int|string $name): bool => is_string($name) && static::isWritableMetadataProperty($name),
             ARRAY_FILTER_USE_KEY
         );
 
@@ -49,5 +51,16 @@ trait FromMetaDataTrait
         }
 
         return $instance;
+    }
+
+    private static function isWritableMetadataProperty(string $name): bool
+    {
+        if (!property_exists(static::class, $name)) {
+            return false;
+        }
+
+        $property = new ReflectionProperty(static::class, $name);
+
+        return !$property->isVirtual() || $property->hasHook(PropertyHookType::Set);
     }
 }

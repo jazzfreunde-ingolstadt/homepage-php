@@ -47,7 +47,7 @@ final class NotificationScopeMatcher
         $data = $this->parseScopeParameters($scope, $matches);
 
         try {
-            $entity = $this->objectMapper->map($data, $scope->getEntityClassName());
+            $entity = $this->objectMapper->map($data, $scope->entityClassName);
 
             return new ParsedScope(
                 $uri,
@@ -57,7 +57,7 @@ final class NotificationScopeMatcher
             throw new NotificationScopeMappingException(
                 sprintf(
                     'No such property for entity class "%s": %s',
-                    $scope->getEntityClassName(),
+                    $scope->entityClassName,
                     $e->getMessage()
                 )
             );
@@ -65,7 +65,7 @@ final class NotificationScopeMatcher
             throw new NotificationScopeMappingException(
                 sprintf(
                     'Error mapping notification scope parameters for entity class "%s": %s',
-                    $scope->getEntityClassName(),
+                    $scope->entityClassName,
                     $e->getMessage()
                 )
             );
@@ -73,7 +73,7 @@ final class NotificationScopeMatcher
             throw new NotificationScopeMappingException(
                 sprintf(
                     'Error transforming notification scope parameters for entity class "%s": %s',
-                    $scope->getEntityClassName(),
+                    $scope->entityClassName,
                     $e->getMessage()
                 )
             );
@@ -87,7 +87,7 @@ final class NotificationScopeMatcher
     {
         $collection = $this->getCollection();
         foreach ($collection->all() as $scope) {
-            if (1 === preg_match($scope->getRegex(), $uri, $matches, PREG_UNMATCHED_AS_NULL)) {
+            if (1 === preg_match($scope->regex, $uri, $matches, PREG_UNMATCHED_AS_NULL)) {
                 return $scope;
             }
         }
@@ -106,8 +106,8 @@ final class NotificationScopeMatcher
     private function parseScopeParameters(CompiledScope $scope, array $matches): stdClass
     {
         $data = new stdClass();
-        foreach ($scope->getParameters() as $parameter) {
-            $name = $parameter->getName();
+        foreach ($scope->parameters as $parameter) {
+            $name = $parameter->name;
             if (!array_key_exists($name, $matches)) {
                 throw new LogicException(sprintf('Missing required parameter "%s" in matches.', $name));
             }

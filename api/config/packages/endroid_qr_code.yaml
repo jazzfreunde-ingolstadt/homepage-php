@@ -8,7 +8,7 @@ endroid_qr_code:
     foregroundColor: [ 36, 44, 127, 0 ]
     logo_path: '%kernel.project_dir%/assets/api/images/jazz-icon-square-solid-blue.png'
     logo_resize_to_width: 355
-    logo_punchout_background: true
+    logo_punchout_background: false
     background_color: [ 255, 255, 255, 127 ]
   small_yellow:
     writer: Endroid\QrCode\Writer\PngWriter

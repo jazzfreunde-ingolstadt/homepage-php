@@ -69,7 +69,7 @@ final class WriteConfirmationListener
             return;
         }
 
-        if ($existingSubscription->confirmation->isConfirmed()) {
+        if ($existingSubscription->confirmation->confirmed) {
             throw new AlreadySubscribedError();
         }
 

@@ -127,7 +127,7 @@ final class NewsletterService
     private function restartExistingSubscription(Email $email): void
     {
         $subscription = $this->getSubscriptionByEmail($email);
-        if ($subscription->confirmation->isConfirmed()) {
+        if ($subscription->confirmation->confirmed) {
             throw new SubscriptionException(code: SubscriptionException::ALREADY_SUBSCRIBED);
         }
 

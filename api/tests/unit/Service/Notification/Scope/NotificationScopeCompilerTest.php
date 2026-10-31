@@ -32,10 +32,10 @@ final class NotificationScopeCompilerTest extends TestCase
             stdClass::class,
         );
 
-        self::assertSame('~^/events/archive\.v1$~', $compiled->getRegex());
-        self::assertSame([], $compiled->getParameters());
-        self::assertSame(stdClass::class, $compiled->getEntityClassName());
-        self::assertSame('/events/archive.v1', $compiled->getUri()->value());
+        self::assertSame('~^/events/archive\.v1$~', $compiled->regex);
+        self::assertSame([], $compiled->parameters);
+        self::assertSame(stdClass::class, $compiled->entityClassName);
+        self::assertSame('/events/archive.v1', $compiled->uri->value());
     }
 
     /**
@@ -48,14 +48,14 @@ final class NotificationScopeCompilerTest extends TestCase
             stdClass::class,
         );
 
-        self::assertSame('~^/events/(?P<eventId>\d+)/items$~', $compiled->getRegex());
-        self::assertSame(1, preg_match($compiled->getRegex(), '/events/123/items'));
-        self::assertSame(0, preg_match($compiled->getRegex(), '/events/123/items/extra'));
-        self::assertCount(1, $compiled->getParameters());
-        self::assertInstanceOf(Number::class, $compiled->getParameters()[0]);
-        self::assertSame('eventId', $compiled->getParameters()[0]->getName());
-        self::assertSame(stdClass::class, $compiled->getEntityClassName());
-        self::assertSame('/events/{eventId:number}/items', $compiled->getUri()->value());
+        self::assertSame('~^/events/(?P<eventId>\d+)/items$~', $compiled->regex);
+        self::assertSame(1, preg_match($compiled->regex, '/events/123/items'));
+        self::assertSame(0, preg_match($compiled->regex, '/events/123/items/extra'));
+        self::assertCount(1, $compiled->parameters);
+        self::assertInstanceOf(Number::class, $compiled->parameters[0]);
+        self::assertSame('eventId', $compiled->parameters[0]->name);
+        self::assertSame(stdClass::class, $compiled->entityClassName);
+        self::assertSame('/events/{eventId:number}/items', $compiled->uri->value());
     }
 
     /**

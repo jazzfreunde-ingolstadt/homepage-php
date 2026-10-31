@@ -84,9 +84,17 @@ class ConfirmationContract
      * State of the confirmation contract.
      *
      * @var ConfirmationStateEnum
+     * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
      */
     #[ORM\Column(type: ConfirmationStateEnumType::ENTITY_NAME, options: ['default' => ConfirmationStateEnum::New])]
     public ConfirmationStateEnum $state = ConfirmationStateEnum::New;
+
+    /**
+     * Whether the contract has been confirmed.
+     */
+    public bool $confirmed {
+        get => ConfirmationStateEnum::Confirmed === $this->state;
+    }
 
     /**
      * Create a new contract.
@@ -117,16 +125,6 @@ class ConfirmationContract
     }
 
     /**
-     * Has the contract been confirmed?
-     *
-     * @return bool
-     */
-    public function isConfirmed(): bool
-    {
-        return ConfirmationStateEnum::Confirmed === $this->state;
-    }
-
-    /**
      * Has the confirmation period expired?
      *
      * @return bool
@@ -136,30 +134,5 @@ class ConfirmationContract
         $expiredOn = $this->requestTime->add($tokenLifeTime);
 
         return $expiredOn < new DateTimeImmutable();
-    }
-
-    /**
-     * Get the current place of the workflow.
-     *
-     * @return string
-     *
-     * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
-     */
-    public function getState(): string
-    {
-        return $this->state->value;
-    }
-
-    /**
-     * Set the current place of the workflow.
-     *
-     * @param value-of<ConfirmationStateEnum> $currentPlace
-     * @param array<string, mixed>            $_
-     *
-     * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
-     */
-    public function setState(string $currentPlace, array $_ = []): void
-    {
-        $this->state = ConfirmationStateEnum::from($currentPlace);
     }
 }
