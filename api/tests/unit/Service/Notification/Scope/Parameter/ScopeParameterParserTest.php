@@ -24,7 +24,7 @@ final class ScopeParameterParserTest extends TestCase
         $parameter = ScopeParameterParser::parse('{eventId:number}');
 
         self::assertInstanceOf(Number::class, $parameter);
-        self::assertSame('eventId', $parameter->getName());
+        self::assertSame('eventId', $parameter->name);
         self::assertSame('\d+', $parameter->getRegex());
     }
 

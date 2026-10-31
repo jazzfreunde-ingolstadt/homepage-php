@@ -10,18 +10,8 @@ namespace Jazzfreunde\Api\Service\Notification\Scope\Parameter;
 abstract class AbstractParameter
 {
     public function __construct(
-        protected string $name,
+        public readonly string $name,
     ) {}
-
-    /**
-     * Gets the name of the parameter.
-     *
-     * @return string the name of the parameter
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
 
     /**
      * Gets the regex pattern for validating the parameter value.

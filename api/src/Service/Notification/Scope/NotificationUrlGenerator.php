@@ -45,7 +45,7 @@ final class NotificationUrlGenerator implements NotificationUrlGeneratorInterfac
     {
         $collection = $this->getCollection();
         foreach ($collection->all() as $scope) {
-            if (is_a($object, $scope->getEntityClassName())) {
+            if (is_a($object, $scope->entityClassName)) {
                 return $this->generateScopeUri($scope, $object);
             }
         }
@@ -66,8 +66,8 @@ final class NotificationUrlGenerator implements NotificationUrlGeneratorInterfac
         }
 
         $replacements = [];
-        foreach ($scope->getParameters() as $parameter) {
-            $parameterName = $parameter->getName();
+        foreach ($scope->parameters as $parameter) {
+            $parameterName = $parameter->name;
             if (!isset($data[$parameterName])) {
                 throw new LogicException(sprintf("Missing value for parameter '%s'", $parameterName));
             }
@@ -80,6 +80,6 @@ final class NotificationUrlGenerator implements NotificationUrlGeneratorInterfac
             $replacements[$placeholder] = (string) $data[$parameterName];
         }
 
-        return strtr($scope->getUri()->value(), $replacements);
+        return strtr($scope->uri->value(), $replacements);
     }
 }

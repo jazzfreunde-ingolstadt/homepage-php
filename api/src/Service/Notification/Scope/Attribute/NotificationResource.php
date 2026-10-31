@@ -13,11 +13,6 @@ use Attribute;
 final class NotificationResource
 {
     public function __construct(
-        private string $uri,
+        public readonly string $uri,
     ) {}
-
-    public function getUri(): string
-    {
-        return $this->uri;
-    }
 }

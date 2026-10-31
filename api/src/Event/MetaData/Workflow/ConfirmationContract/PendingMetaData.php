@@ -27,16 +27,17 @@ final class PendingMetaData
     public string $token_lifetime;
 
     /**
-     * @return DateInterval
+     * Token lifetime parsed from the workflow place metadata.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if the configured lifetime is malformed
      */
-    public function getTokenLifeTime(): DateInterval
-    {
-        try {
-            return DateInterval::createFromDateString($this->token_lifetime);
-        } catch (DateMalformedIntervalStringException $e) {
-            throw new InvalidArgumentException('Invalid token lifetime format', previous: $e);
+    public DateInterval $tokenLifeTime {
+        get {
+            try {
+                return DateInterval::createFromDateString($this->token_lifetime);
+            } catch (DateMalformedIntervalStringException $e) {
+                throw new InvalidArgumentException('Invalid token lifetime format', previous: $e);
+            }
         }
     }
 }

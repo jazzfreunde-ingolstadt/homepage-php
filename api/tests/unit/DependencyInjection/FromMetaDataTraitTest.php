@@ -25,6 +25,10 @@ final class DummyMetaDataClass
     public string $name;
     public int $age;
     public ?string $nullable;
+
+    public string $displayName {
+        get => strtoupper($this->name);
+    }
 }
 
 /**
@@ -107,11 +111,13 @@ final class FromMetaDataTraitTest extends TestCase
                 'name' => 'John Doe',
                 'age' => 30,
                 'nonExistingProperty' => 'foo',
+                'displayName' => 'ignored',
             ]
         );
 
         $this->assertSame('John Doe', $instance->name);
         $this->assertSame(30, $instance->age);
+        $this->assertSame('JOHN DOE', $instance->displayName);
     }
 
     /**

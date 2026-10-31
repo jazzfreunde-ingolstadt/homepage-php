@@ -140,7 +140,7 @@ final class ExampleHandlerTest extends TestCase
             $messageBus
         );
 
-        $dispatchedMessages = $messageBus->getDispatchedMessages();
+        $dispatchedMessages = $messageBus->dispatchedMessages;
         $this->assertCount(1, $dispatchedMessages);
         $message = array_shift($dispatchedMessages);
         $notification = $message->getMessage();

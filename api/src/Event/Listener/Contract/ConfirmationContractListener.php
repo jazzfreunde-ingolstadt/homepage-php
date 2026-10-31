@@ -105,7 +105,7 @@ class ConfirmationContractListener implements LoggerAwareInterface
                 ->getPlaceMetadata(ConfirmationStateEnum::Pending->value)
         );
 
-        if (!$contract->isExpired($metaData->getTokenLifeTime())) {
+        if (!$contract->isExpired($metaData->tokenLifeTime)) {
             return;
         }
 

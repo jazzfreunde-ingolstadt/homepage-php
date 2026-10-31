@@ -16,16 +16,6 @@ final class FirewallEntryPoint
      * @param string $firewallName
      */
     public function __construct(
-        private string $firewallName,
+        public readonly string $firewallName,
     ) {}
-
-    /**
-     * Get the name of the firewall.
-     *
-     * @return string
-     */
-    public function getFirewallName(): string
-    {
-        return $this->firewallName;
-    }
 }

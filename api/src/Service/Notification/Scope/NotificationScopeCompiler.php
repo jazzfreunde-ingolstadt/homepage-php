@@ -24,7 +24,7 @@ final class NotificationScopeCompiler implements NotificationScopeCompilerInterf
     #[Override]
     public function compile(NotificationResource $resource, string $entityClassName): CompiledScope
     {
-        $uri = Uri::from($resource->getUri());
+        $uri = Uri::from($resource->uri);
         $segments = $uri->segments();
         $regexParts = [];
         $parameters = [];
@@ -32,7 +32,7 @@ final class NotificationScopeCompiler implements NotificationScopeCompilerInterf
         foreach ($segments as $segment) {
             if (ScopeParameterParser::isParameterSegment($segment)) {
                 $parameter = ScopeParameterParser::parse($segment);
-                $regexParts[] = '(?P<'.$parameter->getName().'>'.$parameter->getRegex().')';
+                $regexParts[] = '(?P<'.$parameter->name.'>'.$parameter->getRegex().')';
                 $parameters[] = $parameter;
             } else {
                 $regexParts[] = preg_quote($segment, '~');

@@ -19,9 +19,17 @@ use Symfony\Component\Messenger\MessageBusInterface;
 final class InMemoryMessageBus implements MessageBusInterface
 {
     /**
+     * All dispatched messages.
+     *
      * @var Envelope[]
      */
-    private array $dispatchedMessages = [];
+    public array $dispatchedMessages {
+        get => $this->messages;
+    }
+    /**
+     * @var Envelope[]
+     */
+    private array $messages = [];
 
     /**
      * {@inheritDoc}
@@ -34,18 +42,8 @@ final class InMemoryMessageBus implements MessageBusInterface
     {
         $envelope = Envelope::wrap($message, $stamps);
 
-        $this->dispatchedMessages[] = $envelope;
+        $this->messages[] = $envelope;
 
         return $envelope;
-    }
-
-    /**
-     * All dispatched messages.
-     *
-     * @return Envelope[]
-     */
-    public function getDispatchedMessages(): array
-    {
-        return $this->dispatchedMessages;
     }
 }

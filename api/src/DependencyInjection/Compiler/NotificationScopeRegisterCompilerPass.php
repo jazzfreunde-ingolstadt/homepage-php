@@ -81,7 +81,7 @@ final readonly class NotificationScopeRegisterCompilerPass implements CompilerPa
             }
 
             $resourceAttribute = $attributes[0]->newInstance();
-            $scopeUri = $resourceAttribute->getUri();
+            $scopeUri = $resourceAttribute->uri;
 
             if (0 === strlen($scopeUri)) {
                 throw new LogicException('Notification scope URI cannot be empty.');

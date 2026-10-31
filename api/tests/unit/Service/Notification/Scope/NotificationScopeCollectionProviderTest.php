@@ -58,7 +58,7 @@ final class NotificationScopeCollectionProviderTest extends TestCase
             ->expects(self::once())
             ->method('compile')
             ->with(
-                self::callback(static fn (NotificationResource $resource): bool => '/events/{id:number}' === $resource->getUri()),
+                self::callback(static fn (NotificationResource $resource): bool => '/events/{id:number}' === $resource->uri),
                 stdClass::class,
             )
             ->willReturn($scope);
