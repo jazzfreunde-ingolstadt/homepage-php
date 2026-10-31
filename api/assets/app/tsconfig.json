@@ -1,7 +1,6 @@
 {
     "extends": "../../tsconfig",
     "compilerOptions": {
-        "baseUrl": ".",
         "outDir": "../../public/app",
         "paths": {
             "@components/*": [

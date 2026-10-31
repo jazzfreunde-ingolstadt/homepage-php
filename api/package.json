@@ -8,7 +8,6 @@
         "@symfony/stimulus-bridge": "^4.0.2",
         "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
         "@symfony/webpack-encore": "^7.2.0",
-        "autoprefixer": "^10.4.13",
         "core-js": "^3.23.0",
         "cssnano": "^7.1.9",
         "msw": "^2.7.3",
@@ -21,12 +20,22 @@
         "tsconfig-paths-webpack-plugin": "^4.2.0",
         "typescript": "^5.7.2",
         "webpack": "^5.74.0",
-        "webpack-cli": "^6.0.1",
-        "webpack-dev-server": "^5.2.7",
+        "webpack-cli": "^7.3.1",
+        "webpack-dev-server": "^6.1.0",
         "webpack-notifier": "^1.15.0"
+    },
+    "overrides": {
+        "webpack-notifier": {
+            "node-notifier": {
+                "uuid": "11.1.1"
+            }
+        }
     },
     "license": "UNLICENSED",
     "private": true,
+    "browserslist": [
+        "defaults"
+    ],
     "scripts": {
         "app:server": "encore dev-server --config-name app",
         "app:watch": "encore dev --watch --config-name app",
