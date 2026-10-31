@@ -1,0 +1,99 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/webapp"
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-type: all
+        update-types:
+          - "version-update:semver-minor"
+    groups:
+      webapp-production:
+        dependency-type: production
+        patterns:
+          - "*"
+        update-types:
+          - minor
+      webapp-development:
+        dependency-type: development
+        patterns:
+          - "*"
+        update-types:
+          - minor
+
+  - package-ecosystem: composer
+    directory: "/api"
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-type: all
+        update-types:
+          - "version-update:semver-minor"
+    groups:
+      api-composer-symfony:
+        patterns:
+          - "symfony/*"
+        update-types:
+          - minor
+      api-composer-api-platform:
+        patterns:
+          - "api-platform/*"
+        update-types:
+          - minor
+      api-composer-doctrine:
+        patterns:
+          - "doctrine/*"
+        update-types:
+          - minor
+      api-composer-other-production:
+        dependency-type: production
+        patterns:
+          - "*"
+        update-types:
+          - minor
+      api-composer-other-development:
+        dependency-type: development
+        patterns:
+          - "*"
+        update-types:
+          - minor
+
+  - package-ecosystem: npm
+    directory: "/api"
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-type: all
+        update-types:
+          - "version-update:semver-minor"
+    groups:
+      api-npm-css:
+        patterns:
+          - "@tailwindcss/*"
+          - autoprefixer
+          - cssnano
+          - "postcss*"
+          - tailwindcss
+        update-types:
+          - minor
+      api-npm-encore-symfony:
+        patterns:
+          - "@symfony/*"
+          - "webpack*"
+          - ts-loader
+          - tsconfig-paths-webpack-plugin
+        update-types:
+          - minor
+      api-npm-production:
+        dependency-type: production
+        patterns:
+          - "*"
+        update-types:
+          - minor
+      api-npm-development:
+        dependency-type: development
+        patterns:
+          - "*"
+        update-types:
+          - minor

@@ -3,5 +3,8 @@ import './bootstrap.ts'
 import { registerReactControllerComponents } from '@symfony/ux-react';
 
 registerReactControllerComponents(
-    require.context('./controllers', true, /\.(j|t)sx?$/)
+    import.meta.webpackContext('./controllers', {
+        recursive: true,
+        regExp: /\.(j|t)sx?$/,
+    })
 );
