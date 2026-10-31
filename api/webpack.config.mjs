@@ -7,12 +7,13 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 const ROOT_PATH = path.resolve(import.meta.dirname, './assets');
 const APP_PATH = path.join(ROOT_PATH, 'app');
 const MAIL_PATH = path.join(ROOT_PATH, 'mail');
+const SHARED_API_PATH = path.resolve(import.meta.dirname, '../shared/api');
 const ALIASES = {
   '@components': path.join(APP_PATH, 'components'),
   '@hooks': path.join(APP_PATH, 'hooks'),
   '@models': path.join(APP_PATH, 'models'),
-  '@api/types': path.join(APP_PATH, 'api/types'),
-  '@api/utils': path.join(APP_PATH, 'api/utils'),
+  '@api/types': path.join(SHARED_API_PATH, 'types'),
+  '@api/utils': path.join(SHARED_API_PATH, 'utils'),
   '@services': path.join(APP_PATH, 'services'),
 };
 
@@ -139,6 +140,10 @@ app.resolve.plugins = [
     configFile: path.join(APP_PATH, 'tsconfig.json'),
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   }),
+];
+app.resolve.modules = [
+  path.resolve(import.meta.dirname, 'node_modules'),
+  'node_modules',
 ];
 
 Encore.reset();

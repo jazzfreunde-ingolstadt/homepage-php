@@ -82,7 +82,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "api:generate": "bin/console api:openapi:export --yaml --output=assets/app/api/specs/jazzfreunde-api.openapi.yaml"
+        "api:generate": "bin/console api:openapi:export --yaml --output=../shared/api/specs/jazzfreunde-api.openapi.yaml"
     },
     "conflict": {
         "symfony/symfony": "*"
