@@ -13,10 +13,13 @@
                 "./models/*"
             ],
             "@api/types/*": [
-                "./api/types/*"
+                "../../../shared/api/types/*"
             ],
             "@api/utils/*": [
-                "./api/utils/*"
+                "../../../shared/api/utils/*"
+            ],
+            "ky": [
+                "../../node_modules/ky"
             ],
             "@services/*": [
                 "./services/*"

@@ -43,7 +43,7 @@
         "mail:build:dev": "encore dev --config-name mail",
         "app:build:prod": "encore production --progress --config-name app",
         "mail:build:prod": "encore production --progress --config-name mail",
-        "api:generate": "npx openapi-typescript assets/app/api/specs/*.openapi.yaml --output assets/app/api/types/jazzfreunde-api.generated.ts"
+        "api:generate": "npx openapi-typescript ../shared/api/specs/jazzfreunde-api.openapi.yaml --output ../shared/api/types/jazzfreunde-api.generated.ts"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^7.2.0",

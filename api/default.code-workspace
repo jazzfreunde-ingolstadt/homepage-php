@@ -1,7 +1,12 @@
 {
 	"folders": [
 		{
+			"name": "api",
 			"path": "."
+		},
+		{
+			"name": "shared",
+			"path": "../shared"
 		}
 	],
 	"settings": {

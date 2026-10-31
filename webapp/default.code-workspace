@@ -1,7 +1,12 @@
 {
 	"folders": [
 		{
+			"name": "webapp",
 			"path": "."
+		},
+		{
+			"name": "shared",
+			"path": "../shared"
 		}
 	],
 	"settings": {
