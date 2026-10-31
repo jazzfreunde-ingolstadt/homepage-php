@@ -106,11 +106,6 @@ Encore.setOutputPath('public/app')
   .enableSourceMaps(!Encore.isProduction())
   .enableVersioning(Encore.isProduction())
 
-  .configureBabelPresetEnv((config) => {
-    // Keep Babel 7's previous all-transforms behavior while Babel 8 requires explicit targets.
-    config.targets = { ie: '11' };
-  })
-
   .configureBabel((config) => {
     config.plugins.push([
       'babel-plugin-polyfill-corejs3',

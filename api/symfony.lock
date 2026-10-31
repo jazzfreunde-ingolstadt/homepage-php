@@ -76,6 +76,9 @@
             "config/packages/nelmio_security.yaml"
         ]
     },
+    "phpstan/phpstan": {
+        "version": "2.3.4"
+    },
     "phpunit/phpunit": {
         "version": "12.5",
         "recipe": {
