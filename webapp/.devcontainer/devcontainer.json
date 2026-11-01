@@ -15,7 +15,6 @@
 			"extensions": [
 				"naumovs.color-highlight",
 				"esbenp.prettier-vscode",
-				"GitHub.copilot",
 				"ms-vscode.vscode-typescript-next",
 				"astro-build.astro-vscode",
 				"unifiedjs.vscode-mdx"

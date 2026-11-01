@@ -1,5 +1,6 @@
 ---
 import { Head } from '@michemayer/astro-components/components'
+import Footer from './partials/Footer.astro'
 import ThemeProvider from '@components/providers/ThemeProvider.astro'
 import type { Favicon } from '@michemayer/astro-components/models'
 import * as styles from './BaseLayout.css.ts'
@@ -34,9 +35,11 @@ const { title, description, image = 'full-logo-with-background.png' } = Astro.pr
   <ThemeProvider as="body" classNames={styles.wrapper}>
     <div class={styles.stretchContent}>
       <main>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         <slot />
       </main>
     </div>
+    <Footer />
   </ThemeProvider>
 </html>
 
