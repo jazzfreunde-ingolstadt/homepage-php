@@ -84,6 +84,7 @@ class ConfirmationContract
      * State of the confirmation contract.
      *
      * @var ConfirmationStateEnum
+     *
      * @see https://symfony.com/doc/current/workflow.html#creating-a-workflow
      */
     #[ORM\Column(type: ConfirmationStateEnumType::ENTITY_NAME, options: ['default' => ConfirmationStateEnum::New])]

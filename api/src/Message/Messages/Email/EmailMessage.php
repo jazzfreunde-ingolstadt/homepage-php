@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints\Length;
  *
  * @psalm-api
  */
-class EmailNotification
+class EmailMessage
 {
     use PropertyInjectionTrait;
 

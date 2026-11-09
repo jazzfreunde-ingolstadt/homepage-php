@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\Api\Service\Contract;
 
 use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
-use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Messages\Email\EmailMessage;
 use Jazzfreunde\Api\Type\Primitive\Email;
 
 /**
@@ -13,5 +13,5 @@ use Jazzfreunde\Api\Type\Primitive\Email;
  */
 interface ContractConfirmationRequestMailGeneratorInterface
 {
-    public function generate(ConfirmationContract $contract, Email $recipient): EmailNotification;
+    public function generate(ConfirmationContract $contract, Email $recipient): EmailMessage;
 }

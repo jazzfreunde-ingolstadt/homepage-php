@@ -17,6 +17,7 @@ use Jazzfreunde\Api\Service\Notification\Scope\Parameter\Number;
 use Jazzfreunde\Api\Service\Notification\Scope\ParsedScope;
 use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\UnitUnderTest;
+use Jazzfreunde\Util\HashUtil;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -47,9 +48,10 @@ final class NotificationProviderTest extends TestCase
         $uut = new UnitUnderTest(NotificationProvider::class);
         $notification = new EventNotification(42);
         $resource = new NotificationResource(
-            new Uri('/events/42'),
-            'event-template.html.twig',
-            'Jazz concert',
+            uri: new Uri('/events/42'),
+            identityHash: HashUtil::sha256(EventNotification::class, '42'),
+            email_template: 'event-template.html.twig',
+            title: 'Jazz concert',
         );
         $parsedScope = null;
 
@@ -123,7 +125,7 @@ final class NotificationProviderTest extends TestCase
                 '~^/events/(?P<id>\d+)$~',
                 [new Number('id')],
                 EventNotification::class,
-                Uri::from('/events/{id:number}'),
+                '/events/{id:number}',
             ));
         }
 

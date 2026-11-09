@@ -9,7 +9,7 @@ use Jazzfreunde\Api\Entity\Contract\ConfirmableEntity;
 use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\Api\Entity\NewsletterSubscription;
 use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
-use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Messages\Email\EmailMessage;
 use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
 use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use Jazzfreunde\Api\Type\Primitive\Email;
@@ -31,7 +31,7 @@ final class ContractConfirmationRequestMailGenerator implements ContractConfirma
     ) {}
 
     #[Override]
-    public function generate(ConfirmationContract $contract, Email $recipient): EmailNotification
+    public function generate(ConfirmationContract $contract, Email $recipient): EmailMessage
     {
         $entity = $this->findConfirmableEntity($contract);
         [$subject, $template] = match (true) {
@@ -46,7 +46,7 @@ final class ContractConfirmationRequestMailGenerator implements ContractConfirma
             default => [self::DEFAULT_SUBJECT, EmailTemplatePath::CONTRACT_CONFIRMATION_REQUEST],
         };
 
-        return new EmailNotification(
+        return new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: new Address($recipient->__toString()),
             subject: $subject,

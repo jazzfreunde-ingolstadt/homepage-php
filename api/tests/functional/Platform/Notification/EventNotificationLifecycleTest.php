@@ -8,27 +8,38 @@ use DateInterval;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
+use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Jazzfreunde\Api\Entity\Event;
 use Jazzfreunde\Api\Entity\EventLocation;
+use Jazzfreunde\Api\Entity\Notification\NotificationDelivery;
 use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
 use Jazzfreunde\Api\Message\Handler\Tasks\EventNotificationHandler;
 use Jazzfreunde\Api\Message\Messages\Tasks\SendEventNotificationsMessage;
 use Jazzfreunde\Api\Repository\Filter\EventFilter;
 use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
+use Jazzfreunde\Api\Repository\NotificationDeliveryRepositoryInterface;
 use Jazzfreunde\Api\Service\Event\EventRepositoryInterface;
+use Jazzfreunde\Api\Service\Notification\Mail\NotificationMailGenerator;
+use Jazzfreunde\Api\Service\Notification\Mail\NotificationMailGeneratorInterface;
 use Jazzfreunde\Api\Service\Notification\NotificationSubscriptionRepositoryInterface;
+use Jazzfreunde\Api\Service\Notification\Provider\NotificationProviderInterface;
 use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
+use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\Fixtures\CallbackFixture;
 use Jazzfreunde\UnitTest\Fixtures\KnownEmailsFixture;
 use Jazzfreunde\UnitTest\Trait\SetupDatabaseTrait;
+use RuntimeException;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
+use Symfony\Component\Messenger\Stamp\StampInterface;
 
 /**
  * Functional coverage for the event notification subscription lifecycle.
@@ -95,6 +106,89 @@ final class EventNotificationLifecycleTest extends WebTestCase
         $this->assertResponseStatusCodeSame(422);
     }
 
+    public function testEventNotificationIsSentOnlyOncePerRecipient(): void
+    {
+        $resourceScope = $this->createDueEvent('Notification Idempotency Event');
+        $this->createConfirmedSubscription('first-recipient@example.test', $resourceScope);
+        $this->createConfirmedSubscription('second-recipient@example.test', $resourceScope);
+
+        /** @var MessageBusInterface $messageBus */
+        $messageBus = self::getContainer()->get(MessageBusInterface::class);
+        $messageBus->dispatch(new SendEventNotificationsMessage(new DateInterval('P7D')));
+        $messageBus->dispatch(new SendEventNotificationsMessage(new DateInterval('P7D')));
+
+        self::assertEmailCount(2);
+    }
+
+    public function testFailedEnqueueCanBeRetriedWithoutResendingPreviousRecipients(): void
+    {
+        $resourceScope = $this->createDueEvent('Notification Retry Event');
+        $this->createConfirmedSubscription('first-recipient@example.test', $resourceScope);
+        $this->createConfirmedSubscription('second-recipient@example.test', $resourceScope);
+
+        /** @var MessageBusInterface $messageBus */
+        $messageBus = self::getContainer()->get(MessageBusInterface::class);
+
+        /** @var Connection $connection */
+        $connection = self::getContainer()->get(Connection::class);
+
+        /** @var NotificationDeliveryRepositoryInterface $deliveryRepository */
+        $deliveryRepository = self::getContainer()->get(NotificationDeliveryRepositoryInterface::class);
+
+        /** @var NotificationSubscriptionRepositoryInterface $subscriptionRepository */
+        $subscriptionRepository = self::getContainer()->get(NotificationSubscriptionRepositoryInterface::class);
+
+        /** @var NotificationProviderInterface $notificationProvider */
+        $notificationProvider = self::getContainer()->get(NotificationProviderInterface::class);
+        $failingBus = new class($messageBus) implements MessageBusInterface {
+            private int $attempt = 0;
+
+            public function __construct(
+                private readonly MessageBusInterface $messageBus,
+            ) {}
+
+            /**
+             * @param StampInterface[] $stamps
+             */
+            public function dispatch(object $message, array $stamps = []): Envelope
+            {
+                ++$this->attempt;
+                if (2 === $this->attempt) {
+                    throw new RuntimeException('Simulated enqueue failure.');
+                }
+
+                return $this->messageBus->dispatch($message, $stamps);
+            }
+        };
+        $mailGenerator = new NotificationMailGenerator(
+            $connection,
+            $deliveryRepository,
+            $subscriptionRepository,
+            $notificationProvider,
+            $failingBus,
+        );
+        self::getContainer()->set(NotificationMailGeneratorInterface::class, $mailGenerator);
+
+        try {
+            $messageBus->dispatch(new SendEventNotificationsMessage(new DateInterval('P7D')));
+            self::fail('Expected the simulated enqueue failure.');
+        } catch (RuntimeException $exception) {
+            self::assertStringContainsString('Simulated enqueue failure.', $exception->getMessage());
+        }
+
+        self::assertCount(1, $this->registry->getRepository(NotificationDelivery::class)->findAll());
+        self::assertEmailCount(1);
+
+        $messageBus->dispatch(new SendEventNotificationsMessage(new DateInterval('P7D')));
+
+        self::assertCount(2, $this->registry->getRepository(NotificationDelivery::class)->findAll());
+        self::assertEmailCount(2);
+
+        $messageBus->dispatch(new SendEventNotificationsMessage(new DateInterval('P7D')));
+
+        self::assertEmailCount(2);
+    }
+
     private function createDueEvent(string $eventTitle): string
     {
         $this->applyFixtures(
@@ -122,6 +216,18 @@ final class EventNotificationLifecycleTest extends WebTestCase
         self::assertNotNull($event->id);
 
         return '/events/'.$event->id;
+    }
+
+    private function createConfirmedSubscription(string $email, string $resourceScope): void
+    {
+        $subscription = new NotificationSubscription();
+        $subscription->email = Email::from($email);
+        $subscription->resourceScope = Uri::from($resourceScope);
+        $subscription->confirmation->state = ConfirmationStateEnum::Confirmed;
+
+        $manager = $this->registry->getManager();
+        $manager->persist($subscription);
+        $manager->flush();
     }
 
     private function requestSubscription(

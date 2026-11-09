@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\Api\Validation\Validator;
 
 use Jazzfreunde\Api\Service\Email\DnsRecordLookupInterface;
+use Jazzfreunde\Api\Type\Primitive\Email;
 use Jazzfreunde\Api\Validation\Attribute\EmailDomainDns;
 use Override;
 use Psr\Log\LoggerInterface;
@@ -45,16 +46,18 @@ final class EmailDomainDnsValidator extends ConstraintValidator
             throw new UnexpectedValueException($value, 'string');
         }
 
-        if (false === filter_var($value, FILTER_VALIDATE_EMAIL)) {
+        $email = Email::tryFrom($value);
+        if (null === $email) {
             return;
         }
 
-        $at = strrpos($value, '@');
+        $address = $email->value();
+        $at = strrpos($address, '@');
         if (false === $at) {
             return;
         }
 
-        $domain = strtolower(rtrim(substr($value, $at + 1), '.'));
+        $domain = rtrim(substr($address, $at + 1), '.');
         $lookupFailed = false;
 
         if ($this->validateMxRecords($domain, $constraint, $lookupFailed)) {

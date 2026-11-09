@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace JazzfreundeTests\Api\Tests\Message\Handler\Tasks;
 
 use Jazzfreunde\Api\Message\Handler\Tasks\MonitoringReportHandler;
-use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Messages\Email\EmailMessage;
 use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
 use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use Jazzfreunde\UnitTest\UnitUnderTest;
@@ -30,7 +30,7 @@ final class MonitoringReportHandlerTest extends TestCase
         $uut->mock(MessageBusInterface::class)
             ->expects($this->once())
             ->method('dispatch')
-            ->with($this->callback(function (EmailNotification $email): bool {
+            ->with($this->callback(function (EmailMessage $email): bool {
                 $this->assertSame(KnownMailHandleEnum::NoReply, $email->sender);
                 $this->assertSame(KnownMailHandleEnum::Developers, $email->recipient);
                 $this->assertSame('Täglicher Monitoring-Bericht', $email->subject);

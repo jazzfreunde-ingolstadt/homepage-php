@@ -14,6 +14,7 @@ use Jazzfreunde\Api\Service\Notification\Provider\Source\EventNotificationSource
 use Jazzfreunde\Api\Service\Notification\Scope\ParsedScope;
 use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
 use Jazzfreunde\Api\Type\Primitive\Uri;
+use Jazzfreunde\Util\HashUtil;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -47,6 +48,7 @@ final class EventNotificationSourceTest extends TestCase
         );
 
         self::assertSame('/events/42', $resource->uri->value());
+        self::assertSame(HashUtil::sha256(EventNotification::class, '42'), $resource->identityHash);
         self::assertSame(EmailTemplatePath::EVENT_NOTIFICATION, $resource->email_template);
         self::assertSame('Erinnerung: Jazz concert', $resource->title);
         self::assertSame([
@@ -78,6 +80,26 @@ final class EventNotificationSourceTest extends TestCase
 
         self::assertIsArray($resource->metadata['event']);
         self::assertArrayNotHasKey('end', $resource->metadata['event']);
+    }
+
+    public function testIdentityHashIsIndependentOfTheMatchedScope(): void
+    {
+        $event = $this->createEvent(
+            start: new DateTime('2030-05-12 18:00:00'),
+            end: new DateTime('2030-05-12 20:00:00'),
+        );
+        $repository = $this->createMock(EventRepositoryInterface::class);
+        $repository->expects(self::exactly(2))
+            ->method('getById')
+            ->with(42)
+            ->willReturn($event);
+        $source = new EventNotificationSource($repository);
+
+        $categoryScope = $source->get($this->createScope(new EventNotification(42), '/events/some-category'));
+        $idScope = $source->get($this->createScope(new EventNotification(42), '/events/42'));
+
+        self::assertNotSame($categoryScope->uri->value(), $idScope->uri->value());
+        self::assertSame($categoryScope->identityHash, $idScope->identityHash);
     }
 
     public function testGetThrowsWhenParsedScopeContainsAnotherDtoType(): void
@@ -118,9 +140,9 @@ final class EventNotificationSourceTest extends TestCase
         self::assertFalse($source->canHandle($this->createScope(new stdClass())));
     }
 
-    private function createScope(object $dto): ParsedScope
+    private function createScope(object $dto, string $matchedScope = '/events/42'): ParsedScope
     {
-        return new ParsedScope(new Uri('/events/42'), $dto);
+        return new ParsedScope(new Uri($matchedScope), $dto);
     }
 
     private function createEvent(DateTime $start, DateTime $end): Event

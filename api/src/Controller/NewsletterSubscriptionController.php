@@ -121,9 +121,9 @@ final class NewsletterSubscriptionController extends AbstractController implemen
                 throw new LogicException('Submitted newsletter data must contain an email address.');
             }
 
-            $email = trim($email);
+            $emailAddress = new Email(trim($email));
             $emailRateLimit = $emailRateLimiter
-                ->create(hash_hmac('sha256', strtolower($email), $rateLimitSecret))
+                ->create(hash_hmac('sha256', $emailAddress->value(), $rateLimitSecret))
                 ->consume();
 
             if (!$emailRateLimit->isAccepted()) {
@@ -133,7 +133,7 @@ final class NewsletterSubscriptionController extends AbstractController implemen
             }
 
             $subscription = new NewsletterSubscription();
-            $subscription->email = new Email($email);
+            $subscription->email = $emailAddress;
             $subscription->creationTime = new DateTime();
             $newsletter->subscribe($subscription);
 

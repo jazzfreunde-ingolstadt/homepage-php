@@ -11,6 +11,7 @@ use Jazzfreunde\Api\Service\Notification\Provider\Model\NotificationResource;
 use Jazzfreunde\Api\Service\Notification\Provider\NotificationSourceInterface;
 use Jazzfreunde\Api\Service\Notification\Scope\ParsedScope;
 use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
+use Jazzfreunde\Util\HashUtil;
 use LogicException;
 use Override;
 
@@ -56,6 +57,7 @@ final class EventNotificationSource implements NotificationSourceInterface
 
         return new NotificationResource(
             uri: $parsedScope->matchedScope,
+            identityHash: HashUtil::sha256(EventNotification::class, (string) $entity->id),
             email_template: EmailTemplatePath::EVENT_NOTIFICATION,
             title: sprintf('Erinnerung: %s', $event->title),
             metadata: [

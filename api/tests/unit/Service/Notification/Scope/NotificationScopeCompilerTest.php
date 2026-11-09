@@ -35,7 +35,7 @@ final class NotificationScopeCompilerTest extends TestCase
         self::assertSame('~^/events/archive\.v1$~', $compiled->regex);
         self::assertSame([], $compiled->parameters);
         self::assertSame(stdClass::class, $compiled->entityClassName);
-        self::assertSame('/events/archive.v1', $compiled->uri->value());
+        self::assertSame('/events/archive.v1', $compiled->uriTemplate);
     }
 
     /**
@@ -55,7 +55,7 @@ final class NotificationScopeCompilerTest extends TestCase
         self::assertInstanceOf(Number::class, $compiled->parameters[0]);
         self::assertSame('eventId', $compiled->parameters[0]->name);
         self::assertSame(stdClass::class, $compiled->entityClassName);
-        self::assertSame('/events/{eventId:number}/items', $compiled->uri->value());
+        self::assertSame('/events/{eventId:number}/items', $compiled->uriTemplate);
     }
 
     /**

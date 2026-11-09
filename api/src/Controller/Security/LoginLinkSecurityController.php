@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\Api\Controller\Security;
 
 use InvalidArgumentException;
-use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Messages\Email\EmailMessage;
 use Jazzfreunde\Api\Service\Security\Attribute\FirewallEntryPoint;
 use Jazzfreunde\Api\Service\Security\Request\RequestHelper;
 use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
@@ -147,7 +147,7 @@ final class LoginLinkSecurityController extends AbstractController implements Lo
         $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
         $loginLink = $loginLinkDetails->getUrl();
 
-        $bus->dispatch(new EmailNotification(
+        $bus->dispatch(new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: new Address($email->value()),
             subject: 'Login bei Jazzfreunde Ingolstadt e.V.',
