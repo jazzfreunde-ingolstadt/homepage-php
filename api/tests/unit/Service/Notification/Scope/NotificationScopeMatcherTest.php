@@ -138,7 +138,7 @@ final class NotificationScopeMatcherTest extends TestCase
     private function createCollection(): NotificationScopeCollection
     {
         $collection = new NotificationScopeCollection();
-        $collection->add(new CompiledScope('~^/events/(?P<eventId>\d+)$~', [new Number('eventId')], stdClass::class, Uri::from('/events/{eventId:number}')));
+        $collection->add(new CompiledScope('~^/events/(?P<eventId>\d+)$~', [new Number('eventId')], stdClass::class, '/events/{eventId:number}'));
 
         return $collection;
     }

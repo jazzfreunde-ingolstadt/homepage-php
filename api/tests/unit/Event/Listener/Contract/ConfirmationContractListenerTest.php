@@ -9,7 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\Api\Event\Listener\Contract\ConfirmationContractListener;
-use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Messages\Email\EmailMessage;
 use Jazzfreunde\Api\Service\Contract\ContractConfirmationRequestMailGeneratorInterface;
 use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
 use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
@@ -50,7 +50,7 @@ final class ConfirmationContractListenerTest extends TestCase
     {
         $contract = $this->newContract();
         $contract->state = ConfirmationStateEnum::Pending;
-        $mail = new EmailNotification(
+        $mail = new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: new Address('test@mail.com'),
             subject: 'Bitte bestätigen Sie Ihre Anmeldung',

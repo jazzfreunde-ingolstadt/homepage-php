@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\Api\Tests\Service\Notification\Scope;
 
 use Jazzfreunde\Api\Platform\Notification\Resource\EventNotification;
+use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource;
 use Jazzfreunde\Api\Service\Notification\Scope\Attribute\NotificationResource as NotificationResourceAttribute;
 use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollection;
 use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProviderInterface;
@@ -13,6 +14,7 @@ use Jazzfreunde\Api\Service\Notification\Scope\NotificationUrlGenerator;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use stdClass;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -47,5 +49,28 @@ final class NotificationUrlGeneratorTest extends TestCase
             ->willReturn(['id' => 42]);
 
         self::assertSame('/events/42', $uut->target()->generate($notification));
+    }
+
+    public function testGeneratePreservesParameterCaseForPropertyLookup(): void
+    {
+        $scope = (new NotificationScopeCompiler())->compile(
+            new NotificationResource('/events/{eventId:number}'),
+            stdClass::class,
+        );
+        $scopes = new NotificationScopeCollection();
+        $scopes->add($scope);
+
+        $uut = new UnitUnderTest(NotificationUrlGenerator::class);
+        $uut->mock(NotificationScopeCollectionProviderInterface::class)
+            ->expects(self::once())
+            ->method('provide')
+            ->willReturn($scopes);
+
+        $uut->mock(NormalizerInterface::class)
+            ->expects(self::once())
+            ->method('normalize')
+            ->willReturn(['eventId' => 42]);
+
+        self::assertSame('/events/42', $uut->target()->generate(new stdClass()));
     }
 }

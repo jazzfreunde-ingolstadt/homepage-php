@@ -6,11 +6,13 @@ namespace Jazzfreunde\Api\Entity\Contract;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use InvalidArgumentException;
 use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\Api\Entity\NewsletterSubscription;
 use Jazzfreunde\Api\Entity\Notification\NotificationSubscription;
 use Jazzfreunde\Api\Entity\Type\String\EmailType;
 use Jazzfreunde\Api\Type\Primitive\Email;
+use Jazzfreunde\Util\HashUtil;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -21,6 +23,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'confirmable_entities')]
+#[ORM\UniqueConstraint(
+    name: 'UNIQ_CONFIRMABLE_ENTITY_IDENTITY_HASH',
+    columns: ['identity_hash'],
+)]
+#[ORM\HasLifecycleCallbacks]
 #[ORM\InheritanceType('JOINED')]
 #[ORM\DiscriminatorColumn(name: 'discriminator', type: 'string')]
 #[ORM\DiscriminatorMap([
@@ -69,18 +76,45 @@ abstract class ConfirmableEntity
     #[ORM\JoinColumn(referencedColumnName: 'uuid', nullable: false, onDelete: 'CASCADE')]
     public ConfirmationContract $confirmation;
 
-    /**
-     * Create a new contract.
-     *
-     * @param array<string, mixed> ...$params
-     *
-     * @psalm-suppress UndefinedThisPropertyFetch
-     */
-    public function __construct(array ...$params)
-    {
-        $params['creationTime'] ??= new DateTime();
-        $params['confirmation'] ??= new ConfirmationContract();
+    #[ORM\Column(name: 'identity_hash', length: 64)]
+    public private(set) string $identityHash = '' {
+        set(string $value) {
+            if ('' === $value) {
+                throw new InvalidArgumentException('Identity hash cannot be an empty string.');
+            }
 
-        $this->injectProperties($params);
+            $this->identityHash = $value;
+        }
+        get => $this->identityHash;
+    }
+
+    /**
+     * Values used to generate the identity hash.
+     *
+     * @var array<string>
+     */
+    protected array $identityValues {
+        get => [$this->email->value()];
+    }
+
+        /**
+         * Create a new contract.
+         *
+         * @param array<string, mixed> ...$params
+         *
+         * @psalm-suppress UndefinedThisPropertyFetch
+         */
+        public function __construct(array ...$params)
+        {
+            $params['creationTime'] ??= new DateTime();
+            $params['confirmation'] ??= new ConfirmationContract();
+
+            $this->injectProperties($params);
+        }
+
+    #[ORM\PrePersist]
+    public function onPrePersist(): void
+    {
+        $this->identityHash = HashUtil::sha256(static::class, ...$this->identityValues);
     }
 }

@@ -9,7 +9,7 @@ use Jazzfreunde\Api\Entity\Contract\ConfirmableEntity;
 use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
 use Jazzfreunde\Api\Entity\NewsletterSubscription;
 use Jazzfreunde\Api\Event\Listener\Contract\ConfirmationContractListener;
-use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Messages\Email\EmailMessage;
 use Jazzfreunde\Api\Service\Twig\EmailTemplatePath;
 use Jazzfreunde\Api\Type\Enum\Contract\ConfirmationStateEnum;
 use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
@@ -77,7 +77,7 @@ final class NewNewsletterSubscriberListener
             ));
         }
 
-        $this->messageBus->dispatch(new EmailNotification(
+        $this->messageBus->dispatch(new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: KnownMailHandleEnum::Jazzletter,
             subject: 'Neuer Newsletter Abonnent!',

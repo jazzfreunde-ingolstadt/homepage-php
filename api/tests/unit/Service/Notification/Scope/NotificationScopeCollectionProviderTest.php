@@ -9,7 +9,6 @@ use Jazzfreunde\Api\Service\Notification\Scope\CompiledScope;
 use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollection;
 use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCollectionProvider;
 use Jazzfreunde\Api\Service\Notification\Scope\NotificationScopeCompilerInterface;
-use Jazzfreunde\Api\Type\Primitive\Uri;
 use Jazzfreunde\UnitTest\UnitUnderTest;
 use LogicException;
 use PHPUnit\Framework\TestCase;
@@ -51,7 +50,7 @@ final class NotificationScopeCollectionProviderTest extends TestCase
      */
     public function testProvideCallsCompilerWhenCacheIsEmpty(): void
     {
-        $scope = new CompiledScope('~^/events/(\d+)$~', [], stdClass::class, Uri::from('/events/{id:number}'));
+        $scope = new CompiledScope('~^/events/(\d+)$~', [], stdClass::class, '/events/{id:number}');
         $uut = new UnitUnderTest(NotificationScopeCollectionProvider::class);
         $compiler = $uut->mock(NotificationScopeCompilerInterface::class);
         $compiler
@@ -67,7 +66,7 @@ final class NotificationScopeCollectionProviderTest extends TestCase
             ->expects(self::once())
             ->method('get')
             ->willReturnCallback(function (string $key, callable $callback): NotificationScopeCollection {
-                self::assertSame('notifications.scope.collection', $key);
+                self::assertSame('notifications.scope.collection.v2', $key);
                 $item = $this->createMock(ItemInterface::class);
                 $item->expects(self::once())->method('expiresAfter')->with(86400);
                 $collection = $callback($item);
@@ -87,7 +86,7 @@ final class NotificationScopeCollectionProviderTest extends TestCase
     public function testProvideDoesNotCallCompilerWhenCacheExists(): void
     {
         $cachedCollection = new NotificationScopeCollection();
-        $cachedCollection->add(new CompiledScope('~^/events/(\d+)$~', [], stdClass::class, Uri::from('/events/{id:number}')));
+        $cachedCollection->add(new CompiledScope('~^/events/(\d+)$~', [], stdClass::class, '/events/{id:number}'));
 
         $uut = new UnitUnderTest(NotificationScopeCollectionProvider::class);
         $compiler = $uut->mock(NotificationScopeCompilerInterface::class);
@@ -96,7 +95,7 @@ final class NotificationScopeCollectionProviderTest extends TestCase
         $uut->mock(CacheInterface::class)
             ->expects(self::once())
             ->method('get')
-            ->with('notifications.scope.collection')
+            ->with('notifications.scope.collection.v2')
             ->willReturn($cachedCollection);
 
         self::assertSame($cachedCollection, $uut->target()->provide());

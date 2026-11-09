@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Jazzfreunde\Api\Tests\Platform\Notification;
 
 use DateTimeImmutable;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Jazzfreunde\Api\Entity\Contract\ConfirmationContract;
@@ -202,6 +203,30 @@ final class NotificationSubscriptionTest extends WebTestCase
 
         $email = self::getMailerMessage();
         self::assertNull($email);
+    }
+
+    public function testDatabasePreventsDuplicateScopeAndEmailSubscriptions(): void
+    {
+        $kernel = self::bootKernel();
+        $this->initDatabase($kernel);
+
+        $manager = self::getContainer()->get(ManagerRegistry::class)->getManager();
+        foreach (['test@mail.com', 'TEST@mail.com'] as $email) {
+            $subscription = new NotificationSubscription();
+            $subscription->resourceScope = Uri::from('/events/123');
+            $subscription->email = Email::from($email);
+            $subscription->confirmation = new ConfirmationContract();
+            $manager->persist($subscription);
+
+            if ('test@mail.com' === $email) {
+                $manager->flush();
+
+                continue;
+            }
+
+            $this->expectException(UniqueConstraintViolationException::class);
+            $manager->flush();
+        }
     }
 
     public function testSubscriptionEmailCanBeReusedAcrossScopesAndNewsletter(): void

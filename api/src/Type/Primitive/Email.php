@@ -26,7 +26,7 @@ final class Email implements PrimitiveTypeInterface
             throw new InvalidArgumentException("'{$value}' is not a valid email address.");
         }
 
-        $this->address = $value;
+        $this->address = strtolower($value);
     }
 
     /**

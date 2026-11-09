@@ -80,6 +80,6 @@ final class NotificationUrlGenerator implements NotificationUrlGeneratorInterfac
             $replacements[$placeholder] = (string) $data[$parameterName];
         }
 
-        return strtr($scope->uri->value(), $replacements);
+        return strtr($scope->uriTemplate, $replacements);
     }
 }

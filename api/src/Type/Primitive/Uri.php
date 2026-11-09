@@ -55,7 +55,7 @@ final class Uri implements PrimitiveTypeInterface
             throw new InvalidArgumentException("'{$value}' is not a valid URI.");
         }
 
-        $this->value = $value;
+        $this->value = strtolower($value);
     }
 
     /**

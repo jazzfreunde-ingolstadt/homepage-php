@@ -9,11 +9,8 @@ use DateTimeZone;
 use Jazzfreunde\Api\Entity\Event;
 use Jazzfreunde\Api\Message\Messages\Tasks\SendEventNotificationsMessage;
 use Jazzfreunde\Api\Repository\Filter\EventFilter;
-use Jazzfreunde\Api\Repository\Filter\NotificationSubscriptionFilter;
 use Jazzfreunde\Api\Service\Event\EventRepositoryInterface;
 use Jazzfreunde\Api\Service\Notification\Mail\NotificationMailGeneratorInterface;
-use Jazzfreunde\Api\Service\Notification\NotificationSubscriptionRepositoryInterface;
-use Jazzfreunde\Api\Service\Notification\Provider\NotificationProviderInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -33,8 +30,6 @@ final class EventNotificationHandler implements LoggerAwareInterface
 
     public function __construct(
         private readonly EventRepositoryInterface $eventRepository,
-        private readonly NotificationSubscriptionRepositoryInterface $notificationSubscriptionRepository,
-        private readonly NotificationProviderInterface $notificationProvider,
         private readonly NotificationMailGeneratorInterface $notificationMailGenerator,
     ) {}
 
@@ -63,20 +58,14 @@ final class EventNotificationHandler implements LoggerAwareInterface
     private function sendNotifications(Event $event): void
     {
         $resourceScope = "/events/{$event->id}";
-
-        $filter = new NotificationSubscriptionFilter(resourceScope: $resourceScope);
-        $subscriptions = $this->notificationSubscriptionRepository->findByFilter($filter);
-
-        if (empty($subscriptions)) {
-            $this->logger?->info(sprintf('No subscriptions found for resource scope: %s', $resourceScope));
-
+        $sentCount = $this->notificationMailGenerator->generate($resourceScope);
+        if (0 === $sentCount) {
             return;
         }
 
-        $notification = $this->notificationProvider->getByScope($resourceScope);
-        $this->notificationMailGenerator->generate(
-            $notification,
-            $subscriptions,
-        );
+        $this->logger?->info(sprintf('Sent %d event notifications.', $sentCount), [
+            'count' => $sentCount,
+            'resourceScope' => $resourceScope,
+        ]);
     }
 }

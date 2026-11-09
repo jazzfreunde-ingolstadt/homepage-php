@@ -19,7 +19,7 @@ use Symfony\Contracts\Cache\ItemInterface;
  */
 final class NotificationScopeCollectionProvider implements NotificationScopeCollectionProviderInterface
 {
-    private const CACHE_KEY = 'notifications.scope.collection';
+    private const CACHE_KEY = 'notifications.scope.collection.v2';
 
     /**
      * @param array<int, array{uri: non-empty-string, className: class-string}> $scopeResources

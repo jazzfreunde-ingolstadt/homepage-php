@@ -9,6 +9,7 @@ use Jazzfreunde\Api\DependencyInjection\PropertyInjectionTrait;
 use Jazzfreunde\Api\Entity\Contract\ConfirmableEntity;
 use Jazzfreunde\Api\Entity\Type\String\UriType;
 use Jazzfreunde\Api\Type\Primitive\Uri;
+use Override;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -35,6 +36,14 @@ class NotificationSubscription extends ConfirmableEntity
      */
     #[ORM\Column(type: UriType::ENTITY_NAME)]
     public Uri $resourceScope;
+
+    /**
+     * {@inheritDoc}
+     */
+    protected array $identityValues {
+        #[Override]
+        get => [$this->email->value(), $this->resourceScope->value()];
+    }
 
     /**
      * Create a new contract.

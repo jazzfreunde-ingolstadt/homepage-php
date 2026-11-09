@@ -8,8 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectRepository;
 use Jazzfreunde\Api\Entity\KnownMail;
 use Jazzfreunde\Api\Message\Exception\MailException;
-use Jazzfreunde\Api\Message\Handler\Email\EmailNotificationHandler;
-use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Handler\Email\EmailMessageHandler;
+use Jazzfreunde\Api\Message\Messages\Email\EmailMessage;
 use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use Jazzfreunde\Api\Type\Primitive\Email;
 use Jazzfreunde\UnitTest\UnitUnderTest;
@@ -31,14 +31,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *
  * @coversNothing
  */
-final class EmailNotificationHandlerTest extends TestCase
+final class EmailMessageHandlerTest extends TestCase
 {
     /**
      * Test sending an email under valid conditions.
      */
     public function testSendMail(): void
     {
-        $uut = new UnitUnderTest(EmailNotificationHandler::class);
+        $uut = new UnitUnderTest(EmailMessageHandler::class);
 
         $this->configValidator($uut, 0);
 
@@ -73,7 +73,7 @@ final class EmailNotificationHandlerTest extends TestCase
             ->method('getRepository')
             ->willReturn($repository);
 
-        $notification = new EmailNotification(
+        $notification = new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: new Address('test@mail.com', 'Mr. Testee'),
             subject: 'subject',
@@ -88,7 +88,7 @@ final class EmailNotificationHandlerTest extends TestCase
      */
     public function testSendToKnownMail(): void
     {
-        $uut = new UnitUnderTest(EmailNotificationHandler::class);
+        $uut = new UnitUnderTest(EmailMessageHandler::class);
 
         $this->configValidator($uut, 0);
 
@@ -130,7 +130,7 @@ final class EmailNotificationHandlerTest extends TestCase
             ->method('getRepository')
             ->willReturn($repository);
 
-        $notification = new EmailNotification(
+        $notification = new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: KnownMailHandleEnum::Jazzletter,
             subject: 'subject',
@@ -145,11 +145,11 @@ final class EmailNotificationHandlerTest extends TestCase
      */
     public function testInvalidMail(): void
     {
-        $uut = new UnitUnderTest(EmailNotificationHandler::class);
+        $uut = new UnitUnderTest(EmailMessageHandler::class);
 
         $this->configValidator($uut, 1);
 
-        $notification = new EmailNotification(
+        $notification = new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: new Address('test@mail.com', 'Mr. Testee'),
             subject: 'subj',
@@ -166,7 +166,7 @@ final class EmailNotificationHandlerTest extends TestCase
      */
     public function testUnconfiguredKnownMailHandle(): void
     {
-        $uut = new UnitUnderTest(EmailNotificationHandler::class);
+        $uut = new UnitUnderTest(EmailMessageHandler::class);
 
         $repository = $uut->mock(ObjectRepository::class);
         $repository
@@ -178,7 +178,7 @@ final class EmailNotificationHandlerTest extends TestCase
             ->method('getRepository')
             ->willReturn($repository);
 
-        $notification = new EmailNotification(
+        $notification = new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: new Address('test@mail.com', 'Mr. Testee'),
             subject: 'subject',
@@ -195,7 +195,7 @@ final class EmailNotificationHandlerTest extends TestCase
      */
     public function testMailerThrowsTransportException(): void
     {
-        $uut = new UnitUnderTest(EmailNotificationHandler::class);
+        $uut = new UnitUnderTest(EmailMessageHandler::class);
 
         $this->configValidator($uut, 0);
 
@@ -232,7 +232,7 @@ final class EmailNotificationHandlerTest extends TestCase
             ->method('getRepository')
             ->willReturn($repository);
 
-        $notification = new EmailNotification(
+        $notification = new EmailMessage(
             sender: KnownMailHandleEnum::NoReply,
             recipient: new Address('test@mail.com', 'Mr. Testee'),
             subject: 'subject',
@@ -248,8 +248,8 @@ final class EmailNotificationHandlerTest extends TestCase
     /**
      * Configure validator mock.
      *
-     * @param UnitUnderTest<EmailNotificationHandler> $uut
-     * @param int                                     $errorCount error count after validation
+     * @param UnitUnderTest<EmailMessageHandler> $uut
+     * @param int                                $errorCount error count after validation
      *
      * @return MockObject&ValidatorInterface
      */

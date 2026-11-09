@@ -8,7 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use InvalidArgumentException;
 use Jazzfreunde\Api\Entity\KnownMail;
 use Jazzfreunde\Api\Message\Exception\MailException;
-use Jazzfreunde\Api\Message\Messages\Email\EmailNotification;
+use Jazzfreunde\Api\Message\Messages\Email\EmailMessage;
 use Jazzfreunde\Api\Type\Enum\KnownMailHandleEnum;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * @psalm-api
  */
 #[AsMessageHandler(method: 'send')]
-class EmailNotificationHandler implements LoggerAwareInterface
+class EmailMessageHandler implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
@@ -46,12 +46,12 @@ class EmailNotificationHandler implements LoggerAwareInterface
     /**
      * Sendet eine E-Mail.
      *
-     * @param EmailNotification $message
+     * @param EmailMessage $message
      *
      * @throws MailException
      */
     public function send(
-        EmailNotification $message
+        EmailMessage $message
     ): void {
         $violations = $this->validator->validate($message);
         if (0 < count($violations)) {
@@ -87,13 +87,13 @@ class EmailNotificationHandler implements LoggerAwareInterface
     /**
      * Get the recipient address from the message.
      *
-     * @param EmailNotification $message
+     * @param EmailMessage $message
      *
      * @return Address
      *
      * @throws InvalidArgumentException If the recipient is not a KnownMailHandleEnum or Address
      */
-    private function getRecipient(EmailNotification $message): Address
+    private function getRecipient(EmailMessage $message): Address
     {
         if ($message->recipient instanceof Address) {
             return $message->recipient;
@@ -107,11 +107,11 @@ class EmailNotificationHandler implements LoggerAwareInterface
     /**
      * Get the sender address from the message.
      *
-     * @param EmailNotification $message
+     * @param EmailMessage $message
      *
      * @return Address
      */
-    private function getSender(EmailNotification $message): Address
+    private function getSender(EmailMessage $message): Address
     {
         $mail = $this->getKnownMail($message->sender)->address;
 

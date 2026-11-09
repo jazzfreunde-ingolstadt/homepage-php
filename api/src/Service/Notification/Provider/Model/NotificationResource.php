@@ -21,6 +21,11 @@ final class NotificationResource
         public readonly Uri $uri,
 
         /**
+         * Stable hash identifying the underlying notification, independent of subscription scope.
+         */
+        public readonly string $identityHash,
+
+        /**
          * @param string $email_template Template of the email to send
          */
         #[TwigTemplate]

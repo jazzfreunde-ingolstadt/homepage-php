@@ -39,6 +39,19 @@ final class EmailDomainDnsValidatorTest extends ConstraintValidatorTestCase
     }
 
     #[Test]
+    public function normalizesEmailDomainBeforeDnsLookup(): void
+    {
+        $this->dnsRecordLookup->expects($this->once())
+            ->method('lookup')
+            ->with('example.test', DNS_MX)
+            ->willReturn([['target' => 'mail.example.test', 'pri' => 10]]);
+
+        $this->validator->validate('Subscriber@EXAMPLE.TEST', new EmailDomainDns());
+
+        $this->assertNoViolation();
+    }
+
+    #[Test]
     public function isValidWhenDomainHasAddressRecordsWithoutMx(): void
     {
         $this->dnsRecordLookup->expects($this->exactly(2))

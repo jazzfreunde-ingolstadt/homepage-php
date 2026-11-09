@@ -24,8 +24,8 @@ final class NotificationScopeCompiler implements NotificationScopeCompilerInterf
     #[Override]
     public function compile(NotificationResource $resource, string $entityClassName): CompiledScope
     {
-        $uri = Uri::from($resource->uri);
-        $segments = $uri->segments();
+        $this->validateUri($resource->uri);
+        $segments = explode('/', trim($resource->uri, '/'));
         $regexParts = [];
         $parameters = [];
 
@@ -41,6 +41,11 @@ final class NotificationScopeCompiler implements NotificationScopeCompilerInterf
 
         $regex = '~^/'.implode('/', $regexParts).'$~';
 
-        return new CompiledScope($regex, $parameters, $entityClassName, $uri);
+        return new CompiledScope($regex, $parameters, $entityClassName, $resource->uri);
+    }
+
+    private function validateUri(string $uri): void
+    {
+        Uri::from($uri);
     }
 }
