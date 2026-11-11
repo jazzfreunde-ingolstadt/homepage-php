@@ -82,7 +82,9 @@ Encore.setOutputPath('public/app')
 
   .splitEntryChunks()
 
-  .enableReactPreset()
+  .enableReactPreset((options) => {
+    options.development = !Encore.isProduction();
+  })
   .enableTypeScriptLoader()
   .configureDefinePlugin((options) => {
     const env = dotenv.config({ path: getEnvPaths() });
