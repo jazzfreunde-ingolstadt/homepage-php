@@ -9,7 +9,7 @@
 			<p class="text-xl md:text-2xl mb-5 md:mb-8 font-bold text-orange">Abonnieren Sie unseren Newsletter.</p>
 			{% include 'components/util/error-flash.html.twig' %}
 			{{ form_start(subscription_form) }}
-			<div aria-hidden="true" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">
+			<div aria-hidden="true" class="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
 				{{ form_widget(subscription_form.website) }}
 			</div>
 			<div class="w-full flex flex-col md:flex-row gap-5 lg:gap-10">
