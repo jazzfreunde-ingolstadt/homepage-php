@@ -17,7 +17,7 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Base class for entities that require confirmation (e.g., subscriptions).
+ * Base class for entities that require confirmation (e.g., subscriptions) Trigger deployment.
  *
  * @psalm-api
  */
